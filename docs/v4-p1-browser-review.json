@@ -1,0 +1,260 @@
+{
+  "firstScreenBytes": 866756,
+  "reviews": [
+    {
+      "screen": "menu-desktop",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "characters",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "talents",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "achievements",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "map",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "daily",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "settings",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "credits",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "codex-武器",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "codex-被动",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "codex-进化",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "codex-融合",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "codex-敌人",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "codex-遗物",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "codex-校园",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "codex-事件",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "menu-mobile",
+      "viewport": [
+        390,
+        844
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "characters-mobile",
+      "viewport": [
+        390,
+        844
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "talents-mobile",
+      "viewport": [
+        390,
+        844
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "codex-mobile",
+      "viewport": [
+        390,
+        844
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "battle",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "pause",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "draft",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "fusion-choice",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "chest",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "contract",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "battle-fusion",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "result",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "loadFailures": []
+}

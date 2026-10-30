@@ -1,0 +1,919 @@
+{
+ "icons/weapons/orbit.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: An open academic journal with layered ivory pages, a jade hard cover and a gold bookmark. Use the reference image only for painting style, palette and rendering quality; the object itself must be entirely different from the reference object. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "ac6e02385902a93ffdc7a869429af3dbcb33f524cebcca0d2d34bf2fc55501c9.jpg"
+ },
+ "icons/weapons/bot.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A friendly compact academic assistant robot with ivory casing, jade eyes and a small gold antenna. Use the reference image only for painting style, palette and rendering quality; the object itself must be entirely different from the reference object. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "f4a9f5ce8811cb41d425477910e6846079ae2ea2e38c0af3b0546fda3f33dced.jpg"
+ },
+ "icons/weapons/code.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A compact blue code module with abstract bracket shapes, glass surfaces and a luminous jade core. Use the reference image only for painting style, palette and rendering quality; the object itself must be entirely different from the reference object. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "0c13a8d30d6042d3214056785c253514fc5143dcf92717493e0bc5cab08c5596.jpg"
+ },
+ "icons/weapons/laser.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A precision champagne-gold presentation laser pointer emitting a short focused golden beam. Use the reference image only for painting style, palette and rendering quality; the object itself must be entirely different from the reference object. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "0eaa2105c21efdc85e3c74dc17142fcae7233cb109c6eb766d00080e9f784ec9.jpg"
+ },
+ "icons/weapons/ppt.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A stack of coral presentation slides with simple abstract charts and polished paper edges. Use the reference image only for painting style, palette and rendering quality; the object itself must be entirely different from the reference object. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "96fdc635f1895ad18cf9e142e36eb75ba3e430c51ca9a61b8173f43d89fce95e.jpg"
+ },
+ "icons/weapons/rain.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A dramatic stack of ivory research papers descending like a small comet, with pale blue motion accents. Use the reference image only for painting style, palette and rendering quality; the object itself must be entirely different from the reference object. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "c91489076686a5841e25083313c509af88108c0fca2a6f59158bdc586ff43d57.jpg"
+ },
+ "icons/weapons/keyboard.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A compact navy mechanical keyboard with raised ivory keycaps and restrained violet highlights, a short compact chunky block of about twelve oversized blank keycaps with absolutely no letters, symbols or legends. Use the reference image only for painting style, palette and rendering quality; the object itself must be entirely different from the reference object. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "0c09dfb5ca4fe4e1fafbc2e519277bad3530e824f99451c1c85634ca4cb64324.jpg"
+ },
+ "icons/weapons/lightning.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A violet debugging probe surrounded by a small crisp branching electric arc. Use the reference image only for painting style, palette and rendering quality; the object itself must be entirely different from the reference object. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "c05c4f1fe5d622393f8b33669728c8bf28454beff07c97cf95c9d2fb6078f405.jpg"
+ },
+ "icons/weapons/mentor.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: An elegant recommendation letter with a champagne-gold academic seal and an ivory envelope. Use the reference image only for painting style, palette and rendering quality; the object itself must be entirely different from the reference object. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "3e89df1af314e3b360c4a2d0b1c57b54031cf8e615b6acea4b6fe889a9d7c54a.jpg"
+ },
+ "icons/weapons/staple.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A heavy navy metal stapler with visible silver staples and a clean industrial silhouette. Use the reference image only for painting style, palette and rendering quality; the object itself must be entirely different from the reference object. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "8ab9741082940ef051b0dcf4f3092b8234966f611faf66703180d461cbf79213.jpg"
+ },
+ "icons/weapons/mine.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A polished brass drafting compass opened above a restrained geometric construction diagram. Use the reference image only for painting style, palette and rendering quality; the object itself must be entirely different from the reference object. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "18c4a2f4ff9b1fddbd8ab090d108bc556108f902a0dfdea7fc907424127fb1e7.jpg"
+ },
+ "icons/weapons/eraser.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A large ivory and dusty rose eraser with a crisp erased-paper curl and soft chalk dust. Use the reference image only for painting style, palette and rendering quality; the object itself must be entirely different from the reference object. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "b0228a9a69a602cbdadd2920fc49790b554c536203c992c654c9e3cf5b267eb0.jpg"
+ },
+ "icons/weapons/broadcast.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A vintage campus loudspeaker in ivory enamel and navy metal, with restrained coral sound arcs. Use the reference image only for painting style, palette and rendering quality; the object itself must be entirely different from the reference object. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "680646614c07f36b8d815aa313ffa182474882f64aa0470836d802bdc674eb55.jpg"
+ },
+ "icons/weapons/ruler.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A substantial architectural T-square ruler made of brushed metal and translucent pale blue acrylic. Use the reference image only for painting style, palette and rendering quality; the object itself must be entirely different from the reference object. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "c195268997fae4a8711baaa6a105f53251aab6ede83606d9172b97a7438f4fe8.jpg"
+ },
+ "icons/weapons/blueprint.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A compact deployable blueprint turret made of folded blue plans and polished surveying hardware. Use the reference image only for painting style, palette and rendering quality; the object itself must be entirely different from the reference object. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "5cd4e8058a9749d0f030d044907d591eb837f6642ec504342729765cb5aaff30.jpg"
+ },
+ "icons/weapons/shuttle.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: An elegant white shuttlecock with individually readable feathers and a champagne-gold cork base. Use the reference image only for painting style, palette and rendering quality; the object itself must be entirely different from the reference object. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "223bc2c7889ec043872c911f00feb1cb89b4f9a50ada27adc87b0d1b3e2f9df1.jpg"
+ },
+ "icons/weapons/prism.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A precision brass and navy surveying theodolite with a luminous glass prism. Use the reference image only for painting style, palette and rendering quality; the object itself must be entirely different from the reference object. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "345605814461b2bea806a378cd6f64fc0ad2f54b39b5afb45e175d0339ced694.jpg"
+ },
+ "icons/weapons/cryo.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A compact brushed-metal liquid nitrogen canister with pale blue frost and a short insulated nozzle. Use the reference image only for painting style, palette and rendering quality; the object itself must be entirely different from the reference object. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "d20113527d8a5a6dd48a131065a0c4309bbac12da7de76e63ea019e648ef529a.jpg"
+ },
+ "icons/weapons/brick.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A small architectural model brick assembly with warm terracotta surfaces and clean ivory mortar lines: a compact chunky cluster of six interlocking modern rectangular terracotta model bricks stacked like a tiny abstract modern wall fragment, no roofs, no doors, no signage, no lanterns. Use the reference image only for painting style, palette and rendering quality; the object itself must be entirely different from the reference object. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "435b42a46448ccea2d93211427a18263f5df09f9309cf57f270045c2132ea7b4.jpg"
+ },
+ "icons/weapons/wifi.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A jade campus network transmitter with three clean concentric signal arcs, shaped as a small upright router tower with a short antenna mast, clearly electronic, not a cup. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "6e3b4dceb10b22efe7598fb19fd3559d9085a5dba1089977c82cd0b17c579d94.jpg"
+ },
+ "icons/passives/speed.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A fresh espresso cup beside a small jade running-shoe charm, energetic but clean composition. Use the reference image only for painting style, palette and rendering quality; the object itself must be entirely different from the reference object. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "b0d9cacb8898b800656c5387651765c95e209b6e466deb019fb7649ebadd4423.jpg"
+ },
+ "icons/passives/night.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A navy desk lamp illuminating a crescent-moon bookmark and a late-night notebook. Use the reference image only for painting style, palette and rendering quality; the object itself must be entirely different from the reference object. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "470a0b12651833f1dfed8262ea479cb9e2b626d7d77ccaa8b0dafd250e550131.jpg"
+ },
+ "icons/passives/xp.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: An elegant jade library access card with a small embossed open-book emblem. Use the reference image only for painting style, palette and rendering quality; the object itself must be entirely different from the reference object. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "6eebe7c02c0a4de2d21802ddf164a4dcecdf39e4805f1ed7b8046a701760375e.jpg"
+ },
+ "icons/passives/regen.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A warm ivory meal bowl and a coral campus meal card, comforting polished game-item design. Use the reference image only for painting style, palette and rendering quality; the object itself must be entirely different from the reference object. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "a3c0e66347694bfe85b0a2d08391b075c268745479ef6ce91bcff63f28d911d9.jpg"
+ },
+ "icons/passives/haste.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A compact champagne-gold alarm clock with ivory hands and a jade morning-light accent. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "317c361bb6f79f0e29c80162b23565e356e1f3b65da3f7aba7ec5a59782292d0.jpg"
+ },
+ "icons/passives/multi.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: Three interlocking ivory and blue academic badges linked by a small jade ribbon; each badge shows only a simple abstract emblem (a star, an open book, a leaf), absolutely no characters, no writing, no buildings. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "bc19e67de4b3c6322e0d6a290fc547db143e76f3a2bc0074058a29c8ce9cbe88.jpg"
+ },
+ "icons/passives/area.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: An open ivory book with four outward-pointing jade geometric expansion arrows. Use the reference image only for painting style, palette and rendering quality; the object itself must be entirely different from the reference object. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "cbc6635266c4d804274e2aa5a274eda6916f2768c5ec142d13e87a528e0a1449.jpg"
+ },
+ "icons/passives/luck.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A delicate green four-leaf clover attached to a champagne-gold bookmark. Use the reference image only for painting style, palette and rendering quality; the object itself must be entirely different from the reference object. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "0ca1eb7026c6c184f505f23ee8c6dc126cb2bf50e0eaba6bf475f838b53461d1.jpg"
+ },
+ "icons/passives/health.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A cozy rolled ivory mattress with a dusty rose pillow and navy fabric straps. Use the reference image only for painting style, palette and rendering quality; the object itself must be entirely different from the reference object. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "194df87a4a5939b05fa1cadd9d2bf5de32d5cdc2da2c2c367ff222766dba24af.jpg"
+ },
+ "icons/passives/push.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A sturdy pale blue running shoe beside a small embossed exercise check-in token. Use the reference image only for painting style, palette and rendering quality; the object itself must be entirely different from the reference object. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "a316fde58c8a399734d0b49d2f60b6b328beb21b2bc7374614980b3b9c235d2e.jpg"
+ },
+ "icons/passives/calm.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A jade protective shield enclosing a small calm tea cup, balanced academic symbolism; a small round porcelain teacup on a saucer centered on a plain jade shield, no scrolls, no characters, no writing anywhere. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "5dced78eab798e670b04559aa2b6c4d599b6d5c3aec097bcb7c6c1044bd8d6c3.jpg"
+ },
+ "icons/passives/duration.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A carefully bound laboratory notebook with a pale blue glass flask and a gold page marker. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "94fc33b4692b4f0216a4144232944459838c5d41ca01288b160fadc4fbf98ec2.jpg"
+ },
+ "icons/passives/armor.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A clean ivory construction safety helmet with champagne-gold fittings and a jade protective accent. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "c98ff89637329db9219aa55d5e96f826318514e08785c0af08f1b90b7b363d52.jpg"
+ },
+ "icons/passives/magnetism.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A pale blue campus access card with an elegant magnetic ring and ivory chip. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "b0313c235e9cb1bcf0bfc896cf9e969ea70098a738b494f0fde31a981a407735.jpg"
+ },
+ "icons/passives/focus.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A jade optical focus lens over a clean ivory target diagram, precise concentric forms. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "ceee803a1fc78c7416e8e046b44a475a899ff19ec9d69f33278778ec51e932ca.jpg"
+ },
+ "icons/passives/thesis.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A prestigious ivory research manuscript tied with a violet ribbon and a small gold seal. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "51721552c4a167ce25742411fa6ef48581702c8572842700248c871ef4ee7247.jpg"
+ },
+ "characters/balanced/avatar.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Using the approved character portrait as reference, create a matching head-and-shoulders portrait with exactly the same face, hairstyle and outfit, centered. Subject: An approachable graduate student in a jade campus jacket, carrying a cream notebook and a canvas backpack, practical sneakers, determined but friendly expression. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "e8eafb8b295a33510d6661ba05b31c9d525732341843a2f3c08304847c127c64.jpg"
+ },
+ "characters/balanced/sprite.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Using the approved character portrait as reference, create a compact top-down three-quarter game sprite, orthographic projection, facing slightly right, entire body visible, simple readable details, no ground shadow. Subject: An approachable graduate student in a jade campus jacket, carrying a cream notebook and a canvas backpack, practical sneakers, determined but friendly expression. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "f05bdafcaf415455a7c0dd65643eace875e665000975efc960f100d0c0fbb40a.jpg"
+ },
+ "characters/analysis/portrait.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Full-body young adult graduate student, stylized four-head-tall proportions, expressive face, relaxed confident pose, entire body visible with generous margins. Subject: A precise mathematics graduate student with thin round glasses, a navy academic cardigan, champagne-gold details and a compact laser pointer, thoughtful confident expression. Use the reference image only for painting style, proportions and rendering quality; this is a completely different person with a different face, hairstyle and outfit. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "87da63ca0961187933f953bd38d2fc28fe998364c2d99bd4b05ed353268e8fa7.jpg"
+ },
+ "characters/coder/portrait.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Full-body young adult graduate student, stylized four-head-tall proportions, expressive face, relaxed confident pose, entire body visible with generous margins. Subject: A computer science graduate student, a young man with slightly messy hair and a calm focused grin, in a navy hoodie with pale blue accents, holding a small plain unbranded silver laptop with a completely blank lid, accompanied by one compact jade assistant robot hovering beside him; no backpack. Use the reference image only for painting style and rendering quality; this is a completely different person with a different face, hairstyle and outfit. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "ec3e4f841f55ac69a4a5290adf5d37b2acb32a4090ca87cdcfcb442553003696.jpg"
+ },
+ "characters/english/portrait.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Full-body young adult graduate student, stylized four-head-tall proportions, expressive face, relaxed confident pose, entire body visible with generous margins. Subject: An internationally minded language graduate student, a young woman with a shoulder-length bob haircut and a bright friendly smile, dusty rose scarf, ivory shirt and navy trousers, holding a notebook and wearing a small headset, small shoulder tote instead of a backpack. Use the reference image only for painting style and rendering quality; this is a completely different person with a different face, hairstyle and outfit. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "51caa473f15ef4994df6d775743a33183424a85ce20d851f9678f59b33298c5e.jpg"
+ },
+ "characters/architect/portrait.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Full-body young adult graduate student, stylized four-head-tall proportions, expressive face, relaxed confident pose, entire body visible with generous margins. Subject: An architecture graduate student in a light blue work jacket, carrying a T-square ruler and rolled blueprints, cream safety helmet attached to the backpack. Use the reference image only for painting style, proportions and rendering quality; this is a completely different person with a different face, hairstyle and outfit. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "1e664e2cd4618b86e904eff8d1f7ce14051ef362133b844c5fc671a06df50e62.jpg"
+ },
+ "characters/experiment/portrait.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Full-body young adult graduate student, stylized four-head-tall proportions, expressive face, relaxed confident pose, entire body visible with generous margins. Subject: A laboratory graduate student wearing a short ivory lab coat over navy campus clothes, protective goggles and insulated gloves, carrying a compact pale blue cryogenic canister. Use the reference image only for painting style, proportions and rendering quality; this is a completely different person with a different face, hairstyle and outfit. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "ea46f77dd9e834a09742b929953c719e1576523bb18beb17edf22655c5bc9b55.jpg"
+ },
+ "characters/analysis/avatar.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Using the approved character portrait as reference, create a matching head-and-shoulders portrait with exactly the same face, hairstyle and outfit, centered. Subject: A precise mathematics graduate student with thin round glasses, a navy academic cardigan, champagne-gold details and a compact laser pointer, thoughtful confident expression. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "faa0dfb1a870bd332e432ac14d02190529ed74af0418e99413aa97f757dfa4fc.jpg"
+ },
+ "characters/analysis/sprite.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Using the approved character portrait as reference, create a compact top-down three-quarter game sprite, orthographic projection, facing slightly right, entire body visible, simple readable details, no ground shadow. Subject: A precise mathematics graduate student with thin round glasses, a navy academic cardigan, champagne-gold details and a compact laser pointer, thoughtful confident expression. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "9ab28834b02e2fa27c31cc805b87dc2e0d7269b66307c941a9a7ca2b93c51b8d.jpg"
+ },
+ "characters/architect/avatar.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Using the approved character portrait as reference, create a matching head-and-shoulders portrait with exactly the same face, hairstyle and outfit, centered. Subject: An architecture graduate student in a light blue work jacket, carrying a T-square ruler and rolled blueprints, cream safety helmet attached to the backpack. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "fd692f2f266bf8b62f9b606a8180fe4722e285169a46197642dce855319628eb.jpg"
+ },
+ "characters/architect/sprite.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Using the approved character portrait as reference, create a compact top-down three-quarter game sprite, orthographic projection, facing slightly right, entire body visible, simple readable details, no ground shadow. Subject: An architecture graduate student in a light blue work jacket, carrying a T-square ruler and rolled blueprints, cream safety helmet attached to the backpack. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "0f6e35e4cb91de2837b378d4230a45c35828fd4c94af0503dfdc00bfc3a84b5d.jpg"
+ },
+ "characters/experiment/avatar.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Using the approved character portrait as reference, create a matching head-and-shoulders portrait with exactly the same face, hairstyle and outfit, centered. Subject: A laboratory graduate student wearing a short ivory lab coat over navy campus clothes, protective goggles and insulated gloves, carrying a compact pale blue cryogenic canister. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "1f875713f29e339fd7f1d192e473b26c336ac2829974339c2bbc194e0ac9c18f.jpg"
+ },
+ "characters/experiment/sprite.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Using the approved character portrait as reference, create a compact top-down three-quarter game sprite, orthographic projection, facing slightly right, entire body visible, simple readable details, no ground shadow. Subject: A laboratory graduate student wearing a short ivory lab coat over navy campus clothes, protective goggles and insulated gloves, carrying a compact pale blue cryogenic canister. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "f8cd1850bd71bbb8e3757227b0ec48bfe57388e92433be57c8f97d9eb7aa16cd.jpg"
+ },
+ "characters/coder/avatar.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Using the approved character portrait as reference, create a matching head-and-shoulders portrait with exactly the same face, hairstyle and outfit, centered. Subject: A computer science graduate student, a young man with slightly messy hair, in a navy hoodie with pale blue accents, holding a small plain unbranded laptop, with a compact ivory assistant robot. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "417d31135bb1230797aa4d82200e4d14cd9a090db002fae8f4932fb5e96f2ad8.jpg"
+ },
+ "characters/coder/sprite.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Using the approved character portrait as reference, create a compact top-down three-quarter game sprite, orthographic projection, facing slightly right, entire body visible, simple readable details, no ground shadow. Subject: A computer science graduate student, a young man with slightly messy hair, in a navy hoodie with pale blue accents, holding a small plain unbranded laptop, with a compact ivory assistant robot. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "bd1a10556f6144bab5a619528c49d6ca304d198e201abfcb35d5122568480778.jpg"
+ },
+ "characters/english/avatar.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Using the approved character portrait as reference, create a matching head-and-shoulders portrait with exactly the same face, hairstyle and outfit, centered. Subject: An internationally minded language graduate student, a young woman with a shoulder-length bob haircut, dusty rose scarf, ivory shirt and navy trousers, holding a notebook and wearing a small headset, small shoulder tote. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "424aed08d968093e81bf92f9b60f6000682e3746023022c07ec915bf71827aba.jpg"
+ },
+ "characters/english/sprite.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Using the approved character portrait as reference, create a compact top-down three-quarter game sprite, orthographic projection, facing slightly right, entire body visible, simple readable details, no ground shadow. Subject: An internationally minded language graduate student, a young woman with a shoulder-length bob haircut, dusty rose scarf, ivory shirt and navy trousers, holding a notebook and wearing a small headset, small shoulder tote. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "c110efa071eb2a76b660a921b93739905802743401c8a3b1b328b1a26d6a324b.jpg"
+ },
+ "enemies/checkin.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single top-down three-quarter enemy game sprite, orthographic projection, compact readable silhouette, entire body visible, no ground shadow, no surrounding effects. Subject: A lively brass attendance token with an embossed check symbol, tiny feet and a compact round silhouette. Use the reference image only for painting style, palette and rendering quality; the object itself must be entirely different from the reference object. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "38b9485b7077f3fa730c911e5369a156ede69f41ba20123182358a8440e0e9d6.jpg"
+ },
+ "enemies/advisor.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single top-down three-quarter enemy game sprite, orthographic projection, compact readable silhouette, entire body visible, no ground shadow, no surrounding effects. Subject: A stylized adult academic advisor in a jade jacket, round glasses and a compact stack of papers, humorous rather than realistic. Use the reference image only for painting style, palette and rendering quality; the object itself must be entirely different from the reference object. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "b9d1e3470bd919adf6c80ac0c9fa5934be5b6e0f7f2fe1229d7f7596586362b2.jpg"
+ },
+ "enemies/english.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single top-down three-quarter enemy game sprite, orthographic projection, compact readable silhouette, entire body visible, no ground shadow, no surrounding effects. Subject: An animated jade language examination book with a small globe relief and layered ivory index tabs. Use the reference image only for painting style, palette and rendering quality; the object itself must be entirely different from the reference object. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "6c6446e962303c89e6a7905b696f31cccdc210341ff84668dd991f77053d4e31.jpg"
+ },
+ "enemies/ppt.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single top-down three-quarter enemy game sprite, orthographic projection, compact readable silhouette, entire body visible, no ground shadow, no surrounding effects. Subject: An animated coral presentation board with layered slide panels and a slightly irritated expression. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "74f629f945a267794165fb780e4e2eedbe90828d33daa08b9f19b324d23d7838.jpg"
+ },
+ "enemies/coding.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single top-down three-quarter enemy game sprite, orthographic projection, compact readable silhouette, entire body visible, no ground shadow, no surrounding effects. Subject: An animated blue programming examination terminal with abstract bracket motifs and a stern luminous face. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "caceb1c34e43fd93f421fe597ccda0fdb62853e4cbd39aedc3ee63512d468fe2.jpg"
+ },
+ "enemies/thrower.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single top-down three-quarter enemy game sprite, orthographic projection, compact readable silhouette, entire body visible, no ground shadow, no surrounding effects. Subject: A violet examination-paper creature holding a tightly rolled paper projectile, clear throwing silhouette. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "7b9d3651970adf433718f84de2ca3c9e5bcdb98cb7995ce240a370203e200d56.jpg"
+ },
+ "enemies/review.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single top-down three-quarter enemy game sprite, orthographic projection, compact readable silhouette, entire body visible, no ground shadow, no surrounding effects. Subject: A hovering violet review manuscript with sharp folded corners, red annotation ribbons and a critical expression. Clearly a living creature with a simple expressive face, small eyes and tiny stubby limbs; any surface markings are abstract shapes only, no writing or glyphs. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "2e5576cf1c4f91d94d55865a0b75020619c7240bfaec08d3d9d77e19e2219326.jpg"
+ },
+ "enemies/receipt.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single top-down three-quarter enemy game sprite, orthographic projection, compact readable silhouette, entire body visible, no ground shadow, no surrounding effects. Subject: A heavy folded reimbursement receipt creature with dense layered ivory paper and jade accounting tabs. Clearly a living creature with a simple expressive face, small eyes and tiny stubby limbs; any surface markings are abstract shapes only, no writing or glyphs. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "649976445098cac6f4c5965b0d01edadccf6253aa8e66d6d6149d7f9a5335010.jpg"
+ },
+ "enemies/math.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single top-down three-quarter enemy game sprite, orthographic projection, compact readable silhouette, entire body visible, no ground shadow, no surrounding effects. Subject: An animated ochre mathematics examination book with a geometric compass emblem and precise angular paper forms. Clearly a living creature with a simple expressive face, small eyes and tiny stubby limbs; any surface markings are abstract shapes only, no writing or glyphs. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "edf7d48551fe5b85f8f2e74e6977e42520d8b1e9ecedcc75d197b248e0c35729.jpg"
+ },
+ "enemies/mechanics.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single top-down three-quarter enemy game sprite, orthographic projection, compact readable silhouette, entire body visible, no ground shadow, no surrounding effects. Subject: An animated violet structural mechanics examination book reinforced by a small triangular truss. Clearly a living creature with a simple expressive face, small eyes and tiny stubby limbs; any surface markings are abstract shapes only, no writing or glyphs. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "68f43608a7f502e6483373d3a9539a4864a1831d783fa5f4168b971f98080ba3.jpg"
+ },
+ "enemies/charger.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single top-down three-quarter enemy game sprite, orthographic projection, compact readable silhouette, entire body visible, no ground shadow, no surrounding effects. Subject: A coral attendance-clock creature leaning forward in a sprint, large running shoes and a sharp compact silhouette. Clearly a living creature with a simple expressive face, small eyes and tiny stubby limbs; any surface markings are abstract shapes only, no writing or glyphs. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "6fc94ad3dedc675862c3455c59b1e960a667c09d9163d2d6ab8d8c142c048a45.jpg"
+ },
+ "enemies/splitter.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single top-down three-quarter enemy game sprite, orthographic projection, compact readable silhouette, entire body visible, no ground shadow, no surrounding effects. Subject: A pale blue stack of duplicated paper sheets with visibly offset layers and two small mischievous faces. Clearly a living creature with a simple expressive face, small eyes and tiny stubby limbs; any surface markings are abstract shapes only, no writing or glyphs. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "7f91c0bf9fc7d2f72453e7e2f3e2d8209584faefafff4d8eeb88acdedfad66a3.jpg"
+ },
+ "enemies/bomber.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single top-down three-quarter enemy game sprite, orthographic projection, compact readable silhouette, entire body visible, no ground shadow, no surrounding effects. Subject: A compact unstable laboratory glass sphere with warm coral liquid, a cracked metal cap and a clear warning-shaped silhouette. Clearly a living creature with a simple expressive face, small eyes and tiny stubby limbs; any surface markings are abstract shapes only, no writing or glyphs. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "7526e6c202506f9b4fe0b4e1c62bf4694e10eec8675351f439019343e13b19a5.jpg"
+ },
+ "enemies/summoner.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single top-down three-quarter enemy game sprite, orthographic projection, compact readable silhouette, entire body visible, no ground shadow, no surrounding effects. Subject: A navy-blue class representative clipboard creature carrying a small brass handbell and several neatly stacked papers. Clearly a living creature with a simple expressive face, small eyes and tiny stubby limbs; any surface markings are abstract shapes only, no writing or glyphs. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "ee33b7e611c22543b9a7e1af636d57e2e9d9e5d9f0a3f43422ff963e3ec36b30.jpg"
+ },
+ "enemies/guard.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single top-down three-quarter enemy game sprite, orthographic projection, compact readable silhouette, entire body visible, no ground shadow, no surrounding effects. Subject: A sturdy jade office-stamp guardian carrying a large brushed-metal shield, heavy compact defensive silhouette. Clearly a living creature with a simple expressive face, small eyes and tiny stubby limbs; any surface markings are abstract shapes only, no writing or glyphs. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "7a6752923e4e94da746f1e8fa2155b3e95d9abf60668d7179c6702cf8178bed8.jpg"
+ },
+ "enemies/leader.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single top-down three-quarter enemy game sprite, orthographic projection, compact readable silhouette, entire body visible, no ground shadow, no surrounding effects. Subject: An ochre academic organizer creature with a tall folded-paper pennant and an assertive leading pose. Clearly a living creature with a simple expressive face, small eyes and tiny stubby limbs; any surface markings are abstract shapes only, no writing or glyphs. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "864f7296c6d8d34cd70299ddf34a00b6449b449476c5715e89bca53a492f6f8d.jpg"
+ },
+ "enemies/node.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single top-down three-quarter enemy game sprite, orthographic projection, compact readable silhouette, entire body visible, no ground shadow, no surrounding effects. Subject: A compact stationary pale blue glass shield node suspended in an ivory metal frame, clean diamond-shaped silhouette. Clearly a living creature with a simple expressive face, small eyes and tiny stubby limbs; any surface markings are abstract shapes only, no writing or glyphs. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "a060fb85c9ce775d13c9302b6be56549f6f621f7d220dd007e68247af48bdfba.jpg"
+ },
+ "enemies/examCharger.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single top-down three-quarter enemy game sprite, orthographic projection, compact readable silhouette, entire body visible, no ground shadow, no surrounding effects. Subject: A compact coral examination-paper lancer with a pointed folded-paper crest and a strong forward-leaning silhouette. Clearly a living creature with a simple expressive face, small eyes and tiny stubby limbs; any surface markings are abstract shapes only, no writing or glyphs. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "86186d12b94b6418495f9d66ca627603b50546adb240c965f1f58376044921f3.jpg"
+ },
+ "enemies/proposal.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single top-down three-quarter enemy game sprite, orthographic projection, compact readable silhouette, entire body visible, no ground shadow, no surrounding effects. Distinctive boss silhouette with clearly separated large forms and restrained ornamental detail. Subject: A towering academic proposal manuscript fortress with ochre book covers, layered ivory pages and a restrained gold academic crest. Clearly a living creature with a simple expressive face, small eyes and tiny stubby limbs; any surface markings are abstract shapes only, no writing or glyphs. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "e74109bf9f90a1063dec36b0a16c07120a3466ce1266f94ef9cbb4e76a21616f.jpg"
+ },
+ "enemies/defense.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single top-down three-quarter enemy game sprite, orthographic projection, compact readable silhouette, entire body visible, no ground shadow, no surrounding effects. Distinctive boss silhouette with clearly separated large forms and restrained ornamental detail. Subject: A grand violet academic defense lectern creature with floating manuscript panels and an imposing symmetrical silhouette. Clearly a living creature with a simple expressive face, small eyes and tiny stubby limbs; any surface markings are abstract shapes only, no writing or glyphs; the floating panels show only simple abstract circles and lines. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "c7adead4f90a9a58c17e14107993aa78196fc8cc3e899e8c7979b61444a11051.jpg"
+ },
+ "enemies/inspector.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single top-down three-quarter enemy game sprite, orthographic projection, compact readable silhouette, entire body visible, no ground shadow, no surrounding effects. Distinctive boss silhouette with clearly separated large forms and restrained ornamental detail. Subject: An imposing laboratory inspector automaton with pale blue protective equipment, a large inspection clipboard and reinforced ivory armor. Clearly a living creature with a simple expressive face, small eyes and tiny stubby limbs; any surface markings are abstract shapes only, no writing or glyphs. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "feaea198b96843559f3aa16944eaec531764416de434aaefb61a6ecca45d39b5.jpg"
+ },
+ "enemies/teamlead.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single top-down three-quarter enemy game sprite, orthographic projection, compact readable silhouette, entire body visible, no ground shadow, no surrounding effects. Distinctive boss silhouette with clearly separated large forms and restrained ornamental detail. Subject: An imposing violet course-project leader made of stacked design folders, a brass drafting ruler and broad architectural shoulder forms. Clearly a living creature with a simple expressive face, small eyes and tiny stubby limbs; any surface markings are abstract shapes only, no writing or glyphs. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "1ad6e7e80e6c2f1e37d5176c24f1686c08df315dc96be8f7a930653bf40e00b5.jpg"
+ },
+ "icons/fusions/sword.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A circular formation of folded paper blades and architectural rulers around a jade academic core. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "dd47465cdd27fb082da455e8de63f131bd4cf607c648bb219b617cfde5399a0d.jpg"
+ },
+ "icons/fusions/binder.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A powerful polished metal binder launching a fan of feather-shaped silver staples. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "0f5fd42648b2afcea7f735a4062012334f0c098de39ba26411e5fb6fe5e3b14e.jpg"
+ },
+ "enemies/finals.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single top-down three-quarter enemy game sprite, orthographic projection, compact readable silhouette, entire body visible, no ground shadow, no surrounding effects. Distinctive boss silhouette with clearly separated large forms and restrained ornamental detail. Subject: A massive coral examination clock fused with stacked textbooks, dark navy structural forms and a dramatic gold crown-like timetable ring. Clearly a living creature with a simple expressive face, small eyes and tiny stubby limbs; any surface markings are abstract shapes only, no writing or glyphs; the clock face has only simple tick marks and the ring segments are plain smooth panels. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "04b9d424d73028b98feaab9543822599164c41c1745e5de98652ecf5e367c9f8.jpg"
+ },
+ "icons/fusions/hub.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A compact modern campus command console of sleek glass and brushed metal with six small ivory assistant terminals and a blue holographic grid of simple modern boxy buildings, contemporary design, no roofs or towers. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "9da3d64890a221a676d4b18718ae5c137508669aeb53ee3d4ab86177ac4c4a13.jpg"
+ },
+ "icons/fusions/sky.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A golden surveying prism array with six clean intersecting beams and an ivory coordinate ring. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "38e27ac035e16ace51afb209dd0b9f2a8d5099dd3bf6819077f0b0aa16004239.jpg"
+ },
+ "icons/fusions/icefire.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: An academic experiment combining an amber coffee vortex and pale blue crystalline frost. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "f38540b21b290f1f53269bc0672eb1e94b85e769d42185e51e85a764234310e2.jpg"
+ },
+ "icons/relics/scholarship.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A prestigious champagne-gold scholarship medal with an ivory academic cap relief. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "9cba832b1ec6260f647f33b25c8e04e19bb0765a57671e89759fa8a9b1e196cd.jpg"
+ },
+ "icons/relics/redNotebook.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A dark red research notebook with worn gold corners and a single sharp ivory page edge. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "5e152223e2eb09d86ee58ba15887471990a7942ebd646597a1a43281f556b86a.jpg"
+ },
+ "icons/fusions/demolition.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: Four small white modern architectural foam model blocks, simple flat-roofed contemporary boxes with glass strips, arranged around a brass drafting compass, with controlled fracture lines; no traditional roofs. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "ca9ed957c4053767f67eb35467dc072d4daf07d74502d55ead75e0cc0d5ec064.jpg"
+ },
+ "icons/relics/clockShard.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A broken brass clock fragment with an intact ivory hand and a restrained violet reflection. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "93f5606f4ff0daf173e111ff67b8d7c358bb201aea46852cca6016873e237648.jpg"
+ },
+ "icons/relics/assistant.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: An elegant ivory research-assistant name badge with a small jade robot emblem. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "ab91bda40a37e27b545c37fe230ef08a4dc8a6852a3015af6391b32c5e7ce267.jpg"
+ },
+ "icons/relics/emergency.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A sturdy emergency identification badge with a pale gold shield relief and navy strap. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "8fa39c0018f067ce03191ac2dfa5610d5c0c9498960e93f1b2c922040d21a1f6.jpg"
+ },
+ "icons/relics/obsidian.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A polished obsidian bookmark with a thin gold edge and a restrained violet glint. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "8c5f18be2dabd3a359a56378d901175becb00c262bad1e572e46bc91cdd96f60.jpg"
+ },
+ "icons/pickups/heal.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A generic red-and-ivory energy drink can with a simple medical cross, completely unbranded. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "911ce19959b3ca7c87dd6444a0f09d11426355671dc8704dc92f3ea736db1d0f.jpg"
+ },
+ "icons/pickups/magnet.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A compact violet horseshoe magnet attracting a few tiny jade academic crystals. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "1a601a0e1b310a8f5090ac1a1f1eeaec6ec191adabc817255b61c2e29679e449.jpg"
+ },
+ "icons/pickups/bomb.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A sealed ivory submission envelope wrapped around a small brass impact device, playful academic design. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "b7238adef2f1b3062e19fe6e044b2f517907437bad35499faf65f4becd5198bb.jpg"
+ },
+ "icons/pickups/freeze.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: An ivory pocket watch enclosed by crisp pale blue ice crystals. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "fc95dcfbfdbb4957b02959cd153ff212cd0886b6c4a6a99056573326001f8415.jpg"
+ },
+ "icons/pickups/shield.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A small champagne-gold shield capsule with a bright ivory protective core. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "80ec04b10c97a7a17a6386370e54c7b03b1c66403add2ed7255dbbdf3c244b84.jpg"
+ },
+ "icons/pickups/coffeeBoost.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A tiny concentrated espresso vial with amber liquid, dark coffee beans and a gold cap. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "593456b46c9ad0551cbaa58872223083f277b0e2ddf32e09270372b2187f9501.jpg"
+ },
+ "icons/pickups/energy.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A stack of pale jade sticky notes with a small luminous gold inspiration spark. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "e9b3d2ef948f55ec52691ac48e25a563c19d53327daac73991e337185305cadf.jpg"
+ },
+ "icons/ultimates/submission.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A dramatic fan of sealed research envelopes converging on a large round jade academic seal whose face is plain and smooth, no characters. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "d21dffe72810b6668c44772e41e5c442a175913cbc5b2ce6f0454c2f28f33578.jpg"
+ },
+ "icons/ultimates/lastMinute.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A precise ivory clock face enclosed by pale blue mathematical construction rings. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "19d0ade792ebbd6170e218a8c7dd5caa9b67d612ec6eba1be45bde4c0162e3d1.jpg"
+ },
+ "icons/ultimates/parallel.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: Six small ivory assistant robots arranged around a jade central presentation terminal. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "a354eaf3eba0c23c5a4021a819c1b619e63808aa2aa9c5a5c720edc080c2abf8.jpg"
+ },
+ "icons/ultimates/conference.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: An elegant ivory conference microphone with concentric dusty rose communication rings. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "7bfeade802febd8691b689cc564a88503b845810e107bff913bed8030a629215.jpg"
+ },
+ "icons/ultimates/barrier.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A pale blue architectural blueprint dome supported by gold structural ribs. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "d3baf67e9433b35c30017b2b0c616843526098cb4de580c4afe40ec3dea5f1c3.jpg"
+ },
+ "icons/ultimates/overload.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single collectible game item icon, three-quarter view, large central silhouette occupying about 75 percent of the canvas, readable at 48 pixels, no frame, no ground shadow. Subject: A compact laboratory reactor with icy blue glass chambers and a controlled bright energy core. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "5bb9e13d3e3ff6f10f4fe19a2638206a7ff9f7b12d1ff8cb3e68cebb98223e1f.jpg"
+ },
+ "buildings/library.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single modern Chinese university building (contemporary architecture, flat or gently sloped modern roofs, no pagoda or ancient temple roofs), orthographic top-down three-quarter game view, complete building visible, clean footprint, no surrounding roads, no ground shadow. Subject: A welcoming university library with a broad jade roof, ivory stone facade and a clear central entrance. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "fc602e2624da54acaca4bf97366cfa9fd24eb514cb79d35b79179472b4662a49.jpg"
+ },
+ "buildings/canteen.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single modern Chinese university building (contemporary architecture, flat or gently sloped modern roofs, no pagoda or ancient temple roofs), orthographic top-down three-quarter game view, complete building visible, clean footprint, no surrounding roads, no ground shadow. Subject: A warm university canteen with terracotta accents, broad windows and a simple welcoming entrance. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "6d8d70bc345e3a8a0ec956fa2fcfaf5735142dec9731af56839a383c99f9d332.jpg"
+ },
+ "buildings/basic.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single modern Chinese university building (contemporary architecture, flat or gently sloped modern roofs, no pagoda or ancient temple roofs), orthographic top-down three-quarter game view, complete building visible, clean footprint, no surrounding roads, no ground shadow. Subject: A broad ivory university teaching building with champagne-colored facade details and regular classroom windows. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "0d1b6154bfc30a2e7d575f4c419d3087e4078c84682d4515eed7d68106d02184.jpg"
+ },
+ "buildings/architecture.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single modern Chinese university building (contemporary architecture, flat or gently sloped modern roofs, no pagoda or ancient temple roofs), orthographic top-down three-quarter game view, complete building visible, clean footprint, no surrounding roads, no ground shadow. Subject: A contemporary architecture school building with layered pale stone volumes, muted violet glass and a precise facade rhythm. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "e8bd502125af38b81aaa8805a679c876722796c2e9e7bd1d6a0465d3a1fc4998.jpg"
+ },
+ "buildings/dorm.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single modern Chinese university building (contemporary architecture, flat or gently sloped modern roofs, no pagoda or ancient temple roofs), orthographic top-down three-quarter game view, complete building visible, clean footprint, no surrounding roads, no ground shadow. Subject: A friendly graduate dormitory with warm ivory walls, dusty rose accents and repeating balcony windows. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "b2d2ca8d4d3d214464e130a5ab67cc29f58ca3c02c7b4bac0c9cd861ef49fd73.jpg"
+ },
+ "buildings/civil.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single modern Chinese university building (contemporary architecture, flat or gently sloped modern roofs, no pagoda or ancient temple roofs), orthographic top-down three-quarter game view, complete building visible, clean footprint, no surrounding roads, no ground shadow. Subject: A solid university engineering building with blue-gray structural details and a broad practical entrance. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "c6d55b74b51bfb050c025abb2c07339a26f5705096171df25d3d20264e05eb6d.jpg"
+ },
+ "buildings/experiment.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single modern Chinese university building (contemporary architecture, flat or gently sloped modern roofs, no pagoda or ancient temple roofs), orthographic top-down three-quarter game view, complete building visible, clean footprint, no surrounding roads, no ground shadow. Subject: A clean university laboratory center with jade glass panels, ivory concrete and compact rooftop equipment. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "03912772065020625f0748a5f5eba5a8043fe786501f0bf047acc1638ac2dd21.jpg"
+ },
+ "buildings/basic-south.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single modern Chinese university building (contemporary architecture, flat or gently sloped modern roofs, no pagoda or ancient temple roofs), orthographic top-down three-quarter game view, complete building visible, clean footprint, no surrounding roads, no ground shadow. Subject: A low university teaching block with warm sandstone walls, ivory window frames and a simple flat roof. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "35c18f27f109d570f360a00d08db0b86a9cdc7082953187b52312f87a8b2f483.jpg"
+ },
+ "buildings/activity.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single modern Chinese university building (contemporary architecture, flat or gently sloped modern roofs, no pagoda or ancient temple roofs), orthographic top-down three-quarter game view, complete building visible, clean footprint, no surrounding roads, no ground shadow. Subject: A lively campus activity center with jade roof forms, broad glass doors and a small sheltered entrance. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "d04e4122a207a8e43334d2955bf0308d78618b1e3cf0633fcfa2f6a831e8225d.jpg"
+ },
+ "buildings/dorm-west.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Single modern Chinese university building (contemporary architecture, flat or gently sloped modern roofs, no pagoda or ancient temple roofs), orthographic top-down three-quarter game view, complete building visible, clean footprint, no surrounding roads, no ground shadow. Subject: A compact graduate residence with warm gray walls, terracotta roof accents and regular ivory-framed windows. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "4568fa2be7d7bdef0f9c772d621ac68c15c18d4eb28fa8fd89ca882c138a5b98.jpg"
+ },
+ "landmarks/library.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Top-down orthographic ground decoration for an existing modern campus landmark, sparse center for gameplay visibility, no text. Subject: A quiet circular reading lawn with a few low book-themed stone details and an open central grass area. Modern campus setting. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "8b2279fc7c6e27dd659ab8413e2d5a553e991941b377b0c5b617f68642baf1b9.jpg"
+ },
+ "landmarks/lab.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Top-down orthographic ground decoration for an existing modern campus landmark, sparse center for gameplay visibility, no text. Subject: A pale blue laboratory courtyard decal with subtle measurement markings and a few restrained scientific details. Modern campus setting. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "01d6c741d85df13caa312a15d745ea6850982a0b533a12175ec5ff82719ea75f.jpg"
+ },
+ "landmarks/workshop.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Top-down orthographic ground decoration for an existing modern campus landmark, sparse center for gameplay visibility, no text. Subject: A small architectural workshop ground arrangement with sparse model-making tools around the perimeter. Modern campus setting. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "5a7b76dc51a1f1a8e23ad0b48be5a45789f0e9503c16631bf7409f21cfbad5cc.jpg"
+ },
+ "landmarks/garden.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Top-down orthographic ground decoration for an existing modern campus landmark, sparse center for gameplay visibility, no text. Subject: A quiet violet-and-jade reading garden ground decoration with low plants around a clear central space. Modern campus setting. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "208e1efe4312891346e212af2fc294bae79f40f3c43e3cb23461202bb556a2bd.jpg"
+ },
+ "ui/academic-crest.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Subject: An original academic crest combining an open book, architectural compass and a small jade leaf, elegant champagne-gold metal. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "2aedbb0e5f3c5422ce7b6a4d99319c455da543a5271cf14992c784fabd1e6185.jpg"
+ },
+ "landmarks/canteen.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Top-down orthographic ground decoration for an existing modern campus landmark, sparse center for gameplay visibility, no text. Subject: A warm campus courtyard floor with sparse terracotta paving details and a clean open center. Modern campus setting with only contemporary elements such as modern benches, planters and slim lamp posts; no pavilions, lanterns, gates or traditional roofs. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "e9d91c30c169296016e6f20b3e5bd91e87afd37300c285fe42b6367047be0469.jpg"
+ },
+ "landmarks/track.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Top-down orthographic ground decoration for an existing modern campus landmark, sparse center for gameplay visibility, no text. Subject: A clean oval terracotta running-track ground illustration with ivory lane markings and a jade inner field. Modern campus setting with only contemporary elements such as modern benches, planters and slim lamp posts; no pavilions, lanterns, gates or traditional roofs. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "0147e7d39185ca08cd0dae0fa5febd484ba095d5100ec961378925daf549cec0.jpg"
+ },
+ "ui/chest-closed.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Subject: A closed premium academic supply chest made of navy enamel, warm brass fittings and ivory book-like panels, three-quarter view. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "ca3706104ab52b9d263d3c2207fa531117fcb9ae3c042249ee193c966991c1fe.jpg"
+ },
+ "ui/menu-campus-portrait.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Subject: A vertical modern Chinese university campus with contemporary glass-and-stone teaching buildings and a library, no pagodas or ancient roofs, illustration at blue hour, calm darker sky at the top, architecture concentrated in the upper and lower thirds, calm central area reserved for a game interface. Use the reference image only for painting style, palette and mood.",
+  "reference": "approved style master",
+  "source": "758f443a3a7f9a951d904f3efa9ed8f26c0b718345ee3bec4b011ff11328c487.jpg"
+ },
+ "ui/result-defeat.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Subject: A peaceful university campus after rain, warm library windows and soft jade reflections, reflective but encouraging mood, quiet central area for a results panel. Modern contemporary glass-and-stone campus buildings only, no pagodas or ancient roofs.",
+  "reference": "none",
+  "source": "3dcf94c67a3e0b28ed8d42342fd129fb4e42bbb143632088e00832ff456ab708.jpg"
+ },
+ "ui/gold-ornament.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Subject: Four separate minimalist L-shaped corner ornaments of fine champagne-gold metal lines with subtle layered book-page edges, generous spacing, no pictorial scenes, no buildings, no medallions. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "d32c9f841d4490a8927bb12cd30fb73a80387fa0b6e6351daa28054ac9fb916a.jpg"
+ },
+ "ui/result-victory.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Subject: A hopeful university campus at sunrise with a few floating ivory paper sheets, quiet open central sky area reserved for a results panel, no drawn panels, frames or signs. Modern contemporary glass-and-stone campus buildings only, no pagodas or ancient roofs.",
+  "reference": "none",
+  "source": "1f17c676647b45249c82d835721d88c7fe3277716bbdc643e53f7599a4cd7966.jpg"
+ },
+ "ui/chest-open.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Subject: The exact same approved academic supply chest with its lid open, empty readable interior, matching camera and proportions, no baked glow. Isolated on a plain solid pure white background.",
+  "reference": "approved style master",
+  "source": "7e47364cf9b450b96233a261e2f801cf6aa8431ff724f46c60f51116c1b97917.jpg"
+ },
+ "props/bench.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Subject: An elegant campus bench made of warm wood and dark navy metal, top-down three-quarter orthographic view. Modern campus setting. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "ea1a2ec9c26321a30fcf835336824b2d11f2b4bde4731da82af115700cd50b45.jpg"
+ },
+ "props/planter.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Subject: A low ivory campus planter with sparse jade foliage, compact orthographic three-quarter silhouette. Modern campus setting. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "3ab0ffaf8b7427962cf1d73061483b23a2d2dc99ded7d7446a34e2bb3bc20e45.jpg"
+ },
+ "textures/metal.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Seamless tileable material texture, evenly lit, no directional shadow, no objects, no vignette, flat top-down view filling the entire square. Subject: Clean dark navy brushed metal with extremely subtle fine grain, restrained premium finish.",
+  "reference": "none",
+  "source": "1206524892ea8fcf9df3956e0fe2d0068f510faa8f1048ee53c5674ff9be9500.jpg"
+ },
+ "props/tree.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Subject: A single standalone compact leafy university courtyard tree only, no ground platform, no paving and no surrounding structures, jade canopy, simple readable trunk, top-down three-quarter orthographic view, no ground shadow. Modern campus setting. Isolated on a plain solid pure white background.",
+  "reference": "none",
+  "source": "693872fca60d8c253321436e6072f7b64ea2249e972b8694bee30956bf974c20.jpg"
+ },
+ "textures/paving.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Seamless tileable material texture, evenly lit, no directional shadow, no objects, no vignette, flat top-down view filling the entire square. Subject: Clean warm ivory campus paving stones with subtle joints and restrained wear.",
+  "reference": "none",
+  "source": "18e784cadd66a29ef8a86410369c97a8676430c6ad3f4f3b9ea01dd73661f6b9.jpg"
+ },
+ "textures/paper.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Seamless tileable material texture, evenly lit, no directional shadow, no objects, no vignette, flat top-down view filling the entire square. Subject: Fine clean ivory academic paper with subtle natural fibers, very low contrast.",
+  "reference": "none",
+  "source": "e8978088d1a698b56f00ae596abb732e8543712fd68868159c8cbbe97bc06829.jpg"
+ },
+ "textures/grass.png": {
+  "tool": "Grok Bot GenerateImage",
+  "date": "2026-10-30",
+  "prompt": "Premium hand-painted 2.5D illustration for a whimsical Chinese university survival game. Cohesive ivory, ink navy, jade and champagne-gold palette, crisp readable silhouette, clean beveled materials, soft upper-left lighting, restrained surface texture, polished high-end game art. No words, no logos, no watermark. Seamless tileable material texture, evenly lit, no directional shadow, no objects, no vignette, flat top-down view filling the entire square. Subject: Soft hand-painted jade green campus lawn grass with full even green coverage and no bare ground patches, low contrast and sparse detail for clear gameplay visibility.",
+  "reference": "none",
+  "source": "45834c30d5508aad6b74251fcdc42664172aa4f647daa58d446cf70343bb7583.jpg"
+ }
+}

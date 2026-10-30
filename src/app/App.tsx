@@ -6,9 +6,13 @@ import { GameOverlays } from '../ui/screens/Overlays';
 import { DebugPanel } from '../debug/DebugPanel';
 import { INITIAL_HUD, useApp } from '../state/store';
 import type { GameSession } from './GameHost';
+import {getAudio,disposeAudio} from '../audio/audio';
+import {resources} from '../assets/loader';
 const GameHost=lazy(()=>import('./GameHost').then(m=>({default:m.GameHost})));
 const params=new URLSearchParams(location.search),debug=params.get('debug')==='1';
 export function App(){
+  const settings=useApp(s=>s.save.settings);
+  const achievementCount=useApp(s=>Object.values(s.save.achievements).filter(a=>a.completed).length),previousAchievements=useRef(achievementCount);
   const [mode,setMode]=useState<'normal'|'daily'>('normal'),[playing,setPlaying]=useState(false),[panel,setPanel]=useState<Panel|null>(null),[session,setSession]=useState<GameSession|null>(null),[seed,setSeed]=useState(Number(params.get('seed'))||Date.now()),[generation,setGeneration]=useState(0),resume=useRef(false),sessionRef=useRef<GameSession|null>(null),phase=useApp(s=>s.hud.phase),motion=useApp(s=>s.save.settings.motion);
   sessionRef.current=session;
   const open=useCallback((next:Panel)=>{const g=sessionRef.current?.engine;resume.current=!!g&&g.phase!=='paused'&&g.phase!=='result';if(resume.current)g?.send({type:'pause'});setPanel(next);},[]);
@@ -19,5 +23,9 @@ export function App(){
   const ready=useCallback((value:GameSession|null)=>setSession(value),[]);
   useEffect(()=>{document.body.classList.toggle('is-playing',playing);return()=>document.body.classList.remove('is-playing');},[playing]);
   useEffect(()=>{document.body.classList.toggle('reduce-motion',!motion);return()=>document.body.classList.remove('reduce-motion');},[motion]);
+  useEffect(()=>{getAudio(settings);return()=>{disposeAudio();void resources.dispose();};},[]);
+  useEffect(()=>{getAudio(settings).apply(settings);document.documentElement.dataset.quality=settings.quality==='auto'?'high':settings.quality;},[settings]);
+  useEffect(()=>{if(achievementCount>previousAchievements.current)getAudio(settings).play('ui-achievement');previousAchievements.current=achievementCount;},[achievementCount,settings]);
+  useEffect(()=>{if(!playing){getAudio(settings).setPaused(false);getAudio(settings).setTheme('menu');}},[playing,settings]);
   return <>{!playing?<Menu open={open}/>:<main className={`battle-screen phase-${phase}`}><Suspense fallback={<div className="loading-screen"><span className="loading-leaf">✦</span><h2>正在收拾书包…</h2><p>咖啡、笔记本，还有一点点勇气。</p></div>}><GameHost key={generation} onReady={ready} seed={seed} debug={debug} mode={mode}/></Suspense><HUD session={session} open={open}/><GameOverlays session={session} open={open} menu={menu} restart={restart}/>{debug&&<DebugPanel session={session}/>}</main>}{panel&&<ModalPanel panel={panel} close={close} start={start} startDaily={startDaily} inGame={playing&&phase!=='result'}/>}</>;
 }

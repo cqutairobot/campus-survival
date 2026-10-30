@@ -1,3 +1,4 @@
+import {tokens} from '../design/tokens';
 import type { Character, EnemyDef, PassiveDef, Talent, WeaponDef } from '../types';
 
 import {NEW_WEAPONS,NEW_PASSIVES} from './weapons';
@@ -41,7 +42,7 @@ export const PASSIVES: PassiveDef[] = [
 export const WEAPON_MAP = Object.fromEntries([...WEAPONS,...FUSIONS].map(w=>[w.id,w])) as Record<string, WeaponDef>;
 export const PASSIVE_MAP = Object.fromEntries(PASSIVES.map(w=>[w.id,w])) as Record<string, PassiveDef>;
 export const RARITY_NAMES = ['普通','精良','史诗','传说'];
-export const RARITY_COLORS = ['#8d988e','#658fc9','#a27dcc','#d2a23d'];
+export const RARITY_COLORS = tokens.rarity;
 export const RARITY_MULTIPLIERS = [1,1.08,1.16,1.25];
 export const CHARACTERS: Character[] = [
   { id:'balanced',name:'均衡型',subtitle:'校园里的普通研究生',icon:'cap',color:'#4c9e87',weapon:'knife',hp:110,crit:.05,area:0,summon:0,cost:0,description:'生命 110 · 稳稳开始这个学期' },
@@ -82,4 +83,4 @@ export const ENEMY_INDEX = Object.fromEntries(ENEMIES.map((e,i)=>[e.id,i])) as R
 export const BOSS_WEEKS = [8,16,22];
 export const CHEST_WEEKS = [4,6,10,12,14,18,20];
 export const WEEK_SECONDS = 40;
-export const CONTENT_VERSION = '3.0.0';
+export const CONTENT_VERSION = '4.0.0';

@@ -1,0 +1,37 @@
+{
+  "menu": {
+    "loopStartMs": 0,
+    "loopLengthMs": 39520.38548752834,
+    "original": "song17.mp3",
+    "title": "Happy Lullaby (song17)",
+    "source": "https://lpc.opengameart.org/content/happy-lullaby-song17"
+  },
+  "normal": {
+    "loopStartMs": 0,
+    "loopLengthMs": 66037.55102040817,
+    "original": "battleThemeB.mp3",
+    "title": "Battle Theme B for RPG",
+    "source": "https://opengameart.org/content/battle-theme-b-for-rpg"
+  },
+  "elite": {
+    "loopStartMs": 0,
+    "loopLengthMs": 57313.424036281176,
+    "original": "awake10_megaWall.mp3",
+    "title": "Awake! (MegaWall-10)",
+    "source": "https://opengameart.org/content/awake-megawall-10"
+  },
+  "boss": {
+    "loopStartMs": 0,
+    "loopLengthMs": 95851.83673469388,
+    "original": "battleThemeA.mp3",
+    "title": "Battle Theme A",
+    "source": "https://opengameart.org/node/20592"
+  },
+  "result": {
+    "loopStartMs": 0,
+    "loopLengthMs": 56737.95918367347,
+    "original": "Victory1_1.mp3",
+    "title": "Victory Theme for RPG",
+    "source": "https://opengameart.org/content/victory-theme-for-rpg"
+  }
+}

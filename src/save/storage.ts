@@ -3,14 +3,14 @@ import {FUSIONS} from '../data/fusions';
 import {RELICS} from '../data/relics';
 import {ACHIEVEMENTS} from '../data/achievements';
 import {DAILY_RULES} from '../data/daily';
-import type {DailyRecord,RunResult,SaveData,Settings} from '../types';
-import {clamp} from '../core/math';
+import type {DailyRecord,RunResult,SaveData} from '../types';
 import {DEFAULT_PASSIVES,DEFAULT_REGIONS,DEFAULT_WEAPONS,migrateV1ToV2,migrateV2ToV3} from './migrations';
 import {awardAchievements} from '../progression/achievements';
 import {retainRecords} from '../challenges/scoring';
+import {DEFAULT_SETTINGS,normalizeSettings} from './settings';
+export {DEFAULT_SETTINGS} from './settings';
 export const SAVE_KEY='campus-survival.save.v3',BACKUP_KEY='campus-survival.backup.v3';
 export const LEGACY_KEYS=['campus-survival.save.v2','campus-survival.backup','campus-survival.save.v1'];
-export const DEFAULT_SETTINGS:Settings={master:.65,music:.35,sfx:.7,muted:false,quality:'high',shake:.6,flash:.65,motion:true,damageNumbers:true,afterimages:true,haptics:true,quickChest:true,nickname:'校园研究生'};
 export function freshSave():SaveData{return{schemaVersion:3,contentVersion:CONTENT_VERSION,credits:0,unlocked:['balanced'],selected:'balanced',talents:{},discovered:['knife'],evolutions:[],settledRuns:[],unlocks:{weapons:[...DEFAULT_WEAPONS],passives:[...DEFAULT_PASSIVES],regions:[...DEFAULT_REGIONS]},achievements:Object.fromEntries(ACHIEVEMENTS.map(a=>[a.id,{progress:0,completed:false,claimed:false}])),discoveredEnemies:[],fusions:[],relics:[],events:[],regions:[],daily:{records:[],attempts:{},completedDates:[]},settings:{...DEFAULT_SETTINGS},stats:{runs:0,wins:0,kills:0,bestWeek:0,elites:0,miniBosses:0,shieldKills:0,frozen:0,visits:[]}};}
 const record=(v:unknown):v is Record<string,unknown>=>typeof v==='object'&&v!==null&&!Array.isArray(v);
 const integer=(v:unknown,max=1e9)=>typeof v==='number'&&Number.isFinite(v)&&v>=0?Math.min(max,Math.floor(v)):0;
@@ -33,7 +33,7 @@ export function validateSave(value:unknown):SaveData|null{
  if(record(input.unlocks)){out.unlocks.weapons=[...new Set([...DEFAULT_WEAPONS,...strings(input.unlocks.weapons,22).filter(id=>WEAPONS.some(w=>w.id===id))])];out.unlocks.passives=[...new Set([...DEFAULT_PASSIVES,...strings(input.unlocks.passives,16).filter(id=>PASSIVES.some(p=>p.id===id))])];out.unlocks.regions=[...new Set([...DEFAULT_REGIONS,...strings(input.unlocks.regions,6).filter(id=>regions.includes(id))])];}
  if(record(input.achievements))for(const a of ACHIEVEMENTS){const x=input.achievements[a.id];if(record(x)){const progress=finite(x.progress,a.goal),completed=progress>=a.goal;out.achievements[a.id]={progress,completed,claimed:completed&&x.claimed===true};}}
  out.discoveredEnemies=strings(input.discoveredEnemies,32).filter(id=>ENEMIES.some(e=>e.id===id));out.fusions=strings(input.fusions,6).filter(id=>FUSIONS.some(f=>f.id===id));out.relics=strings(input.relics,6).filter(id=>RELICS.some(r=>r.id===id));out.events=strings(input.events,6).filter(id=>events.includes(id));out.regions=strings(input.regions,6).filter(id=>regions.includes(id));
- if(record(input.settings)){const s=input.settings;for(const k of ['master','music','sfx','shake','flash'] as const)if(typeof s[k]==='number'&&Number.isFinite(s[k]))out.settings[k]=clamp(s[k],0,1);for(const k of ['muted','motion','damageNumbers','afterimages','haptics','quickChest'] as const)if(typeof s[k]==='boolean')out.settings[k]=s[k];if(['auto','high','medium','low'].includes(String(s.quality)))out.settings.quality=s.quality as Settings['quality'];if(typeof s.nickname==='string')out.settings.nickname=s.nickname.trim().slice(0,20)||'校园研究生';}
+ out.settings=normalizeSettings(input.settings);
  if(record(input.stats)){for(const k of ['runs','wins','kills','bestWeek','elites','miniBosses','shieldKills','frozen'] as const)out.stats[k]=finite(input.stats[k],k==='bestWeek'?22:1e9);out.stats.visits=strings(input.stats.visits,6).filter(id=>regions.includes(id));}
  if(record(input.daily)){if(Array.isArray(input.daily.records))out.daily.records=retainRecords(input.daily.records.slice(0,10000).map(validDaily).filter((r):r is DailyRecord=>!!r));out.daily.completedDates=strings(input.daily.completedDates,10000).filter(date);if(record(input.daily.attempts))for(const [key,count] of Object.entries(input.daily.attempts).slice(-1000))if(/^\d{4}-\d{2}-\d{2}\|[\w.-]{1,80}$/.test(key))out.daily.attempts[key]=integer(count,1e6);}
  return out;

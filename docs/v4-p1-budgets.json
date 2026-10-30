@@ -1,0 +1,15 @@
+{
+  "deploymentBytes": 21878508,
+  "deploymentLimitBytes": 25000000,
+  "firstScreenTransferBytes": 866756,
+  "firstScreenLimitBytes": 4194304,
+  "runtimeArtBytes": 7880583,
+  "runtimeWebpBytes": 3610470,
+  "audioOggBytes": 5452312,
+  "audioMp3Bytes": 5840719,
+  "allFontsBytes": 311632,
+  "licensesBytes": 571379,
+  "browser": "Chromium, production Vite preview, 1280x800, fresh context before audio unlock",
+  "aiOriginals": 137,
+  "screenshotsReviewed": 28
+}

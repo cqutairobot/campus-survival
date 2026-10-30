@@ -1,0 +1,1044 @@
+[
+  {
+    "output": "hit-paper-0",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-001.wav",
+      "Owlish Media Sound Effects-extracted/Paper/crumples1.wav",
+      "paper_rustling.wav"
+    ],
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "hit-paper-1",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-002.wav",
+      "Owlish Media Sound Effects-extracted/Paper/crumples2.wav",
+      "Owlish Media Sound Effects-extracted/Paper/pageturn1.wav"
+    ],
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "hit-paper-2",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-003.wav",
+      "Owlish Media Sound Effects-extracted/Paper/pageturn2.wav",
+      "paper_rustling.wav"
+    ],
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "hit-paper-3",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-004.wav",
+      "Owlish Media Sound Effects-extracted/Paper/paper-sketchbook-page-flips-1.wav",
+      "Owlish Media Sound Effects-extracted/Paper/crumples1.wav"
+    ],
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "death-paper-0",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-001.wav",
+      "Owlish Media Sound Effects-extracted/Paper/crumples1.wav",
+      "paper_rustling.wav"
+    ],
+    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "death-paper-1",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-002.wav",
+      "Owlish Media Sound Effects-extracted/Paper/crumples2.wav",
+      "Owlish Media Sound Effects-extracted/Paper/pageturn1.wav"
+    ],
+    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "shot-paper-0",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-001.wav",
+      "Owlish Media Sound Effects-extracted/Paper/crumples1.wav",
+      "paper_rustling.wav"
+    ],
+    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "shot-paper-1",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-002.wav",
+      "Owlish Media Sound Effects-extracted/Paper/crumples2.wav",
+      "Owlish Media Sound Effects-extracted/Paper/pageturn1.wav"
+    ],
+    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "hit-key-0",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-001.wav",
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-005.wav",
+      "Owlish Media Sound Effects-extracted/Technology/mouse-clicks-scrolls.wav"
+    ],
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "hit-key-1",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-002.wav",
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-006.wav",
+      "Owlish Media Sound Effects-extracted/Technology/mouse-clicks-scrolls.wav"
+    ],
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "hit-key-2",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-003.wav",
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-007.wav",
+      "Owlish Media Sound Effects-extracted/Technology/mouse-clicks-scrolls.wav"
+    ],
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "hit-key-3",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-004.wav",
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-008.wav",
+      "Owlish Media Sound Effects-extracted/Technology/mouse-clicks-scrolls.wav"
+    ],
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "death-key-0",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-001.wav",
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-005.wav",
+      "Owlish Media Sound Effects-extracted/Technology/mouse-clicks-scrolls.wav"
+    ],
+    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "death-key-1",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-002.wav",
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-006.wav",
+      "Owlish Media Sound Effects-extracted/Technology/mouse-clicks-scrolls.wav"
+    ],
+    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "shot-key-0",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-001.wav",
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-005.wav",
+      "Owlish Media Sound Effects-extracted/Technology/mouse-clicks-scrolls.wav"
+    ],
+    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "shot-key-1",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-002.wav",
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-006.wav",
+      "Owlish Media Sound Effects-extracted/Technology/mouse-clicks-scrolls.wav"
+    ],
+    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "hit-metal-0",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-001.wav",
+      "shaking_cup_short.wav",
+      "impact-sounds-extracted/Audio/impactMetal_medium_001.ogg"
+    ],
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "hit-metal-1",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-002.wav",
+      "shaking_cup_short.wav",
+      "impact-sounds-extracted/Audio/impactMetal_medium_002.ogg"
+    ],
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "hit-metal-2",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-003.wav",
+      "shaking_cup_short.wav",
+      "impact-sounds-extracted/Audio/impactMetal_medium_003.ogg"
+    ],
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "hit-metal-3",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-004.wav",
+      "shaking_cup_short.wav",
+      "impact-sounds-extracted/Audio/impactMetal_medium_004.ogg"
+    ],
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "death-metal-0",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-001.wav",
+      "shaking_cup_short.wav",
+      "impact-sounds-extracted/Audio/impactMetal_medium_001.ogg"
+    ],
+    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "death-metal-1",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-002.wav",
+      "shaking_cup_short.wav",
+      "impact-sounds-extracted/Audio/impactMetal_medium_002.ogg"
+    ],
+    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "shot-metal-0",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-001.wav",
+      "shaking_cup_short.wav",
+      "impact-sounds-extracted/Audio/impactMetal_medium_001.ogg"
+    ],
+    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "shot-metal-1",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-002.wav",
+      "shaking_cup_short.wav",
+      "impact-sounds-extracted/Audio/impactMetal_medium_002.ogg"
+    ],
+    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "hit-glass-0",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-001.wav",
+      "stiring_cup_short.wav",
+      "impact-sounds-extracted/Audio/impactGlass_medium_001.ogg"
+    ],
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "hit-glass-1",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-002.wav",
+      "stiring_cup_short.wav",
+      "impact-sounds-extracted/Audio/impactGlass_medium_002.ogg"
+    ],
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "hit-glass-2",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-003.wav",
+      "stiring_cup_short.wav",
+      "impact-sounds-extracted/Audio/impactGlass_medium_003.ogg"
+    ],
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "hit-glass-3",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-004.wav",
+      "stiring_cup_short.wav",
+      "impact-sounds-extracted/Audio/impactGlass_medium_004.ogg"
+    ],
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "death-glass-0",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-001.wav",
+      "stiring_cup_short.wav",
+      "impact-sounds-extracted/Audio/impactGlass_medium_001.ogg"
+    ],
+    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "death-glass-1",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-002.wav",
+      "stiring_cup_short.wav",
+      "impact-sounds-extracted/Audio/impactGlass_medium_002.ogg"
+    ],
+    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "shot-glass-0",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-001.wav",
+      "stiring_cup_short.wav",
+      "impact-sounds-extracted/Audio/impactGlass_medium_001.ogg"
+    ],
+    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "shot-glass-1",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-002.wav",
+      "stiring_cup_short.wav",
+      "impact-sounds-extracted/Audio/impactGlass_medium_002.ogg"
+    ],
+    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "hit-brick-0",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-001.wav",
+      "Owlish Media Sound Effects-extracted/Impacts/hit.wav",
+      "impact-sounds-extracted/Audio/impactMining_001.ogg"
+    ],
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "hit-brick-1",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-002.wav",
+      "Owlish Media Sound Effects-extracted/Impacts/hit.wav",
+      "impact-sounds-extracted/Audio/impactMining_002.ogg"
+    ],
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "hit-brick-2",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-003.wav",
+      "Owlish Media Sound Effects-extracted/Impacts/hit.wav",
+      "impact-sounds-extracted/Audio/impactMining_003.ogg"
+    ],
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "hit-brick-3",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-004.wav",
+      "Owlish Media Sound Effects-extracted/Impacts/hit.wav",
+      "impact-sounds-extracted/Audio/impactMining_004.ogg"
+    ],
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "death-brick-0",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-001.wav",
+      "Owlish Media Sound Effects-extracted/Impacts/hit.wav",
+      "impact-sounds-extracted/Audio/impactMining_001.ogg"
+    ],
+    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "death-brick-1",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-002.wav",
+      "Owlish Media Sound Effects-extracted/Impacts/hit.wav",
+      "impact-sounds-extracted/Audio/impactMining_002.ogg"
+    ],
+    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "shot-brick-0",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-001.wav",
+      "Owlish Media Sound Effects-extracted/Impacts/hit.wav",
+      "impact-sounds-extracted/Audio/impactMining_001.ogg"
+    ],
+    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "shot-brick-1",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-002.wav",
+      "Owlish Media Sound Effects-extracted/Impacts/hit.wav",
+      "impact-sounds-extracted/Audio/impactMining_002.ogg"
+    ],
+    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "hit-liquid-0",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-001.wav",
+      "Owlish Media Sound Effects-extracted/Water/spray-bottle.wav",
+      "stiring_cup_long.wav"
+    ],
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "hit-liquid-1",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-002.wav",
+      "Owlish Media Sound Effects-extracted/Water/spray-bottle.wav",
+      "stiring_cup_long.wav"
+    ],
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "hit-liquid-2",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-003.wav",
+      "Owlish Media Sound Effects-extracted/Water/spray-bottle.wav",
+      "stiring_cup_long.wav"
+    ],
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "hit-liquid-3",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-004.wav",
+      "Owlish Media Sound Effects-extracted/Water/spray-bottle.wav",
+      "stiring_cup_long.wav"
+    ],
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "death-liquid-0",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-001.wav",
+      "Owlish Media Sound Effects-extracted/Water/spray-bottle.wav",
+      "stiring_cup_long.wav"
+    ],
+    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "death-liquid-1",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-002.wav",
+      "Owlish Media Sound Effects-extracted/Water/spray-bottle.wav",
+      "stiring_cup_long.wav"
+    ],
+    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "shot-liquid-0",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-001.wav",
+      "Owlish Media Sound Effects-extracted/Water/spray-bottle.wav",
+      "stiring_cup_long.wav"
+    ],
+    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "shot-liquid-1",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-002.wav",
+      "Owlish Media Sound Effects-extracted/Water/spray-bottle.wav",
+      "stiring_cup_long.wav"
+    ],
+    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "hit-energy-0",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-001.wav",
+      "Owlish Media Sound Effects-extracted/Technology/plugpull.wav",
+      "interface-sounds-extracted/Audio/glitch_001.ogg"
+    ],
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "hit-energy-1",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-002.wav",
+      "Owlish Media Sound Effects-extracted/Technology/plugpull.wav",
+      "interface-sounds-extracted/Audio/glitch_002.ogg"
+    ],
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "hit-energy-2",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-003.wav",
+      "Owlish Media Sound Effects-extracted/Technology/plugpull.wav",
+      "interface-sounds-extracted/Audio/glitch_003.ogg"
+    ],
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "hit-energy-3",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-004.wav",
+      "Owlish Media Sound Effects-extracted/Technology/plugpull.wav",
+      "interface-sounds-extracted/Audio/glitch_004.ogg"
+    ],
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "death-energy-0",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-001.wav",
+      "Owlish Media Sound Effects-extracted/Technology/plugpull.wav",
+      "interface-sounds-extracted/Audio/glitch_001.ogg"
+    ],
+    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "death-energy-1",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-002.wav",
+      "Owlish Media Sound Effects-extracted/Technology/plugpull.wav",
+      "interface-sounds-extracted/Audio/glitch_002.ogg"
+    ],
+    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "shot-energy-0",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-001.wav",
+      "Owlish Media Sound Effects-extracted/Technology/plugpull.wav",
+      "interface-sounds-extracted/Audio/glitch_001.ogg"
+    ],
+    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "shot-energy-1",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-002.wav",
+      "Owlish Media Sound Effects-extracted/Technology/plugpull.wav",
+      "interface-sounds-extracted/Audio/glitch_002.ogg"
+    ],
+    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "ui-hover",
+    "inputs": [
+      "ui-pack-extracted/Sounds/tap-a.ogg"
+    ],
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
+  },
+  {
+    "output": "ui-press",
+    "inputs": [
+      "interface-sounds-extracted/Audio/click_001.ogg"
+    ],
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
+  },
+  {
+    "output": "ui-confirm",
+    "inputs": [
+      "interface-sounds-extracted/Audio/confirmation_001.ogg"
+    ],
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
+  },
+  {
+    "output": "ui-cancel",
+    "inputs": [
+      "interface-sounds-extracted/Audio/minimize_001.ogg"
+    ],
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
+  },
+  {
+    "output": "ui-tab",
+    "inputs": [
+      "interface-sounds-extracted/Audio/click_003.ogg"
+    ],
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
+  },
+  {
+    "output": "ui-disabled",
+    "inputs": [
+      "interface-sounds-extracted/Audio/error_002.ogg"
+    ],
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
+  },
+  {
+    "output": "ui-reveal",
+    "inputs": [
+      "music-jingles-extracted/Audio/Pizzicato jingles/jingles_PIZZI00.ogg"
+    ],
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
+  },
+  {
+    "output": "ui-rarity-common",
+    "inputs": [
+      "interface-sounds-extracted/Audio/confirmation_001.ogg"
+    ],
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
+  },
+  {
+    "output": "ui-rarity-rare",
+    "inputs": [
+      "music-jingles-extracted/Audio/Pizzicato jingles/jingles_PIZZI00.ogg"
+    ],
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
+  },
+  {
+    "output": "ui-rarity-epic",
+    "inputs": [
+      "music-jingles-extracted/Audio/Pizzicato jingles/jingles_PIZZI06.ogg"
+    ],
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
+  },
+  {
+    "output": "ui-rarity-legendary",
+    "inputs": [
+      "music-jingles-extracted/Audio/Pizzicato jingles/jingles_PIZZI09.ogg"
+    ],
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
+  },
+  {
+    "output": "ui-chest-latch",
+    "inputs": [
+      "rpg-audio-extracted/Audio/metalLatch.ogg"
+    ],
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
+  },
+  {
+    "output": "ui-chest-open",
+    "inputs": [
+      "rpg-audio-extracted/Audio/bookOpen.ogg"
+    ],
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
+  },
+  {
+    "output": "ui-talent-upgrade",
+    "inputs": [
+      "music-jingles-extracted/Audio/Pizzicato jingles/jingles_PIZZI02.ogg"
+    ],
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
+  },
+  {
+    "output": "ui-achievement",
+    "inputs": [
+      "music-jingles-extracted/Audio/Pizzicato jingles/jingles_PIZZI10.ogg"
+    ],
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
+  },
+  {
+    "output": "critical",
+    "inputs": [
+      "impact-sounds-extracted/Audio/impactPunch_heavy_001.ogg"
+    ],
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
+  },
+  {
+    "output": "hurt",
+    "inputs": [
+      "impact-sounds-extracted/Audio/impactPunch_heavy_003.ogg"
+    ],
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
+  },
+  {
+    "output": "pickup",
+    "inputs": [
+      "interface-sounds-extracted/Audio/tick_002.ogg"
+    ],
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
+  },
+  {
+    "output": "level",
+    "inputs": [
+      "music-jingles-extracted/Audio/Pizzicato jingles/jingles_PIZZI06.ogg"
+    ],
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
+  },
+  {
+    "output": "boss",
+    "inputs": [
+      "impact-sounds-extracted/Audio/impactMetal_heavy_002.ogg"
+    ],
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
+  },
+  {
+    "output": "evolution",
+    "inputs": [
+      "music-jingles-extracted/Audio/Pizzicato jingles/jingles_PIZZI09.ogg"
+    ],
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
+  },
+  {
+    "output": "chest",
+    "inputs": [
+      "rpg-audio-extracted/Audio/bookOpen.ogg"
+    ],
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
+  },
+  {
+    "output": "charged",
+    "inputs": [
+      "music-jingles-extracted/Audio/Pizzicato jingles/jingles_PIZZI02.ogg"
+    ],
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
+  },
+  {
+    "output": "frenzy",
+    "inputs": [
+      "music-jingles-extracted/Audio/Pizzicato jingles/jingles_PIZZI03.ogg"
+    ],
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
+  },
+  {
+    "output": "combo",
+    "inputs": [
+      "interface-sounds-extracted/Audio/confirmation_003.ogg"
+    ],
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
+  },
+  {
+    "output": "clear",
+    "inputs": [
+      "music-jingles-extracted/Audio/Pizzicato jingles/jingles_PIZZI07.ogg"
+    ],
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
+  },
+  {
+    "output": "block",
+    "inputs": [
+      "rpg-audio-extracted/Audio/metalClick.ogg"
+    ],
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
+  },
+  {
+    "output": "event-end",
+    "inputs": [
+      "interface-sounds-extracted/Audio/minimize_003.ogg"
+    ],
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
+  },
+  {
+    "output": "fusion-sword",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-001.wav",
+      "shaking_cup_short.wav",
+      "impact-sounds-extracted/Audio/impactMetal_medium_001.ogg"
+    ],
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Fusion-specific material mix.",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "fusion-hub",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-001.wav",
+      "Owlish Media Sound Effects-extracted/Technology/plugpull.wav",
+      "interface-sounds-extracted/Audio/glitch_001.ogg"
+    ],
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Fusion-specific material mix.",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "fusion-binder",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-001.wav",
+      "shaking_cup_short.wav",
+      "impact-sounds-extracted/Audio/impactMetal_medium_001.ogg"
+    ],
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Fusion-specific material mix.",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "fusion-sky",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-001.wav",
+      "stiring_cup_short.wav",
+      "impact-sounds-extracted/Audio/impactGlass_medium_001.ogg"
+    ],
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Fusion-specific material mix.",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "fusion-icefire",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-001.wav",
+      "Owlish Media Sound Effects-extracted/Water/spray-bottle.wav",
+      "stiring_cup_long.wav"
+    ],
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Fusion-specific material mix.",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "fusion-demolition",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-001.wav",
+      "Owlish Media Sound Effects-extracted/Impacts/hit.wav",
+      "impact-sounds-extracted/Audio/impactMining_001.ogg"
+    ],
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Fusion-specific material mix.",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "ultimate-submission",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-002.wav",
+      "Owlish Media Sound Effects-extracted/Paper/crumples2.wav",
+      "Owlish Media Sound Effects-extracted/Paper/pageturn1.wav"
+    ],
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Character ultimate material mix.",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "ultimate-lastMinute",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-002.wav",
+      "stiring_cup_short.wav",
+      "impact-sounds-extracted/Audio/impactGlass_medium_002.ogg"
+    ],
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Character ultimate material mix.",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "ultimate-parallel",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-002.wav",
+      "Owlish Media Sound Effects-extracted/Technology/plugpull.wav",
+      "interface-sounds-extracted/Audio/glitch_002.ogg"
+    ],
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Character ultimate material mix.",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "ultimate-conference",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-002.wav",
+      "Owlish Media Sound Effects-extracted/Technology/plugpull.wav",
+      "interface-sounds-extracted/Audio/glitch_002.ogg"
+    ],
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Character ultimate material mix.",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "ultimate-barrier",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-002.wav",
+      "Owlish Media Sound Effects-extracted/Impacts/hit.wav",
+      "impact-sounds-extracted/Audio/impactMining_002.ogg"
+    ],
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Character ultimate material mix.",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "ultimate-overload",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-002.wav",
+      "stiring_cup_short.wav",
+      "impact-sounds-extracted/Audio/impactGlass_medium_002.ogg"
+    ],
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Character ultimate material mix.",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "event-portal",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-002.wav",
+      "Owlish Media Sound Effects-extracted/Technology/plugpull2.wav",
+      "interface-sounds-extracted/Audio/glass_002.ogg"
+    ],
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Existing campus event transition; no rule changes.",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "event-advisor",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-001.wav",
+      "Owlish Media Sound Effects-extracted/Paper/pageturn1.wav",
+      "rpg-audio-extracted/Audio/metalLatch.ogg"
+    ],
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Existing campus event transition; no rule changes.",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "event-blackout",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-003.wav",
+      "Owlish Media Sound Effects-extracted/Technology/plugpull.wav",
+      "interface-sounds-extracted/Audio/glitch_003.ogg"
+    ],
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Existing campus event transition; no rule changes.",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "event-examRage",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-004.wav",
+      "Owlish Media Sound Effects-extracted/Impacts/hit.wav",
+      "impact-sounds-extracted/Audio/impactMetal_heavy_002.ogg"
+    ],
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Existing campus event transition; no rule changes.",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "event-sports",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-002.wav",
+      "Owlish Media Sound Effects-extracted/Footsteps/running-shoes-1.wav",
+      "music-jingles-extracted/Audio/Pizzicato jingles/jingles_PIZZI04.ogg"
+    ],
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Existing campus event transition; no rule changes.",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "event-rainstorm",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-001.wav",
+      "Owlish Media Sound Effects-extracted/Water/spray-bottle.wav",
+      "stiring_cup_long.wav"
+    ],
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Existing campus event transition; no rule changes.",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "shield-break",
+    "inputs": [
+      "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-002.wav",
+      "stiring_cup_short.wav",
+      "impact-sounds-extracted/Audio/impactGlass_medium_002.ogg"
+    ],
+    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
+  },
+  {
+    "output": "rain-ambience",
+    "inputs": [
+      "Owlish Media Sound Effects-extracted/Water/tap-water-2.wav"
+    ],
+    "modification": "8-second recorded water excerpt, low-pass filtered with 60ms loop-edge fades, mono 44.1kHz Ogg/MP3; stylized rain ambience",
+    "recording": "Recorded water Foley, not an outdoor rain field recording."
+  },
+  {
+    "output": "music-menu",
+    "inputs": [
+      "song17.mp3"
+    ],
+    "title": "Happy Lullaby (song17)",
+    "source": "https://lpc.opengameart.org/content/happy-lullaby-song17",
+    "author": "cynicmusic / The Cynic Project / Alex Smith",
+    "license": "CC0 1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "modification": "Whole completed track, loudness normalized to -20 LUFS, stereo 44.1kHz, 128kbps Ogg / 128kbps MP3, 60ms loop-edge fades; no stems or original composition."
+  },
+  {
+    "output": "music-normal",
+    "inputs": [
+      "battleThemeB.mp3"
+    ],
+    "title": "Battle Theme B for RPG",
+    "source": "https://opengameart.org/content/battle-theme-b-for-rpg",
+    "author": "cynicmusic / The Cynic Project / Alex Smith",
+    "license": "CC0 1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "modification": "Whole completed track, loudness normalized to -20 LUFS, stereo 44.1kHz, 128kbps Ogg / 128kbps MP3, 60ms loop-edge fades; no stems or original composition."
+  },
+  {
+    "output": "music-elite",
+    "inputs": [
+      "awake10_megaWall.mp3"
+    ],
+    "title": "Awake! (MegaWall-10)",
+    "source": "https://opengameart.org/content/awake-megawall-10",
+    "author": "cynicmusic / The Cynic Project / Alex Smith",
+    "license": "CC0 1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "modification": "Whole completed track, loudness normalized to -20 LUFS, stereo 44.1kHz, 128kbps Ogg / 128kbps MP3, 60ms loop-edge fades; no stems or original composition."
+  },
+  {
+    "output": "music-boss",
+    "inputs": [
+      "battleThemeA.mp3"
+    ],
+    "title": "Battle Theme A",
+    "source": "https://opengameart.org/node/20592",
+    "author": "cynicmusic / The Cynic Project / Alex Smith",
+    "license": "CC0 1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "modification": "Whole completed track, loudness normalized to -20 LUFS, stereo 44.1kHz, 128kbps Ogg / 128kbps MP3, 60ms loop-edge fades; no stems or original composition."
+  },
+  {
+    "output": "music-result",
+    "inputs": [
+      "Victory1_1.mp3"
+    ],
+    "title": "Victory Theme for RPG",
+    "source": "https://opengameart.org/content/victory-theme-for-rpg",
+    "author": "cynicmusic / The Cynic Project / Alex Smith",
+    "license": "CC0 1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "modification": "Whole completed track, loudness normalized to -20 LUFS, stereo 44.1kHz, 128kbps Ogg / 128kbps MP3, 60ms loop-edge fades; no stems or original composition."
+  }
+]

@@ -7,7 +7,7 @@ const line={color:INK,width:2.6};
 export class TextureLibrary {
   readonly textures=new Map<string,Texture>();
   constructor(private app:Application){this.create();}
-  get(id:string){return this.textures.get(id)??Texture.WHITE;}
+  get(id:string){return this.textures.get(id)??this.textures.get(id.startsWith('enemy-')?'enemy-0':'bullet')!;}
   private bake(id:string,size:number,draw:(g:Graphics,c:Container)=>void){
     const c=new Container(),g=new Graphics();g.rect(0,0,size,size).fill({color:0xffffff,alpha:0});c.addChild(g);draw(g,c);
     const texture=this.app.renderer.generateTexture({target:c,resolution:1.5});this.textures.set(id,texture);
@@ -83,7 +83,7 @@ export class TextureLibrary {
     });
     for(const [n,name] of ['spark','paper','key','code','smoke','ice','glass','metal','blueprint','brick'].entries())this.textures.set(`fragment-${name}`,new Texture({source:atlas.source,frame:new Rectangle(n*24,0,24,24)}));
     for(const ch of '0123456789+-!'){
-      const t=new Text({text:ch,style:{fontFamily:'Arial',fontSize:30,fontWeight:'bold',fill:0xffffff,stroke:{color:0x345249,width:3}}});
+      const t=new Text({text:ch,style:{fontFamily:['Campus Digits','Arial'],fontSize:32,fontWeight:'600',fill:0xffffff,stroke:{color:0x345249,width:3}}});
       const texture=this.app.renderer.generateTexture({target:t,resolution:1.25});this.textures.set(`digit-${ch}`,texture);t.destroy();
     }
     for(const building of BUILDINGS)this.building(building);

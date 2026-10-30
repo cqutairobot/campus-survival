@@ -1,0 +1,2932 @@
+[
+  {
+    "file": "assets/art/v4/characters/balanced/portrait.webp",
+    "bytes": 50330,
+    "size": [
+      288,
+      704
+    ],
+    "source": "art-src/ai/characters/balanced/portrait.png",
+    "modifications": "Alpha bounds trimmed; silhouette preserved; Lanczos resize; WebP"
+  },
+  {
+    "file": "assets/art/v4/characters/balanced/avatar.webp",
+    "bytes": 9730,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/characters/balanced/avatar.png",
+    "modifications": "Alpha bounds trimmed; silhouette preserved; Lanczos resize; WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/characters/balanced/avatar.png",
+    "bytes": 44228,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/characters/balanced/avatar.png",
+    "modifications": "Alpha bounds trimmed; silhouette preserved; Lanczos resize; WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/characters/balanced/sprite.webp",
+    "bytes": 3964,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/characters/balanced/sprite.png",
+    "modifications": "Alpha bounds trimmed; silhouette preserved; Lanczos resize; 2px ivory outline at 128px (1px at 64px); WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/characters/balanced/sprite.png",
+    "bytes": 12582,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/characters/balanced/sprite.png",
+    "modifications": "Alpha bounds trimmed; silhouette preserved; Lanczos resize; 2px ivory outline at 128px (1px at 64px); WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/characters/analysis/portrait.webp",
+    "bytes": 37808,
+    "size": [
+      241,
+      704
+    ],
+    "source": "art-src/ai/characters/analysis/portrait.png",
+    "modifications": "Alpha bounds trimmed; silhouette preserved; Lanczos resize; WebP"
+  },
+  {
+    "file": "assets/art/v4/characters/analysis/avatar.webp",
+    "bytes": 8700,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/characters/analysis/avatar.png",
+    "modifications": "Alpha bounds trimmed; silhouette preserved; Lanczos resize; WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/characters/analysis/avatar.png",
+    "bytes": 37265,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/characters/analysis/avatar.png",
+    "modifications": "Alpha bounds trimmed; silhouette preserved; Lanczos resize; WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/characters/analysis/sprite.webp",
+    "bytes": 3482,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/characters/analysis/sprite.png",
+    "modifications": "Alpha bounds trimmed; silhouette preserved; Lanczos resize; 2px ivory outline at 128px (1px at 64px); WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/characters/analysis/sprite.png",
+    "bytes": 10070,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/characters/analysis/sprite.png",
+    "modifications": "Alpha bounds trimmed; silhouette preserved; Lanczos resize; 2px ivory outline at 128px (1px at 64px); WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/characters/coder/portrait.webp",
+    "bytes": 49376,
+    "size": [
+      411,
+      704
+    ],
+    "source": "art-src/ai/characters/coder/portrait.png",
+    "modifications": "Alpha bounds trimmed; silhouette preserved; Lanczos resize; WebP"
+  },
+  {
+    "file": "assets/art/v4/characters/coder/avatar.webp",
+    "bytes": 9568,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/characters/coder/avatar.png",
+    "modifications": "Alpha bounds trimmed; silhouette preserved; Lanczos resize; WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/characters/coder/avatar.png",
+    "bytes": 38464,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/characters/coder/avatar.png",
+    "modifications": "Alpha bounds trimmed; silhouette preserved; Lanczos resize; WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/characters/coder/sprite.webp",
+    "bytes": 4786,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/characters/coder/sprite.png",
+    "modifications": "Alpha bounds trimmed; silhouette preserved; Lanczos resize; 2px ivory outline at 128px (1px at 64px); WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/characters/coder/sprite.png",
+    "bytes": 14514,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/characters/coder/sprite.png",
+    "modifications": "Alpha bounds trimmed; silhouette preserved; Lanczos resize; 2px ivory outline at 128px (1px at 64px); WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/characters/english/portrait.webp",
+    "bytes": 31432,
+    "size": [
+      223,
+      704
+    ],
+    "source": "art-src/ai/characters/english/portrait.png",
+    "modifications": "Alpha bounds trimmed; silhouette preserved; Lanczos resize; WebP"
+  },
+  {
+    "file": "assets/art/v4/characters/english/avatar.webp",
+    "bytes": 8068,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/characters/english/avatar.png",
+    "modifications": "Alpha bounds trimmed; silhouette preserved; Lanczos resize; WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/characters/english/avatar.png",
+    "bytes": 35058,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/characters/english/avatar.png",
+    "modifications": "Alpha bounds trimmed; silhouette preserved; Lanczos resize; WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/characters/english/sprite.webp",
+    "bytes": 2968,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/characters/english/sprite.png",
+    "modifications": "Alpha bounds trimmed; silhouette preserved; Lanczos resize; 2px ivory outline at 128px (1px at 64px); WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/characters/english/sprite.png",
+    "bytes": 8661,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/characters/english/sprite.png",
+    "modifications": "Alpha bounds trimmed; silhouette preserved; Lanczos resize; 2px ivory outline at 128px (1px at 64px); WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/characters/architect/portrait.webp",
+    "bytes": 55508,
+    "size": [
+      365,
+      704
+    ],
+    "source": "art-src/ai/characters/architect/portrait.png",
+    "modifications": "Alpha bounds trimmed; silhouette preserved; Lanczos resize; WebP"
+  },
+  {
+    "file": "assets/art/v4/characters/architect/avatar.webp",
+    "bytes": 11264,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/characters/architect/avatar.png",
+    "modifications": "Alpha bounds trimmed; silhouette preserved; Lanczos resize; WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/characters/architect/avatar.png",
+    "bytes": 46944,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/characters/architect/avatar.png",
+    "modifications": "Alpha bounds trimmed; silhouette preserved; Lanczos resize; WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/characters/architect/sprite.webp",
+    "bytes": 4428,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/characters/architect/sprite.png",
+    "modifications": "Alpha bounds trimmed; silhouette preserved; Lanczos resize; 2px ivory outline at 128px (1px at 64px); WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/characters/architect/sprite.png",
+    "bytes": 14310,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/characters/architect/sprite.png",
+    "modifications": "Alpha bounds trimmed; silhouette preserved; Lanczos resize; 2px ivory outline at 128px (1px at 64px); WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/characters/experiment/portrait.webp",
+    "bytes": 47014,
+    "size": [
+      274,
+      704
+    ],
+    "source": "art-src/ai/characters/experiment/portrait.png",
+    "modifications": "Alpha bounds trimmed; silhouette preserved; Lanczos resize; WebP"
+  },
+  {
+    "file": "assets/art/v4/characters/experiment/avatar.webp",
+    "bytes": 9670,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/characters/experiment/avatar.png",
+    "modifications": "Alpha bounds trimmed; silhouette preserved; Lanczos resize; WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/characters/experiment/avatar.png",
+    "bytes": 40634,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/characters/experiment/avatar.png",
+    "modifications": "Alpha bounds trimmed; silhouette preserved; Lanczos resize; WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/characters/experiment/sprite.webp",
+    "bytes": 3870,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/characters/experiment/sprite.png",
+    "modifications": "Alpha bounds trimmed; silhouette preserved; Lanczos resize; 2px ivory outline at 128px (1px at 64px); WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/characters/experiment/sprite.png",
+    "bytes": 12403,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/characters/experiment/sprite.png",
+    "modifications": "Alpha bounds trimmed; silhouette preserved; Lanczos resize; 2px ivory outline at 128px (1px at 64px); WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/advisor.webp",
+    "bytes": 4928,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/advisor.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/advisor.png",
+    "bytes": 17890,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/advisor.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/advisor-white.webp",
+    "bytes": 1574,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/advisor.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/advisor-white.png",
+    "bytes": 2946,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/advisor.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/bomber.webp",
+    "bytes": 6412,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/bomber.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/bomber.png",
+    "bytes": 24815,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/bomber.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/bomber-white.webp",
+    "bytes": 1724,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/bomber.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/bomber-white.png",
+    "bytes": 3259,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/bomber.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/charger.webp",
+    "bytes": 7418,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/charger.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/charger.png",
+    "bytes": 24366,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/charger.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/charger-white.webp",
+    "bytes": 2364,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/charger.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/charger-white.png",
+    "bytes": 4294,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/charger.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/checkin.webp",
+    "bytes": 7314,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/checkin.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/checkin.png",
+    "bytes": 25349,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/checkin.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/checkin-white.webp",
+    "bytes": 2364,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/checkin.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/checkin-white.png",
+    "bytes": 4379,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/checkin.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/coding.webp",
+    "bytes": 6314,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/coding.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/coding.png",
+    "bytes": 26588,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/coding.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/coding-white.webp",
+    "bytes": 1520,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/coding.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/coding-white.png",
+    "bytes": 2717,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/coding.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/ddl.webp",
+    "bytes": 9538,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/ddl.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/ddl.png",
+    "bytes": 28638,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/ddl.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/ddl-white.webp",
+    "bytes": 3504,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/ddl.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/ddl-white.png",
+    "bytes": 6575,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/ddl.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/defense.webp",
+    "bytes": 22410,
+    "size": [
+      256,
+      256
+    ],
+    "source": "art-src/ai/enemies/defense.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/defense.png",
+    "bytes": 88128,
+    "size": [
+      256,
+      256
+    ],
+    "source": "art-src/ai/enemies/defense.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/defense-white.webp",
+    "bytes": 7340,
+    "size": [
+      256,
+      256
+    ],
+    "source": "art-src/ai/enemies/defense.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/defense-white.png",
+    "bytes": 13191,
+    "size": [
+      256,
+      256
+    ],
+    "source": "art-src/ai/enemies/defense.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/english.webp",
+    "bytes": 7394,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/english.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/english.png",
+    "bytes": 25796,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/english.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/english-white.webp",
+    "bytes": 2512,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/english.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/english-white.png",
+    "bytes": 4430,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/english.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/examCharger.webp",
+    "bytes": 6762,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/examCharger.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/examCharger.png",
+    "bytes": 20459,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/examCharger.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/examCharger-white.webp",
+    "bytes": 2264,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/examCharger.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/examCharger-white.png",
+    "bytes": 4213,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/examCharger.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/finals.webp",
+    "bytes": 21262,
+    "size": [
+      256,
+      256
+    ],
+    "source": "art-src/ai/enemies/finals.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/finals.png",
+    "bytes": 98759,
+    "size": [
+      256,
+      256
+    ],
+    "source": "art-src/ai/enemies/finals.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/finals-white.webp",
+    "bytes": 5470,
+    "size": [
+      256,
+      256
+    ],
+    "source": "art-src/ai/enemies/finals.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/finals-white.png",
+    "bytes": 10848,
+    "size": [
+      256,
+      256
+    ],
+    "source": "art-src/ai/enemies/finals.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/guard.webp",
+    "bytes": 7110,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/guard.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/guard.png",
+    "bytes": 30719,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/guard.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/guard-white.webp",
+    "bytes": 1652,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/guard.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/guard-white.png",
+    "bytes": 2863,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/guard.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/homework.webp",
+    "bytes": 7550,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/homework.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/homework.png",
+    "bytes": 26260,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/homework.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/homework-white.webp",
+    "bytes": 2526,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/homework.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/homework-white.png",
+    "bytes": 4596,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/homework.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/inspector.webp",
+    "bytes": 17656,
+    "size": [
+      256,
+      256
+    ],
+    "source": "art-src/ai/enemies/inspector.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/inspector.png",
+    "bytes": 91777,
+    "size": [
+      256,
+      256
+    ],
+    "source": "art-src/ai/enemies/inspector.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/inspector-white.webp",
+    "bytes": 3938,
+    "size": [
+      256,
+      256
+    ],
+    "source": "art-src/ai/enemies/inspector.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/inspector-white.png",
+    "bytes": 8072,
+    "size": [
+      256,
+      256
+    ],
+    "source": "art-src/ai/enemies/inspector.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/leader.webp",
+    "bytes": 5890,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/leader.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/leader.png",
+    "bytes": 19854,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/leader.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/leader-white.webp",
+    "bytes": 1846,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/leader.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/leader-white.png",
+    "bytes": 3433,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/leader.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/math.webp",
+    "bytes": 6690,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/math.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/math.png",
+    "bytes": 25190,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/math.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/math-white.webp",
+    "bytes": 2046,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/math.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/math-white.png",
+    "bytes": 3803,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/math.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/mechanics.webp",
+    "bytes": 6328,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/mechanics.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/mechanics.png",
+    "bytes": 20796,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/mechanics.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/mechanics-white.webp",
+    "bytes": 2386,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/mechanics.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/mechanics-white.png",
+    "bytes": 4500,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/mechanics.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/node.webp",
+    "bytes": 5810,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/node.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/node.png",
+    "bytes": 21719,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/node.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/node-white.webp",
+    "bytes": 1682,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/node.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/node-white.png",
+    "bytes": 3169,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/node.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/ppt.webp",
+    "bytes": 6230,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/ppt.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/ppt.png",
+    "bytes": 21181,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/ppt.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/ppt-white.webp",
+    "bytes": 2040,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/ppt.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/ppt-white.png",
+    "bytes": 3545,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/ppt.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/proposal.webp",
+    "bytes": 16758,
+    "size": [
+      256,
+      256
+    ],
+    "source": "art-src/ai/enemies/proposal.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/proposal.png",
+    "bytes": 78818,
+    "size": [
+      256,
+      256
+    ],
+    "source": "art-src/ai/enemies/proposal.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/proposal-white.webp",
+    "bytes": 4164,
+    "size": [
+      256,
+      256
+    ],
+    "source": "art-src/ai/enemies/proposal.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/proposal-white.png",
+    "bytes": 8498,
+    "size": [
+      256,
+      256
+    ],
+    "source": "art-src/ai/enemies/proposal.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/receipt.webp",
+    "bytes": 7210,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/receipt.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/receipt.png",
+    "bytes": 29691,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/receipt.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/receipt-white.webp",
+    "bytes": 1868,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/receipt.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/receipt-white.png",
+    "bytes": 3531,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/receipt.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/review.webp",
+    "bytes": 6752,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/review.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/review.png",
+    "bytes": 26590,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/review.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/review-white.webp",
+    "bytes": 2164,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/review.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/review-white.png",
+    "bytes": 4017,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/review.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/splitter.webp",
+    "bytes": 6954,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/splitter.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/splitter.png",
+    "bytes": 27384,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/splitter.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/splitter-white.webp",
+    "bytes": 2034,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/splitter.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/splitter-white.png",
+    "bytes": 3765,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/splitter.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/summoner.webp",
+    "bytes": 6030,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/summoner.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/summoner.png",
+    "bytes": 21609,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/summoner.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/summoner-white.webp",
+    "bytes": 2070,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/summoner.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/summoner-white.png",
+    "bytes": 3739,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/summoner.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/teamlead.webp",
+    "bytes": 17860,
+    "size": [
+      256,
+      256
+    ],
+    "source": "art-src/ai/enemies/teamlead.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/teamlead.png",
+    "bytes": 94934,
+    "size": [
+      256,
+      256
+    ],
+    "source": "art-src/ai/enemies/teamlead.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/teamlead-white.webp",
+    "bytes": 3592,
+    "size": [
+      256,
+      256
+    ],
+    "source": "art-src/ai/enemies/teamlead.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/teamlead-white.png",
+    "bytes": 7550,
+    "size": [
+      256,
+      256
+    ],
+    "source": "art-src/ai/enemies/teamlead.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/thrower.webp",
+    "bytes": 7082,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/thrower.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/thrower.png",
+    "bytes": 21292,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/thrower.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/enemies/thrower-white.webp",
+    "bytes": 2708,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/thrower.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/enemies/thrower-white.png",
+    "bytes": 4892,
+    "size": [
+      128,
+      128
+    ],
+    "source": "art-src/ai/enemies/thrower.png",
+    "modifications": "Same alpha silhouette as base sprite; white RGB for hit flash; lossless WebP + PNG fallback"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/blueprint.webp",
+    "bytes": 12078,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/blueprint.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/blueprint.png",
+    "bytes": 56911,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/blueprint.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/bot.webp",
+    "bytes": 12370,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/bot.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/bot.png",
+    "bytes": 47504,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/bot.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/brick.webp",
+    "bytes": 8158,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/brick.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/brick.png",
+    "bytes": 39176,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/brick.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/broadcast.webp",
+    "bytes": 12656,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/broadcast.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/broadcast.png",
+    "bytes": 41501,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/broadcast.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/code.webp",
+    "bytes": 11466,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/code.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/code.png",
+    "bytes": 55584,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/code.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/coffee.webp",
+    "bytes": 9542,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/coffee.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/coffee.png",
+    "bytes": 33775,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/coffee.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/cryo.webp",
+    "bytes": 9476,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/cryo.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/cryo.png",
+    "bytes": 39790,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/cryo.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/eraser.webp",
+    "bytes": 8578,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/eraser.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/eraser.png",
+    "bytes": 42192,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/eraser.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/keyboard.webp",
+    "bytes": 7780,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/keyboard.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/keyboard.png",
+    "bytes": 32374,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/keyboard.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/knife.webp",
+    "bytes": 8786,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/knife.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/knife.png",
+    "bytes": 35443,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/knife.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/laser.webp",
+    "bytes": 5864,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/laser.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/laser.png",
+    "bytes": 17487,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/laser.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/lightning.webp",
+    "bytes": 9338,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/lightning.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/lightning.png",
+    "bytes": 28227,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/lightning.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/mentor.webp",
+    "bytes": 16814,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/mentor.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/mentor.png",
+    "bytes": 57965,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/mentor.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/mine.webp",
+    "bytes": 9722,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/mine.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/mine.png",
+    "bytes": 21614,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/mine.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/orbit.webp",
+    "bytes": 13486,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/orbit.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/orbit.png",
+    "bytes": 59169,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/orbit.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/ppt.webp",
+    "bytes": 10978,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/ppt.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/ppt.png",
+    "bytes": 51347,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/ppt.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/prism.webp",
+    "bytes": 9124,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/prism.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/prism.png",
+    "bytes": 35187,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/prism.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/rain.webp",
+    "bytes": 12574,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/rain.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/rain.png",
+    "bytes": 42773,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/rain.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/ruler.webp",
+    "bytes": 8550,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/ruler.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/ruler.png",
+    "bytes": 26773,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/ruler.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/shuttle.webp",
+    "bytes": 12024,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/shuttle.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/shuttle.png",
+    "bytes": 42951,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/shuttle.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/staple.webp",
+    "bytes": 9784,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/staple.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/staple.png",
+    "bytes": 48552,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/staple.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/wifi.webp",
+    "bytes": 10228,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/wifi.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/weapons/wifi.png",
+    "bytes": 32799,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/weapons/wifi.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/area.webp",
+    "bytes": 12592,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/area.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/area.png",
+    "bytes": 49634,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/area.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/armor.webp",
+    "bytes": 9128,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/armor.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/armor.png",
+    "bytes": 40277,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/armor.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/calm.webp",
+    "bytes": 9002,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/calm.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/calm.png",
+    "bytes": 44251,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/calm.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/duration.webp",
+    "bytes": 11210,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/duration.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/duration.png",
+    "bytes": 51224,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/duration.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/focus.webp",
+    "bytes": 10612,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/focus.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/focus.png",
+    "bytes": 54287,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/focus.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/haste.webp",
+    "bytes": 12256,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/haste.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/haste.png",
+    "bytes": 55016,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/haste.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/health.webp",
+    "bytes": 9420,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/health.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/health.png",
+    "bytes": 45892,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/health.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/luck.webp",
+    "bytes": 11468,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/luck.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/luck.png",
+    "bytes": 35631,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/luck.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/magnetism.webp",
+    "bytes": 11570,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/magnetism.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/magnetism.png",
+    "bytes": 50832,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/magnetism.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/multi.webp",
+    "bytes": 13206,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/multi.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/multi.png",
+    "bytes": 56915,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/multi.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/night.webp",
+    "bytes": 9672,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/night.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/night.png",
+    "bytes": 31744,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/night.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/push.webp",
+    "bytes": 10826,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/push.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/push.png",
+    "bytes": 43280,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/push.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/regen.webp",
+    "bytes": 10442,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/regen.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/regen.png",
+    "bytes": 45993,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/regen.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/speed.webp",
+    "bytes": 11446,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/speed.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/speed.png",
+    "bytes": 43599,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/speed.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/thesis.webp",
+    "bytes": 11144,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/thesis.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/thesis.png",
+    "bytes": 51399,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/thesis.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/xp.webp",
+    "bytes": 10528,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/xp.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/passives/xp.png",
+    "bytes": 46140,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/passives/xp.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/fusions/binder.webp",
+    "bytes": 11696,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/fusions/binder.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/fusions/binder.png",
+    "bytes": 39335,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/fusions/binder.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/fusions/demolition.webp",
+    "bytes": 12708,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/fusions/demolition.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/fusions/demolition.png",
+    "bytes": 58050,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/fusions/demolition.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/fusions/hub.webp",
+    "bytes": 11128,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/fusions/hub.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/fusions/hub.png",
+    "bytes": 52244,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/fusions/hub.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/fusions/icefire.webp",
+    "bytes": 14642,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/fusions/icefire.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/fusions/icefire.png",
+    "bytes": 66779,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/fusions/icefire.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/fusions/sky.webp",
+    "bytes": 15482,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/fusions/sky.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/fusions/sky.png",
+    "bytes": 45873,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/fusions/sky.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/fusions/sword.webp",
+    "bytes": 12072,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/fusions/sword.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/fusions/sword.png",
+    "bytes": 53875,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/fusions/sword.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/relics/assistant.webp",
+    "bytes": 10476,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/relics/assistant.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/relics/assistant.png",
+    "bytes": 44543,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/relics/assistant.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/relics/clockShard.webp",
+    "bytes": 13456,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/relics/clockShard.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/relics/clockShard.png",
+    "bytes": 60096,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/relics/clockShard.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/relics/emergency.webp",
+    "bytes": 10052,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/relics/emergency.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/relics/emergency.png",
+    "bytes": 44184,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/relics/emergency.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/relics/obsidian.webp",
+    "bytes": 8476,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/relics/obsidian.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/relics/obsidian.png",
+    "bytes": 33123,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/relics/obsidian.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/relics/redNotebook.webp",
+    "bytes": 11170,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/relics/redNotebook.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/relics/redNotebook.png",
+    "bytes": 55198,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/relics/redNotebook.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/relics/scholarship.webp",
+    "bytes": 14648,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/relics/scholarship.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/relics/scholarship.png",
+    "bytes": 57793,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/relics/scholarship.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/pickups/bomb.webp",
+    "bytes": 12528,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/pickups/bomb.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/pickups/bomb.png",
+    "bytes": 52661,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/pickups/bomb.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/pickups/coffeeBoost.webp",
+    "bytes": 10082,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/pickups/coffeeBoost.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/pickups/coffeeBoost.png",
+    "bytes": 43609,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/pickups/coffeeBoost.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/pickups/energy.webp",
+    "bytes": 9720,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/pickups/energy.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/pickups/energy.png",
+    "bytes": 50915,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/pickups/energy.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/pickups/freeze.webp",
+    "bytes": 14244,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/pickups/freeze.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/pickups/freeze.png",
+    "bytes": 58224,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/pickups/freeze.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/pickups/heal.webp",
+    "bytes": 8142,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/pickups/heal.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/pickups/heal.png",
+    "bytes": 37280,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/pickups/heal.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/pickups/magnet.webp",
+    "bytes": 11812,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/pickups/magnet.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/pickups/magnet.png",
+    "bytes": 44023,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/pickups/magnet.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/pickups/shield.webp",
+    "bytes": 9108,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/pickups/shield.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/pickups/shield.png",
+    "bytes": 45833,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/pickups/shield.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/ultimates/barrier.webp",
+    "bytes": 12916,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/ultimates/barrier.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/ultimates/barrier.png",
+    "bytes": 57071,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/ultimates/barrier.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/ultimates/conference.webp",
+    "bytes": 7256,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/ultimates/conference.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/ultimates/conference.png",
+    "bytes": 25130,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/ultimates/conference.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/ultimates/lastMinute.webp",
+    "bytes": 16818,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/ultimates/lastMinute.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/ultimates/lastMinute.png",
+    "bytes": 63033,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/ultimates/lastMinute.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/ultimates/overload.webp",
+    "bytes": 11266,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/ultimates/overload.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/ultimates/overload.png",
+    "bytes": 47301,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/ultimates/overload.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/ultimates/parallel.webp",
+    "bytes": 17792,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/ultimates/parallel.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/ultimates/parallel.png",
+    "bytes": 65990,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/ultimates/parallel.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/ultimates/submission.webp",
+    "bytes": 9506,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/ultimates/submission.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/icons/ultimates/submission.png",
+    "bytes": 47111,
+    "size": [
+      192,
+      192
+    ],
+    "source": "art-src/ai/icons/ultimates/submission.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/buildings/activity.webp",
+    "bytes": 63086,
+    "size": [
+      512,
+      336
+    ],
+    "source": "art-src/ai/buildings/activity.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/buildings/architecture.webp",
+    "bytes": 62420,
+    "size": [
+      512,
+      394
+    ],
+    "source": "art-src/ai/buildings/architecture.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/buildings/basic-south.webp",
+    "bytes": 83476,
+    "size": [
+      512,
+      498
+    ],
+    "source": "art-src/ai/buildings/basic-south.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/buildings/basic.webp",
+    "bytes": 58064,
+    "size": [
+      512,
+      340
+    ],
+    "source": "art-src/ai/buildings/basic.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/buildings/canteen.webp",
+    "bytes": 72156,
+    "size": [
+      512,
+      366
+    ],
+    "source": "art-src/ai/buildings/canteen.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/buildings/civil.webp",
+    "bytes": 73598,
+    "size": [
+      512,
+      469
+    ],
+    "source": "art-src/ai/buildings/civil.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/buildings/dorm-west.webp",
+    "bytes": 90676,
+    "size": [
+      512,
+      496
+    ],
+    "source": "art-src/ai/buildings/dorm-west.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/buildings/dorm.webp",
+    "bytes": 70442,
+    "size": [
+      512,
+      444
+    ],
+    "source": "art-src/ai/buildings/dorm.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/buildings/experiment.webp",
+    "bytes": 61878,
+    "size": [
+      512,
+      382
+    ],
+    "source": "art-src/ai/buildings/experiment.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/buildings/library.webp",
+    "bytes": 86102,
+    "size": [
+      512,
+      436
+    ],
+    "source": "art-src/ai/buildings/library.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/landmarks/canteen.webp",
+    "bytes": 93518,
+    "size": [
+      376,
+      384
+    ],
+    "source": "art-src/ai/landmarks/canteen.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/landmarks/garden.webp",
+    "bytes": 110240,
+    "size": [
+      384,
+      364
+    ],
+    "source": "art-src/ai/landmarks/garden.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/landmarks/lab.webp",
+    "bytes": 93376,
+    "size": [
+      384,
+      384
+    ],
+    "source": "art-src/ai/landmarks/lab.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/landmarks/library.webp",
+    "bytes": 71144,
+    "size": [
+      380,
+      384
+    ],
+    "source": "art-src/ai/landmarks/library.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/landmarks/track.webp",
+    "bytes": 57490,
+    "size": [
+      384,
+      312
+    ],
+    "source": "art-src/ai/landmarks/track.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/landmarks/workshop.webp",
+    "bytes": 60750,
+    "size": [
+      384,
+      365
+    ],
+    "source": "art-src/ai/landmarks/workshop.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/props/bench.webp",
+    "bytes": 25908,
+    "size": [
+      256,
+      237
+    ],
+    "source": "art-src/ai/props/bench.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/props/planter.webp",
+    "bytes": 26368,
+    "size": [
+      256,
+      227
+    ],
+    "source": "art-src/ai/props/planter.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/props/tree.webp",
+    "bytes": 23790,
+    "size": [
+      187,
+      256
+    ],
+    "source": "art-src/ai/props/tree.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/textures/grass.webp",
+    "bytes": 12394,
+    "size": [
+      256,
+      256
+    ],
+    "source": "art-src/ai/textures/grass.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/textures/metal.webp",
+    "bytes": 734,
+    "size": [
+      256,
+      256
+    ],
+    "source": "art-src/ai/textures/metal.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/textures/paper.webp",
+    "bytes": 2122,
+    "size": [
+      256,
+      256
+    ],
+    "source": "art-src/ai/textures/paper.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/textures/paving.webp",
+    "bytes": 7240,
+    "size": [
+      256,
+      256
+    ],
+    "source": "art-src/ai/textures/paving.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/ui/academic-crest.webp",
+    "bytes": 43770,
+    "size": [
+      289,
+      384
+    ],
+    "source": "art-src/ai/ui/academic-crest.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/ui/chest-closed.webp",
+    "bytes": 43860,
+    "size": [
+      384,
+      354
+    ],
+    "source": "art-src/ai/ui/chest-closed.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/ui/chest-open.webp",
+    "bytes": 33628,
+    "size": [
+      328,
+      384
+    ],
+    "source": "art-src/ai/ui/chest-open.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/ui/gold-ornament.webp",
+    "bytes": 23780,
+    "size": [
+      379,
+      384
+    ],
+    "source": "art-src/ai/ui/gold-ornament.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/ui/menu-campus-portrait.webp",
+    "bytes": 100360,
+    "size": [
+      720,
+      1280
+    ],
+    "source": "art-src/ai/ui/menu-campus-portrait.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/ui/menu-campus.webp",
+    "bytes": 239768,
+    "size": [
+      1600,
+      900
+    ],
+    "source": "art-src/ai/ui/menu-campus.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/ui/result-defeat.webp",
+    "bytes": 264258,
+    "size": [
+      1280,
+      720
+    ],
+    "source": "art-src/ai/ui/result-defeat.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/ui/result-victory.webp",
+    "bytes": 188748,
+    "size": [
+      1280,
+      720
+    ],
+    "source": "art-src/ai/ui/result-victory.png",
+    "modifications": "Lanczos resize; WebP encoding"
+  },
+  {
+    "file": "assets/art/v4/fx/paper-blade.webp",
+    "bytes": 1620,
+    "size": [
+      48,
+      48
+    ],
+    "source": "art-src/ai/icons/weapons/knife.png",
+    "modifications": "Reused weapon icon, alpha trimmed and resized for battle projectile; WebP"
+  },
+  {
+    "file": "assets/art/v4/fx/book.webp",
+    "bytes": 2970,
+    "size": [
+      64,
+      64
+    ],
+    "source": "art-src/ai/icons/weapons/orbit.png",
+    "modifications": "Reused weapon icon, alpha trimmed and resized for battle projectile; WebP"
+  },
+  {
+    "file": "assets/art/v4/fx/robot.webp",
+    "bytes": 2804,
+    "size": [
+      64,
+      64
+    ],
+    "source": "art-src/ai/icons/weapons/bot.png",
+    "modifications": "Reused weapon icon, alpha trimmed and resized for battle projectile; WebP"
+  },
+  {
+    "file": "assets/art/v4/fx/slides.webp",
+    "bytes": 2756,
+    "size": [
+      64,
+      64
+    ],
+    "source": "art-src/ai/icons/weapons/ppt.png",
+    "modifications": "Reused weapon icon, alpha trimmed and resized for battle projectile; WebP"
+  },
+  {
+    "file": "assets/art/v4/fx/shuttle.webp",
+    "bytes": 1798,
+    "size": [
+      48,
+      48
+    ],
+    "source": "art-src/ai/icons/weapons/shuttle.png",
+    "modifications": "Reused weapon icon, alpha trimmed and resized for battle projectile; WebP"
+  },
+  {
+    "file": "assets/art/v4/fx/particles.webp",
+    "bytes": 1304,
+    "size": [
+      256,
+      24
+    ],
+    "source": "code / credited CC0 particle atlas",
+    "modifications": "Lanczos resize; WebP encoding"
+  }
+]

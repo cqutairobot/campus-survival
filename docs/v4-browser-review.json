@@ -1,0 +1,67 @@
+{
+  "url": "http://127.0.0.1:4180/demo/index.html",
+  "firstScreenBytes": 2099172,
+  "fontBytes": 163318,
+  "fontFiles": [
+    "campus-title-400-title.woff2",
+    "campus-digits-600-latin.woff2",
+    "campus-sans-600-shell.woff2",
+    "campus-sans-400-shell.woff2"
+  ],
+  "errors": [],
+  "warnings": [],
+  "hudRects": {
+    ".momentum-hud": {
+      "width": 145,
+      "height": 49,
+      "y": 535
+    },
+    ".codex-button": {
+      "width": 112,
+      "height": 48,
+      "y": 784
+    },
+    ".semester-status": {
+      "width": 190,
+      "height": 75.390625,
+      "y": 95
+    }
+  },
+  "state": {
+    "feedback": {
+      "trauma": 0.10988000000000067,
+      "zoom": 1.0043666666666666,
+      "post": {
+        "center": {
+          "x": 46.408688240312586,
+          "y": 413.2838124224322
+        },
+        "active": false
+      },
+      "entityEffects": 1,
+      "deathSnapshots": 1,
+      "missingArt": []
+    },
+    "audio": {
+      "ready": true,
+      "voices": 3,
+      "sessionVoices": 3,
+      "evicted": 0,
+      "dropped": 0,
+      "duck": 1,
+      "music": {
+        "theme": "normal",
+        "tracks": [
+          {
+            "theme": "normal",
+            "weight": 1
+          }
+        ],
+        "pending": 2
+      },
+      "failedSamples": [],
+      "forceFailure": false,
+      "environment": null
+    }
+  }
+}

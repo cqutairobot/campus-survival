@@ -29,3 +29,8 @@
 v3 沿用 v2 的全部锁定运行时和开发依赖，未安装或新增包。package.json／lockfile 仅升级项目自身版本为 3.0.0；各依赖解析版本保持一致。数值文档生成复用已有 Vite 的本地 SSR 加载，不增加生成器依赖。每日种子复用现有 Random 与 FNV-1a32；图形和音频继续程序化实现。
 
 默认 `npm test` 只选核心 v3 单元与原核心实体／碰撞测试；Playwright 只选一条 Chromium 冒烟。原压力、矩阵、长跑源码和报告作为历史保留，不纳入 v3 默认入口。
+
+
+## v4 P0 素材构建工具
+
+运行时依赖与版本沿用 v3。离线素材脚本使用 Python 3 + Pillow（Lanczos/WebP）、fontTools + Brotli（固定字重与 WOFF2 子集）和 ffmpeg（CC0 样本混合/转码）；它们不参与普通 npm build，也不进入发布包。npm 缓存由项目 `.npmrc` 固定为 `/tmp/npm-cache`。

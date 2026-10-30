@@ -1,4 +1,10 @@
 import { createRoot } from 'react-dom/client';
 import { App } from './app/App';
 import './ui/styles/main.css';
+import './ui/styles/fonts.css';
+import './ui/styles/tokens.css';
+import './ui/styles/v4.css';
+import './ui/styles/p1.css';
+import {installTokens} from './design/tokens';
+installTokens();
 createRoot(document.getElementById('root')!).render(<App/>);

@@ -1,15 +1,49 @@
 import {test,expect} from '@playwright/test';
+import {writeFileSync} from 'node:fs';
 import {dailyChallenge} from '../../src/challenges/daily';
-test('v3 单条冒烟：旧档→移动双触点大招→精英融合契约→隔离结算→正式每日记录→释放会话',async({page})=>{
- const errors:string[]=[],warnings:string[]=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='warning'&&/BindGroup|GSAP target/.test(m.text())){warnings.push(m.text());console.log(m.text());}});
- await page.addInitScript(()=>{if(!localStorage.getItem('campus-survival.save.v3')&&!localStorage.getItem('campus-survival.save.v2'))localStorage.setItem('campus-survival.save.v2',JSON.stringify({schemaVersion:2,contentVersion:'2.0.0',credits:137,unlocked:['balanced','coder'],selected:'balanced',talents:{hp:2},discovered:['knife','orbit'],evolutions:['orbit'],settledRuns:['legacy-id'],settings:{quality:'high',muted:true,motion:true,master:.4},stats:{runs:3,wins:0,kills:120,bestWeek:9}}));});
+test('v4 P1 单条冒烟：全界面与素材→旧档与反馈→双触点→融合契约→结算与每日→释放会话',async({page})=>{
+ const loadFailures:string[]=[],reviews:unknown[]=[];let firstScreenBytes=0;
+ page.on('response',r=>{if(r.status()>=400&&/assets\/|licenses\//.test(r.url()))loadFailures.push(`${r.status()} ${r.url()}`);});
+ page.on('requestfailed',r=>{if(/assets\/|licenses\//.test(r.url())&&r.failure()?.errorText!=='net::ERR_ABORTED')loadFailures.push(`${r.failure()?.errorText} ${r.url()}`);});
+ const capture=async(name:string)=>{await page.evaluate(async()=>{await document.fonts.ready;await Promise.all(Array.from(document.images).filter(img=>img.offsetParent!==null).map(img=>img.decode().catch(()=>{})));});await page.waitForTimeout(320);await page.screenshot({path:`docs/v4-p1-${name}.png`,animations:'disabled'});reviews.push(await page.evaluate(name=>({screen:name,viewport:[innerWidth,innerHeight],horizontalOverflow:document.documentElement.scrollWidth>innerWidth+1,brokenImages:Array.from(document.images).filter(img=>img.offsetParent!==null&&(!img.complete||!img.naturalWidth)).map(img=>img.src)}),name));};
+ const errors:string[]=[],warnings:string[]=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());if(m.type()==='warning'||/PixiJS Deprecation/.test(m.text())){warnings.push(m.text());console.log(m.text());}});
+ await page.addInitScript(()=>{if(!localStorage.getItem('campus-survival.save.v3')&&!localStorage.getItem('campus-survival.save.v2'))localStorage.setItem('campus-survival.save.v2',JSON.stringify({schemaVersion:2,contentVersion:'2.0.0',credits:137,unlocked:['balanced','coder'],selected:'balanced',talents:{hp:2},discovered:['knife','orbit'],evolutions:['orbit'],settledRuns:['legacy-id'],settings:{quality:'high',muted:true,motion:true,master:.4,shake:.2,flash:0},stats:{runs:3,wins:0,kills:120,bestWeek:9}}));});
  await page.goto('/?debug=1&seed=999');
  await expect(page.getByText('137',{exact:true})).toBeVisible();
  const migrated=await page.evaluate(()=>JSON.parse(localStorage.getItem('campus-survival.save.v3')!));
- expect(migrated.schemaVersion).toBe(3);expect(migrated.credits).toBe(137);expect(migrated.unlocked).toContain('coder');expect(migrated.evolutions).toContain('orbit');expect(migrated.settledRuns).toContain('legacy-id');
+ expect(migrated.schemaVersion).toBe(3);expect(migrated.credits).toBe(137);expect(migrated.unlocked).toContain('coder');expect(migrated.evolutions).toContain('orbit');expect(migrated.settledRuns).toContain('legacy-id');expect(migrated.settings).toMatchObject({settingsVersion:4,shake:.2,flash:0,muted:true,hitStop:1,uiSfx:.6});
+ await capture('menu-desktop');firstScreenBytes=await page.evaluate(()=>{const navigation=performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;return navigation.transferSize+performance.getEntriesByType('resource').reduce((sum,entry)=>sum+(entry as PerformanceResourceTiming).transferSize,0);});expect(firstScreenBytes).toBeLessThanOrEqual(4*1024*1024);
+ for(const [name,label,selector] of [['characters','研究生档案','.menu-navigation'],['talents','局外天赋','.menu-navigation'],['achievements','学期成就','.menu-extra'],['map','校园地图','.menu-extra'],['daily','每日挑战','.menu-extra'],['settings','偏好设置','.menu-navigation'],['codex','学期图鉴','.menu-navigation']]){
+  await page.locator(selector).getByRole('button',{name:new RegExp(label)}).click();await expect(page.locator('.modal-panel')).toBeVisible();
+  if(name==='codex'){for(const tab of ['武器','被动','进化','融合','敌人','遗物','校园','事件']){await page.getByRole('tab',{name:new RegExp('^'+tab)}).click();await capture('codex-'+tab);}}
+  else {await capture(name);if(name==='settings'){await page.getByRole('button',{name:'查看制作名单与素材许可',exact:true}).click();await expect(page.locator('.credits-entry')).toHaveCount(20);await capture('credits');}}
+  await page.getByRole('button',{name:'关闭面板',exact:true}).click();
+ }
+ await page.setViewportSize({width:390,height:844});await capture('menu-mobile');
+ for(const [name,label] of [['characters','研究生档案'],['talents','局外天赋'],['codex','学期图鉴']]){await page.locator('.menu-navigation').getByRole('button',{name:new RegExp(label)}).click();await capture(name+'-mobile');await page.getByRole('button',{name:'关闭面板',exact:true}).click();}
+ await page.setViewportSize({width:1280,height:800});
+ await page.getByRole('button',{name:'开启声音',exact:true}).click();
+ await page.getByRole('button',{name:/偏好设置/}).click();const flash=page.getByRole('slider',{name:/^闪白/});await flash.focus();await flash.press('End');await flash.press('ArrowLeft');await flash.press('ArrowLeft');await expect(flash).toHaveValue('0.8');await page.getByRole('button',{name:'关闭面板',exact:true}).click();
  await page.getByRole('button',{name:/开始新学期/}).click();await page.getByRole('button',{name:/就这样，开学/}).click();
- await page.waitForFunction(()=>!!window.__CAMPUS__);
+ await page.waitForFunction(()=>!!window.__CAMPUS__);await expect.poll(()=>page.evaluate(()=>window.__CAMPUS__!.scene.audio.debug.ready)).toBe(true);
  const x=await page.evaluate(()=>window.__CAMPUS__!.engine.player.x);await page.keyboard.down('KeyD');await expect.poll(()=>page.evaluate(()=>window.__CAMPUS__!.engine.player.x)).toBeGreaterThan(x+15);await page.keyboard.up('KeyD');
+ await capture('battle');await page.keyboard.press('Escape');await capture('pause');
+ await page.evaluate(()=>{window.__CAMPUS__!.scene.setMissingArt(true);window.__CAMPUS__!.scene.previewFeedback('normal');});
+ await page.waitForTimeout(50);
+ await page.evaluate(()=>window.__CAMPUS__!.scene.previewFeedback('critical'));
+ await expect.poll(()=>page.evaluate(()=>window.__CAMPUS__!.scene.feedbackState.trauma)).toBeGreaterThan(0);
+ await expect.poll(()=>page.evaluate(()=>window.__CAMPUS__!.scene.feedbackState.post.center.x)).toBeGreaterThan(10);
+ const feedback=await page.evaluate(()=>window.__CAMPUS__!.scene.feedbackState);expect(feedback.missingArt).toContain('homework');expect(feedback.post.center.x).toBeGreaterThan(10);expect(feedback.post.center.y).toBeGreaterThan(10);
+ expect(await page.evaluate(()=>window.__CAMPUS__!.engine.cheated)).toBe(false);await page.evaluate(()=>window.__CAMPUS__!.scene.setMissingArt(false));
+ await page.getByRole('button',{name:'继续这个学期',exact:true}).click();
+ await page.evaluate(()=>window.__CAMPUS__!.engine.send({type:'xp',value:15}));
+ await expect(page.locator('.draft-card').first()).toBeVisible();
+ await page.waitForTimeout(350);await capture('draft');
+ for(let n=0;n<5;n++){await page.waitForFunction(()=>{const g=window.__CAMPUS__!.engine;return g.phase==='draft'||!g.hasPendingRewards;});const phase=await page.evaluate(()=>window.__CAMPUS__!.engine.phase);if(phase!=='draft')break;const token=await page.evaluate(()=>window.__CAMPUS__!.engine.draftToken);await page.locator('.draft-card').first().click();await page.waitForFunction(token=>{const g=window.__CAMPUS__!.engine;return g.phase!=='draft'||g.draftToken!==token;},token);}
+ await page.keyboard.press('Escape');await page.getByRole('button',{name:'设置',exact:true}).click();
+ await page.getByRole('checkbox',{name:/^减少动态效果/}).check();
+ await expect.poll(()=>page.evaluate(()=>window.__CAMPUS__!.scene.feedbackState)).toMatchObject({trauma:0,zoom:1,post:{active:false},entityEffects:0});
+ await page.getByRole('button',{name:'关闭面板',exact:true}).click();await page.getByRole('button',{name:'继续这个学期',exact:true}).click();
  await page.setViewportSize({width:390,height:844});
  await page.locator('.debug-toggle').click();await page.getByRole('button',{name:'大招设满',exact:true}).click();await page.locator('.debug-toggle').click();
  await expect(page.locator('.ultimate-button')).toBeEnabled();
@@ -24,8 +58,8 @@ test('v3 单条冒烟：旧档→移动双触点大招→精英融合契约→�
  await page.evaluate(()=>{const g=window.__CAMPUS__!.engine;g.send({type:'week',value:9});g.send({type:'god',value:true});g.send({type:'prepareFusion',id:'sword'});g.send({type:'spawnEnemy',id:'ddl',rank:'elite',affixes:['shield']});});
  await page.waitForFunction(()=>window.__CAMPUS__!.engine.weapons.some(w=>w.id==='ruler'));
  await page.evaluate(()=>{const g=window.__CAMPUS__!.engine,id=g.enemies.active.find(id=>g.enemies.rank[id]===1)!;g.hitEnemy(id,1e6,'knife',g.player.x,g.player.y,0,false);g.resolveDeaths();const chest=g.drops.active.find(id=>g.drops.data[id].kind==='chest')!;g.player.x=g.player.prevX=g.drops.data[chest].x;g.player.y=g.player.prevY=g.drops.data[chest].y;});
- await expect(page.getByRole('button',{name:/校园剑阵/})).toBeVisible();await page.getByRole('button',{name:/校园剑阵/}).click();
- await expect(page.getByRole('button',{name:/收好，继续/})).toBeVisible();await page.getByRole('button',{name:/收好，继续/}).click();
+ await expect(page.getByRole('button',{name:/校园剑阵/})).toBeVisible();await capture('fusion-choice');await page.getByRole('button',{name:/校园剑阵/}).click();
+ await expect(page.getByRole('button',{name:/收好，继续/})).toBeVisible();await capture('chest');await page.getByRole('button',{name:/收好，继续/}).click();
  await expect.poll(()=>page.evaluate(()=>window.__CAMPUS__!.engine.weapons.some(w=>w.id==='sword'))).toBe(true);
  const continuation=page.getByRole('button',{name:/带着新力量出发/});if(await continuation.isVisible())await continuation.click();
  await page.waitForFunction(()=>['playing','draft'].includes(window.__CAMPUS__!.engine.phase));
@@ -33,16 +67,17 @@ test('v3 单条冒烟：旧档→移动双触点大招→精英融合契约→�
  for(let n=0;n<6;n++){await page.waitForFunction(()=>{const g=window.__CAMPUS__!.engine;return g.phase==='draft'||!g.hasPendingRewards;});const phase=await page.evaluate(()=>window.__CAMPUS__!.engine.phase);if(phase!=='draft')break;const token=await page.evaluate(()=>window.__CAMPUS__!.engine.draftToken);await page.locator('.draft-card').first().click();await page.waitForFunction(token=>{const g=window.__CAMPUS__!.engine;return g.phase!=='draft'||g.draftToken!==token;},token);}
  await page.evaluate(()=>window.__CAMPUS__!.engine.send({type:'contract'}));await page.waitForFunction(()=>!!window.__CAMPUS__!.engine.landmarks.contract);
  await page.evaluate(()=>{const g=window.__CAMPUS__!.engine,c=g.landmarks.contract!;g.player.x=g.player.prevX=c.x;g.player.y=g.player.prevY=c.y;g.send({type:'interact',held:true});});
- await expect(page.getByText('风险，由你决定。',{exact:true})).toBeVisible();await page.locator('.reward-card.relic').first().click();
+ await expect(page.getByText('风险，由你决定。',{exact:true})).toBeVisible();await capture('contract');await page.locator('.reward-card.relic').first().click();
  await expect.poll(()=>page.evaluate(()=>window.__CAMPUS__!.engine.relics.length)).toBe(1);
- await page.screenshot({path:'docs/v3-battle.png'});
+ await capture('battle-fusion');
  await page.keyboard.press('Escape');await page.getByRole('button',{name:/结束本局并结算/}).click();
- await expect(page.getByText(/练习局 · 不计入绩点、成就或每日榜/)).toBeVisible();
+ await expect(page.getByText(/练习局 · 不计入绩点、成就或每日榜/)).toBeVisible();await capture('result');await expect.poll(()=>page.evaluate(()=>window.__CAMPUS__!.scene.audio.debug.music.theme)).toBe('result');
+ await page.evaluate(()=>Object.assign(window,{__V4_AUDIO__:window.__CAMPUS__!.scene.audio,__V4_SCENE__:window.__CAMPUS__!.scene}));
  const debugSave=await page.evaluate(()=>JSON.parse(localStorage.getItem('campus-survival.save.v3')!));expect(debugSave.credits).toBe(137);expect(debugSave.stats.runs).toBe(3);expect(debugSave.achievements.firstFusion.completed).toBe(false);expect(debugSave.fusions).toContain('sword');
- await page.getByRole('button',{name:'返回校园',exact:true}).click();await page.waitForFunction(()=>!window.__CAMPUS__);expect(await page.locator('canvas').count()).toBe(0);
+ await page.getByRole('button',{name:'返回校园',exact:true}).click();await page.waitForFunction(()=>!window.__CAMPUS__);expect(await page.locator('canvas').count()).toBe(0);expect(await page.evaluate(()=>(window as unknown as {__V4_AUDIO__:{debug:{sessionVoices:number}}}).__V4_AUDIO__.debug.sessionVoices)).toBe(0);expect(await page.evaluate(()=>(window as unknown as {__V4_SCENE__:{feedbackState:{deathSnapshots:number}}}).__V4_SCENE__.feedbackState.deathSnapshots)).toBe(0);
  await page.getByRole('button',{name:/每日挑战 · 本地榜/}).click();await page.getByRole('button',{name:/开始今日挑战/}).click();await page.waitForFunction(()=>!!window.__CAMPUS__);
  const daily=await page.evaluate(()=>({manifest:window.__CAMPUS__!.engine.manifest,cheated:window.__CAMPUS__!.engine.cheated,width:window.__CAMPUS__!.engine.viewWidth,height:window.__CAMPUS__!.engine.viewHeight}));expect(daily.cheated).toBe(false);expect(daily.manifest.seed).toBe(dailyChallenge(daily.manifest.date).seed);expect(daily.manifest.seed).not.toBe(999);expect([daily.width,daily.height]).toEqual([1280,800]);
  await page.keyboard.press('Escape');await page.getByRole('button',{name:/结束本局并结算/}).click();await expect(page.getByText(/已保存至本地榜/)).toBeVisible();
  const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('campus-survival.save.v3')!));expect(saved.daily.records).toHaveLength(1);expect(saved.daily.records[0].date).toBe(daily.manifest.date);expect(saved.credits).toBe(137);expect(saved.stats.runs).toBe(3);
- await page.getByRole('button',{name:'返回校园',exact:true}).click();await page.waitForFunction(()=>!window.__CAMPUS__);await page.reload();await page.getByRole('button',{name:/每日挑战 · 本地榜/}).click();await expect(page.locator('.daily-table tbody tr')).toHaveCount(1);await page.getByRole('button',{name:'关闭面板',exact:true}).click();expect(await page.locator('canvas').count()).toBe(0);expect(await page.evaluate(()=>window.__CAMPUS__)).toBeUndefined();expect(errors).toEqual([]);expect(warnings).toEqual([]);await page.screenshot({path:'docs/v3-menu.png'});
+ await page.getByRole('button',{name:'返回校园',exact:true}).click();await page.waitForFunction(()=>!window.__CAMPUS__);await page.reload();await page.getByRole('button',{name:/每日挑战 · 本地榜/}).click();await expect(page.locator('.daily-table tbody tr')).toHaveCount(1);await page.getByRole('button',{name:'关闭面板',exact:true}).click();expect(await page.locator('canvas').count()).toBe(0);expect(await page.evaluate(()=>window.__CAMPUS__)).toBeUndefined();writeFileSync('docs/v4-p1-browser-review.json',JSON.stringify({firstScreenBytes,reviews,errors,warnings,loadFailures},null,2));expect(errors).toEqual([]);expect(warnings).toEqual([]);expect(loadFailures).toEqual([]);expect(reviews.every(review=>!(review as {horizontalOverflow:boolean}).horizontalOverflow)).toBe(true);expect(reviews.every(review=>(review as {brokenImages:unknown[]}).brokenImages.length===0)).toBe(true);writeFileSync('docs/v4-p1-browser-review.json',JSON.stringify({firstScreenBytes,reviews,errors,warnings,loadFailures},null,2));
 });
