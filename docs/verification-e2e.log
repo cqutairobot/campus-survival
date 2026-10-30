@@ -1,0 +1,42 @@
+
+> campus-survival@2.0.0 test:e2e
+> playwright test --project=chromium --project=pixel-6 --project=webkit --project=iphone-12
+
+
+Running 24 tests using 1 worker
+
+(node:28) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/e2e/game.spec.ts:11:1 › 主菜单、全部图鉴、设置与存档导入导出 (2.6s)
+  ✓   2 [chromium] › tests/e2e/game.spec.ts:24:1 › 开局、移动、暂停、选卡、宝箱进化、Boss 与结算闭环 (12.2s)
+  ✓   3 [chromium] › tests/e2e/game.spec.ts:37:1 › 横竖屏、失焦与触摸取消清空输入 (3.9s)
+  ✓   4 [chromium] › tests/e2e/game.spec.ts:41:1 › 未静音开局时，音频设备不可用也不产生未处理异常 (6.4s)
+  ✓   5 [chromium] › tests/e2e/game.spec.ts:44:1 › v2 狂热条、连杀、快速进化和高档特效预算 (8.8s)
+  ✓   6 [chromium] › tests/e2e/lifecycle.spec.ts:3:1 › 连续重开 10 次释放画布、监听器和会话资源 (35.0s)
+(node:228) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   7 [webkit] › tests/e2e/game.spec.ts:11:1 › 主菜单、全部图鉴、设置与存档导入导出 (7.6s)
+  ✓   8 [webkit] › tests/e2e/game.spec.ts:24:1 › 开局、移动、暂停、选卡、宝箱进化、Boss 与结算闭环 (13.9s)
+  ✓   9 [webkit] › tests/e2e/game.spec.ts:37:1 › 横竖屏、失焦与触摸取消清空输入 (7.5s)
+  ✓  10 [webkit] › tests/e2e/game.spec.ts:41:1 › 未静音开局时，音频设备不可用也不产生未处理异常 (7.8s)
+  ✓  11 [webkit] › tests/e2e/game.spec.ts:44:1 › v2 狂热条、连杀、快速进化和高档特效预算 (9.7s)
+  -  12 [webkit] › tests/e2e/lifecycle.spec.ts:3:1 › 连续重开 10 次释放画布、监听器和会话资源
+(node:619) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  13 [iphone-12] › tests/e2e/game.spec.ts:11:1 › 主菜单、全部图鉴、设置与存档导入导出 (7.7s)
+  ✓  14 [iphone-12] › tests/e2e/game.spec.ts:24:1 › 开局、移动、暂停、选卡、宝箱进化、Boss 与结算闭环 (11.2s)
+  ✓  15 [iphone-12] › tests/e2e/game.spec.ts:37:1 › 横竖屏、失焦与触摸取消清空输入 (7.2s)
+  ✓  16 [iphone-12] › tests/e2e/game.spec.ts:41:1 › 未静音开局时，音频设备不可用也不产生未处理异常 (7.2s)
+  ✓  17 [iphone-12] › tests/e2e/game.spec.ts:44:1 › v2 狂热条、连杀、快速进化和高档特效预算 (8.9s)
+  -  18 [iphone-12] › tests/e2e/lifecycle.spec.ts:3:1 › 连续重开 10 次释放画布、监听器和会话资源
+(node:1010) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  19 [pixel-6] › tests/e2e/game.spec.ts:11:1 › 主菜单、全部图鉴、设置与存档导入导出 (2.5s)
+  ✓  20 [pixel-6] › tests/e2e/game.spec.ts:24:1 › 开局、移动、暂停、选卡、宝箱进化、Boss 与结算闭环 (10.8s)
+  ✓  21 [pixel-6] › tests/e2e/game.spec.ts:37:1 › 横竖屏、失焦与触摸取消清空输入 (3.7s)
+  ✓  22 [pixel-6] › tests/e2e/game.spec.ts:41:1 › 未静音开局时，音频设备不可用也不产生未处理异常 (4.9s)
+  ✓  23 [pixel-6] › tests/e2e/game.spec.ts:44:1 › v2 狂热条、连杀、快速进化和高档特效预算 (7.4s)
+  ✓  24 [pixel-6] › tests/e2e/lifecycle.spec.ts:3:1 › 连续重开 10 次释放画布、监听器和会话资源 (14.1s)
+
+  2 skipped
+  22 passed (3.4m)

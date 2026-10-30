@@ -1,0 +1,23 @@
+import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
+import { Menu, type Panel } from '../ui/screens/Menu';
+import { ModalPanel } from '../ui/screens/Panels';
+import { HUD } from '../ui/hud/HUD';
+import { GameOverlays } from '../ui/screens/Overlays';
+import { DebugPanel } from '../debug/DebugPanel';
+import { INITIAL_HUD, useApp } from '../state/store';
+import type { GameSession } from './GameHost';
+const GameHost=lazy(()=>import('./GameHost').then(m=>({default:m.GameHost})));
+const params=new URLSearchParams(location.search),debug=params.get('debug')==='1';
+export function App(){
+  const [mode,setMode]=useState<'normal'|'daily'>('normal'),[playing,setPlaying]=useState(false),[panel,setPanel]=useState<Panel|null>(null),[session,setSession]=useState<GameSession|null>(null),[seed,setSeed]=useState(Number(params.get('seed'))||Date.now()),[generation,setGeneration]=useState(0),resume=useRef(false),sessionRef=useRef<GameSession|null>(null),phase=useApp(s=>s.hud.phase),motion=useApp(s=>s.save.settings.motion);
+  sessionRef.current=session;
+  const open=useCallback((next:Panel)=>{const g=sessionRef.current?.engine;resume.current=!!g&&g.phase!=='paused'&&g.phase!=='result';if(resume.current)g?.send({type:'pause'});setPanel(next);},[]);
+  const close=useCallback(()=>{setPanel(null);if(resume.current)sessionRef.current?.engine.send({type:'resume'});resume.current=false;},[]);
+  const launch=useCallback((nextMode:'normal'|'daily')=>{setMode(nextMode);setPanel(null);resume.current=false;setPlaying(true);setGeneration(v=>v+1);setSeed(nextMode==='daily'?Date.now():Number(params.get('seed'))||Date.now());},[]);
+  const start=useCallback(()=>launch('normal'),[launch]),startDaily=useCallback(()=>launch('daily'),[launch]),restart=useCallback(()=>launch(mode),[launch,mode]);
+  const menu=useCallback(()=>{setPlaying(false);setPanel(null);setSession(null);useApp.getState().publish({...INITIAL_HUD});},[]);
+  const ready=useCallback((value:GameSession|null)=>setSession(value),[]);
+  useEffect(()=>{document.body.classList.toggle('is-playing',playing);return()=>document.body.classList.remove('is-playing');},[playing]);
+  useEffect(()=>{document.body.classList.toggle('reduce-motion',!motion);return()=>document.body.classList.remove('reduce-motion');},[motion]);
+  return <>{!playing?<Menu open={open}/>:<main className={`battle-screen phase-${phase}`}><Suspense fallback={<div className="loading-screen"><span className="loading-leaf">✦</span><h2>正在收拾书包…</h2><p>咖啡、笔记本，还有一点点勇气。</p></div>}><GameHost key={generation} onReady={ready} seed={seed} debug={debug} mode={mode}/></Suspense><HUD session={session} open={open}/><GameOverlays session={session} open={open} menu={menu} restart={restart}/>{debug&&<DebugPanel session={session}/>}</main>}{panel&&<ModalPanel panel={panel} close={close} start={start} startDaily={startDaily} inGame={playing&&phase!=='result'}/>}</>;
+}

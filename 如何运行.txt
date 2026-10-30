@@ -1,0 +1,15 @@
+《校园生存》本地运行方法
+
+方式一：直接玩打包好的版本（只需要 Python 或 Node 之一）
+  cd dist
+  python -m http.server 8080        （或：npx serve -l 8080 .）
+  浏览器打开 http://localhost:8080
+  加 ?debug=1 可打开调试面板（FPS、实体数、跳周、刷怪、给技能）
+
+方式二：从源码运行（需要 Node 24+）
+  npm install
+  npm run dev          开发模式，浏览器打开终端里显示的地址
+  npm run build        重新打包到 dist/
+  npm test             单元测试
+
+注意：不能直接双击 dist/index.html 打开，必须通过本地服务器访问。

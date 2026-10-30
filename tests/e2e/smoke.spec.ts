@@ -1,0 +1,48 @@
+import {test,expect} from '@playwright/test';
+import {dailyChallenge} from '../../src/challenges/daily';
+test('v3 单条冒烟：旧档→移动双触点大招→精英融合契约→隔离结算→正式每日记录→释放会话',async({page})=>{
+ const errors:string[]=[],warnings:string[]=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='warning'&&/BindGroup|GSAP target/.test(m.text())){warnings.push(m.text());console.log(m.text());}});
+ await page.addInitScript(()=>{if(!localStorage.getItem('campus-survival.save.v3')&&!localStorage.getItem('campus-survival.save.v2'))localStorage.setItem('campus-survival.save.v2',JSON.stringify({schemaVersion:2,contentVersion:'2.0.0',credits:137,unlocked:['balanced','coder'],selected:'balanced',talents:{hp:2},discovered:['knife','orbit'],evolutions:['orbit'],settledRuns:['legacy-id'],settings:{quality:'high',muted:true,motion:true,master:.4},stats:{runs:3,wins:0,kills:120,bestWeek:9}}));});
+ await page.goto('/?debug=1&seed=999');
+ await expect(page.getByText('137',{exact:true})).toBeVisible();
+ const migrated=await page.evaluate(()=>JSON.parse(localStorage.getItem('campus-survival.save.v3')!));
+ expect(migrated.schemaVersion).toBe(3);expect(migrated.credits).toBe(137);expect(migrated.unlocked).toContain('coder');expect(migrated.evolutions).toContain('orbit');expect(migrated.settledRuns).toContain('legacy-id');
+ await page.getByRole('button',{name:/开始新学期/}).click();await page.getByRole('button',{name:/就这样，开学/}).click();
+ await page.waitForFunction(()=>!!window.__CAMPUS__);
+ const x=await page.evaluate(()=>window.__CAMPUS__!.engine.player.x);await page.keyboard.down('KeyD');await expect.poll(()=>page.evaluate(()=>window.__CAMPUS__!.engine.player.x)).toBeGreaterThan(x+15);await page.keyboard.up('KeyD');
+ await page.setViewportSize({width:390,height:844});
+ await page.locator('.debug-toggle').click();await page.getByRole('button',{name:'大招设满',exact:true}).click();await page.locator('.debug-toggle').click();
+ await expect(page.locator('.ultimate-button')).toBeEnabled();
+ await page.evaluate(()=>{const canvas=document.querySelector('canvas')!,rect=canvas.getBoundingClientRect();canvas.dispatchEvent(new PointerEvent('pointerdown',{pointerId:41,pointerType:'touch',isPrimary:true,button:0,bubbles:true,clientX:rect.left+70,clientY:rect.top+430}));canvas.dispatchEvent(new PointerEvent('pointermove',{pointerId:41,pointerType:'touch',isPrimary:true,button:0,bubbles:true,clientX:rect.left+125,clientY:rect.top+430}));const button=document.querySelector('.ultimate-button')!,r=button.getBoundingClientRect();button.dispatchEvent(new PointerEvent('pointerdown',{pointerId:42,pointerType:'touch',button:0,bubbles:true,clientX:r.x+r.width/2,clientY:r.y+r.height/2}));});
+ await expect.poll(()=>page.evaluate(()=>window.__CAMPUS__!.engine.ultimate.energy)).toBe(0);
+ expect(await page.evaluate(()=>window.__CAMPUS__!.engine.inputX)).toBeGreaterThan(0);
+ await page.evaluate(()=>{document.querySelector('.ultimate-button')!.dispatchEvent(new PointerEvent('pointercancel',{pointerId:42,pointerType:'touch',bubbles:true}));});
+ expect(await page.evaluate(()=>window.__CAMPUS__!.engine.inputX)).toBeGreaterThan(0);
+ await page.evaluate(()=>document.querySelector('canvas')!.dispatchEvent(new PointerEvent('pointerup',{pointerId:41,pointerType:'touch',bubbles:true})));
+ expect(await page.evaluate(()=>window.__CAMPUS__!.scene.exportPerformance().effects.particleLimit)).toBe(32768);
+ await page.setViewportSize({width:1280,height:800});
+ await page.evaluate(()=>{const g=window.__CAMPUS__!.engine;g.send({type:'week',value:9});g.send({type:'god',value:true});g.send({type:'prepareFusion',id:'sword'});g.send({type:'spawnEnemy',id:'ddl',rank:'elite',affixes:['shield']});});
+ await page.waitForFunction(()=>window.__CAMPUS__!.engine.weapons.some(w=>w.id==='ruler'));
+ await page.evaluate(()=>{const g=window.__CAMPUS__!.engine,id=g.enemies.active.find(id=>g.enemies.rank[id]===1)!;g.hitEnemy(id,1e6,'knife',g.player.x,g.player.y,0,false);g.resolveDeaths();const chest=g.drops.active.find(id=>g.drops.data[id].kind==='chest')!;g.player.x=g.player.prevX=g.drops.data[chest].x;g.player.y=g.player.prevY=g.drops.data[chest].y;});
+ await expect(page.getByRole('button',{name:/校园剑阵/})).toBeVisible();await page.getByRole('button',{name:/校园剑阵/}).click();
+ await expect(page.getByRole('button',{name:/收好，继续/})).toBeVisible();await page.getByRole('button',{name:/收好，继续/}).click();
+ await expect.poll(()=>page.evaluate(()=>window.__CAMPUS__!.engine.weapons.some(w=>w.id==='sword'))).toBe(true);
+ const continuation=page.getByRole('button',{name:/带着新力量出发/});if(await continuation.isVisible())await continuation.click();
+ await page.waitForFunction(()=>['playing','draft'].includes(window.__CAMPUS__!.engine.phase));
+ // The elite's XP is a real queued level-up; consume it through the normal card UI.
+ for(let n=0;n<6;n++){await page.waitForFunction(()=>{const g=window.__CAMPUS__!.engine;return g.phase==='draft'||!g.hasPendingRewards;});const phase=await page.evaluate(()=>window.__CAMPUS__!.engine.phase);if(phase!=='draft')break;const token=await page.evaluate(()=>window.__CAMPUS__!.engine.draftToken);await page.locator('.draft-card').first().click();await page.waitForFunction(token=>{const g=window.__CAMPUS__!.engine;return g.phase!=='draft'||g.draftToken!==token;},token);}
+ await page.evaluate(()=>window.__CAMPUS__!.engine.send({type:'contract'}));await page.waitForFunction(()=>!!window.__CAMPUS__!.engine.landmarks.contract);
+ await page.evaluate(()=>{const g=window.__CAMPUS__!.engine,c=g.landmarks.contract!;g.player.x=g.player.prevX=c.x;g.player.y=g.player.prevY=c.y;g.send({type:'interact',held:true});});
+ await expect(page.getByText('风险，由你决定。',{exact:true})).toBeVisible();await page.locator('.reward-card.relic').first().click();
+ await expect.poll(()=>page.evaluate(()=>window.__CAMPUS__!.engine.relics.length)).toBe(1);
+ await page.screenshot({path:'docs/v3-battle.png'});
+ await page.keyboard.press('Escape');await page.getByRole('button',{name:/结束本局并结算/}).click();
+ await expect(page.getByText(/练习局 · 不计入绩点、成就或每日榜/)).toBeVisible();
+ const debugSave=await page.evaluate(()=>JSON.parse(localStorage.getItem('campus-survival.save.v3')!));expect(debugSave.credits).toBe(137);expect(debugSave.stats.runs).toBe(3);expect(debugSave.achievements.firstFusion.completed).toBe(false);expect(debugSave.fusions).toContain('sword');
+ await page.getByRole('button',{name:'返回校园',exact:true}).click();await page.waitForFunction(()=>!window.__CAMPUS__);expect(await page.locator('canvas').count()).toBe(0);
+ await page.getByRole('button',{name:/每日挑战 · 本地榜/}).click();await page.getByRole('button',{name:/开始今日挑战/}).click();await page.waitForFunction(()=>!!window.__CAMPUS__);
+ const daily=await page.evaluate(()=>({manifest:window.__CAMPUS__!.engine.manifest,cheated:window.__CAMPUS__!.engine.cheated,width:window.__CAMPUS__!.engine.viewWidth,height:window.__CAMPUS__!.engine.viewHeight}));expect(daily.cheated).toBe(false);expect(daily.manifest.seed).toBe(dailyChallenge(daily.manifest.date).seed);expect(daily.manifest.seed).not.toBe(999);expect([daily.width,daily.height]).toEqual([1280,800]);
+ await page.keyboard.press('Escape');await page.getByRole('button',{name:/结束本局并结算/}).click();await expect(page.getByText(/已保存至本地榜/)).toBeVisible();
+ const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('campus-survival.save.v3')!));expect(saved.daily.records).toHaveLength(1);expect(saved.daily.records[0].date).toBe(daily.manifest.date);expect(saved.credits).toBe(137);expect(saved.stats.runs).toBe(3);
+ await page.getByRole('button',{name:'返回校园',exact:true}).click();await page.waitForFunction(()=>!window.__CAMPUS__);await page.reload();await page.getByRole('button',{name:/每日挑战 · 本地榜/}).click();await expect(page.locator('.daily-table tbody tr')).toHaveCount(1);await page.getByRole('button',{name:'关闭面板',exact:true}).click();expect(await page.locator('canvas').count()).toBe(0);expect(await page.evaluate(()=>window.__CAMPUS__)).toBeUndefined();expect(errors).toEqual([]);expect(warnings).toEqual([]);await page.screenshot({path:'docs/v3-menu.png'});
+});

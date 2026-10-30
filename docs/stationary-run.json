@@ -1,0 +1,140 @@
+{
+  "seed": 51,
+  "startingTalents": {},
+  "input": "stationary; ordinary draft index 0 and reward dismissal",
+  "result": {
+    "id": "mvuv96pp-1f-l81hz1",
+    "victory": false,
+    "week": 5,
+    "completedWeeks": 4,
+    "kills": 682,
+    "level": 7,
+    "bosses": 0,
+    "seconds": 174.08500000003053,
+    "credits": 8,
+    "damage": {
+      "knife": 14888.471887230873,
+      "orbit": 223.6606388092041,
+      "eraser": 139.71585941314697,
+      "laser": 1535.8957455396626
+    },
+    "weapons": [
+      {
+        "id": "knife",
+        "level": 4,
+        "rarity": 0,
+        "evolved": false
+      },
+      {
+        "id": "orbit",
+        "level": 1,
+        "rarity": 0,
+        "evolved": false
+      },
+      {
+        "id": "eraser",
+        "level": 3,
+        "rarity": 0,
+        "evolved": false
+      },
+      {
+        "id": "laser",
+        "level": 1,
+        "rarity": 1,
+        "evolved": false
+      }
+    ],
+    "passives": [],
+    "debug": false
+  },
+  "metrics": {
+    "spawned": 722,
+    "normalSpawned": 719,
+    "generatedXp": 802,
+    "collectedRawXp": 114,
+    "creditedXp": 114,
+    "hurtCount": 9,
+    "hpLost": 111.72000198364259,
+    "shieldAbsorbed": 0,
+    "overkill": 6080.675869007106,
+    "hits": 1345,
+    "criticalHits": 58,
+    "firstKill": 0.6000000000000002,
+    "firstUpgrade": 106.31666666666192,
+    "mainLv5": null,
+    "evolutionTimes": [],
+    "bossFights": [],
+    "frenzyTriggers": 4,
+    "clearRewards": 0,
+    "criticalChains": 19,
+    "chainDamage": 86.34,
+    "globalStopSeconds": 0.16666666666666666,
+    "normalKillHits": {
+      "early": [
+        0,
+        179,
+        419,
+        68,
+        12,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "middle": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "late": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "normalKillSeconds": {
+      "early": [
+        281,
+        241,
+        88,
+        20,
+        38,
+        12
+      ],
+      "middle": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "late": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  }
+}

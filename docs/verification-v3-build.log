@@ -1,0 +1,20 @@
+
+> campus-survival@3.0.0 build
+> tsc -b && vite build
+
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 933 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                             1.05 kB │ gzip:   0.60 kB
+dist/assets/index-x3uUE_lC.css             62.01 kB │ gzip:  14.13 kB
+dist/assets/rolldown-runtime-XKyaHtl9.js    0.72 kB │ gzip:   0.42 kB
+dist/assets/audio-DygD8BaG.js              37.58 kB │ gzip:  10.58 kB
+dist/assets/animation-BHS3Flg1.js          69.54 kB │ gzip:  27.29 kB
+dist/assets/index-BLSYsGzW.js             143.14 kB │ gzip:  51.37 kB
+dist/assets/GameHost-CyQNmt4t.js          152.45 kB │ gzip:  50.94 kB
+dist/assets/ui-_UUrVPD2.js                219.31 kB │ gzip:  68.54 kB
+dist/assets/pixi-BpRgAAO9.js              602.50 kB │ gzip: 170.84 kB
+
+✓ built in 296ms

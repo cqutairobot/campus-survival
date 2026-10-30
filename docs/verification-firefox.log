@@ -1,0 +1,43 @@
+
+> campus-survival@1.0.0 test:e2e
+> playwright test --project=firefox --grep 主菜单
+
+
+Running 1 test using 1 worker
+
+(node:28) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [firefox] › tests/e2e/game.spec.ts:11:1 › 主菜单、全部图鉴、设置与存档导入导出 (1ms)
+
+
+  1) [firefox] › tests/e2e/game.spec.ts:11:1 › 主菜单、全部图鉴、设置与存档导入导出 ──────────────────────────────────
+
+    Error: browserType.launch: Failed to launch the browser process.
+    Browser logs:
+
+    <launching> /home/box/.cache/ms-playwright/firefox-1555/firefox/firefox -no-remote -headless -profile /workspace/campus-survival/.browser-tmp/playwright_firefoxdev_profile-I2rrE4 -juggler-pipe -silent
+    <launched> pid=41
+    [pid=41][err] *** You are running in headless mode.
+    [pid=41][err] Could not find profile folder.
+    [pid=41] <process did exit: exitCode=1, signal=null>
+    [pid=41] starting temporary directories cleanup
+    Call log:
+      - <launching> /home/box/.cache/ms-playwright/firefox-1555/firefox/firefox -no-remote -headless -profile /workspace/campus-survival/.browser-tmp/playwright_firefoxdev_profile-I2rrE4 -juggler-pipe -silent
+      - <launched> pid=41
+      - [pid=41][err] *** You are running in headless mode.
+      - [pid=41][err] Could not find profile folder.
+      - [pid=41] <process did exit: exitCode=1, signal=null>
+      - [pid=41] starting temporary directories cleanup
+      - [pid=41] <gracefully close start>
+      - [pid=41] <kill>
+      - [pid=41] <skipped force kill spawnedProcess.killed=false processClosed=true>
+      - [pid=41] finished temporary directories cleanup
+      - [pid=41] <gracefully close end>
+
+
+    Error: ENOENT: no such file or directory, open '/workspace/campus-survival/test-results/.playwright-artifacts-0/edac3d21f8be1329d147df7fcfcfd555.zip'
+
+    Error Context: test-results/game-主菜单、全部图鉴、设置与存档导入导出-firefox/error-context.md
+
+  1 failed
+    [firefox] › tests/e2e/game.spec.ts:11:1 › 主菜单、全部图鉴、设置与存档导入导出 ───────────────────────────────────

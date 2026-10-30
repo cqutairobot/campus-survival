@@ -1,0 +1,15 @@
+
+> campus-survival@2.0.0 test:e2e
+> playwright test --project=chromium --project=iphone-12 --grep 开局、移动
+
+
+Running 2 tests using 1 worker
+
+(node:28) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/e2e/game.spec.ts:24:1 › 开局、移动、暂停、选卡、宝箱进化、Boss 与结算闭环 (13.2s)
+(node:122) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  2 [iphone-12] › tests/e2e/game.spec.ts:24:1 › 开局、移动、暂停、选卡、宝箱进化、Boss 与结算闭环 (12.0s)
+
+  2 passed (26.3s)

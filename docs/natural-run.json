@@ -1,0 +1,371 @@
+{
+  "seed": 123,
+  "startingTalents": {
+    "hp": 5,
+    "damage": 5,
+    "speed": 5,
+    "haste": 5,
+    "xp": 5,
+    "regen": 5,
+    "magnet": 5,
+    "luck": 5
+  },
+  "timeline": [
+    {
+      "week": 1,
+      "level": 1,
+      "hp": 135,
+      "kills": 0
+    },
+    {
+      "week": 2,
+      "level": 6,
+      "hp": 135,
+      "kills": 107
+    },
+    {
+      "week": 3,
+      "level": 9,
+      "hp": 135,
+      "kills": 239
+    },
+    {
+      "week": 4,
+      "level": 12,
+      "hp": 135,
+      "kills": 401
+    },
+    {
+      "week": 5,
+      "level": 16,
+      "hp": 135,
+      "kills": 605
+    },
+    {
+      "week": 6,
+      "level": 17,
+      "hp": 135,
+      "kills": 857
+    },
+    {
+      "week": 7,
+      "level": 19,
+      "hp": 135,
+      "kills": 1188
+    },
+    {
+      "week": 8,
+      "level": 21,
+      "hp": 133,
+      "kills": 1596
+    },
+    {
+      "week": 9,
+      "level": 22,
+      "hp": 135,
+      "kills": 2029
+    },
+    {
+      "week": 10,
+      "level": 27,
+      "hp": 135,
+      "kills": 2468
+    },
+    {
+      "week": 11,
+      "level": 28,
+      "hp": 135,
+      "kills": 3025
+    },
+    {
+      "week": 12,
+      "level": 31,
+      "hp": 135,
+      "kills": 3634
+    },
+    {
+      "week": 13,
+      "level": 33,
+      "hp": 135,
+      "kills": 4324
+    },
+    {
+      "week": 14,
+      "level": 37,
+      "hp": 135,
+      "kills": 5145
+    },
+    {
+      "week": 15,
+      "level": 39,
+      "hp": 135,
+      "kills": 5937
+    },
+    {
+      "week": 16,
+      "level": 41,
+      "hp": 135,
+      "kills": 6802
+    },
+    {
+      "week": 17,
+      "level": 43,
+      "hp": 135,
+      "kills": 7697
+    },
+    {
+      "week": 18,
+      "level": 48,
+      "hp": 135,
+      "kills": 8546
+    },
+    {
+      "week": 19,
+      "level": 49,
+      "hp": 135,
+      "kills": 9571
+    },
+    {
+      "week": 20,
+      "level": 51,
+      "hp": 135,
+      "kills": 10942
+    },
+    {
+      "week": 21,
+      "level": 53,
+      "hp": 121,
+      "kills": 11982
+    },
+    {
+      "week": 22,
+      "level": 55,
+      "hp": 101,
+      "kills": 13589
+    }
+  ],
+  "result": {
+    "id": "mvuv911c-3f-5wqq4j",
+    "victory": true,
+    "week": 22,
+    "completedWeeks": 22,
+    "kills": 15099,
+    "level": 61,
+    "bosses": 3,
+    "seconds": 1032.5166666660687,
+    "credits": 165,
+    "damage": {
+      "knife": 2353557.852782086,
+      "lightning": 578971.0043975716,
+      "mentor": 14489.286262941361,
+      "laser": 529214.7848388117,
+      "staple": 564563.0085047501,
+      "orbit": 436790.3290514052,
+      "ppt": 712196.7166797705
+    },
+    "weapons": [
+      {
+        "id": "knife",
+        "level": 5,
+        "rarity": 0,
+        "evolved": true
+      },
+      {
+        "id": "lightning",
+        "level": 5,
+        "rarity": 0,
+        "evolved": true
+      },
+      {
+        "id": "laser",
+        "level": 5,
+        "rarity": 0,
+        "evolved": true
+      },
+      {
+        "id": "staple",
+        "level": 5,
+        "rarity": 2,
+        "evolved": true
+      },
+      {
+        "id": "orbit",
+        "level": 5,
+        "rarity": 0,
+        "evolved": true
+      },
+      {
+        "id": "ppt",
+        "level": 5,
+        "rarity": 0,
+        "evolved": false
+      }
+    ],
+    "passives": [
+      {
+        "id": "haste",
+        "level": 5,
+        "rarity": 0,
+        "evolved": false
+      },
+      {
+        "id": "area",
+        "level": 5,
+        "rarity": 0,
+        "evolved": false
+      },
+      {
+        "id": "multi",
+        "level": 5,
+        "rarity": 1,
+        "evolved": false
+      },
+      {
+        "id": "xp",
+        "level": 5,
+        "rarity": 2,
+        "evolved": false
+      },
+      {
+        "id": "calm",
+        "level": 5,
+        "rarity": 3,
+        "evolved": false
+      },
+      {
+        "id": "luck",
+        "level": 5,
+        "rarity": 1,
+        "evolved": false
+      }
+    ],
+    "debug": false
+  },
+  "metrics": {
+    "spawned": 15923,
+    "normalSpawned": 15872,
+    "generatedXp": 28526,
+    "collectedRawXp": 28226,
+    "creditedXp": 45579.4114999985,
+    "hurtCount": 21,
+    "hpLost": 348.3999992752075,
+    "shieldAbsorbed": 0,
+    "overkill": 461340.03783243714,
+    "hits": 102296,
+    "criticalHits": 14072,
+    "firstKill": 0.5666666666666668,
+    "firstUpgrade": 2.5666666666666624,
+    "mainLv5": 33.323333333332705,
+    "evolutionTimes": [
+      {
+        "id": "knife",
+        "seconds": 233.35500000007747
+      },
+      {
+        "id": "lightning",
+        "seconds": 327.561666666697
+      },
+      {
+        "id": "orbit",
+        "seconds": 579.7274999998031
+      },
+      {
+        "id": "staple",
+        "seconds": 679.4291666663821
+      },
+      {
+        "id": "laser",
+        "seconds": 748.8799999996538
+      }
+    ],
+    "bossFights": [
+      {
+        "boss": 0,
+        "seconds": 7.555833333333311,
+        "damage": 8000
+      },
+      {
+        "boss": 1,
+        "seconds": 31.86749999999951,
+        "damage": 36000
+      },
+      {
+        "boss": 2,
+        "seconds": 113.08999999999487,
+        "damage": 104000
+      }
+    ],
+    "frenzyTriggers": 35,
+    "clearRewards": 31,
+    "criticalChains": 809,
+    "chainDamage": 14823.316861103498,
+    "globalStopSeconds": 1.4,
+    "normalKillHits": {
+      "early": [
+        0,
+        740,
+        111,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "middle": [
+        0,
+        929,
+        1633,
+        1485,
+        799,
+        681,
+        355,
+        262,
+        159,
+        88,
+        428
+      ],
+      "late": [
+        0,
+        26,
+        98,
+        345,
+        863,
+        898,
+        892,
+        729,
+        598,
+        582,
+        2353
+      ]
+    },
+    "normalKillSeconds": {
+      "early": [
+        794,
+        15,
+        12,
+        6,
+        6,
+        18
+      ],
+      "middle": [
+        2398,
+        1024,
+        1060,
+        466,
+        457,
+        1414
+      ],
+      "late": [
+        515,
+        916,
+        1413,
+        905,
+        926,
+        2709
+      ]
+    }
+  }
+}

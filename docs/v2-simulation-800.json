@@ -1,0 +1,146 @@
+{
+  "kind": "simulation-only",
+  "warning": "CPU 模拟结果，不代表渲染帧率或真机性能。每两秒设置 24 个可击杀目标，六进化武器与狂热并发。",
+  "date": "2026-10-30T09:07:13.633Z",
+  "runtime": "v24.22.1",
+  "target": 800,
+  "durationSimulatedSeconds": 60,
+  "wallSeconds": 2.530983217,
+  "frames": 3600,
+  "meanSimulationMs": 0.6944084791666673,
+  "p95SimulationMs": 1.561584000000039,
+  "p99SimulationMs": 3.1320959999998195,
+  "minimumActiveEnemies": 700,
+  "maximumActiveEnemies": 802,
+  "minimumVisibleEnemiesAfterWarmup": 522,
+  "weapons": [
+    {
+      "id": "orbit",
+      "level": 5,
+      "rarity": 3,
+      "evolved": true
+    },
+    {
+      "id": "bot",
+      "level": 5,
+      "rarity": 3,
+      "evolved": true
+    },
+    {
+      "id": "lightning",
+      "level": 5,
+      "rarity": 3,
+      "evolved": true
+    },
+    {
+      "id": "wifi",
+      "level": 5,
+      "rarity": 3,
+      "evolved": true
+    },
+    {
+      "id": "rain",
+      "level": 5,
+      "rarity": 3,
+      "evolved": true
+    },
+    {
+      "id": "laser",
+      "level": 5,
+      "rarity": 3,
+      "evolved": true
+    }
+  ],
+  "metrics": {
+    "spawned": 4750,
+    "normalSpawned": 4747,
+    "generatedXp": 5169,
+    "collectedRawXp": 4930,
+    "creditedXp": 7379.7,
+    "hurtCount": 0,
+    "hpLost": 0,
+    "shieldAbsorbed": 0,
+    "overkill": 199333.84464841234,
+    "hits": 240710,
+    "criticalHits": 38092,
+    "firstKill": 0.03333333333333333,
+    "firstUpgrade": 2.749999999999995,
+    "mainLv5": 2.7724999999999946,
+    "evolutionTimes": [],
+    "bossFights": [],
+    "frenzyTriggers": 3,
+    "clearRewards": 3,
+    "criticalChains": 90,
+    "chainDamage": 2107.4646383133695,
+    "globalStopSeconds": 0,
+    "normalKillHits": {
+      "early": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "middle": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "late": [
+        0,
+        96,
+        30,
+        33,
+        18,
+        24,
+        22,
+        35,
+        32,
+        34,
+        2359
+      ]
+    }
+  },
+  "poolFailures": 0,
+  "pools": {
+    "enemies": {
+      "capacity": 2560,
+      "peak": 802,
+      "overflow": 0
+    },
+    "shots": {
+      "capacity": 2560,
+      "peak": 7,
+      "overflow": 0
+    },
+    "enemyShots": {
+      "capacity": 1280,
+      "peak": 274,
+      "overflow": 0
+    },
+    "areas": {
+      "capacity": 320,
+      "peak": 20,
+      "overflow": 0
+    },
+    "drops": {
+      "capacity": 2560,
+      "peak": 250,
+      "overflow": 0
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "name": "campus-survival",
+  "version": "3.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "docs:v2": "node scripts/update-v2-docs.mjs",
+    "docs:v3": "node scripts/update-v3-docs.mjs",
+    "test:legacy:performance": "node tests/performance/benchmark.mjs",
+    "test:legacy:balance": "node tests/performance/early-runs.mjs",
+    "test:legacy:balance:quick": "node tests/performance/early-runs.mjs --seeds=2 --output=docs/v2-quick-runs.json"
+  },
+  "dependencies": {
+    "gsap": "3.15.0",
+    "howler": "2.2.4",
+    "pixi-filters": "6.1.5",
+    "pixi.js": "8.22.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "zustand": "5.0.16",
+    "zzfx": "1.4.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1",
+    "@types/howler": "2.2.13",
+    "@types/node": "24.10.1",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.2",
+    "typescript": "7.0.2",
+    "vite": "8.3.5",
+    "vitest": "5.0.5"
+  }
+}

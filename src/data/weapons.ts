@@ -1,0 +1,15 @@
+import type {WeaponDef,PassiveDef} from '../types';
+export const NEW_WEAPONS:WeaponDef[]=[
+ {id:'ruler',name:'丁字尺横扫',icon:'ruler',color:'#62b6c8',tag:'扇形 · 结构',description:'朝敌群挥尺；每轮每个目标只命中一次。',damage:[22,30,40,54,70],interval:[1.7,1.6,1.5,1.4,1.3],count:[1,1,1,1,1],range:[160,180,205,230,260],spread:[150,180,210,240,270],forms:['尺面起挥','横尺展开','三角标线','结构剖面','广角尺阵'],evolution:{name:'结构解构',passive:'armor',description:'360°旋转尺规，建筑线框层层碎裂。',damage:105,interval:1,count:1,range:330,spread:360}},
+ {id:'blueprint',name:'蓝图炮台',icon:'blueprint',color:'#668fdf',tag:'召唤 · 定点',description:'每 8 秒部署固定炮台，独立索敌；上限 6 台，不阻挡道路。',damage:[12,16,21,27,34],interval:[.9,.85,.8,.75,.7],count:[1,1,2,2,3],range:[450,480,510,540,570],forms:['单台蓝图','脉冲升级','双台交叉','双台连线','三角工地'],evolution:{name:'数字孪生工地',passive:'duration',description:'4 台立体投影炮台，穿透 2，施工线连接阵地。',damage:48,interval:.5,count:4,range:650,pierce:2}},
+ {id:'shuttle',name:'羽毛球',icon:'shuttle',color:'#d6b46a',tag:'弹射 · 运动',description:'高速击出羽毛球；160 范围弹射，逐跳 ×.85，不重复击中同一实体。',damage:[18,25,34,44,56],interval:[1.3,1.2,1.1,1,.9],count:[1,2,2,3,3],range:[500,550,600,650,700],pierce:[2,2,3,3,4],forms:['轻拍开场','双球对打','双向跳球','三球扣杀','全场轮转'],evolution:{name:'全场扣杀',passive:'push',description:'4 球白金羽翼，额外弹射 5 次、逐跳 ×.9。',damage:82,interval:.8,count:4,range:800,pierce:6}},
+ {id:'prism',name:'经纬仪',icon:'prism',color:'#ccaa59',tag:'光束 · 测量',description:'放射贯穿光束，每轮转动测量角；残留光线不持续扣血。',damage:[20,28,38,50,66],interval:[2.2,2,1.9,1.7,1.5],count:[2,2,3,3,4],range:[600,650,700,750,800],width:[8,10,12,14,16],forms:['双向定标','双镜展开','三束测量','广幅棱镜','四向坐标'],evolution:{name:'天际测量',passive:'thesis',description:'金色测绘圆盘与五向光柱。',damage:100,interval:1.2,count:5,range:1000,width:22}},
+ {id:'cryo',name:'液氮喷罐',icon:'snow',color:'#7dc9e5',tag:'持续 · 冻结',description:'每 .5 秒伤害一次并减速 30%；持续接触 1 秒触发冻结 1 秒。',damage:[9,12,16,21,27],interval:[4.8,4.6,4.4,4.2,4],count:[1,1,1,1,1],range:[110,130,150,175,200],duration:[2,2.2,2.4,2.6,3],forms:['薄霜','冷雾扩散','冰晶增长','霜环展开','冻结领域'],evolution:{name:'绝对零度',passive:'focus',description:'45% 减速；.75 秒积累冻结 1.2 秒，Boss 服从控制抗性。',damage:44,interval:4,count:1,range:260,duration:4.5}},
+ {id:'brick',name:'模型砖',icon:'brick',color:'#cf9d83',tag:'抛物线 · 爆炸',description:'.45 秒落点预告，模型砖砸落爆炸，不生成永久地形。',damage:[28,38,50,65,84],interval:[2.6,2.4,2.2,2,1.8],count:[1,1,2,2,3],range:[600,600,600,600,600],explosion:[70,80,90,105,120],forms:['单砖落点','加固落砖','双模块','双层承重','三点装配'],evolution:{name:'装配式风暴',passive:'magnetism',description:'4 砖装配式崩解，.5 秒后追加 35 伤害余震。',damage:145,interval:1.5,count:4,range:750,explosion:150}},
+];
+export const NEW_PASSIVES:PassiveDef[]=[
+ {id:'armor',name:'安全帽',icon:'cap',color:'#d9b969',description:'受到伤害平减，最多 8，非无敌伤害最低为 1。',values:[1,2,3,4,5],unit:' 护甲'},
+ {id:'magnetism',name:'校园一卡通',icon:'card',color:'#7aa7ba',description:'增加学分吸附半径，与天赋相加，上限 420。',values:[25,50,75,100,125],unit:' 吸附半径'},
+ {id:'focus',name:'学术专注',icon:'target',color:'#83b1ab',description:'提升大招击杀充能，总充能倍率上限 2 倍。',values:[8,16,24,32,40],unit:'% 大招充能'},
+ {id:'thesis',name:'优秀论文',icon:'paper',color:'#c3a6d3',description:'提高暴击伤害倍率，基础 1.75，上限 3。',values:[.1,.2,.3,.4,.5],unit:' 暴击倍率'},
+];

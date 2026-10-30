@@ -1,0 +1,81 @@
+{
+  "kind": "simulation-only",
+  "warning": "CPU 模拟结果，不代表渲染帧率或真机性能。",
+  "date": "2026-10-30T06:05:34.124Z",
+  "runtime": "v24.22.1",
+  "durationSimulatedSeconds": 600,
+  "wallSeconds": 23.911538251000003,
+  "frames": 36000,
+  "meanSimulationMs": 0.6587155368611062,
+  "p95SimulationMs": 1.5380049999985204,
+  "p99SimulationMs": 1.9681199999995442,
+  "minimumActiveEnemies": 807,
+  "maximumActiveEnemies": 901,
+  "minimumVisibleEnemiesAfterWarmup": 582,
+  "weapons": [
+    {
+      "id": "orbit",
+      "level": 5,
+      "rarity": 3,
+      "evolved": true
+    },
+    {
+      "id": "bot",
+      "level": 5,
+      "rarity": 3,
+      "evolved": true
+    },
+    {
+      "id": "lightning",
+      "level": 5,
+      "rarity": 3,
+      "evolved": true
+    },
+    {
+      "id": "wifi",
+      "level": 5,
+      "rarity": 3,
+      "evolved": true
+    },
+    {
+      "id": "rain",
+      "level": 5,
+      "rarity": 3,
+      "evolved": true
+    },
+    {
+      "id": "laser",
+      "level": 5,
+      "rarity": 3,
+      "evolved": true
+    }
+  ],
+  "poolFailures": 0,
+  "pools": {
+    "enemies": {
+      "capacity": 2560,
+      "peak": 901,
+      "overflow": 0
+    },
+    "shots": {
+      "capacity": 2560,
+      "peak": 7,
+      "overflow": 0
+    },
+    "enemyShots": {
+      "capacity": 1280,
+      "peak": 356,
+      "overflow": 0
+    },
+    "areas": {
+      "capacity": 320,
+      "peak": 20,
+      "overflow": 0
+    },
+    "drops": {
+      "capacity": 2560,
+      "peak": 153,
+      "overflow": 0
+    }
+  }
+}

@@ -1,0 +1,13 @@
+
+> campus-survival@3.0.0 test
+> vitest run
+
+
+ RUN  v5.0.5 /workspace/campus-survival
+
+
+ Test Files  4 passed (4)
+      Tests  58 passed (58)
+   Start at  10:02:27
+   Duration  494ms (transform 44%, tests 39%, import 15%, worker 1%)
+

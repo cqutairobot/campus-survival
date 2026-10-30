@@ -1,0 +1,4 @@
+import {ACHIEVEMENTS} from '../../data/achievements';
+import {useApp} from '../../state/store';
+import {Icon} from '../components/Icon';
+export function Achievements(){const save=useApp(s=>s.save);return <><p className="panel-footnote">普通模式成就在正常结算时提交，内容从下一局开放；每日成就单独累计。奖励自动领取，练习局不推进成就。</p><div className="achievement-grid">{ACHIEVEMENTS.map(a=>{const state=save.achievements[a.id];return <article className={`achievement-card ${state?.completed?'completed':''}`} key={a.id}><Icon name={state?.completed?'trophy':'lock'} size={26}/><div><small>{a.daily?'每日挑战':'普通学期'}</small><h3>{a.name}</h3><p>{a.condition}</p><progress value={state?.progress??0} max={a.goal}/><span>{Math.floor(state?.progress??0)} / {a.goal} · {state?.completed?'已完成 · 奖励已领取':'进行中'}</span><b>{a.reward}</b></div></article>;})}</div></>;}

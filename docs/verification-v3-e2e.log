@@ -1,0 +1,12 @@
+
+> campus-survival@3.0.0 test:e2e
+> playwright test --project=chromium
+
+
+Running 1 test using 1 worker
+
+(node:78) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/e2e/smoke.spec.ts:3:1 › v3 单条冒烟：旧档→移动双触点大招→精英融合契约→隔离结算→正式每日记录→释放会话 (25.9s)
+
+  1 passed (27.2s)

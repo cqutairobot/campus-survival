@@ -1,0 +1,16 @@
+export const ACHIEVEMENTS=[
+ {id:'exercise',name:'课间运动',goal:500,condition:'累计有奖励普通怪击杀 500',reward:'羽毛球',weapon:'shuttle'},
+ {id:'proposal',name:'开题通过',goal:1,condition:'击败开题报告',reward:'经纬仪、实验中心外场',weapon:'prism',region:'lab'},
+ {id:'inspection',name:'实验验收',goal:1,condition:'击败任意小 Boss',reward:'蓝图炮台',weapon:'blueprint'},
+ {id:'shieldBreaker',name:'破盾专家',goal:10,condition:'累计击杀 10 个普通盾卫',reward:'模型砖',weapon:'brick'},
+ {id:'structure',name:'结构学徒',goal:1,condition:'携带 Lv.5 丁字尺击败开题报告',reward:'建筑型角色',character:'architect'},
+ {id:'calmResearch',name:'冷静研究',goal:100,condition:'单局冻结 100 个不同敌人',reward:'实验型角色',character:'experiment'},
+ {id:'firstFusion',name:'融合初体验',goal:1,condition:'完成一次融合',reward:'模型工坊',region:'workshop'},
+ {id:'survivor',name:'学期幸存者',goal:1,condition:'普通模式首次通关',reward:'夜读花园',region:'garden'},
+ {id:'ddl',name:'DDL 终结者',goal:8,condition:'单局击杀 8 个精英',reward:'DDL 终结者称号'},
+ {id:'breakthrough',name:'学术突破',goal:3,condition:'单局完成 3 次武器进化',reward:'图鉴徽章'},
+ {id:'headwind',name:'逆风学霸',goal:1,condition:'持有至少两组诅咒通关',reward:'逆风学霸称号'},
+ {id:'guide',name:'校园向导',goal:6,condition:'累计访问六个机制区域',reward:'校园地图边框'},
+ {id:'fusionMaster',name:'融合大师',goal:2,condition:'单局完成两种融合',reward:'武器栏装饰边框'},
+ {id:'today',name:'今日优秀',goal:3,condition:'通关三个不同日期的每日挑战',reward:'每日榜头像边框',daily:true},
+];

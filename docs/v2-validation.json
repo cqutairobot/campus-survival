@@ -1,0 +1,35 @@
+{
+  "contentVersion": "2.0.0",
+  "build": {
+    "command": "npm run build",
+    "exitCode": 0,
+    "typescriptErrors": 0
+  },
+  "tests": {
+    "command": "npm test",
+    "files": 11,
+    "passed": 93,
+    "failed": 0
+  },
+  "e2e": {
+    "command": "CAMPUS_WEBKIT_EXECUTABLE=/tmp/campus-webkit.sh npm run test:e2e -- --project=chromium --project=pixel-6 --project=webkit --project=iphone-12",
+    "passed": 22,
+    "skipped": 2,
+    "failed": 0,
+    "smokePassedAfterFinalVisualEdit": 2,
+    "firefox": "Blocked at browser launch: Could not find profile folder (default /tmp and workspace TMPDIR both attempted)."
+  },
+  "balance": {
+    "seedsPerCell": 20,
+    "runs": 720,
+    "naturalDeaths": 2,
+    "logicPoolFailures": 0,
+    "xpConservationMaxError": 0
+  },
+  "limitations": [
+    "真实手机 10—15 分钟热机、触觉、声音主观听感未完成",
+    "首次升级/早期等级快于预测",
+    "中后期普通怪1—3次有效命中目标未普遍达到",
+    "软件渲染帧率不代表用户设备，未据此削减高档特效预算"
+  ]
+}
