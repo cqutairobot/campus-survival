@@ -1,5 +1,14 @@
 import type {PersistenceMetadata,PersistenceState,SaveData,SaveOperation} from '../types';
-import {SaveRepository,SAVE_KEY,validPersistence,type StorageLike} from './storage';
+import {SAVE_KEY,validPersistence,type StorageLike} from './storage';
+import type {RecoverySource} from './recovery';
+
+export interface SaveEnvelope {persistence?:PersistenceMetadata}
+export interface RepositoryPort<S extends SaveEnvelope> {
+ state:PersistenceState;status:string;sources:RecoverySource[];
+ load(writeBack?:boolean):S;writeLoaded(save:S):boolean;write(save:S):boolean;
+ commitRecovery(kind:'fields'|'reset',index?:number,persistence?:PersistenceMetadata):S|null;
+ stageImport?(raw:string):void;
+}
 
 export interface SaveLocks {
  exclusive<T>(name:string,task:()=>T|Promise<T>):Promise<T>;
@@ -21,16 +30,16 @@ export function browserSaveLocks():SaveLocks|null{
 function metadata(raw:string|null):PersistenceMetadata|undefined{
  try{const value=JSON.parse(raw??'null')?.persistence;return validPersistence(value)?value:undefined;}catch{return undefined;}
 }
-export interface CommitReceipt extends SaveOperation {save?:SaveData}
+export interface CommitReceipt<S=SaveData> extends SaveOperation {save?:S}
 /** All mutations (including startup and recovery) use the same short exclusive lock. */
-export class SaveCoordinator {
+export class SaveCoordinator<S extends SaveEnvelope=SaveData> {
  readonly ownerId=globalThis.crypto?.randomUUID?.()??`page-${Date.now()}-${Math.random().toString(36).slice(2)}`;
  role:'starting'|'writer'|'observer'|'conflict'|'unsupported'='starting';
  private expectedRaw:string|null=null;private diskMetadata:PersistenceMetadata|undefined;
  private releaseOwner:(()=>void)|undefined;private ownerPromise:Promise<void>|undefined;
- private generation=0;private queue:Promise<unknown>=Promise.resolve();private initial:Promise<SaveData>|undefined;
+ private generation=0;private queue:Promise<unknown>=Promise.resolve();private initial:Promise<S>|undefined;
  private listeners=new Set<()=>void>();private message='正在确认本地存档写入权…';
- constructor(readonly repository:SaveRepository,private storage:StorageLike|null,private locks:SaveLocks|null){}
+ constructor(readonly repository:RepositoryPort<S>,private storage:StorageLike|null,private locks:SaveLocks|null){}
  get state():PersistenceState{
   if(this.role==='starting')return 'starting';
   if(['corrupt','future','unavailable'].includes(this.repository.state))return this.repository.state;
@@ -52,7 +61,7 @@ export class SaveCoordinator {
   if(!Number.isSafeInteger(revision)||!Number.isSafeInteger(epoch))throw Error('存档修订号已达上限');
   return {revision,epoch,ownerId:this.ownerId};
  }
- private async open(takeover:boolean):Promise<SaveData>{
+ private async open(takeover:boolean):Promise<S>{
   this.generation++;this.role='starting';this.message='正在确认本地存档写入权…';this.emit();
   if(!this.locks||!this.storage){const save=this.repository.load(false);this.role='unsupported';this.message=this.storage?'内存模式 · 此浏览器无法协调多页面保存，仍可加载和导出':'内存模式 · 存储不可用，仍可加载和导出';this.emit();return save;}
   try{
@@ -87,20 +96,20 @@ export class SaveCoordinator {
   target.addEventListener('storage',storage);target.addEventListener('pageshow',check);target.document.addEventListener('visibilitychange',visible);
   return()=>{target.removeEventListener('storage',storage);target.removeEventListener('pageshow',check);target.document.removeEventListener('visibilitychange',visible);};
  }
- commit(save:SaveData){return this.enqueue(()=>{
+ commit(save:S){return this.enqueue(()=>{
   const next={...save,persistence:this.nextMetadata()};return this.repository.write(next)?next:null;
  });}
  recover(kind:'fields'|'reset',index=0){return this.enqueue(()=>this.repository.commitRecovery(kind,index,this.nextMetadata(true)));}
- private enqueue(action:()=>SaveData|null):Promise<CommitReceipt>{
+ private enqueue(action:()=>S|null):Promise<CommitReceipt<S>>{
   const generation=this.generation;
-  const run=async():Promise<CommitReceipt>=>{
+  const run=async():Promise<CommitReceipt<S>>=>{
    await this.initialize();
    if(generation!==this.generation||this.role!=='writer'||!this.locks)return {kind:'memory',message:this.status};
    try{return await this.locks.exclusive(`${SAVE_KEY}.commit`,()=>{
     if(generation!==this.generation||this.role!=='writer')return {kind:'memory',message:this.status};
     if(this.storage!.getItem(SAVE_KEY)!==this.expectedRaw){this.revoke();return {kind:'memory',message:this.status};}
     const save=action();
-    if(!save){this.emit();return {kind:['corrupt','future','unavailable'].includes(this.repository.state)?'memory':'failed',message:this.repository.status} as CommitReceipt;}
+    if(!save){this.emit();return {kind:['corrupt','future','unavailable'].includes(this.repository.state)?'memory':'failed',message:this.repository.status} as CommitReceipt<S>;}
     this.expectedRaw=this.storage!.getItem(SAVE_KEY);this.diskMetadata=save.persistence;this.emit();return {kind:'saved',message:this.repository.status,save};
    });}catch(e){this.revoke(`保存失败 · ${e instanceof Error?e.message:'协调失败'}，可导出进度`);return {kind:'failed',message:this.status};}
   };

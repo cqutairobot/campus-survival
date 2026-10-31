@@ -11,5 +11,5 @@ export default defineConfig({
     if(/howler|zzfx/.test(id))return 'audio';
     if(/gsap/.test(id))return 'animation';
   } } } },
-  test: { include: ['tests/unit/core.test.ts','tests/unit/v3-*.test.ts','tests/unit/v4-*.test.ts'], environment: 'node' },
+  test: { include: ['tests/unit/core.test.ts','tests/unit/v3-*.test.ts','tests/unit/v4-*.test.ts','tests/unit/v5-*.test.ts'], environment: 'node' },
 });

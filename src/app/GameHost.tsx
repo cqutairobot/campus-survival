@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { GameEngine } from '../core/engine';
+import {toLegacyS1Save} from '../save/v5/profile';
 import { GameScene } from '../render/scene';
 import { useApp } from '../state/store';
 import type { Joystick } from '../core/input';
@@ -12,8 +13,8 @@ export function GameHost({onReady,seed,debug,mode}:{onReady:(session:GameSession
   const settings=useApp(s=>s.save.settings),sessionRef=useRef<GameSession|null>(null),callback=useRef(onReady);callback.current=onReady;
   const [progress,setProgress]=useState<LoadProgress|null>(null),[loaded,setLoaded]=useState(false);
   useEffect(()=>{
-    const state=useApp.getState(),engine=new GameEngine(structuredClone(state.save),seed,{publish:state.publish,discover:state.discover,settle:state.settle},{mode});
-    if(mode==='daily')state.beginDaily(`${engine.manifest.date}|${engine.manifest.rulesVersion}`);
+    const state=useApp.getState(),engine=new GameEngine(toLegacyS1Save(state.save),seed,{publish:state.publish,discover:state.discover,settle:state.settle},{mode});
+    if(mode==='daily')state.beginDaily(`s1|${engine.manifest.date}|${engine.manifest.rulesVersion}`);
     if(debug)engine.enableReplay();
     const audio=getAudio(state.save.settings);audio.prepareCombat();audio.setTheme('normal');
     const scene=new GameScene(host.current!,engine,state.save.settings,setStick,debug,audio,setProgress),session={engine,scene};sessionRef.current=session;

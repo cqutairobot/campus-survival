@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {useApp} from '../../state/store';
-import {recoveryPreview} from '../../save/recovery';
+import {profileRecoveryPreview as recoveryPreview} from '../../save/v5/repository';
 import {download} from './Panels';
 export function SaveRecovery({close,inGame,returnToMenu}:{close:()=>void;inGame:boolean;returnToMenu?:()=>void}){
  const save=useApp(s=>s.save),sources=useApp(s=>s.recoverySources),state=useApp(s=>s.persistence),recover=useApp(s=>s.recoverSave),canPersist=useApp(s=>s.canPersist),status=useApp(s=>s.saveStatus),refresh=useApp(s=>s.refreshSave),takeover=useApp(s=>s.takeoverSave);

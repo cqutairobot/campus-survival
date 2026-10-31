@@ -1,6 +1,7 @@
 import {useEffect,useRef,useState} from 'react';
 import {useApp,INITIAL_HUD} from '../state/store';
 import {GameEngine} from '../core/engine';
+import {migrateV3ToV4} from '../save/v5/profile';
 import {Menu,type Panel} from '../ui/screens/Menu';
 import {ModalPanel} from '../ui/screens/Panels';
 import {GameOverlays} from '../ui/screens/Overlays';
@@ -14,7 +15,7 @@ export function UiFixture(){
  const [params,setParams]=useState<UiParameters>(DEFAULT_UI_PARAMETERS),[generation,setGeneration]=useState(0),[previewEngine,setPreviewEngine]=useState<GameEngine|null>(null),[panel,setPanel]=useState<Panel|null>(null),engine=useRef<GameEngine|null>(null);
  useEffect(()=>{const receive=(event:MessageEvent)=>{if(event.origin!==location.origin||event.source!==parent||event.data?.type!=='campus-ui-fixture')return;setParams(event.data.params);if(event.data.replay)setGeneration(n=>n+1);};window.addEventListener('message',receive);return()=>window.removeEventListener('message',receive);},[]);
  useEffect(()=>{
-  const f=uiFixture(params,INITIAL_HUD);useApp.setState(f);engine.current?.dispose();engine.current=new GameEngine(structuredClone(f.save),404);engine.current.setPhase('paused');setPreviewEngine(engine.current);setPanel(panels.includes(params.screen)?params.screen as Panel:null);
+  const f=uiFixture(params,INITIAL_HUD);useApp.setState({...f,save:migrateV3ToV4(f.save)});engine.current?.dispose();engine.current=new GameEngine(structuredClone(f.save),404);engine.current.setPhase('paused');setPreviewEngine(engine.current);setPanel(panels.includes(params.screen)?params.screen as Panel:null);
   for(const id of Object.keys(artManifest) as ArtId[])resources.forceMissing(id,params.missing);
   document.body.classList.toggle('fixture-missing',params.missing);document.body.classList.toggle('fixture-long-text',params.longText);
   // Deliberately stress real name elements without editing the frozen content catalog.

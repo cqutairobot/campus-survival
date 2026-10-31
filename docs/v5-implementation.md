@@ -16,3 +16,13 @@
 `freeze/s1-v4.0.1.json` 只从 `08722a5cc69b6eb166d04aeb6e09f99d5fc6615b` Git 对象生成，固定原文件、值导入依赖闭包（包括 HitStopBudget）、依赖版本/lockfile，以及目录 ID、数值摘要和完整数据摘要。不能从当前工作树自动更新基线。
 
 运行 `node scripts/verify-s1-frozen.mjs [repo-root] [report-path]`：先从固定 `7085e4c78794372a9c25d5a546a5696a8c23cebe` Git 对象在临时目录还原 v3 的 46 文件，运行原审计，再进行 v4.0.1 精确审计。缺少 Git 对象即失败；不依赖未说明的机器路径。报告默认写 `/tmp/campus-s1-freeze.json`。原审计与例外清单也固定哈希。
+
+## P01 存档边界
+
+应用只有一个 `ProfileRepository` / `SaveCoordinator` / zustand 实例。旧 `freshSave`、`validateSave`、仓储与 store 工厂继续用于历史测试与 S1 投影，不初始化额外 writer。协调器仅泛化存档类型，保持 `.commit` 与 `.owner.<id>` 锁名和原所有权协议。
+
+物理键仍为 `campus-survival.save.v3` / `campus-survival.backup.v3`，内部 schema 4。首次覆盖前把旧原文写入 `campus-survival.recovery.pre-v5.<digest>[.<collision-slot>]` 并回读核对；不覆盖旋转备份、不删除旧 v1/v2 键。导入原文也在同锁事务内保护。备份/配额/回读失败不报保存成功；主档或备份中的未来 schema 均阻止降级。
+
+根 `unlocks` / `achievements` / `stats` 只代表 S1；共有发现保留完整 S2 ID，S1 投影过滤它们。S1 结算使用最新投影调用原结算器，再并回钱包增量、S1 字段与发现；S2 使用独立结算容器，全局结算 ID 去重。评级仍为 `null`，不推测历史。S2 玩法与成就算法尚未实现。
+
+schema 4 的完整目录验证需要提前引入 `catalog-ids.ts`（原 P02 的轻量元信息子集），不包含运行时或素材。新区 ID 固定为 `s2:smartTeaching` / `s2:jointLab` / `s2:exhibitHall`；进化发现沿用基础武器 ID 语义。历史 fixture 按 schema 1/2 与 v3/P0/P1/P2/v4.0.1 实际字段差异构造，集中在一个参数化核心测试中。
