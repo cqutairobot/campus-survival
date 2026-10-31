@@ -1,11 +1,11 @@
 import {test,expect} from '@playwright/test';
 import {writeFileSync,readFileSync} from 'node:fs';
 import {dailyChallenge} from '../../src/challenges/daily';
-test('v4 P2 单条冒烟：全界面与素材→旧档与反馈→双触点→融合契约→结算与每日→释放会话',async({page})=>{
+test('v4.0.1 单条冒烟：全界面与素材→旧档与反馈→双触点→融合契约→结算与每日→释放会话',async({page})=>{
  const loadFailures:string[]=[],reviews:unknown[]=[];let firstScreenBytes=0;
  page.on('response',r=>{if(r.status()>=400&&/assets\/|licenses\//.test(r.url()))loadFailures.push(`${r.status()} ${r.url()}`);});
  page.on('requestfailed',r=>{if(/assets\/|licenses\//.test(r.url())&&r.failure()?.errorText!=='net::ERR_ABORTED')loadFailures.push(`${r.failure()?.errorText} ${r.url()}`);});
- const capture=async(name:string)=>{await page.evaluate(async()=>{await document.fonts.ready;await Promise.all(Array.from(document.images).filter(img=>img.offsetParent!==null).map(img=>img.decode().catch(()=>{})));});await page.waitForTimeout(320);await page.screenshot({path:`docs/v4-p2-${name}.png`,animations:'disabled'});reviews.push(await page.evaluate(name=>({screen:name,viewport:[innerWidth,innerHeight],horizontalOverflow:document.documentElement.scrollWidth>innerWidth+1,brokenImages:Array.from(document.images).filter(img=>img.offsetParent!==null&&(!img.complete||!img.naturalWidth)).map(img=>img.src)}),name));};
+ const capture=async(name:string)=>{await page.evaluate(async()=>{await document.fonts.ready;await Promise.all(Array.from(document.images).filter(img=>img.offsetParent!==null).map(img=>img.decode().catch(()=>{})));});await page.waitForTimeout(320);await page.screenshot({path:`docs/v4.0.1-${name}.png`,animations:'disabled'});reviews.push(await page.evaluate(name=>({screen:name,viewport:[innerWidth,innerHeight],horizontalOverflow:document.documentElement.scrollWidth>innerWidth+1,brokenImages:Array.from(document.images).filter(img=>img.offsetParent!==null&&(!img.complete||!img.naturalWidth)).map(img=>img.src)}),name));};
  const errors:string[]=[],warnings:string[]=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());if(m.type()==='warning'||/PixiJS Deprecation/.test(m.text())){warnings.push(m.text());console.log(m.text());}});
  await page.addInitScript(()=>{if(!localStorage.getItem('campus-survival.save.v3')&&!localStorage.getItem('campus-survival.save.v2'))localStorage.setItem('campus-survival.save.v2',JSON.stringify({schemaVersion:2,contentVersion:'2.0.0',credits:137,unlocked:['balanced','coder'],selected:'balanced',talents:{hp:2},discovered:['knife','orbit'],evolutions:['orbit'],settledRuns:['legacy-id'],settings:{quality:'high',muted:true,motion:true,master:.4,shake:.2,flash:0},stats:{runs:3,wins:0,kills:120,bestWeek:9}}));});
  await page.goto('/?debug=1&seed=999');
@@ -27,6 +27,17 @@ test('v4 P2 单条冒烟：全界面与素材→旧档与反馈→双触点→�
  await page.getByRole('button',{name:/开始新学期/}).click();await page.getByRole('button',{name:/就这样，开学/}).click();
  await page.waitForFunction(()=>!!window.__CAMPUS__);await expect.poll(()=>page.evaluate(()=>window.__CAMPUS__!.scene.audio.debug.ready)).toBe(true);
  const x=await page.evaluate(()=>window.__CAMPUS__!.engine.player.x);await page.keyboard.down('KeyD');await expect.poll(()=>page.evaluate(()=>window.__CAMPUS__!.engine.player.x)).toBeGreaterThan(x+15);await page.keyboard.up('KeyD');
+ await page.getByRole('button',{name:'校园地图',exact:true}).click();await page.waitForFunction(()=>window.__CAMPUS__!.engine.phase==='paused');
+ const modalBefore=await page.evaluate(()=>{const g=window.__CAMPUS__!.engine;return {time:g.combatTime,x:g.player.x,y:g.player.y,energy:g.ultimate.energy};});
+ await page.keyboard.press('KeyP');await page.keyboard.press('KeyD');await page.keyboard.press('KeyQ');await page.keyboard.press('KeyE');await page.keyboard.press('Digit1');
+ const modalAfter=await page.evaluate(()=>{const g=window.__CAMPUS__!.engine;for(let i=0;i<60;i++)g.tick(1/60);return {time:g.combatTime,x:g.player.x,y:g.player.y,energy:g.ultimate.energy};});expect(modalAfter).toEqual(modalBefore);await expect(page.getByRole('dialog',{name:'校园地图',exact:true})).toBeVisible();await capture('map-p-blocked');
+ await page.getByRole('button',{name:'关闭面板',exact:true}).click();await page.waitForFunction(()=>window.__CAMPUS__!.engine.phase==='playing');
+ // Real native pointer: hide the captured interaction button, then release it outside.
+ const originalPosition=await page.evaluate(()=>{const g=window.__CAMPUS__!.engine,p=g.player;const old={x:p.x,y:p.y};g.enemies.clear();p.x=p.prevX=3615;p.y=p.prevY=2990;p.vx=p.vy=0;g.tick(1/60);g.publish();return old;});
+ await expect(page.locator('.interact-button')).toBeVisible();const interactionBox=(await page.locator('.interact-button').boundingBox())!;await page.mouse.move(interactionBox.x+interactionBox.width/2,interactionBox.y+interactionBox.height/2);await page.mouse.down();
+ await page.evaluate(()=>{const g=window.__CAMPUS__!.engine;g.tick(1/60);g.player.x=g.player.prevX=3072;g.player.y=g.player.prevY=3072;g.tick(1/60);g.publish();});await expect(page.locator('.interact-button')).toHaveCount(0);await page.mouse.up();
+ const noResidual=await page.evaluate(()=>{const g=window.__CAMPUS__!.engine;g.tick(1/60);const held=g.landmarks.held,before=g.landmarks.uses.canteen??0;g.player.x=g.player.prevX=3615;g.player.y=g.player.prevY=2990;g.player.vx=g.player.vy=0;for(let i=0;i<60;i++)g.tick(1/60);return {held,before,after:g.landmarks.uses.canteen??0};});expect(noResidual.held).toBe(false);expect(noResidual.after).toBe(noResidual.before);
+ await page.evaluate(old=>{const p=window.__CAMPUS__!.engine.player;p.x=p.prevX=old.x;p.y=p.prevY=old.y;},originalPosition);
  await capture('battle');await page.keyboard.press('Escape');await capture('pause');
  await page.evaluate(()=>{window.__CAMPUS__!.scene.setMissingArt(true);window.__CAMPUS__!.scene.previewFeedback('normal');});
  await page.waitForTimeout(50);
@@ -39,6 +50,7 @@ test('v4 P2 单条冒烟：全界面与素材→旧档与反馈→双触点→�
  await page.evaluate(()=>window.__CAMPUS__!.engine.send({type:'xp',value:15}));
  await expect(page.locator('.draft-card').first()).toBeVisible();
  await page.waitForTimeout(350);await capture('draft');
+ const draftBefore=await page.evaluate(()=>{const g=window.__CAMPUS__!.engine;return {token:g.draftToken,cards:g.cards};});await page.getByRole('button',{name:/查看进化公式/}).click();await page.keyboard.press('KeyP');await page.keyboard.press('Digit1');await page.keyboard.press('Escape');await page.waitForFunction(()=>window.__CAMPUS__!.engine.phase==='draft');expect(await page.evaluate(()=>{const g=window.__CAMPUS__!.engine;return {token:g.draftToken,cards:g.cards};})).toEqual(draftBefore);
  for(let n=0;n<5;n++){await page.waitForFunction(()=>{const g=window.__CAMPUS__!.engine;return g.phase==='draft'||!g.hasPendingRewards;});const phase=await page.evaluate(()=>window.__CAMPUS__!.engine.phase);if(phase!=='draft')break;const token=await page.evaluate(()=>window.__CAMPUS__!.engine.draftToken);await page.locator('.draft-card').first().click();await page.waitForFunction(token=>{const g=window.__CAMPUS__!.engine;return g.phase!=='draft'||g.draftToken!==token;},token);}
  await page.keyboard.press('Escape');await page.getByRole('button',{name:'设置',exact:true}).click();
  await page.getByRole('checkbox',{name:/^减少动态效果/}).check();
@@ -84,14 +96,14 @@ test('v4 P2 单条冒烟：全界面与素材→旧档与反馈→双触点→�
  await page.route('**/assets/art/v4/enemies/homework*',r=>r.fulfill({status:200,contentType:'image/png',body:'invalid image bytes'}));
  await page.route('**/assets/art/v4/fx/particles*',r=>r.fulfill({status:200,contentType:'image/png',body:'invalid atlas bytes'}));
  await page.getByRole('button',{name:'表现调试实验室',exact:true}).click();
- const feedbackLab=page.frameLocator('iframe[title="打击感实验室"]');await expect(feedbackLab.locator('.lab-stage canvas')).toBeVisible();await expect.poll(()=>feedbackLab.locator('.lab-stage').evaluate(()=>window.__CAMPUS__?.scene.feedbackState.missingArt??[])).toContain('particles');await page.screenshot({path:'docs/v4-p2-missing-battle.png',animations:'disabled'});
+ const feedbackLab=page.frameLocator('iframe[title="打击感实验室"]');await expect(feedbackLab.locator('.lab-stage canvas')).toBeVisible();await expect.poll(()=>feedbackLab.locator('.lab-stage').evaluate(()=>window.__CAMPUS__?.scene.feedbackState.missingArt??[])).toContain('particles');await page.screenshot({path:'docs/v4.0.1-missing-battle.png',animations:'disabled'});
  await feedbackLab.getByRole('button',{name:'暴击',exact:true}).click();await feedbackLab.getByRole('checkbox',{name:'关闭 v4 表现层（A/B）',exact:true}).check();
  const exports:Record<string,unknown>[]=[];
  for(const [tab,label,button] of [['feedback','打击感实验室','导出打击感参数 JSON'],['audio','音频实验室','导出音频参数 JSON'],['motion','界面动效实验室','导出界面参数 JSON']] as const){
   if(tab!=='feedback')await page.locator('.lab-shell>header').getByRole('button',{name:label,exact:true}).click();
   const current=page.frameLocator(`iframe[title="${label}"]`);await current.getByRole('button',{name:button,exact:true}).waitFor();
   const [file]=await Promise.all([page.waitForEvent('download'),current.getByRole('button',{name:button,exact:true}).click()]);const exported=JSON.parse(readFileSync((await file.path())!,'utf8'));expect(exported.lab).toBe(tab);exports.push(exported);
-  await page.screenshot({path:`docs/v4-p2-lab-${tab}.png`,animations:'disabled'});
+  await page.screenshot({path:`docs/v4.0.1-lab-${tab}.png`,animations:'disabled'});
  }
  await page.getByRole('button',{name:'关闭实验室',exact:true}).click();await page.unroute('**/assets/art/v4/enemies/homework*');await page.unroute('**/assets/art/v4/fx/particles*');expect(await page.evaluate(()=>JSON.stringify({...localStorage}))).toBe(labSave);
  const localBeforeLabs=await page.evaluate(()=>JSON.stringify({...localStorage}));
@@ -113,15 +125,15 @@ test('v4 P2 单条冒烟：全界面与素材→旧档与反馈→双触点→�
   return report;
  };
  for(const [width,height,label] of [[360,640,'phone-portrait'],[844,390,'phone-landscape'],[1280,800,'desktop']] as const){
-  for(const screen of ['menu','playing','draft','chest','paused','result','codex']){await reviewFixture(screen,width,height);await fixture.screenshot({path:`docs/v4-p2-${screen}-${label}.png`,animations:'disabled'});}
+  for(const screen of ['menu','playing','draft','chest','paused','result','codex']){await reviewFixture(screen,width,height);await fixture.screenshot({path:`docs/v4.0.1-${screen}-${label}.png`,animations:'disabled'});}
  }
  for(const [width,height] of [[375,667],[390,844],[414,896],[430,932],[768,1024],[1024,768],[2560,1080]])for(const screen of ['playing','draft','codex'])await reviewFixture(screen,width,height);
  await fixture.setViewportSize({width:360,height:640});await fixture.evaluate(()=>{const s=document.documentElement.style;s.setProperty('--safe-top','28px');s.setProperty('--safe-bottom','20px');s.setProperty('--safe-left','12px');s.setProperty('--safe-right','12px');});
- await reviewFixture('playing',360,640,{longText:true,largeNumbers:true});await fixture.screenshot({path:'docs/v4-p2-hud-safe-area-long.png',animations:'disabled'});
+ await reviewFixture('playing',360,640,{longText:true,largeNumbers:true});await fixture.screenshot({path:'docs/v4.0.1-hud-safe-area-long.png',animations:'disabled'});
  await reviewFixture('result',360,640,{largeNumbers:true,motion:true});await reviewFixture('result',360,640,{largeNumbers:true,motion:false});await expect(fixture.locator('.result-metrics strong').nth(1)).toHaveText('987,654,321');
  expect(await fixture.locator('.damage-bar>div').evaluateAll(els=>els.every(el=>!(el as HTMLElement).style.transform))).toBe(true);
  await reviewFixture('draft',360,640,{state:'empty',motion:true});await reviewFixture('result',360,640,{state:'empty',motion:true});
- await reviewFixture('draft',360,640,{longText:true,missing:true});await fixture.screenshot({path:'docs/v4-p2-missing-ui.png',animations:'disabled'});await fixture.close();expect(labErrors).toEqual([]);
+ await reviewFixture('draft',360,640,{longText:true,missing:true});await fixture.screenshot({path:'docs/v4.0.1-missing-ui.png',animations:'disabled'});await fixture.close();expect(labErrors).toEqual([]);
  expect(await page.evaluate(()=>JSON.stringify({...localStorage}))).toBe(localBeforeLabs);
  const lifecycle:unknown[]=[];const loopStarted=performance.now();
  for(let cycle=0;cycle<5;cycle++){
@@ -132,5 +144,5 @@ test('v4 P2 单条冒烟：全界面与素材→旧档与反馈→双触点→�
   const state=await page.evaluate(()=>(window as unknown as {__V4_SCENE__:{resourceState:{geometry:number;sessionVoices:number;canvas:boolean}}}).__V4_SCENE__.resourceState);expect(state).toMatchObject({geometry:0,sessionVoices:0,canvas:false});lifecycle.push(state);
  }
  const lifecycleSeconds=(performance.now()-loopStarted)/1000;
- writeFileSync('docs/v4-p2-browser-review.json',JSON.stringify({firstScreenBytes,reviews,errors,warnings,loadFailures,labErrors,audioFailureState,exports,lifecycle,lifecycleSeconds},null,2));expect(errors).toEqual([]);expect(warnings).toEqual([]);expect(loadFailures).toEqual([]);expect(reviews.every(review=>!(review as {horizontalOverflow:boolean}).horizontalOverflow)).toBe(true);expect(reviews.every(review=>(review as {brokenImages:unknown[]}).brokenImages.length===0)).toBe(true);writeFileSync('docs/v4-p2-browser-review.json',JSON.stringify({firstScreenBytes,reviews,errors,warnings,loadFailures,labErrors,audioFailureState,exports,lifecycle,lifecycleSeconds},null,2));
+ writeFileSync('docs/v4.0.1-browser-review.json',JSON.stringify({firstScreenBytes,reviews,errors,warnings,loadFailures,labErrors,audioFailureState,exports,lifecycle,lifecycleSeconds},null,2));expect(errors).toEqual([]);expect(warnings).toEqual([]);expect(loadFailures).toEqual([]);expect(reviews.every(review=>!(review as {horizontalOverflow:boolean}).horizontalOverflow)).toBe(true);expect(reviews.every(review=>(review as {brokenImages:unknown[]}).brokenImages.length===0)).toBe(true);writeFileSync('docs/v4.0.1-browser-review.json',JSON.stringify({firstScreenBytes,reviews,errors,warnings,loadFailures,labErrors,audioFailureState,exports,lifecycle,lifecycleSeconds},null,2));
 });

@@ -52,6 +52,7 @@ export class GameScene {
   private ownsAudio=false;private brokenOrbitEdge=-1;private orbitRebuildUntil=0;
   private previewQueue:VisualEvent[]=[];private previewSprite:Sprite|undefined;private previewSerial=0;private previewPoint={x:0,y:0};private previewUntil=0;private previewKind=0;private previewTimers=new Set<ReturnType<typeof setTimeout>>();
   debugGeometry=false;debugNavigation=false;
+  clearUIInput(){this.input?.clear();}
   constructor(private host:HTMLElement,readonly game:GameEngine,settings:Settings,private onStick:(stick:Joystick)=>void,readonly debug=false,audio?:GameAudio,private onLoad?:(p:LoadProgress)=>void){this.settings=settings;this.ownsAudio=!audio;this.audio=audio??new GameAudio(settings);this.feedback=new FeedbackDirector(settings);}
   async initialize(){
     await this.app.init({resizeTo:this.host,background:0xedecd9,antialias:true,resolution:Math.min(devicePixelRatio,qualityBudget(this.settings.quality).dpr),autoDensity:true,preference:'webgl',powerPreference:'high-performance',autoStart:false});

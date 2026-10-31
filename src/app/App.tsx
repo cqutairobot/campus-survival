@@ -1,4 +1,5 @@
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
+import {ModalPauseOwner} from '../ui/input/modal-input';
 import {SaveNotice} from '../ui/components/SaveNotice';
 import { Menu, type Panel } from '../ui/screens/Menu';
 import { ModalPanel } from '../ui/screens/Panels';
@@ -15,13 +16,13 @@ const params=new URLSearchParams(location.search),debug=params.get('debug')==='1
 export function App(){
   const settings=useApp(s=>s.save.settings);
   const achievementCount=useApp(s=>Object.values(s.save.achievements).filter(a=>a.completed).length),previousAchievements=useRef(achievementCount);
-  const [mode,setMode]=useState<'normal'|'daily'>('normal'),[playing,setPlaying]=useState(false),[panel,setPanel]=useState<Panel|null>(()=>useApp.getState().persistence==='corrupt'?'recovery':null),[session,setSession]=useState<GameSession|null>(null),[seed,setSeed]=useState(Number(params.get('seed'))||Date.now()),[generation,setGeneration]=useState(0),resume=useRef(false),sessionRef=useRef<GameSession|null>(null),phase=useApp(s=>s.hud.phase),motion=useApp(s=>s.save.settings.motion);
+  const [mode,setMode]=useState<'normal'|'daily'>('normal'),[playing,setPlaying]=useState(false),[panel,setPanel]=useState<Panel|null>(()=>useApp.getState().persistence==='corrupt'?'recovery':null),[session,setSession]=useState<GameSession|null>(null),[seed,setSeed]=useState(Number(params.get('seed'))||Date.now()),[generation,setGeneration]=useState(0),pauseOwner=useRef(new ModalPauseOwner<GameSession>()),sessionRef=useRef<GameSession|null>(null),phase=useApp(s=>s.hud.phase),motion=useApp(s=>s.save.settings.motion);
   sessionRef.current=session;
-  const open=useCallback((next:Panel)=>{const g=sessionRef.current?.engine;resume.current=!!g&&g.phase!=='paused'&&g.phase!=='result';if(resume.current)g?.send({type:'pause'});setPanel(next);},[]);
-  const close=useCallback(()=>{setPanel(null);if(resume.current)sessionRef.current?.engine.send({type:'resume'});resume.current=false;},[]);
-  const launch=useCallback((nextMode:'normal'|'daily')=>{setMode(nextMode);setPanel(null);resume.current=false;setPlaying(true);setGeneration(v=>v+1);setSeed(nextMode==='daily'?Date.now():Number(params.get('seed'))||Date.now());},[]);
+  const open=useCallback((next:Panel)=>{pauseOwner.current.open(sessionRef.current);setPanel(next);},[]);
+  const close=useCallback(()=>{setPanel(null);pauseOwner.current.close(sessionRef.current);},[]);
+  const launch=useCallback((nextMode:'normal'|'daily')=>{setMode(nextMode);setPanel(null);pauseOwner.current.clear();setPlaying(true);setGeneration(v=>v+1);setSeed(nextMode==='daily'?Date.now():Number(params.get('seed'))||Date.now());},[]);
   const start=useCallback(()=>launch('normal'),[launch]),startDaily=useCallback(()=>launch('daily'),[launch]),restart=useCallback(()=>launch(mode),[launch,mode]);
-  const menu=useCallback(()=>{setPlaying(false);setPanel(null);setSession(null);useApp.getState().publish({...INITIAL_HUD});},[]);
+  const menu=useCallback(()=>{setPlaying(false);setPanel(null);pauseOwner.current.clear();setSession(null);useApp.getState().publish({...INITIAL_HUD});},[]);
   const ready=useCallback((value:GameSession|null)=>setSession(value),[]);
   useEffect(()=>{document.body.classList.toggle('is-playing',playing);return()=>document.body.classList.remove('is-playing');},[playing]);
   useEffect(()=>{document.body.classList.toggle('reduce-motion',!motion);return()=>document.body.classList.remove('reduce-motion');},[motion]);

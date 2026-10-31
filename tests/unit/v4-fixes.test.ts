@@ -1,4 +1,4 @@
-import {describe,it,expect} from 'vitest';
+import {describe,it,expect,vi} from 'vitest';
 import {freshSave,validateSave,SaveRepository,SAVE_KEY,BACKUP_KEY,LEGACY_KEYS,RECOVERY_PREFIX,settleRun} from '../../src/save/storage';
 import {recoveryPreview} from '../../src/save/recovery';
 import {normalizeSettings,DEFAULT_SETTINGS} from '../../src/save/settings';
@@ -6,6 +6,9 @@ import {qualityBudget,qualityName} from '../../src/presentation/quality';
 import {resolveAudioPreset,OUTPUT_PROFILES} from '../../src/audio/OutputBus';
 import type {Settings,Quality} from '../../src/types';
 import {useApp} from '../../src/state/store';
+import {GameEngine} from '../../src/core/engine';
+import {ModalPauseOwner,blocksGameKey} from '../../src/ui/input/modal-input';
+import {InteractionPointer} from '../../src/ui/hud/interaction-pointer';
 class Memory {
  data=new Map<string,string>();fail='';
  getItem(k:string){return this.data.get(k)??null;}
@@ -46,4 +49,24 @@ describe('v4.0.1 short regressions',()=>{
    expect(settleRun(valid,{id:'done'} as Parameters<typeof settleRun>[1])).toBe(valid);
   }
  });
+ it('R03 panels own only their pause, preserve draft/reward tokens and control defaults',()=>{
+  for(const phase of ['playing','paused','draft','reward','contract','result'] as const){
+   const engine=new GameEngine(freshSave(),4);engine.setPhase(phase);const session={engine,scene:{clearUIInput:vi.fn()}},owner=new ModalPauseOwner<typeof session>(),token=engine.draftToken,reward=engine.rewards.token,cards=engine.cards;
+   engine.inputX=1;session.scene.clearUIInput.mockImplementation(()=>{engine.inputX=0;engine.landmarks.held=false;});owner.open(session);owner.open(session);engine.tick(1/60);
+   expect(session.scene.clearUIInput).toHaveBeenCalled();expect(engine.inputX).toBe(0);
+   expect(engine.phase).toBe(phase==='result'?'result':'paused');
+   for(const key of ['KeyP','KeyD','KeyQ','Space','KeyE','Digit1'])expect(blocksGameKey(key)).toBe(true);
+   for(const key of ['Tab','Home','End','Backspace'])expect(blocksGameKey(key)).toBe(false);
+   owner.close(session);engine.tick(1/60);expect(engine.phase).toBe(phase);expect(engine.draftToken).toBe(token);expect(engine.rewards.token).toBe(reward);expect(engine.cards).toBe(cards);
+   owner.close(session);engine.tick(1/60);expect(engine.phase).toBe(phase);
+  }
+  const send=vi.fn(),session={engine:{phase:'playing' as const,send},scene:{clearUIInput:vi.fn()}},owner=new ModalPauseOwner<typeof session>();owner.open(session);owner.close({...session});expect(send.mock.calls.map(([c])=>c.type)).toEqual(['pause']);
+ });
+ it('R05 releases one interaction pointer once on hide/lost capture/late up without touching movement',()=>{
+  const game=new GameEngine(freshSave(),8);game.inputX=1;game.inputY=.5;const held=vi.fn((value:boolean)=>game.send({type:'interact',held:value})),target={setPointerCapture:vi.fn(),hasPointerCapture:()=>true,releasePointerCapture:vi.fn()},pointer=new InteractionPointer(held);
+  expect(pointer.press(41,target)).toBe(true);expect(pointer.press(42,target)).toBe(false);pointer.release(42);expect(held.mock.calls).toEqual([[true]]);
+  pointer.release();pointer.release(41);pointer.release();expect(held.mock.calls).toEqual([[true],[false]]);expect(target.releasePointerCapture).toHaveBeenCalledTimes(1);game.tick(1/60);expect(game.landmarks.held).toBe(false);expect([game.inputX,game.inputY]).toEqual([1,.5]);
+  pointer.press(43,target);pointer.release(43);pointer.release(43);expect(held.mock.calls).toEqual([[true],[false],[true],[false]]);
+ });
+
 });
