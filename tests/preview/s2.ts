@@ -8,7 +8,8 @@ import {S2_CONTENT} from '../../src/semesters/s2/content';
 import type {ContentState} from '../../src/semesters/s2/legacy/ContentState';
 import type {ContentSkill} from '../../src/semesters/s2/types';
 import {createS2PreviewSnapshot} from '../../src/semesters/inheritance';
-import {freshProfile} from '../../src/save/v5/profile';
+import {semesterTwoResult} from '../../src/semesters/s2/settlement';
+import {freshProfile,settleS2Profile,validateProfile} from '../../src/save/v5/profile';
 import {weaponParams} from '../../src/semesters/s2/legacy/params';
 
 const profile=freshProfile();profile.stats.wins=1;profile.selected='coder';
@@ -64,3 +65,20 @@ async function projectReview(){
  return{first,second,id:S2_CONTENT.enemies[e.kind[id]].id,hp:46000,stages:[...stages],maxReduction,monotonic,recoveryDamage,nodeChecked,panelChecked,nodeCancelled,panelCancelled,zeroRewards,exposed,chests,heals,expectedHeal,seconds:reward.clock.assessmentSeconds,phase:reward.phase,passed:reward.assessmentsPassed,prematureAcknowledgement,damage:{...s.damage}};
 }
 Object.assign(window,{__S2_PREVIEW__:{engine,state:()=>state,scene,resources:resourceState,checkpoint,advanced,projectReview,params:()=>state.weapons.map(w=>weaponParams(S2_CONTENT,w,state.combatStats,state.damageMultiplier))}});
+
+/** Final-week fixture uses the same 24x40 clock, skipping only prior teaching
+ * and already verified assessments. The final fight and reward stay real. */
+async function expoFinal(){
+ let s!:ContentState;const view=new SemesterScene(document.querySelector<HTMLElement>('#game')!,S2_CONTENT,settings,()=>{}),engine=new SemesterEngine({snapshot,config:S2_RUNTIME_CONFIG,view,rules:{...base,create(services){s=base.create(services);s.player.invincible=1000;return s;},step(state,step){return step.phase==='teaching'?{}:base.step(state,step);}}});view.attach(engine);await view.initialize();
+ const host={engine,state:()=>s,resources:()=>({loader:resources.debug,geometry:view['geometry'].textures.size,art:view['artTextures'].size,voices:view.audio.debug.sessionVoices,canvas:!!document.querySelector('canvas'),panels:document.querySelectorAll('.s2-build-panel').length}),settle:()=>{
+  const result=semesterTwoResult(snapshot,engine.read().result,s,{id:'preview-expo-normal',createdAt:1,nickname:'测试宿主'});if(!result)return null;const raw=localStorage.getItem('campus-s2-preview.profile'),before=raw?validateProfile(JSON.parse(raw))!:validateProfile(profile)!,after=settleS2Profile(before,result);localStorage.setItem('campus-s2-preview.profile',JSON.stringify(after));return{runs:after.semesters.s2.stats.runs,wins:after.semesters.s2.stats.wins,graduation:after.semesters.s2.graduation,recent:after.semesters.s2.recentRuns.length,settled:after.settledRuns.filter(id=>id===result.id).length,unchanged:after===before,s1:after.stats,loaded:validateProfile(JSON.parse(localStorage.getItem('campus-s2-preview.profile')!))!.semesters.s2.graduation};
+ }};Object.assign((window as any).__S2_PREVIEW__,{expo:host});localStorage.removeItem('campus-s2-preview.profile');
+ const intro=()=>{for(let n=0;n<10000&&engine.read().phase==='teaching';n++)engine.advance(1/15);const read=engine.read();engine.acknowledge(read.gate!.token);s.drops.clear();return read.clock;};
+ for(let n=0;n<2;n++){intro();s.hitEnemy(s.bossEnemy,1e9,'knife',s.player.x,s.player.y,0,false,false);engine.advance(1/60);const token=s.rewards.token,index=s.rewards.options.findIndex(o=>o.id==='upgrade');if(index>=0)engine.dispatch({type:'chooseReward',token,index});engine.dispatch({type:'chestDone',token});engine.acknowledge(engine.read().gate!.token);engine.advance(1/60);}
+ const start=intro(),id=s.bossEnemy,e=s.enemies;for(const w of s.weapons)s.weaponSystem.remove(w.id);const make=(id:ContentSkill['id'],evolved=false,level=5):ContentSkill=>({id,level,evolved,rarity:0,instanceId:s.nextInstance()});s.weapons.splice(0,s.weapons.length,...(['laser','knife','blueprint','lightning'] as const).map(id=>make(id,true)));s.passives.splice(0,s.passives.length,make('haste',false,3),make('multi',false,1),make('area',false,2),make('duration',false,2));s.recalculateStats();s.stats.crit=0;s.player.hp=50;s.player.x=e.x[id]-80;s.player.y=e.y[id];s.player.prevX=s.player.x;s.player.prevY=s.player.y;s.player.invincible=1000;
+ let chests=0;const heals:number[]=[],open=s.rewards.openChest.bind(s.rewards),heal=s.heal.bind(s);s.rewards.openChest=(...args)=>{chests++;return open(...args);};s.heal=(amount,fixed=false)=>{if(fixed)heals.push(amount);return heal(amount,fixed);};const stages=new Set<number>();let maxReduction=0,recoveryDamage=0,previous=110000,monotonic=true,minWindow=Infinity,restStart=-1;
+ for(let n=0;n<9000&&s.bosses===2;n++){const v=s.bossSystem.expoFinal.snapshot()!;stages.add(v.stage);maxReduction=Math.max(maxReduction,v.reduction);const rest=v.stage===3&&v.move==='recovery',hp=e.hp[id];if(rest&&restStart<0)restStart=s.frame;if(!rest&&restStart>=0){minWindow=Math.min(minWindow,s.frame-restStart);restStart=-1;}engine.dispatch({type:'move',x:e.x[id]-s.player.x-80,y:e.y[id]-s.player.y});engine.advance(1/60);if(rest)recoveryDamage+=hp-e.hp[id];monotonic&&=e.hp[id]<=previous&&e.maxHp[id]===110000;previous=e.hp[id];}
+ const read=engine.read(),early=host.settle(),prematureAcknowledgement=engine.acknowledge(read.gate!.token),expectedHeal=s.stats.maxHp*.15,index=s.rewards.options.findIndex(o=>o.id==='upgrade');if(index>=0)engine.dispatch({type:'chooseReward',token:s.rewards.token,index});
+ return{start:{week:start.week,teachingSeconds:start.teachingSeconds},id:S2_CONTENT.enemies[e.kind[id]].id,hp:110000,stages:[...stages],maxReduction,recoveryDamage,monotonic,minWindow,chests,heals,expectedHeal,seconds:read.clock.assessmentSeconds,phase:read.phase,passed:read.assessmentsPassed,early,prematureAcknowledgement};
+}
+Object.assign((window as any).__S2_PREVIEW__,{expoFinal});

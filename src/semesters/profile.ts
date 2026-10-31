@@ -18,7 +18,7 @@ export interface SaveProfile extends Omit<SaveData,'schemaVersion'|'daily'> {
  daily:{records:SemesterDailyRecord[];attempts:Record<string,number>;completedKeys:string[]};
  migration:{fromSchema:number;fromContentVersion:string;legacyDigest:string|null};
 }
-/** Settlement DTO for the future runtime. It is not a combat entry point. */
+/** S2 result carries the run qualification and final reward receipt. */
 export interface SemesterResult extends Omit<RunResult,'weapons'|'passives'|'dailyRecord'> {
- semesterId:'s2';practice?:boolean;weapons:{id:string}[];passives:{id:string}[];dailyRecord?:SemesterDailyRecord;
+ semesterId:'s2';settlement:{eligible:boolean;assessmentsPassed:number;finalRewardCommitted:boolean};practice?:boolean;weapons:{id:string}[];passives:{id:string}[];dailyRecord?:SemesterDailyRecord;
 }

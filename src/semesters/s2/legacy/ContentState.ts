@@ -21,6 +21,7 @@ import type {Navigation} from '../../../world/navigation';
 import {DangerScheduler,dangerContains,ringRadius,warningSeconds,type HazardOptions,type S2Hazard} from '../danger';
 import {pressureAt} from '../pressure';
 import {FirstChapterBehaviors} from '../first-chapter-behaviors';
+import {EXPO_FINAL} from '../expo-final';
 import {PROJECT_REVIEW} from '../project-review';
 import {PROPOSAL_BOARD} from '../proposal-board';
 import {cappedDamage,invulnerabilityFor,selectPlayerHit,tierForRank,type DamageOrigin,type IncomingHit} from '../player-damage';
@@ -116,10 +117,10 @@ export class ContentState {
    const p=this.player;Object.assign(p,{...entry.site.player,prevX:entry.site.player.x,prevY:entry.site.player.y,vx:0,vy:0});this.navigation.rebuild(p.x,p.y,true);
    this.waitingForAssessment=false;
    this.bossNumber=event.assessment.index;this.bossStage=1;this.bossActive=true;this.bossTime=0;this.assessmentRewardDone=false;
-   const kind=event.assessment.week===8&&this.bossNumber===0&&this.content.enemyById[PROPOSAL_BOARD.id]?PROPOSAL_BOARD.id:event.assessment.week===16&&this.bossNumber===1&&this.content.enemyById[PROJECT_REVIEW.id]?PROJECT_REVIEW.id:['proposal','defense','finals'][this.bossNumber],point=entry.site.boss;this.bossEnemy=this.spawnEnemy(kind,point.x,point.y);this.bossSystem.reset();this.emit({type:'boss',x:point.x,y:point.y,color:0xe48475,size:240,text:this.content.enemyById[kind].name});
+   const kind=event.assessment.week===8&&this.bossNumber===0&&this.content.enemyById[PROPOSAL_BOARD.id]?PROPOSAL_BOARD.id:event.assessment.week===16&&this.bossNumber===1&&this.content.enemyById[PROJECT_REVIEW.id]?PROJECT_REVIEW.id:event.assessment.week===24&&this.bossNumber===2&&this.content.enemyById[EXPO_FINAL.id]?EXPO_FINAL.id:['proposal','defense','finals'][this.bossNumber],point=entry.site.boss;this.bossEnemy=this.spawnEnemy(kind,point.x,point.y);this.bossSystem.reset();this.emit({type:'boss',x:point.x,y:point.y,color:0xe48475,size:240,text:this.content.enemyById[kind].name});
   }else{
    this.waitingForAssessment=true;
-   const checkpoint=[PROPOSAL_BOARD.id,PROJECT_REVIEW.id].includes(this.content.enemies[this.enemies.kind[this.deadBoss]]?.id);
+   const checkpoint=[PROPOSAL_BOARD.id,PROJECT_REVIEW.id,EXPO_FINAL.id].includes(this.content.enemies[this.enemies.kind[this.deadBoss]]?.id);
    this.bosses++;this.metrics.bossFights.push({boss:this.bossNumber,seconds:event.clock.assessmentSeconds,damage:this.enemies.maxHp[this.deadBoss]});this.deadBoss=-1;this.clearThreats();this.assessmentAdmission=null;this.magnet();if(checkpoint)this.heal(this.stats.maxHp*.15,true);this.rewards.openChest(3,true);
   }
   }finally{this.grantBoundary=null;}
@@ -148,20 +149,20 @@ export class ContentState {
  }
  spawnSummon(kind:string,owner:number,x:number,y:number,lifetime=12,attached=false){const e=this.enemies;if(!this.enemySourceAlive(owner,e.generation[owner]))return-1;const id=this.spawnEnemy(kind,x,y,0,undefined,attached);if(id>=0){e.owner[id]=owner;e.ownerGeneration[id]=e.generation[owner];e.lifetime[id]=lifetime;e.xp[id]=0;e.rewardWeight[id]=0;e.chainXp[id]=0;e.chainWeight[id]=0;e.reward[id]=0;e.splitGeneration[id]=1;}return id;}
  enemySourceAlive(id:number,generation:number):boolean{const e=this.enemies;for(let depth=0;depth<e.capacity;depth++){if(!e.valid(id,generation)||e.hp[id]<=0)return false;if(e.owner[id]<0)return true;generation=e.ownerGeneration[id];id=e.owner[id];}return false;}
- cancelEnemyAttacks(id:number,generation=this.enemies.generation[id]){const e=this.enemies;if(!e.valid(id,generation))return;this.danger.cancelOwner(id,generation);this.threats.forget(id,generation);this.advanced.forget(id,generation);this.bossSystem.projectReview.forget(id,generation);this.cancelOwnedShots(id,generation);for(const child of [...e.active])if(e.owner[child]===id&&e.ownerGeneration[child]===generation)this.releaseEnemy(child);}
+ cancelEnemyAttacks(id:number,generation=this.enemies.generation[id]){const e=this.enemies;if(!e.valid(id,generation))return;this.danger.cancelOwner(id,generation);this.threats.forget(id,generation);this.advanced.forget(id,generation);this.bossSystem.projectReview.forget(id,generation);this.bossSystem.expoFinal.forget(id,generation);this.cancelOwnedShots(id,generation);for(const child of [...e.active])if(e.owner[child]===id&&e.ownerGeneration[child]===generation)this.releaseEnemy(child);}
  releaseEnemy(id:number){if(!this.enemies.alive[id])return;this.cancelEnemyAttacks(id);this.protocol.forget(id);this.echo.forget(id);this.enemies.release(id);}
  frozenTarget(id:number){const e=this.enemies;if(e.owner[id]>=0||e.rank[id]===RANK_CODE.bossAdd)return;if(!e.frozenOnce[id]){e.frozenOnce[id]=1;this.progress.frozen++;}}
  hitEnemy(id:number,baseDamage:number,source:ContentWeaponId|ContentDamageSource,x:number,y:number,knockback=1,canCrit=true,canChain=true,clearChain=false,fixed=false,secondary=false,context:HitContext={}):number{
   const e=this.enemies;if(!e.alive[id]||e.hp[id]<=0||baseDamage<=0)return 0;const src=asSource(source),rank=rankName(e.rank[id]),crit=!context.settled&&!context.additional&&canCrit&&this.random.next()<this.stats.crit;let damage=baseDamage*(crit?this.stats.critDamage:1);
   if(!context.settled&&!fixed&&this.landmarks.zone?.id==='garden'&&['elite','miniBoss','boss'].includes(rank))damage*=1.2;
   if(!context.settled&&!fixed&&src.kind==='weapon'){const bonus=protocolBonus(this.content,this.passives);if(bonus>0)damage*=1+this.protocol.hit(id,bonus,secondary)*(rank==='boss'?.5:1);}
-  if(!context.settled)damage*=1-Math.min(.4,Math.max(this.advanced.reduction(id),this.bossSystem.projectReview.reduction(id)));
+  if(!context.settled)damage*=1-Math.min(.4,Math.max(this.advanced.reduction(id),this.bossSystem.projectReview.reduction(id),this.bossSystem.expoFinal.reduction(id)));
   const absorbed=Math.min(e.shield[id],damage);e.shield[id]-=absorbed;const actual=actualDamage(e.hp[id],damage-absorbed),total=actual+absorbed;e.lastHit[id]=this.combatTime;
   this.metrics.hits++;this.metrics.shieldDamage+=absorbed;if(!e.hitCount[id])e.firstHit[id]=this.combatTime;e.hitCount[id]=Math.min(65535,e.hitCount[id]+1);this.metrics.criticalHits+=Number(crit);this.metrics.overkill+=Math.max(0,damage-total);e.hp[id]-=actual;const key=damageKey(src);this.damage[key]=(this.damage[key]??0)+total;e.flash[id]=crit?.077:.065;
   const dx=e.x[id]-x,dy=e.y[id]-y,d=Math.hypot(dx,dy)||1,resist=rank==='boss'?.05:rank==='miniBoss'?.1:rank==='elite'?.25:this.content.enemies[e.kind[id]].tags.includes('heavy')?.5:1;e.vx[id]+=dx/d*(crit?160:90)*knockback*this.stats.push*resist;e.vy[id]+=dy/d*(crit?160:90)*knockback*this.stats.push*resist;
   this.emit({type:'hit',slot:id,generation:e.generation[id],...enemyVisual(this.content.enemies[e.kind[id]].id),rank,batch:this.frame,sourceKey:key,damageType:absorbed>0?'shield':!canCrit&&src.kind==='weapon'&&['coffee','cryo','icefire','eraser'].includes(src.id)?'dot':'normal',x:e.x[id],y:e.y[id]-8,color:crit?0xf0bf5b:colorNumber(damageLabel(this.content,key).color),size:crit?11:6,value:Math.round(total),critical:crit,weapon:src.kind==='weapon'?src.id:undefined,angle:Math.atan2(dy,dx)});
   if(absorbed>0&&e.shield[id]<=0)this.emit({type:'shieldBreak',x:e.x[id],y:e.y[id],color:0x9be3ed,size:e.radius[id]*2,material:'glass',priority:true});if(crit)this.impact(1.5);
-  if(id===this.bossEnemy){this.bossSystem.proposalBoard.observeHealth();this.bossSystem.projectReview.observeHealth();}
+  if(id===this.bossEnemy){this.bossSystem.proposalBoard.observeHealth();this.bossSystem.projectReview.observeHealth();this.bossSystem.expoFinal.observeHealth();}
   if(e.hp[id]<=0){this.cancelEnemyAttacks(id,e.generation[id]);this.deaths.mark(e,id,src,clearChain);}
   if(!secondary&&!context.additional&&src.kind==='weapon'){
    const echo=this.echo.amount(id,total,context);if(echo>0)this.hitEnemy(id,echo,src,x,y,0,false,false,false,false,true,{settled:true,additional:'echo'});

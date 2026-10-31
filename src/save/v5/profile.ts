@@ -6,7 +6,7 @@ import {freshSave,settleRun,validateSave} from '../storage';
 import {recoveryDigest} from '../recovery';
 import {compareDaily} from '../../challenges/scoring';
 import {S2_IDS} from '../../semesters/catalog-ids';
-import {validInheritanceChoice} from '../../semesters/inheritance';
+import {hasAlumniEligibility,validInheritanceChoice} from '../../semesters/inheritance';
 import {PRODUCT_VERSION,type Graduation,type Rating,type RunSummary,type SaveProfile,type SemesterDailyRecord,type SemesterHistory,type SemesterId,type SemesterResult} from '../../semesters/profile';
 import type {RunResult,SaveData} from '../../types';
 
@@ -112,12 +112,16 @@ export function settleS1Profile(profile:SaveProfile,result:RunResult):SaveProfil
  summarize(out,result,'s1');return out;
 }
 export function settleS2Profile(profile:SaveProfile,result:SemesterResult):SaveProfile{
- if(profile.settledRuns.includes(result.id)||result.debug||result.practice)return profile;
+ if(profile.settledRuns.includes(result.id)||result.debug||result.practice||result.semesterId!=='s2'||!hasAlumniEligibility(profile)||!result.settlement?.eligible)return profile;
+ const mode=result.manifest?.mode;
+ if(!mode||result.manifest?.rulesVersion!==(mode==='daily'?'daily-s2-v5.0.0':'campus-s2-v5.0.0')||result.victory&&(!result.settlement.finalRewardCommitted||result.settlement.assessmentsPassed!==3||result.completedWeeks!==24))return profile;
+ if(mode==='daily'&&(!date(result.manifest?.date)||!result.dailyRecord||result.dailyRecord.semesterId!=='s2'||result.dailyRecord.id!==result.id||result.dailyRecord.date!==result.manifest.date||result.dailyRecord.version!==result.manifest.rulesVersion))return profile;
  const out=structuredClone(profile),daily=result.manifest?.mode==='daily',s2=out.semesters.s2;
  out.settledRuns.push(result.id);
  if(!daily){out.credits+=number(result.credits);s2.stats.runs++;s2.stats.wins+=Number(result.victory);s2.stats.kills+=result.progress?.normalKills??result.kills;s2.stats.bestWeek=Math.max(s2.stats.bestWeek,Math.min(24,result.week));if(result.progress){for(const k of ['elites','miniBosses','shieldKills','frozen'] as const)s2.stats[k]+=result.progress[k];s2.stats.visits=[...new Set([...s2.stats.visits,...result.progress.visited])];}}
  if(daily&&result.dailyRecord?.semesterId==='s2')out.daily.records=retainSemesterRecords([...out.daily.records,result.dailyRecord]);
  if(daily&&result.victory&&result.manifest?.date)out.daily.completedKeys=[...new Set([...out.daily.completedKeys,`s2|${result.manifest.date}`])];
- if(result.progress)for(const [key,from] of [['discoveredEnemies','enemies'],['fusions','fusions'],['relics','relics'],['events','events'],['regions','visited']] as const)out[key]=[...new Set([...out[key],...result.progress[from]])];
- summarize(out,result,'s2');return out;
+ if(!daily){for(const skill of [...result.weapons,...result.passives])out.discovered=[...new Set([...out.discovered,skill.id])];}
+ if(!daily&&result.progress)for(const [key,from] of [['discoveredEnemies','enemies'],['fusions','fusions'],['relics','relics'],['events','events'],['regions','visited']] as const)out[key]=[...new Set([...out[key],...result.progress[from]])];
+ if(!daily)summarize(out,result,'s2');return out;
 }

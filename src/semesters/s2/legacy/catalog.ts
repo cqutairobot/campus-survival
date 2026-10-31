@@ -9,7 +9,7 @@ import type {Character,EnemyDef,EnemyBehaviorId} from '../../../types';
 import type {ContentPassiveDef,ContentWeaponDef} from '../types';
 
 /** S2 extends its own directory without widening the frozen S1 unions. */
-export type ContentEnemyDef=Omit<EnemyDef,'id'|'behavior'>&{id:string;behavior:EnemyBehaviorId|'bike'|'reservation'|'parceler'|'dispatcher'|'proposalBoard'|'peer'|'relay'|'recycler'|'marshal'|'coordinator'|'auditor'|'projectReview'|'relayNode'|'reviewPanel'};
+export type ContentEnemyDef=Omit<EnemyDef,'id'|'behavior'>&{id:string;behavior:EnemyBehaviorId|'bike'|'reservation'|'parceler'|'dispatcher'|'proposalBoard'|'peer'|'relay'|'recycler'|'marshal'|'coordinator'|'auditor'|'projectReview'|'relayNode'|'reviewPanel'|'expoFinal'};
 
 /** The only legacy-definition import boundary. Cloning protects the S1 arrays;
  * every S2 lookup (including presentation) uses this injected directory. */
