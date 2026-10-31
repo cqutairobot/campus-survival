@@ -1,3 +1,4 @@
+import type {ContentSkill,ContentDamageSource,ContentWeaponId} from '../types';
 import {enemyVisual,type ContentVisualEvent} from '../enemy-visuals';
 import {RANK_CODE,rankName} from '../../../data/enemies';
 import {actualDamage,asSource,damageKey,damageLabel} from './damage';
@@ -6,7 +7,8 @@ import {BossSystem} from './bosses';
 import {EnemyDirector} from './director';
 import {EnemyBehaviors} from './behaviors';
 import {configureElite} from './elites';
-import {draftCards,statsFor,weekHpMultiplier,weekDamageMultiplier,xpForLevel} from './rules';
+import {draftCards,protocolBonus,statsFor,weekHpMultiplier,weekDamageMultiplier,xpForLevel} from './rules';
+import {ProtocolMarks} from '../protocol';
 import {relicStats,clampStats,relicBulletSpeed} from '../../../progression/relics';
 import {RewardSystem} from './rewards';
 import {freshMetrics} from '../../../core/metrics';
@@ -23,10 +25,10 @@ import {WeaponSystem} from './system';
 import {SpatialGrid} from '../../../core/grid';
 import {clamp,colorNumber,distanceSq,segmentDistanceSq,TAU} from '../../../core/math';
 import {freshProgress,LOGICAL_HEIGHT,LOGICAL_WIDTH} from '../../../core/run';
-import {DeathQueue,type Death} from '../../../combat/deaths';
+import {ContentDeathQueue,type ContentDeath} from './deaths';
 import {UltimateSystem} from './ultimates';
 import {applyPickup,rollPickup} from './pickups';
-import type {DamageSource,DropKind,EnemyRank,HUD,Phase,Player,PlayerStats,Skill,WeaponKind} from '../../../types';
+import type {DropKind,EnemyRank,HUD,Phase,Player,PlayerStats} from '../../../types';
 import type {Discovery} from '../../types';
 import type {AssessmentEvent,AssessmentServices,RuntimeGrants,RuntimeServices,RuntimeStep} from '../../runtime/contracts';
 import type {ContentCatalog} from './catalog';
@@ -37,7 +39,7 @@ export class ContentState {
  readonly enemies=new EnemyPool();readonly shots=new ShotPool(2560);readonly enemyShots=new ShotPool(1280);readonly areas=new AreaPool();readonly drops=new DropPool();readonly grid=new SpatialGrid(2560);
  readonly navigation:Navigation;readonly world:WorldSnapshot;readonly danger:DangerScheduler;readonly weaponSystem:WeaponSystem;readonly bossSystem:BossSystem;readonly director:EnemyDirector;readonly behaviors:EnemyBehaviors;readonly rewards:RewardSystem;readonly ultimate:UltimateSystem;readonly threats:FirstChapterBehaviors;
  readonly manifest;readonly streams;readonly random;readonly dropRandom;readonly draftRandom;
- readonly weapons:Skill[]=[];readonly passives:Skill[]=[];readonly consumed:string[]=[];readonly relics:string[]=[];readonly progress=freshProgress();readonly discoveries:Discovery[]=[];readonly visualEvents:{serial:number;event:ContentVisualEvent}[]=[];readonly hazards:S2Hazard[]=[];readonly deaths=new DeathQueue();readonly momentum=new CombatMomentum();
+ readonly weapons:ContentSkill[]=[];readonly passives:ContentSkill[]=[];readonly consumed:string[]=[];readonly relics:string[]=[];readonly progress=freshProgress();readonly discoveries:Discovery[]=[];readonly visualEvents:{serial:number;event:ContentVisualEvent}[]=[];readonly hazards:S2Hazard[]=[];readonly deaths=new ContentDeathQueue();readonly momentum=new CombatMomentum();readonly protocol=new ProtocolMarks(this);
  readonly player:Player={x:3072,y:3072,prevX:3072,prevY:3072,vx:0,vy:0,facing:-Math.PI/2,hp:110,shield:0,shieldTime:0,invincible:1,lastHurt:-100};
  // Regional content and safety scheduling share this run's world.
  readonly landmarks={zone:undefined as ReturnType<typeof worldZoneAt>,trackTime:0,rangeTime:0,channel:0};
@@ -49,6 +51,7 @@ export class ContentState {
  private rewardedGeneration=new Uint32Array(this.enemies.capacity);
  private navTimer=0;private pendingLevels=0;private levelFeedbackFrame=-1;private deadBoss=-1;private nextMerge=1;private specialCooldown:Record<string,number>={};private hazardId=0;private instanceSerial=0;private visualSerial=0;
  private disposed=false;private waitingForAssessment=false;private moveScratch={x:0,y:0};private grantBoundary:RuntimeGrants|null=null;private transitions=new Set<string>();
+ private drafts=0;private offeredNew=false;
  constructor(readonly content:ContentCatalog,services:RuntimeServices,world:WorldSnapshot=createS2WorldSnapshot(services.snapshot.regions)){
   this.manifest=services.snapshot;this.streams=services.streams;this.random=this.streams.combat;this.dropRandom=this.streams.drop;this.draftRandom=this.streams.draft;
   const initial=this.manifest.initialWeapon,definition=content.weaponById[initial.id];
@@ -68,7 +71,7 @@ export class ContentState {
  private calculateStats(relics=this.relics){const s=statsFor(this.content,this.manifest,this.passives);if(this.manifest.mode==='daily'){if(this.manifest.dailyRule==='piercing')s.multi++;if(this.manifest.dailyRule==='lastMinute')s.charge+=.35;if(this.manifest.dailyRule==='assistants')s.summon+=.25;if(this.manifest.dailyRule==='nightRun')s.speed*=1.2;if(this.manifest.dailyRule==='construction')s.area*=1.2;}const stats=relicStats(s,relics);stats.invulnerability=invulnerabilityFor(stats.invulnerability);return stats;}
  previewRelic(id:string){return this.calculateStats([...this.relics,id]);}
  recalculateStats(mode:'increase'|'ratio'='increase',previous=this.stats.maxHp){const hp=this.player.hp;this.stats=this.calculateStats();this.player.hp=Math.min(this.stats.maxHp,mode==='ratio'?hp*this.stats.maxHp/previous:hp+Math.max(0,this.stats.maxHp-previous)*(this.manifest.dailyRule==='overload'?.6:1));this.player.shield=Math.min(this.player.shield,this.stats.maxHp*.5);}
- discover(value:string,evolution=false){const split=value.indexOf(':'),category:Discovery['category']=evolution?'evolution':split<0?'item':value.slice(0,split) as Discovery['category'],id=split<0?value:value.slice(split+1);if(!this.discoveries.some(d=>d.category===category&&d.id===id))this.discoveries.push({semesterId:'s2',category,id,evidence:'run'});}
+ discover(value:string,evolution=false){const split=value.indexOf(':'),prefixed=['enemy','fusion','relic','event','region','item'].includes(value.slice(0,split)),category:Discovery['category']=evolution?'evolution':prefixed?value.slice(0,split) as Discovery['category']:'item',id=prefixed?value.slice(split+1):value;if(!this.discoveries.some(d=>d.category===category&&d.id===id))this.discoveries.push({semesterId:'s2',category,id,evidence:'run'});}
  safePoint(x:number,y:number){return worldSafePoint(this.world,x,y);}
  rebuildGrid(){this.grid.rebuild(this.enemies.active,this.enemies.x,this.enemies.y);}
  emit(event:ContentVisualEvent){this.visualEvents.push({serial:++this.visualSerial,event});if(this.visualEvents.length>2000)this.visualEvents.shift();}
@@ -117,7 +120,7 @@ export class ContentState {
   }
   }finally{this.grantBoundary=null;}
  }
- private clearThreats(){this.inputX=this.inputY=0;this.bossEnemy=-1;this.enemies.clear();this.deaths.clear();this.enemyShots.clear();this.shotOrigins.clear();this.danger.clear();this.threats.clear();this.ordinarySpawnsAllowed=false;this.rebuildGrid();}
+ private clearThreats(){this.inputX=this.inputY=0;this.bossEnemy=-1;this.enemies.clear();this.protocol.clear();this.deaths.clear();this.enemyShots.clear();this.shotOrigins.clear();this.danger.clear();this.threats.clear();this.ordinarySpawnsAllowed=false;this.rebuildGrid();}
  canAcknowledge(kind:'assessmentIntro'|'assessmentReward'){return!this.hasPendingRewards&&(kind==='assessmentIntro'?!!this.assessmentAdmission:this.assessmentRewardDone);}
  command(value:unknown){
   if(this.disposed||!value||typeof value!=='object')return{accepted:false};const c=value as Record<string,unknown>;
@@ -141,11 +144,12 @@ export class ContentState {
  spawnSummon(kind:string,owner:number,x:number,y:number,lifetime=12,attached=false){const e=this.enemies;if(!this.enemySourceAlive(owner,e.generation[owner]))return-1;const id=this.spawnEnemy(kind,x,y,0,undefined,attached);if(id>=0){e.owner[id]=owner;e.ownerGeneration[id]=e.generation[owner];e.lifetime[id]=lifetime;e.xp[id]=0;e.rewardWeight[id]=0;e.chainXp[id]=0;e.chainWeight[id]=0;e.reward[id]=0;e.splitGeneration[id]=1;}return id;}
  enemySourceAlive(id:number,generation:number):boolean{const e=this.enemies;for(let depth=0;depth<e.capacity;depth++){if(!e.valid(id,generation)||e.hp[id]<=0)return false;if(e.owner[id]<0)return true;generation=e.ownerGeneration[id];id=e.owner[id];}return false;}
  cancelEnemyAttacks(id:number,generation=this.enemies.generation[id]){const e=this.enemies;if(!e.valid(id,generation))return;this.danger.cancelOwner(id,generation);this.threats.forget(id,generation);for(const child of [...e.active])if(e.owner[child]===id&&e.ownerGeneration[child]===generation)this.releaseEnemy(child);}
- releaseEnemy(id:number){if(!this.enemies.alive[id])return;this.cancelEnemyAttacks(id);this.enemies.release(id);}
+ releaseEnemy(id:number){if(!this.enemies.alive[id])return;this.cancelEnemyAttacks(id);this.protocol.forget(id);this.enemies.release(id);}
  frozenTarget(id:number){const e=this.enemies;if(e.owner[id]>=0||e.rank[id]===RANK_CODE.bossAdd)return;if(!e.frozenOnce[id]){e.frozenOnce[id]=1;this.progress.frozen++;}}
- hitEnemy(id:number,baseDamage:number,source:WeaponKind|DamageSource,x:number,y:number,knockback=1,canCrit=true,canChain=true,clearChain=false,fixed=false):number{
+ hitEnemy(id:number,baseDamage:number,source:ContentWeaponId|ContentDamageSource,x:number,y:number,knockback=1,canCrit=true,canChain=true,clearChain=false,fixed=false,secondary=false):number{
   const e=this.enemies;if(!e.alive[id]||e.hp[id]<=0||baseDamage<=0)return 0;const src=asSource(source),rank=rankName(e.rank[id]),crit=canCrit&&this.random.next()<this.stats.crit;let damage=baseDamage*(crit?this.stats.critDamage:1);
   if(!fixed&&this.landmarks.zone?.id==='garden'&&['elite','miniBoss','boss'].includes(rank))damage*=1.2;
+  if(!fixed&&src.kind==='weapon'){const bonus=protocolBonus(this.content,this.passives);if(bonus>0)damage*=1+this.protocol.hit(id,bonus,secondary)*(rank==='boss'?.5:1);}
   if(this.content.enemies[e.kind[id]].id==='inspector'&&e.active.some(n=>this.content.enemies[e.kind[n]].id==='node'&&e.hp[n]>0&&e.owner[n]===id&&e.ownerGeneration[n]===e.generation[id]))damage*=.6;
   const absorbed=Math.min(e.shield[id],damage);e.shield[id]-=absorbed;const actual=actualDamage(e.hp[id],damage-absorbed),total=actual+absorbed;e.lastHit[id]=this.combatTime;
   this.metrics.hits++;this.metrics.shieldDamage+=absorbed;if(!e.hitCount[id])e.firstHit[id]=this.combatTime;e.hitCount[id]=Math.min(65535,e.hitCount[id]+1);this.metrics.criticalHits+=Number(crit);this.metrics.overkill+=Math.max(0,damage-total);e.hp[id]-=actual;const key=damageKey(src);this.damage[key]=(this.damage[key]??0)+total;e.flash[id]=crit?.077:.065;
@@ -157,7 +161,7 @@ export class ContentState {
   if(crit&&canChain&&e.owner[id]<0&&rank!=='bossAdd'&&src.kind==='weapon'&&this.momentum.critical())this.criticalChain(id,e.x[id],e.y[id],baseDamage*.25,src.id);return total;
  }
  resolveDeaths(){this.deaths.drain(this.enemies,d=>this.resolveDeath(d));}
- private resolveDeath(death:Death){const e=this.enemies,id=death.slot;if(this.rewardedGeneration[id]===death.generation)return;this.rewardedGeneration[id]=death.generation;const def=this.content.enemies[e.kind[id]],rank=rankName(e.rank[id]),x=e.x[id],y=e.y[id],weight=e.rewardWeight[id]+(death.clearChain?e.chainWeight[id]:0),xp=e.xp[id]+(death.clearChain?e.chainXp[id]:0),attached=e.owner[id]>=0||rank==='bossAdd';
+ private resolveDeath(death:ContentDeath){const e=this.enemies,id=death.slot;if(this.rewardedGeneration[id]===death.generation)return;this.rewardedGeneration[id]=death.generation;this.protocol.forget(id);const def=this.content.enemies[e.kind[id]],rank=rankName(e.rank[id]),x=e.x[id],y=e.y[id],weight=e.rewardWeight[id]+(death.clearChain?e.chainWeight[id]:0),xp=e.xp[id]+(death.clearChain?e.chainXp[id]:0),attached=e.owner[id]>=0||rank==='bossAdd';
   this.emit({type:'death',slot:id,generation:e.generation[id],...enemyVisual(def.id),rank,batch:this.frame,angle:Math.atan2(e.vy[id],e.vx[id]),x,y,color:colorNumber(def.color),size:e.radius[id],weapon:death.source.kind==='weapon'?death.source.id:undefined,priority:rank!=='normal'});
   this.cancelEnemyAttacks(id);
   if(attached){e.release(id);return;}
@@ -177,7 +181,7 @@ export class ContentState {
  }
  private killFeedback(rank:EnemyRank,weight:number){const p=this.player,result=this.momentum.kill(rank,this.combatTime,weight);if(result.milestone)this.emit({type:'combo',x:p.x,y:p.y,color:0xffd775,size:90,value:result.milestone,text:result.milestone>=100?'学术无双':result.milestone>=50?'势不可挡':result.milestone>=25?'灵感喷涌':'渐入佳境'});if(result.clear){this.metrics.clearRewards++;for(const id of this.drops.active){const d=this.drops.data[id];if(d.kind==='xp'&&distanceSq(p.x,p.y,d.x,d.y)<=360**2)d.attract=true;}this.emit({type:'clear',x:p.x,y:p.y,color:0x85ead0,size:360,text:'清场 · 学分汇流 +15 狂热',duration:.7});}if(result.frenzy)this.startFrenzyFeedback();}
  private startFrenzyFeedback(){this.metrics.frenzyTriggers++;this.emit({type:'frenzy',x:this.player.x,y:this.player.y,color:0xffb354,size:240,text:'学术狂热',duration:.8});this.impact(4);}
- private criticalChain(origin:number,x:number,y:number,damage:number,source:WeaponKind){const e=this.enemies,visited=[origin];this.metrics.criticalChains++;for(let hop=0;hop<2;hop++){let target=-1,best=130**2;for(const id of e.active){if(visited.includes(id)||e.hp[id]<=0)continue;const d=distanceSq(x,y,e.x[id],e.y[id]);if(d<=best){best=d;target=id;}}if(target<0)break;visited.push(target);const tx=e.x[target],ty=e.y[target];this.metrics.chainDamage+=this.hitEnemy(target,damage,source,x,y,.4,false,false);this.emit({type:'chain',x,y,x2:tx,y2:ty,color:0xffdf81,size:3,duration:.22,weapon:source});x=tx;y=ty;}}
+ private criticalChain(origin:number,x:number,y:number,damage:number,source:ContentWeaponId){const e=this.enemies,visited=[origin];this.metrics.criticalChains++;for(let hop=0;hop<2;hop++){let target=-1,best=130**2;for(const id of e.active){if(visited.includes(id)||e.hp[id]<=0)continue;const d=distanceSq(x,y,e.x[id],e.y[id]);if(d<=best){best=d;target=id;}}if(target<0)break;visited.push(target);const tx=e.x[target],ty=e.y[target];this.metrics.chainDamage+=this.hitEnemy(target,damage,source,x,y,.4,false,false,false,false,true);this.emit({type:'chain',x,y,x2:tx,y2:ty,color:0xffdf81,size:3,duration:.22,weapon:source});x=tx;y=ty;}}
  originForEnemy(id:number,kind:DamageOrigin['kind']='contact'):DamageOrigin{const e=this.enemies;let source=id;for(let depth=0;depth<e.capacity&&e.owner[source]>=0&&e.valid(e.owner[source],e.ownerGeneration[source]);depth++)source=e.owner[source];const rank=rankName(e.rank[source]);return{kind,id,generation:e.generation[id],tier:rank==='bossAdd'&&this.bossActive?'boss':tierForRank(rank)};}
  hurtPlayer(damage:number,x:number,y:number,origin:DamageOrigin={kind:'environment',id:0,generation:0,tier:'normal'}){if(this.player.invincible>0||this.player.hp<=0||!Number.isFinite(damage)||damage<=0)return;this.incomingHits.push({...origin,damage,x,y});}
  private resolvePlayerHit(){
@@ -199,7 +203,7 @@ export class ContentState {
  cancelEnemyProjectiles(owner:number,ownerGeneration:number){for(const id of [...this.enemyShots.active]){const source=this.shotOrigins.get(id);if(source?.generation===this.enemyShots.generation[id]&&source.owner===owner&&source.ownerGeneration===ownerGeneration){this.enemyShots.release(id);this.shotOrigins.delete(id);}}}
  freezeHostiles(radius:number,seconds:number){const p=this.player;for(const id of this.enemyShots.active){const s=this.enemyShots.data[id];if(s.ordinary&&distanceSq(p.x,p.y,s.x,s.y)<=radius**2)s.frozen=Math.max(s.frozen,seconds);}for(const h of this.hazards)if(h.ordinary!==false&&distanceSq(p.x,p.y,h.x,h.y)<=radius**2)h.frozen=Math.max(h.frozen??0,seconds);}
  cancelProjectiles(radius:number,limit=Infinity){const p=this.player;let count=0;for(const id of [...this.enemyShots.active]){const s=this.enemyShots.data[id];if(count>=limit)break;if(distanceSq(p.x,p.y,s.x,s.y)<=radius**2){this.enemyShots.release(id);count++;this.emit({type:'block',x:s.x,y:s.y,color:0xffffff,size:15});}}}
- clearEnemies(radius:number,source:DamageSource,percent:Partial<Record<EnemyRank,[number,number]>>){const p=this.player,e=this.enemies;for(const id of [...e.active]){if(e.hp[id]<=0||distanceSq(p.x,p.y,e.x[id],e.y[id])>radius**2)continue;const rank=rankName(e.rank[id]),value=percent[rank],damage=rank==='normal'||rank==='bossAdd'?e.hp[id]+e.shield[id]:value?Math.min(e.maxHp[id]*value[0],value[1]):0;this.hitEnemy(id,damage,source,p.x,p.y,3,false,false,true,true);}this.cancelProjectiles(radius);this.danger.cancelNear(p,radius);this.emit({type:'ring',x:p.x,y:p.y,color:0xe9bf5e,size:radius,duration:.8,text:'提前交稿！'});this.impact(8,.05);}
+ clearEnemies(radius:number,source:ContentDamageSource,percent:Partial<Record<EnemyRank,[number,number]>>){const p=this.player,e=this.enemies;for(const id of [...e.active]){if(e.hp[id]<=0||distanceSq(p.x,p.y,e.x[id],e.y[id])>radius**2)continue;const rank=rankName(e.rank[id]),value=percent[rank],damage=rank==='normal'||rank==='bossAdd'?e.hp[id]+e.shield[id]:value?Math.min(e.maxHp[id]*value[0],value[1]):0;this.hitEnemy(id,damage,source,p.x,p.y,3,false,false,true,true);}this.cancelProjectiles(radius);this.danger.cancelNear(p,radius);this.emit({type:'ring',x:p.x,y:p.y,color:0xe9bf5e,size:radius,duration:.8,text:'提前交稿！'});this.impact(8,.05);}
  private updateEnemyShots(dt:number){const p=this.player,speed=relicBulletSpeed(this.relics)*(this.manifest.dailyRule==='lastMinute'?1.2:1)*(this.activeEvent==='rainstorm'?.85:1);for(let n=this.enemyShots.active.length-1;n>=0;n--){const id=this.enemyShots.active[n],s=this.enemyShots.data[id];if(s.frozen>0){s.frozen=Math.max(0,s.frozen-dt);continue;}s.life-=dt;s.age+=dt;if(s.life<=0){this.enemyShots.release(id);continue;}if(s.age<0)continue;s.prevX=s.x;s.prevY=s.y;s.x+=s.vx*dt*speed;s.y+=s.vy*dt*speed;if(segmentDistanceSq(p.x,p.y,s.prevX,s.prevY,s.x,s.y)<(s.radius+12)**2){const stored=this.shotOrigins.get(id);this.hurtPlayer(s.damage,s.prevX,s.prevY,stored?.generation===this.enemyShots.generation[id]?stored.origin:{kind:'projectile',id,generation:this.enemyShots.generation[id],tier:'normal'});this.enemyShots.release(id);}}}
  addHazard(kind:S2Hazard['kind'],x:number,y:number,x2:number,y2:number,radius:number,warning:number,life:number,damage:number,safeAngle?:number,extra:HazardOptions={}){
   const owner=extra.owner??(this.bossActive&&this.bossEnemy>=0?this.bossEnemy:undefined),tier=extra.tier??(owner!==undefined?this.originForEnemy(owner).tier:this.bossActive?'boss':extra.ordinary===false?'elite':'normal');
@@ -223,9 +227,9 @@ export class ContentState {
  magnet(){for(const id of this.drops.active)if(this.drops.data[id].kind==='xp')this.drops.data[id].attract=true;this.message('磁铁 · 全校园学分正在赶来');this.emit({type:'ring',x:this.player.x,y:this.player.y,color:0x52b7b8,size:500,duration:.5});}
  bomb(){applyPickup(this,'bomb');}
  addExperience(value:number){value=this.inheritanceExperience(value);this.metrics.creditedXp+=Math.max(0,value);this.xp+=Math.max(0,value);while(this.xp>=xpForLevel(this.level)){this.xp-=xpForLevel(this.level);this.level++;this.pendingLevels++;this.metrics.firstUpgrade??=this.combatTime;}if(this.pendingLevels&&this.phase==='playing'&&this.levelFeedbackFrame!==this.frame){this.levelFeedbackFrame=this.frame;this.emit({type:'level',x:this.player.x,y:this.player.y,color:0xf1c965,size:160});}}
- private openDraft(){if(this.pendingLevels<=0)return;this.pendingLevels--;this.draftToken=this.rewards.nextToken();this.cards=draftCards(this.content,this.weapons,this.passives,this.stats.luck,this.draftRandom,this.combatTime<180,{weapons:this.manifest.weapons,passives:this.manifest.passives,consumed:this.consumed});this.setPhase('draft');}
- private applyCard(index:number,token?:number){if(this.phase!=='draft'||token!==undefined&&token!==this.draftToken)return;const card=this.cards[index];if(!card)return;if(card.type==='heal')this.heal(30);else if(card.type==='shield')this.addShield(30,12*this.stats.duration);else if(card.type==='credit')this.bonusCredits+=3;else{const owned=card.type==='weapon'?this.weapons:this.passives,existing=owned.find(w=>w.id===card.id);if(existing)existing.level=Math.min(5,existing.level+1);else if(owned.length<6){const skill:Skill={id:card.id as Skill['id'],instanceId:this.nextInstance(),kind:'base',level:1,rarity:card.rarity,evolved:false};owned.push(skill);this.discover(skill.id);}this.recalculateStats();this.weaponSystem.reset(card.id);if(this.weapons[0]?.level===5)this.metrics.mainLv5??=this.combatTime;}this.cards=[];this.setPhase('playing');this.handlePending();}
+ private openDraft(){if(this.pendingLevels<=0)return;this.pendingLevels--;this.drafts++;this.draftToken=this.rewards.nextToken();this.cards=draftCards(this.content,this.weapons,this.passives,this.stats.luck,this.draftRandom,this.combatTime<180,{weapons:this.manifest.weapons,passives:this.manifest.passives,consumed:this.consumed},this.drafts<=4&&!this.offeredNew);this.offeredNew||=this.cards.some(c=>c.type==='weapon'&&c.id.startsWith('s2:'));this.setPhase('draft');}
+ private applyCard(index:number,token?:number){if(this.phase!=='draft'||token!==undefined&&token!==this.draftToken)return;const card=this.cards[index];if(!card)return;if(card.type==='heal')this.heal(30);else if(card.type==='shield')this.addShield(30,12*this.stats.duration);else if(card.type==='credit')this.bonusCredits+=3;else{const owned=card.type==='weapon'?this.weapons:this.passives,existing=owned.find(w=>w.id===card.id);if(existing)existing.level=Math.min(5,existing.level+1);else if(owned.length<6){const skill:ContentSkill={id:card.id as ContentSkill['id'],instanceId:this.nextInstance(),kind:'base',level:1,rarity:card.rarity,evolved:false};owned.push(skill);this.discover(skill.id);}this.recalculateStats();this.weaponSystem.reset(card.id);if(this.weapons[0]?.level===5)this.metrics.mainLv5??=this.combatTime;}this.cards=[];this.setPhase('playing');this.handlePending();}
  openChest(boss=false,preferred=''){this.rewards.openChest(boss?3:1,boss,preferred);}
  openContract(){this.rewards.openContract();}
- dispose(){if(this.disposed)return;this.disposed=true;this.inputX=this.inputY=0;for(const skill of this.weapons)this.weaponSystem.remove(skill.id);this.rewards.clear();this.visualEvents.length=0;this.enemies.clear();this.shots.clear();this.enemyShots.clear();this.areas.clear();this.drops.clear();this.deaths.clear();this.danger.clear();this.threats.clear();this.shotOrigins.clear();this.incomingHits.length=0;}
+ dispose(){if(this.disposed)return;this.disposed=true;this.inputX=this.inputY=0;for(const skill of this.weapons)this.weaponSystem.remove(skill.id);this.weaponSystem.summons.remove('s2:drone');this.weaponSystem.whiteboard.remove();this.rewards.clear();this.visualEvents.length=0;this.enemies.clear();this.shots.clear();this.enemyShots.clear();this.areas.clear();this.drops.clear();this.deaths.clear();this.protocol.clear();this.danger.clear();this.threats.clear();this.shotOrigins.clear();this.incomingHits.length=0;}
 }

@@ -1,16 +1,19 @@
+import type {ContentSkill} from '../types';
 import type {ContentCatalog} from './catalog';
 import type {Immutable} from '../../runtime/contracts';
 import type {S2RunSnapshot} from '../../types';
 // P04 bounded port of src/progression/rules.ts; S1 source remains frozen.
 import { clamp, Random } from '../../../core/math';
 import {pressureAt} from '../pressure';
-import type { DraftCard, PlayerStats, Rarity, Skill } from '../../../types';
+import type { DraftCard, PlayerStats, Rarity } from '../../../types';
 
 export const xpForLevel = (level:number) => Math.ceil((12+6*(level-1)+.5*(level-1)**2)*(level<=12?.5:level<24?.5+(level-12)/24:1));
 export const weekHpMultiplier=(week:number)=>pressureAt(week).hp;
 export const weekDamageMultiplier=(week:number)=>pressureAt(week).damage;
 export const xpGemTier=(value:number)=>value>=192?4:value>=48?3:value>=12?2:value>=4?1:0;
-export function statsFor(content:ContentCatalog,save:Immutable<S2RunSnapshot>, passives:Skill[]):PlayerStats {
+/** S2 passive quality and final vulnerability cap are resolved only here. */
+export function protocolBonus(content:ContentCatalog,passives:readonly ContentSkill[]){const s=passives.find(p=>p.id==='s2:protocol');return s?Math.min(.15,content.passiveById[s.id].values[s.level-1]*content.rarityMultipliers[s.rarity]/100):0;}
+export function statsFor(content:ContentCatalog,save:Immutable<S2RunSnapshot>, passives:ContentSkill[]):PlayerStats {
   const character=content.characters.find(c=>c.id===save.character)??content.characters[0],t=save.talents;
   const p=(id:string)=>passives.find(p=>p.id===id);
   const value=(id:string)=>{const s=p(id);return s?content.passiveById[id].values[s.level-1]*content.rarityMultipliers[s.rarity]:0;};
@@ -39,7 +42,7 @@ export function rollRarity(rng:Random,luck:number):Rarity {
   const weights=[60,27*(1+.5*luck),11*(1+1.5*luck),2*(1+3*luck)];
   return rng.weighted([0,1,2,3],r=>weights[r]) as Rarity;
 }
-export function draftCards(content:ContentCatalog,weapons:Skill[],passives:Skill[],luck:number,rng:Random,early=false,available?:{weapons:readonly string[];passives:readonly string[];consumed?:readonly string[]}):DraftCard[] {
+export function draftCards(content:ContentCatalog,weapons:ContentSkill[],passives:ContentSkill[],luck:number,rng:Random,early=false,available?:{weapons:readonly string[];passives:readonly string[];consumed?:readonly string[]},preferNew=false):DraftCard[] {
   const pool:DraftCard[]=[];
   for(const [defs,owned,type] of [[content.weapons,weapons,'weapon'],[content.passives,passives,'passive']] as const){
     for(const def of defs){
@@ -52,8 +55,9 @@ export function draftCards(content:ContentCatalog,weapons:Skill[],passives:Skill
   }
   const selected:DraftCard[]=[];
   const take=(eligible:DraftCard[])=>{if(!eligible.length||selected.length>=3)return;const card=rng.weighted(eligible,()=>1);selected.push(card);pool.splice(pool.indexOf(card),1);};
+  if(preferNew)take(pool.filter(c=>c.type==='weapon'&&c.id.startsWith('s2:')&&!weapons.some(w=>w.id===c.id)));
   if(early){
-    if(weapons.length<4)take(pool.filter(c=>c.type==='weapon'&&!weapons.some(w=>w.id===c.id)));
+    if(weapons.length<4&&!selected.some(c=>c.type==='weapon'&&!weapons.some(w=>w.id===c.id)))take(pool.filter(c=>c.type==='weapon'&&!weapons.some(w=>w.id===c.id)));
     // Keep upgrading a chosen build possible on every early draft.
     const main=weapons[0];
     take(pool.filter(c=>[...weapons,...passives].some(s=>s.id===c.id)));
@@ -74,7 +78,7 @@ export function draftCards(content:ContentCatalog,weapons:Skill[],passives:Skill
   while(selected.length<3)selected.push(filler.shift()!);
   return selected;
 }
-export function evolutionReady(content:ContentCatalog,weapons:Skill[],passives:Skill[]) {
+export function evolutionReady(content:ContentCatalog,weapons:ContentSkill[],passives:ContentSkill[]) {
   return weapons.filter(w=>w.level===5&&!w.evolved&&!content.weaponById[w.id]?.fusion&&passives.some(p=>p.id===content.weaponById[w.id]?.evolution.passive&&p.level>=1));
 }
-export function skillName(content:ContentCatalog,skill:Skill) { return skill.evolved?content.weaponById[skill.id].evolution.name:(content.weaponById[skill.id]??content.passiveById[skill.id]).name; }
+export function skillName(content:ContentCatalog,skill:ContentSkill) { return skill.evolved?content.weaponById[skill.id].evolution.name:(content.weaponById[skill.id]??content.passiveById[skill.id]).name; }

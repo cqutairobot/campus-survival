@@ -5,7 +5,8 @@ import {ULTIMATES} from '../../../data/ultimates';
 import {RELICS} from '../../../data/relics';
 import {NORMAL_IDS,SPAWN_RATES,WAVE_WEIGHTS,WEEK_GROUP} from '../../../data/waves';
 import {immutableSnapshot} from '../../types';
-import type {Character,EnemyDef,EnemyBehaviorId,PassiveDef,WeaponDef} from '../../../types';
+import type {Character,EnemyDef,EnemyBehaviorId} from '../../../types';
+import type {ContentPassiveDef,ContentWeaponDef} from '../types';
 
 /** S2 extends its own directory without widening the frozen S1 unions. */
 export type ContentEnemyDef=Omit<EnemyDef,'id'|'behavior'>&{id:string;behavior:EnemyBehaviorId|'bike'|'reservation'|'parceler'|'dispatcher'|'proposalBoard'};
@@ -13,12 +14,12 @@ export type ContentEnemyDef=Omit<EnemyDef,'id'|'behavior'>&{id:string;behavior:E
 /** The only legacy-definition import boundary. Cloning protects the S1 arrays;
  * every S2 lookup (including presentation) uses this injected directory. */
 export interface ContentCatalog {
- readonly weapons:readonly WeaponDef[];readonly passives:readonly PassiveDef[];
+ readonly weapons:readonly ContentWeaponDef[];readonly passives:readonly ContentPassiveDef[];
  readonly fusions:readonly FusionDef[];readonly enemies:readonly ContentEnemyDef[];
  readonly characters:readonly Character[];readonly rarityMultipliers:readonly number[];
  readonly pickups:typeof PICKUPS;readonly ultimates:typeof ULTIMATES;readonly relics:typeof RELICS;
  readonly waves:{normalIds:readonly string[];rates:readonly number[];weights:typeof WAVE_WEIGHTS;groups:readonly number[]};
- readonly weaponById:Readonly<Record<string,WeaponDef>>;readonly passiveById:Readonly<Record<string,PassiveDef>>;
+ readonly weaponById:Readonly<Record<string,ContentWeaponDef>>;readonly passiveById:Readonly<Record<string,ContentPassiveDef>>;
  readonly fusionById:Readonly<Record<string,FusionDef>>;readonly enemyById:Readonly<Record<string,ContentEnemyDef>>;
  readonly enemyIndex:Readonly<Record<string,number>>;
  readonly pickupById:Readonly<Record<string,typeof PICKUPS[number]>>;

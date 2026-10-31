@@ -10,7 +10,8 @@ import {LOGICAL_WIDTH,LOGICAL_HEIGHT} from '../../../core/run';
 import {RANK_CODE} from '../../../data/enemies';
 import {REGION_CONDITIONS} from '../../../world/landmarks';
 import {warningFloor} from '../world';
-import type {ContentVisualEvent} from '../enemy-visuals';
+import {legacyFeedbackEvent,type ContentVisualEvent} from '../enemy-visuals';
+import {BuildPanel} from './BuildPanel';
 import {ringRadius} from '../danger';
 import {InputController,presentationPhase,type Joystick,type SemesterControls} from './input';
 import { clamp, distanceSq, lerp, TAU } from '../../../core/math';
@@ -22,7 +23,7 @@ import {Haptics} from '../../../fx/haptics';
 import {drawUltimate} from '../../../fx/ultimates';
 import {drawSignature} from '../../../render/signatures';
 import {xpGemTier} from '../legacy/rules';
-import type { Settings, VisualEvent } from '../../../types';
+import type { Settings } from '../../../types';
 import { GameAudio } from '../../../audio/audio';
 import { TextureCatalog } from './TextureCatalog';
 import { resources,prepareFonts,type LoadProgress } from '../../../assets/loader';
@@ -36,7 +37,7 @@ import {enemyMaterial} from '../../../presentation/materials';
 import {attackFeel} from '../../../presentation/weapon-feedback';
 import {qualityBudget,qualityName} from '../../../presentation/quality';
 
-interface Transient {event:VisualEvent;life:number;total:number;hold?:number}
+interface Transient {event:ContentVisualEvent;life:number;total:number;hold?:number}
 export class SemesterScene implements SemesterView<LegacyContentDTO> {
   readonly app=new Application();readonly audio:GameAudio;
   private textures!:TextureCatalog;private geometry!:TextureLibrary;private assetsRelease:(()=>void)|undefined;private loadAbort=new AbortController();
@@ -56,6 +57,7 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
   clearUIInput(){this.input?.clear();}
   private latest:Immutable<SemesterRunView<LegacyContentDTO>>|null=null;
   private controls:SemesterControls|null=null;private eventCursor=0;
+  private buildPanel:BuildPanel|null=null;
   private viewWidth=LOGICAL_WIDTH;private viewHeight=LOGICAL_HEIGHT;
   private get game(){if(!this.latest)throw Error('Publish opening DTO before initialization');return this.latest.content;}
   private get phase(){return presentationPhase(this.latest!);}
@@ -80,6 +82,7 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
     this.chapterLabel.position.set(18,18);this.app.stage.addChild(this.letterbox,this.world,this.blackSprite,this.dangerLayer,this.hurtSprite,this.viewportMask,this.chapterLabel);
     this.createMap();this.playerShadow.ellipse(0,0,17,6).fill({color:0x172d31,alpha:.25});this.entityLayer.addChild(this.playerShadow);this.player=new Sprite(this.textures.get('player'));this.player.anchor.set(.5);this.player.scale.set(fitArtScale(this.player.texture,64));this.entityLayer.addChild(this.player);this.preloadBossArt();
     this.input=new InputController(this.app.canvas,this.controls!,this.onStick);this.resizeObserver=new ResizeObserver(()=>this.resize());this.resizeObserver.observe(this.host);
+    this.buildPanel=new BuildPanel(this.host,this.content,this.controls,()=>this.clearUIInput());
     this.applySettings(this.settings);this.resize();this.ready=true;this.lastTime=performance.now();this.animation=requestAnimationFrame(this.animate);
   }
   private createMap(){
@@ -170,6 +173,7 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
   };
   private render(dt:number,alpha:number){
     const g=this.game,p=g.player,w=this.app.screen.width,time=g.combatTime;
+    this.buildPanel?.update(this.latest!);
     if(this.renderedPhase!==this.phase){this.renderedPhase=this.phase;if(this.phase!=='playing')this.input.clear();}
     const px=lerp(p.prevX,p.x,alpha),py=lerp(p.prevY,p.y,alpha),cameraBlend=1-Math.exp(-dt*10);
     this.cameraX=lerp(this.cameraX,px,cameraBlend);this.cameraY=lerp(this.cameraY,py,cameraBlend);
@@ -192,10 +196,11 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
       const skill=event.weapon?g.weapons.find(skill=>skill.id===event.weapon):undefined;
       return skill?{...event,evolved:event.evolved??skill.evolved,level:event.level??skill.level}:event;
     });
-    const cues=this.feedback.consume(allEvents.filter(e=>this.inView(e.x,e.y,e.size)));
+    const feedbackEvents=new Map(allEvents.map(e=>[e,legacyFeedbackEvent(e)]));
+    const cues=this.feedback.consume(allEvents.filter(e=>this.inView(e.x,e.y,e.size)).map(e=>feedbackEvents.get(e)!));
     for(const cue of cues)if(cue.profile.wave&&this.settings.motion&&this.settings.distortion){const point=eventPixelPosition(cue.event.x,cue.event.y,ox,oy,scale,camera.rotation);this.postFX.event(cue.profile,point,this.quality);}
     const holds=new Map(cues.map(c=>[c.event,c.hold]));
-    for(const event of allEvents){this.audio.event({...event,pan:Math.max(-.65,Math.min(.65,(event.x-this.cameraX)/(this.viewWidth*.6)))});this.haptics.event(event,this.settings.haptics,this.elapsed*1000);this.handleEvent(event,holds.get(event)??0);}
+    for(const event of allEvents){const feedback=feedbackEvents.get(event)!;this.audio.event({...feedback,pan:Math.max(-.65,Math.min(.65,(event.x-this.cameraX)/(this.viewWidth*.6)))});this.haptics.event(feedback,this.settings.haptics,this.elapsed*1000);this.handleEvent(event,holds.get(feedback)??0);}
     this.audio.flush();
     const visualDt=this.phase==='paused'?0:dt;
     for(let n=this.transient.length-1;n>=0;n--){const item=this.transient[n];const held=Math.min(item.hold??0,visualDt);item.hold=Math.max(0,(item.hold??0)-held);item.life-=visualDt-held;if(item.life<=0){this.transient.splice(n,1);continue;}this.drawTransient(item);}
@@ -267,10 +272,18 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
       }
       for(let n=count;n<sprites.length;n++)sprites[n].visible=false;
     };draw(orbit,this.orbitSprites,'orbit');draw(bot,this.botSprites,'bot');
+    for(const drone of g.drones){
+      const gr=this.fxGraphic,x=drone.x,y=drone.y,t=g.combatTime*24;
+      gr.roundRect(x-12,y-8,24,16,5).fill(0xd7edf0).stroke({color:0x357594,width:2});gr.circle(x,y,4).fill(0x4089ac);
+      for(const side of [-1,1]){gr.moveTo(x,y).lineTo(x+side*19,y-8).stroke({color:0x357594,width:2});gr.ellipse(x+side*19,y-9,10,3+Math.sin(t)*1.5).stroke({color:0x529fcc,width:2,alpha:.9});}
+      if(g.weapons.find(w=>w.id==='s2:drone')?.evolved)gr.moveTo(p.x,p.y).lineTo(x,y).stroke({color:0x7dd7ec,width:1,alpha:.3});
+    }
+    for(const bolt of g.droneBolts)this.fxGraphic.moveTo(bolt.prevX,bolt.prevY).lineTo(bolt.x,bolt.y).stroke({color:bolt.sync?0xc1f6ff:0x529fcc,width:bolt.sync?4:2,alpha:.9});
   }
   private drawEnemyStatus(){
     const gr=this.fxGraphic,g=this.game,e=g.enemies;
     for(const id of e.active){if(e.hp[id]<=0||!this.inView(e.x[id],e.y[id],260))continue;const x=e.x[id],y=e.y[id],r=e.radius[id],def=this.content.enemyById[e.kind[id]],bits=e.affixes[id];
+      if(g.protocolMarks.some(m=>m.id===id&&m.generation===e.generation[id]))gr.poly([x-7,y-r-11,x,y-r-18,x+7,y-r-11,x,y-r-4]).stroke({color:0x408b79,width:2});
       if(e.shield[id]>0){const points:number[]=[];for(let n=0;n<6;n++){const a=n*TAU/6;points.push(x+Math.cos(a)*(r+8),y+Math.sin(a)*(r+8));}gr.poly(points).fill({color:0x9bdde5,alpha:.1}).stroke({color:0x6dbac7,width:2,alpha:.8});}
       if(e.frozen[id]>0){for(let n=0;n<6;n++){const a=n*TAU/6,rr=r+8;gr.moveTo(x+Math.cos(a)*r*.5,y+Math.sin(a)*r*.5).lineTo(x+Math.cos(a)*rr,y+Math.sin(a)*rr).stroke({color:0xd4f6ff,width:2,alpha:.9});}gr.circle(x,y,r+5).fill({color:0x92d1f5,alpha:.2});}
       if(def.behavior==='aura'||(bits&16)){const radius=bits&16?220:180;gr.circle(x,y,radius).stroke({color:0xd2c66e,width:2,alpha:.3});for(const other of e.active){if(other===id||e.hp[other]<=0||distanceSq(x,y,e.x[other],e.y[other])>radius**2)continue;gr.moveTo(x,y).lineTo(e.x[other],e.y[other]).stroke({color:0xc8be68,width:1,alpha:.18});}}
@@ -281,6 +294,13 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
   }
   private drawGroundEffects(){
     const gr=this.groundFX,g=this.game;gr.clear();
+    for(const line of g.whiteboardLines){
+      if(line.age<0)continue;const progress=line.hit?1:clamp(line.age/line.hitDelay,0,1),x2=lerp(line.x,line.x2,progress),y2=lerp(line.y,line.y2,progress),fade=line.hit?clamp((line.life-line.age)/.24,0,1):.6;
+      // Thin paired chalk strokes and square endpoints, never danger stripes,
+      // arrowheads, dashed boundaries, collision walls or filled damage lanes.
+      gr.moveTo(line.x,line.y).lineTo(x2,y2).stroke({color:0x408b79,width:line.hit?4:2,alpha:fade});gr.moveTo(line.x+3,line.y+3).lineTo(x2+3,y2+3).stroke({color:0xc4f3df,width:1,alpha:fade});
+      gr.rect(line.x-3,line.y-3,6,6).stroke({color:0x408b79,width:1,alpha:fade});gr.rect(x2-3,y2-3,6,6).stroke({color:0x408b79,width:1,alpha:fade});
+    }
     for(const id of g.areas.active){const a=g.areas.data[id];if(!this.inView(a.x,a.y,a.maxRadius))continue;
       if(a.kind==='mine'){gr.circle(a.x,a.y,a.maxRadius*.45).fill({color:a.color,alpha:.08}).stroke({color:a.color,width:2,alpha:a.age<a.delay?.35:.8});gr.moveTo(a.x-10,a.y+12).lineTo(a.x,a.y-13).lineTo(a.x+10,a.y+12).stroke({color:a.color,width:2});}
       else if(a.kind==='cryo'||a.kind==='icefire'){gr.circle(a.x,a.y,a.radius).fill({color:a.color,alpha:.13}).stroke({color:a.color,width:a.evolved?4:2,alpha:.6});for(let n=0;n<10;n++){const angle=n*TAU/10+g.combatTime*.15,x=a.x+Math.cos(angle)*a.radius*.75,y=a.y+Math.sin(angle)*a.radius*.75;gr.poly([x,y-9,x+4,y,x,y+9,x-4,y]).stroke({color:a.kind==='icefire'&&n%2?0xf3bd6f:0xd4f7ff,width:2,alpha:.7});}}
@@ -371,12 +391,12 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
       if(event.weapon==='orbit'){const angle=((event.angle??0)+TAU)%TAU;this.brokenOrbitEdge=Math.floor(angle/TAU*6);this.orbitRebuildUntil=this.game.combatTime+.3;}
     }
     if(event.type==='hit'){
-      const feel=attackFeel(event),count=this.quality==='high'?(event.critical?20:8):this.quality==='medium'?(event.critical?10:4):(event.critical?4:2);
+      const feel=attackFeel(legacyFeedbackEvent(event)),count=this.quality==='high'?(event.critical?20:8):this.quality==='medium'?(event.critical?10:4):(event.critical?4:2);
       this.particles.burst(event.x,event.y,event.color,Math.round(count*feel.particles),150*feel.weight,(event.critical?1.25:.7)*feel.radius,event.material);
       if(this.settings.damageNumbers&&event.value)this.numbers.spawn(event.value,event.x,event.y,!!event.critical,event.damageType??'normal',`${event.slot}:${event.generation}:${event.sourceKey}:${event.damageType}`);
       this.transient.push({event,life:event.critical?.09:.06,total:event.critical?.09:.06,hold});
     }else if(event.type==='death'){
-      const kind=event.contentEnemyId??event.enemyKind,material=event.material??(event.enemyKind?enemyMaterial(event.enemyKind):'paper');if(kind&&this.content.enemyById[kind])this.deathFX.spawn({...event,material},this.textures.get(`enemy-${kind}`),hold,this.quality,this.settings.motion);
+      const kind=event.contentEnemyId??event.enemyKind,material=event.material??(event.enemyKind?enemyMaterial(event.enemyKind):'paper');if(kind&&this.content.enemyById[kind])this.deathFX.spawn({...legacyFeedbackEvent(event),material},this.textures.get(`enemy-${kind}`),hold,this.quality,this.settings.motion);
       this.particles.burst(event.x,event.y,event.color,this.quality==='low'?4:material==='glass'||material==='ice'?14:material==='metal'?10:8,material==='glass'||material==='ice'?290:210,1.1,material);
       if(material==='metal'||material==='brick')this.particles.burst(event.x,event.y,0xffdc8f,this.quality==='low'?2:6,220,.55,'spark');
     }
@@ -401,8 +421,8 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
   }
   private drawTransient(item:Transient){
     const e=item.event,g=this.fxGraphic,t=this.settings.motion?1-item.life/item.total:.55,fade=this.settings.motion?1-t:1;
-    if(e.type==='ultimate'){drawUltimate(g,e,t,this.quality==='low');return;}
-    if(e.type==='signature'||e.type==='fusion'){drawSignature(g,e,t,this.quality==='low');}
+    if(e.type==='ultimate'){drawUltimate(g,legacyFeedbackEvent(e),t,this.quality==='low');return;}
+    if(e.type==='signature'||e.type==='fusion'){drawSignature(g,legacyFeedbackEvent(e),t,this.quality==='low');}
     else if(e.type==='hit'){
       const a=e.angle??0;for(let n=-1;n<=1;n++){const q=a+n*.45,r=10+22*t;g.moveTo(e.x+Math.cos(q)*3,e.y+Math.sin(q)*3).lineTo(e.x+Math.cos(q)*r,e.y+Math.sin(q)*r).stroke({color:e.critical?0xffe9a4:e.color,width:e.critical?2:1,alpha:fade});}
     }else if(e.type==='block'){
@@ -430,7 +450,7 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
       if(e.text==='explosion'&&t<.25)g.circle(e.x,e.y,e.size*(.25+t)).fill({color:0xfff8db,alpha:(1-t*4)*this.settings.flash*.7});
       for(let n=0;n<2;n++)g.circle(e.x,e.y,radius*(1-n*.08)).stroke({color:n===0?e.color:0xfff4c9,width:(n===0?5:2)*fade+.5,alpha:fade*.8});
       if(e.type==='evolution'||e.type==='boss')for(let n=0;n<12;n++){const a=n*TAU/12+t*.2;g.moveTo(e.x+Math.cos(a)*radius*.7,e.y+Math.sin(a)*radius*.7).lineTo(e.x+Math.cos(a)*radius,e.y+Math.sin(a)*radius).stroke({color:e.color,width:2,alpha:fade});}
-      if(e.type==='evolution'&&e.weapon)drawSignature(g,e,t,this.quality==='low');
+      if(e.type==='evolution'&&e.weapon)drawSignature(g,legacyFeedbackEvent(e),t,this.quality==='low');
       if(e.weapon==='mine'&&e.evolved){g.moveTo(e.x,e.y);for(let n=1;n<=40;n++){const q=n/40*TAU*2,rr=radius*n/40;g.lineTo(e.x+Math.cos(q)*rr,e.y+Math.sin(q)*rr);}g.stroke({color:0xffd77e,width:2,alpha:fade});}
     }
   }
@@ -445,7 +465,7 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
     this.app.destroy(true,{children:true,texture:false,textureSource:false});this.textures?.destroy();this.geometry?.destroy();for(const texture of this.uiTextures)texture.destroy(true);this.uiTextures=[];
   }
   destroy(){
-    if(this.destroyed)return;this.destroyed=true;cancelAnimationFrame(this.animation);this.resizeObserver?.disconnect();this.input?.destroy();this.loadAbort.abort();this.assetsRelease?.();this.feedback.clear();this.deathFX.clear();this.particles?.clear();
+    if(this.destroyed)return;this.destroyed=true;cancelAnimationFrame(this.animation);this.resizeObserver?.disconnect();this.buildPanel?.destroy();this.buildPanel=null;this.input?.destroy();this.loadAbort.abort();this.assetsRelease?.();this.feedback.clear();this.deathFX.clear();this.particles?.clear();
     // Release shader references before Pixi's render-texture pool and atlas sources.
     this.world.filters=[];this.effects.filters=[];if(this.player)this.player.filters=[];
     this.releaseFilterTextures();for(const filter of [this.bloom,this.glow,...this.postFX.filters])filter.destroy();

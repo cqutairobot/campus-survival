@@ -1,12 +1,14 @@
+import type {ContentSkill} from '../types';
 // P04 bounded port of src/weapons/system.ts; S1 source remains frozen.
 import type { ContentState } from './ContentState';
 import { weaponParams, type WeaponParams } from './params';
 import { angleDelta, colorNumber, distanceSq, TAU } from '../../../core/math';
 import {applySlow,freezeEnemy} from '../../../combat/status';
 import {SummonSystem} from './summons';
+import {WhiteboardSystem} from '../whiteboard';
 import { inCone, sweptHit } from './damage';
 import type { Area, Shot } from '../../../entities/pools';
-import type { Skill, WeaponKind } from '../../../types';
+import type { WeaponKind } from '../../../types';
 
 export function botPosition(x:number,y:number,time:number,index:number,count:number,level=1,evolved=false){const a=time*(evolved?.5:level===2?1:.7)+index*TAU/count+(level>=4?Math.PI/4:0),radius=level>=4?82:65;return{x:x+Math.cos(a)*radius,y:y+Math.sin(a)*(level===4?70:45)-18};}
 export class WeaponSystem {
@@ -15,9 +17,10 @@ export class WeaponSystem {
   private chain:number[]=[];
   private cancelTimer=0;
   private focusTimer=0;private fusionTimers:Record<string,number>={};private rounds:Record<string,number>={};readonly summons:SummonSystem;
-  constructor(private game:ContentState){this.summons=new SummonSystem(game);}
-  remove(id:string){this.summons.remove(id);for(const target of this.game.enemies.active)if(this.game.enemies.burnSource[target]===id){this.game.enemies.burn[target]=0;this.game.enemies.burnDamage[target]=0;}delete this.cooldowns[id];const g=this.game;for(const n of [...g.shots.active])if(g.shots.data[n].source===id)g.shots.release(n);for(const n of [...g.areas.active])if(g.areas.data[n].source===id)g.areas.release(n);}
-  reset(id:string){this.cooldowns[id]=.05;}
+  readonly whiteboard:WhiteboardSystem;
+  constructor(private game:ContentState){this.summons=new SummonSystem(game);this.whiteboard=new WhiteboardSystem(game);}
+  remove(id:string){this.summons.remove(id);if(id==='s2:whiteboard')this.whiteboard.remove();for(const target of this.game.enemies.active)if(this.game.enemies.burnSource[target]===id){this.game.enemies.burn[target]=0;this.game.enemies.burnDamage[target]=0;}delete this.cooldowns[id];const g=this.game;for(const n of [...g.shots.active])if(g.shots.data[n].source===id)g.shots.release(n);for(const n of [...g.areas.active])if(g.areas.data[n].source===id)g.areas.release(n);}
+  reset(id:string){this.cooldowns[id]=.05;if(id==='s2:whiteboard')this.whiteboard.reset();}
   private nearest(x:number,y:number,range:number,exclude?:number[]){
     const e=this.game.enemies;let result=-1,best=range*range;
     this.game.grid.query(x,y,range,this.candidates);
@@ -41,10 +44,13 @@ export class WeaponSystem {
   }
   update(dt:number){
     const g=this.game,p=g.player,e=g.enemies,st=g.combatStats;
+    this.summons.prune();this.whiteboard.prune();
     this.cancelTimer-=dt;this.focusTimer-=dt;
     for(const skill of g.weapons){
       const def=this.game.content.weaponById[skill.id],id=def.id,ev=skill.evolved,params=weaponParams(this.game.content,skill,st,g.damageMultiplier);
       const {damage,range,count,interval}=params;
+      if(id==='s2:drone'){this.summons.updateDrones(skill,params,dt);continue;}
+      if(id==='s2:whiteboard'){this.whiteboard.update(skill,params,dt);continue;}
       if(id==='blueprint'){this.summons.update(skill,params,dt,(turret,power)=>{const target=this.nearest(turret.x,turret.y,power.range);if(target>=0)this.shot(id,turret.x,turret.y,Math.atan2(e.y[target]-turret.y,e.x[target]-turret.x),550,power.damage,power.range,power.pierce,'straight',ev,target,false,power);});continue;}
       if(id==='sword'){this.fusionTimers.sword=(this.fusionTimers.sword??0)-dt;if(this.fusionTimers.sword<=0){this.fusionTimers.sword+=1.3/st.haste;this.blast(p.x,p.y,330*st.area,params.secondaryDamage,id);}}
       if(id==='orbit'){
@@ -225,5 +231,5 @@ export class WeaponSystem {
       if(a.kind==='eraser'){a.cancelTick-=dt;if(a.cancelTick<=0){this.cancelBullet(a.x,a.y,a.radius);a.cancelTick=a.evolved?.4:1;}}
     }
   }
-  grant(skill:Skill){this.cooldowns[skill.id]=.1;}
+  grant(skill:ContentSkill){this.cooldowns[skill.id]=.1;}
 }

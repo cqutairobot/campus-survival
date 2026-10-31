@@ -1,6 +1,7 @@
 // P04 bounded port of src/combat/ultimates.ts; S1 source remains frozen.
 import type {ContentState} from './ContentState';
-import type {DamageSource,EnemyRank} from '../../../types';
+import type {EnemyRank} from '../../../types';
+import type {ContentDamageSource} from '../types';
 import {rankName} from '../../../data/enemies';
 import {distanceSq,TAU} from '../../../core/math';
 import {freezeEnemy} from '../../../combat/status';
@@ -9,7 +10,7 @@ export class UltimateSystem{
  constructor(private g:ContentState){this.def=g.content.ultimates.find(u=>u.character===g.manifest.character)??g.content.ultimates[0];}
  get ready(){return this.energy>=240&&this.cooldown<=1e-6&&this.remaining<=0;}
  gain(amount:number,source:string){if(this.remaining>0||amount<=0)return;const gain=Math.min(240-this.energy,amount);this.energy+=gain;this.sources[source]=(this.sources[source]??0)+gain;if(this.energy>=240&&gain>0)this.g.emit({type:'charged',x:this.g.player.x,y:this.g.player.y,color:0xffd879,size:70,text:'大招就绪'});}
- kill(rank:EnemyRank,weight:number,source:DamageSource){if(source.kind==='ultimate')return;this.gain(({normal:1,elite:15,miniBoss:35,boss:60,bossAdd:0}[rank])*weight*this.g.stats.charge,rank);}
+ kill(rank:EnemyRank,weight:number,source:ContentDamageSource){if(source.kind==='ultimate')return;this.gain(({normal:1,elite:15,miniBoss:35,boss:60,bossAdd:0}[rank])*weight*this.g.stats.charge,rank);}
  release(){
   const g=this.g,p=g.player;if(g.phase!=='playing'||p.hp<=0||!this.ready)return false;
   this.energy=0;this.cooldown=g.manifest.dailyRule==='overload'?20:30;this.elapsed=0;this.tick=0;this.secondary=0;this.wave=0;this.remaining={submission:.25,lastMinute:4,parallel:8,conference:6,barrier:8,overload:8}[this.def.id];p.invincible=Math.max(p.invincible,.5);
@@ -22,7 +23,7 @@ export class UltimateSystem{
   if(this.def.id==='barrier')g.addShield(40,8);
   return true;
  }
- private blast(radius:number,base:number,x=this.g.player.x,y=this.g.player.y){const g=this.g,e=g.enemies,source:DamageSource={kind:'ultimate',id:this.def.id};for(const id of [...e.active])if(distanceSq(x,y,e.x[id],e.y[id])<=(radius+e.radius[id])**2)g.hitEnemy(id,base*g.stats.damage*g.damageMultiplier,source,x,y);g.emit({type:'ring',x,y,color:parseInt(this.def.color.slice(1),16),size:radius,duration:.55,ultimate:this.def.id});}
+ private blast(radius:number,base:number,x=this.g.player.x,y=this.g.player.y){const g=this.g,e=g.enemies,source:ContentDamageSource={kind:'ultimate',id:this.def.id};for(const id of [...e.active])if(distanceSq(x,y,e.x[id],e.y[id])<=(radius+e.radius[id])**2)g.hitEnemy(id,base*g.stats.damage*g.damageMultiplier,source,x,y);g.emit({type:'ring',x,y,color:parseInt(this.def.color.slice(1),16),size:radius,duration:.55,ultimate:this.def.id});}
  update(dt:number){
   this.cooldown=Math.max(0,this.cooldown-dt);if(this.remaining<=0)return;const g=this.g,p=g.player,e=g.enemies;this.remaining=Math.max(0,this.remaining-dt);this.elapsed+=dt;this.tick-=dt;this.secondary-=dt;
   if(this.def.id==='lastMinute'&&this.remaining<=0)this.blast(900,80+3*g.level);

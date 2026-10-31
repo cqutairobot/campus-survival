@@ -2,7 +2,7 @@ import {test,expect} from '@playwright/test';
 import {historicalSaves} from '../helpers/v5-saves';
 import type {SaveProfile} from '../../src/semesters/profile';
 
-test('v5 P08 单条冒烟：导入旧档→S2 入口保持关闭→S1 原旅程→结算刷新→分学期每日入口',async({page},info)=>{
+test('v5 P09 单条冒烟：旧档/S1/每日→正式 S2 关闭→内部 S2 构筑/首考/奖励',async({page},info)=>{
  const errors:string[]=[],assetFailures:string[]=[],requests:string[]=[];
  page.on('pageerror',e=>errors.push(e.message));
  page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
@@ -66,5 +66,23 @@ test('v5 P08 单条冒烟：导入旧档→S2 入口保持关闭→S1 原旅程�
  const reloaded=await saved();expect(reloaded.stats.runs).toBe(5);expect(reloaded.semesters.s2).toEqual(imported.semesters.s2);expect(reloaded.inheritance.choice).toEqual({id:'topic',weaponId:'orbit'});expect(reloaded.daily.records[0]).toEqual(imported.daily.records[0]);
  await page.screenshot({path:info.outputPath('semester-menu.png'),animations:'disabled'});
  expect(errors).toEqual([]);expect(assetFailures).toEqual([]);expect(requests.filter(url=>/\/s2\/|\/assets\/s2[-/]|SemesterEngine/.test(url))).toEqual([]);
- await info.attach('p06-smoke-summary',{body:JSON.stringify({schema:reloaded.schemaVersion,s1Runs:reloaded.stats.runs,s2Runs:reloaded.semesters.s2.stats.runs,selectedSemester:reloaded.selectedSemester,inheritance:reloaded.inheritance.choice,oldDailyVersion:reloaded.daily.records[0].version,errors,assetFailures}),contentType:'application/json'});
+ // A separate test-only origin imports S2 source, never opening the production
+ // menu or writing the real profile. Reuse this same Chromium test/session.
+ await page.goto('http://127.0.0.1:5174');await page.waitForFunction(()=>!!(window as any).__S2_PREVIEW__);
+ const s2=()=>page.evaluate(()=>{const h=(window as any).__S2_PREVIEW__,s=h.state();return{phase:h.engine.read().phase,clock:h.engine.read().clock,x:s.player.x,phaseContent:s.phase,discoveries:s.discoveries,damage:s.damage,params:h.params(),pause:h.engine.read().pause};});
+ await expect.poll(async()=>(await s2()).clock.week).toBe(1);expect(await page.evaluate(()=>(window as any).__S2_PREVIEW__.engine.read().calendar.weeks)).toBe(24);
+ const initialX=(await s2()).x;await page.keyboard.down('KeyD');await expect.poll(async()=>(await s2()).x).toBeGreaterThan(initialX+15);await page.keyboard.up('KeyD');
+ await expect.poll(()=>page.evaluate(()=>(window as any).__S2_PREVIEW__.state().progress.enemies.includes('s2:bike'))).toBe(true);
+ await page.evaluate(()=>{const s=(window as any).__S2_PREVIEW__.state();s.spawnDrop('xp',s.player.x,s.player.y,6);});
+ const whiteboard=page.locator('.s2-build-card[data-item-id="s2:whiteboard"]');await expect(whiteboard).toContainText('命中伤害 38');await whiteboard.click();expect((await s2()).params.some((p:any)=>p.id==='s2:whiteboard'&&p.damage===38&&p.hitDelay===.32)).toBe(true);
+ await page.getByRole('button',{name:'构筑图鉴',exact:true}).click();await page.getByText('白板推演',{exact:true}).click();await expect(page.getByRole('dialog')).toContainText('Lv.1 · 命中伤害 38');const codexPause=(await s2()).clock;
+ await page.keyboard.press('KeyP');await page.keyboard.press('KeyQ');await page.keyboard.press('Digit1');expect((await s2()).clock).toEqual(codexPause);await page.getByRole('button',{name:'关闭图鉴',exact:true}).click();
+ await page.keyboard.press('KeyP');expect((await s2()).pause?.reason).toBe('manual');await page.keyboard.press('KeyP');expect((await s2()).pause).toBeNull();
+ const checkpoint=await page.evaluate(()=>(window as any).__S2_PREVIEW__.checkpoint());expect(checkpoint).toMatchObject({intro:{week:8,teachingSeconds:320},introAccepted:true,hpStart:16000,monotonic:true,transition:true,phase:'assessmentReward',passed:1});expect(checkpoint.recoveryDamage).toBeGreaterThan(0);for(const id of ['s2:drone','s2:whiteboard','laser'])expect(checkpoint.damage[id]).toBeGreaterThan(0);
+ await page.screenshot({path:info.outputPath('s2-checkpoint-reward.png'),animations:'disabled'});await page.getByRole('button',{name:'继续',exact:true}).click();
+ expect(await page.evaluate(()=>{const h=(window as any).__S2_PREVIEW__,gate=h.engine.read().gate;return[h.engine.acknowledge(gate.token),h.engine.acknowledge(gate.token)];})).toEqual([true,false]);
+ await expect.poll(async()=>(await s2()).clock.week).toBe(9);expect(await page.evaluate(()=>{const h=(window as any).__S2_PREVIEW__;h.engine.abandon();return h.engine.read().result;})).toMatchObject({victory:false,reason:'abandoned',assessmentsPassed:1});
+ await page.evaluate(()=>(window as any).__S2_PREVIEW__.engine.dispose());await expect.poll(()=>page.evaluate(()=>(window as any).__S2_PREVIEW__.resources())).toMatchObject({loader:{entries:0,references:0,textures:0,loading:0,waiting:0},geometry:0,art:0,voices:0,canvas:false,panels:0});
+ expect(errors).toEqual([]);expect(assetFailures).toEqual([]);
+ await info.attach('p09-smoke-summary',{body:JSON.stringify({schema:reloaded.schemaVersion,s1Runs:reloaded.stats.runs,s2Runs:reloaded.semesters.s2.stats.runs,selectedSemester:reloaded.selectedSemester,inheritance:reloaded.inheritance.choice,oldDailyVersion:reloaded.daily.records[0].version,checkpoint,errors,assetFailures}),contentType:'application/json'});
 });

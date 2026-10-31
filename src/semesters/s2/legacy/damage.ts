@@ -8,7 +8,7 @@ export function inCone(px:number,py:number,x:number,y:number,angle:number,radius
   return d<extraRadius||(dx*Math.cos(angle)+dy*Math.sin(angle))/(d||1)>=Math.cos(spread*.5);
 }
 
-import type {DamageSource,WeaponKind} from '../../../types';
-export const asSource=(source:WeaponKind|DamageSource):DamageSource=>typeof source==='string'?{kind:'weapon',id:source}:source;
-export const damageKey=(source:DamageSource)=>source.kind==='weapon'?source.id:`${source.kind}:${source.id}`;
+import type {ContentDamageSource,ContentWeaponId} from '../types';
+export const asSource=(source:ContentWeaponId|ContentDamageSource):ContentDamageSource=>typeof source==='string'?{kind:'weapon',id:source}:source;
+export const damageKey=(source:ContentDamageSource)=>source.kind==='weapon'?source.id:`${source.kind}:${source.id}`;
 export function damageLabel(content:ContentCatalog,key:string){const split=key.indexOf(':'),weapon=!!content.weaponById[key],kind=weapon||split<0?'weapon':key.slice(0,split),id=weapon||split<0?key:key.slice(split+1),def=kind==='weapon'?content.weaponById[id]:kind==='ultimate'?content.ultimateById[id]:kind==='pickup'?content.pickupById[id]:null;return{name:def?.name??'校园环境',color:def?.color??'#99aa99',icon:kind==='weapon'?content.weaponById[id]?.icon??'bolt':kind==='pickup'?'card':'bolt'};}
