@@ -22,8 +22,10 @@ export interface Settings { settingsVersion:4;master: number; music: number; sfx
 export interface AchievementState {progress:number;completed:boolean;claimed:boolean}
 export type PersistenceState='new'|'ready'|'fallback'|'corrupt'|'future'|'unavailable'|'failed'|'starting'|'observer'|'conflict'|'unsupported';
 export interface SaveOperation {kind:'saved'|'memory'|'invalid'|'failed';message:string}
+export interface PersistenceMetadata {revision:number;ownerId:string;epoch:number}
 export interface DailyRecord {id:string;date:string;version:string;rule:string;character:string;nickname:string;score:number;victory:boolean;completedWeeks:number;seconds:number;build:string[];relics:string[];averageCurse:number;createdAt:number}
 export interface SaveData {
+  persistence?:PersistenceMetadata;
   schemaVersion: 3; contentVersion: string; credits: number; unlocked: string[]; selected: string;
   talents: Record<string, number>; discovered: string[]; evolutions: string[]; settledRuns: string[];
   unlocks:{weapons:string[];passives:string[];regions:string[]};achievements:Record<string,AchievementState>;

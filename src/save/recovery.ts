@@ -1,5 +1,5 @@
 import type {SaveData} from '../types';
-import {validateSave} from './storage';
+import {validateSave,validPersistence} from './storage';
 
 export interface RecoverySource {key:string;raw:string;reason:string}
 export interface RecoveryPreview {save:SaveData;changes:string[]}
@@ -12,7 +12,8 @@ export function recoveryPreview(raw:string):RecoveryPreview|null{
  let v:unknown;try{v=JSON.parse(raw);}catch{return null;}
  if(!object(v)||![1,2,3].includes(v.schemaVersion as number))return null;
  const credits=typeof v.credits==='number'&&Number.isFinite(v.credits)&&v.credits>=0?v.credits:0;
- const save=validateSave({...v,credits});if(!save)return null;
+ const candidate:Record<string,unknown>={...v,credits};if(Object.hasOwn(candidate,'persistence')&&!validPersistence(candidate.persistence))delete candidate.persistence;
+ const save=validateSave(candidate);if(!save)return null;
  const changes:string[]=[];
  const walk=(before:unknown,after:unknown,path:string)=>{
   if(object(after)){for(const [k,a] of Object.entries(after))walk(object(before)?before[k]:undefined,a,path?`${path}.${k}`:k);if(object(before))for(const k of Object.keys(before))if(!Object.hasOwn(after,k))changes.push(`${path?path+'.':''}${k}：丢弃未知字段`);return;}

@@ -5,7 +5,8 @@ import {normalizeSettings,DEFAULT_SETTINGS} from '../../src/save/settings';
 import {qualityBudget,qualityName} from '../../src/presentation/quality';
 import {resolveAudioPreset,OUTPUT_PROFILES} from '../../src/audio/OutputBus';
 import type {Settings,Quality} from '../../src/types';
-import {useApp} from '../../src/state/store';
+import {useApp,createAppStore} from '../../src/state/store';
+import {SaveCoordinator,type SaveLocks} from '../../src/save/coordinator';
 import {GameEngine} from '../../src/core/engine';
 import {ModalPauseOwner,blocksGameKey} from '../../src/ui/input/modal-input';
 import {InteractionPointer} from '../../src/ui/hud/interaction-pointer';
@@ -67,6 +68,35 @@ describe('v4.0.1 short regressions',()=>{
   expect(pointer.press(41,target)).toBe(true);expect(pointer.press(42,target)).toBe(false);pointer.release(42);expect(held.mock.calls).toEqual([[true]]);
   pointer.release();pointer.release(41);pointer.release();expect(held.mock.calls).toEqual([[true],[false]]);expect(target.releasePointerCapture).toHaveBeenCalledTimes(1);game.tick(1/60);expect(game.landmarks.held).toBe(false);expect([game.inputX,game.inputY]).toEqual([1,.5]);
   pointer.press(43,target);pointer.release(43);pointer.release(43);expect(held.mock.calls).toEqual([[true],[false],[true],[false]]);
+ });
+
+ it('R04 serializes two stores, rejects delayed old-owner writes and takes over latest disk data',async()=>{
+  class Locks implements SaveLocks {
+   owners=new Set<string>();queue=Promise.resolve();
+   exclusive<T>(_name:string,task:()=>T|Promise<T>):Promise<T>{const result=this.queue.then(task);this.queue=result.then(()=>{},()=>{});return result;}
+   async holdOwner(owner:string){this.owners.add(owner);return()=>{this.owners.delete(owner);};}
+   async ownerAlive(owner:string){return this.owners.has(owner);}
+  }
+  const storage=new Memory(),locks=new Locks();storage.setItem(SAVE_KEY,JSON.stringify({...freshSave(),credits:200}));
+  const ar=new SaveRepository(storage),ac=new SaveCoordinator(ar,storage,locks),a=createAppStore(ar,ac);await ac.initialize();
+  const br=new SaveRepository(storage),bc=new SaveCoordinator(br,storage,locks),b=createAppStore(br,bc);await bc.initialize();expect(bc.role).toBe('observer');
+  expect(a.getState().unlock('analysis')).toBe(true);await a.getState().whenIdle();const afterBuy=storage.getItem(SAVE_KEY);expect(JSON.parse(afterBuy!)).toMatchObject({credits:120,unlocked:['balanced','analysis']});
+  const engine=new GameEngine(freshSave(),1);engine.finish(false);const run={...engine.result!,id:'same-run',credits:20};
+  expect((await b.getState().settings({muted:true})).kind).toBe('memory');b.getState().settle(run);await b.getState().whenIdle();expect(storage.getItem(SAVE_KEY)).toBe(afterBuy);
+  let release!:()=>void;const gate=new Promise<void>(r=>{release=r;});const blocking=locks.exclusive('commit',()=>gate);
+  const older=a.getState().settings({quality:'low'}),newer=a.getState().settings({muted:true});release();await blocking;await older;await newer;expect(a.getState().save.settings).toMatchObject({quality:'low',muted:true});
+  let unlock!:()=>void;const blocked=locks.exclusive('commit',()=>new Promise<void>(r=>{unlock=r;}));await Promise.resolve();
+  const taking=b.getState().takeoverSave();for(let i=0;i<5;i++)await Promise.resolve();
+  const stale=a.getState().settings({quality:'medium'});a.getState().settle(run);const queued=a.getState().whenIdle();unlock();await blocked;await taking;await stale;await queued;
+  expect(b.getState().save).toMatchObject({credits:120,unlocked:['balanced','analysis'],settings:{quality:'low',muted:true}});expect(ac.role).toBe('conflict');expect(JSON.parse(storage.getItem(SAVE_KEY)!)).toMatchObject({credits:120,persistence:{ownerId:bc.ownerId}});
+  b.getState().settle(run);b.getState().settle(run);await b.getState().whenIdle();expect(JSON.parse(storage.getItem(SAVE_KEY)!).credits).toBe(140);expect(b.getState().save.settledRuns.filter(id=>id===run.id)).toHaveLength(1);
+  const previous=JSON.parse(storage.getItem(SAVE_KEY)!).persistence;await b.getState().importSave(JSON.stringify({...b.getState().save,persistence:{revision:999,epoch:99,ownerId:'foreign-file'}}));expect(JSON.parse(storage.getItem(SAVE_KEY)!).persistence).toEqual({...previous,revision:previous.revision+1});
+  // Old external writers and deletions revoke ownership even without a storage event.
+  storage.setItem(SAVE_KEY,JSON.stringify({...freshSave(),credits:7}));expect((await b.getState().settings({muted:false})).kind).toBe('memory');expect(JSON.parse(storage.getItem(SAVE_KEY)!).credits).toBe(7);
+  await b.getState().refreshSave();expect(b.getState().save.credits).toBe(7);expect(b.getState().save.persistence?.revision).toBe(1);storage.removeItem(SAVE_KEY);bc.verify();expect(bc.role).toBe('conflict');
+  for(const persistence of [null,{}, {revision:-1,epoch:0,ownerId:'x'}])expect(validateSave({...freshSave(),persistence})).toBeNull();
+  storage.setItem(SAVE_KEY,JSON.stringify({...freshSave(),credits:18}));const memoryRepo=new SaveRepository(storage),unsupported=new SaveCoordinator(memoryRepo,storage,null),memory=createAppStore(memoryRepo,unsupported);await unsupported.initialize();const raw=storage.getItem(SAVE_KEY);expect(memory.getState().save.credits).toBe(18);await memory.getState().settings({muted:true});expect(storage.getItem(SAVE_KEY)).toBe(raw);expect(memory.getState().persistence).toBe('unsupported');
+  ac.dispose();bc.dispose();unsupported.dispose();
  });
 
 });

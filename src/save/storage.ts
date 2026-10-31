@@ -3,7 +3,7 @@ import {FUSIONS} from '../data/fusions';
 import {RELICS} from '../data/relics';
 import {ACHIEVEMENTS} from '../data/achievements';
 import {DAILY_RULES} from '../data/daily';
-import type {DailyRecord,RunResult,SaveData,PersistenceState} from '../types';
+import type {DailyRecord,RunResult,SaveData,PersistenceState,PersistenceMetadata} from '../types';
 import {diagnoseSave,recoveryDigest,recoveryPreview,type RecoverySource} from './recovery';
 import {DEFAULT_PASSIVES,DEFAULT_REGIONS,DEFAULT_WEAPONS,migrateV1ToV2,migrateV2ToV3} from './migrations';
 import {awardAchievements} from '../progression/achievements';
@@ -24,9 +24,14 @@ function validDaily(value:unknown):DailyRecord|null{
  return{id:value.id,date:value.date as string,version:value.version,rule:String(value.rule),character:String(value.character),nickname:typeof value.nickname==='string'?value.nickname.slice(0,20):'校园研究生',score:integer(value.score),victory:value.victory===true,completedWeeks:integer(value.completedWeeks,22),seconds:finite(value.seconds,1200),build:strings(value.build,12).filter(id=>Object.hasOwn(WEAPON_MAP,id)||Object.hasOwn(PASSIVE_MAP,id)),relics:strings(value.relics,3).filter(id=>RELICS.some(r=>r.id===id)),averageCurse:finite(value.averageCurse,3),createdAt:finite(value.createdAt,1e14)};
 }
 /** Validate before persisting; unknown future schemas are never rewritten. */
+export function validPersistence(value:unknown):value is PersistenceMetadata{
+ return record(value)&&Number.isSafeInteger(value.revision)&&Number(value.revision)>=0&&Number.isSafeInteger(value.epoch)&&Number(value.epoch)>=0&&typeof value.ownerId==='string'&&value.ownerId.length>0&&value.ownerId.length<=160;
+}
 export function validateSave(value:unknown):SaveData|null{
  if(!record(value)||![1,2,3].includes(value.schemaVersion as number)||typeof value.credits!=='number'||!Number.isFinite(value.credits)||value.credits<0)return null;
+ if(Object.hasOwn(value,'persistence')&&!validPersistence(value.persistence))return null;
  const input=migrateV2ToV3(migrateV1ToV2(value)),out=freshSave();out.credits=integer(input.credits);
+ if(validPersistence(input.persistence))out.persistence={...input.persistence};
  out.unlocked=[...new Set(['balanced',...strings(input.unlocked,6).filter(id=>CHARACTERS.some(c=>c.id===id))])];out.selected=typeof input.selected==='string'&&out.unlocked.includes(input.selected)?input.selected:'balanced';
  if(record(input.talents))for(const t of TALENTS)out.talents[t.id]=integer(input.talents[t.id],5);
  out.discovered=[...new Set(['knife',...strings(input.discovered,44).filter(id=>Object.hasOwn(WEAPON_MAP,id)||Object.hasOwn(PASSIVE_MAP,id))])];out.evolutions=strings(input.evolutions,22).filter(id=>WEAPONS.some(w=>w.id===id));
@@ -45,7 +50,7 @@ export class SaveRepository{
  status='本地存档已就绪';state:PersistenceState='new';sources:RecoverySource[]=[];
  constructor(private storage:StorageLike|null){}
  private mark(state:PersistenceState,status:string){this.state=state;this.status=status;}
- load():SaveData{
+ load(writeBack=true):SaveData{
   this.sources=[];this.mark('new','尚无存档 · 首次保存后保存在此设备');
   if(!this.storage){this.mark('unavailable','内存模式 · 存储不可用，可导出本页进度');return freshSave();}
   let future=false;
@@ -59,13 +64,18 @@ export class SaveRepository{
     if(future){this.mark('future','未来版本原文已保留 · 内存模式');return save;}
     if(key===SAVE_KEY){this.mark('ready','本地存档已就绪');return save;}
     this.mark('fallback',key===BACKUP_KEY?'已恢复有效备份':'旧存档已迁移至 v3');
-    const notice=this.status;try{this.protect(this.sources);this.storage.setItem(SAVE_KEY,JSON.stringify(save));this.mark('fallback',notice);}catch{this.mark('failed','备份已载入内存 · 写回失败，可导出');}return save;
+    if(writeBack)this.writeLoaded(save);return save;
    }
    this.sources.push({key,raw,reason:diagnoseSave(raw)});
   }
   if(future)this.mark('future','未来版本原文已保留 · 内存模式');
   else if(this.sources.length)this.mark('corrupt','内存模式 · 原档待恢复');
   return freshSave();
+ }
+ /** Called only after the coordinator has checked ownership under its commit lock. */
+ writeLoaded(save:SaveData){
+  if(this.state!=='fallback')return this.write(save);
+  const notice=this.status;try{for(const s of this.sources)if(this.storage!.getItem(s.key)!==s.raw)throw Error('原文已变化');this.protect(this.sources);this.storage!.setItem(SAVE_KEY,JSON.stringify(save));this.mark('fallback',notice);return true;}catch{this.mark('failed','备份已载入内存 · 写回失败，可导出');return false;}
  }
  private canWrite(){
   if(['corrupt','future','unavailable'].includes(this.state)||!this.storage){
@@ -100,14 +110,15 @@ export class SaveRepository{
    }
   }
  }
- commitRecovery(kind:'fields'|'reset',sourceIndex=0):SaveData|null{
+ commitRecovery(kind:'fields'|'reset',sourceIndex=0,persistence?:PersistenceMetadata):SaveData|null{
   if(!this.storage||this.state==='future'||this.state==='unavailable'){this.status='原文保护仍生效 · 无法写入设备';return null;}
   const candidate=kind==='reset'?freshSave():recoveryPreview(this.sources[sourceIndex]?.raw??'')?.save;
   if(!candidate){this.status='无法按字段恢复此原文';return null;}
+  if(persistence)candidate.persistence={...persistence};
   try{
    // Recheck before archiving or replacing; an external change needs a fresh preview.
    for(const s of kind==='fields'||this.state==='corrupt'?this.sources:[])if(this.storage.getItem(s.key)!==s.raw)throw Error('原文已在别处变化，请刷新');
-   const originals=[...this.sources];
+   const originals=kind==='reset'?[]:[...this.sources];
    if(kind==='reset')for(const key of [SAVE_KEY,BACKUP_KEY,...LEGACY_KEYS]){const raw=this.storage.getItem(key);if(raw!==null&&!originals.some(s=>s.key===key))originals.push({key,raw,reason:'重置前原文'});}
    for(const s of originals){let v:unknown;try{v=JSON.parse(s.raw);}catch{}if(record(v)&&Number(v.schemaVersion)>3)throw Error('未来版本原文不能重置');}
    this.protect(originals);

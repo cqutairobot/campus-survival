@@ -13,6 +13,13 @@ test('v4.0.1 单条冒烟：全界面与素材→旧档与反馈→双触点→�
  const migrated=await page.evaluate(()=>JSON.parse(localStorage.getItem('campus-survival.save.v3')!));
  expect(migrated.schemaVersion).toBe(3);expect(migrated.credits).toBe(137);expect(migrated.unlocked).toContain('coder');expect(migrated.evolutions).toContain('orbit');expect(migrated.settledRuns).toContain('legacy-id');expect(migrated.settings).toMatchObject({settingsVersion:4,shake:.2,flash:0,muted:true,hitStop:1,uiSfx:.6});
  await capture('menu-desktop');firstScreenBytes=await page.evaluate(()=>{const navigation=performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;return navigation.transferSize+performance.getEntriesByType('resource').reduce((sum,entry)=>sum+(entry as PerformanceResourceTiming).transferSize,0);});expect(firstScreenBytes).toBeLessThanOrEqual(4*1024*1024);
+ // The second page must observe until explicit takeover, with no stale save merge.
+ const ownerBefore=await page.evaluate(()=>localStorage.getItem('campus-survival.save.v3'));
+ const second=await page.context().newPage();await second.goto('/?debug=1');await expect(second.locator('.save-notice')).toContainText('另一个页面正在保存');await second.screenshot({path:'docs/v4.0.1-multitab.png',animations:'disabled'});
+ await second.getByRole('button',{name:'开启声音',exact:true}).click();expect(await second.evaluate(()=>localStorage.getItem('campus-survival.save.v3'))).toBe(ownerBefore);
+ await second.getByRole('button',{name:'接管 / 存档',exact:true}).click();await second.getByRole('button',{name:'接管并载入设备最新进度',exact:true}).click();await expect(second.locator('.save-notice')).toHaveCount(0);
+ await expect(page.locator('.save-notice')).toContainText('本页停止保存');const taken=await page.evaluate(()=>localStorage.getItem('campus-survival.save.v3'));expect(JSON.parse(taken!).persistence.ownerId).not.toBe(JSON.parse(ownerBefore!).persistence.ownerId);
+ await page.getByRole('button',{name:'开启声音',exact:true}).click();expect(await page.evaluate(()=>localStorage.getItem('campus-survival.save.v3'))).toBe(taken);await second.close();await page.locator('.save-notice').getByRole('button',{name:'刷新',exact:true}).click();await expect(page.locator('.save-notice')).toHaveCount(0);
  for(const [name,label,selector] of [['characters','研究生档案','.menu-navigation'],['talents','局外天赋','.menu-navigation'],['achievements','学期成就','.menu-extra'],['map','校园地图','.menu-extra'],['daily','每日挑战','.menu-extra'],['settings','偏好设置','.menu-navigation'],['codex','学期图鉴','.menu-navigation']]){
   await page.locator(selector).getByRole('button',{name:new RegExp(label)}).click();await expect(page.locator('.modal-panel')).toBeVisible();
   if(name==='codex'){for(const tab of ['武器','被动','进化','融合','敌人','遗物','校园','事件']){await page.getByRole('tab',{name:new RegExp('^'+tab)}).click();await capture('codex-'+tab);}}
@@ -135,6 +142,14 @@ test('v4.0.1 单条冒烟：全界面与素材→旧档与反馈→双触点→�
  await reviewFixture('draft',360,640,{state:'empty',motion:true});await reviewFixture('result',360,640,{state:'empty',motion:true});
  await reviewFixture('draft',360,640,{longText:true,missing:true});await fixture.screenshot({path:'docs/v4.0.1-missing-ui.png',animations:'disabled'});await fixture.close();expect(labErrors).toEqual([]);
  expect(await page.evaluate(()=>JSON.stringify({...localStorage}))).toBe(localBeforeLabs);
+ // Isolated storage for recovery: preserve the original test's migrated save.
+ const recoveryContext=await page.context().browser()!.newContext({baseURL:new URL(page.url()).origin}),recoveryPage=await recoveryContext.newPage();
+ const damaged=JSON.stringify({...migrated,credits:'137',selected:'coder',unlocked:['balanced','coder'],talents:{hp:3}});await recoveryPage.addInitScript(raw=>{if(localStorage.getItem('campus-survival.save.v3')===null)localStorage.setItem('campus-survival.save.v3',raw);},damaged);
+ await recoveryPage.goto('/?debug=1');await expect(recoveryPage.getByRole('dialog',{name:'本地存档需要恢复',exact:true})).toBeVisible();await recoveryPage.screenshot({path:'docs/v4.0.1-save-recovery.png',animations:'disabled'});
+ const [originalFile]=await Promise.all([recoveryPage.waitForEvent('download'),recoveryPage.getByRole('button',{name:'导出原文',exact:true}).click()]);expect(readFileSync((await originalFile.path())!,'utf8')).toBe(damaged);
+ await recoveryPage.getByRole('button',{name:'按字段恢复',exact:true}).click();await expect(recoveryPage.locator('.recovery-changes')).toContainText('credits：归一化 / 丢弃非法项 "137" → 0');expect(await recoveryPage.evaluate(()=>localStorage.getItem('campus-survival.save.v3'))).toBe(damaged);await recoveryPage.screenshot({path:'docs/v4.0.1-save-recovery-preview.png',animations:'disabled'});
+ await recoveryPage.getByRole('button',{name:'确认恢复并保存',exact:true}).click();await expect(recoveryPage.getByRole('dialog').getByText('已按字段恢复并保存，恢复前原文可导出',{exact:true}).first()).toBeVisible();
+ expect(await recoveryPage.evaluate(()=>JSON.parse(localStorage.getItem('campus-survival.save.v3')!))).toMatchObject({credits:0,selected:'coder',talents:{hp:3}});expect(await recoveryPage.evaluate(()=>Object.keys(localStorage).filter(k=>k.startsWith('campus-survival.recovery.v3.')).map(k=>localStorage.getItem(k)))).toContain(damaged);await recoveryContext.close();
  const lifecycle:unknown[]=[];const loopStarted=performance.now();
  for(let cycle=0;cycle<5;cycle++){
   await page.getByRole('button',{name:/开始新学期/}).click();await page.getByRole('button',{name:/就这样，开学/}).click();await page.waitForFunction(()=>!!window.__CAMPUS__);
