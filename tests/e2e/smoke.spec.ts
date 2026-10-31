@@ -15,7 +15,7 @@ test('v4.0.1 单条冒烟：全界面与素材→旧档与反馈→双触点→�
  await capture('menu-desktop');firstScreenBytes=await page.evaluate(()=>{const navigation=performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;return navigation.transferSize+performance.getEntriesByType('resource').reduce((sum,entry)=>sum+(entry as PerformanceResourceTiming).transferSize,0);});expect(firstScreenBytes).toBeLessThanOrEqual(4*1024*1024);
  // The second page must observe until explicit takeover, with no stale save merge.
  const ownerBefore=await page.evaluate(()=>localStorage.getItem('campus-survival.save.v3'));
- const second=await page.context().newPage();await second.goto('/?debug=1');await expect(second.locator('.save-notice')).toContainText('另一个页面正在保存');await second.screenshot({path:'docs/v4.0.1-multitab.png',animations:'disabled'});
+ const second=await page.context().newPage();await second.goto('/?debug=1');await expect(second.locator('.save-notice')).toContainText('另一个页面正在保存');await second.waitForTimeout(650);await second.screenshot({path:'docs/v4.0.1-multitab.png',animations:'disabled'});
  await second.getByRole('button',{name:'开启声音',exact:true}).click();expect(await second.evaluate(()=>localStorage.getItem('campus-survival.save.v3'))).toBe(ownerBefore);
  await second.getByRole('button',{name:'接管 / 存档',exact:true}).click();await second.getByRole('button',{name:'接管并载入设备最新进度',exact:true}).click();await expect(second.locator('.save-notice')).toHaveCount(0);
  await expect(page.locator('.save-notice')).toContainText('本页停止保存');const taken=await page.evaluate(()=>localStorage.getItem('campus-survival.save.v3'));expect(JSON.parse(taken!).persistence.ownerId).not.toBe(JSON.parse(ownerBefore!).persistence.ownerId);

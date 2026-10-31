@@ -54,7 +54,7 @@ export class SaveCoordinator {
  }
  private async open(takeover:boolean):Promise<SaveData>{
   this.generation++;this.role='starting';this.message='正在确认本地存档写入权…';this.emit();
-  if(!this.locks||!this.storage){const save=this.repository.load(false);this.role='unsupported';this.message='内存模式 · 无可用的 Web Locks 或存储，仍可加载和导出';this.emit();return save;}
+  if(!this.locks||!this.storage){const save=this.repository.load(false);this.role='unsupported';this.message=this.storage?'内存模式 · 此浏览器无法协调多页面保存，仍可加载和导出':'内存模式 · 存储不可用，仍可加载和导出';this.emit();return save;}
   try{
    await this.lifetime();
    return await this.locks.exclusive(`${SAVE_KEY}.commit`,async()=>{

@@ -1,3 +1,5 @@
+// 历史契约 / 旧流程前提：清场/连锁须显式 resolveDeaths，快速进化流程已变；有效意图见 v4-fixes R06、v3-foundation、v3-content。
+// 逐项说明见 docs/v4.0.1-legacy-tests.md；不属于默认门禁，不为这些预期恢复旧数值。
 import {describe,expect,it} from 'vitest';
 import {CombatMomentum,frenzyStats} from '../../src/combat/momentum';
 import {GameEngine} from '../../src/core/engine';

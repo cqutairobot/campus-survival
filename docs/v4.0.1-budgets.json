@@ -1,0 +1,12 @@
+{
+  "version": "4.0.1",
+  "distBytes": 22117828,
+  "distFiles": 554,
+  "distLimitBytes": 23000000,
+  "firstScreenBytes": 956695,
+  "firstScreenLimitBytes": 4194304,
+  "distPassed": true,
+  "firstScreenPassed": true,
+  "firstScreenMeasurement": "Production preview, fresh Chromium context/cache, menu after fonts/images settled and before the first user gesture; navigation.transferSize + all resource.transferSize.",
+  "includes": "All deployable dist files, including both audio codecs, PNG fallbacks, fonts and licenses; no compression-size substitution."
+}

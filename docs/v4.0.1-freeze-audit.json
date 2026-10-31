@@ -138,7 +138,7 @@
       "file": "src/data/catalog.ts",
       "passed": true,
       "comparison": "ignore presentation rarity colors and content version only",
-      "sha256": "3ab56e3367e2eddf350eece69da330a2a429719dc19938ad7a30eba34e5c57cb"
+      "sha256": "f2f5fe6d0cbfb49a06a503dee221ab2e059bfe8b81e839c30ae2f7e034c22b07"
     },
     {
       "file": "src/data/daily.ts",

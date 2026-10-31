@@ -4,7 +4,7 @@ import {freshSave,validateSave,SaveRepository,SAVE_KEY} from '../../src/save/sto
 
 describe('v4 settings migration',()=>{
  it('new saves use 0.8 feedback, while schema and gameplay version remain compatible',()=>{
-  expect(freshSave()).toMatchObject({schemaVersion:3,contentVersion:'4.0.0',settings:{settingsVersion:4,shake:.8,flash:.8,quality:'high',hitStop:1}});
+  expect(freshSave()).toMatchObject({schemaVersion:3,contentVersion:'4.0.1',settings:{settingsVersion:4,shake:.8,flash:.8,quality:'high',hitStop:1}});
  });
  it.each([1,2,3])('preserves all explicit preferences and progression from schema %s',schemaVersion=>{
   const old={...freshSave(),schemaVersion,credits:137,selected:'coder',unlocked:['balanced','coder'],talents:{hp:2},discovered:['knife','orbit'],settledRuns:['legacy'],settings:{master:0,music:0,sfx:0,shake:0,flash:0,muted:true,motion:false,quality:'low',afterimages:false,haptics:false,quickChest:false},stats:{...freshSave().stats,runs:3,kills:120}},before=structuredClone(old);

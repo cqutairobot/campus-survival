@@ -83,4 +83,4 @@ export const ENEMY_INDEX = Object.fromEntries(ENEMIES.map((e,i)=>[e.id,i])) as R
 export const BOSS_WEEKS = [8,16,22];
 export const CHEST_WEEKS = [4,6,10,12,14,18,20];
 export const WEEK_SECONDS = 40;
-export const CONTENT_VERSION = '4.0.0';
+export const CONTENT_VERSION = '4.0.1';

@@ -1,3 +1,5 @@
+// 历史契约 / 旧流程前提：旧 16 武器/12 被动/4 角色、经验/生命曲线及旧属性结果；当前契约见 v3-content、v3-foundation。
+// 逐项说明见 docs/v4.0.1-legacy-tests.md；不属于默认门禁，不为这些预期恢复旧数值。
 import { describe, expect, it } from 'vitest';
 import { CHARACTERS, ENEMIES, PASSIVES, TALENTS, WEAPONS } from '../../src/data/catalog';
 import { Random } from '../../src/core/math';

@@ -1,3 +1,5 @@
+// 历史契约 / 旧流程前提：即时死亡、旧 Boss 8% 和三事件触发前提过期；当前死亡队列/事件见 v3-foundation、v3-content。
+// 逐项说明见 docs/v4.0.1-legacy-tests.md；不属于默认门禁，不为这些预期恢复旧数值。
 import { describe,expect,it } from 'vitest';
 import { GameEngine } from '../../src/core/engine';
 import { freshSave } from '../../src/save/storage';

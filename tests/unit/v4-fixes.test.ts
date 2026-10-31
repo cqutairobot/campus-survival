@@ -56,10 +56,10 @@ describe('v4.0.1 short regressions',()=>{
  it('compatibility: v2/v3/P0/P1/P2 validate, write and reload without progression loss or mutation',()=>{
   for(const version of ['2.0.0','3.0.0','4.0.0-p0','4.0.0-p1','4.0.0-p2']){
    const old={...freshSave(),schemaVersion:version==='2.0.0'?2:3,contentVersion:version,credits:137,selected:'coder',unlocked:['balanced','coder'],talents:{hp:3},discovered:['knife','orbit'],evolutions:['orbit'],settledRuns:['done'],relics:['clockShard'],fusions:['sword'],settings:{...DEFAULT_SETTINGS,motion:false,muted:true,shake:0,flash:0,hitStop:0,quality:'medium',...(version==='4.0.0-p2'?{audioPreset:'phone',dynamicMusic:false,afterimages:false}:{audioPreset:undefined})},stats:{...freshSave().stats,kills:600,runs:4,wins:1,bestWeek:22}};
-   const before=structuredClone(old),valid=validateSave(old)!;expect(old).toEqual(before);expect(validateSave(valid)).toEqual(valid);
+   if(old.schemaVersion===3){old.unlocks.weapons.push('shuttle');old.regions=['garden'];old.achievements.exercise={progress:500,completed:true,claimed:true};}const before=structuredClone(old),valid=validateSave(old)!;expect(old).toEqual(before);expect(validateSave(valid)).toEqual(valid);
    const storage=new Memory();if(old.schemaVersion===2)storage.setItem(LEGACY_KEYS[0],JSON.stringify(old));const repo=new SaveRepository(storage);if(old.schemaVersion===2){expect(repo.load()).toEqual(valid);expect(storage.getItem(LEGACY_KEYS[0])).toBe(JSON.stringify(old));}expect(repo.write(valid)).toBe(true);expect(validateSave(new SaveRepository(storage).load())).toEqual(valid);
    expect(valid).toMatchObject({credits:137,selected:'coder',talents:{hp:3},settledRuns:['done'],stats:{runs:4,kills:600},settings:{motion:false,muted:true,shake:0,flash:0,hitStop:0,quality:'medium'}});
-   expect(settleRun(valid,{id:'done'} as Parameters<typeof settleRun>[1])).toBe(valid);
+   if(old.schemaVersion===3){expect(valid.unlocks.weapons).toContain('shuttle');expect(valid.achievements.exercise).toEqual(old.achievements.exercise);expect(valid.regions).toEqual(['garden']);expect(valid.relics).toEqual(['clockShard']);expect(valid.fusions).toEqual(['sword']);}expect(settleRun(valid,{id:'done'} as Parameters<typeof settleRun>[1])).toBe(valid);
   }
  });
  it('R03 panels own only their pause, preserve draft/reward tokens and control defaults',()=>{
@@ -133,7 +133,7 @@ describe('v4.0.1 short regressions',()=>{
   for(const kind of ['splitter','homework']){
    const g=new GameEngine(freshSave(),12);g.enemies.clear();g.weapons.length=0;g.stats.crit=0;
    for(let n=0;n<20;n++){const id=g.spawnEnemy(kind,g.player.x+100,g.player.y);g.hitEnemy(id,1e5,'knife',0,0,0,false);g.resolveDeaths();if(kind==='splitter'){for(const child of [...g.enemies.active])g.hitEnemy(child,1e5,'knife',0,0,0,false);g.resolveDeaths();}}
-   expect([g.progress.normalKills,g.momentum.combo,g.metrics.clearRewards,g.momentum.charge]).toEqual([20,20,1,35]);
+   expect([g.progress.normalKills,g.momentum.combo,g.metrics.clearRewards,g.momentum.charge]).toEqual([20,20,1,35]);expect(g.totalDroppedXp()).toBe(g.metrics.generatedXp);expect(g.drops.active.filter(id=>g.drops.data[id].kind==='xp').every(id=>g.drops.data[id].attract)).toBe(true);
   }
   for(const [weight,time,rank] of [[.5,0,'normal'],[1,1.00001,'normal'],[0,0,'normal'],[1,0,'elite']] as const){const m=new CombatMomentum();for(let i=0;i<19;i++)m.kill('normal',0);expect(m.kill(rank,time,weight).clear).toBe(false);}
   const boundary=new CombatMomentum();for(let i=0;i<19;i++)boundary.kill('normal',0);expect(boundary.kill('normal',1+1e-6).clear).toBe(true);for(let n=0;n<20;n++)expect(boundary.kill('normal',1.5).clear).toBe(false);expect(boundary.clearCooldown).toBe(20);
