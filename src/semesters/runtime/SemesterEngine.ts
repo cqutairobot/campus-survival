@@ -84,7 +84,8 @@ export class SemesterEngine<State,Content> {
   if(outcome?.pause)this.pause(outcome.pause);
  }
  private assessmentEvent(stage:'prepare'|'start'|'passed'){
-  this.rules.assessment(this.state,immutableSnapshot({stage,assessment:this.assessment!,clock:this.clock()}),this.services);
+  const clock=this.clock();
+  this.rules.assessment(this.state,immutableSnapshot({stage,assessment:this.assessment!,clock}),{...this.services,damageAfterInheritance:amount=>this.inheritance.absorb(amount,clock.combatSeconds),experienceAfterInheritance:amount=>this.inheritance.experience(amount,clock.combatSeconds)});
  }
  private setGate(kind:'assessmentIntro'|'assessmentReward'){
   this.phase=kind;this.gate={kind,token:++this.serial};
@@ -92,10 +93,21 @@ export class SemesterEngine<State,Content> {
  /** UI waits use tokens: stale/repeated acknowledgements cannot spawn or reward twice. */
  acknowledge(token:number){
   if(this.disposed||this.suspension||!this.gate||token!==this.gate.token)return false;
+  if(this.rules.canAcknowledge?.(this.state,this.gate.kind)===false)return false;
   const kind=this.gate.kind;this.gate=null;this.loop.reset();
   if(kind==='assessmentIntro'){this.phase='assessment';this.assessmentEvent('start');}
   else if(this.assessment!.final)this.finish('completed');
   else{this.phase='teaching';this.assessment=null;this.assessmentTicks=0;}
+  this.publish();return true;
+ }
+ /** Plain commands cross the same simulation boundary as fixed steps. Manual
+  * and loading pauses cannot be dismissed by a late content choice. */
+ dispatch(command:unknown){
+  if(this.disposed||this.result||this.suspension&&['manual','loading'].includes(this.suspension.reason))return false;
+  const outcome=this.rules.command?.(this.state,structuredClone(command),this.services);
+  if(!outcome?.accepted)return false;
+  if(outcome.resume&&this.suspension)this.resume(this.suspension.token);
+  if(outcome.pause)this.pause(outcome.pause);
   this.publish();return true;
  }
  pause(reason:PauseReason='manual'){
@@ -105,6 +117,7 @@ export class SemesterEngine<State,Content> {
  }
  resume(token:number){
   if(this.disposed||!this.suspension||token!==this.suspension.token)return false;
+  if(this.rules.canResume?.(this.state,this.suspension.reason)===false)return false;
   this.suspension=null;this.loop.reset();this.publish();return true;
  }
  abandon(){if(!this.disposed&&!this.result){this.finish('abandoned');this.publish();}}

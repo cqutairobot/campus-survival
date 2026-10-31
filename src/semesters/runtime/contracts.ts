@@ -16,14 +16,18 @@ export interface RuntimeServices {
  readonly snapshot:Immutable<S2RunSnapshot>;
  readonly streams:ReturnType<typeof randomStreams>;
 }
-export interface RuntimeStep extends RuntimeServices {
- readonly dt:number;readonly clock:Immutable<RuntimeClock>;readonly phase:'teaching'|'assessment';
- readonly assessment:Immutable<Assessment>|null;readonly ordinarySpawnsAllowed:boolean;
+export interface RuntimeGrants {
  /** Apply at the damage/XP grant boundary, once per grant. These never regrant spent shields. */
  readonly damageAfterInheritance:(amount:number)=>number;
  readonly experienceAfterInheritance:(amount:number)=>number;
 }
+export interface AssessmentServices extends RuntimeServices,RuntimeGrants {}
+export interface RuntimeStep extends AssessmentServices {
+ readonly dt:number;readonly clock:Immutable<RuntimeClock>;readonly phase:'teaching'|'assessment';
+ readonly assessment:Immutable<Assessment>|null;readonly ordinarySpawnsAllowed:boolean;
+}
 export interface StepOutcome {defeated?:boolean;assessmentCleared?:boolean;pause?:PauseReason}
+export interface CommandOutcome {accepted:boolean;pause?:PauseReason;resume?:boolean}
 export interface AssessmentEvent {stage:'prepare'|'start'|'passed';assessment:Immutable<Assessment>;clock:Immutable<RuntimeClock>}
 export interface SemesterRules<State,Content> {
  /** Initialize exactly one initial weapon from snapshot.initialWeapon, including topic replacement. */
@@ -31,9 +35,14 @@ export interface SemesterRules<State,Content> {
  step(state:State,step:RuntimeStep):StepOutcome|void;
  /** prepare must end any mini-boss and clear ordinary threats before the paused intro.
   * start spawns the assessment; passed cleans up and prepares its reward, once. */
- assessment(state:State,event:AssessmentEvent,services:RuntimeServices):void;
+ assessment(state:State,event:AssessmentEvent,services:AssessmentServices):void;
  /** Export plain content DTOs inside the simulation boundary. */
  project(state:State):Content;
+ /** Content choices must also work while simulation is suspended. */
+ command?(state:State,command:unknown,services:RuntimeServices):CommandOutcome;
+ /** A runtime gate cannot skip a content reward or its presentation. */
+ canAcknowledge?(state:State,kind:'assessmentIntro'|'assessmentReward'):boolean;
+ canResume?(state:State,reason:PauseReason):boolean;
  dispose?(state:State):void;
 }
 export interface RuntimeOutcome {

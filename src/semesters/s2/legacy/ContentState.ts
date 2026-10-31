@@ -1,0 +1,182 @@
+import {enemyMaterial} from '../../../presentation/materials';
+import {RANK_CODE,rankName} from '../../../data/enemies';
+import {actualDamage,asSource,damageKey,damageLabel} from './damage';
+import {AreaPool,DropPool,EnemyPool,ShotPool} from '../../../entities/pools';
+import {BossSystem} from './bosses';
+import {EnemyDirector} from './director';
+import {EnemyBehaviors} from './behaviors';
+import {configureElite} from './elites';
+import {draftCards,statsFor,weekHpMultiplier,weekDamageMultiplier,xpForLevel} from './rules';
+import {relicStats,clampStats,relicBulletSpeed} from '../../../progression/relics';
+import {RewardSystem} from './rewards';
+import {freshMetrics} from '../../../core/metrics';
+import {CombatMomentum,frenzyStats} from './momentum';
+import {campusSnapshot,safePoint,slideMove,zoneAt} from '../../../world/campus';
+import {Navigation} from '../../../world/navigation';
+import {WeaponSystem} from './system';
+import {SpatialGrid} from '../../../core/grid';
+import {clamp,colorNumber,distanceSq,segmentDistanceSq,TAU} from '../../../core/math';
+import {freshProgress,LOGICAL_HEIGHT,LOGICAL_WIDTH} from '../../../core/run';
+import {DeathQueue,type Death} from '../../../combat/deaths';
+import {UltimateSystem} from './ultimates';
+import {applyPickup,rollPickup} from './pickups';
+import type {DamageSource,DropKind,EnemyRank,Hazard,HUD,Phase,Player,PlayerStats,Skill,VisualEvent,WeaponKind} from '../../../types';
+import type {Discovery} from '../../types';
+import type {AssessmentEvent,AssessmentServices,RuntimeGrants,RuntimeServices,RuntimeStep} from '../../runtime/contracts';
+import type {ContentCatalog} from './catalog';
+
+/** Run-local legacy content, owned exclusively by SemesterRules. No GameEngine,
+ * save projection/writer, settlement, renderer or second clock lives here. */
+export class ContentState {
+ readonly enemies=new EnemyPool();readonly shots=new ShotPool(2560);readonly enemyShots=new ShotPool(1280);readonly areas=new AreaPool();readonly drops=new DropPool();readonly grid=new SpatialGrid(2560);
+ readonly navigation:Navigation;readonly map;readonly weaponSystem:WeaponSystem;readonly bossSystem:BossSystem;readonly director:EnemyDirector;readonly behaviors:EnemyBehaviors;readonly rewards:RewardSystem;readonly ultimate:UltimateSystem;
+ readonly manifest;readonly streams;readonly random;readonly dropRandom;readonly draftRandom;
+ readonly weapons:Skill[]=[];readonly passives:Skill[]=[];readonly consumed:string[]=[];readonly relics:string[]=[];readonly progress=freshProgress();readonly discoveries:Discovery[]=[];readonly visualEvents:{serial:number;event:VisualEvent}[]=[];readonly hazards:Hazard[]=[];readonly deaths=new DeathQueue();readonly momentum=new CombatMomentum();
+ readonly player:Player={x:3072,y:3072,prevX:3072,prevY:3072,vx:0,vy:0,facing:-Math.PI/2,hp:110,shield:0,shieldTime:0,invincible:1,lastHurt:-100};
+ // Regional content is read from the existing campus; event/interaction scheduling
+ // belongs to later batches. These original buffs remain available to behavior ports.
+ readonly landmarks={zone:undefined as ReturnType<typeof zoneAt>,trackTime:0,rangeTime:0,channel:0};
+ stats:PlayerStats;phase:Phase='playing';semesterTime=0;combatTime=0;bossTime=0;week=1;level=1;xp=0;kills=0;bosses=0;bossEnemy=-1;bossStage=1;bossActive=false;bossNumber=0;
+ inputX=0;inputY=0;frame=0;damageMultiplier=1;notice='新学期，出发！';noticeUntil=5;cards:HUD['cards']=[];draftToken=0;chest:HUD['chest']=null;
+ damage:Record<string,number>={};poolFailures=0;readonly metrics=freshMetrics();coffeeTime=0;bonusCredits=0;ordinarySpawnsAllowed=false;assessmentRewardDone=false;
+ private navTimer=0;private pendingLevels=0;private levelFeedbackFrame=-1;private deadBoss=-1;private nextMerge=1;private specialCooldown:Record<string,number>={};private hazardId=0;private instanceSerial=0;private visualSerial=0;
+ private disposed=false;private waitingForAssessment=false;private moveScratch={x:0,y:0};private grantBoundary:RuntimeGrants|null=null;private transitions=new Set<string>();
+ constructor(readonly content:ContentCatalog,services:RuntimeServices){
+  this.manifest=services.snapshot;this.streams=services.streams;this.random=this.streams.combat;this.dropRandom=this.streams.drop;this.draftRandom=this.streams.draft;
+  const initial=this.manifest.initialWeapon,definition=content.weaponById[initial.id];
+  if(!definition||definition.fusion||!content.characters.some(c=>c.id===this.manifest.character))throw Error('Content not ported for opening snapshot');
+  this.map=campusSnapshot([...this.manifest.regions]);this.navigation=new Navigation(this.map.blockers);this.rewards=new RewardSystem(this);this.ultimate=new UltimateSystem(this);
+  this.weapons.push({...initial,id:definition.id,kind:'base',instanceId:this.nextInstance()});this.stats=this.calculateStats();this.player.hp=this.stats.maxHp;
+  this.weaponSystem=new WeaponSystem(this);this.bossSystem=new BossSystem(this);this.director=new EnemyDirector(this);this.behaviors=new EnemyBehaviors(this);this.discover(initial.id);
+  for(let n=0;n<12;n++){const a=n*TAU/12;this.spawnEnemy(n%3?'homework':'checkin',3072+Math.cos(a)*360,3072+Math.sin(a)*280);}
+  this.rebuildGrid();this.navigation.rebuild(this.player.x,this.player.y);
+ }
+ nextInstance(){return++this.instanceSerial;}
+ get activeEvent(){return null;}
+ get combatStats(){let st=frenzyStats(this.stats,this.momentum.active);const u=this.ultimate;if(this.coffeeTime>0)st={...st,haste:st.haste*1.25};if(u.remaining>0){if(u.def.id==='overload')st={...st,haste:st.haste*1.4,area:st.area*1.25};if(u.def.id==='conference')st={...st,speed:st.speed*1.25};}if(this.landmarks.trackTime>0)st={...st,speed:st.speed*1.15};if(this.landmarks.rangeTime>0)st={...st,area:st.area*1.2};return clampStats(st);}
+ get hasPendingRewards(){return this.pendingLevels>0||this.rewards.chests.length>0||this.phase!=='playing';}
+ private calculateStats(relics=this.relics){const s=statsFor(this.content,this.manifest,this.passives);if(this.manifest.mode==='daily'){if(this.manifest.dailyRule==='piercing')s.multi++;if(this.manifest.dailyRule==='lastMinute')s.charge+=.35;if(this.manifest.dailyRule==='assistants')s.summon+=.25;if(this.manifest.dailyRule==='nightRun')s.speed*=1.2;if(this.manifest.dailyRule==='construction')s.area*=1.2;}return relicStats(s,relics);}
+ previewRelic(id:string){return this.calculateStats([...this.relics,id]);}
+ recalculateStats(mode:'increase'|'ratio'='increase',previous=this.stats.maxHp){const hp=this.player.hp;this.stats=this.calculateStats();this.player.hp=Math.min(this.stats.maxHp,mode==='ratio'?hp*this.stats.maxHp/previous:hp+Math.max(0,this.stats.maxHp-previous)*(this.manifest.dailyRule==='overload'?.6:1));this.player.shield=Math.min(this.player.shield,this.stats.maxHp*.5);}
+ discover(value:string,evolution=false){const split=value.indexOf(':'),category:Discovery['category']=evolution?'evolution':split<0?'item':value.slice(0,split) as Discovery['category'],id=split<0?value:value.slice(split+1);if(!this.discoveries.some(d=>d.category===category&&d.id===id))this.discoveries.push({semesterId:'s2',category,id,evidence:'run'});}
+ safePoint(x:number,y:number){return safePoint(x,y,this.map.blockers);}
+ rebuildGrid(){this.grid.rebuild(this.enemies.active,this.enemies.x,this.enemies.y);}
+ emit(event:VisualEvent){this.visualEvents.push({serial:++this.visualSerial,event});if(this.visualEvents.length>2000)this.visualEvents.shift();}
+ impact(_strength:number,_stop=0){/* Presentation owns camera/visual holds; no extra simulation clock. */}
+ message(text:string,seconds=4){this.notice=text;this.noticeUntil=this.combatTime+seconds;}
+ setPhase(phase:Phase){this.phase=phase;if(phase!=='playing')this.inputX=this.inputY=0;}
+ private inheritanceDamage(value:number){if(!this.grantBoundary)throw Error('Damage grant outside simulation boundary');return this.grantBoundary.damageAfterInheritance(value);}
+ private inheritanceExperience(value:number){if(!this.grantBoundary)throw Error('Experience grant outside simulation boundary');return this.grantBoundary.experienceAfterInheritance(value);}
+ tick(step:RuntimeStep){
+  if(this.disposed)return{};
+  this.grantBoundary=step;
+  try{
+   this.waitingForAssessment=false;this.frame=step.clock.tick;this.combatTime=step.clock.combatSeconds;this.semesterTime=step.clock.teachingSeconds;this.bossTime=step.clock.assessmentSeconds;this.week=step.clock.week;this.ordinarySpawnsAllowed=step.ordinarySpawnsAllowed;
+   const dt=step.dt,p=this.player;this.momentum.update(dt,this.combatTime);this.coffeeTime=Math.max(0,this.coffeeTime-dt);p.prevX=p.x;p.prevY=p.y;p.invincible=Math.max(0,p.invincible-dt);p.shieldTime=Math.max(0,p.shieldTime-dt);if(!p.shieldTime)p.shield=0;
+   const zone=zoneAt(p.x,p.y);this.landmarks.zone=zone&&this.map.regions.includes(zone.id)?zone:undefined;this.movePlayer(dt);this.navTimer-=dt;if(this.navTimer<=0){this.navigation.rebuild(p.x,p.y);this.navTimer=.5;}
+   this.director.update(dt);this.behaviors.update(dt);this.bossSystem.update(dt);this.bossSystem.updateExams(dt);this.rebuildGrid();this.ultimate.update(dt);this.weaponSystem.update(dt);this.updateEnemyShots(dt);this.updateHazards(dt);this.resolveDeaths();this.updateDrops(dt);
+   const currentZone=this.landmarks.zone;if(p.hp>0)this.heal((this.stats.regen+(currentZone?.id==='canteen'&&this.combatTime-p.lastHurt>2?1:0))*dt);if(this.stats.drain>0&&p.hp>0)p.hp=Math.max(1,p.hp-this.stats.maxHp*this.stats.drain*dt);
+   if(p.hp<=0)return{defeated:true};if(this.deadBoss>=0)return{assessmentCleared:true};
+   this.nextMerge-=dt;if(this.nextMerge<=0){this.mergeExperience();this.nextMerge=1;}this.handlePending();return this.phase==='playing'?{}:{pause:this.phase==='draft'?'choice' as const:'reward' as const};
+  }finally{this.grantBoundary=null;}
+ }
+ handlePending(){if(this.phase!=='playing')return;if(this.rewards.chests.length){this.rewards.openChest(this.rewards.chests.shift()!);return;}if(this.pendingLevels>0)this.openDraft();}
+ assessment(event:AssessmentEvent,services:AssessmentServices){
+  const key=`${event.assessment.index}:${event.stage}`;if(this.transitions.has(key))return;this.transitions.add(key);
+  this.grantBoundary=services;
+  try{
+  if(event.stage==='prepare'){
+   this.waitingForAssessment=true;
+   // Finish the current mini-boss once, retaining its earned chest/XP; ordinary
+   // threat cleanup is cancellation and never a source of free kill rewards.
+   for(const id of [...this.enemies.active])if(this.enemies.rank[id]===RANK_CODE.miniBoss&&this.enemies.hp[id]>0){this.enemies.hp[id]=0;this.deaths.mark(this.enemies,id,{kind:'environment',id:'assessment'},true);}
+   this.resolveDeaths();this.clearThreats();this.director.pendingElites.length=0;this.handlePending();
+  }else if(event.stage==='start'){
+   this.waitingForAssessment=false;
+   this.bossNumber=event.assessment.index;this.bossStage=1;this.bossActive=true;this.bossTime=0;this.assessmentRewardDone=false;
+   const kind=['proposal','defense','finals'][this.bossNumber],point=this.safePoint(this.player.x,this.player.y-300);this.bossEnemy=this.spawnEnemy(kind,point.x,point.y);this.bossSystem.reset();this.emit({type:'boss',x:point.x,y:point.y,color:0xe48475,size:240,text:this.content.enemyById[kind].name});
+  }else{
+   this.waitingForAssessment=true;
+   this.bosses++;this.metrics.bossFights.push({boss:this.bossNumber,seconds:event.clock.assessmentSeconds,damage:this.enemies.maxHp[this.deadBoss]});this.deadBoss=-1;this.clearThreats();this.magnet();this.rewards.openChest(3,true);
+  }
+  }finally{this.grantBoundary=null;}
+ }
+ private clearThreats(){this.inputX=this.inputY=0;this.bossEnemy=-1;this.enemies.clear();this.deaths.clear();this.enemyShots.clear();this.hazards.length=0;this.ordinarySpawnsAllowed=false;this.rebuildGrid();}
+ canAcknowledge(kind:'assessmentIntro'|'assessmentReward'){return!this.hasPendingRewards&&(kind==='assessmentIntro'||this.assessmentRewardDone);}
+ command(value:unknown){
+  if(this.disposed||!value||typeof value!=='object')return{accepted:false};const c=value as Record<string,unknown>;
+  if(c.type==='move'&&typeof c.x==='number'&&Number.isFinite(c.x)&&typeof c.y==='number'&&Number.isFinite(c.y)&&this.phase==='playing'&&!this.waitingForAssessment){this.inputX=clamp(c.x,-1,1);this.inputY=clamp(c.y,-1,1);return{accepted:true};}
+  if(c.type==='ultimate'&&!this.waitingForAssessment)return{accepted:this.ultimate.release()};
+  if(c.type==='choose'&&this.phase==='draft'&&Number.isInteger(c.index)&&c.token===this.draftToken&&this.cards[c.index as number])this.applyCard(c.index as number,c.token as number);
+  else if(c.type==='chooseReward'&&Number.isInteger(c.index)&&c.token===this.rewards.token&&this.rewards.options[c.index as number]&&this.phase==='reward')this.rewards.choose(c.token as number,c.index as number);
+  else if(c.type==='chestDone'&&c.token===this.rewards.token&&this.phase==='chest')this.rewards.finishChest();
+  else if(c.type==='evolutionDone'&&c.token===this.rewards.token&&this.phase==='evolution')this.rewards.afterReward();
+  else return{accepted:false};
+  return{accepted:true,resume:(this.phase as Phase)==='playing'};
+ }
+ private movePlayer(dt:number){const p=this.player,len=Math.hypot(this.inputX,this.inputY),scale=len>1?1/len:1,ix=this.inputX*scale,iy=this.inputY*scale,smoothing=1-Math.exp(-dt*(len>.01?18:14)),speed=this.combatStats.speed;p.vx+=(ix*speed-p.vx)*smoothing;p.vy+=(iy*speed-p.vy)*smoothing;if(len>.05)p.facing=Math.atan2(iy,ix);const next=slideMove(p.x,p.y,p.vx*dt,p.vy*dt,12,this.moveScratch,this.map.blockers);p.x=next.x;p.y=next.y;}
+ moveEnemy(id:number,dx:number,dy:number){const e=this.enemies,next=slideMove(e.x[id],e.y[id],dx,dy,e.radius[id]*.65,this.moveScratch,this.map.blockers);e.x[id]=next.x;e.y[id]=next.y;}
+ spawnEnemy(kind:string,x?:number,y?:number,reward=0){const index=this.content.enemyIndex[kind];if(index===undefined)return-1;const e=this.enemies,def=this.content.enemies[index],id=e.acquire();if(id<0){this.poolFailures++;return-1;}
+  if(x===undefined||y===undefined){const rng=this.streams.spawn,horizontal=rng.next()<.5,sign=rng.next()<.5?-1:1;x=this.player.x+(horizontal?sign*(LOGICAL_WIDTH*.5+rng.range(80,160)):rng.range(-LOGICAL_WIDTH*.5,LOGICAL_WIDTH*.5));y=this.player.y+(!horizontal?sign*(LOGICAL_HEIGHT*.5+rng.range(80,160)):rng.range(-LOGICAL_HEIGHT*.5,LOGICAL_HEIGHT*.5));}
+  const point=this.safePoint(x,y),normal=def.rank==='normal';e.x[id]=e.prevX[id]=point.x;e.y[id]=e.prevY[id]=point.y;e.hp[id]=e.maxHp[id]=normal?Math.ceil(def.hp*weekHpMultiplier(this.week)):def.hp;e.speed[id]=def.speed*(normal?Math.min(1.28,1+.014*(this.week-1)):1);e.damage[id]=def.damage*(def.rank==='normal'||def.rank==='elite'?weekDamageMultiplier(this.week):1);e.radius[id]=def.radius;e.kind[id]=index;e.rank[id]=RANK_CODE[def.rank];e.cooldown[id]=this.streams.ai.range(1,4);e.affixTimer[id]=this.streams.ai.range(1,4);e.skillTimer[id]=7;e.shootTimer[id]=3;e.xp[id]=def.xp;e.reward[id]=reward;e.rewardWeight[id]=def.rank==='bossAdd'?0:1;e.orbitHits.fill(0,id*12,id*12+12);e.areaHits.fill(0,id*4,id*4+4);
+  if(def.behavior==='shield')e.shield[id]=e.maxShield[id]=e.maxHp[id]*.35;if(normal&&def.behavior==='split'){e.chainXp[id]=e.xp[id]*.5;e.xp[id]*=.5;e.chainWeight[id]=.5;e.rewardWeight[id]=.5;}
+  if(def.rank==='elite')configureElite(this,id);if(def.rank==='miniBoss')e.reward[id]=2;this.metrics.spawned++;if(normal)this.metrics.normalSpawned++;if(!this.progress.enemies.includes(kind))this.progress.enemies.push(kind);this.discover(`enemy:${kind}`);return id;
+ }
+ spawnSummon(kind:string,owner:number,x:number,y:number,lifetime=12){const e=this.enemies,id=this.spawnEnemy(kind,x,y);if(id>=0){e.owner[id]=owner;e.ownerGeneration[id]=e.generation[owner];e.lifetime[id]=lifetime;e.xp[id]=0;e.rewardWeight[id]=0;e.chainXp[id]=0;e.chainWeight[id]=0;e.reward[id]=0;e.splitGeneration[id]=1;}return id;}
+ frozenTarget(id:number){const e=this.enemies;if(!e.frozenOnce[id]){e.frozenOnce[id]=1;this.progress.frozen++;}}
+ hitEnemy(id:number,baseDamage:number,source:WeaponKind|DamageSource,x:number,y:number,knockback=1,canCrit=true,canChain=true,clearChain=false,fixed=false):number{
+  const e=this.enemies;if(!e.alive[id]||e.hp[id]<=0||baseDamage<=0)return 0;const src=asSource(source),rank=rankName(e.rank[id]),crit=canCrit&&this.random.next()<this.stats.crit;let damage=baseDamage*(crit?this.stats.critDamage:1);
+  if(!fixed&&this.landmarks.zone?.id==='garden'&&['elite','miniBoss','boss'].includes(rank))damage*=1.2;
+  if(this.content.enemies[e.kind[id]].id==='inspector'&&e.active.some(n=>this.content.enemies[e.kind[n]].id==='node'&&e.hp[n]>0&&e.owner[n]===id&&e.ownerGeneration[n]===e.generation[id]))damage*=.6;
+  const absorbed=Math.min(e.shield[id],damage);e.shield[id]-=absorbed;const actual=actualDamage(e.hp[id],damage-absorbed),total=actual+absorbed;e.lastHit[id]=this.combatTime;
+  this.metrics.hits++;this.metrics.shieldDamage+=absorbed;if(!e.hitCount[id])e.firstHit[id]=this.combatTime;e.hitCount[id]=Math.min(65535,e.hitCount[id]+1);this.metrics.criticalHits+=Number(crit);this.metrics.overkill+=Math.max(0,damage-total);e.hp[id]-=actual;const key=damageKey(src);this.damage[key]=(this.damage[key]??0)+total;e.flash[id]=crit?.077:.065;
+  const dx=e.x[id]-x,dy=e.y[id]-y,d=Math.hypot(dx,dy)||1,resist=rank==='boss'?.05:rank==='miniBoss'?.1:rank==='elite'?.25:this.content.enemies[e.kind[id]].tags.includes('heavy')?.5:1;e.vx[id]+=dx/d*(crit?160:90)*knockback*this.stats.push*resist;e.vy[id]+=dy/d*(crit?160:90)*knockback*this.stats.push*resist;
+  this.emit({type:'hit',slot:id,generation:e.generation[id],enemyKind:this.content.enemies[e.kind[id]].id,rank,batch:this.frame,sourceKey:key,damageType:absorbed>0?'shield':!canCrit&&src.kind==='weapon'&&['coffee','cryo','icefire','eraser'].includes(src.id)?'dot':'normal',x:e.x[id],y:e.y[id]-8,color:crit?0xf0bf5b:colorNumber(damageLabel(this.content,key).color),size:crit?11:6,value:Math.round(total),critical:crit,weapon:src.kind==='weapon'?src.id:undefined,angle:Math.atan2(dy,dx),material:enemyMaterial(this.content.enemies[e.kind[id]].id)});
+  if(absorbed>0&&e.shield[id]<=0)this.emit({type:'shieldBreak',x:e.x[id],y:e.y[id],color:0x9be3ed,size:e.radius[id]*2,material:'glass',priority:true});if(crit)this.impact(1.5);
+  if(e.hp[id]<=0)this.deaths.mark(e,id,src,clearChain);
+  if(crit&&canChain&&src.kind==='weapon'&&this.momentum.critical())this.criticalChain(id,e.x[id],e.y[id],baseDamage*.25,src.id);return total;
+ }
+ resolveDeaths(){this.deaths.drain(this.enemies,d=>this.resolveDeath(d));}
+ private resolveDeath(death:Death){const e=this.enemies,id=death.slot,def=this.content.enemies[e.kind[id]],rank=rankName(e.rank[id]),x=e.x[id],y=e.y[id],weight=e.rewardWeight[id]+(death.clearChain?e.chainWeight[id]:0),xp=e.xp[id]+(death.clearChain?e.chainXp[id]:0);this.kills++;this.metrics.firstKill??=this.combatTime;
+  if(rank==='normal'&&e.owner[id]<0){const band=this.week<=5?'early':this.week<=16?'middle':'late',seconds=this.combatTime-e.firstHit[id],bucket=seconds<.5?0:seconds<1?1:seconds<2?2:seconds<3?3:seconds<5?4:5;this.metrics.normalKillTimings[band].push(seconds);if(this.metrics.normalKillTimings[band].length>8192)this.metrics.normalKillTimings[band].shift();this.metrics.normalKillHits[band][Math.min(10,e.hitCount[id])]++;this.metrics.normalKillSeconds[band][bucket]++;if(def.tags.includes('heavy'))this.metrics.heavyKillHits[Math.min(10,e.hitCount[id])]++;this.progress.normalKills+=weight;if(def.id==='guard'&&weight>0)this.progress.shieldKills++;}
+  else if(rank==='elite')this.progress.elites++;else if(rank==='miniBoss')this.progress.miniBosses++;
+  this.emit({type:'death',slot:id,generation:e.generation[id],enemyKind:def.id,rank,batch:this.frame,angle:Math.atan2(e.vy[id],e.vx[id]),x,y,color:colorNumber(def.color),size:e.radius[id],weapon:death.source.kind==='weapon'?death.source.id:undefined,material:enemyMaterial(def.id),priority:rank!=='normal'});
+  if(xp>0)this.spawnDrop('xp',x,y,xp*(rank==='normal'&&this.activeEvent==='examRage'?1.2:1));if(weight>0){this.killFeedback(rank,weight);this.ultimate.kill(rank,weight,death.source);}
+  if(rank==='normal'&&e.owner[id]<0&&e.splitGeneration[id]===0)rollPickup(this,x,y,this.specialCooldown);
+  if(rank==='boss'){if(!this.progress.bossIds.includes(def.id))this.progress.bossIds.push(def.id);if(def.id==='proposal'&&this.weapons.some(w=>w.id==='ruler'&&w.level===5))this.progress.architect=true;this.deadBoss=id;return;}
+  if(rank==='elite'||rank==='miniBoss'){this.spawnDrop('chest',x,y,rank==='miniBoss'?2:1);this.metrics.chests++;this.impact(4,1/60);}
+  if(def.id==='advisor'||rank==='miniBoss')this.spawnDrop('heal',x+20,y,this.content.pickupById.heal.value);
+  for(let n=this.hazards.length-1;n>=0;n--)if(this.hazards[n].cancelOnDeath&&this.hazards[n].owner===id&&this.hazards[n].ownerGeneration===e.generation[id])this.hazards.splice(n,1);
+  if(e.affixes[id]&8)this.addHazard('circle',x,y,0,0,110,1,.3,16*weekDamageMultiplier(this.week),undefined,{ordinary:false});
+  const split=def.behavior==='split'&&e.splitGeneration[id]===0&&!death.clearChain,eliteSplit=!!(e.affixes[id]&1);const children:{hp:number;xp:number;weight:number}[]=[];
+  if(split)for(let n=0;n<2;n++)children.push({hp:e.maxHp[id]*.35,xp:e.chainXp[id]/2,weight:e.chainWeight[id]/2});else if(eliteSplit)for(let n=0;n<2;n++)children.push({hp:e.maxHp[id]*.3,xp:0,weight:0});
+  const generation=e.generation[id];if(rank==='miniBoss')for(const node of [...e.active])if(e.owner[node]===id&&e.ownerGeneration[node]===generation&&this.content.enemies[e.kind[node]].id==='node')e.release(node);e.release(id);
+  for(const [n,child] of children.entries()){const c=this.spawnEnemy(split?'splitter':'homework',x+(n?16:-16),y);if(c>=0){e.hp[c]=e.maxHp[c]=child.hp;e.xp[c]=child.xp;e.rewardWeight[c]=child.weight;e.chainXp[c]=0;e.chainWeight[c]=0;e.splitGeneration[c]=1;e.radius[c]*=.7;e.reward[c]=0;e.affixes[c]=0;}}
+ }
+ private killFeedback(rank:EnemyRank,weight:number){const p=this.player,result=this.momentum.kill(rank,this.combatTime,weight);if(result.milestone)this.emit({type:'combo',x:p.x,y:p.y,color:0xffd775,size:90,value:result.milestone,text:result.milestone>=100?'学术无双':result.milestone>=50?'势不可挡':result.milestone>=25?'灵感喷涌':'渐入佳境'});if(result.clear){this.metrics.clearRewards++;for(const id of this.drops.active){const d=this.drops.data[id];if(d.kind==='xp'&&distanceSq(p.x,p.y,d.x,d.y)<=360**2)d.attract=true;}this.emit({type:'clear',x:p.x,y:p.y,color:0x85ead0,size:360,text:'清场 · 学分汇流 +15 狂热',duration:.7});}if(result.frenzy)this.startFrenzyFeedback();}
+ private startFrenzyFeedback(){this.metrics.frenzyTriggers++;this.emit({type:'frenzy',x:this.player.x,y:this.player.y,color:0xffb354,size:240,text:'学术狂热',duration:.8});this.impact(4);}
+ private criticalChain(origin:number,x:number,y:number,damage:number,source:WeaponKind){const e=this.enemies,visited=[origin];this.metrics.criticalChains++;for(let hop=0;hop<2;hop++){let target=-1,best=130**2;for(const id of e.active){if(visited.includes(id)||e.hp[id]<=0)continue;const d=distanceSq(x,y,e.x[id],e.y[id]);if(d<=best){best=d;target=id;}}if(target<0)break;visited.push(target);const tx=e.x[target],ty=e.y[target];this.metrics.chainDamage+=this.hitEnemy(target,damage,source,x,y,.4,false,false);this.emit({type:'chain',x,y,x2:tx,y2:ty,color:0xffdf81,size:3,duration:.22,weapon:source});x=tx;y=ty;}}
+ hurtPlayer(damage:number,x:number,y:number){const p=this.player;if(p.invincible>0||p.hp<=0||damage<=0)return;damage=Math.max(1,damage*(this.landmarks.zone?.id==='garden'?1.1:1)-this.stats.armor);const absorbed=Math.min(p.shield,damage);p.shield-=absorbed;damage=this.inheritanceDamage(damage-absorbed);p.hp-=damage;p.invincible=this.stats.invulnerability;p.lastHurt=this.combatTime;this.landmarks.channel=0;this.metrics.hurtCount++;this.metrics.hpLost+=damage;this.metrics.shieldAbsorbed+=absorbed;const dx=p.x-x,dy=p.y-y,d=Math.hypot(dx,dy)||1,push=this.passives.find(s=>s.id==='push'),resistance=push?[.05,.1,.15,.2,.25][push.level-1]:0,next=slideMove(p.x,p.y,dx/d*12*(1-resistance),dy/d*12*(1-resistance),12,this.moveScratch,this.map.blockers);p.x=next.x;p.y=next.y;this.impact(5,.04);this.emit({type:'hurt',damageType:'hurt',angle:Math.atan2(dy,dx),x:p.x,y:p.y,color:0xe96c6c,size:24,value:Math.ceil(damage)});}
+ heal(amount:number){const before=this.player.hp;if(this.player.hp>0&&amount>0)this.player.hp=Math.min(this.stats.maxHp,this.player.hp+amount*(this.manifest.dailyRule==='overload'?.6:1));const restored=this.player.hp-before;if(restored>=1)this.emit({type:'pickup',damageType:'heal',x:this.player.x,y:this.player.y,color:0x83e4be,size:8,value:restored});}
+ addShield(amount:number,seconds:number){this.player.shield=Math.min(this.stats.maxHp*.5,this.player.shield+amount);this.player.shieldTime=seconds;}
+ enemyBullet(x:number,y:number,angle:number,speed:number,damage:number,radius=6,delay=0,ordinary=true){const id=this.enemyShots.acquire();if(id<0){this.poolFailures++;return;}const s=this.enemyShots.data[id];s.x=s.prevX=x;s.y=s.prevY=y;s.vx=Math.cos(angle)*speed;s.vy=Math.sin(angle)*speed;s.life=8+delay;s.age=-delay;s.damage=damage;s.radius=radius;s.kind='enemy';s.color=0xe8777d;s.frozen=0;s.ordinary=ordinary;}
+ freezeHostiles(radius:number,seconds:number){const p=this.player;for(const id of this.enemyShots.active){const s=this.enemyShots.data[id];if(s.ordinary&&distanceSq(p.x,p.y,s.x,s.y)<=radius**2)s.frozen=Math.max(s.frozen,seconds);}for(const h of this.hazards)if(h.ordinary!==false&&distanceSq(p.x,p.y,h.x,h.y)<=radius**2)h.frozen=Math.max(h.frozen??0,seconds);}
+ cancelProjectiles(radius:number,limit=Infinity){const p=this.player;let count=0;for(const id of [...this.enemyShots.active]){const s=this.enemyShots.data[id];if(count>=limit)break;if(distanceSq(p.x,p.y,s.x,s.y)<=radius**2){this.enemyShots.release(id);count++;this.emit({type:'block',x:s.x,y:s.y,color:0xffffff,size:15});}}}
+ clearEnemies(radius:number,source:DamageSource,percent:Partial<Record<EnemyRank,[number,number]>>){const p=this.player,e=this.enemies;for(const id of [...e.active]){if(e.hp[id]<=0||distanceSq(p.x,p.y,e.x[id],e.y[id])>radius**2)continue;const rank=rankName(e.rank[id]),value=percent[rank],damage=rank==='normal'||rank==='bossAdd'?e.hp[id]+e.shield[id]:value?Math.min(e.maxHp[id]*value[0],value[1]):0;this.hitEnemy(id,damage,source,p.x,p.y,3,false,false,true,true);}this.cancelProjectiles(radius);for(let n=this.hazards.length-1;n>=0;n--){const h=this.hazards[n];if(distanceSq(p.x,p.y,h.x,h.y)<=radius**2)this.hazards.splice(n,1);}this.emit({type:'ring',x:p.x,y:p.y,color:0xe9bf5e,size:radius,duration:.8,text:'提前交稿！'});this.impact(8,.05);}
+ private updateEnemyShots(dt:number){const p=this.player,speed=relicBulletSpeed(this.relics)*(this.manifest.dailyRule==='lastMinute'?1.2:1)*(this.activeEvent==='rainstorm'?.85:1);for(let n=this.enemyShots.active.length-1;n>=0;n--){const id=this.enemyShots.active[n],s=this.enemyShots.data[id];if(s.frozen>0){s.frozen=Math.max(0,s.frozen-dt);continue;}s.life-=dt;s.age+=dt;if(s.life<=0){this.enemyShots.release(id);continue;}if(s.age<0)continue;s.prevX=s.x;s.prevY=s.y;s.x+=s.vx*dt*speed;s.y+=s.vy*dt*speed;if(segmentDistanceSq(p.x,p.y,s.prevX,s.prevY,s.x,s.y)<(s.radius+12)**2){this.hurtPlayer(s.damage,s.prevX,s.prevY);this.enemyShots.release(id);}}}
+ addHazard(kind:Hazard['kind'],x:number,y:number,x2:number,y2:number,radius:number,warning:number,life:number,damage:number,safeAngle?:number,extra:Partial<Hazard>={}){if(this.hazards.length>=96)return;const h:Hazard={id:this.hazardId++,kind,x,y,x2,y2,radius,warning,life,damage,hit:false,safeAngle,ordinary:!this.bossActive,...(this.bossActive&&this.bossEnemy>=0?{owner:this.bossEnemy,ownerGeneration:this.enemies.generation[this.bossEnemy]}:{}),...extra};this.hazards.push(h);return h;}
+ private updateHazards(dt:number){const p=this.player,e=this.enemies;for(let n=this.hazards.length-1;n>=0;n--){const h=this.hazards[n];if(h.cancelOnDeath&&h.owner!==undefined&&(!e.valid(h.owner,h.ownerGeneration??0)||e.hp[h.owner]<=0)){this.hazards.splice(n,1);continue;}if((h.frozen??0)>0){h.frozen=Math.max(0,(h.frozen??0)-dt);continue;}h.warning-=dt;if(h.warning>0)continue;h.life-=dt;if(h.life<=0){this.hazards.splice(n,1);continue;}if(h.angularSpeed){const dx=h.x2-h.x,dy=h.y2-h.y,a=h.angularSpeed*dt;h.x2=h.x+dx*Math.cos(a)-dy*Math.sin(a);h.y2=h.y+dx*Math.sin(a)+dy*Math.cos(a);}if(h.hit||!h.damage)continue;const d=Math.hypot(p.x-h.x,p.y-h.y),angle=Math.atan2(p.y-h.y,p.x-h.x),collision=h.kind==='circle'?d<h.radius+12:h.kind==='line'?segmentDistanceSq(p.x,p.y,h.x,h.y,h.x2,h.y2)<(h.radius+12)**2:Math.abs(d-h.radius*(1-h.life/1.3))<20&&(h.safeAngle===undefined||Math.cos(angle-h.safeAngle)<.82);if(collision){this.hurtPlayer(h.damage,h.x,h.y);h.hit=true;}}}
+ spawnDrop(kind:DropKind,x:number,y:number,value:number){if(kind==='xp')this.metrics.generatedXp+=value;if(this.drops.active.length>2100)this.mergeExperience();let id=this.drops.acquire();if(id<0){if(kind==='xp'){const existing=this.drops.active.find(n=>this.drops.data[n].kind==='xp');if(existing!==undefined){this.drops.data[existing].value+=value;return;}}this.collectFarExperience();id=this.drops.acquire();if(id<0){this.poolFailures++;return;}}const d=this.drops.data[id],point=this.safePoint(x,y);d.x=point.x;d.y=point.y;d.kind=kind;d.value=value;d.age=0;d.attract=false;d.vx=0;d.vy=0;}
+ private updateDrops(dt:number){const p=this.player;for(let n=this.drops.active.length-1;n>=0;n--){const id=this.drops.active[n],d=this.drops.data[id];d.age+=dt;if(d.kind==='heal'&&p.hp>=this.stats.maxHp){d.attract=false;continue;}const dx=p.x-d.x,dy=p.y-d.y,distance=Math.hypot(dx,dy)||1;if(distance<(d.kind==='xp'?this.stats.magnet:48))d.attract=true;if(d.attract){const speed=Math.min(1050,220+d.age*180);d.x+=dx/distance*Math.min(distance,speed*dt);d.y+=dy/distance*Math.min(distance,speed*dt);}if(distance<18||(d.attract&&distance<35&&d.age>.3)){const kind=d.kind,value=d.value;this.drops.release(id);this.emit({type:'pickup',x:p.x,y:p.y,color:0x49b9a4,size:5});if(kind==='xp'){this.metrics.collectedRawXp+=value;this.addExperience(value*this.stats.xp*(this.landmarks.zone?.id==='library'?1.15:1));}else if(kind==='chest')this.rewards.chests.push(clamp(value,1,3));else applyPickup(this,kind,value);}}}
+ mergeExperience(){const cells=new Map<number,number>();for(let n=this.drops.active.length-1;n>=0;n--){const id=this.drops.active[n],d=this.drops.data[id];if(d.kind!=='xp'||d.attract)continue;const size=this.drops.active.length>1600?128:48,key=Math.floor(d.x/size)*128+Math.floor(d.y/size),previous=cells.get(key);if(previous===undefined){cells.set(key,id);continue;}const other=this.drops.data[previous],total=other.value+d.value,point=this.safePoint((other.x*other.value+d.x*d.value)/total,(other.y*other.value+d.y*d.value)/total);other.x=point.x;other.y=point.y;other.value=total;this.drops.release(id);}}
+ private collectFarExperience(){let value=0;for(let n=this.drops.active.length-1;n>=0;n--){const id=this.drops.active[n],d=this.drops.data[id];if(d.kind==='xp'){value+=d.value;this.drops.release(id);}}if(value){this.metrics.collectedRawXp+=value;this.addExperience(value*this.stats.xp);}}
+ totalDroppedXp(){return this.drops.active.reduce((sum,id)=>sum+(this.drops.data[id].kind==='xp'?this.drops.data[id].value:0),0);}
+ magnet(){for(const id of this.drops.active)if(this.drops.data[id].kind==='xp')this.drops.data[id].attract=true;this.message('磁铁 · 全校园学分正在赶来');this.emit({type:'ring',x:this.player.x,y:this.player.y,color:0x52b7b8,size:500,duration:.5});}
+ bomb(){applyPickup(this,'bomb');}
+ addExperience(value:number){value=this.inheritanceExperience(value);this.metrics.creditedXp+=Math.max(0,value);this.xp+=Math.max(0,value);while(this.xp>=xpForLevel(this.level)){this.xp-=xpForLevel(this.level);this.level++;this.pendingLevels++;this.metrics.firstUpgrade??=this.combatTime;}if(this.pendingLevels&&this.phase==='playing'&&this.levelFeedbackFrame!==this.frame){this.levelFeedbackFrame=this.frame;this.emit({type:'level',x:this.player.x,y:this.player.y,color:0xf1c965,size:160});}}
+ private openDraft(){if(this.pendingLevels<=0)return;this.pendingLevels--;this.draftToken=this.rewards.nextToken();this.cards=draftCards(this.content,this.weapons,this.passives,this.stats.luck,this.draftRandom,this.combatTime<180,{weapons:this.manifest.weapons,passives:this.manifest.passives,consumed:this.consumed});this.setPhase('draft');}
+ private applyCard(index:number,token?:number){if(this.phase!=='draft'||token!==undefined&&token!==this.draftToken)return;const card=this.cards[index];if(!card)return;if(card.type==='heal')this.heal(30);else if(card.type==='shield')this.addShield(30,12*this.stats.duration);else if(card.type==='credit')this.bonusCredits+=3;else{const owned=card.type==='weapon'?this.weapons:this.passives,existing=owned.find(w=>w.id===card.id);if(existing)existing.level=Math.min(5,existing.level+1);else if(owned.length<6){const skill:Skill={id:card.id as Skill['id'],instanceId:this.nextInstance(),kind:'base',level:1,rarity:card.rarity,evolved:false};owned.push(skill);this.discover(skill.id);}this.recalculateStats();this.weaponSystem.reset(card.id);if(this.weapons[0]?.level===5)this.metrics.mainLv5??=this.combatTime;}this.cards=[];this.setPhase('playing');this.handlePending();}
+ openChest(boss=false,preferred=''){this.rewards.openChest(boss?3:1,boss,preferred);}
+ openContract(){this.rewards.openContract();}
+ dispose(){if(this.disposed)return;this.disposed=true;this.inputX=this.inputY=0;for(const skill of this.weapons)this.weaponSystem.remove(skill.id);this.rewards.clear();this.visualEvents.length=0;this.enemies.clear();this.shots.clear();this.enemyShots.clear();this.areas.clear();this.drops.clear();this.deaths.clear();this.hazards.length=0;}
+}
