@@ -47,6 +47,32 @@ export class TextureLibrary {
     this.content.enemies.forEach(def=>this.bake(`enemy-${def.id}`,96,(g,c)=>{
       const color=parseInt(def.color.slice(1),16),boss=def.rank==='boss'||def.rank==='miniBoss',elite=def.id==='ddl';
       g.ellipse(48,78,24,7).fill({color:INK,alpha:.12});
+      if(def.id==='s2:bike'){
+        for(const x of [23,73])g.circle(x,68,15).fill(0x344d55).stroke({color:0xfff2ce,width:3}).circle(x,68,7).stroke({color:0x9dc3c6,width:2});
+        g.poly([23,65,39,39,57,65,23,65,50,47,73,65,63,30]).stroke({color,width:6});
+        g.roundRect(10,23,31,27,4).fill(color).stroke(line);g.rect(22,24,7,25).fill(0xfff2ce);
+        g.moveTo(61,30).lineTo(77,27).moveTo(43,38).lineTo(55,38).stroke({color:INK,width:4});
+        g.poly([49,12,65,12,65,5,82,18,65,31,65,23,49,23]).fill(0xffd166).stroke({color:INK,width:2});return;
+      }
+      if(def.id==='s2:reservation'){
+        g.poly([29,15,66,15,79,80,68,80,57,28,39,28,28,80,17,80]).fill(0x336174).stroke(line);
+        g.roundRect(24,18,48,45,5).fill(color).stroke({color:0xeaffff,width:3});
+        g.circle(48,40,15).fill(0xeaffff);g.moveTo(48,29).lineTo(48,40).lineTo(58,45).stroke({color:0x336174,width:3});
+        g.moveTo(23,70).lineTo(73,70).stroke({color:0xf4d889,width:6});return;
+      }
+      if(def.id==='s2:parceler'){
+        g.roundRect(24,42,48,32,9).fill(color).stroke(line);g.circle(47,29,18).fill(0xf1d5b0).stroke(line);
+        g.roundRect(25,10,46,13,5).fill(color).stroke(line);g.circle(40,31,2).fill(INK);g.circle(54,31,2).fill(INK);
+        g.roundRect(48,45,34,29,3).fill(0xc99455).stroke({color:0xffefc6,width:3});g.rect(61,46,7,26).fill(0xffefc6);
+        g.moveTo(31,75).lineTo(26,84).moveTo(60,75).lineTo(65,84).stroke({color:INK,width:6});return;
+      }
+      if(def.id==='s2:dispatcher'){
+        g.roundRect(22,42,50,37,8).fill(0x3d6374).stroke({color,width:4});g.poly([30,44,42,44,42,77,30,77,54,44,65,44,65,77,54,77]).fill(color);
+        g.circle(47,28,18).fill(0xf2d2a3).stroke(line);g.roundRect(24,8,48,14,4).fill(color).stroke(line);
+        g.circle(40,30,2.4).fill(INK);g.circle(54,30,2.4).fill(INK);g.moveTo(66,25).lineTo(71,39).lineTo(58,39).stroke({color:INK,width:3});
+        g.roundRect(73,41,14,28,3).fill(INK).stroke({color:0xffe3a3,width:2});g.moveTo(79,41).lineTo(79,27).stroke({color:INK,width:3});
+        g.moveTo(32,80).lineTo(28,87).moveTo(60,80).lineTo(64,87).stroke({color:INK,width:6});return;
+      }
       if(elite){g.circle(48,45,29).fill(color).stroke(line);g.circle(48,45,23).fill(0xf8d6bf).stroke(line);g.moveTo(48,28).lineTo(48,44).lineTo(59,49).stroke({color:INK,width:3});this.label(c,'DDL',48,68,11,INK);}
       else if(def.id==='receipt'){g.moveTo(25,17).lineTo(32,21).lineTo(40,17).lineTo(48,21).lineTo(56,17).lineTo(64,21).lineTo(71,17).lineTo(71,76).lineTo(63,72).lineTo(55,76).lineTo(47,72).lineTo(39,76).lineTo(31,72).lineTo(25,76).closePath().fill(0xf2e7cf).stroke(line);g.roundRect(30,23,36,8,2).fill(color);this.label(c,'¥',48,41,14,INK);}
       else if(def.id==='checkin'){g.circle(48,45,27).fill(color).stroke(line);g.circle(48,45,21).fill(0xffedb2).stroke({color:INK,width:1.5});g.moveTo(36,41).lineTo(44,49).lineTo(60,32).stroke({color:INK,width:3});}
@@ -63,6 +89,11 @@ export class TextureLibrary {
       if(def.id!=='checkin'&&def.id!=='advisor'){const eyeY=def.id==='ddl'?58:55;g.circle(39,eyeY,2.8).fill(INK);g.circle(57,eyeY,2.8).fill(INK);g.moveTo(44,eyeY+8).quadraticCurveTo(48,eyeY+5,52,eyeY+8).stroke({color:INK,width:1.5});}
       g.moveTo(34,76).lineTo(30,81).moveTo(62,76).lineTo(66,81).stroke({color:INK,width:3});
     }));
+    this.bake('enemy-s2:parcel',96,g=>{
+      g.ellipse(48,76,24,7).fill({color:INK,alpha:.14});g.poly([19,29,48,14,77,29,77,64,48,81,19,64]).fill(0xc99455).stroke({color:INK,width:4});
+      g.poly([19,29,48,45,77,29,48,14]).fill(0xf0cf8f).stroke({color:INK,width:3});g.moveTo(48,45).lineTo(48,81).stroke({color:INK,width:3});
+      g.poly([34,21,64,37,64,49,57,53,57,41,27,25]).fill(0xfff2ce);g.roundRect(23,45,16,12,2).fill(0xfff2ce);
+    });
     this.bake('paper',40,g=>{g.moveTo(3,19).lineTo(36,6).lineTo(26,35).lineTo(20,23).closePath().fill(0xfffcdf).stroke({color:0x3a897c,width:2});g.moveTo(20,23).lineTo(36,6).stroke({color:0x3a897c,width:1.4});});
     this.bake('book',40,g=>{g.roundRect(8,5,24,30,4).fill(0x5cae9e).stroke({color:INK,width:2});g.rect(12,9,16,23).fill(0xfff0cf);g.moveTo(15,15).lineTo(25,15).moveTo(15,20).lineTo(23,20).stroke({color:0x75b19c,width:2});});
     this.bake('code',40,(g,c)=>{g.roundRect(4,7,32,26,7).fill(0x7f9dd9).stroke({color:0x4d678b,width:1.8});this.label(c,'<>',20,20,17,0xffffff);});

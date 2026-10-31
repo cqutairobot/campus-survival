@@ -17,18 +17,19 @@ export class EnemyBehaviors{
    if(!e.alive[id]||e.hp[id]<=0)continue;const def=this.g.content.enemies[e.kind[id]],rank=e.rank[id];e.prevX[id]=e.x[id];e.prevY[id]=e.y[id];
    const wasFrozen=e.frozen[id]>0,frozen=updateStatus(e,id,dt);if(wasFrozen&&e.frozen[id]<=0)g.emit({type:'block',x:e.x[id],y:e.y[id],color:0xb9ecff,size:e.radius[id]*1.5,material:'ice'});if(g.combatTime-e.cryoLast[id]>.04)e.freezeAccum[id]=0;
    if(e.maxShield[id]>0&&g.combatTime-e.lastHit[id]>=6)e.shield[id]=e.maxShield[id];
-   if(e.owner[id]>=0&&def.id==='node'&&!e.valid(e.owner[id],e.ownerGeneration[id])){e.release(id);continue;}
-   if(e.lifetime[id]>0){e.lifetime[id]-=dt;if(e.lifetime[id]<=0){e.release(id);continue;}}
+   if(e.owner[id]>=0&&!g.enemySourceAlive(e.owner[id],e.ownerGeneration[id])){g.releaseEnemy(id);continue;}
+   if(e.lifetime[id]>0){e.lifetime[id]-=dt;if(e.lifetime[id]<=0){g.releaseEnemy(id);continue;}}
    if(e.burn[id]>0){e.burn[id]-=dt;e.burnTick[id]-=dt;if(e.burnTick[id]<=1e-6){e.burnTick[id]=.5;g.hitEnemy(id,e.burnDamage[id],e.burnSource[id],p.x,p.y,0,false);if(e.hp[id]<=0)continue;}}
    if(frozen)continue;
    if(def.id==='node')continue;
    if(id===g.bossEnemy){if(distanceSq(p.x,p.y,e.x[id],e.y[id])<(e.radius[id]+12)**2)g.hurtPlayer(e.damage[id],e.x[id],e.y[id],g.originForEnemy(id));continue;}
    const dx=p.x-e.x[id],dy=p.y-e.y[id],dist=Math.hypot(dx,dy)||1;
-   if(dist>2000&&rank===RANK_CODE.normal&&e.owner[id]<0){const point=g.safePoint(p.x-dx/dist*700,p.y-dy/dist*600);e.x[id]=point.x;e.y[id]=point.y;}
+   if(dist>2000&&rank===RANK_CODE.normal&&e.owner[id]<0&&(!def.id.startsWith('s2:')||e.state[id]===0)){const point=g.safePoint(p.x-dx/dist*700,p.y-dy/dist*600);e.x[id]=point.x;e.y[id]=point.y;}
    let mx=dx/dist,my=dy/dist,speed=e.speed[id]*slowFactor(e,id)*relicEnemySpeed(g.relics)*(g.activeEvent==='examRage'?1.15:g.activeEvent==='rainstorm'&&rank===RANK_CODE.normal?.9:1),attackSpeed=1;
    let auraBoost=1;for(const aura of auras){if(aura===id||e.hp[aura]<=0)continue;const elite=!!(e.affixes[aura]&16),radius=elite?220:180;if(distanceSq(e.x[id],e.y[id],e.x[aura],e.y[aura])<radius**2){auraBoost=Math.max(auraBoost,elite?1.2:1.15);if(elite)attackSpeed=1.15;}}speed*=auraBoost;
    if(g.manifest.regions.includes('library')&&distanceSq(e.x[id],e.y[id],2640,2640)<220**2)applySlow(e,id,.3,.1);
    e.aiTimer[id]-=dt;if(dist>300){if(e.aiTimer[id]<=0){const nav=g.navigation.direction(e.x[id],e.y[id],this.nav),d=Math.hypot(nav.x,nav.y)||1;e.aiX[id]=nav.x/d;e.aiY[id]=nav.y/d;e.aiTimer[id]=dist<500?.05:.1;}mx=e.aiX[id];my=e.aiY[id];}
+   if(g.threats.update(id,dt,{mx,my,speed,dist}))continue;
    if(def.behavior==='snake'){const wave=Math.sin(g.combatTime*4+id)*.5,ox=mx;mx-=my*wave;my+=ox*wave;}
    if(def.behavior==='flank'&&dist>200){const side=(id%2?1:-1)*.65,ox=mx;mx-=my*side;my+=ox*side;}
    if(def.behavior==='ranged'||def.behavior==='thrower'){

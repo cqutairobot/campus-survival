@@ -1,0 +1,7 @@
+import {ENEMY_MATERIALS} from '../../presentation/materials';
+import type {EnemyKind,FragmentMaterial,VisualEvent} from '../../types';
+
+/** Shared feedback consumes rank/material; the S2 scene retains the full ID. */
+export type ContentVisualEvent=VisualEvent&{contentEnemyId?:string};
+const materials:Readonly<Record<string,FragmentMaterial>>={...ENEMY_MATERIALS,'s2:bike':'metal','s2:reservation':'glass','s2:parceler':'paper','s2:dispatcher':'metal'};
+export function enemyVisual(id:string){return{contentEnemyId:id,enemyKind:id in ENEMY_MATERIALS?id as EnemyKind:undefined,material:materials[id]??'paper'};}

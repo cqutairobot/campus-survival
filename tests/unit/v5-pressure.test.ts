@@ -6,7 +6,7 @@ import {SemesterEngine} from '../../src/semesters/runtime/SemesterEngine';
 import type {RuntimeServices,RuntimeStep} from '../../src/semesters/runtime/contracts';
 import {S2_RUNTIME_CONFIG} from '../../src/semesters/s2/config';
 import {ContentState} from '../../src/semesters/s2/legacy/ContentState';
-import {LEGACY_CONTENT as content} from '../../src/semesters/s2/legacy/catalog';
+import {S2_CONTENT as content} from '../../src/semesters/s2/content';
 import {legacyContentRules} from '../../src/semesters/s2/legacy/rules-adapter';
 import {pressureAt,eliteSeconds,normalWeight} from '../../src/semesters/s2/pressure';
 import {cappedDamage,invulnerabilityFor,type IncomingHit} from '../../src/semesters/s2/player-damage';

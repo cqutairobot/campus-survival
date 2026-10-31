@@ -2,7 +2,7 @@ import {test,expect} from '@playwright/test';
 import {historicalSaves} from '../helpers/v5-saves';
 import type {SaveProfile} from '../../src/semesters/profile';
 
-test('v5 P06 单条冒烟：导入旧档→S2 入口保持关闭→S1 原旅程→结算刷新→分学期每日入口',async({page},info)=>{
+test('v5 P07 单条冒烟：导入旧档→S2 入口保持关闭→S1 原旅程→结算刷新→分学期每日入口',async({page},info)=>{
  const errors:string[]=[],assetFailures:string[]=[],requests:string[]=[];
  page.on('pageerror',e=>errors.push(e.message));
  page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});

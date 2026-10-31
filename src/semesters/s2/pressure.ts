@@ -1,4 +1,5 @@
 import {clamp} from '../../core/math';
+import {FIRST_THREAT_WEEKS,LESSON_MELEE} from './first-chapter';
 
 /** S2 multipliers apply once to catalogue bases, never to S1 week values. */
 export const PRESSURE_POINTS = [
@@ -16,8 +17,8 @@ export function pressureAt(week:number){
  return{week:w,rate:mix('rate'),hp:mix('hp'),damage:mix('damage'),speed:mix('speed'),normalCap:Math.round(mix('normalCap')),eliteCap:Math.floor(mix('eliteCap')),majorCap:w<=16?2:3};
 }
 
-// P07 replaces these internal legacy actors with the new chapter threats.
-export const MINI_BOSS_SLOTS=[{week:6,kind:'inspector'},{week:13,kind:'teamlead'},{week:20,kind:'inspector'}] as const;
+// P11 replaces the remaining internal actors and adds the week-20 return.
+export const MINI_BOSS_SLOTS=[{week:6,kind:'s2:dispatcher'},{week:13,kind:'teamlead'},{week:20,kind:'inspector'}] as const;
 export const eliteSeconds=(week:number)=>week<4?[]:week>=9&&!MINI_BOSS_SLOTS.some(s=>s.week===week)?[12,32]:[12];
 
 /** Independent 24-week weights. The injected catalogue supplies the IDs; every
@@ -26,8 +27,12 @@ const NORMAL_WEIGHTS:Readonly<Record<string,readonly number[]>>={
  homework:[72,28,22],checkin:[28,18,14],ppt:[0,14,11],review:[0,10,8],receipt:[0,6,5],thrower:[0,8,8],
  charger:[0,7,8],splitter:[0,7,6],bomber:[0,4,5],summoner:[0,3,4],guard:[0,4,5],leader:[0,3,4],
 };
-export function normalWeight(id:string,week:number){
- const values=NORMAL_WEIGHTS[id];if(!values)return 0;
- const w=clamp(Math.floor(week),1,24),a=w<=9?0:1,b=a+1,t=w<=9?(w-1)/8:(w-9)/15;
- return values[a]+(values[b]-values[a])*t;
+const NORMAL_FROM:Readonly<Record<string,number>>={homework:1,checkin:1,ppt:3,review:5,receipt:9,thrower:3,charger:4,splitter:5,bomber:7,summoner:10,guard:9,leader:13,...FIRST_THREAT_WEEKS};
+const NEW_IDS=Object.keys(FIRST_THREAT_WEEKS),OLD_IDS=Object.keys(NORMAL_WEIGHTS);
+/** Group shares are normalized inside one ordinary budget, including lessons. */
+export function normalWeight(id:string,week:number,lesson?:string){
+ const w=clamp(Math.floor(week),1,24),eligible=(kind:string)=>w>=(NORMAL_FROM[kind]??Infinity),a=w<=9?0:1,t=w<=9?(w-1)/8:(w-9)/15;
+ const raw=(kind:string)=>{const values=NORMAL_WEIGHTS[kind];return eligible(kind)&&(!lesson||(LESSON_MELEE as readonly string[]).includes(kind))&&values?values[a]+(values[a+1]-values[a])*t:0;};
+ if(NEW_IDS.includes(id)){const ids=NEW_IDS.filter(kind=>eligible(kind)&&(!lesson||kind===lesson));return ids.includes(id)?25/ids.length:0;}
+ const total=OLD_IDS.reduce((sum,kind)=>sum+raw(kind),0);return total?75*raw(id)/total:0;
 }

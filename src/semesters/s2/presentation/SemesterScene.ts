@@ -10,6 +10,7 @@ import {LOGICAL_WIDTH,LOGICAL_HEIGHT} from '../../../core/run';
 import {RANK_CODE} from '../../../data/enemies';
 import {REGION_CONDITIONS} from '../../../world/landmarks';
 import {warningFloor} from '../world';
+import type {ContentVisualEvent} from '../enemy-visuals';
 import {ringRadius} from '../danger';
 import {InputController,presentationPhase,type Joystick,type SemesterControls} from './input';
 import { clamp, distanceSq, lerp, TAU } from '../../../core/math';
@@ -204,14 +205,14 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
   }
   private inView(x:number,y:number,margin=120){return Math.abs(x-this.cameraX)<this.viewWidth*.55+margin&&Math.abs(y-this.cameraY)<this.viewHeight*.55+margin;}
   private syncEntities(alpha:number){
-    const g=this.game,e=g.enemies;
+    const g=this.game,e=g.enemies,parcels=new Set(g.parcels.map(p=>p.slot));
     for(let id=0;id<this.enemySprites.length;id++)if(this.enemySprites[id]&&!e.alive[id]){this.enemySprites[id]!.visible=false;if(this.whiteSprites[id])this.whiteSprites[id]!.visible=false;}
     for(const id of e.active){let sprite=this.enemySprites[id];if(!sprite){sprite=new Sprite();sprite.anchor.set(.5);this.entityLayer.addChild(sprite);this.enemySprites[id]=sprite;}sprite.visible=this.inView(e.x[id],e.y[id]);if(!sprite.visible){if(this.whiteSprites[id])this.whiteSprites[id]!.visible=false;continue;}
-      sprite.texture=this.textures.get(`enemy-${e.kind[id]}`);const pose=this.settings.motion?this.feedback.entities.pose(id,e.generation[id],distanceSq(e.x[id],e.y[id],g.player.x,g.player.y)<70**2):{x:0,y:0,scaleX:1,scaleY:1,skew:0,white:0};
+      const textureId=parcels.has(id)?'s2:parcel':e.kind[id];sprite.texture=this.textures.get(`enemy-${textureId}`);const pose=this.settings.motion?this.feedback.entities.pose(id,e.generation[id],distanceSq(e.x[id],e.y[id],g.player.x,g.player.y)<70**2):{x:0,y:0,scaleX:1,scaleY:1,skew:0,white:0};
       sprite.position.set(lerp(e.prevX[id],e.x[id],alpha)+pose.x,lerp(e.prevY[id],e.y[id],alpha)+pose.y);
       const bounce=this.settings.motion?Math.sin(g.combatTime*6+id)*.018:0,scale=fitArtScale(sprite.texture,enemyArtSize(e.radius[id]));sprite.scale.set(scale*(pose.scaleX+bounce),scale*(pose.scaleY-bounce));sprite.skew.set(pose.skew,-pose.skew);sprite.tint=e.frozen[id]>0?0xa5dcf5:0xffffff;
       sprite.alpha=e.hp[id]<=0?.3:1;sprite.rotation=this.settings.motion&&e.state[id]===1?Math.sin(this.elapsed*42)*.04:0;
-      let white=this.whiteSprites[id];if(!white){white=new Sprite();white.anchor.set(.5);this.entityLayer.addChild(white);this.whiteSprites[id]=white;}white.texture=this.textures.get(`enemy-${e.kind[id]}-white`);white.visible=true;white.position.copyFrom(sprite.position);white.scale.copyFrom(sprite.scale);white.skew.copyFrom(sprite.skew);white.rotation=sprite.rotation;white.alpha=pose.white*this.settings.flash*sprite.alpha;
+      let white=this.whiteSprites[id];if(!white){white=new Sprite();white.anchor.set(.5);this.entityLayer.addChild(white);this.whiteSprites[id]=white;}white.texture=this.textures.get(`enemy-${textureId}-white`);white.visible=true;white.position.copyFrom(sprite.position);white.scale.copyFrom(sprite.scale);white.skew.copyFrom(sprite.skew);white.rotation=sprite.rotation;white.alpha=pose.white*this.settings.flash*sprite.alpha;
 
     }
     this.feedback.entities.prune((slot,generation)=>!!e.alive[slot]&&e.generation[slot]===generation);
@@ -330,16 +331,25 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
         for(let at=20;at<d;at+=32){const x=h.x+dx*at/d,y=h.y+dy*at/d;gr.moveTo(x+nx*r*.7-dx/d*5,y+ny*r*.7-dy/d*5).lineTo(x-nx*r*.7+dx/d*5,y-ny*r*.7+dy/d*5).stroke({color,width:2,alpha:.65});}
         gr.moveTo(h.x2-dx/d*20+nx*10,h.y2-dy/d*20+ny*10).lineTo(h.x2,h.y2).lineTo(h.x2-dx/d*20-nx*10,h.y2-dy/d*20-ny*10).stroke({color,width:4});
       }else if(h.kind==='circle')for(let y=-r+16;y<r;y+=24){const half=Math.sqrt(Math.max(0,r*r-y*y))*.85;gr.moveTo(h.x-half,h.y+y).lineTo(h.x+half,h.y+y).stroke({color,width:2,alpha:.5});}
-      if(warning){const progress=clamp(1-h.warning/h.warningTotal,0,1);gr.circle(h.x,h.y,13).stroke({color:0x432d38,width:3});gr.arc(h.x,h.y,13,-Math.PI/2,-Math.PI/2+TAU*Math.max(.001,progress)).stroke({color:0xffe3a3,width:4});if(h.locked)gr.poly([h.x,h.y-5,h.x+5,h.y,h.x,h.y+5,h.x-5,h.y]).fill(color);}
+      if(warning){
+        const progress=clamp(1-h.warning/h.warningTotal,0,1),unitMarker=h.owner!==undefined&&(h.kind==='line'&&g.enemies.kind[h.owner]?.startsWith('s2:')||g.parcels.some(p=>p.slot===h.owner)),x=h.x,y=unitMarker?h.y-h.radius-24:h.y;
+        gr.circle(x,y,13).stroke({color:0x432d38,width:3});gr.arc(x,y,13,-Math.PI/2,-Math.PI/2+TAU*Math.max(.001,progress)).stroke({color:0xffe3a3,width:4});if(h.locked)gr.poly([x,y-5,x+5,y,x,y+5,x-5,y]).fill(color);
+      }
       if(h.kind==='ring')for(const a of [(h.safeAngle??0)-h.safeHalfAngle,(h.safeAngle??0)+h.safeHalfAngle])gr.moveTo(h.x,h.y).lineTo(h.x+Math.cos(a)*h.radius,h.y+Math.sin(a)*h.radius).stroke({color:0x286e65,width:3});
       edge(h.x,h.y);
+    }
+    for(const parcel of g.parcels){
+      const x=g.enemies.x[parcel.slot],y=g.enemies.y[parcel.slot];
+      gr.roundRect(x-17,y-17,34,34,5).stroke({color:0x432d38,width:5}).stroke({color:0xffefd2,width:2});
+      if(parcel.phase==='warning')gr.arc(x,y,24,-Math.PI/2,-Math.PI/2+TAU*Math.max(.001,1-parcel.warning/parcel.warningTotal)).stroke({color:0xaa78c2,width:4});
+      edge(x,y);
     }
     const route=[...g.hazards].sort((a,b)=>b.token-a.token)[0]?.route;
     if(route){const end=route.points.at(-1)!;gr.poly([end.x,end.y-13,end.x+13,end.y,end.x,end.y+13,end.x-13,end.y]).stroke({color:0xf1ffe6,width:6}).stroke({color:0x286e65,width:3});}
     // Player centre and projectile outlines remain legible during full effects.
     guides.circle(g.player.x,g.player.y,19).stroke({color:0x253d43,width:4}).circle(g.player.x,g.player.y,19).stroke({color:0xf0ffe5,width:2}).circle(g.player.x,g.player.y,3).fill(0xf0ffe5);
   }
-  private handleEvent(event:VisualEvent,hold=0){
+  private handleEvent(event:ContentVisualEvent,hold=0){
     if(!this.inView(event.x,event.y,event.size))return;
     if(['ultimate','fusion'].includes(event.type)){this.bloomClimax=1.2;const count=this.quality==='high'?1600:this.quality==='medium'?550:100;this.particles.burst(event.x,event.y,event.color,count,480,1.4,event.weapon==='demolition'?'brick':event.weapon==='hub'?'blueprint':event.weapon==='icefire'||event.ultimate==='lastMinute'?'ice':event.weapon==='sky'?'glass':event.weapon==='binder'?'metal':'spark');}
     if(event.type==='shieldBreak'){this.particles.burst(event.x,event.y,event.color,this.quality==='high'?100:this.quality==='medium'?40:12,230,1.1,'glass');}
@@ -353,7 +363,7 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
       if(this.settings.damageNumbers&&event.value)this.numbers.spawn(event.value,event.x,event.y,!!event.critical,event.damageType??'normal',`${event.slot}:${event.generation}:${event.sourceKey}:${event.damageType}`);
       this.transient.push({event,life:event.critical?.09:.06,total:event.critical?.09:.06,hold});
     }else if(event.type==='death'){
-      const kind=event.enemyKind,material=event.material??(event.enemyKind?enemyMaterial(event.enemyKind):'paper');if(kind&&this.content.enemyById[kind])this.deathFX.spawn({...event,material},this.textures.get(`enemy-${kind}`),hold,this.quality,this.settings.motion);
+      const kind=event.contentEnemyId??event.enemyKind,material=event.material??(event.enemyKind?enemyMaterial(event.enemyKind):'paper');if(kind&&this.content.enemyById[kind])this.deathFX.spawn({...event,material},this.textures.get(`enemy-${kind}`),hold,this.quality,this.settings.motion);
       this.particles.burst(event.x,event.y,event.color,this.quality==='low'?4:material==='glass'||material==='ice'?14:material==='metal'?10:8,material==='glass'||material==='ice'?290:210,1.1,material);
       if(material==='metal'||material==='brick')this.particles.burst(event.x,event.y,0xffdc8f,this.quality==='low'?2:6,220,.55,'spark');
     }
