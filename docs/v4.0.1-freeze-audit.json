@@ -1,0 +1,300 @@
+{
+  "baseline": "../campus-survival-v3-backup",
+  "checked": 46,
+  "fileSetMatches": true,
+  "passed": true,
+  "allowed": [
+    "catalog: rarity presentation colors and content label",
+    "engine: readonly visual metadata and actual-heal display event",
+    "R06: Keep fractional normal-kill contributions; preserve all window, threshold and charge constants.",
+    "R07: Use one nearest/facing center only for staple, including evolution; preserve every weapon parameter."
+  ],
+  "versionMetadata": [
+    [
+      "export const DAILY_RULES_VERSION='daily-v3.1';",
+      "export const DAILY_RULES_VERSION='daily-v4.0.1';"
+    ],
+    [
+      "export const RULES_VERSION='campus-v3.0';",
+      "export const RULES_VERSION='campus-v4.0.1';"
+    ]
+  ],
+  "checks": [
+    {
+      "file": "src/challenges/daily.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "efc51f5e763e384100212772a8e2131f0c36da1d914f39fb979f7e00173eb7ec"
+    },
+    {
+      "file": "src/challenges/scoring.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "c31f711d1e52ccd0269dd830f0460e09fbf12fa64243aceb9e8e0582f1e943af"
+    },
+    {
+      "file": "src/combat/damage.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "04cb4e926dc9e34fe11ec8ce20b9750de09bd28e47d34af2fc924788e1c76d72"
+    },
+    {
+      "file": "src/combat/deaths.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "c64be06732092ec3234d66931f68a969e1a50a0ba084400cf24eadab2829fe5c"
+    },
+    {
+      "file": "src/combat/momentum.ts",
+      "passed": true,
+      "comparison": "R06: exact approved gameplay fragments only",
+      "sha256": "47869ddca2f0134b0157719a27fef57522f00e6a5276a65a67f91e2f650bd100"
+    },
+    {
+      "file": "src/combat/pickups.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "4a8340dfc37c279e6de74e701b6dd1d908c2b99fef8b409c36391d1a7bcb4c63"
+    },
+    {
+      "file": "src/combat/status.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "f38a1dd4d71eccc97959da6a5039799f579a781177188c034a192334b2bf4c22"
+    },
+    {
+      "file": "src/combat/ultimates.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "a0039c85a591987380e61c15c7bec3df2820093cb7f7310c1ed169425c186e4b"
+    },
+    {
+      "file": "src/core/commands.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "55d2342b9b6f92d34bad7bdbdce65ac20a20483e4ac051364ad2946f7c207a3e"
+    },
+    {
+      "file": "src/core/engine.ts",
+      "passed": true,
+      "comparison": "remove readonly visual event payloads and heal display snapshots only",
+      "sha256": "91d20e34e2c4ebde072e85950f57971beef95902eab08ef026b3a8426f2fb2f9"
+    },
+    {
+      "file": "src/core/grid.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "73534c33f8bb6aa922e018235170ba58c4d1a1d2369c0bbd5d9e5fabcd977987"
+    },
+    {
+      "file": "src/core/input.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "2012f222d03af924c1f5af369a363df172ab5babf3c5144b81da85d095bd59d2"
+    },
+    {
+      "file": "src/core/loop.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "6625c06f5110cfbe92f2437dfa464ae583fdd569c4b983a68f1f51c2413d2065"
+    },
+    {
+      "file": "src/core/math.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "8e34c68e74dabe3ca5fe2fc32755b74691b2f344cb99f7cc2a9916d084e85dbe"
+    },
+    {
+      "file": "src/core/metrics.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "d5bcf8dbfe5c1d56938bd6d7ade32cb8a8cc26120653f526d41e770a74ae9735"
+    },
+    {
+      "file": "src/core/pool.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "8daec50664e0b232205cfaffe53d1dc40080a3c21aa4cbca2e0da73e56397f4b"
+    },
+    {
+      "file": "src/core/replay.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "678cd52b36b02948acdfe0edaae84b7a959d0ca1cda9c741000eabac6ab2ad9b"
+    },
+    {
+      "file": "src/core/run.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "26fcae0a77ddd5ffa1e7ae9905d1cb8fa2a87d51cdb1bacf81ed1d1b63796bba"
+    },
+    {
+      "file": "src/data/achievements.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "55b0c55db8f2757aa2ad1d4dc1b0f5ec63fca7d8f4a12dafde1f7802116d91c0"
+    },
+    {
+      "file": "src/data/catalog.ts",
+      "passed": true,
+      "comparison": "ignore presentation rarity colors and content version only",
+      "sha256": "3ab56e3367e2eddf350eece69da330a2a429719dc19938ad7a30eba34e5c57cb"
+    },
+    {
+      "file": "src/data/daily.ts",
+      "passed": true,
+      "comparison": "exact two version literals only",
+      "sha256": "1c8f97c17564fe7157cb72eaf619e7f9d606c1276e73723a4d164d95008af60f"
+    },
+    {
+      "file": "src/data/enemies.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "2f78ae4799187a87df2f2330dc0aeaee8765ec25f71b261c249648793c44b599"
+    },
+    {
+      "file": "src/data/fusions.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "880fa86811520e2eb49bd8d8c69ed5d560093ce1767fa464a4ef1572324438a1"
+    },
+    {
+      "file": "src/data/pickups.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "cade7881fd0c09aea834927acccbe6357e51ea3bfea3ff1a7ada6e88267e215c"
+    },
+    {
+      "file": "src/data/relics.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "e220ca47452078fc5b08d5823717b06a82c354b2d289fb3c8df5cea43c2ea03d"
+    },
+    {
+      "file": "src/data/ultimates.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "ddd567457c6ae7d367b594b7dd336ddbfcbec08250b1631e63c7af68c9c82cae"
+    },
+    {
+      "file": "src/data/waves.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "2d6e616a8d9fceb47a428fd206f6cd04fa6aa7ec105f52302756474a0ad4904d"
+    },
+    {
+      "file": "src/data/weapons.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "fd48dc12726006a3e04dc2f3e9a1398a7d9dcf18c77c34c9e2116eeab9f8f9c9"
+    },
+    {
+      "file": "src/enemies/behaviors.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "2af7694e278988503c5be2d8e8e1316e9f419b184f1edbbf1005cba2514335f3"
+    },
+    {
+      "file": "src/enemies/bosses.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "b87a1e225dd114e5522332e9c33e9f5a1070ad93ac87fe679523456b6ebd7d77"
+    },
+    {
+      "file": "src/enemies/director.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "78e4acc8e78725cfda3837be38e961e4483d88d1bdc8fb569f98af27b74b5000"
+    },
+    {
+      "file": "src/enemies/elites.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "f4afd61b546369f69b6c4bb275e6a1a0916c8523dcd0ead8ea880fc111261895"
+    },
+    {
+      "file": "src/enemies/minibosses.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "7ebfaaa989312864e78bfb7672c81300795ae6b2cbbd985b25ac3633d8f0097a"
+    },
+    {
+      "file": "src/entities/pools.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "78bf5a515f0cea35e73baa66719aae9fe0672f75f483612ac0976bbb26e2b764"
+    },
+    {
+      "file": "src/progression/achievements.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "55b8b07accd6126d3837c98ada31df2d130870c2054362b9ee999418ae639f2b"
+    },
+    {
+      "file": "src/progression/relics.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "2523f0b4ccd0038a5548b33a8954a1196bdcb5d4c1e30aeb69c8ddeef19999e6"
+    },
+    {
+      "file": "src/progression/rewards.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "d836b7ee50c9a8dfe6f0f0d1d5e8876504f5bc8dfef3a9b7ccc19452fb0825e1"
+    },
+    {
+      "file": "src/progression/rules.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "630554088c8914a34baa6f2ff3725faa8b56538207e790aca9a4286f452b0ce9"
+    },
+    {
+      "file": "src/weapons/fusions.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "22a8b799de81e9a039d9d5297990019768aafbc78db74e198a4558bc0bb51197"
+    },
+    {
+      "file": "src/weapons/params.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "82885d24e661e06fa922aa540d63b2810c851dc81e717381576799d5ae0ef011"
+    },
+    {
+      "file": "src/weapons/summons.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "35e235add31c224cc3f40fa04611011d800bf2d826ff82ca4ac6ff87d2df12e3"
+    },
+    {
+      "file": "src/weapons/system.ts",
+      "passed": true,
+      "comparison": "R07: exact approved gameplay fragments only",
+      "sha256": "fc44b2ef33d3bf31a33157dfc01b04237e9bcc6ef68704f3681f7370e5d074b5"
+    },
+    {
+      "file": "src/world/campus.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "ad1167e29240e46991d134b8198f4f2571ebf35934a34a31f06a8bec835a2f8e"
+    },
+    {
+      "file": "src/world/events.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "79149457f1a1d5a848a6dd111f72291e90e5b5a3fd96517c3e4e9a3e3aaf5ba1"
+    },
+    {
+      "file": "src/world/landmarks.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "32e558757623cf939b18ac22c60970cdde1e96880fe12c660f59a258bda9b9a6"
+    },
+    {
+      "file": "src/world/navigation.ts",
+      "passed": true,
+      "comparison": "byte-identical",
+      "sha256": "31700e218acaf5216f47aa455a902cdd29b6872f099cad3638920510e9d34f8d"
+    }
+  ]
+}

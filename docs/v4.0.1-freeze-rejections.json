@@ -1,0 +1,26 @@
+{
+  "checks": [
+    {
+      "case": "R06-threshold",
+      "file": "src/combat/momentum.ts",
+      "rejected": true,
+      "exitCode": 1,
+      "diagnostic": "Gameplay differs: src/combat/momentum.ts R06: file hash differs"
+    },
+    {
+      "case": "other-weapon",
+      "file": "src/weapons/system.ts",
+      "rejected": true,
+      "exitCode": 1,
+      "diagnostic": "Gameplay differs: src/weapons/system.ts R07: file hash differs"
+    },
+    {
+      "case": "daily-rule-array",
+      "file": "src/data/daily.ts",
+      "rejected": true,
+      "exitCode": 1,
+      "diagnostic": "Gameplay differs: src/data/daily.ts"
+    }
+  ],
+  "allRejected": true
+}

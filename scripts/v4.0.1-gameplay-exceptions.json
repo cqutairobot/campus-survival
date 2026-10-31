@@ -1,0 +1,40 @@
+{
+  "version": "4.0.1",
+  "patches": [
+    {
+      "issue": "R06",
+      "file": "src/combat/momentum.ts",
+      "baselineSha256": "d2286dd0dfef611fa78f26f07314eeb8f5d47b6dc6475f457071e770b9619f09",
+      "patchedSha256": "47869ddca2f0134b0157719a27fef57522f00e6a5276a65a67f91e2f650bd100",
+      "reason": "Keep fractional normal-kill contributions; preserve all window, threshold and charge constants.",
+      "regressionTest": "R06 keeps weighted splitter clear rewards and the original window/cooldown",
+      "fragments": [
+        {
+          "old": "  private lastKill=-Infinity;private tier=0;private ordinaryKills:number[]=[];\n",
+          "new": "  private lastKill=-Infinity;private tier=0;private ordinaryKills:{time:number;weight:number}[]=[];\n",
+          "expectedOccurrences": 1
+        },
+        {
+          "old": "    if(rank==='normal'){this.ordinaryKills=this.ordinaryKills.filter(t=>time-t<=1+1e-6);for(let i=0;i<Math.floor(weight);i++)this.ordinaryKills.push(time);if(this.ordinaryKills.length>=20&&this.clearCooldown<=1e-6){clear=true;this.clearCooldown=20;this.ordinaryKills=[];}}\n",
+          "new": "    if(rank==='normal'){this.ordinaryKills=this.ordinaryKills.filter(hit=>time-hit.time<=1+1e-6);if(weight>0)this.ordinaryKills.push({time,weight});if(this.ordinaryKills.reduce((sum,hit)=>sum+hit.weight,0)>=20&&this.clearCooldown<=1e-6){clear=true;this.clearCooldown=20;this.ordinaryKills=[];}}\n",
+          "expectedOccurrences": 1
+        }
+      ]
+    },
+    {
+      "issue": "R07",
+      "file": "src/weapons/system.ts",
+      "baselineSha256": "40e735795c8fbb3d9d46905dc8384ec32c76de7a6570cf502a7684bff7a5c2b3",
+      "patchedSha256": "fc44b2ef33d3bf31a33157dfc01b04237e9bcc6ef68704f3681f7370e5d074b5",
+      "reason": "Use one nearest/facing center only for staple, including evolution; preserve every weapon parameter.",
+      "regressionTest": "R07 confines base/evolved staple to one symmetric cone without changing other targeting",
+      "fragments": [
+        {
+          "old": "          const target=this.nearest(p.x,p.y,Math.max(400,range),this.chain);if(target>=0)this.chain.push(target);\n          const aimed=target>=0?Math.atan2(e.y[target]-p.y,e.x[target]-p.x):angle;\n          const a=aimed+(target>=0?0:count===1?0:(n/(count-1)-.5)*spread);\n",
+          "new": "          const target=id==='staple'?nearest:this.nearest(p.x,p.y,Math.max(400,range),this.chain);if(target>=0&&id!=='staple')this.chain.push(target);\n          const aimed=id==='staple'?angle:target>=0?Math.atan2(e.y[target]-p.y,e.x[target]-p.x):angle;\n          const a=aimed+(id!=='staple'&&target>=0?0:count===1?0:(n/(count-1)-.5)*spread);\n",
+          "expectedOccurrences": 1
+        }
+      ]
+    }
+  ]
+}

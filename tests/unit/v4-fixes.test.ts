@@ -4,12 +4,21 @@ import {recoveryPreview} from '../../src/save/recovery';
 import {normalizeSettings,DEFAULT_SETTINGS} from '../../src/save/settings';
 import {qualityBudget,qualityName} from '../../src/presentation/quality';
 import {resolveAudioPreset,OUTPUT_PROFILES} from '../../src/audio/OutputBus';
-import type {Settings,Quality} from '../../src/types';
+import type {Settings,Quality,DailyRecord,Skill} from '../../src/types';
 import {useApp,createAppStore} from '../../src/state/store';
 import {Texture,TextureSource} from 'pixi.js';
 import {ResourceLoader} from '../../src/assets/loader';
 import {afterimagePoint} from '../../src/render/trail-sampling';
 import {SaveCoordinator,type SaveLocks} from '../../src/save/coordinator';
+import {CombatMomentum} from '../../src/combat/momentum';
+import {weaponParams} from '../../src/weapons/params';
+import {relicCost} from '../../src/presentation/relic-text';
+import {RELICS} from '../../src/data/relics';
+import {dailyChallenge,dailySeed} from '../../src/challenges/daily';
+import {DAILY_RULES_VERSION,RULES_VERSION} from '../../src/data/daily';
+import {dailyBoard} from '../../src/ui/screens/DailyChallenge';
+import {createManifest,validManifest} from '../../src/core/run';
+import {validReplay,replayVersionMessage} from '../../src/core/replay';
 import {GameEngine} from '../../src/core/engine';
 import {ModalPauseOwner,blocksGameKey} from '../../src/ui/input/modal-input';
 import {InteractionPointer} from '../../src/ui/hud/interaction-pointer';
@@ -118,6 +127,37 @@ describe('v4.0.1 short regressions',()=>{
    if(retained){expect(loader.debug.references).toBe(1);expect(unload).not.toHaveBeenCalled();retained.release();retained.release();}
    for(let i=0;i<20&&loader.debug.entries;i++)await Promise.resolve();expect(loader.debug).toMatchObject({entries:0,references:0,textures:0});expect(unload).toHaveBeenCalledTimes(1);image.destroy(true);
   }
+ });
+
+ it('R06 keeps weighted splitter clear rewards and the original window/cooldown',()=>{
+  for(const kind of ['splitter','homework']){
+   const g=new GameEngine(freshSave(),12);g.enemies.clear();g.weapons.length=0;g.stats.crit=0;
+   for(let n=0;n<20;n++){const id=g.spawnEnemy(kind,g.player.x+100,g.player.y);g.hitEnemy(id,1e5,'knife',0,0,0,false);g.resolveDeaths();if(kind==='splitter'){for(const child of [...g.enemies.active])g.hitEnemy(child,1e5,'knife',0,0,0,false);g.resolveDeaths();}}
+   expect([g.progress.normalKills,g.momentum.combo,g.metrics.clearRewards,g.momentum.charge]).toEqual([20,20,1,35]);
+  }
+  for(const [weight,time,rank] of [[.5,0,'normal'],[1,1.00001,'normal'],[0,0,'normal'],[1,0,'elite']] as const){const m=new CombatMomentum();for(let i=0;i<19;i++)m.kill('normal',0);expect(m.kill(rank,time,weight).clear).toBe(false);}
+  const boundary=new CombatMomentum();for(let i=0;i<19;i++)boundary.kill('normal',0);expect(boundary.kill('normal',1+1e-6).clear).toBe(true);for(let n=0;n<20;n++)expect(boundary.kill('normal',1.5).clear).toBe(false);expect(boundary.clearCooldown).toBe(20);
+ });
+ it('R07 confines base/evolved staple to one symmetric cone without changing other targeting',()=>{
+  for(const evolved of [false,true])for(const targets of [false,true]){
+   const g=new GameEngine(freshSave(),13);g.enemies.clear();g.weapons.length=0;g.player.facing=1.2;
+   const skill:Skill={id:'staple',level:evolved?5:1,rarity:0,evolved};g.weapons.push(skill);if(targets){g.spawnEnemy('homework',g.player.x+150,g.player.y);g.spawnEnemy('homework',g.player.x-200,g.player.y);}g.rebuildGrid();
+   const params=weaponParams(skill,g.combatStats,g.damageMultiplier);g.weaponSystem.update(.2);const shots=g.shots.active.map(id=>g.shots.data[id]);expect(shots).toHaveLength(params.count);const center=targets?0:g.player.facing;
+   shots.forEach((shot,n)=>{expect(shot.launchAngle).toBeCloseTo(center+(params.count===1?0:n/(params.count-1)-.5)*Math.PI/3,12);expect(Math.abs(shot.launchAngle-center)).toBeLessThanOrEqual(Math.PI/6+1e-12);expect(shot.damage).toBe(params.damage);expect(Math.hypot(shot.vx,shot.vy)).toBeCloseTo(600);expect(shot.pierce).toBe(params.pierce);expect(shot.range).toBe(params.range);});
+  }
+  const g=new GameEngine(freshSave(),2);g.enemies.clear();g.weapons.splice(0,g.weapons.length,{id:'knife',level:5,rarity:0,evolved:false});g.spawnEnemy('homework',g.player.x+150,g.player.y);g.spawnEnemy('homework',g.player.x-200,g.player.y);g.rebuildGrid();g.weaponSystem.update(.2);const angles=g.shots.active.map(id=>g.shots.data[id].launchAngle);expect(angles).toContain(0);expect(angles).toContain(Math.PI);
+ });
+ it('R08 explains the existing Boss/charge exceptions without adding speed multipliers',()=>{
+  expect(relicCost('clockShard')).toBe('敌人常规移速 +18%（大 Boss、冲锋除外）');for(const r of RELICS)if(r.id!=='clockShard')expect(relicCost(r.id)).toBe(r.cost);
+  const step=(kind:'normal'|'boss'|'charge',shard:boolean)=>{const g=new GameEngine(freshSave(),2);g.enemies.clear();g.weapons.length=0;if(shard)g.relics.push('clockShard');const id=g.spawnEnemy(kind==='boss'?'proposal':kind==='charge'?'charger':'homework',g.player.x+280,g.player.y),e=g.enemies;if(kind==='boss')g.bossEnemy=id;if(kind==='charge'){e.state[id]=2;e.timer[id]=1;e.angle[id]=0;}g.rebuildGrid();const x=e.x[id],y=e.y[id];g.behaviors.update(1/60);if(kind==='boss')g.bossSystem.update(1/60);return Math.hypot(e.x[id]-x,e.y[id]-y);};
+  expect(step('normal',true)/step('normal',false)).toBeCloseTo(1.18,3);expect(step('boss',true)).toBe(step('boss',false));expect(step('charge',true)).toBe(step('charge',false));
+ });
+ it('daily versions isolate manifests, attempts, retained rankings, best scores and old replays',()=>{
+  const date='2026-10-30',challenge=dailyChallenge(date),manifest=createManifest(freshSave(),999,'daily',date);expect(challenge.version).toBe('daily-v4.0.1');expect(RULES_VERSION).toBe('campus-v4.0.1');expect(manifest).toMatchObject({seed:dailySeed(date),rulesVersion:DAILY_RULES_VERSION,date});expect(dailySeed(date)).not.toBe(dailySeed(date,'daily-v3.1'));
+  const save=freshSave();save.daily.records=['daily-v3.1',DAILY_RULES_VERSION].flatMap(version=>Array.from({length:12},(_,n):DailyRecord=>({id:`${version}-${n}`,version,date,rule:'piercing',character:'balanced',nickname:'同学',score:n+(version==='daily-v3.1'?10000:100),victory:true,completedWeeks:22,seconds:1000,build:['knife'],relics:[],averageCurse:0,createdAt:n})));save.daily.attempts={[`${date}|daily-v3.1`]:2,[challenge.id]:3};save.daily.completedDates=[date];
+  const storage=new Memory(),repo=new SaveRepository(storage);expect(repo.write(save)).toBe(true);const loaded=new SaveRepository(storage).load();for(const version of ['daily-v3.1',DAILY_RULES_VERSION]){const board=dailyBoard(loaded.daily.records,date,version);expect(board).toHaveLength(10);expect(board[0].score).toBe(version==='daily-v3.1'?10011:111);expect(board.every(r=>r.version===version)).toBe(true);}expect(loaded.daily.attempts).toEqual(save.daily.attempts);
+  const daily=new GameEngine(loaded,1,undefined,{mode:'daily',date});daily.finish(true);expect(settleRun(loaded,daily.result!).daily.completedDates).toEqual([date]);
+  for(const mode of ['normal','daily'] as const){const g=new GameEngine(loaded,1,undefined,{mode,date});g.enableReplay();const current=g.exportReplay()!;expect(validReplay(current)).toBe(true);const oldVersion=mode==='daily'?'daily-v3.1':'campus-v3.0',old={...current,rulesVersion:oldVersion,manifest:{...current.manifest,rulesVersion:oldVersion}};expect(validManifest(old.manifest)).toBe(false);expect(validReplay(old)).toBe(false);expect(replayVersionMessage(old)).toContain('规则版本不受支持');}
  });
 
 });

@@ -71,9 +71,9 @@ export class WeaponSystem {
       if(['knife','staple','code','ppt','shuttle','binder','sword'].includes(id)){
         this.chain.length=0;const spread=id==='staple'?Math.PI/3:id==='code'?.9:id==='ppt'?.5:.22;
         for(let n=0;n<count;n++){
-          const target=this.nearest(p.x,p.y,Math.max(400,range),this.chain);if(target>=0)this.chain.push(target);
-          const aimed=target>=0?Math.atan2(e.y[target]-p.y,e.x[target]-p.x):angle;
-          const a=aimed+(target>=0?0:count===1?0:(n/(count-1)-.5)*spread);
+          const target=id==='staple'?nearest:this.nearest(p.x,p.y,Math.max(400,range),this.chain);if(target>=0&&id!=='staple')this.chain.push(target);
+          const aimed=id==='staple'?angle:target>=0?Math.atan2(e.y[target]-p.y,e.x[target]-p.x):angle;
+          const a=aimed+(id!=='staple'&&target>=0?0:count===1?0:(n/(count-1)-.5)*spread);
           const speed=['knife','shuttle','binder','sword'].includes(id)?650:id==='staple'?600:id==='ppt'?420:400;
           const originAngle=n*TAU/count,ox=ev&&id==='knife'?Math.cos(originAngle)*32:0,oy=ev&&id==='knife'?Math.sin(originAngle)*32:0;
           this.shot(id,p.x+ox,p.y+oy,a,speed,damage,range,params.pierce,id==='code'?'homing':id==='ppt'?'boomerang':'straight',ev,target>=0?target:nearest,false,params);

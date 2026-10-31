@@ -1,3 +1,4 @@
+import {relicCost} from '../../presentation/relic-text';
 import {InteractionPointer} from './interaction-pointer';
 import {useEffect,useMemo,useState} from 'react';
 import {RELIC_MAP} from '../../data/relics';
@@ -24,7 +25,7 @@ export function HUD({session,open}:{session:GameSession|null;open:(panel:Panel)=
     <div className="hud-information">{hud.boss&&<div className="boss-health"><div><span><Icon name="trophy" size={16}/>{hud.boss.name}</span><span>阶段 {hud.boss.stage} · 加时 {time(hud.bossTime)}</span></div><StatBar value={hud.boss.hp} max={hud.boss.maxHp} label={hud.boss.name} kind="boss"/><small>{Math.ceil(hud.boss.hp).toLocaleString()} / {hud.boss.maxHp.toLocaleString()}</small></div>}
     <div className="hud-alerts">{hud.notice&&hud.phase==='playing'&&<div className="battle-notice" key={hud.notice}><Icon name="leaf" size={17}/>{hud.notice}</div>}
     {hud.event&&<div className="event-pill"><Icon name="bolt" size={14}/>{hud.event}</div>}</div>
-    {hud.relics.length>0&&<div className="relic-strip">风险 {hud.relics.length}/3 {hud.relics.map(id=><span key={id} title={`${RELIC_MAP[id].benefit} / ${RELIC_MAP[id].cost}`}><ContentArt id={id} icon={RELIC_MAP[id].icon}/>{RELIC_MAP[id].name}·{RELIC_MAP[id].curse}</span>)}</div>}
+    {hud.relics.length>0&&<div className="relic-strip">风险 {hud.relics.length}/3 {hud.relics.map(id=><span key={id} title={`${RELIC_MAP[id].benefit} / ${relicCost(id)}`}><ContentArt id={id} icon={RELIC_MAP[id].icon}/>{RELIC_MAP[id].name}·{RELIC_MAP[id].curse}</span>)}</div>}
     <div className="direction-hints">{hud.directions.map(d=><span key={d.name}><i style={{transform:`rotate(${d.angle}rad)`}}>➜</i>{d.name}</span>)}</div>
 </div>
     <div className={`momentum-hud tier-${hud.comboTier} ${hud.frenzy.remaining>0?'frenzy-active':''}`} aria-label="战斗爆发状态">

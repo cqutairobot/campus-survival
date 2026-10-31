@@ -5,7 +5,7 @@ export function frenzyStats(stats:PlayerStats,active:boolean):PlayerStats{return
 /** All timers use combat time, including neither UI pauses nor cinematics. */
 export class CombatMomentum {
   combo=0;peakCombo=0;charge=0;remaining=0;cooldown=0;clearCooldown=0;criticals=0;chainCooldown=0;
-  private lastKill=-Infinity;private tier=0;private ordinaryKills:number[]=[];
+  private lastKill=-Infinity;private tier=0;private ordinaryKills:{time:number;weight:number}[]=[];
   get active(){return this.remaining>1e-9;}
   update(dt:number,time:number){
     if(time-this.lastKill>3+1e-6){this.combo=0;this.tier=0;}
@@ -25,7 +25,7 @@ export class CombatMomentum {
     this.lastKill=time;this.combo+=weight;this.peakCombo=Math.max(this.peakCombo,this.combo);
     const nextTier=COMBO_THRESHOLDS.filter(n=>n<=this.combo).length,milestone=nextTier>this.tier?COMBO_THRESHOLDS[nextTier-1]:0;this.tier=nextTier;
     let clear=false;
-    if(rank==='normal'){this.ordinaryKills=this.ordinaryKills.filter(t=>time-t<=1+1e-6);for(let i=0;i<Math.floor(weight);i++)this.ordinaryKills.push(time);if(this.ordinaryKills.length>=20&&this.clearCooldown<=1e-6){clear=true;this.clearCooldown=20;this.ordinaryKills=[];}}
+    if(rank==='normal'){this.ordinaryKills=this.ordinaryKills.filter(hit=>time-hit.time<=1+1e-6);if(weight>0)this.ordinaryKills.push({time,weight});if(this.ordinaryKills.reduce((sum,hit)=>sum+hit.weight,0)>=20&&this.clearCooldown<=1e-6){clear=true;this.clearCooldown=20;this.ordinaryKills=[];}}
     const frenzy=this.gain((rank==='boss'?25:rank==='elite'||rank==='miniBoss'?8:1)*weight+(clear?15:0));
     return{milestone,clear,frenzy};
   }
