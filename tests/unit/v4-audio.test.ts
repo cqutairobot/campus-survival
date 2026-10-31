@@ -74,4 +74,18 @@ describe('v4 audio scheduling and mixing',()=>{
   mock.instances.length=0;const music=new MusicDirector(()=>undefined);music.setTheme('normal');const normal=mock.instances[0];(normal.options.onload as ()=>void)();music.update(.7,0,freshSave().settings,false);
   music.preload('boss');const boss=mock.instances[1];(boss.options.onload as ()=>void)();expect(boss.active).toBe(false);music.setTheme('boss');expect(mock.instances).toHaveLength(2);expect(boss.active&&normal.active).toBe(true);music.update(.7,1,freshSave().settings,false);expect(normal.unloaded).toBe(true);music.destroy();
  });
+ it('caps songs at two even when menu and combat alternate before fades finish',()=>{
+  mock.instances.length=0;const music=new MusicDirector(()=>undefined),settings=freshSave().settings;
+  for(const theme of ['menu','normal','menu','boss','result','normal']){music.setTheme(theme);const next=mock.instances.at(-1)!;(next.options.onload as ()=>void)();music.update(.02,0,settings,false);expect(music.debug.tracks.length).toBeLessThanOrEqual(2);}
+  music.destroy();expect(mock.instances.every(s=>s.unloaded)).toBe(true);
+ });
+ it('replaces a loaded song if playback fails and ignores repeated late errors',()=>{
+  mock.instances.length=0;const fallback={play:vi.fn(()=>1),volume:vi.fn(),rate:vi.fn(),stop:vi.fn()} as unknown as Howl;
+  const music=new MusicDirector(()=>fallback);music.setTheme('normal');const sample=mock.instances[0];(sample.options.onload as ()=>void)();(sample.options.onplayerror as ()=>void)();(sample.options.onplayerror as ()=>void)();
+  expect(sample.unloaded).toBe(true);expect(fallback.play).toHaveBeenCalledOnce();expect(music.debug.tracks).toHaveLength(1);music.destroy();
+ });
+ it('times out a stalled music load into synthesis and cancels its watchdog on destruction',()=>{
+  vi.useFakeTimers();try{mock.instances.length=0;const fallback={play:vi.fn(()=>1),volume:vi.fn(),rate:vi.fn(),stop:vi.fn()} as unknown as Howl,music=new MusicDirector(()=>fallback);music.setTheme('menu');vi.advanceTimersByTime(5000);expect(fallback.play).toHaveBeenCalledOnce();expect(mock.instances[0].unloaded).toBe(true);music.destroy();expect(vi.getTimerCount()).toBe(0);}finally{vi.useRealTimers();}
+ });
+
 });

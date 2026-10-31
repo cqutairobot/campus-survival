@@ -10,12 +10,13 @@ export class ParticleFX {
   readonly pool=new SlotPool(32768);
   private particles:Particle[]=[];private life=new Float32Array(32768);private total=new Float32Array(32768);private vx=new Float32Array(32768);private vy=new Float32Array(32768);private scale=new Float32Array(32768);private smoke=new Uint8Array(32768);
   private renderPositions=new Int32Array(32768);private renderSlots:number[]=[];private dirty=false;
-  private rng=new Random(869023);limit=8192;recycled=0;
+  private rng=new Random(869023);limit=8192;recycled=0;motion=true;
   constructor(private textures:TextureSource){
     this.container=new ParticleContainer({dynamicProperties:{position:true,color:true,vertex:true,rotation:true,uvs:true}});this.container.blendMode='add';this.container.texture=textures.get('fragment-spark');
     for(let n=0;n<32768;n++){const p=new Particle({texture:textures.get('fragment-spark'),alpha:0,anchorX:.5,anchorY:.5});this.particles.push(p);}
   }
   burst(x:number,y:number,color:number,count:number,speed:number,size=1,material:FragmentMaterial='spark',converge=false){
+    if(!this.motion)return;
     for(let n=0;n<count;n++){
       if(this.pool.active.length>=this.limit){const old=this.pool.active[this.recycled++%this.pool.active.length];this.release(old);}
       const id=this.pool.acquire();if(id<0)break;this.renderPositions[id]=this.renderSlots.length;this.renderSlots.push(id);this.container.particleChildren.push(this.particles[id]);this.dirty=true;const p=this.particles[id],a=this.rng.range(0,TAU),s=this.rng.range(speed*.3,speed);
@@ -24,6 +25,7 @@ export class ParticleFX {
     }
   }
   private release(id:number){const position=this.renderPositions[id],last=this.renderSlots.pop()!,particle=this.container.particleChildren.pop()!;if(last!==id){this.renderSlots[position]=last;this.container.particleChildren[position]=particle;this.renderPositions[last]=position;}this.particles[id].alpha=0;this.pool.release(id);this.dirty=true;}
+  clear(){for(const id of [...this.pool.active])this.release(id);this.container.update();this.dirty=false;}
   update(dt:number){for(let index=this.pool.active.length-1;index>=0;index--){const n=this.pool.active[index],p=this.particles[n];this.life[n]-=dt;if(this.life[n]<=0||index>=this.limit){this.release(n);continue;}const t=Math.max(0,this.life[n]/this.total[n]);p.x+=this.vx[n]*dt;p.y+=this.vy[n]*dt;this.vx[n]*=Math.exp(-dt*2.5);this.vy[n]*=Math.exp(-dt*2.5);p.alpha=t*(this.smoke[n]?.3:1);p.scaleX=this.scale[n]*(this.smoke[n]?2-t:t);p.scaleY=p.scaleX*(this.smoke[n]?1:.55);p.rotation+=dt*2;}if(this.dirty){this.container.update();this.dirty=false;}}
 }
 type NumberKind=keyof typeof tokens.damage;

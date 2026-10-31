@@ -1,0 +1,31 @@
+{
+  "version": "4.0.0",
+  "artifact": {
+    "files": 554,
+    "bytes": 22097139
+  },
+  "artifactLimitBytes": 23000000,
+  "firstScreenBytes": 949793,
+  "firstScreenLimitBytes": 4194304,
+  "groups": {
+    "art": {
+      "files": 299,
+      "bytes": 7880583
+    },
+    "audio": {
+      "files": 218,
+      "bytes": 11252735
+    },
+    "fonts": {
+      "files": 6,
+      "bytes": 315364
+    },
+    "licenses": {
+      "files": 15,
+      "bytes": 673425
+    }
+  },
+  "screenshots": 56,
+  "browserReviews": 78,
+  "passed": true
+}

@@ -14,10 +14,10 @@ export function Menu({open}:{open:(panel:Panel)=>void}){
   const save=useApp(s=>s.save),status=useApp(s=>s.saveStatus),settings=useApp(s=>s.settings),character=CHARACTERS.find(c=>c.id===save.selected)??CHARACTERS[0];
   const root=useRef<HTMLElement>(null),[missing,setMissing]=useState(false),art=characterArt[character.id];
   useEffect(()=>{
-    if(!useApp.getState().save.settings.motion)return;
+    if(!save.settings.motion)return;
     const context=gsap.context(()=>{gsap.from('.menu-backdrop',{opacity:0,duration:.5});gsap.from('.hero-copy>*',{opacity:0,y:18,stagger:.06,duration:.5,ease:'power3.out'});gsap.from('.hero-visual',{opacity:0,x:24,duration:.7,delay:.18,ease:'power2.out'});},root);
     return()=>context.revert();
-  },[]);
+  },[save.settings.motion]);
   return <main className="menu-screen v4-menu" ref={root}>
     <div className={`menu-backdrop ${missing?'art-missing':''}`} aria-hidden="true">{missing?<CampusArt/>:<picture><source media="(max-width:650px)" srcSet={artUrl('menuPortrait')}/><img src={artUrl('menu')} alt="" onError={()=>setMissing(true)}/></picture>}</div>
     <header className="masthead"><a className="brand" href="./" aria-label="校园生存首页"><span className="brand-mark"><img src={assetUrl('assets/art/v4/ui/graduate-cap.svg')} alt="" onError={e=>{e.currentTarget.hidden=true;}}/><Icon name="cap" size={26}/></span><span>校园生存<small>CAMPUS SURVIVAL</small></span></a><div className="masthead-right"><span className="edition">研究生生存指南 · VOL. 04</span><Button variant="icon" aria-label={save.settings.muted?'开启声音':'静音'} onClick={()=>settings({muted:!save.settings.muted})}><Icon name={save.settings.muted?'muted':'volume'}/></Button><Button variant="icon" aria-label="操作指南" onClick={()=>open('controls')}><Icon name="help"/></Button></div></header>

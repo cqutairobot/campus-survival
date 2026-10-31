@@ -19,7 +19,7 @@ function normalize(file,source){
 }
 const checks=files.map(file=>{const actual=readFileSync(resolve(root,file),'utf8'),previous=readFileSync(resolve(baseline,file),'utf8'),exact=actual===previous,passed=normalize(file,actual)===normalize(file,previous);return {file,passed,comparison:exact?'byte-identical':file==='src/core/engine.ts'?'remove readonly visual event payloads and heal display snapshots only':'ignore presentation rarity colors and content version only',sha256:createHash('sha256').update(actual).digest('hex')};});
 const report={baseline:relative(root,baseline),checked:checks.length,passed:checks.every(c=>c.passed),allowed:['catalog: rarity presentation colors and content label','engine: readonly visual metadata and actual-heal display event'],checks};
-writeFileSync('docs/v4-p1-freeze-audit.json',JSON.stringify(report,null,2)+'\n');
+writeFileSync('docs/v4-p2-freeze-audit.json',JSON.stringify(report,null,2)+'\n');
 for(const check of checks.filter(c=>!c.passed))console.error('Gameplay differs:',check.file);
 console.log(`${checks.filter(c=>c.passed).length}/${checks.length} frozen gameplay files match v3; ${checks.filter(c=>c.comparison==='byte-identical').length} byte-identical.`);
 if(!report.passed)process.exitCode=1;

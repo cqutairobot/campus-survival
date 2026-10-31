@@ -6,7 +6,7 @@
       "Owlish Media Sound Effects-extracted/Paper/crumples1.wav",
       "paper_rustling.wav"
     ],
-    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -16,7 +16,7 @@
       "Owlish Media Sound Effects-extracted/Paper/crumples2.wav",
       "Owlish Media Sound Effects-extracted/Paper/pageturn1.wav"
     ],
-    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -26,7 +26,7 @@
       "Owlish Media Sound Effects-extracted/Paper/pageturn2.wav",
       "paper_rustling.wav"
     ],
-    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -36,7 +36,7 @@
       "Owlish Media Sound Effects-extracted/Paper/paper-sketchbook-page-flips-1.wav",
       "Owlish Media Sound Effects-extracted/Paper/crumples1.wav"
     ],
-    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -46,7 +46,7 @@
       "Owlish Media Sound Effects-extracted/Paper/crumples1.wav",
       "paper_rustling.wav"
     ],
-    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -56,7 +56,7 @@
       "Owlish Media Sound Effects-extracted/Paper/crumples2.wav",
       "Owlish Media Sound Effects-extracted/Paper/pageturn1.wav"
     ],
-    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -66,7 +66,7 @@
       "Owlish Media Sound Effects-extracted/Paper/crumples1.wav",
       "paper_rustling.wav"
     ],
-    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -76,7 +76,7 @@
       "Owlish Media Sound Effects-extracted/Paper/crumples2.wav",
       "Owlish Media Sound Effects-extracted/Paper/pageturn1.wav"
     ],
-    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -86,7 +86,7 @@
       "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-005.wav",
       "Owlish Media Sound Effects-extracted/Technology/mouse-clicks-scrolls.wav"
     ],
-    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -96,7 +96,7 @@
       "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-006.wav",
       "Owlish Media Sound Effects-extracted/Technology/mouse-clicks-scrolls.wav"
     ],
-    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -106,7 +106,7 @@
       "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-007.wav",
       "Owlish Media Sound Effects-extracted/Technology/mouse-clicks-scrolls.wav"
     ],
-    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -116,7 +116,7 @@
       "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-008.wav",
       "Owlish Media Sound Effects-extracted/Technology/mouse-clicks-scrolls.wav"
     ],
-    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -126,7 +126,7 @@
       "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-005.wav",
       "Owlish Media Sound Effects-extracted/Technology/mouse-clicks-scrolls.wav"
     ],
-    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -136,7 +136,7 @@
       "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-006.wav",
       "Owlish Media Sound Effects-extracted/Technology/mouse-clicks-scrolls.wav"
     ],
-    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -146,7 +146,7 @@
       "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-005.wav",
       "Owlish Media Sound Effects-extracted/Technology/mouse-clicks-scrolls.wav"
     ],
-    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -156,7 +156,7 @@
       "unicae_games_keyboard_soundpack_1_0-extracted/Single Keys/keypress-006.wav",
       "Owlish Media Sound Effects-extracted/Technology/mouse-clicks-scrolls.wav"
     ],
-    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -166,7 +166,7 @@
       "shaking_cup_short.wav",
       "impact-sounds-extracted/Audio/impactMetal_medium_001.ogg"
     ],
-    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -176,7 +176,7 @@
       "shaking_cup_short.wav",
       "impact-sounds-extracted/Audio/impactMetal_medium_002.ogg"
     ],
-    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -186,7 +186,7 @@
       "shaking_cup_short.wav",
       "impact-sounds-extracted/Audio/impactMetal_medium_003.ogg"
     ],
-    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -196,7 +196,7 @@
       "shaking_cup_short.wav",
       "impact-sounds-extracted/Audio/impactMetal_medium_004.ogg"
     ],
-    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -206,7 +206,7 @@
       "shaking_cup_short.wav",
       "impact-sounds-extracted/Audio/impactMetal_medium_001.ogg"
     ],
-    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -216,7 +216,7 @@
       "shaking_cup_short.wav",
       "impact-sounds-extracted/Audio/impactMetal_medium_002.ogg"
     ],
-    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -226,7 +226,7 @@
       "shaking_cup_short.wav",
       "impact-sounds-extracted/Audio/impactMetal_medium_001.ogg"
     ],
-    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -236,7 +236,7 @@
       "shaking_cup_short.wav",
       "impact-sounds-extracted/Audio/impactMetal_medium_002.ogg"
     ],
-    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -246,7 +246,7 @@
       "stiring_cup_short.wav",
       "impact-sounds-extracted/Audio/impactGlass_medium_001.ogg"
     ],
-    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -256,7 +256,7 @@
       "stiring_cup_short.wav",
       "impact-sounds-extracted/Audio/impactGlass_medium_002.ogg"
     ],
-    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -266,7 +266,7 @@
       "stiring_cup_short.wav",
       "impact-sounds-extracted/Audio/impactGlass_medium_003.ogg"
     ],
-    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -276,7 +276,7 @@
       "stiring_cup_short.wav",
       "impact-sounds-extracted/Audio/impactGlass_medium_004.ogg"
     ],
-    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -286,7 +286,7 @@
       "stiring_cup_short.wav",
       "impact-sounds-extracted/Audio/impactGlass_medium_001.ogg"
     ],
-    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -296,7 +296,7 @@
       "stiring_cup_short.wav",
       "impact-sounds-extracted/Audio/impactGlass_medium_002.ogg"
     ],
-    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -306,7 +306,7 @@
       "stiring_cup_short.wav",
       "impact-sounds-extracted/Audio/impactGlass_medium_001.ogg"
     ],
-    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -316,7 +316,7 @@
       "stiring_cup_short.wav",
       "impact-sounds-extracted/Audio/impactGlass_medium_002.ogg"
     ],
-    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -326,7 +326,7 @@
       "Owlish Media Sound Effects-extracted/Impacts/hit.wav",
       "impact-sounds-extracted/Audio/impactMining_001.ogg"
     ],
-    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -336,7 +336,7 @@
       "Owlish Media Sound Effects-extracted/Impacts/hit.wav",
       "impact-sounds-extracted/Audio/impactMining_002.ogg"
     ],
-    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -346,7 +346,7 @@
       "Owlish Media Sound Effects-extracted/Impacts/hit.wav",
       "impact-sounds-extracted/Audio/impactMining_003.ogg"
     ],
-    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -356,7 +356,7 @@
       "Owlish Media Sound Effects-extracted/Impacts/hit.wav",
       "impact-sounds-extracted/Audio/impactMining_004.ogg"
     ],
-    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -366,7 +366,7 @@
       "Owlish Media Sound Effects-extracted/Impacts/hit.wav",
       "impact-sounds-extracted/Audio/impactMining_001.ogg"
     ],
-    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -376,7 +376,7 @@
       "Owlish Media Sound Effects-extracted/Impacts/hit.wav",
       "impact-sounds-extracted/Audio/impactMining_002.ogg"
     ],
-    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -386,7 +386,7 @@
       "Owlish Media Sound Effects-extracted/Impacts/hit.wav",
       "impact-sounds-extracted/Audio/impactMining_001.ogg"
     ],
-    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -396,7 +396,7 @@
       "Owlish Media Sound Effects-extracted/Impacts/hit.wav",
       "impact-sounds-extracted/Audio/impactMining_002.ogg"
     ],
-    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -406,7 +406,7 @@
       "Owlish Media Sound Effects-extracted/Water/spray-bottle.wav",
       "stiring_cup_long.wav"
     ],
-    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -416,7 +416,7 @@
       "Owlish Media Sound Effects-extracted/Water/spray-bottle.wav",
       "stiring_cup_long.wav"
     ],
-    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -426,7 +426,7 @@
       "Owlish Media Sound Effects-extracted/Water/spray-bottle.wav",
       "stiring_cup_long.wav"
     ],
-    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -436,7 +436,7 @@
       "Owlish Media Sound Effects-extracted/Water/spray-bottle.wav",
       "stiring_cup_long.wav"
     ],
-    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -446,7 +446,7 @@
       "Owlish Media Sound Effects-extracted/Water/spray-bottle.wav",
       "stiring_cup_long.wav"
     ],
-    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -456,7 +456,7 @@
       "Owlish Media Sound Effects-extracted/Water/spray-bottle.wav",
       "stiring_cup_long.wav"
     ],
-    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -466,7 +466,7 @@
       "Owlish Media Sound Effects-extracted/Water/spray-bottle.wav",
       "stiring_cup_long.wav"
     ],
-    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -476,7 +476,7 @@
       "Owlish Media Sound Effects-extracted/Water/spray-bottle.wav",
       "stiring_cup_long.wav"
     ],
-    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -486,7 +486,7 @@
       "Owlish Media Sound Effects-extracted/Technology/plugpull.wav",
       "interface-sounds-extracted/Audio/glitch_001.ogg"
     ],
-    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -496,7 +496,7 @@
       "Owlish Media Sound Effects-extracted/Technology/plugpull.wav",
       "interface-sounds-extracted/Audio/glitch_002.ogg"
     ],
-    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -506,7 +506,7 @@
       "Owlish Media Sound Effects-extracted/Technology/plugpull.wav",
       "interface-sounds-extracted/Audio/glitch_003.ogg"
     ],
-    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -516,7 +516,7 @@
       "Owlish Media Sound Effects-extracted/Technology/plugpull.wav",
       "interface-sounds-extracted/Audio/glitch_004.ogg"
     ],
-    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "hit: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -526,7 +526,7 @@
       "Owlish Media Sound Effects-extracted/Technology/plugpull.wav",
       "interface-sounds-extracted/Audio/glitch_001.ogg"
     ],
-    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -536,7 +536,7 @@
       "Owlish Media Sound Effects-extracted/Technology/plugpull.wav",
       "interface-sounds-extracted/Audio/glitch_002.ogg"
     ],
-    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -546,7 +546,7 @@
       "Owlish Media Sound Effects-extracted/Technology/plugpull.wav",
       "interface-sounds-extracted/Audio/glitch_001.ogg"
     ],
-    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -556,7 +556,7 @@
       "Owlish Media Sound Effects-extracted/Technology/plugpull.wav",
       "interface-sounds-extracted/Audio/glitch_002.ogg"
     ],
-    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "shot: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -564,7 +564,7 @@
     "inputs": [
       "ui-pack-extracted/Sounds/tap-a.ogg"
     ],
-    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
   },
   {
@@ -572,7 +572,7 @@
     "inputs": [
       "interface-sounds-extracted/Audio/click_001.ogg"
     ],
-    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
   },
   {
@@ -580,7 +580,7 @@
     "inputs": [
       "interface-sounds-extracted/Audio/confirmation_001.ogg"
     ],
-    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
   },
   {
@@ -588,7 +588,7 @@
     "inputs": [
       "interface-sounds-extracted/Audio/minimize_001.ogg"
     ],
-    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
   },
   {
@@ -596,7 +596,7 @@
     "inputs": [
       "interface-sounds-extracted/Audio/click_003.ogg"
     ],
-    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
   },
   {
@@ -604,7 +604,7 @@
     "inputs": [
       "interface-sounds-extracted/Audio/error_002.ogg"
     ],
-    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
   },
   {
@@ -612,7 +612,7 @@
     "inputs": [
       "music-jingles-extracted/Audio/Pizzicato jingles/jingles_PIZZI00.ogg"
     ],
-    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
   },
   {
@@ -620,7 +620,7 @@
     "inputs": [
       "interface-sounds-extracted/Audio/confirmation_001.ogg"
     ],
-    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
   },
   {
@@ -628,7 +628,7 @@
     "inputs": [
       "music-jingles-extracted/Audio/Pizzicato jingles/jingles_PIZZI00.ogg"
     ],
-    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
   },
   {
@@ -636,7 +636,7 @@
     "inputs": [
       "music-jingles-extracted/Audio/Pizzicato jingles/jingles_PIZZI06.ogg"
     ],
-    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
   },
   {
@@ -644,7 +644,7 @@
     "inputs": [
       "music-jingles-extracted/Audio/Pizzicato jingles/jingles_PIZZI09.ogg"
     ],
-    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
   },
   {
@@ -652,7 +652,7 @@
     "inputs": [
       "rpg-audio-extracted/Audio/metalLatch.ogg"
     ],
-    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
   },
   {
@@ -660,7 +660,7 @@
     "inputs": [
       "rpg-audio-extracted/Audio/bookOpen.ogg"
     ],
-    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
   },
   {
@@ -668,7 +668,7 @@
     "inputs": [
       "music-jingles-extracted/Audio/Pizzicato jingles/jingles_PIZZI02.ogg"
     ],
-    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
   },
   {
@@ -676,7 +676,7 @@
     "inputs": [
       "music-jingles-extracted/Audio/Pizzicato jingles/jingles_PIZZI10.ogg"
     ],
-    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
   },
   {
@@ -684,7 +684,7 @@
     "inputs": [
       "impact-sounds-extracted/Audio/impactPunch_heavy_001.ogg"
     ],
-    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
   },
   {
@@ -692,7 +692,7 @@
     "inputs": [
       "impact-sounds-extracted/Audio/impactPunch_heavy_003.ogg"
     ],
-    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
   },
   {
@@ -700,7 +700,7 @@
     "inputs": [
       "interface-sounds-extracted/Audio/tick_002.ogg"
     ],
-    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
   },
   {
@@ -708,7 +708,7 @@
     "inputs": [
       "music-jingles-extracted/Audio/Pizzicato jingles/jingles_PIZZI06.ogg"
     ],
-    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
   },
   {
@@ -716,7 +716,7 @@
     "inputs": [
       "impact-sounds-extracted/Audio/impactMetal_heavy_002.ogg"
     ],
-    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
   },
   {
@@ -724,7 +724,7 @@
     "inputs": [
       "music-jingles-extracted/Audio/Pizzicato jingles/jingles_PIZZI09.ogg"
     ],
-    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
   },
   {
@@ -732,7 +732,7 @@
     "inputs": [
       "rpg-audio-extracted/Audio/bookOpen.ogg"
     ],
-    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
   },
   {
@@ -740,7 +740,7 @@
     "inputs": [
       "music-jingles-extracted/Audio/Pizzicato jingles/jingles_PIZZI02.ogg"
     ],
-    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
   },
   {
@@ -748,7 +748,7 @@
     "inputs": [
       "music-jingles-extracted/Audio/Pizzicato jingles/jingles_PIZZI03.ogg"
     ],
-    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
   },
   {
@@ -756,7 +756,7 @@
     "inputs": [
       "interface-sounds-extracted/Audio/confirmation_003.ogg"
     ],
-    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
   },
   {
@@ -764,7 +764,7 @@
     "inputs": [
       "music-jingles-extracted/Audio/Pizzicato jingles/jingles_PIZZI07.ogg"
     ],
-    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
   },
   {
@@ -772,7 +772,7 @@
     "inputs": [
       "rpg-audio-extracted/Audio/metalClick.ogg"
     ],
-    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
   },
   {
@@ -780,7 +780,7 @@
     "inputs": [
       "interface-sounds-extracted/Audio/minimize_003.ogg"
     ],
-    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps",
+    "modification": "trimmed to 0.8s maximum, mono 44.1kHz, Ogg 96kbps / MP3 112kbps P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "CC0 designed UI/impact/jingle; not described as a field recording."
   },
   {
@@ -790,7 +790,7 @@
       "shaking_cup_short.wav",
       "impact-sounds-extracted/Audio/impactMetal_medium_001.ogg"
     ],
-    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Fusion-specific material mix.",
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Fusion-specific material mix. P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -800,7 +800,7 @@
       "Owlish Media Sound Effects-extracted/Technology/plugpull.wav",
       "interface-sounds-extracted/Audio/glitch_001.ogg"
     ],
-    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Fusion-specific material mix.",
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Fusion-specific material mix. P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -810,7 +810,7 @@
       "shaking_cup_short.wav",
       "impact-sounds-extracted/Audio/impactMetal_medium_001.ogg"
     ],
-    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Fusion-specific material mix.",
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Fusion-specific material mix. P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -820,7 +820,7 @@
       "stiring_cup_short.wav",
       "impact-sounds-extracted/Audio/impactGlass_medium_001.ogg"
     ],
-    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Fusion-specific material mix.",
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Fusion-specific material mix. P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -830,7 +830,7 @@
       "Owlish Media Sound Effects-extracted/Water/spray-bottle.wav",
       "stiring_cup_long.wav"
     ],
-    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Fusion-specific material mix.",
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Fusion-specific material mix. P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -840,7 +840,7 @@
       "Owlish Media Sound Effects-extracted/Impacts/hit.wav",
       "impact-sounds-extracted/Audio/impactMining_001.ogg"
     ],
-    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Fusion-specific material mix.",
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Fusion-specific material mix. P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -850,7 +850,7 @@
       "Owlish Media Sound Effects-extracted/Paper/crumples2.wav",
       "Owlish Media Sound Effects-extracted/Paper/pageturn1.wav"
     ],
-    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Character ultimate material mix.",
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Character ultimate material mix. P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -860,7 +860,7 @@
       "stiring_cup_short.wav",
       "impact-sounds-extracted/Audio/impactGlass_medium_002.ogg"
     ],
-    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Character ultimate material mix.",
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Character ultimate material mix. P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -870,7 +870,7 @@
       "Owlish Media Sound Effects-extracted/Technology/plugpull.wav",
       "interface-sounds-extracted/Audio/glitch_002.ogg"
     ],
-    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Character ultimate material mix.",
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Character ultimate material mix. P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -880,7 +880,7 @@
       "Owlish Media Sound Effects-extracted/Technology/plugpull.wav",
       "interface-sounds-extracted/Audio/glitch_002.ogg"
     ],
-    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Character ultimate material mix.",
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Character ultimate material mix. P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -890,7 +890,7 @@
       "Owlish Media Sound Effects-extracted/Impacts/hit.wav",
       "impact-sounds-extracted/Audio/impactMining_002.ogg"
     ],
-    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Character ultimate material mix.",
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Character ultimate material mix. P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -900,7 +900,7 @@
       "stiring_cup_short.wav",
       "impact-sounds-extracted/Audio/impactGlass_medium_002.ogg"
     ],
-    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Character ultimate material mix.",
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Character ultimate material mix. P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -910,7 +910,7 @@
       "Owlish Media Sound Effects-extracted/Technology/plugpull2.wav",
       "interface-sounds-extracted/Audio/glass_002.ogg"
     ],
-    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Existing campus event transition; no rule changes.",
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Existing campus event transition; no rule changes. P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -920,7 +920,7 @@
       "Owlish Media Sound Effects-extracted/Paper/pageturn1.wav",
       "rpg-audio-extracted/Audio/metalLatch.ogg"
     ],
-    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Existing campus event transition; no rule changes.",
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Existing campus event transition; no rule changes. P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -930,7 +930,7 @@
       "Owlish Media Sound Effects-extracted/Technology/plugpull.wav",
       "interface-sounds-extracted/Audio/glitch_003.ogg"
     ],
-    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Existing campus event transition; no rule changes.",
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Existing campus event transition; no rule changes. P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -940,7 +940,7 @@
       "Owlish Media Sound Effects-extracted/Impacts/hit.wav",
       "impact-sounds-extracted/Audio/impactMetal_heavy_002.ogg"
     ],
-    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Existing campus event transition; no rule changes.",
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Existing campus event transition; no rule changes. P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -950,7 +950,7 @@
       "Owlish Media Sound Effects-extracted/Footsteps/running-shoes-1.wav",
       "music-jingles-extracted/Audio/Pizzicato jingles/jingles_PIZZI04.ogg"
     ],
-    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Existing campus event transition; no rule changes.",
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Existing campus event transition; no rule changes. P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -960,7 +960,7 @@
       "Owlish Media Sound Effects-extracted/Water/spray-bottle.wav",
       "stiring_cup_long.wav"
     ],
-    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Existing campus event transition; no rule changes.",
+    "modification": "climax: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. Existing campus event transition; no rule changes. P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -970,7 +970,7 @@
       "stiring_cup_short.wav",
       "impact-sounds-extracted/Audio/impactGlass_medium_002.ogg"
     ],
-    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps. ",
+    "modification": "death: onset/body/tail mixed offline, normalized, mono 44.1kHz, Ogg 96kbps / MP3 112kbps.  P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Physical Foley/keyboard recordings form the onset and body; Kenney design/impact sounds are supplemental. Energy sounds are recorded objects plus designed electronic tails."
   },
   {
@@ -978,7 +978,7 @@
     "inputs": [
       "Owlish Media Sound Effects-extracted/Water/tap-water-2.wav"
     ],
-    "modification": "8-second recorded water excerpt, low-pass filtered with 60ms loop-edge fades, mono 44.1kHz Ogg/MP3; stylized rain ambience",
+    "modification": "8-second recorded water excerpt, low-pass filtered with 60ms loop-edge fades, mono 44.1kHz Ogg/MP3; stylized rain ambience P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.",
     "recording": "Recorded water Foley, not an outdoor rain field recording."
   },
   {
@@ -991,7 +991,7 @@
     "author": "cynicmusic / The Cynic Project / Alex Smith",
     "license": "CC0 1.0",
     "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "modification": "Whole completed track, loudness normalized to -20 LUFS, stereo 44.1kHz, 128kbps Ogg / 128kbps MP3, 60ms loop-edge fades; no stems or original composition."
+    "modification": "Whole completed track, loudness normalized to -23 LUFS, stereo 44.1kHz, 128kbps Ogg / 128kbps MP3, 60ms loop-edge fades; no stems or original composition. P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged."
   },
   {
     "output": "music-normal",
@@ -1003,7 +1003,7 @@
     "author": "cynicmusic / The Cynic Project / Alex Smith",
     "license": "CC0 1.0",
     "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "modification": "Whole completed track, loudness normalized to -20 LUFS, stereo 44.1kHz, 128kbps Ogg / 128kbps MP3, 60ms loop-edge fades; no stems or original composition."
+    "modification": "Whole completed track, loudness normalized to -23 LUFS, stereo 44.1kHz, 128kbps Ogg / 128kbps MP3, 60ms loop-edge fades; no stems or original composition. P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged."
   },
   {
     "output": "music-elite",
@@ -1015,7 +1015,7 @@
     "author": "cynicmusic / The Cynic Project / Alex Smith",
     "license": "CC0 1.0",
     "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "modification": "Whole completed track, loudness normalized to -20 LUFS, stereo 44.1kHz, 128kbps Ogg / 128kbps MP3, 60ms loop-edge fades; no stems or original composition."
+    "modification": "Whole completed track, loudness normalized to -23 LUFS, stereo 44.1kHz, 128kbps Ogg / 128kbps MP3, 60ms loop-edge fades; no stems or original composition. P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged."
   },
   {
     "output": "music-boss",
@@ -1027,7 +1027,7 @@
     "author": "cynicmusic / The Cynic Project / Alex Smith",
     "license": "CC0 1.0",
     "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "modification": "Whole completed track, loudness normalized to -20 LUFS, stereo 44.1kHz, 128kbps Ogg / 128kbps MP3, 60ms loop-edge fades; no stems or original composition."
+    "modification": "Whole completed track, loudness normalized to -23 LUFS, stereo 44.1kHz, 128kbps Ogg / 128kbps MP3, 60ms loop-edge fades; no stems or original composition. P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged."
   },
   {
     "output": "music-result",
@@ -1039,6 +1039,6 @@
     "author": "cynicmusic / The Cynic Project / Alex Smith",
     "license": "CC0 1.0",
     "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-    "modification": "Whole completed track, loudness normalized to -20 LUFS, stereo 44.1kHz, 128kbps Ogg / 128kbps MP3, 60ms loop-edge fades; no stems or original composition."
+    "modification": "Whole completed track, loudness normalized to -23 LUFS, stereo 44.1kHz, 128kbps Ogg / 128kbps MP3, 60ms loop-edge fades; no stems or original composition. P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to -23 LUFS, -3 dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged."
   }
 ]

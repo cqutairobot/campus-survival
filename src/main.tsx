@@ -1,3 +1,5 @@
+import {lazy,Suspense} from 'react';
+import {IS_FIXTURE} from './debug/isolation';
 import { createRoot } from 'react-dom/client';
 import { App } from './app/App';
 import './ui/styles/main.css';
@@ -5,6 +7,8 @@ import './ui/styles/fonts.css';
 import './ui/styles/tokens.css';
 import './ui/styles/v4.css';
 import './ui/styles/p1.css';
+import './ui/styles/p2.css';
 import {installTokens} from './design/tokens';
 installTokens();
-createRoot(document.getElementById('root')!).render(<App/>);
+const LabApp=lazy(()=>import('./debug/LabApp').then(m=>({default:m.LabApp})));
+createRoot(document.getElementById('root')!).render(IS_FIXTURE?<Suspense fallback={<p>准备实验室…</p>}><LabApp/></Suspense>:<App/>);

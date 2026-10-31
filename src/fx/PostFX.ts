@@ -1,6 +1,8 @@
 import {RadialBlurFilter,RGBSplitFilter,ShockwaveFilter} from 'pixi-filters';
 import type {Settings} from '../types';
 import type {FeedbackProfile} from '../presentation/profiles';
+import {allowsDistortion} from '../presentation/quality';
+import type {Quality} from '../types';
 /** Both installed filters expect CSS pixel coordinates in their filter input. */
 export function eventPixelPosition(x:number,y:number,ox:number,oy:number,scale:number,rotation=0){const c=Math.cos(rotation),s=Math.sin(rotation);return{x:(x*c-y*s)*scale+ox,y:(x*s+y*c)*scale+oy};}
 export class PostFX {
@@ -8,15 +10,15 @@ export class PostFX {
   readonly rgb=new RGBSplitFilter({red:[0,0],green:[0,0],blue:[0,0]});
   readonly radial=new RadialBlurFilter({center:{x:0,y:0},angle:0,kernelSize:5,radius:140});
   private age=1;private profile:FeedbackProfile|null=null;private point={x:0,y:0};
-  event(profile:FeedbackProfile,point:{x:number;y:number}){
-    if(!profile.wave&&!profile.split&&!profile.blur)return;
+  event(profile:FeedbackProfile,point:{x:number;y:number},quality:Quality='high'){
+    if(!allowsDistortion(quality,profile)||!profile.wave&&!profile.split&&!profile.blur)return;
     if(this.age<.035&&this.profile&&this.profile.trauma>profile.trauma)return;
     this.profile=profile;this.age=0;this.point={...point};
     this.shock.center={...point};this.radial.center={...point};
   }
-  update(dt:number,settings:Settings,quality:string){
+  update(dt:number,settings:Settings,quality:Quality){
     this.age+=dt;const p=this.profile;
-    if(!p||!settings.motion||!settings.distortion||settings.flash===0||quality==='low'){this.clear();return [];}
+    if(!p||!settings.motion||!settings.distortion||settings.flash===0||!allowsDistortion(quality,p)){this.clear();return [];}
     const filters=[];
     if(this.age<p.wave){this.shock.time=this.age;this.shock.amplitude=p.amplitude*settings.flash;this.shock.speed=p.radius/Math.max(.01,p.wave);filters.push(this.shock);}
     if(this.age<p.split){const pixels=(p.trauma>=.68?4:2)*settings.flash;this.rgb.redX=pixels;this.rgb.blueX=-pixels;filters.push(this.rgb);}

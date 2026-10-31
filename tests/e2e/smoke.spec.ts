@@ -1,11 +1,11 @@
 import {test,expect} from '@playwright/test';
-import {writeFileSync} from 'node:fs';
+import {writeFileSync,readFileSync} from 'node:fs';
 import {dailyChallenge} from '../../src/challenges/daily';
-test('v4 P1 单条冒烟：全界面与素材→旧档与反馈→双触点→融合契约→结算与每日→释放会话',async({page})=>{
+test('v4 P2 单条冒烟：全界面与素材→旧档与反馈→双触点→融合契约→结算与每日→释放会话',async({page})=>{
  const loadFailures:string[]=[],reviews:unknown[]=[];let firstScreenBytes=0;
  page.on('response',r=>{if(r.status()>=400&&/assets\/|licenses\//.test(r.url()))loadFailures.push(`${r.status()} ${r.url()}`);});
  page.on('requestfailed',r=>{if(/assets\/|licenses\//.test(r.url())&&r.failure()?.errorText!=='net::ERR_ABORTED')loadFailures.push(`${r.failure()?.errorText} ${r.url()}`);});
- const capture=async(name:string)=>{await page.evaluate(async()=>{await document.fonts.ready;await Promise.all(Array.from(document.images).filter(img=>img.offsetParent!==null).map(img=>img.decode().catch(()=>{})));});await page.waitForTimeout(320);await page.screenshot({path:`docs/v4-p1-${name}.png`,animations:'disabled'});reviews.push(await page.evaluate(name=>({screen:name,viewport:[innerWidth,innerHeight],horizontalOverflow:document.documentElement.scrollWidth>innerWidth+1,brokenImages:Array.from(document.images).filter(img=>img.offsetParent!==null&&(!img.complete||!img.naturalWidth)).map(img=>img.src)}),name));};
+ const capture=async(name:string)=>{await page.evaluate(async()=>{await document.fonts.ready;await Promise.all(Array.from(document.images).filter(img=>img.offsetParent!==null).map(img=>img.decode().catch(()=>{})));});await page.waitForTimeout(320);await page.screenshot({path:`docs/v4-p2-${name}.png`,animations:'disabled'});reviews.push(await page.evaluate(name=>({screen:name,viewport:[innerWidth,innerHeight],horizontalOverflow:document.documentElement.scrollWidth>innerWidth+1,brokenImages:Array.from(document.images).filter(img=>img.offsetParent!==null&&(!img.complete||!img.naturalWidth)).map(img=>img.src)}),name));};
  const errors:string[]=[],warnings:string[]=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());if(m.type()==='warning'||/PixiJS Deprecation/.test(m.text())){warnings.push(m.text());console.log(m.text());}});
  await page.addInitScript(()=>{if(!localStorage.getItem('campus-survival.save.v3')&&!localStorage.getItem('campus-survival.save.v2'))localStorage.setItem('campus-survival.save.v2',JSON.stringify({schemaVersion:2,contentVersion:'2.0.0',credits:137,unlocked:['balanced','coder'],selected:'balanced',talents:{hp:2},discovered:['knife','orbit'],evolutions:['orbit'],settledRuns:['legacy-id'],settings:{quality:'high',muted:true,motion:true,master:.4,shake:.2,flash:0},stats:{runs:3,wins:0,kills:120,bestWeek:9}}));});
  await page.goto('/?debug=1&seed=999');
@@ -19,7 +19,7 @@ test('v4 P1 单条冒烟：全界面与素材→旧档与反馈→双触点→�
   else {await capture(name);if(name==='settings'){await page.getByRole('button',{name:'查看制作名单与素材许可',exact:true}).click();await expect(page.locator('.credits-entry')).toHaveCount(20);await capture('credits');}}
   await page.getByRole('button',{name:'关闭面板',exact:true}).click();
  }
- await page.setViewportSize({width:390,height:844});await capture('menu-mobile');
+ await page.setViewportSize({width:360,height:640});await capture('menu-mobile');
  for(const [name,label] of [['characters','研究生档案'],['talents','局外天赋'],['codex','学期图鉴']]){await page.locator('.menu-navigation').getByRole('button',{name:new RegExp(label)}).click();await capture(name+'-mobile');await page.getByRole('button',{name:'关闭面板',exact:true}).click();}
  await page.setViewportSize({width:1280,height:800});
  await page.getByRole('button',{name:'开启声音',exact:true}).click();
@@ -44,7 +44,7 @@ test('v4 P1 单条冒烟：全界面与素材→旧档与反馈→双触点→�
  await page.getByRole('checkbox',{name:/^减少动态效果/}).check();
  await expect.poll(()=>page.evaluate(()=>window.__CAMPUS__!.scene.feedbackState)).toMatchObject({trauma:0,zoom:1,post:{active:false},entityEffects:0});
  await page.getByRole('button',{name:'关闭面板',exact:true}).click();await page.getByRole('button',{name:'继续这个学期',exact:true}).click();
- await page.setViewportSize({width:390,height:844});
+ await page.setViewportSize({width:360,height:640});
  await page.locator('.debug-toggle').click();await page.getByRole('button',{name:'大招设满',exact:true}).click();await page.locator('.debug-toggle').click();
  await expect(page.locator('.ultimate-button')).toBeEnabled();
  await page.evaluate(()=>{const canvas=document.querySelector('canvas')!,rect=canvas.getBoundingClientRect();canvas.dispatchEvent(new PointerEvent('pointerdown',{pointerId:41,pointerType:'touch',isPrimary:true,button:0,bubbles:true,clientX:rect.left+70,clientY:rect.top+430}));canvas.dispatchEvent(new PointerEvent('pointermove',{pointerId:41,pointerType:'touch',isPrimary:true,button:0,bubbles:true,clientX:rect.left+125,clientY:rect.top+430}));const button=document.querySelector('.ultimate-button')!,r=button.getBoundingClientRect();button.dispatchEvent(new PointerEvent('pointerdown',{pointerId:42,pointerType:'touch',button:0,bubbles:true,clientX:r.x+r.width/2,clientY:r.y+r.height/2}));});
@@ -54,6 +54,7 @@ test('v4 P1 单条冒烟：全界面与素材→旧档与反馈→双触点→�
  expect(await page.evaluate(()=>window.__CAMPUS__!.engine.inputX)).toBeGreaterThan(0);
  await page.evaluate(()=>document.querySelector('canvas')!.dispatchEvent(new PointerEvent('pointerup',{pointerId:41,pointerType:'touch',bubbles:true})));
  expect(await page.evaluate(()=>window.__CAMPUS__!.scene.exportPerformance().effects.particleLimit)).toBe(32768);
+ await capture('battle-phone-portrait');await page.setViewportSize({width:844,height:390});await capture('battle-phone-landscape');
  await page.setViewportSize({width:1280,height:800});
  await page.evaluate(()=>{const g=window.__CAMPUS__!.engine;g.send({type:'week',value:9});g.send({type:'god',value:true});g.send({type:'prepareFusion',id:'sword'});g.send({type:'spawnEnemy',id:'ddl',rank:'elite',affixes:['shield']});});
  await page.waitForFunction(()=>window.__CAMPUS__!.engine.weapons.some(w=>w.id==='ruler'));
@@ -79,5 +80,57 @@ test('v4 P1 单条冒烟：全界面与素材→旧档与反馈→双触点→�
  const daily=await page.evaluate(()=>({manifest:window.__CAMPUS__!.engine.manifest,cheated:window.__CAMPUS__!.engine.cheated,width:window.__CAMPUS__!.engine.viewWidth,height:window.__CAMPUS__!.engine.viewHeight}));expect(daily.cheated).toBe(false);expect(daily.manifest.seed).toBe(dailyChallenge(daily.manifest.date).seed);expect(daily.manifest.seed).not.toBe(999);expect([daily.width,daily.height]).toEqual([1280,800]);
  await page.keyboard.press('Escape');await page.getByRole('button',{name:/结束本局并结算/}).click();await expect(page.getByText(/已保存至本地榜/)).toBeVisible();
  const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('campus-survival.save.v3')!));expect(saved.daily.records).toHaveLength(1);expect(saved.daily.records[0].date).toBe(daily.manifest.date);expect(saved.credits).toBe(137);expect(saved.stats.runs).toBe(3);
- await page.getByRole('button',{name:'返回校园',exact:true}).click();await page.waitForFunction(()=>!window.__CAMPUS__);await page.reload();await page.getByRole('button',{name:/每日挑战 · 本地榜/}).click();await expect(page.locator('.daily-table tbody tr')).toHaveCount(1);await page.getByRole('button',{name:'关闭面板',exact:true}).click();expect(await page.locator('canvas').count()).toBe(0);expect(await page.evaluate(()=>window.__CAMPUS__)).toBeUndefined();writeFileSync('docs/v4-p1-browser-review.json',JSON.stringify({firstScreenBytes,reviews,errors,warnings,loadFailures},null,2));expect(errors).toEqual([]);expect(warnings).toEqual([]);expect(loadFailures).toEqual([]);expect(reviews.every(review=>!(review as {horizontalOverflow:boolean}).horizontalOverflow)).toBe(true);expect(reviews.every(review=>(review as {brokenImages:unknown[]}).brokenImages.length===0)).toBe(true);writeFileSync('docs/v4-p1-browser-review.json',JSON.stringify({firstScreenBytes,reviews,errors,warnings,loadFailures},null,2));
+ await page.getByRole('button',{name:'返回校园',exact:true}).click();await page.waitForFunction(()=>!window.__CAMPUS__);await page.reload();await page.getByRole('button',{name:/每日挑战 · 本地榜/}).click();await expect(page.locator('.daily-table tbody tr')).toHaveCount(1);await page.getByRole('button',{name:'关闭面板',exact:true}).click();expect(await page.locator('canvas').count()).toBe(0);expect(await page.evaluate(()=>window.__CAMPUS__)).toBeUndefined();const labSave=await page.evaluate(()=>JSON.stringify({...localStorage}));
+ await page.route('**/assets/art/v4/enemies/homework*',r=>r.fulfill({status:200,contentType:'image/png',body:'invalid image bytes'}));
+ await page.route('**/assets/art/v4/fx/particles*',r=>r.fulfill({status:200,contentType:'image/png',body:'invalid atlas bytes'}));
+ await page.getByRole('button',{name:'表现调试实验室',exact:true}).click();
+ const feedbackLab=page.frameLocator('iframe[title="打击感实验室"]');await expect(feedbackLab.locator('.lab-stage canvas')).toBeVisible();await expect.poll(()=>feedbackLab.locator('.lab-stage').evaluate(()=>window.__CAMPUS__?.scene.feedbackState.missingArt??[])).toContain('particles');await page.screenshot({path:'docs/v4-p2-missing-battle.png',animations:'disabled'});
+ await feedbackLab.getByRole('button',{name:'暴击',exact:true}).click();await feedbackLab.getByRole('checkbox',{name:'关闭 v4 表现层（A/B）',exact:true}).check();
+ const exports:Record<string,unknown>[]=[];
+ for(const [tab,label,button] of [['feedback','打击感实验室','导出打击感参数 JSON'],['audio','音频实验室','导出音频参数 JSON'],['motion','界面动效实验室','导出界面参数 JSON']] as const){
+  if(tab!=='feedback')await page.locator('.lab-shell>header').getByRole('button',{name:label,exact:true}).click();
+  const current=page.frameLocator(`iframe[title="${label}"]`);await current.getByRole('button',{name:button,exact:true}).waitFor();
+  const [file]=await Promise.all([page.waitForEvent('download'),current.getByRole('button',{name:button,exact:true}).click()]);const exported=JSON.parse(readFileSync((await file.path())!,'utf8'));expect(exported.lab).toBe(tab);exports.push(exported);
+  await page.screenshot({path:`docs/v4-p2-lab-${tab}.png`,animations:'disabled'});
+ }
+ await page.getByRole('button',{name:'关闭实验室',exact:true}).click();await page.unroute('**/assets/art/v4/enemies/homework*');await page.unroute('**/assets/art/v4/fx/particles*');expect(await page.evaluate(()=>JSON.stringify({...localStorage}))).toBe(labSave);
+ const localBeforeLabs=await page.evaluate(()=>JSON.stringify({...localStorage}));
+ const lab=await page.context().newPage();const labErrors:string[]=[];lab.on('pageerror',e=>labErrors.push(e.message));
+ await lab.route('**/assets/audio/v4/hit-paper-0.ogg',r=>r.fulfill({status:200,contentType:'audio/ogg',body:'invalid encoded sample'}));
+ await lab.route('**/assets/audio/v4/music-menu.ogg',r=>r.fulfill({status:200,contentType:'audio/ogg',body:'invalid encoded music'}));
+ await lab.goto('/?debug=1&fixture=1&lab=audio');await lab.getByRole('button',{name:'试听完整事件',exact:true}).click();
+ await expect.poll(async()=>JSON.parse(await lab.getByTestId('audio-state').textContent()??'{}').ready).toBe(true);
+ await expect.poll(async()=>JSON.parse(await lab.getByTestId('audio-state').textContent()??'{}').sampleFailures??[]).toContain('hit-paper-0');
+ await lab.getByRole('button',{name:'独听起音',exact:true}).click();await expect.poll(async()=>JSON.parse(await lab.getByTestId('audio-state').textContent()??'{}').fallbackPlays).toBeGreaterThan(0);
+ await expect.poll(async()=>JSON.parse(await lab.getByTestId('audio-state').textContent()??'{}').music?.tracks?.some((t:{fallback:boolean})=>t.fallback)).toBe(true);
+ const audioFailureState=JSON.parse(await lab.getByTestId('audio-state').textContent()??'{}');await lab.close();
+ const fixture=await page.context().newPage();fixture.on('pageerror',e=>labErrors.push(e.message));await fixture.goto('/?debug=1&fixture=1&lab=ui-preview');await fixture.locator('.fixture-root').waitFor();
+ const reviewFixture=async(screen:string,width:number,height:number,extra:Record<string,unknown>={})=>{
+  await fixture.setViewportSize({width,height});await fixture.evaluate(params=>window.postMessage({type:'campus-ui-fixture',params},location.origin),{screen,width,height,rarity:3,longText:false,largeNumbers:false,state:'full',motion:false,missing:false,...extra});
+  await fixture.waitForTimeout(160);await fixture.evaluate(async()=>{await document.fonts.ready;await Promise.all(Array.from(document.images).filter(i=>i.offsetParent!==null).map(i=>i.decode().catch(()=>{})));});
+  const report=await fixture.evaluate(()=>({horizontalOverflow:document.documentElement.scrollWidth>innerWidth+1,brokenImages:Array.from(document.images).filter(i=>i.offsetParent!==null&&(!i.complete||!i.naturalWidth)).map(i=>i.src),hudOverlaps:(()=>{const nodes=Array.from(document.querySelectorAll<HTMLElement>('.player-status,.semester-status,.hud-actions>button,.boss-health,.battle-notice,.event-pill,.relic-strip,.direction-hints,.active-actions,.momentum-hud,.hud-bottom')).filter(e=>e.offsetParent!==null&&getComputedStyle(e).visibility!=='hidden'&&getComputedStyle(e).display!=='contents').map(e=>{const box=e.getBoundingClientRect(),r={top:box.top,right:box.right,bottom:box.bottom,left:box.left};for(let p=e.parentElement;p;p=p.parentElement)if(/auto|scroll|hidden|clip/.test(getComputedStyle(p).overflow)){const b=p.getBoundingClientRect();r.top=Math.max(r.top,b.top);r.right=Math.min(r.right,b.right);r.bottom=Math.min(r.bottom,b.bottom);r.left=Math.max(r.left,b.left);}return{element:e,name:e.className,r};}).filter(e=>e.r.right>e.r.left&&e.r.bottom>e.r.top);return nodes.flatMap((a,i)=>nodes.slice(i+1).filter(b=>!a.element.contains(b.element)&&!b.element.contains(a.element)&&Math.min(a.r.right,b.r.right)-Math.max(a.r.left,b.r.left)>1&&Math.min(a.r.bottom,b.r.bottom)-Math.max(a.r.top,b.r.top)>1).map(b=>[a.name,b.name]));})(),smallTargets:Array.from(document.querySelectorAll<HTMLElement>('button,input[type=range],select')).filter(e=>e.offsetParent!==null&&getComputedStyle(e).visibility!=='hidden').map(e=>({label:e.getAttribute('aria-label')??e.textContent?.slice(0,30),width:e.getBoundingClientRect().width,height:e.getBoundingClientRect().height})).filter(e=>e.width<43.5||e.height<43.5)}));
+  reviews.push({screen:`fixture-${screen}`,viewport:[width,height],...extra,...report});expect(report.horizontalOverflow,`${screen} ${width}x${height}`).toBe(false);expect(report.brokenImages).toEqual([]);expect(report.smallTargets,`${screen} ${width}x${height}`).toEqual([]);expect(report.hudOverlaps,`${screen} ${width}x${height}`).toEqual([]);
+  return report;
+ };
+ for(const [width,height,label] of [[360,640,'phone-portrait'],[844,390,'phone-landscape'],[1280,800,'desktop']] as const){
+  for(const screen of ['menu','playing','draft','chest','paused','result','codex']){await reviewFixture(screen,width,height);await fixture.screenshot({path:`docs/v4-p2-${screen}-${label}.png`,animations:'disabled'});}
+ }
+ for(const [width,height] of [[375,667],[390,844],[414,896],[430,932],[768,1024],[1024,768],[2560,1080]])for(const screen of ['playing','draft','codex'])await reviewFixture(screen,width,height);
+ await fixture.setViewportSize({width:360,height:640});await fixture.evaluate(()=>{const s=document.documentElement.style;s.setProperty('--safe-top','28px');s.setProperty('--safe-bottom','20px');s.setProperty('--safe-left','12px');s.setProperty('--safe-right','12px');});
+ await reviewFixture('playing',360,640,{longText:true,largeNumbers:true});await fixture.screenshot({path:'docs/v4-p2-hud-safe-area-long.png',animations:'disabled'});
+ await reviewFixture('result',360,640,{largeNumbers:true,motion:true});await reviewFixture('result',360,640,{largeNumbers:true,motion:false});await expect(fixture.locator('.result-metrics strong').nth(1)).toHaveText('987,654,321');
+ expect(await fixture.locator('.damage-bar>div').evaluateAll(els=>els.every(el=>!(el as HTMLElement).style.transform))).toBe(true);
+ await reviewFixture('draft',360,640,{state:'empty',motion:true});await reviewFixture('result',360,640,{state:'empty',motion:true});
+ await reviewFixture('draft',360,640,{longText:true,missing:true});await fixture.screenshot({path:'docs/v4-p2-missing-ui.png',animations:'disabled'});await fixture.close();expect(labErrors).toEqual([]);
+ expect(await page.evaluate(()=>JSON.stringify({...localStorage}))).toBe(localBeforeLabs);
+ const lifecycle:unknown[]=[];const loopStarted=performance.now();
+ for(let cycle=0;cycle<5;cycle++){
+  await page.getByRole('button',{name:/开始新学期/}).click();await page.getByRole('button',{name:/就这样，开学/}).click();await page.waitForFunction(()=>!!window.__CAMPUS__);
+  await page.evaluate(()=>{const session=window.__CAMPUS__!;Object.assign(window,{__V4_SCENE__:session.scene,__V4_AUDIO__:session.scene.audio});session.engine.send({type:'god',value:true});session.engine.send({type:'abandon'});});
+  await page.getByRole('button',{name:'返回校园',exact:true}).click();await page.waitForFunction(()=>!window.__CAMPUS__);
+  await expect.poll(()=>page.evaluate(()=>(window as unknown as {__V4_SCENE__:{resourceState:{loader:{textures:number}}}}).__V4_SCENE__.resourceState.loader.textures)).toBe(0);
+  const state=await page.evaluate(()=>(window as unknown as {__V4_SCENE__:{resourceState:{geometry:number;sessionVoices:number;canvas:boolean}}}).__V4_SCENE__.resourceState);expect(state).toMatchObject({geometry:0,sessionVoices:0,canvas:false});lifecycle.push(state);
+ }
+ const lifecycleSeconds=(performance.now()-loopStarted)/1000;
+ writeFileSync('docs/v4-p2-browser-review.json',JSON.stringify({firstScreenBytes,reviews,errors,warnings,loadFailures,labErrors,audioFailureState,exports,lifecycle,lifecycleSeconds},null,2));expect(errors).toEqual([]);expect(warnings).toEqual([]);expect(loadFailures).toEqual([]);expect(reviews.every(review=>!(review as {horizontalOverflow:boolean}).horizontalOverflow)).toBe(true);expect(reviews.every(review=>(review as {brokenImages:unknown[]}).brokenImages.length===0)).toBe(true);writeFileSync('docs/v4-p2-browser-review.json',JSON.stringify({firstScreenBytes,reviews,errors,warnings,loadFailures,labErrors,audioFailureState,exports,lifecycle,lifecycleSeconds},null,2));
 });

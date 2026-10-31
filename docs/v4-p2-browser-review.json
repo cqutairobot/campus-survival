@@ -1,0 +1,1100 @@
+{
+  "firstScreenBytes": 949793,
+  "reviews": [
+    {
+      "screen": "menu-desktop",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "characters",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "talents",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "achievements",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "map",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "daily",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "settings",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "credits",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "codex-武器",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "codex-被动",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "codex-进化",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "codex-融合",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "codex-敌人",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "codex-遗物",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "codex-校园",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "codex-事件",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "menu-mobile",
+      "viewport": [
+        360,
+        640
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "characters-mobile",
+      "viewport": [
+        360,
+        640
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "talents-mobile",
+      "viewport": [
+        360,
+        640
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "codex-mobile",
+      "viewport": [
+        360,
+        640
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "battle",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "pause",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "draft",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "battle-phone-portrait",
+      "viewport": [
+        360,
+        640
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "battle-phone-landscape",
+      "viewport": [
+        844,
+        390
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "fusion-choice",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "chest",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "contract",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "battle-fusion",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "result",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": []
+    },
+    {
+      "screen": "fixture-menu",
+      "viewport": [
+        360,
+        640
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-playing",
+      "viewport": [
+        360,
+        640
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-draft",
+      "viewport": [
+        360,
+        640
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-chest",
+      "viewport": [
+        360,
+        640
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-paused",
+      "viewport": [
+        360,
+        640
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-result",
+      "viewport": [
+        360,
+        640
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-codex",
+      "viewport": [
+        360,
+        640
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-menu",
+      "viewport": [
+        844,
+        390
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-playing",
+      "viewport": [
+        844,
+        390
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-draft",
+      "viewport": [
+        844,
+        390
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-chest",
+      "viewport": [
+        844,
+        390
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-paused",
+      "viewport": [
+        844,
+        390
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-result",
+      "viewport": [
+        844,
+        390
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-codex",
+      "viewport": [
+        844,
+        390
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-menu",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-playing",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-draft",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-chest",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-paused",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-result",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-codex",
+      "viewport": [
+        1280,
+        800
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-playing",
+      "viewport": [
+        375,
+        667
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-draft",
+      "viewport": [
+        375,
+        667
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-codex",
+      "viewport": [
+        375,
+        667
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-playing",
+      "viewport": [
+        390,
+        844
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-draft",
+      "viewport": [
+        390,
+        844
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-codex",
+      "viewport": [
+        390,
+        844
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-playing",
+      "viewport": [
+        414,
+        896
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-draft",
+      "viewport": [
+        414,
+        896
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-codex",
+      "viewport": [
+        414,
+        896
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-playing",
+      "viewport": [
+        430,
+        932
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-draft",
+      "viewport": [
+        430,
+        932
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-codex",
+      "viewport": [
+        430,
+        932
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-playing",
+      "viewport": [
+        768,
+        1024
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-draft",
+      "viewport": [
+        768,
+        1024
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-codex",
+      "viewport": [
+        768,
+        1024
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-playing",
+      "viewport": [
+        1024,
+        768
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-draft",
+      "viewport": [
+        1024,
+        768
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-codex",
+      "viewport": [
+        1024,
+        768
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-playing",
+      "viewport": [
+        2560,
+        1080
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-draft",
+      "viewport": [
+        2560,
+        1080
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-codex",
+      "viewport": [
+        2560,
+        1080
+      ],
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-playing",
+      "viewport": [
+        360,
+        640
+      ],
+      "longText": true,
+      "largeNumbers": true,
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-result",
+      "viewport": [
+        360,
+        640
+      ],
+      "largeNumbers": true,
+      "motion": true,
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-result",
+      "viewport": [
+        360,
+        640
+      ],
+      "largeNumbers": true,
+      "motion": false,
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-draft",
+      "viewport": [
+        360,
+        640
+      ],
+      "state": "empty",
+      "motion": true,
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-result",
+      "viewport": [
+        360,
+        640
+      ],
+      "state": "empty",
+      "motion": true,
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    },
+    {
+      "screen": "fixture-draft",
+      "viewport": [
+        360,
+        640
+      ],
+      "longText": true,
+      "missing": true,
+      "horizontalOverflow": false,
+      "brokenImages": [],
+      "hudOverlaps": [],
+      "smallTargets": []
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "loadFailures": [],
+  "labErrors": [],
+  "audioFailureState": {
+    "suspendedForLab": false,
+    "fallbackPlays": 1,
+    "sampleFailures": [
+      "hit-paper-0"
+    ],
+    "outputPreset": "full",
+    "headroomDb": -6,
+    "loadedSamples": 100,
+    "loadingSamples": 1,
+    "syntheticSamples": 18,
+    "ready": true,
+    "voices": 2,
+    "sessionVoices": 0,
+    "evicted": 0,
+    "dropped": 0,
+    "duck": 1,
+    "music": {
+      "theme": "menu",
+      "tracks": [
+        {
+          "theme": "menu",
+          "weight": 0.235428571424314,
+          "fallback": true
+        }
+      ],
+      "prepared": [],
+      "pending": 1
+    },
+    "failedSamples": [
+      "hit-paper-0",
+      "rain-ambience"
+    ],
+    "forceFailure": false,
+    "environment": null
+  },
+  "exports": [
+    {
+      "lab": "feedback",
+      "version": "4.0.0",
+      "enabled": false,
+      "settings": {
+        "settingsVersion": 4,
+        "master": 0.65,
+        "music": 0.35,
+        "sfx": 0.7,
+        "uiSfx": 0.6,
+        "muted": false,
+        "quality": "high",
+        "shake": 0.8,
+        "flash": 0.8,
+        "motion": true,
+        "damageNumbers": true,
+        "afterimages": true,
+        "haptics": true,
+        "quickChest": true,
+        "nickname": "校园研究生",
+        "hitStop": 1,
+        "zoomEffects": true,
+        "distortion": true,
+        "dynamicMusic": true,
+        "musicDucking": true,
+        "audioPreset": "auto"
+      },
+      "material": "paper",
+      "angle": 0,
+      "density": 1,
+      "overrides": {},
+      "stats": {
+        "feedback": {
+          "trauma": 0,
+          "zoom": 1,
+          "post": {
+            "center": {
+              "x": 746,
+              "y": 162
+            },
+            "active": false
+          },
+          "entityEffects": 0,
+          "deathSnapshots": 0,
+          "missingArt": [
+            "homework",
+            "homeworkWhite",
+            "particles"
+          ]
+        },
+        "audio": {
+          "suspendedForLab": false,
+          "fallbackPlays": 2,
+          "sampleFailures": [],
+          "outputPreset": "full",
+          "headroomDb": -6,
+          "loadedSamples": 76,
+          "loadingSamples": 2,
+          "syntheticSamples": 18,
+          "ready": true,
+          "voices": 0,
+          "sessionVoices": 0,
+          "evicted": 0,
+          "dropped": 0,
+          "duck": 1,
+          "music": {
+            "theme": "normal",
+            "tracks": [
+              {
+                "theme": "normal",
+                "weight": 0.06828571428145683,
+                "fallback": false
+              }
+            ],
+            "prepared": [],
+            "pending": 1
+          },
+          "failedSamples": [
+            "hit-energy-1"
+          ],
+          "forceFailure": false,
+          "environment": null
+        },
+        "generation": 1
+      }
+    },
+    {
+      "lab": "audio",
+      "version": "4.0.0",
+      "material": "paper",
+      "kind": "hit",
+      "rank": "normal",
+      "density": 1,
+      "failure": "none",
+      "theme": "menu",
+      "settings": {
+        "settingsVersion": 4,
+        "master": 0.65,
+        "music": 0.35,
+        "sfx": 0.7,
+        "uiSfx": 0.6,
+        "muted": false,
+        "quality": "high",
+        "shake": 0.8,
+        "flash": 0.8,
+        "motion": true,
+        "damageNumbers": true,
+        "afterimages": true,
+        "haptics": true,
+        "quickChest": true,
+        "nickname": "校园研究生",
+        "hitStop": 1,
+        "zoomEffects": true,
+        "distortion": true,
+        "dynamicMusic": true,
+        "musicDucking": true,
+        "audioPreset": "auto"
+      },
+      "stats": {
+        "suspendedForLab": false,
+        "fallbackPlays": 0,
+        "sampleFailures": [],
+        "outputPreset": "full",
+        "headroomDb": -6,
+        "loadedSamples": 0,
+        "loadingSamples": 0,
+        "syntheticSamples": 0,
+        "ready": false,
+        "voices": 0,
+        "sessionVoices": 0,
+        "evicted": 0,
+        "dropped": 0,
+        "duck": 1,
+        "music": {
+          "theme": null,
+          "tracks": [],
+          "prepared": [],
+          "pending": 0
+        },
+        "failedSamples": [],
+        "forceFailure": false,
+        "environment": null
+      },
+      "duckCurve": [
+        1
+      ]
+    },
+    {
+      "lab": "motion",
+      "version": "4.0.0",
+      "screen": "draft",
+      "rarity": 3,
+      "longText": false,
+      "largeNumbers": false,
+      "state": "full",
+      "motion": true,
+      "missing": false,
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "lifecycle": [
+    {
+      "destroyed": true,
+      "canvas": false,
+      "geometry": 0,
+      "art": 0,
+      "filters": 0,
+      "deathSnapshots": 0,
+      "sessionVoices": 0,
+      "loader": {
+        "entries": 0,
+        "references": 0,
+        "textures": 0,
+        "loading": 0,
+        "waiting": 0
+      }
+    },
+    {
+      "destroyed": true,
+      "canvas": false,
+      "geometry": 0,
+      "art": 0,
+      "filters": 0,
+      "deathSnapshots": 0,
+      "sessionVoices": 0,
+      "loader": {
+        "entries": 0,
+        "references": 0,
+        "textures": 0,
+        "loading": 0,
+        "waiting": 0
+      }
+    },
+    {
+      "destroyed": true,
+      "canvas": false,
+      "geometry": 0,
+      "art": 0,
+      "filters": 0,
+      "deathSnapshots": 0,
+      "sessionVoices": 0,
+      "loader": {
+        "entries": 0,
+        "references": 0,
+        "textures": 0,
+        "loading": 0,
+        "waiting": 0
+      }
+    },
+    {
+      "destroyed": true,
+      "canvas": false,
+      "geometry": 0,
+      "art": 0,
+      "filters": 0,
+      "deathSnapshots": 0,
+      "sessionVoices": 0,
+      "loader": {
+        "entries": 0,
+        "references": 0,
+        "textures": 0,
+        "loading": 0,
+        "waiting": 0
+      }
+    },
+    {
+      "destroyed": true,
+      "canvas": false,
+      "geometry": 0,
+      "art": 0,
+      "filters": 0,
+      "deathSnapshots": 0,
+      "sessionVoices": 0,
+      "loader": {
+        "entries": 0,
+        "references": 0,
+        "textures": 0,
+        "loading": 0,
+        "waiting": 0
+      }
+    }
+  ],
+  "lifecycleSeconds": 9.596248200000002
+}

@@ -18,7 +18,7 @@ export type WeaponInstance = (Skill & {kind:'base';id:BaseWeaponId;instanceId:nu
 export interface DraftCard { id: string; type: 'weapon' | 'passive' | 'heal' | 'shield' | 'credit'; rarity: Rarity; nextLevel: number }
 export interface Character { id: string; name: string; subtitle: string; icon: string; color: string; weapon: BaseWeaponId; hp: number; crit: number; area: number; summon: number; cost: number; description: string; armor?:number;duration?:number;achievement?:string }
 export interface Talent { id: string; name: string; icon: string; description: string; parent?: string }
-export interface Settings { settingsVersion:4;master: number; music: number; sfx: number; uiSfx:number;muted: boolean; quality: Quality; shake: number; flash: number; motion: boolean; damageNumbers: boolean; afterimages:boolean; haptics:boolean;quickChest:boolean;nickname:string;hitStop:number;zoomEffects:boolean;distortion:boolean;dynamicMusic:boolean;musicDucking:boolean }
+export interface Settings { settingsVersion:4;master: number; music: number; sfx: number; uiSfx:number;muted: boolean; quality: Quality; shake: number; flash: number; motion: boolean; damageNumbers: boolean; afterimages:boolean; haptics:boolean;quickChest:boolean;nickname:string;hitStop:number;zoomEffects:boolean;distortion:boolean;dynamicMusic:boolean;musicDucking:boolean;audioPreset:'auto'|'full'|'phone' }
 export interface AchievementState {progress:number;completed:boolean;claimed:boolean}
 export interface DailyRecord {id:string;date:string;version:string;rule:string;character:string;nickname:string;score:number;victory:boolean;completedWeeks:number;seconds:number;build:string[];relics:string[];averageCurse:number;createdAt:number}
 export interface SaveData {

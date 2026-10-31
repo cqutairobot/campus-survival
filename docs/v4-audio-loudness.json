@@ -1,0 +1,2078 @@
+{
+  "targetLufs": -23,
+  "ceilingDbtp": -3,
+  "analysis": "BS.1770 gated integrated loudness; clips shorter than 3s periodically extended for metering only; delivered durations unchanged",
+  "clips": [
+    {
+      "id": "hit-paper-0",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 7.28,
+      "masterLufs": -23.0,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.14,
+          "truePeakDbtp": -4.72,
+          "bytes": 7805
+        },
+        "mp3": {
+          "integratedLufs": -23.4,
+          "truePeakDbtp": -5.18,
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "id": "hit-paper-1",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 8.31,
+      "masterLufs": -22.97,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.32,
+          "truePeakDbtp": -4.95,
+          "bytes": 6669
+        },
+        "mp3": {
+          "integratedLufs": -23.34,
+          "truePeakDbtp": -4.82,
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "id": "hit-paper-2",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 9.95,
+      "masterLufs": -23.05,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.06,
+          "truePeakDbtp": -4.32,
+          "bytes": 7352
+        },
+        "mp3": {
+          "integratedLufs": -23.42,
+          "truePeakDbtp": -4.83,
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "id": "hit-paper-3",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 12.88,
+      "masterLufs": -23.07,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.36,
+          "truePeakDbtp": -3.81,
+          "bytes": 6973
+        },
+        "mp3": {
+          "integratedLufs": -23.42,
+          "truePeakDbtp": -3.74,
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "id": "death-paper-0",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 5.74,
+      "masterLufs": -23.02,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.26,
+          "truePeakDbtp": -6.27,
+          "bytes": 9096
+        },
+        "mp3": {
+          "integratedLufs": -23.4,
+          "truePeakDbtp": -6.82,
+          "bytes": 7723
+        }
+      }
+    },
+    {
+      "id": "death-paper-1",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 10.72,
+      "masterLufs": -23.15,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.44,
+          "truePeakDbtp": -4.36,
+          "bytes": 7993
+        },
+        "mp3": {
+          "integratedLufs": -23.57,
+          "truePeakDbtp": -4.69,
+          "bytes": 7723
+        }
+      }
+    },
+    {
+      "id": "shot-paper-0",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 7.31,
+      "masterLufs": -22.99,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.12,
+          "truePeakDbtp": -4.67,
+          "bytes": 6263
+        },
+        "mp3": {
+          "integratedLufs": -23.51,
+          "truePeakDbtp": -5.37,
+          "bytes": 3334
+        }
+      }
+    },
+    {
+      "id": "shot-paper-1",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 6.93,
+      "masterLufs": -23.02,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.22,
+          "truePeakDbtp": -6.64,
+          "bytes": 5905
+        },
+        "mp3": {
+          "integratedLufs": -23.46,
+          "truePeakDbtp": -6.75,
+          "bytes": 3334
+        }
+      }
+    },
+    {
+      "id": "hit-key-0",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 9.35,
+      "masterLufs": -23.1,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.16,
+          "truePeakDbtp": -4.1,
+          "bytes": 7357
+        },
+        "mp3": {
+          "integratedLufs": -23.6,
+          "truePeakDbtp": -4.39,
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "id": "hit-key-1",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 10.15,
+      "masterLufs": -23.11,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.53,
+          "truePeakDbtp": -4.71,
+          "bytes": 7045
+        },
+        "mp3": {
+          "integratedLufs": -23.63,
+          "truePeakDbtp": -4.62,
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "id": "hit-key-2",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 20.42,
+      "masterLufs": -23.13,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.41,
+          "truePeakDbtp": -3.59,
+          "bytes": 7038
+        },
+        "mp3": {
+          "integratedLufs": -23.64,
+          "truePeakDbtp": -4.23,
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "id": "hit-key-3",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 8.37,
+      "masterLufs": -23.13,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.36,
+          "truePeakDbtp": -4.33,
+          "bytes": 7045
+        },
+        "mp3": {
+          "integratedLufs": -23.59,
+          "truePeakDbtp": -4.42,
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "id": "death-key-0",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 16.61,
+      "masterLufs": -23.13,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.38,
+          "truePeakDbtp": -3.56,
+          "bytes": 8552
+        },
+        "mp3": {
+          "integratedLufs": -23.5,
+          "truePeakDbtp": -4.35,
+          "bytes": 7723
+        }
+      }
+    },
+    {
+      "id": "death-key-1",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 17.57,
+      "masterLufs": -23.14,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.45,
+          "truePeakDbtp": -3.9,
+          "bytes": 8198
+        },
+        "mp3": {
+          "integratedLufs": -23.58,
+          "truePeakDbtp": -4.41,
+          "bytes": 7723
+        }
+      }
+    },
+    {
+      "id": "shot-key-0",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 7.52,
+      "masterLufs": -23.11,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.18,
+          "truePeakDbtp": -4.08,
+          "bytes": 5783
+        },
+        "mp3": {
+          "integratedLufs": -23.51,
+          "truePeakDbtp": -4.39,
+          "bytes": 3334
+        }
+      }
+    },
+    {
+      "id": "shot-key-1",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 7.63,
+      "masterLufs": -23.03,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.48,
+          "truePeakDbtp": -4.57,
+          "bytes": 5850
+        },
+        "mp3": {
+          "integratedLufs": -23.39,
+          "truePeakDbtp": -4.79,
+          "bytes": 3334
+        }
+      }
+    },
+    {
+      "id": "hit-metal-0",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 14.22,
+      "masterLufs": -23.13,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.13,
+          "truePeakDbtp": -4.25,
+          "bytes": 6305
+        },
+        "mp3": {
+          "integratedLufs": -23.59,
+          "truePeakDbtp": -4.79,
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "id": "hit-metal-1",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 20.13,
+      "masterLufs": -23.13,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.19,
+          "truePeakDbtp": -4.37,
+          "bytes": 5912
+        },
+        "mp3": {
+          "integratedLufs": -23.58,
+          "truePeakDbtp": -4.89,
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "id": "hit-metal-2",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 17.31,
+      "masterLufs": -22.97,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.03,
+          "truePeakDbtp": -6.14,
+          "bytes": 6699
+        },
+        "mp3": {
+          "integratedLufs": -23.48,
+          "truePeakDbtp": -6.41,
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "id": "hit-metal-3",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 20.43,
+      "masterLufs": -23.14,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.36,
+          "truePeakDbtp": -4.49,
+          "bytes": 6078
+        },
+        "mp3": {
+          "integratedLufs": -23.62,
+          "truePeakDbtp": -4.86,
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "id": "death-metal-0",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 18.97,
+      "masterLufs": -23.15,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.32,
+          "truePeakDbtp": -4.41,
+          "bytes": 6315
+        },
+        "mp3": {
+          "integratedLufs": -23.63,
+          "truePeakDbtp": -4.81,
+          "bytes": 7723
+        }
+      }
+    },
+    {
+      "id": "death-metal-1",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 23.59,
+      "masterLufs": -23.11,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.19,
+          "truePeakDbtp": -4.35,
+          "bytes": 5918
+        },
+        "mp3": {
+          "integratedLufs": -23.52,
+          "truePeakDbtp": -4.96,
+          "bytes": 7723
+        }
+      }
+    },
+    {
+      "id": "shot-metal-0",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 8.66,
+      "masterLufs": -23.07,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.1,
+          "truePeakDbtp": -4.8,
+          "bytes": 5742
+        },
+        "mp3": {
+          "integratedLufs": -23.54,
+          "truePeakDbtp": -5.02,
+          "bytes": 3334
+        }
+      }
+    },
+    {
+      "id": "shot-metal-1",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 20.28,
+      "masterLufs": -23.0,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -22.97,
+          "truePeakDbtp": -6.15,
+          "bytes": 5623
+        },
+        "mp3": {
+          "integratedLufs": -23.49,
+          "truePeakDbtp": -6.83,
+          "bytes": 3334
+        }
+      }
+    },
+    {
+      "id": "hit-glass-0",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 14.63,
+      "masterLufs": -23.11,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.11,
+          "truePeakDbtp": -4.04,
+          "bytes": 6395
+        },
+        "mp3": {
+          "integratedLufs": -23.61,
+          "truePeakDbtp": -4.93,
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "id": "hit-glass-1",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 18.08,
+      "masterLufs": -23.0,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.1,
+          "truePeakDbtp": -7.68,
+          "bytes": 6396
+        },
+        "mp3": {
+          "integratedLufs": -23.42,
+          "truePeakDbtp": -7.9,
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "id": "hit-glass-2",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 18.62,
+      "masterLufs": -22.99,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.06,
+          "truePeakDbtp": -8.41,
+          "bytes": 6413
+        },
+        "mp3": {
+          "integratedLufs": -23.43,
+          "truePeakDbtp": -8.35,
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "id": "hit-glass-3",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 17.82,
+      "masterLufs": -22.98,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.03,
+          "truePeakDbtp": -9.73,
+          "bytes": 6352
+        },
+        "mp3": {
+          "integratedLufs": -23.44,
+          "truePeakDbtp": -10.18,
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "id": "death-glass-0",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 18.59,
+      "masterLufs": -23.11,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.58,
+          "truePeakDbtp": -4.16,
+          "bytes": 7594
+        },
+        "mp3": {
+          "integratedLufs": -23.52,
+          "truePeakDbtp": -4.81,
+          "bytes": 7723
+        }
+      }
+    },
+    {
+      "id": "death-glass-1",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 20.08,
+      "masterLufs": -23.03,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.54,
+          "truePeakDbtp": -5.27,
+          "bytes": 7595
+        },
+        "mp3": {
+          "integratedLufs": -23.45,
+          "truePeakDbtp": -5.91,
+          "bytes": 7723
+        }
+      }
+    },
+    {
+      "id": "shot-glass-0",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 10.12,
+      "masterLufs": -23.14,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.2,
+          "truePeakDbtp": -4.68,
+          "bytes": 5700
+        },
+        "mp3": {
+          "integratedLufs": -23.54,
+          "truePeakDbtp": -4.8,
+          "bytes": 3334
+        }
+      }
+    },
+    {
+      "id": "shot-glass-1",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 16.68,
+      "masterLufs": -22.98,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.14,
+          "truePeakDbtp": -9.13,
+          "bytes": 5540
+        },
+        "mp3": {
+          "integratedLufs": -23.43,
+          "truePeakDbtp": -9.27,
+          "bytes": 3334
+        }
+      }
+    },
+    {
+      "id": "hit-brick-0",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 4.49,
+      "masterLufs": -23.12,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.11,
+          "truePeakDbtp": -4.51,
+          "bytes": 6276
+        },
+        "mp3": {
+          "integratedLufs": -23.53,
+          "truePeakDbtp": -4.68,
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "id": "hit-brick-1",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 9.83,
+      "masterLufs": -23.11,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.1,
+          "truePeakDbtp": -4.26,
+          "bytes": 6460
+        },
+        "mp3": {
+          "integratedLufs": -23.53,
+          "truePeakDbtp": -4.94,
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "id": "hit-brick-2",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 10.43,
+      "masterLufs": -23.1,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.1,
+          "truePeakDbtp": -4.32,
+          "bytes": 6215
+        },
+        "mp3": {
+          "integratedLufs": -23.54,
+          "truePeakDbtp": -4.78,
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "id": "hit-brick-3",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 10.13,
+      "masterLufs": -23.08,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.07,
+          "truePeakDbtp": -4.29,
+          "bytes": 6292
+        },
+        "mp3": {
+          "integratedLufs": -23.54,
+          "truePeakDbtp": -4.81,
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "id": "death-brick-0",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 10.14,
+      "masterLufs": -23.15,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.47,
+          "truePeakDbtp": -4.12,
+          "bytes": 7111
+        },
+        "mp3": {
+          "integratedLufs": -23.63,
+          "truePeakDbtp": -4.81,
+          "bytes": 7723
+        }
+      }
+    },
+    {
+      "id": "death-brick-1",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 15.51,
+      "masterLufs": -23.15,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.61,
+          "truePeakDbtp": -4.19,
+          "bytes": 7563
+        },
+        "mp3": {
+          "integratedLufs": -23.62,
+          "truePeakDbtp": -4.68,
+          "bytes": 7723
+        }
+      }
+    },
+    {
+      "id": "shot-brick-0",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 1.55,
+      "masterLufs": -23.0,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.53,
+          "truePeakDbtp": -4.37,
+          "bytes": 5693
+        },
+        "mp3": {
+          "integratedLufs": -23.44,
+          "truePeakDbtp": -4.93,
+          "bytes": 3334
+        }
+      }
+    },
+    {
+      "id": "shot-brick-1",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 4.68,
+      "masterLufs": -23.15,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.09,
+          "truePeakDbtp": -4.39,
+          "bytes": 5689
+        },
+        "mp3": {
+          "integratedLufs": -23.57,
+          "truePeakDbtp": -4.95,
+          "bytes": 3334
+        }
+      }
+    },
+    {
+      "id": "hit-liquid-0",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 3.35,
+      "masterLufs": -23.0,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.16,
+          "truePeakDbtp": -9.04,
+          "bytes": 6572
+        },
+        "mp3": {
+          "integratedLufs": -23.39,
+          "truePeakDbtp": -9.11,
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "id": "hit-liquid-1",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 3.53,
+      "masterLufs": -23.01,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.22,
+          "truePeakDbtp": -9.41,
+          "bytes": 6543
+        },
+        "mp3": {
+          "integratedLufs": -23.43,
+          "truePeakDbtp": -9.61,
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "id": "hit-liquid-2",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 3.44,
+      "masterLufs": -23.0,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.21,
+          "truePeakDbtp": -9.76,
+          "bytes": 6672
+        },
+        "mp3": {
+          "integratedLufs": -23.43,
+          "truePeakDbtp": -8.78,
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "id": "hit-liquid-3",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 3.64,
+      "masterLufs": -22.98,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.26,
+          "truePeakDbtp": -8.99,
+          "bytes": 6710
+        },
+        "mp3": {
+          "integratedLufs": -23.36,
+          "truePeakDbtp": -8.61,
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "id": "death-liquid-0",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 1.49,
+      "masterLufs": -22.99,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.19,
+          "truePeakDbtp": -10.14,
+          "bytes": 8078
+        },
+        "mp3": {
+          "integratedLufs": -23.43,
+          "truePeakDbtp": -9.8,
+          "bytes": 7723
+        }
+      }
+    },
+    {
+      "id": "death-liquid-1",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 1.47,
+      "masterLufs": -22.98,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.17,
+          "truePeakDbtp": -9.84,
+          "bytes": 8063
+        },
+        "mp3": {
+          "integratedLufs": -23.37,
+          "truePeakDbtp": -10.33,
+          "bytes": 7723
+        }
+      }
+    },
+    {
+      "id": "shot-liquid-0",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 4.24,
+      "masterLufs": -22.98,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.2,
+          "truePeakDbtp": -7.81,
+          "bytes": 5758
+        },
+        "mp3": {
+          "integratedLufs": -23.28,
+          "truePeakDbtp": -7.92,
+          "bytes": 3334
+        }
+      }
+    },
+    {
+      "id": "shot-liquid-1",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 3.92,
+      "masterLufs": -22.99,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.07,
+          "truePeakDbtp": -9.96,
+          "bytes": 5737
+        },
+        "mp3": {
+          "integratedLufs": -23.39,
+          "truePeakDbtp": -9.21,
+          "bytes": 3334
+        }
+      }
+    },
+    {
+      "id": "hit-energy-0",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 5.05,
+      "masterLufs": -23.11,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.25,
+          "truePeakDbtp": -3.82,
+          "bytes": 5910
+        },
+        "mp3": {
+          "integratedLufs": -23.51,
+          "truePeakDbtp": -3.13,
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "id": "hit-energy-1",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 10.95,
+      "masterLufs": -23.1,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.19,
+          "truePeakDbtp": -4.51,
+          "bytes": 5714
+        },
+        "mp3": {
+          "integratedLufs": -23.49,
+          "truePeakDbtp": -4.85,
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "id": "hit-energy-2",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 13.28,
+      "masterLufs": -23.08,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.24,
+          "truePeakDbtp": -4.36,
+          "bytes": 5932
+        },
+        "mp3": {
+          "integratedLufs": -23.53,
+          "truePeakDbtp": -3.95,
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "id": "hit-energy-3",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 13.52,
+      "masterLufs": -23.13,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.26,
+          "truePeakDbtp": -4.09,
+          "bytes": 5907
+        },
+        "mp3": {
+          "integratedLufs": -23.3,
+          "truePeakDbtp": -4.56,
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "id": "death-energy-0",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 9.78,
+      "masterLufs": -23.14,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.4,
+          "truePeakDbtp": -4.14,
+          "bytes": 6008
+        },
+        "mp3": {
+          "integratedLufs": -23.64,
+          "truePeakDbtp": -3.89,
+          "bytes": 7723
+        }
+      }
+    },
+    {
+      "id": "death-energy-1",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 16.22,
+      "masterLufs": -23.12,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -22.67,
+          "truePeakDbtp": -4.21,
+          "bytes": 5972
+        },
+        "mp3": {
+          "integratedLufs": -23.53,
+          "truePeakDbtp": -4.62,
+          "bytes": 7723
+        }
+      }
+    },
+    {
+      "id": "shot-energy-0",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 2.49,
+      "masterLufs": -22.99,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.23,
+          "truePeakDbtp": -5.67,
+          "bytes": 5526
+        },
+        "mp3": {
+          "integratedLufs": -23.42,
+          "truePeakDbtp": -4.33,
+          "bytes": 3334
+        }
+      }
+    },
+    {
+      "id": "shot-energy-1",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 8.46,
+      "masterLufs": -23.0,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.13,
+          "truePeakDbtp": -5.0,
+          "bytes": 5389
+        },
+        "mp3": {
+          "integratedLufs": -23.52,
+          "truePeakDbtp": -5.99,
+          "bytes": 3334
+        }
+      }
+    },
+    {
+      "id": "ui-hover",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 11.67,
+      "masterLufs": -23.11,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.19,
+          "truePeakDbtp": -4.62,
+          "bytes": 5334
+        },
+        "mp3": {
+          "integratedLufs": -23.46,
+          "truePeakDbtp": -4.45,
+          "bytes": 2603
+        }
+      }
+    },
+    {
+      "id": "ui-press",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 31.72,
+      "masterLufs": -23.17,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.3,
+          "truePeakDbtp": -3.64,
+          "bytes": 5012
+        },
+        "mp3": {
+          "integratedLufs": -23.5,
+          "truePeakDbtp": -3.47,
+          "bytes": 2603
+        }
+      }
+    },
+    {
+      "id": "ui-confirm",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -10.95,
+      "masterLufs": -22.99,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -22.9,
+          "truePeakDbtp": -11.89,
+          "bytes": 5344
+        },
+        "mp3": {
+          "integratedLufs": -23.45,
+          "truePeakDbtp": -12.47,
+          "bytes": 5163
+        }
+      }
+    },
+    {
+      "id": "ui-cancel",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -13.15,
+      "masterLufs": -23.0,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.17,
+          "truePeakDbtp": -14.21,
+          "bytes": 6950
+        },
+        "mp3": {
+          "integratedLufs": -23.45,
+          "truePeakDbtp": -14.89,
+          "bytes": 4432
+        }
+      }
+    },
+    {
+      "id": "ui-tab",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 28.52,
+      "masterLufs": -23.1,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.13,
+          "truePeakDbtp": -4.27,
+          "bytes": 4180
+        },
+        "mp3": {
+          "integratedLufs": -23.56,
+          "truePeakDbtp": -4.77,
+          "bytes": 2603
+        }
+      }
+    },
+    {
+      "id": "ui-disabled",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -7.89,
+      "masterLufs": -23.01,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -22.94,
+          "truePeakDbtp": -7.74,
+          "bytes": 5575
+        },
+        "mp3": {
+          "integratedLufs": -23.4,
+          "truePeakDbtp": -6.94,
+          "bytes": 3334
+        }
+      }
+    },
+    {
+      "id": "ui-reveal",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -4.89,
+      "masterLufs": -23.01,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -22.93,
+          "truePeakDbtp": -11.02,
+          "bytes": 7896
+        },
+        "mp3": {
+          "integratedLufs": -23.47,
+          "truePeakDbtp": -11.41,
+          "bytes": 7723
+        }
+      }
+    },
+    {
+      "id": "ui-rarity-common",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -10.95,
+      "masterLufs": -22.99,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -22.9,
+          "truePeakDbtp": -11.89,
+          "bytes": 5344
+        },
+        "mp3": {
+          "integratedLufs": -23.45,
+          "truePeakDbtp": -12.47,
+          "bytes": 5163
+        }
+      }
+    },
+    {
+      "id": "ui-rarity-rare",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -4.89,
+      "masterLufs": -23.01,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -22.93,
+          "truePeakDbtp": -11.02,
+          "bytes": 7896
+        },
+        "mp3": {
+          "integratedLufs": -23.47,
+          "truePeakDbtp": -11.41,
+          "bytes": 7723
+        }
+      }
+    },
+    {
+      "id": "ui-rarity-epic",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -7.28,
+      "masterLufs": -23.0,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -22.93,
+          "truePeakDbtp": -11.18,
+          "bytes": 8939
+        },
+        "mp3": {
+          "integratedLufs": -23.44,
+          "truePeakDbtp": -11.87,
+          "bytes": 10649
+        }
+      }
+    },
+    {
+      "id": "ui-rarity-legendary",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -5.62,
+      "masterLufs": -22.99,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -22.91,
+          "truePeakDbtp": -10.73,
+          "bytes": 8421
+        },
+        "mp3": {
+          "integratedLufs": -23.46,
+          "truePeakDbtp": -11.08,
+          "bytes": 8820
+        }
+      }
+    },
+    {
+      "id": "ui-chest-latch",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -4.61,
+      "masterLufs": -23.0,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.22,
+          "truePeakDbtp": -3.64,
+          "bytes": 6919
+        },
+        "mp3": {
+          "integratedLufs": -23.79,
+          "truePeakDbtp": -5.1,
+          "bytes": 4797
+        }
+      }
+    },
+    {
+      "id": "ui-chest-open",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 13.12,
+      "masterLufs": -23.13,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.26,
+          "truePeakDbtp": -5.19,
+          "bytes": 6325
+        },
+        "mp3": {
+          "integratedLufs": -23.52,
+          "truePeakDbtp": -4.82,
+          "bytes": 2969
+        }
+      }
+    },
+    {
+      "id": "ui-talent-upgrade",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -8.42,
+      "masterLufs": -22.99,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -22.9,
+          "truePeakDbtp": -12.1,
+          "bytes": 10753
+        },
+        "mp3": {
+          "integratedLufs": -23.41,
+          "truePeakDbtp": -12.73,
+          "bytes": 12112
+        }
+      }
+    },
+    {
+      "id": "ui-achievement",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -7.14,
+      "masterLufs": -22.98,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -22.92,
+          "truePeakDbtp": -11.69,
+          "bytes": 10421
+        },
+        "mp3": {
+          "integratedLufs": -23.43,
+          "truePeakDbtp": -12.08,
+          "bytes": 12112
+        }
+      }
+    },
+    {
+      "id": "critical",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -3.69,
+      "masterLufs": -23.09,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -22.88,
+          "truePeakDbtp": -4.84,
+          "bytes": 8682
+        },
+        "mp3": {
+          "integratedLufs": -23.43,
+          "truePeakDbtp": -5.4,
+          "bytes": 8454
+        }
+      }
+    },
+    {
+      "id": "hurt",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -3.8,
+      "masterLufs": -23.0,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -22.84,
+          "truePeakDbtp": -4.6,
+          "bytes": 8042
+        },
+        "mp3": {
+          "integratedLufs": -23.42,
+          "truePeakDbtp": -5.11,
+          "bytes": 7723
+        }
+      }
+    },
+    {
+      "id": "pickup",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 13.73,
+      "masterLufs": -23.3,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.62,
+          "truePeakDbtp": -3.47,
+          "bytes": 4431
+        },
+        "mp3": {
+          "integratedLufs": -23.6,
+          "truePeakDbtp": -4.61,
+          "bytes": 2603
+        }
+      }
+    },
+    {
+      "id": "level",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -7.28,
+      "masterLufs": -23.0,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -22.93,
+          "truePeakDbtp": -11.18,
+          "bytes": 8939
+        },
+        "mp3": {
+          "integratedLufs": -23.44,
+          "truePeakDbtp": -11.87,
+          "bytes": 10649
+        }
+      }
+    },
+    {
+      "id": "boss",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 3.4,
+      "masterLufs": -23.09,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -22.98,
+          "truePeakDbtp": -4.46,
+          "bytes": 4791
+        },
+        "mp3": {
+          "integratedLufs": -23.59,
+          "truePeakDbtp": -4.91,
+          "bytes": 2603
+        }
+      }
+    },
+    {
+      "id": "evolution",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -5.62,
+      "masterLufs": -22.99,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -22.91,
+          "truePeakDbtp": -10.73,
+          "bytes": 8421
+        },
+        "mp3": {
+          "integratedLufs": -23.46,
+          "truePeakDbtp": -11.08,
+          "bytes": 8820
+        }
+      }
+    },
+    {
+      "id": "chest",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 13.12,
+      "masterLufs": -23.13,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.26,
+          "truePeakDbtp": -5.19,
+          "bytes": 6325
+        },
+        "mp3": {
+          "integratedLufs": -23.52,
+          "truePeakDbtp": -4.82,
+          "bytes": 2969
+        }
+      }
+    },
+    {
+      "id": "charged",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -8.42,
+      "masterLufs": -22.99,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -22.9,
+          "truePeakDbtp": -12.1,
+          "bytes": 10753
+        },
+        "mp3": {
+          "integratedLufs": -23.41,
+          "truePeakDbtp": -12.73,
+          "bytes": 12112
+        }
+      }
+    },
+    {
+      "id": "frenzy",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -9.63,
+      "masterLufs": -23.0,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -22.93,
+          "truePeakDbtp": -13.68,
+          "bytes": 10027
+        },
+        "mp3": {
+          "integratedLufs": -23.47,
+          "truePeakDbtp": -14.26,
+          "bytes": 12112
+        }
+      }
+    },
+    {
+      "id": "combo",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -10.37,
+      "masterLufs": -23.01,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -22.9,
+          "truePeakDbtp": -11.43,
+          "bytes": 5999
+        },
+        "mp3": {
+          "integratedLufs": -23.46,
+          "truePeakDbtp": -12.04,
+          "bytes": 5529
+        }
+      }
+    },
+    {
+      "id": "clear",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -6.62,
+      "masterLufs": -23.02,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -22.98,
+          "truePeakDbtp": -12.22,
+          "bytes": 10328
+        },
+        "mp3": {
+          "integratedLufs": -23.48,
+          "truePeakDbtp": -12.76,
+          "bytes": 12112
+        }
+      }
+    },
+    {
+      "id": "block",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 17.59,
+      "masterLufs": -23.11,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.26,
+          "truePeakDbtp": -4.11,
+          "bytes": 9128
+        },
+        "mp3": {
+          "integratedLufs": -23.51,
+          "truePeakDbtp": -3.95,
+          "bytes": 7357
+        }
+      }
+    },
+    {
+      "id": "event-end",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -5.59,
+      "masterLufs": -23.01,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.07,
+          "truePeakDbtp": -13.22,
+          "bytes": 6695
+        },
+        "mp3": {
+          "integratedLufs": -23.51,
+          "truePeakDbtp": -13.16,
+          "bytes": 4066
+        }
+      }
+    },
+    {
+      "id": "fusion-sword",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 19.82,
+      "masterLufs": -23.09,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.2,
+          "truePeakDbtp": -4.39,
+          "bytes": 6341
+        },
+        "mp3": {
+          "integratedLufs": -23.57,
+          "truePeakDbtp": -4.84,
+          "bytes": 10649
+        }
+      }
+    },
+    {
+      "id": "fusion-hub",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 10.25,
+      "masterLufs": -23.08,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -22.74,
+          "truePeakDbtp": -4.05,
+          "bytes": 6035
+        },
+        "mp3": {
+          "integratedLufs": -23.5,
+          "truePeakDbtp": -3.05,
+          "bytes": 10649
+        }
+      }
+    },
+    {
+      "id": "fusion-binder",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 19.82,
+      "masterLufs": -23.09,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.2,
+          "truePeakDbtp": -4.39,
+          "bytes": 6341
+        },
+        "mp3": {
+          "integratedLufs": -23.57,
+          "truePeakDbtp": -4.84,
+          "bytes": 10649
+        }
+      }
+    },
+    {
+      "id": "fusion-sky",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 19.63,
+      "masterLufs": -23.15,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.07,
+          "truePeakDbtp": -4.28,
+          "bytes": 9343
+        },
+        "mp3": {
+          "integratedLufs": -23.62,
+          "truePeakDbtp": -4.89,
+          "bytes": 10649
+        }
+      }
+    },
+    {
+      "id": "fusion-icefire",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 2.35,
+      "masterLufs": -22.99,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.25,
+          "truePeakDbtp": -9.5,
+          "bytes": 10211
+        },
+        "mp3": {
+          "integratedLufs": -23.41,
+          "truePeakDbtp": -8.8,
+          "bytes": 10649
+        }
+      }
+    },
+    {
+      "id": "fusion-demolition",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 12.08,
+      "masterLufs": -23.14,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.21,
+          "truePeakDbtp": -4.14,
+          "bytes": 8266
+        },
+        "mp3": {
+          "integratedLufs": -23.56,
+          "truePeakDbtp": -4.85,
+          "bytes": 10649
+        }
+      }
+    },
+    {
+      "id": "ultimate-submission",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 11.31,
+      "masterLufs": -23.15,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.42,
+          "truePeakDbtp": -4.11,
+          "bytes": 9195
+        },
+        "mp3": {
+          "integratedLufs": -23.62,
+          "truePeakDbtp": -4.52,
+          "bytes": 10649
+        }
+      }
+    },
+    {
+      "id": "ultimate-lastMinute",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 20.61,
+      "masterLufs": -22.99,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.08,
+          "truePeakDbtp": -4.89,
+          "bytes": 9320
+        },
+        "mp3": {
+          "integratedLufs": -23.46,
+          "truePeakDbtp": -5.36,
+          "bytes": 10649
+        }
+      }
+    },
+    {
+      "id": "ultimate-parallel",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 16.54,
+      "masterLufs": -23.12,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.3,
+          "truePeakDbtp": -4.21,
+          "bytes": 5993
+        },
+        "mp3": {
+          "integratedLufs": -23.53,
+          "truePeakDbtp": -4.55,
+          "bytes": 10649
+        }
+      }
+    },
+    {
+      "id": "ultimate-conference",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 16.54,
+      "masterLufs": -23.12,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.3,
+          "truePeakDbtp": -4.21,
+          "bytes": 5993
+        },
+        "mp3": {
+          "integratedLufs": -23.53,
+          "truePeakDbtp": -4.55,
+          "bytes": 10649
+        }
+      }
+    },
+    {
+      "id": "ultimate-barrier",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 19.63,
+      "masterLufs": -23.18,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.11,
+          "truePeakDbtp": -4.11,
+          "bytes": 9093
+        },
+        "mp3": {
+          "integratedLufs": -23.52,
+          "truePeakDbtp": -4.66,
+          "bytes": 10649
+        }
+      }
+    },
+    {
+      "id": "ultimate-overload",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 20.61,
+      "masterLufs": -22.99,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.08,
+          "truePeakDbtp": -4.89,
+          "bytes": 9320
+        },
+        "mp3": {
+          "integratedLufs": -23.46,
+          "truePeakDbtp": -5.36,
+          "bytes": 10649
+        }
+      }
+    },
+    {
+      "id": "event-portal",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 8.11,
+      "masterLufs": -23.1,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.28,
+          "truePeakDbtp": -4.73,
+          "bytes": 6295
+        },
+        "mp3": {
+          "integratedLufs": -23.58,
+          "truePeakDbtp": -3.71,
+          "bytes": 10649
+        }
+      }
+    },
+    {
+      "id": "event-advisor",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 3.41,
+      "masterLufs": -23.12,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.39,
+          "truePeakDbtp": -4.28,
+          "bytes": 7485
+        },
+        "mp3": {
+          "integratedLufs": -23.6,
+          "truePeakDbtp": -4.57,
+          "bytes": 10649
+        }
+      }
+    },
+    {
+      "id": "event-blackout",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 9.43,
+      "masterLufs": -23.09,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.19,
+          "truePeakDbtp": -3.44,
+          "bytes": 6011
+        },
+        "mp3": {
+          "integratedLufs": -23.59,
+          "truePeakDbtp": -4.05,
+          "bytes": 10649
+        }
+      }
+    },
+    {
+      "id": "event-examRage",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 15.98,
+      "masterLufs": -23.12,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.13,
+          "truePeakDbtp": -4.14,
+          "bytes": 6348
+        },
+        "mp3": {
+          "integratedLufs": -23.53,
+          "truePeakDbtp": -4.43,
+          "bytes": 10649
+        }
+      }
+    },
+    {
+      "id": "event-sports",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 4.52,
+      "masterLufs": -23.03,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.01,
+          "truePeakDbtp": -3.0,
+          "bytes": 8910
+        },
+        "mp3": {
+          "integratedLufs": -23.44,
+          "truePeakDbtp": -3.1,
+          "bytes": 10649
+        }
+      }
+    },
+    {
+      "id": "event-rainstorm",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 2.35,
+      "masterLufs": -22.99,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.25,
+          "truePeakDbtp": -9.5,
+          "bytes": 10211
+        },
+        "mp3": {
+          "integratedLufs": -23.41,
+          "truePeakDbtp": -8.8,
+          "bytes": 10649
+        }
+      }
+    },
+    {
+      "id": "shield-break",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 20.08,
+      "masterLufs": -23.03,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.54,
+          "truePeakDbtp": -5.27,
+          "bytes": 7595
+        },
+        "mp3": {
+          "integratedLufs": -23.45,
+          "truePeakDbtp": -5.91,
+          "bytes": 7723
+        }
+      }
+    },
+    {
+      "id": "rain-ambience",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 10.77,
+      "masterLufs": -23.12,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.35,
+          "truePeakDbtp": -3.99,
+          "bytes": 82052
+        },
+        "mp3": {
+          "integratedLufs": -23.55,
+          "truePeakDbtp": -4.62,
+          "bytes": 113125
+        }
+      }
+    },
+    {
+      "id": "music-menu",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -10.36,
+      "masterLufs": -22.99,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -22.99,
+          "truePeakDbtp": -10.35,
+          "bytes": 428662
+        },
+        "mp3": {
+          "integratedLufs": -23.44,
+          "truePeakDbtp": -10.81,
+          "bytes": 633251
+        }
+      }
+    },
+    {
+      "id": "music-normal",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -10.15,
+      "masterLufs": -23.0,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.06,
+          "truePeakDbtp": -10.02,
+          "bytes": 949679
+        },
+        "mp3": {
+          "integratedLufs": -23.42,
+          "truePeakDbtp": -10.46,
+          "bytes": 1057479
+        }
+      }
+    },
+    {
+      "id": "music-elite",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -10.17,
+      "masterLufs": -22.99,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.03,
+          "truePeakDbtp": -9.78,
+          "bytes": 924444
+        },
+        "mp3": {
+          "integratedLufs": -23.43,
+          "truePeakDbtp": -9.93,
+          "bytes": 918299
+        }
+      }
+    },
+    {
+      "id": "music-boss",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -12.68,
+      "masterLufs": -23.0,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.07,
+          "truePeakDbtp": -12.74,
+          "bytes": 1467451
+        },
+        "mp3": {
+          "integratedLufs": -23.43,
+          "truePeakDbtp": -13.24,
+          "bytes": 1534897
+        }
+      }
+    },
+    {
+      "id": "music-result",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -11.77,
+      "masterLufs": -23.0,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.04,
+          "truePeakDbtp": -11.46,
+          "bytes": 832696
+        },
+        "mp3": {
+          "integratedLufs": -23.39,
+          "truePeakDbtp": -11.7,
+          "bytes": 908799
+        }
+      }
+    }
+  ]
+}

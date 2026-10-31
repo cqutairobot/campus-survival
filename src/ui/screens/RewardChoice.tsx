@@ -3,9 +3,10 @@ import {Icon} from '../components/Icon';
 import {ContentArt} from '../components/ContentArt';
 import {RELIC_MAP} from '../../data/relics';
 import {WEAPON_MAP,PASSIVE_MAP} from '../../data/catalog';
+import type {GameEngine} from '../../core/engine';
 import type {GameSession} from '../../app/GameHost';
-export function RewardChoice({session}:{session:GameSession|null}){
- const hud=useApp(s=>s.hud),reward=hud.reward,g=session?.engine;
+export function RewardChoice({session,previewEngine}:{session:GameSession|null;previewEngine?:GameEngine}){
+ const hud=useApp(s=>s.hud),reward=hud.reward,g=previewEngine??session?.engine;
  if(!reward||!g)return null;
  const contract=hud.phase==='contract';
  return <div className="game-overlay reward-overlay"><div className="draft-heading"><div className="eyebrow">{contract?'RISK / REWARD':'ACADEMIC SUPPLY'}</div><h2>{contract?'风险，由你决定。':'选择下一次突破。'}</h2><p>{contract?'遗物与诅咒同时生效，持续到本局结束，最多三组。':'融合消耗两件材料，品质取较高值；也可以保留当前构筑。'}</p></div><div className="reward-options">{reward.options.map((o,i)=>{

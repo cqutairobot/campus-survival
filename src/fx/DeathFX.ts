@@ -7,7 +7,7 @@ export interface DeathStyle {count:number;life:number;speed:number;spin:number;d
 export function deathStyle(event:VisualEvent,quality:string,motion:boolean):DeathStyle{
  const material=event.material??(event.enemyKind?enemyMaterial(event.enemyKind):'paper'),crystal=material==='glass'||material==='ice',hard=['metal','brick','key'].includes(material),dissolve=material==='code'||material==='spark';
  const boss=event.rank==='boss',elite=event.rank==='elite'||event.rank==='miniBoss';
- return {material,count:!motion?1:quality==='low'?4:quality==='medium'?6:boss?16:crystal?12:hard?8:dissolve?16:6,life:!motion?.18:boss?.62:elite?.44:crystal?.4:hard?.35:.28,speed:crystal?320:hard?175:dissolve?80:230,spin:hard?7:crystal?9:4,dissolve,silhouette:!motion?0:boss?.083:elite?.05:0};
+ return {material,count:!motion?1:quality==='low'?4:quality==='medium'?6:boss?16:crystal?12:hard?8:dissolve?16:6,life:!motion?.18:boss?.62:elite?.44:crystal?.4:hard?.35:.28,speed:crystal?320:hard?175:dissolve?80:230,spin:hard?7:crystal?9:4,dissolve:dissolve&&quality==='high'&&motion,silhouette:!motion||quality==='low'?0:boss?.083:elite?.05:0};
 }
 interface Snapshot {parts:Sprite[];textures:Texture[];origins:{x:number;y:number}[];age:number;hold:number;event:VisualEvent;style:DeathStyle;angles:number[];scale:number}
 /** Snapshots own subtextures, never live pool entities or shared atlas sources. */

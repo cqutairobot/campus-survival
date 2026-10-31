@@ -12,7 +12,7 @@ export class TextureCatalog {
   get(id:string){
     if(id.startsWith('fragment-')&&!resources.isMissing('particles')){
       const atlas=this.art.get('particles'),names=['spark','paper','key','code','smoke','ice','glass','metal','blueprint','brick'];
-      if(atlas&&names.includes(id.slice(9))){let frame=this.fragments.get(id);if(!frame){frame=new Texture({source:atlas.source,frame:new Rectangle(names.indexOf(id.slice(9))*24,0,24,24)});this.fragments.set(id,frame);}return frame;}
+      if(atlas&&atlas.width>=names.length*24&&atlas.height>=24&&names.includes(id.slice(9))){let frame=this.fragments.get(id);if(!frame){frame=new Texture({source:atlas.source,frame:new Rectangle(names.indexOf(id.slice(9))*24,0,24,24)});this.fragments.set(id,frame);}return frame;}
     }
     let key:ArtId|undefined;
     if(id==='player')key=characterArt[this.character]?.sprite;

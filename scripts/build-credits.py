@@ -53,7 +53,7 @@ text=json.dumps(entries,ensure_ascii=False,indent=2)+'\n'
 Path('src/assets/attributions.json').write_text(text);(PUBLIC/'attributions.json').write_text(text)
 (PUBLIC/'ai-art-metadata.json').write_text(json.dumps(provenance,ensure_ascii=False,indent=2)+'\n')
 (PUBLIC/'USER-PROVIDED-AI-ART.txt').write_text('用户提供 AI 美术使用记录\n\n137 张源图由用户提供并授权接入本项目。metadata.json 未提供独立开源许可证；本项目不将其标为 CC0，也不推断生成工具或批准版本。逐图生成信息、完整提示词、源文件哈希、运行时衍生文件见 ai-art-metadata.json 和 attributions.json。131 张有生成信息，6 张 P0 原图如实标为未提供。\n')
-lines=['# 制作名单与素材许可','','由 `python3 scripts/build-credits.py` 离线生成。设置内制作名单、`src/assets/attributions.json` 与 `public/licenses/attributions.json` 同源。只分发实际使用的文件；源音频包、源字体和 PNG 美术原件不进入构建产物。','',f'AI 美术共 {len(provenance)} 张；逐图 SHA-256、原始提示词和生成元数据同时发布于 `public/licenses/ai-art-metadata.json`。旧 Leschge 纸纹已被用户的 AI 纸纹替换，不再列为运行时素材。','']
+lines=['# 制作名单与素材许可','','v4 P2 未新增素材来源。全部音频重新归一到 −23 LUFS 目标，双编码实测真峰值不高于 −3 dBTP；中文字体子集随最终文案更新。逐文件加工记录与原许可继续保留。','','由 `python3 scripts/build-credits.py` 离线生成。设置内制作名单、`src/assets/attributions.json` 与 `public/licenses/attributions.json` 同源。只分发实际使用的文件；源音频包、源字体和 PNG 美术原件不进入构建产物。','',f'AI 美术共 {len(provenance)} 张；逐图 SHA-256、原始提示词和生成元数据同时发布于 `public/licenses/ai-art-metadata.json`。旧 Leschge 纸纹已被用户的 AI 纸纹替换，不再列为运行时素材。','']
 for entry in entries:
  label=f"[{entry['license']}]({entry['licenseUrl']})" if entry['licenseUrl'] else entry['license']
  lines+=['## '+entry['title'],'',f"作者：{entry['author']}。许可：{label}。来源：{entry['source']}。",'',entry['notes'],'']

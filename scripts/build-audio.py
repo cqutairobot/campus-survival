@@ -1,11 +1,14 @@
-"""P1 offline CC0 Foley layers and whole completed songs; no generated music/stems.
+"""v4 offline CC0 Foley layers and whole completed songs; no generated music/stems.
 Run from repository root with ffmpeg. Downloaded source packs stay in /tmp.
 """
 from pathlib import Path
-import subprocess,array,wave,json,concurrent.futures,urllib.request
+import subprocess,array,wave,json,concurrent.futures,urllib.request,sys
 ROOT=Path('/tmp/campus-v4-sources');OUT=Path('public/assets/audio/v4');OUT.mkdir(parents=True,exist_ok=True)
 TEMP=Path('/tmp/campus-v4-audio');TEMP.mkdir(exist_ok=True)
 RATE=44100
+TARGET_LUFS=-23
+TRUE_PEAK=-4.5
+ENCODED_CEILING=-3
 
 def src(pack,name):return ROOT/(pack+'-extracted')/name
 ow=lambda name:src('Owlish Media Sound Effects',name)
@@ -94,19 +97,60 @@ for name,(filename,title,url,download) in music.items():
  # Decoded frame length excludes original MP3 encoder priming/end padding.
  raw=subprocess.check_output(['ffmpeg','-v','error','-i',str(path),'-f','s16le','-ac','2','-ar','44100','pipe:1'])
  metadata[name]={'loopStartMs':0,'loopLengthMs':len(raw)/4/44100*1000,'original':filename,'title':title,'source':url}
- records.append({'output':'music-'+name,'inputs':[filename],'title':title,'source':url,'author':'cynicmusic / The Cynic Project / Alex Smith','license':'CC0 1.0','licenseUrl':'https://creativecommons.org/publicdomain/zero/1.0/','modification':'Whole completed track, loudness normalized to -20 LUFS, stereo 44.1kHz, 128kbps Ogg / 128kbps MP3, 60ms loop-edge fades; no stems or original composition.'})
+ records.append({'output':'music-'+name,'inputs':[filename],'title':title,'source':url,'author':'cynicmusic / The Cynic Project / Alex Smith','license':'CC0 1.0','licenseUrl':'https://creativecommons.org/publicdomain/zero/1.0/','modification':'Whole completed track, loudness normalized to -23 LUFS, stereo 44.1kHz, 128kbps Ogg / 128kbps MP3, 60ms loop-edge fades; no stems or original composition.'})
+
+def analyze(path):
+ # BS.1770 requires a >=400ms window. Periodically extend short clips to 3s
+ # for metering only, preserving their delivered duration and transient density.
+ duration=float(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration','-of','default=noprint_wrappers=1:nokey=1',str(path)]))
+ extension='aloop=loop=-1:size=132300,atrim=duration=3,' if duration<3 else ''
+ result=subprocess.run(['ffmpeg','-hide_banner','-nostats','-i',str(path),'-af',extension+f'loudnorm=I={TARGET_LUFS}:TP={TRUE_PEAK}:LRA=9:print_format=json','-f','null','-'],capture_output=True,text=True,check=True)
+ return json.JSONDecoder().raw_decode(result.stderr[result.stderr.rfind('{'):])[0]
 
 def encode(job):
  name,path,kind=job;is_music=kind is True
+ prepared=TEMP/(name+'-prepared.wav');master=TEMP/(name+'-normalized.wav')
+ args=['ffmpeg','-v','error','-y','-i',str(path)]
+ if kind=='ambience':args+=['-t','8','-ac','1','-ar',str(RATE),'-af','lowpass=f=3400,afade=t=in:d=0.06,afade=t=out:st=7.94:d=0.06']
+ elif not is_music:args+=['-t','0.8','-ac','1','-ar',str(RATE),'-af','afade=t=in:d=0.002,afade=t=out:st=0.75:d=0.05']
+ else:
+  duration=metadata[name.removeprefix('music-')]['loopLengthMs']/1000
+  args+=['-ac','2','-ar',str(RATE),'-af',f'afade=t=in:d=0.06,afade=t=out:st={max(0,duration-.06)}:d=0.06']
+ # Pad encoder-hostile sub-block clicks with silence before measuring (no new audio).
+ if '-af' in args:args[args.index('-af')+1]+=',apad=whole_dur=0.12'
+ subprocess.run(args+['-c:a','pcm_s24le',str(prepared)],check=True)
+ measured=analyze(prepared);gain=TARGET_LUFS-float(measured['input_i'])
+ # A look-ahead peak limiter trims exceptional transients before loudness gain.
+ # Iterate only this short offline mastering pass; no runtime automatic gain.
+ for attempt in range(14):
+  normalization=f'volume={gain}dB,alimiter=limit={10**(TRUE_PEAK/20)}:attack=1:release=40:level=false:latency=true'
+  subprocess.run(['ffmpeg','-v','error','-y','-i',str(prepared),'-af',normalization,'-ar',str(RATE),'-c:a','pcm_s24le',str(master)],check=True)
+  measured_master=analyze(master);error=TARGET_LUFS-float(measured_master['input_i'])
+  if abs(error)<.15:break
+  gain+=error
+ results={}
  for ext,codec,bitrate in [('ogg','libvorbis','128k' if is_music else '96k'),('mp3','libmp3lame','128k' if is_music else '112k')]:
-  args=['ffmpeg','-v','error','-y','-i',str(path)]
-  if kind=='ambience':args+=['-t','8','-ac','1','-ar',str(RATE),'-af','lowpass=f=3400,afade=t=in:d=0.06,afade=t=out:st=7.94:d=0.06,volume=0.65']
-  elif not is_music:args+=['-t','0.8','-ac','1','-ar',str(RATE),'-af','afade=t=in:d=0.002,afade=t=out:st=0.75:d=0.05,volume=0.8']
-  else:
-   duration=metadata[name.removeprefix('music-')]['loopLengthMs']/1000
-   args+=['-ac','2','-ar',str(RATE),'-af',f'loudnorm=I=-20:TP=-2:LRA=9,afade=t=in:d=0.06,afade=t=out:st={max(0,duration-.06)}:d=0.06']
-  subprocess.run(args+['-c:a',codec,'-b:a',bitrate,str(OUT/(name+'.'+ext))],check=True)
-with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool:list(pool.map(encode,jobs))
+  output=OUT/(name+'.'+ext)
+  subprocess.run(['ffmpeg','-v','error','-y','-i',str(master),'-c:a',codec,'-b:a',bitrate,str(output)],check=True)
+  measured_output=analyze(output)
+  codec_gain=0.;ceiling=TRUE_PEAK
+  for correction in range(10):
+   error=TARGET_LUFS-float(measured_output['input_i']);peak=float(measured_output['input_tp'])
+   if abs(error)<=.65 and peak<=ENCODED_CEILING:break
+   codec_gain+=error
+   if peak>ENCODED_CEILING:ceiling-=peak-ENCODED_CEILING+.1
+   fix=f'volume={codec_gain}dB,alimiter=limit={10**(ceiling/20)}:attack=1:release=40:level=false:latency=true'
+   subprocess.run(['ffmpeg','-v','error','-y','-i',str(master),'-af',fix,'-c:a',codec,'-b:a',bitrate,str(output)],check=True)
+   measured_output=analyze(output)
+  results[ext]={'integratedLufs':float(measured_output['input_i']),'truePeakDbtp':float(measured_output['input_tp']),'bytes':output.stat().st_size}
+ return {'id':name,'targetLufs':TARGET_LUFS,'ceilingDbtp':ENCODED_CEILING,'masterGainDb':round(gain,2),'masterLufs':float(measured_master['input_i']),'outputs':results}
+selected=set(sys.argv[1:]);selected_jobs=[job for job in jobs if not selected or job[0] in selected]
+with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:measurements=list(pool.map(encode,selected_jobs))
+if selected:
+ previous=json.loads(Path('docs/v4-audio-loudness.json').read_text())['clips'];replacement={r['id']:r for r in measurements};measurements=[replacement.get(r['id'],r) for r in previous]
+for record in records:
+ record['modification']+=f' P2: all samples normalized offline with BS.1770 measured gain and look-ahead peak limiting to {TARGET_LUFS} LUFS, {ENCODED_CEILING} dBTP delivered ceiling (-4.5 dBTP pre-encoding margin); measured after both lossy encoders. Very short clicks are padded with silence to at least 120ms for encoder block stability. Clips shorter than 3s use periodic extension for BS.1770 metering only; delivered lengths stay unchanged.'
+Path('docs/v4-audio-loudness.json').write_text(json.dumps({'targetLufs':TARGET_LUFS,'ceilingDbtp':ENCODED_CEILING,'analysis':'BS.1770 gated integrated loudness; clips shorter than 3s periodically extended for metering only; delivered durations unchanged','clips':measurements},indent=2)+'\n')
 expected={name+'.'+ext for name,_,_ in jobs for ext in ['ogg','mp3']}
 for path in OUT.iterdir():
  if path.suffix in ['.ogg','.mp3'] and path.name not in expected:path.unlink()

@@ -4,6 +4,7 @@ import {AudioDirector,type VoiceCategory,VOICE_RULES} from './AudioDirector';
 import {MusicDirector} from './MusicDirector';
 import {audioSources,UI_SAMPLES,COMBAT_SAMPLES,ENVIRONMENT_SAMPLES,eventMaterial,selectVariant,sampleOrFallback,weaponVoice,MusicThemeSelector} from './catalog';
 import type {DuckKind} from './mix';
+import {OutputBus} from './OutputBus';
 type Synth=(...args:(number|undefined)[])=>number[];
 function wav(samples:ArrayLike<number>,rate:number){
  const b=new ArrayBuffer(44+samples.length*2),v=new DataView(b),write=(at:number,text:string)=>{for(let n=0;n<text.length;n++)v.setUint8(at+n,text.charCodeAt(n));};
@@ -15,16 +16,17 @@ function wav(samples:ArrayLike<number>,rate:number){
 export class GameAudio {
  readonly director=new AudioDirector();readonly musicDirector:MusicDirector;
  private samples=new Map<string,Howl>();private synthetic=new Map<string,Howl>();private urls:string[]=[];
- private ready=false;private initializing=false;private destroyed=false;private paused=false;private desiredTheme='menu';private unavailable=false;
+ private auditionTimers=new Set<ReturnType<typeof setTimeout>>();private output:OutputBus|undefined;private outputInput:GainNode|undefined;private loads=new Set<()=>void>();private loadGeneration=0;private suspendedForLab=false;private fallbackPlays=0;private sampleFailures=new Set<string>();private ready=false;private initializing=false;private destroyed=false;private paused=false;private desiredTheme='menu';private unavailable=false;
  private queue:{name:string;rate:number;category:VoiceCategory;pan:number;volume:number;scope:'ui'|'session';group:string}[]=[];
  private last=new Map<string,number>();private variants=new Map<string,number>();private forceFailure=false;private combatRequested=false;private combatLoading=false;
  private pickupCombo=0;private pickupAt=0;private environment:EventId|null=null;private environmentFilter:BiquadFilterNode|null=null;private rainId:number|undefined;private rainSound:Howl|undefined;private previewTheme:string|null=null;private musicSelector=new MusicThemeSelector();private timer:ReturnType<typeof setInterval>;private previous=performance.now()/1000;
  constructor(private settings:Settings){
   Howler.autoUnlock=false;this.musicDirector=new MusicDirector(theme=>this.synthetic.get(`music-${theme==='elite'?'late':theme==='menu'||theme==='result'?'normal':theme}`));
-  window.addEventListener('pointerdown',this.unlock);window.addEventListener('keydown',this.unlock);
+  window.addEventListener('resize',this.outputChanged);window.addEventListener('pointerdown',this.unlock);window.addEventListener('keydown',this.unlock);
   document.addEventListener('click',this.uiClick);document.addEventListener('pointerover',this.uiHover);
   this.timer=setInterval(()=>{const now=performance.now()/1000,dt=Math.min(.1,now-this.previous);this.previous=now;this.flush();this.musicDirector.update(dt,now,this.settings,this.paused||document.hidden);this.director.reap();},25);
  }
+ private outputChanged=()=>this.output?.apply(this.settings.audioPreset);
  private unlock=()=>{
   if(this.destroyed||this.settings.muted||this.unavailable)return;
   if(!this.initializing&&!this.ready)void this.initialize();
@@ -51,7 +53,7 @@ export class GameAudio {
    for(const [name,params] of Object.entries(sounds))this.add(name,synth(...params));
    for(const [index,name] of ['normal','late','boss'].entries())this.add('music-'+name,this.compose(synth,index),true);
    this.add('rain-ambience',synth(.13,.3,60,.1,.6,1,3,.8),true);
-   this.environmentFilter=Howler.ctx.createBiquadFilter();this.environmentFilter.type='lowpass';this.environmentFilter.frequency.value=20000;Howler.masterGain.disconnect();Howler.masterGain.connect(this.environmentFilter);this.environmentFilter.connect(Howler.ctx.destination);
+   this.outputInput=Howler.ctx.createGain();this.output=new OutputBus(Howler.ctx,this.outputInput);this.environmentFilter=Howler.ctx.createBiquadFilter();this.environmentFilter.type='lowpass';this.environmentFilter.frequency.value=20000;Howler.masterGain.disconnect();Howler.masterGain.connect(this.environmentFilter);this.environmentFilter.connect(this.outputInput);
    this.ready=true;this.apply(this.settings);this.musicDirector.setTheme(this.desiredTheme);void this.loadSamples(UI_SAMPLES);if(this.combatRequested)this.prepareCombat();
   }catch(error){this.unavailable=!(error instanceof DOMException&&error.name==='NotAllowedError');}
   finally{unlock?.unload();this.initializing=false;}
@@ -73,14 +75,19 @@ export class GameAudio {
     }
     return mix;
   }
- private async loadSamples(ids:string[]){
-  for(let start=0;start<ids.length&&!this.destroyed;start+=6)await Promise.all(ids.slice(start,start+6).map(id=>new Promise<void>(resolve=>{
-   if(this.samples.has(id)){resolve();return;}const timer=setTimeout(resolve,4000);const done=()=>{clearTimeout(timer);resolve();};
-   const sound=new Howl({src:audioSources(id),format:['ogg','mp3'],loop:id==='rain-ambience',preload:true,volume:0,onload:()=>{done();if(!this.destroyed&&id==='rain-ambience'&&this.environment==='rainstorm'){this.stopRain();this.startRain();}},onloaderror:done});this.samples.set(id,sound);
+ private async loadSamples(ids:string[],generation=this.loadGeneration){
+  for(let start=0;start<ids.length&&!this.destroyed&&generation===this.loadGeneration;start+=6)await Promise.all(ids.slice(start,start+6).map(id=>new Promise<void>(resolve=>{
+   if(this.samples.has(id)){resolve();return;}
+   let finished=false;const done=()=>{if(finished)return;finished=true;clearTimeout(timer);this.loads.delete(cancel);resolve();};
+   const cancel=()=>{sound.unload();done();};const timer=setTimeout(()=>{this.sampleFailures.add(id);sound.unload();done();},5000);
+   const sound=new Howl({src:audioSources(id),format:['ogg','mp3'],loop:id==='rain-ambience',preload:true,volume:0,
+    onload:()=>{done();if(this.destroyed||generation!==this.loadGeneration){sound.unload();return;}if(id==='rain-ambience'&&this.environment==='rainstorm'){this.stopRain();this.startRain();}},
+    onloaderror:()=>{this.sampleFailures.add(id);done();sound.unload();},onplayerror:()=>{if(Howler.ctx?.state==='running')sound.unload();}});
+   this.samples.set(id,sound);this.loads.add(cancel);
   })));
  }
  prepareCombat(){this.combatRequested=true;if(!this.ready||this.combatLoading||this.destroyed)return;this.combatLoading=true;void this.loadSamples(COMBAT_SAMPLES);}
- apply(settings:Settings){this.settings=settings;if(this.ready){Howler.volume(1);Howler.mute(settings.muted);}if(!settings.musicDucking)this.musicDirector.resetDucking();if(settings.muted){this.director.release();this.stopRain();}else if(this.environment==='rainstorm')this.startRain();if(this.rainSound&&this.rainId!==undefined)this.rainSound.volume(settings.master*settings.sfx*.12,this.rainId);}
+ apply(settings:Settings){this.settings=settings;if(this.ready){Howler.volume(.5);Howler.mute(settings.muted||this.suspendedForLab);this.output?.apply(settings.audioPreset);}if(!settings.musicDucking)this.musicDirector.resetDucking();if(settings.muted){this.director.release();this.stopRain();}else if(this.environment==='rainstorm')this.startRain();if(this.rainSound&&this.rainId!==undefined)this.rainSound.volume(settings.master*settings.sfx*.12,this.rainId);}
  setTheme(theme:string){this.desiredTheme=this.musicSelector.resolve(theme,performance.now()/1000,!this.settings.dynamicMusic);if(this.ready)this.musicDirector.setTheme(this.previewTheme??this.desiredTheme);}
  prepareTheme(theme:string){if(this.ready)this.musicDirector.preload(theme);}
  previewMusic(theme:string|null){this.previewTheme=theme;if(this.ready)this.musicDirector.setTheme(theme??this.desiredTheme);}
@@ -96,7 +103,7 @@ export class GameAudio {
  private enqueue(name:string,rate:number,category:VoiceCategory,pan=0,volume=1,scope:'ui'|'session'='session',group=''){if(this.queue.length<256)this.queue.push({name,rate,category,pan,volume,scope,group});}
  beginFrame(){/* Time-window aggregation persists across render frames. */}
  flush(){
-  if(!this.ready||this.destroyed||this.settings.muted){this.queue=[];return;}
+  if(!this.ready||this.destroyed||this.settings.muted||this.suspendedForLab){this.queue=[];return;}
   if(Howler.ctx?.state!=='running'){this.unlock();this.queue=[];return;}
   const now=performance.now()/1000;
   for(const event of this.queue.sort((a,b)=>VOICE_RULES[b.category].priority-VOICE_RULES[a.category].priority)){
@@ -106,7 +113,7 @@ export class GameAudio {
    const sound=sampleOrFallback(this.forceFailure?undefined:this.samples.get(event.name),sample=>sample.state()==='loaded',fallback);if(!sound)continue;
    const volume=this.settings.master*(event.scope==='ui'?this.settings.uiSfx:this.settings.sfx)*event.volume;if(volume<=0)continue;
    const accepted=this.director.admit(event.category,volume,Math.abs(event.pan),now,event.scope,()=>{const id=sound.play();sound.volume(volume,id);sound.rate(event.rate,id);if(![...this.synthetic.values()].includes(sound))sound.stereo(Math.max(-.65,Math.min(.65,event.pan)),id);return{stop:()=>sound.stop(id),playing:()=>sound.playing(id)};});
-   if(accepted)this.last.set(group,now);
+   if(accepted){this.last.set(group,now);if(sound===fallback)this.fallbackPlays++;}
   }
   this.queue=[];if(this.last.size>300)for(const [name,at] of this.last)if(now-at>2)this.last.delete(name);
  }
@@ -134,11 +141,20 @@ export class GameAudio {
  }
  private duck(kind:DuckKind,now:number){if(this.settings.musicDucking)this.musicDirector.duck.trigger(kind,now);}
  reveal(rarity:number){this.play(['ui-rarity-common','ui-rarity-rare','ui-rarity-epic','ui-rarity-legendary'][Math.max(0,Math.min(3,rarity))]);if(rarity===3)this.duck('legendary',performance.now()/1000);}
- simulateFailure(value:boolean){this.forceFailure=value;}
- releaseSession(){this.queue=[];this.director.release('session');this.stopRain();this.musicDirector.resetDucking();this.setEnvironment(null,true);this.previewMusic(null);this.setPaused(false);this.last.clear();}
+ suspendForLab(value:boolean){this.suspendedForLab=value;Howler.mute(this.settings.muted||value);if(value){this.director.release();this.stopRain();}}
+ simulateFailure(value:boolean){this.forceFailure=value;this.musicDirector.simulateFailure(value);}
+ audition(name:string,segment:'full'|'onset'|'body'|'tail'='full'){
+  if(!this.ready||this.settings.muted)return;
+  const fallback=this.synthetic.get(name)??this.synthetic.get(name.startsWith('death')?'death':name.startsWith('shot')?'shot':'hit');
+  const sound=sampleOrFallback(this.forceFailure?undefined:this.samples.get(name),s=>s.state()==='loaded',fallback);if(!sound)return;
+  if(sound===fallback)this.fallbackPlays++;
+  const range={full:[0,.8],onset:[0,.02],body:[.008,.13],tail:[.04,.44]}[segment];
+  this.director.admit('important',.7,0,performance.now()/1000,'session',()=>{const id=sound.play();sound.volume(this.settings.master*this.settings.sfx*.7,id);sound.seek(range[0],id);const timer=setTimeout(()=>{this.auditionTimers.delete(timer);sound.stop(id);},range[1]*1000);this.auditionTimers.add(timer);return{playing:()=>sound.playing(id),stop:()=>{clearTimeout(timer);this.auditionTimers.delete(timer);sound.stop(id);}};});
+ }
+ releaseSession(){for(const timer of this.auditionTimers)clearTimeout(timer);this.auditionTimers.clear();this.queue=[];this.pickupCombo=0;this.variants.clear();this.director.release('session');this.stopRain();this.musicDirector.resetDucking();this.setEnvironment(null,true);this.previewMusic(null);this.setPaused(false);this.last.clear();}
  get voicePeak(){return this.director.peak;}
- get debug(){return{ready:this.ready,voices:this.director.voices.length,sessionVoices:this.director.voices.filter(v=>v.scope==='session').length,evicted:this.director.evicted,dropped:this.director.dropped,duck:this.musicDirector.duck.gain(performance.now()/1000),music:this.musicDirector.debug,failedSamples:[...this.samples].filter(([,s])=>s.state()!=='loaded').map(([id])=>id),forceFailure:this.forceFailure,environment:this.environment};}
- destroy(){if(this.destroyed)return;this.destroyed=true;clearInterval(this.timer);window.removeEventListener('pointerdown',this.unlock);window.removeEventListener('keydown',this.unlock);document.removeEventListener('click',this.uiClick);document.removeEventListener('pointerover',this.uiHover);this.director.release();this.musicDirector.destroy();for(const sound of [...this.samples.values(),...this.synthetic.values()])sound.unload();for(const url of this.urls)URL.revokeObjectURL(url);if(this.environmentFilter){try{Howler.masterGain.disconnect(this.environmentFilter);this.environmentFilter.disconnect();Howler.masterGain.connect(Howler.ctx.destination);}catch{/* Device may already be closed. */}this.environmentFilter=null;}this.samples.clear();this.synthetic.clear();}
+ get debug(){return{suspendedForLab:this.suspendedForLab,fallbackPlays:this.fallbackPlays,sampleFailures:[...this.sampleFailures],outputPreset:this.output?.preset??'full',headroomDb:-6,loadedSamples:this.samples.size,loadingSamples:this.loads.size,syntheticSamples:this.synthetic.size,ready:this.ready,voices:this.director.voices.length,sessionVoices:this.director.voices.filter(v=>v.scope==='session').length,evicted:this.director.evicted,dropped:this.director.dropped,duck:this.musicDirector.duck.gain(performance.now()/1000),music:this.musicDirector.debug,failedSamples:[...this.samples].filter(([,s])=>s.state()!=='loaded').map(([id])=>id),forceFailure:this.forceFailure,environment:this.environment};}
+ destroy(){if(this.destroyed)return;this.destroyed=true;for(const timer of this.auditionTimers)clearTimeout(timer);this.auditionTimers.clear();clearInterval(this.timer);++this.loadGeneration;for(const cancel of [...this.loads])cancel();this.loads.clear();window.removeEventListener('resize',this.outputChanged);window.removeEventListener('pointerdown',this.unlock);window.removeEventListener('keydown',this.unlock);document.removeEventListener('click',this.uiClick);document.removeEventListener('pointerover',this.uiHover);this.director.release();this.musicDirector.destroy();for(const sound of [...this.samples.values(),...this.synthetic.values()])sound.unload();for(const url of this.urls)URL.revokeObjectURL(url);if(this.environmentFilter){try{Howler.masterGain.disconnect(this.environmentFilter);this.environmentFilter.disconnect();Howler.masterGain.connect(Howler.ctx.destination);}catch{/* Device may already be closed. */}this.environmentFilter=null;}this.output?.destroy();this.output=undefined;this.outputInput?.disconnect();this.outputInput=undefined;this.samples.clear();this.synthetic.clear();this.queue=[];}
 }
 let appAudio:GameAudio|undefined;
 export function getAudio(settings?:Settings){if(!appAudio){if(!settings)throw Error('Audio service needs initial settings');appAudio=new GameAudio(settings);}return appAudio;}
