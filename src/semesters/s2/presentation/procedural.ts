@@ -1,19 +1,30 @@
 // P04 bounded presentation port; external textures retain lease ownership.
 import type {ContentCatalog} from '../legacy/catalog';
 import { Application, ColorMatrixFilter, Container, Graphics, Text, Texture, Rectangle } from 'pixi.js';
-import { BUILDINGS, type Building } from '../../../world/campus';
+import type {WorldBuilding,WorldSnapshot} from '../world';
+import smartTeaching from './placeholders/smart-teaching.svg?raw';
+import jointLab from './placeholders/joint-lab.svg?raw';
+import exhibitHall from './placeholders/exhibit-hall.svg?raw';
+const placeholders={smartTeaching,jointLab,exhibitHall};
 const INK=0x324c43;
 const line={color:INK,width:2.6};
 export class TextureLibrary {
   readonly textures=new Map<string,Texture>();
-  constructor(private app:Application,private content:ContentCatalog){this.create();}
+  constructor(private app:Application,private content:ContentCatalog,private world:WorldSnapshot){this.create();}
   get(id:string){return this.textures.get(id)??this.textures.get(id.startsWith('enemy-')?`enemy-${this.content.enemies[0].id}`:'bullet')!;}
   private bake(id:string,size:number,draw:(g:Graphics,c:Container)=>void){
     const c=new Container(),g=new Graphics();g.rect(0,0,size,size).fill({color:0xffffff,alpha:0});c.addChild(g);draw(g,c);
     const texture=this.app.renderer.generateTexture({target:c,resolution:1.5});this.textures.set(id,texture);
     if(id.startsWith('enemy-')){
       const white=new ColorMatrixFilter();white.matrix=[0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0];c.filters=[white];
-      this.textures.set(`${id}-white`,this.app.renderer.generateTexture({target:c,resolution:1.5}));c.filters=[];white.destroy();
+      this.textures.set(`${id}-white`,this.app.renderer.generateTexture({target:c,resolution:1.5}));c.filters=[];
+      // A baking pass can be the renderer's last filter use when the map is
+      // paused. Release its pooled input before application/texture teardown.
+      for(const group of Object.values(white.groups))for(const [binding,resource] of Object.entries(group.resources)){
+        if(resource?._resourceType==='textureSource')group.setResource(Texture.WHITE.source,Number(binding));
+        else if(resource?._resourceType==='textureSampler')group.setResource(Texture.WHITE.source.style,Number(binding));
+      }
+      white.destroy();
     }
     c.destroy({children:true});return texture;
   }
@@ -68,6 +79,8 @@ export class TextureLibrary {
     for(const p of this.content.pickups.filter(p=>['freeze','shield','coffeeBoost','energy'].includes(p.id)))this.bake(p.id,40,(g,c)=>{const color=parseInt(p.color.slice(1),16);if(p.id==='freeze'){g.circle(20,20,15).fill(0xe8f6fa).stroke({color,width:3});g.moveTo(20,9).lineTo(20,20).lineTo(28,24).stroke({color,width:3});}else if(p.id==='shield'){g.poly([20,3,35,10,32,29,20,37,8,29,5,10]).fill(color).stroke({color:INK,width:2});g.moveTo(13,19).lineTo(18,25).lineTo(28,14).stroke({color:0xfff7de,width:3});}else if(p.id==='coffeeBoost'){g.roundRect(7,11,24,23,5).fill(color).stroke({color:INK,width:2});g.moveTo(31,15).quadraticCurveTo(42,14,38,25).lineTo(31,27).stroke({color:INK,width:2});g.moveTo(15,3).lineTo(13,8).moveTo(24,3).lineTo(22,8).stroke({color,width:2});}else{g.roundRect(6,4,28,32,4).fill(color).stroke({color:INK,width:2});this.label(c,'✦',20,21,24,0xfff8d7);}});
     this.bake('chest',48,g=>{g.ellipse(24,41,20,4).fill({color:INK,alpha:.12});g.roundRect(5,13,38,28,5).fill(0xd0a05a).stroke({color:INK,width:2.5});g.roundRect(5,8,38,16,6).fill(0xe8c06c).stroke({color:INK,width:2.5});g.rect(10,10,5,29).fill(0xf6d689);g.rect(33,10,5,29).fill(0xf6d689);g.roundRect(20,20,9,11,2).fill(0xffedac).stroke({color:INK,width:1.5});});
     this.bake('tree',144,g=>{g.ellipse(76,124,42,13).fill({color:INK,alpha:.10});g.roundRect(67,80,12,42,4).fill(0xc3a37a).stroke({color:0x7e8e69,width:2});g.circle(72,64,42).fill(0x8eaf7f).stroke({color:0x73996d,width:2.5});g.circle(47,77,24).fill(0x9bbd88);g.circle(94,77,25).fill(0x87aa78);g.circle(67,45,26).fill(0xaec995);g.ellipse(59,36,12,5).fill({color:0xd4dfa9,alpha:.7});});
+    this.bake('bench',96,g=>{g.roundRect(8,24,80,30,5).fill(0xc3a37a).stroke({color:INK,width:2});g.moveTo(14,34).lineTo(82,34).moveTo(14,44).lineTo(82,44).moveTo(20,54).lineTo(20,68).moveTo(76,54).lineTo(76,68).stroke({color:INK,width:3});});
+    this.bake('planter',96,g=>{g.roundRect(5,35,86,36,9).fill(0xd2c09a).stroke({color:INK,width:2});for(let n=0;n<5;n++)g.circle(17+n*15,36,15).fill(n%2?0x9fb983:0xb4c891);});
     this.bake('digit-dot',12,g=>{g.circle(6,6,5).fill(0xffffff);});
     const atlas=this.bake('particle-atlas',256,g=>{
       g.circle(12,12,5).fill(0xffffff);
@@ -86,10 +99,16 @@ export class TextureLibrary {
       const t=new Text({text:ch,style:{fontFamily:['Campus Digits','Arial'],fontSize:32,fontWeight:'600',fill:0xffffff,stroke:{color:0x345249,width:3}}});
       const texture=this.app.renderer.generateTexture({target:t,resolution:1.25});this.textures.set(`digit-${ch}`,texture);t.destroy();
     }
-    for(const building of BUILDINGS)this.building(building);
+    for(const building of this.world.buildings)this.building(building);
   }
-  private building(b:Building){
+  private building(b:Readonly<WorldBuilding>){
     const c=new Container(),g=new Graphics();c.addChild(g);
+    if(b.placeholder){
+      // Local SVG placeholders are baked and owned exactly like other procedural
+      // textures. They require neither Assets loads nor external texture ownership.
+      g.svg(placeholders[b.placeholder]);g.scale.set(b.w/320,b.h/200);
+      this.textures.set(`building-${b.id}`,this.app.renderer.generateTexture({target:c,resolution:1}));c.destroy({children:true});return;
+    }
     g.roundRect(8,20,b.w,b.h,12).fill({color:0x445a43,alpha:.13});
     g.roundRect(0,0,b.w,b.h,10).fill(0xf0dfb9).stroke({color:0x697b61,width:3});
     g.roundRect(-5,-8,b.w+10,b.h-38,12).fill(b.color).stroke({color:0x697b61,width:3});
@@ -100,7 +119,7 @@ export class TextureLibrary {
     g.roundRect(b.w/2-78,81,156,35,5).fill(0xf1e4c3).stroke({color:0x73826a,width:2});
     this.label(c,b.name,b.w/2,98,13,0x405e50);
     if(b.type==='library'){g.moveTo(b.w/2-27,13).lineTo(b.w/2,0).lineTo(b.w/2+27,13).stroke({color:0xf4e1a9,width:4});}
-    const tex=this.app.renderer.generateTexture({target:c,resolution:1});this.textures.set(`building-${b.name}`,tex);c.destroy({children:true});
+    const tex=this.app.renderer.generateTexture({target:c,resolution:1});this.textures.set(`building-${b.id}`,tex);c.destroy({children:true});
   }
   destroy(){const sources=new Set([...this.textures.values()].map(t=>t.source));for(const texture of this.textures.values())texture.destroy(false);for(const source of sources)source.destroy();this.textures.clear();}
 }

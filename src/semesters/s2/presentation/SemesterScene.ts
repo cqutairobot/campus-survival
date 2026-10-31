@@ -9,9 +9,9 @@ import { ParticleFX, DamageNumbers } from '../../../fx/particles';
 import {LOGICAL_WIDTH,LOGICAL_HEIGHT} from '../../../core/run';
 import {RANK_CODE} from '../../../data/enemies';
 import {REGION_CONDITIONS} from '../../../world/landmarks';
-import { BUILDINGS, isBlocked, WORLD_SIZE, ZONES } from '../../../world/campus';
+import {warningFloor} from '../world';
 import {InputController,presentationPhase,type Joystick,type SemesterControls} from './input';
-import { clamp, distanceSq, lerp, Random, TAU } from '../../../core/math';
+import { clamp, distanceSq, lerp, TAU } from '../../../core/math';
 import { botPosition } from '../legacy/system';
 import { weaponParams } from '../legacy/params';
 import {TrailHistory} from '../../../fx/trails';
@@ -27,7 +27,7 @@ import { resources,prepareFonts,type LoadProgress } from '../../../assets/loader
 import { FeedbackDirector } from '../../../presentation/FeedbackDirector';
 import { PostFX,eventPixelPosition } from '../../../fx/PostFX';
 import { DeathFX } from '../../../fx/DeathFX';
-import {buildingArt,buildingKeys,characterArt,landmarkArt,propArt,textureArt,itemArt,uiArt} from '../../../assets/bindings';
+import {characterArt,textureArt,itemArt,uiArt} from '../../../assets/bindings';
 import {type ArtId,type Bundle} from '../../../assets/manifest';
 import {buildingPlacement,enemyArtSize,fitArtScale} from '../../../presentation/art-layout';
 import {enemyMaterial} from '../../../presentation/materials';
@@ -44,7 +44,8 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
   private whiteSprites:(Sprite|undefined)[]=[];private enemySprites:(Sprite|undefined)[]=[];private shotSprites:(Sprite|undefined)[]=[];private hostileSprites:(Sprite|undefined)[]=[];private dropSprites:(Sprite|undefined)[]=[];private orbitSprites:Sprite[]=[];private botSprites:Sprite[]=[];
   private transient:Transient[]=[];private props:Sprite[]=[];private input!:InputController;private resizeObserver!:ResizeObserver;private animation=0;private lastTime=0;private elapsed=0;private destroyed=false;private ready=false;
   private bloom=new AdvancedBloomFilter({threshold:.65,bloomScale:.6,brightness:1,blur:3,quality:2});private glow=new GlowFilter({distance:8,outerStrength:1.1,color:0x99e1b2,quality:.15});
-  private gates=new Graphics();private zoneLabels:{id:string;text:Text}[]=[];private regionStamp='';
+  private gates=new Graphics();private warningMask=new Graphics();
+  private chapterLabel=new Text({text:'',style:{fontFamily:['Campus Sans','sans-serif'],fontSize:14,fill:0x304d52,fontWeight:'bold',wordWrap:true,wordWrapWidth:340,lineHeight:22}});
   private viewportMask=new Graphics();private letterbox=new Graphics();private viewportY=0;private viewportHeight=0;
   private blackSprite=new Sprite();private hurtSprite=new Sprite();private uiTextures:Texture[]=[];private hitFlash=0;
   private cameraX=3072;private cameraY=3072;private cameraZoom=1;private baseScale=1;private settings:Settings;private quality:'high'|'medium'|'low'='high';private lastRender=0;private renderedPhase='';
@@ -71,59 +72,64 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
     await acquire(resources.bundle('battle-content',this.loadAbort.signal,this.onLoad));
     await acquire(resources.loadIds([characterArt[this.game.manifest.character].sprite,...['heal','magnet','bomb','freeze','shield','coffeeBoost','energy'].map(id=>itemArt[id]),uiArt['chest-closed']],this.loadAbort.signal,this.onLoad,'整理随身补给'));
     await prepareFonts();if(this.destroyed){this.assetsRelease();this.destroyApplication();return;}
-    this.host.appendChild(this.app.canvas);this.geometry=new TextureLibrary(this.app,this.content);this.textures=new TextureCatalog(this.geometry,this.artTextures,this.game.manifest.character,this.content);this.particles=new ParticleFX(this.textures);this.numbers=new DamageNumbers(this.textures);
+    this.host.appendChild(this.app.canvas);this.geometry=new TextureLibrary(this.app,this.content,this.game.world);this.textures=new TextureCatalog(this.geometry,this.artTextures,this.game.manifest.character,this.content);this.particles=new ParticleFX(this.textures);this.numbers=new DamageNumbers(this.textures);
     this.world.addChild(this.ground,this.gates,this.groundFX,this.dropLayer,this.entityLayer,this.propLayer,this.effects,this.numbers.container,this.debugGraphics);
-    this.effects.addChild(this.fxGraphic,this.deathFX.container,this.particles.container);this.dangerLayer.addChild(this.telegraphs);
-    this.app.stage.addChild(this.letterbox,this.world,this.blackSprite,this.dangerLayer,this.hurtSprite,this.viewportMask);
+    this.effects.addChild(this.fxGraphic,this.deathFX.container,this.particles.container);this.dangerLayer.addChild(this.telegraphs,this.warningMask);this.telegraphs.mask=this.warningMask;
+    this.chapterLabel.position.set(18,18);this.app.stage.addChild(this.letterbox,this.world,this.blackSprite,this.dangerLayer,this.hurtSprite,this.viewportMask,this.chapterLabel);
     this.createMap();this.playerShadow.ellipse(0,0,17,6).fill({color:0x172d31,alpha:.25});this.entityLayer.addChild(this.playerShadow);this.player=new Sprite(this.textures.get('player'));this.player.anchor.set(.5);this.player.scale.set(fitArtScale(this.player.texture,64));this.entityLayer.addChild(this.player);this.preloadBossArt();
     this.input=new InputController(this.app.canvas,this.controls!,this.onStick);this.resizeObserver=new ResizeObserver(()=>this.resize());this.resizeObserver.observe(this.host);
     this.applySettings(this.settings);this.resize();this.ready=true;this.lastTime=performance.now();this.animation=requestAnimationFrame(this.animate);
   }
   private createMap(){
-    const g=new Graphics(),rng=new Random(7042019);
-    this.ground.addChild(new Graphics().rect(0,0,WORLD_SIZE,WORLD_SIZE).fill(0xe9ecd8));
+    const g=new Graphics(),map=this.game.world,{size,spawn,square,track}=map;
+    this.cameraX=spawn.x;this.cameraY=spawn.y;
+    this.ground.addChild(new Graphics().rect(0,0,size,size).fill(0xe9ecd8));
     const tile=(id:ArtId,x:number,y:number,width:number,height:number,alpha:number)=>{const texture=this.textures.external(id);if(!texture)return;const s=new TilingSprite({texture,width,height});s.position.set(x,y);s.alpha=alpha;s.tileScale.set(.8);this.ground.addChild(s);};
-    tile(textureArt.grass,0,0,WORLD_SIZE,WORLD_SIZE,.48);
-    for(const x of [2320,3072,4210])tile(textureArt.paving,x-80,0,160,WORLD_SIZE,.9);
-    for(const y of [2040,2870,3310,3870])tile(textureArt.paving,0,y-70,WORLD_SIZE,140,.9);
-    tile(textureArt.paving,2760,2820,630,520,.9);this.ground.addChild(g);
-    for(let n=0;n<220;n++){const x=rng.range(60,6080),y=rng.range(60,6080);g.ellipse(x,y,rng.range(20,80),rng.range(15,50)).fill({color:0xd8e2bf,alpha:.55});}
-    for(const x of [2320,3072,4210])g.rect(x-80,0,160,WORLD_SIZE).fill({color:0xf4ecd8,alpha:.2});
-    for(const y of [2040,2870,3310,3870])g.rect(0,y-70,WORLD_SIZE,140).fill({color:0xf4ecd8,alpha:.2});
-    g.roundRect(2760,2820,630,520,38).fill({color:0xf4eddd,alpha:.2}).stroke({color:0xe1d7be,width:3});
-    for(let x=2790;x<3380;x+=56)for(let y=2848;y<3340;y+=56)g.rect(x,y,2,2).fill(0xdacfb5);
-    g.circle(3072,3072,152).stroke({color:0xe5dcc2,width:3});g.circle(3072,3072,142).stroke({color:0xe5dcc2,width:1.5});
-    g.moveTo(3044,3074).lineTo(3072,3059).lineTo(3100,3074).lineTo(3072,3089).closePath().stroke({color:0xd5c9a8,width:3});
-    // Campus running track.
-    g.roundRect(2560,1360,680,400,180).fill(0xc8997f).stroke({color:0xb38a73,width:3});
-    for(let n=0;n<4;n++)g.roundRect(2575+n*13,1375+n*13,650-n*26,370-n*26,165-n*13).stroke({color:0xe9c8a6,width:2});
-    g.roundRect(2640,1435,520,250,112).fill(0xb9c68e);g.rect(2750,1450,300,220).stroke({color:0xebead0,width:2});g.circle(2900,1560,40).stroke({color:0xebead0,width:2});
-    for(const zone of ZONES){const decoration=this.textures.external(landmarkArt[zone.id]);if(decoration){const sprite=new Sprite(decoration);sprite.anchor.set(.5);sprite.position.set(zone.x,zone.y);sprite.scale.set(fitArtScale(decoration,zone.radius*2));sprite.alpha=.68;this.ground.addChild(sprite);}g.circle(zone.x,zone.y,zone.radius).fill({color:zone.color,alpha:.08}).stroke({color:zone.color,width:2,alpha:.4});
-      const t=new Text({text:this.game.manifest.regions.includes(zone.id)?zone.name:`${zone.name} · 未开放\n${REGION_CONDITIONS[zone.id]??''}`,style:{fontFamily:['Campus Sans','sans-serif'],fontSize:13,fill:0x789781,fontWeight:'bold'}});t.anchor.set(.5);t.position.set(zone.x,zone.y+zone.radius-20);this.ground.addChild(t);this.zoneLabels.push({id:zone.id,text:t});
+    tile(textureArt.grass,0,0,size,size,.48);
+    for(const path of [...map.paths,square])tile(textureArt.paving,path.x,path.y,path.w,path.h,.9);
+    this.ground.addChild(g);
+    for(const lawn of map.lawns)g.ellipse(lawn.x,lawn.y,lawn.rx,lawn.ry).fill({color:0xd8e2bf,alpha:.55});
+    for(const path of map.paths)g.rect(path.x,path.y,path.w,path.h).fill({color:0xf4ecd8,alpha:.2});
+    g.roundRect(square.x,square.y,square.w,square.h,38).fill({color:0xf4eddd,alpha:.2}).stroke({color:0xe1d7be,width:3});
+    for(let x=square.x+30;x<square.x+square.w-10;x+=56)for(let y=square.y+28;y<square.y+square.h;y+=56)g.rect(x,y,2,2).fill(0xdacfb5);
+    g.circle(spawn.x,spawn.y,152).stroke({color:0xe5dcc2,width:3});g.circle(spawn.x,spawn.y,142).stroke({color:0xe5dcc2,width:1.5});
+    g.moveTo(spawn.x-28,spawn.y+2).lineTo(spawn.x,spawn.y-13).lineTo(spawn.x+28,spawn.y+2).lineTo(spawn.x,spawn.y+17).closePath().stroke({color:0xd5c9a8,width:3});
+    g.roundRect(track.x,track.y,track.w,track.h,180).fill(0xc8997f).stroke({color:0xb38a73,width:3});
+    for(let n=0;n<4;n++)g.roundRect(track.x+15+n*13,track.y+15+n*13,track.w-30-n*26,track.h-30-n*26,165-n*13).stroke({color:0xe9c8a6,width:2});
+    g.roundRect(track.x+80,track.y+75,track.w-160,track.h-150,112).fill(0xb9c68e);g.rect(track.x+190,track.y+90,300,220).stroke({color:0xebead0,width:2});g.circle(track.x+340,track.y+200,40).stroke({color:0xebead0,width:2});
+    for(const zone of map.zones){
+      const decoration=zone.art?this.textures.external(zone.art):undefined;
+      if(decoration){const sprite=new Sprite(decoration);sprite.anchor.set(.5);sprite.position.set(zone.x,zone.y);sprite.scale.set(fitArtScale(decoration,zone.radius*2));sprite.alpha=.68;this.ground.addChild(sprite);}
+      g.circle(zone.x,zone.y,zone.radius).fill({color:zone.color,alpha:.08}).stroke({color:zone.color,width:2,alpha:.4});
+      const text=map.regions.includes(zone.id)?zone.name:`${zone.name} · 未开放\n${REGION_CONDITIONS[zone.id]??''}`;
+      const label=new Text({text,style:{fontFamily:['Campus Sans','sans-serif'],fontSize:zone.legacy?13:20,fill:0x526f72,fontWeight:'bold'}});label.anchor.set(.5);label.position.set(zone.x,zone.y+zone.radius-20);this.ground.addChild(label);
     }
-    for(const f of this.game.map.fences){g.rect(f.x,f.y,f.w,f.h).fill(0x8f9b80).stroke({color:0x607963,width:2});tile(textureArt.metal,f.x,f.y,f.w,f.h,.8);}
-
-    for(const [index,b] of BUILDINGS.entries()){
-      // The rectangular plinth is exactly the existing collision footprint. Roofs are decorative.
-      const art=this.textures.external(buildingArt[buildingKeys[index]]),s=new Sprite(art??this.textures.get(`building-${b.name}`));
-      if(art){const placement=buildingPlacement(b,art);g.roundRect(b.x,b.y,b.w,b.h,8).fill({color:0xa7b7a2,alpha:.9}).stroke({color:0x526b65,width:3,alpha:.65});s.position.set(placement.x,placement.y);s.width=placement.width;s.height=placement.height;}
-      else s.position.set(b.x-5,b.y-8);
-      this.propLayer.addChild(s);this.props.push(s);
+    for(const f of map.fences){g.rect(f.x,f.y,f.w,f.h).fill(0x8f9b80).stroke({color:0x607963,width:2});tile(textureArt.metal,f.x,f.y,f.w,f.h,.8);}
+    // Locked legacy regions visibly occupy the same footprint as their blocker.
+    for(const gate of map.gates)this.gates.rect(gate.x,gate.y,gate.w,gate.h).fill({color:0x788b80,alpha:.22}).stroke({color:0x6d7760,width:3});
+    for(const b of map.buildings){
+      const art=b.art?this.textures.external(b.art):undefined,sprite=new Sprite(art??this.textures.get(`building-${b.id}`));
+      // The plinth and every local placeholder exactly match the collision rect.
+      g.roundRect(b.x,b.y,b.w,b.h,6).fill({color:b.color,alpha:.9}).stroke({color:0x526b65,width:3,alpha:.8});
+      if(art){const placement=buildingPlacement(b,art);sprite.position.set(placement.x,placement.y);sprite.width=placement.width;sprite.height=placement.height;}
+      else if(b.placeholder){sprite.position.set(b.x,b.y);sprite.width=b.w;sprite.height=b.h;}
+      else sprite.position.set(b.x-5,b.y-8);
+      this.propLayer.addChild(sprite);this.props.push(sprite);
       const label=new Text({text:b.name,style:{fontFamily:['Campus Sans','sans-serif'],fontSize:14,fill:0x3f5b55,fontWeight:'bold'}});label.anchor.set(.5,0);label.position.set(b.x+b.w/2,b.y+b.h+8);this.ground.addChild(label);
     }
-    for(let n=0;n<260;n++){
-      const x=rng.range(300,5840),y=rng.range(300,5840);
-      if(isBlocked(x,y,70)||distanceSq(x,y,3072,3072)<440**2||ZONES.some(z=>distanceSq(x,y,z.x,z.y)<(z.radius+30)**2)||[2320,3072,4210].some(v=>Math.abs(x-v)<115)||[2040,2870,3310,3870].some(v=>Math.abs(y-v)<100))continue;
-      const tree=new Sprite(this.textures.get('tree'));tree.anchor.set(.5,.85);tree.position.set(x,y);tree.scale.set(fitArtScale(tree.texture,112)*rng.range(.7,1.15));this.propLayer.addChild(tree);this.props.push(tree);
+    for(const prop of map.props){
+      const sprite=new Sprite(this.textures.get(prop.kind));sprite.anchor.set(.5,prop.kind==='tree'?.85:.65);sprite.position.set(prop.x,prop.y);sprite.scale.set(fitArtScale(sprite.texture,prop.kind==='tree'?112:prop.kind==='bench'?76:90)*prop.scale);this.propLayer.addChild(sprite);this.props.push(sprite);
+      if(prop.kind==='planter')g.roundRect(prop.x-42,prop.y-18,84,36,10).fill(0xd2c09a).stroke({color:0xb9ae8e,width:2});
     }
-    // Low garden planters frame the central square, leaving generous walking lanes.
-    for(const [x,y] of [[2750,2780],[3400,2780],[2750,3370],[3400,3370]]){
-      g.roundRect(x-42,y-18,84,36,10).fill(0xd2c09a).stroke({color:0xb9ae8e,width:2});
-      for(let n=0;n<5;n++)g.circle(x-28+n*14,y-4,13).fill(n%2?0x9fb983:0xb4c891);
-      const planter=this.textures.external(propArt.planter);if(planter){const s=new Sprite(planter);s.anchor.set(.5,.65);s.position.set(x,y);s.scale.set(fitArtScale(planter,90));this.propLayer.addChild(s);this.props.push(s);}
-      const bench=this.textures.external(propArt.bench);if(bench){const s=new Sprite(bench);s.anchor.set(.5,.7);s.position.set(x+(x<3000?85:-85),y);s.scale.set(fitArtScale(bench,76));this.propLayer.addChild(s);this.props.push(s);}
+    for(const site of map.assessmentSites.filter(s=>s.regionId.startsWith('s2:'))){
+      g.circle(site.center.x,site.center.y,site.radius).fill({color:0xf3eedf,alpha:.16}).stroke({color:0x98b9af,width:2,alpha:.55});
+      for(const route of site.retreats){g.moveTo(route[0].x,route[0].y);for(const point of route.slice(1))g.lineTo(point.x,point.y);g.stroke({color:0xabc6b6,width:3,alpha:.45});}
     }
-    const sign=new Text({text:'北京建筑大学\nBEIJING UNIVERSITY OF CIVIL ENGINEERING AND ARCHITECTURE',style:{fontFamily:['Campus Sans','sans-serif'],fontSize:15,fill:0x8b997c,align:'center',letterSpacing:2,lineHeight:27}});sign.anchor.set(.5);sign.position.set(3072,3210);this.ground.addChild(sign);
+    // Warning coverage is clipped by the same collision rectangles as movement
+    // and flow-field navigation. This does not change hazard timing or damage.
+    for(const rect of warningFloor(map))this.warningMask.rect(rect.x,rect.y,rect.w,rect.h);
+    this.warningMask.fill(0xffffff);
+    const sign=new Text({text:'北京建筑大学\nBEIJING UNIVERSITY OF CIVIL ENGINEERING AND ARCHITECTURE',style:{fontFamily:['Campus Sans','sans-serif'],fontSize:15,fill:0x8b997c,align:'center',letterSpacing:2,lineHeight:27}});sign.anchor.set(.5);sign.position.set(spawn.x,spawn.y+138);this.ground.addChild(sign);
   }
   private preloadBossArt(){
     for(const def of this.content.enemies){if(!['boss','miniBoss'].includes(def.rank)||def.from>this.game.week+1)continue;const bundle=`boss-${def.id}` as Bundle;if(this.requestedBosses.has(bundle))continue;this.requestedBosses.add(bundle);void resources.bundle(bundle,this.loadAbort.signal).then(lease=>{if(this.destroyed){lease.release();return;}this.artReleases.push(lease.release);for(const [id,texture] of lease.textures)this.artTextures.set(id,texture);});}
@@ -169,7 +175,7 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
     const ox=w*.5-this.cameraX*scale+camera.x,oy=this.viewportY+this.viewportHeight*.5-this.cameraY*scale+camera.y;
     this.world.position.set(ox,oy);this.world.scale.set(scale);this.dangerLayer.position.copyFrom(this.world.position);this.dangerLayer.scale.set(scale);this.world.rotation=camera.rotation;this.dangerLayer.rotation=camera.rotation;
     this.player.texture=this.textures.get('player');const playerScale=fitArtScale(this.player.texture,64);this.player.position.set(px,py-11+(this.settings.motion?Math.sin(time*13)*Math.min(2,Math.hypot(p.vx,p.vy)/130):0));this.player.scale.set((p.vx< -8?-playerScale:playerScale)*(1+(this.settings.motion?Math.sin(time*13)*.025:0)),playerScale*(1-(this.settings.motion?Math.sin(time*13)*.02:0)));this.player.alpha=p.invincible>0&&Math.floor(time*16)%2===0?.55:1;this.playerShadow.position.set(px,py+17);
-    const stamp=g.manifest.regions.join('|');if(stamp!==this.regionStamp){this.regionStamp=stamp;this.gates.clear();for(const z of ZONES.filter(z=>['lab','workshop','garden'].includes(z.id)&&!g.manifest.regions.includes(z.id)))this.gates.rect(z.x-80,z.y+z.radius+52,160,18).fill(0xa98d70).stroke({color:0x6d7760,width:2});for(const label of this.zoneLabels){const z=ZONES.find(z=>z.id===label.id)!;label.text.text=g.manifest.regions.includes(z.id)?z.name:`${z.name} · 未开放\n${REGION_CONDITIONS[z.id]??''}`;}}
+    this.chapterLabel.text=`第 ${g.chapter.chapter} 章 · ${g.chapter.title}${g.chapter.reached?' · 已抵达':''}\n${g.chapter.objective}${this.latest?.phase==='assessmentIntro'&&g.assessmentAdmission?`\n考场：${g.assessmentAdmission.site.name} · 等待确认入场`:''}`;
     this.fxGraphic.clear();this.syncEntities(alpha);this.drawGroundEffects();this.drawOrbitAndBots();this.drawEnemyStatus();this.drawTelegraphs();
     if(g.frame%4===0)for(const prop of this.props){prop.visible=Math.abs(prop.x-p.x)<this.viewWidth*.65+450&&Math.abs(prop.y-p.y)<this.viewHeight*.65+400;prop.alpha=distanceSq(prop.x+prop.width*.5,prop.y+prop.height*.6,p.x,p.y)<150**2?.55:1;}
     this.audio.beginFrame();
@@ -285,6 +291,7 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
   }
   private drawTelegraphs(){
     const gr=this.telegraphs;gr.clear();
+    if(this.latest?.phase==='assessmentIntro'&&this.game.assessmentAdmission){const site=this.game.assessmentAdmission.site;gr.circle(site.center.x,site.center.y,site.radius).fill({color:0x76bfa9,alpha:.1}).stroke({color:0x4d968e,width:3,alpha:.85});gr.circle(site.player.x,site.player.y,24).stroke({color:0x4d968e,width:3});}
     const g=this.game;for(const id of g.enemyShots.active){const s=g.enemyShots.data[id];if(s.age<0){const speed=Math.hypot(s.vx,s.vy)||1;gr.circle(s.x,s.y,s.radius+9).stroke({color:0xb65e8a,width:2,alpha:.9});gr.moveTo(s.x,s.y).lineTo(s.x+s.vx/speed*70,s.y+s.vy/speed*70).stroke({color:0xd480a3,width:2,alpha:.7});}}
     gr.circle(g.player.x,g.player.y,19).stroke({color:0xf0ffe5,width:2,alpha:.75});
     for(const h of this.game.hazards){const warning=h.warning>0,alpha=warning?.16+.08*Math.sin(this.elapsed*16):.35,color=warning?0xeb9b6b:0xe57577;
@@ -381,6 +388,6 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
     this.world.filters=[];this.effects.filters=[];if(this.player)this.player.filters=[];
     this.releaseFilterTextures();for(const filter of [this.bloom,this.glow,...this.postFX.filters])filter.destroy();
     this.destroyApplication();
-    this.artTextures.clear();this.uiTextures=[];this.trails.clear();this.transient=[];this.enemySprites=[];this.whiteSprites=[];this.shotSprites=[];this.hostileSprites=[];this.dropSprites=[];this.orbitSprites=[];this.botSprites=[];this.props=[];this.zoneLabels=[];if(!this.ownsAudio)this.audio.releaseSession();else this.audio.destroy();void resources.dispose();
+    this.artTextures.clear();this.uiTextures=[];this.trails.clear();this.transient=[];this.enemySprites=[];this.whiteSprites=[];this.shotSprites=[];this.hostileSprites=[];this.dropSprites=[];this.orbitSprites=[];this.botSprites=[];this.props=[];if(!this.ownsAudio)this.audio.releaseSession();else this.audio.destroy();void resources.dispose();
   }
 }

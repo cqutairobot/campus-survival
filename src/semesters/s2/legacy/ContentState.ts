@@ -11,8 +11,9 @@ import {relicStats,clampStats,relicBulletSpeed} from '../../../progression/relic
 import {RewardSystem} from './rewards';
 import {freshMetrics} from '../../../core/metrics';
 import {CombatMomentum,frenzyStats} from './momentum';
-import {campusSnapshot,safePoint,slideMove,zoneAt} from '../../../world/campus';
-import {Navigation} from '../../../world/navigation';
+import {assessmentEntry,createS2WorldSnapshot,worldNavigation,worldSafePoint,worldSlideMove,worldZoneAt,type AssessmentEntry,type WorldSnapshot} from '../world';
+import {immutableSnapshot} from '../../types';
+import type {Navigation} from '../../../world/navigation';
 import {WeaponSystem} from './system';
 import {SpatialGrid} from '../../../core/grid';
 import {clamp,colorNumber,distanceSq,segmentDistanceSq,TAU} from '../../../core/math';
@@ -29,26 +30,28 @@ import type {ContentCatalog} from './catalog';
  * save projection/writer, settlement, renderer or second clock lives here. */
 export class ContentState {
  readonly enemies=new EnemyPool();readonly shots=new ShotPool(2560);readonly enemyShots=new ShotPool(1280);readonly areas=new AreaPool();readonly drops=new DropPool();readonly grid=new SpatialGrid(2560);
- readonly navigation:Navigation;readonly map;readonly weaponSystem:WeaponSystem;readonly bossSystem:BossSystem;readonly director:EnemyDirector;readonly behaviors:EnemyBehaviors;readonly rewards:RewardSystem;readonly ultimate:UltimateSystem;
+ readonly navigation:Navigation;readonly world:WorldSnapshot;readonly weaponSystem:WeaponSystem;readonly bossSystem:BossSystem;readonly director:EnemyDirector;readonly behaviors:EnemyBehaviors;readonly rewards:RewardSystem;readonly ultimate:UltimateSystem;
  readonly manifest;readonly streams;readonly random;readonly dropRandom;readonly draftRandom;
  readonly weapons:Skill[]=[];readonly passives:Skill[]=[];readonly consumed:string[]=[];readonly relics:string[]=[];readonly progress=freshProgress();readonly discoveries:Discovery[]=[];readonly visualEvents:{serial:number;event:VisualEvent}[]=[];readonly hazards:Hazard[]=[];readonly deaths=new DeathQueue();readonly momentum=new CombatMomentum();
  readonly player:Player={x:3072,y:3072,prevX:3072,prevY:3072,vx:0,vy:0,facing:-Math.PI/2,hp:110,shield:0,shieldTime:0,invincible:1,lastHurt:-100};
- // Regional content is read from the existing campus; event/interaction scheduling
- // belongs to later batches. These original buffs remain available to behavior ports.
- readonly landmarks={zone:undefined as ReturnType<typeof zoneAt>,trackTime:0,rangeTime:0,channel:0};
+ // Regional content shares the injected world; scheduling remains a later batch.
+ readonly landmarks={zone:undefined as ReturnType<typeof worldZoneAt>,trackTime:0,rangeTime:0,channel:0};
+ assessmentAdmission:AssessmentEntry|null=null;
  stats:PlayerStats;phase:Phase='playing';semesterTime=0;combatTime=0;bossTime=0;week=1;level=1;xp=0;kills=0;bosses=0;bossEnemy=-1;bossStage=1;bossActive=false;bossNumber=0;
  inputX=0;inputY=0;frame=0;damageMultiplier=1;notice='新学期，出发！';noticeUntil=5;cards:HUD['cards']=[];draftToken=0;chest:HUD['chest']=null;
  damage:Record<string,number>={};poolFailures=0;readonly metrics=freshMetrics();coffeeTime=0;bonusCredits=0;ordinarySpawnsAllowed=false;assessmentRewardDone=false;
  private navTimer=0;private pendingLevels=0;private levelFeedbackFrame=-1;private deadBoss=-1;private nextMerge=1;private specialCooldown:Record<string,number>={};private hazardId=0;private instanceSerial=0;private visualSerial=0;
  private disposed=false;private waitingForAssessment=false;private moveScratch={x:0,y:0};private grantBoundary:RuntimeGrants|null=null;private transitions=new Set<string>();
- constructor(readonly content:ContentCatalog,services:RuntimeServices){
+ constructor(readonly content:ContentCatalog,services:RuntimeServices,world:WorldSnapshot=createS2WorldSnapshot(services.snapshot.regions)){
   this.manifest=services.snapshot;this.streams=services.streams;this.random=this.streams.combat;this.dropRandom=this.streams.drop;this.draftRandom=this.streams.draft;
   const initial=this.manifest.initialWeapon,definition=content.weaponById[initial.id];
   if(!definition||definition.fusion||!content.characters.some(c=>c.id===this.manifest.character))throw Error('Content not ported for opening snapshot');
-  this.map=campusSnapshot([...this.manifest.regions]);this.navigation=new Navigation(this.map.blockers);this.rewards=new RewardSystem(this);this.ultimate=new UltimateSystem(this);
+  if(world.version!==this.manifest.worldVersion||world.size!==6144)throw Error('Unsupported semester world snapshot');
+  this.world=immutableSnapshot(world);this.navigation=worldNavigation(this.world);this.rewards=new RewardSystem(this);this.ultimate=new UltimateSystem(this);
+  Object.assign(this.player,{...this.world.spawn,prevX:this.world.spawn.x,prevY:this.world.spawn.y});
   this.weapons.push({...initial,id:definition.id,kind:'base',instanceId:this.nextInstance()});this.stats=this.calculateStats();this.player.hp=this.stats.maxHp;
   this.weaponSystem=new WeaponSystem(this);this.bossSystem=new BossSystem(this);this.director=new EnemyDirector(this);this.behaviors=new EnemyBehaviors(this);this.discover(initial.id);
-  for(let n=0;n<12;n++){const a=n*TAU/12;this.spawnEnemy(n%3?'homework':'checkin',3072+Math.cos(a)*360,3072+Math.sin(a)*280);}
+  for(let n=0;n<12;n++){const a=n*TAU/12;this.spawnEnemy(n%3?'homework':'checkin',this.player.x+Math.cos(a)*360,this.player.y+Math.sin(a)*280);}
   this.rebuildGrid();this.navigation.rebuild(this.player.x,this.player.y);
  }
  nextInstance(){return++this.instanceSerial;}
@@ -59,7 +62,7 @@ export class ContentState {
  previewRelic(id:string){return this.calculateStats([...this.relics,id]);}
  recalculateStats(mode:'increase'|'ratio'='increase',previous=this.stats.maxHp){const hp=this.player.hp;this.stats=this.calculateStats();this.player.hp=Math.min(this.stats.maxHp,mode==='ratio'?hp*this.stats.maxHp/previous:hp+Math.max(0,this.stats.maxHp-previous)*(this.manifest.dailyRule==='overload'?.6:1));this.player.shield=Math.min(this.player.shield,this.stats.maxHp*.5);}
  discover(value:string,evolution=false){const split=value.indexOf(':'),category:Discovery['category']=evolution?'evolution':split<0?'item':value.slice(0,split) as Discovery['category'],id=split<0?value:value.slice(split+1);if(!this.discoveries.some(d=>d.category===category&&d.id===id))this.discoveries.push({semesterId:'s2',category,id,evidence:'run'});}
- safePoint(x:number,y:number){return safePoint(x,y,this.map.blockers);}
+ safePoint(x:number,y:number){return worldSafePoint(this.world,x,y);}
  rebuildGrid(){this.grid.rebuild(this.enemies.active,this.enemies.x,this.enemies.y);}
  emit(event:VisualEvent){this.visualEvents.push({serial:++this.visualSerial,event});if(this.visualEvents.length>2000)this.visualEvents.shift();}
  impact(_strength:number,_stop=0){/* Presentation owns camera/visual holds; no extra simulation clock. */}
@@ -73,7 +76,9 @@ export class ContentState {
   try{
    this.waitingForAssessment=false;this.frame=step.clock.tick;this.combatTime=step.clock.combatSeconds;this.semesterTime=step.clock.teachingSeconds;this.bossTime=step.clock.assessmentSeconds;this.week=step.clock.week;this.ordinarySpawnsAllowed=step.ordinarySpawnsAllowed;
    const dt=step.dt,p=this.player;this.momentum.update(dt,this.combatTime);this.coffeeTime=Math.max(0,this.coffeeTime-dt);p.prevX=p.x;p.prevY=p.y;p.invincible=Math.max(0,p.invincible-dt);p.shieldTime=Math.max(0,p.shieldTime-dt);if(!p.shieldTime)p.shield=0;
-   const zone=zoneAt(p.x,p.y);this.landmarks.zone=zone&&this.map.regions.includes(zone.id)?zone:undefined;this.movePlayer(dt);this.navTimer-=dt;if(this.navTimer<=0){this.navigation.rebuild(p.x,p.y);this.navTimer=.5;}
+   this.movePlayer(dt);this.landmarks.zone=worldZoneAt(this.world,p.x,p.y);
+   const visited=this.landmarks.zone?.id;if(visited&&!this.progress.visited.includes(visited)){this.progress.visited.push(visited);this.discover(`region:${visited}`);}
+   this.navTimer-=dt;if(this.navTimer<=0){this.navigation.rebuild(p.x,p.y);this.navTimer=.5;}
    this.director.update(dt);this.behaviors.update(dt);this.bossSystem.update(dt);this.bossSystem.updateExams(dt);this.rebuildGrid();this.ultimate.update(dt);this.weaponSystem.update(dt);this.updateEnemyShots(dt);this.updateHazards(dt);this.resolveDeaths();this.updateDrops(dt);
    const currentZone=this.landmarks.zone;if(p.hp>0)this.heal((this.stats.regen+(currentZone?.id==='canteen'&&this.combatTime-p.lastHurt>2?1:0))*dt);if(this.stats.drain>0&&p.hp>0)p.hp=Math.max(1,p.hp-this.stats.maxHp*this.stats.drain*dt);
    if(p.hp<=0)return{defeated:true};if(this.deadBoss>=0)return{assessmentCleared:true};
@@ -91,18 +96,21 @@ export class ContentState {
    // threat cleanup is cancellation and never a source of free kill rewards.
    for(const id of [...this.enemies.active])if(this.enemies.rank[id]===RANK_CODE.miniBoss&&this.enemies.hp[id]>0){this.enemies.hp[id]=0;this.deaths.mark(this.enemies,id,{kind:'environment',id:'assessment'},true);}
    this.resolveDeaths();this.clearThreats();this.director.pendingElites.length=0;this.handlePending();
+   try{this.assessmentAdmission=assessmentEntry(this.world,this.player);}catch{this.assessmentAdmission=null;this.message('当前区域没有安全考场，请检查世界布局');}
   }else if(event.stage==='start'){
+   const entry=assessmentEntry(this.world,this.player,this.assessmentAdmission);this.assessmentAdmission=entry;
+   const p=this.player;Object.assign(p,{...entry.site.player,prevX:entry.site.player.x,prevY:entry.site.player.y,vx:0,vy:0});this.navigation.rebuild(p.x,p.y,true);
    this.waitingForAssessment=false;
    this.bossNumber=event.assessment.index;this.bossStage=1;this.bossActive=true;this.bossTime=0;this.assessmentRewardDone=false;
-   const kind=['proposal','defense','finals'][this.bossNumber],point=this.safePoint(this.player.x,this.player.y-300);this.bossEnemy=this.spawnEnemy(kind,point.x,point.y);this.bossSystem.reset();this.emit({type:'boss',x:point.x,y:point.y,color:0xe48475,size:240,text:this.content.enemyById[kind].name});
+   const kind=['proposal','defense','finals'][this.bossNumber],point=entry.site.boss;this.bossEnemy=this.spawnEnemy(kind,point.x,point.y);this.bossSystem.reset();this.emit({type:'boss',x:point.x,y:point.y,color:0xe48475,size:240,text:this.content.enemyById[kind].name});
   }else{
    this.waitingForAssessment=true;
-   this.bosses++;this.metrics.bossFights.push({boss:this.bossNumber,seconds:event.clock.assessmentSeconds,damage:this.enemies.maxHp[this.deadBoss]});this.deadBoss=-1;this.clearThreats();this.magnet();this.rewards.openChest(3,true);
+   this.bosses++;this.metrics.bossFights.push({boss:this.bossNumber,seconds:event.clock.assessmentSeconds,damage:this.enemies.maxHp[this.deadBoss]});this.deadBoss=-1;this.clearThreats();this.assessmentAdmission=null;this.magnet();this.rewards.openChest(3,true);
   }
   }finally{this.grantBoundary=null;}
  }
  private clearThreats(){this.inputX=this.inputY=0;this.bossEnemy=-1;this.enemies.clear();this.deaths.clear();this.enemyShots.clear();this.hazards.length=0;this.ordinarySpawnsAllowed=false;this.rebuildGrid();}
- canAcknowledge(kind:'assessmentIntro'|'assessmentReward'){return!this.hasPendingRewards&&(kind==='assessmentIntro'||this.assessmentRewardDone);}
+ canAcknowledge(kind:'assessmentIntro'|'assessmentReward'){return!this.hasPendingRewards&&(kind==='assessmentIntro'?!!this.assessmentAdmission:this.assessmentRewardDone);}
  command(value:unknown){
   if(this.disposed||!value||typeof value!=='object')return{accepted:false};const c=value as Record<string,unknown>;
   if(c.type==='move'&&typeof c.x==='number'&&Number.isFinite(c.x)&&typeof c.y==='number'&&Number.isFinite(c.y)&&this.phase==='playing'&&!this.waitingForAssessment){this.inputX=clamp(c.x,-1,1);this.inputY=clamp(c.y,-1,1);return{accepted:true};}
@@ -114,8 +122,8 @@ export class ContentState {
   else return{accepted:false};
   return{accepted:true,resume:(this.phase as Phase)==='playing'};
  }
- private movePlayer(dt:number){const p=this.player,len=Math.hypot(this.inputX,this.inputY),scale=len>1?1/len:1,ix=this.inputX*scale,iy=this.inputY*scale,smoothing=1-Math.exp(-dt*(len>.01?18:14)),speed=this.combatStats.speed;p.vx+=(ix*speed-p.vx)*smoothing;p.vy+=(iy*speed-p.vy)*smoothing;if(len>.05)p.facing=Math.atan2(iy,ix);const next=slideMove(p.x,p.y,p.vx*dt,p.vy*dt,12,this.moveScratch,this.map.blockers);p.x=next.x;p.y=next.y;}
- moveEnemy(id:number,dx:number,dy:number){const e=this.enemies,next=slideMove(e.x[id],e.y[id],dx,dy,e.radius[id]*.65,this.moveScratch,this.map.blockers);e.x[id]=next.x;e.y[id]=next.y;}
+ private movePlayer(dt:number){const p=this.player,len=Math.hypot(this.inputX,this.inputY),scale=len>1?1/len:1,ix=this.inputX*scale,iy=this.inputY*scale,smoothing=1-Math.exp(-dt*(len>.01?18:14)),speed=this.combatStats.speed;p.vx+=(ix*speed-p.vx)*smoothing;p.vy+=(iy*speed-p.vy)*smoothing;if(len>.05)p.facing=Math.atan2(iy,ix);const next=worldSlideMove(this.world,p.x,p.y,p.vx*dt,p.vy*dt,12,this.moveScratch);p.x=next.x;p.y=next.y;}
+ moveEnemy(id:number,dx:number,dy:number){const e=this.enemies,next=worldSlideMove(this.world,e.x[id],e.y[id],dx,dy,e.radius[id]*.65,this.moveScratch);e.x[id]=next.x;e.y[id]=next.y;}
  spawnEnemy(kind:string,x?:number,y?:number,reward=0){const index=this.content.enemyIndex[kind];if(index===undefined)return-1;const e=this.enemies,def=this.content.enemies[index],id=e.acquire();if(id<0){this.poolFailures++;return-1;}
   if(x===undefined||y===undefined){const rng=this.streams.spawn,horizontal=rng.next()<.5,sign=rng.next()<.5?-1:1;x=this.player.x+(horizontal?sign*(LOGICAL_WIDTH*.5+rng.range(80,160)):rng.range(-LOGICAL_WIDTH*.5,LOGICAL_WIDTH*.5));y=this.player.y+(!horizontal?sign*(LOGICAL_HEIGHT*.5+rng.range(80,160)):rng.range(-LOGICAL_HEIGHT*.5,LOGICAL_HEIGHT*.5));}
   const point=this.safePoint(x,y),normal=def.rank==='normal';e.x[id]=e.prevX[id]=point.x;e.y[id]=e.prevY[id]=point.y;e.hp[id]=e.maxHp[id]=normal?Math.ceil(def.hp*weekHpMultiplier(this.week)):def.hp;e.speed[id]=def.speed*(normal?Math.min(1.28,1+.014*(this.week-1)):1);e.damage[id]=def.damage*(def.rank==='normal'||def.rank==='elite'?weekDamageMultiplier(this.week):1);e.radius[id]=def.radius;e.kind[id]=index;e.rank[id]=RANK_CODE[def.rank];e.cooldown[id]=this.streams.ai.range(1,4);e.affixTimer[id]=this.streams.ai.range(1,4);e.skillTimer[id]=7;e.shootTimer[id]=3;e.xp[id]=def.xp;e.reward[id]=reward;e.rewardWeight[id]=def.rank==='bossAdd'?0:1;e.orbitHits.fill(0,id*12,id*12+12);e.areaHits.fill(0,id*4,id*4+4);
@@ -156,7 +164,7 @@ export class ContentState {
  private killFeedback(rank:EnemyRank,weight:number){const p=this.player,result=this.momentum.kill(rank,this.combatTime,weight);if(result.milestone)this.emit({type:'combo',x:p.x,y:p.y,color:0xffd775,size:90,value:result.milestone,text:result.milestone>=100?'学术无双':result.milestone>=50?'势不可挡':result.milestone>=25?'灵感喷涌':'渐入佳境'});if(result.clear){this.metrics.clearRewards++;for(const id of this.drops.active){const d=this.drops.data[id];if(d.kind==='xp'&&distanceSq(p.x,p.y,d.x,d.y)<=360**2)d.attract=true;}this.emit({type:'clear',x:p.x,y:p.y,color:0x85ead0,size:360,text:'清场 · 学分汇流 +15 狂热',duration:.7});}if(result.frenzy)this.startFrenzyFeedback();}
  private startFrenzyFeedback(){this.metrics.frenzyTriggers++;this.emit({type:'frenzy',x:this.player.x,y:this.player.y,color:0xffb354,size:240,text:'学术狂热',duration:.8});this.impact(4);}
  private criticalChain(origin:number,x:number,y:number,damage:number,source:WeaponKind){const e=this.enemies,visited=[origin];this.metrics.criticalChains++;for(let hop=0;hop<2;hop++){let target=-1,best=130**2;for(const id of e.active){if(visited.includes(id)||e.hp[id]<=0)continue;const d=distanceSq(x,y,e.x[id],e.y[id]);if(d<=best){best=d;target=id;}}if(target<0)break;visited.push(target);const tx=e.x[target],ty=e.y[target];this.metrics.chainDamage+=this.hitEnemy(target,damage,source,x,y,.4,false,false);this.emit({type:'chain',x,y,x2:tx,y2:ty,color:0xffdf81,size:3,duration:.22,weapon:source});x=tx;y=ty;}}
- hurtPlayer(damage:number,x:number,y:number){const p=this.player;if(p.invincible>0||p.hp<=0||damage<=0)return;damage=Math.max(1,damage*(this.landmarks.zone?.id==='garden'?1.1:1)-this.stats.armor);const absorbed=Math.min(p.shield,damage);p.shield-=absorbed;damage=this.inheritanceDamage(damage-absorbed);p.hp-=damage;p.invincible=this.stats.invulnerability;p.lastHurt=this.combatTime;this.landmarks.channel=0;this.metrics.hurtCount++;this.metrics.hpLost+=damage;this.metrics.shieldAbsorbed+=absorbed;const dx=p.x-x,dy=p.y-y,d=Math.hypot(dx,dy)||1,push=this.passives.find(s=>s.id==='push'),resistance=push?[.05,.1,.15,.2,.25][push.level-1]:0,next=slideMove(p.x,p.y,dx/d*12*(1-resistance),dy/d*12*(1-resistance),12,this.moveScratch,this.map.blockers);p.x=next.x;p.y=next.y;this.impact(5,.04);this.emit({type:'hurt',damageType:'hurt',angle:Math.atan2(dy,dx),x:p.x,y:p.y,color:0xe96c6c,size:24,value:Math.ceil(damage)});}
+ hurtPlayer(damage:number,x:number,y:number){const p=this.player;if(p.invincible>0||p.hp<=0||damage<=0)return;damage=Math.max(1,damage*(this.landmarks.zone?.id==='garden'?1.1:1)-this.stats.armor);const absorbed=Math.min(p.shield,damage);p.shield-=absorbed;damage=this.inheritanceDamage(damage-absorbed);p.hp-=damage;p.invincible=this.stats.invulnerability;p.lastHurt=this.combatTime;this.landmarks.channel=0;this.metrics.hurtCount++;this.metrics.hpLost+=damage;this.metrics.shieldAbsorbed+=absorbed;const dx=p.x-x,dy=p.y-y,d=Math.hypot(dx,dy)||1,push=this.passives.find(s=>s.id==='push'),resistance=push?[.05,.1,.15,.2,.25][push.level-1]:0,next=worldSlideMove(this.world,p.x,p.y,dx/d*12*(1-resistance),dy/d*12*(1-resistance),12,this.moveScratch);p.x=next.x;p.y=next.y;this.impact(5,.04);this.emit({type:'hurt',damageType:'hurt',angle:Math.atan2(dy,dx),x:p.x,y:p.y,color:0xe96c6c,size:24,value:Math.ceil(damage)});}
  heal(amount:number){const before=this.player.hp;if(this.player.hp>0&&amount>0)this.player.hp=Math.min(this.stats.maxHp,this.player.hp+amount*(this.manifest.dailyRule==='overload'?.6:1));const restored=this.player.hp-before;if(restored>=1)this.emit({type:'pickup',damageType:'heal',x:this.player.x,y:this.player.y,color:0x83e4be,size:8,value:restored});}
  addShield(amount:number,seconds:number){this.player.shield=Math.min(this.stats.maxHp*.5,this.player.shield+amount);this.player.shieldTime=seconds;}
  enemyBullet(x:number,y:number,angle:number,speed:number,damage:number,radius=6,delay=0,ordinary=true){const id=this.enemyShots.acquire();if(id<0){this.poolFailures++;return;}const s=this.enemyShots.data[id];s.x=s.prevX=x;s.y=s.prevY=y;s.vx=Math.cos(angle)*speed;s.vy=Math.sin(angle)*speed;s.life=8+delay;s.age=-delay;s.damage=damage;s.radius=radius;s.kind='enemy';s.color=0xe8777d;s.frozen=0;s.ordinary=ordinary;}
