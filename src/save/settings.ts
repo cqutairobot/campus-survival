@@ -10,8 +10,8 @@ export function normalizeSettings(value:unknown):Settings{
   for(const key of ['muted','motion','damageNumbers','afterimages','haptics','quickChest','zoomEffects','distortion','dynamicMusic','musicDucking'] as const){
     const v=input[key]??DEFAULT_SETTINGS[key];if(typeof v==='boolean')out[key]=v;
   }
-  if(['auto','high','medium','low'].includes(String(input.quality)))out.quality=input.quality as Settings['quality'];
-  if(['auto','full','phone'].includes(String(input.audioPreset)))out.audioPreset=input.audioPreset as Settings['audioPreset'];
+  if(typeof input.quality==='string'&&['auto','high','medium','low'].includes(input.quality))out.quality=input.quality as Settings['quality'];
+  if(typeof input.audioPreset==='string'&&['auto','full','phone'].includes(input.audioPreset))out.audioPreset=input.audioPreset as Settings['audioPreset'];
   if(typeof input.nickname==='string')out.nickname=input.nickname.trim().slice(0,20)||DEFAULT_SETTINGS.nickname;
   return out;
 }

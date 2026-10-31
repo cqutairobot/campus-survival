@@ -3,7 +3,8 @@ import {FUSIONS} from '../data/fusions';
 import {RELICS} from '../data/relics';
 import {ACHIEVEMENTS} from '../data/achievements';
 import {DAILY_RULES} from '../data/daily';
-import type {DailyRecord,RunResult,SaveData} from '../types';
+import type {DailyRecord,RunResult,SaveData,PersistenceState} from '../types';
+import {diagnoseSave,recoveryDigest,recoveryPreview,type RecoverySource} from './recovery';
 import {DEFAULT_PASSIVES,DEFAULT_REGIONS,DEFAULT_WEAPONS,migrateV1ToV2,migrateV2ToV3} from './migrations';
 import {awardAchievements} from '../progression/achievements';
 import {retainRecords} from '../challenges/scoring';
@@ -39,16 +40,83 @@ export function validateSave(value:unknown):SaveData|null{
  return out;
 }
 export interface StorageLike{getItem(key:string):string|null;setItem(key:string,value:string):void;removeItem(key:string):void}
+export const RECOVERY_PREFIX='campus-survival.recovery.v3.';
 export class SaveRepository{
- status='本地存档已就绪';private future=false;
+ status='本地存档已就绪';state:PersistenceState='new';sources:RecoverySource[]=[];
  constructor(private storage:StorageLike|null){}
+ private mark(state:PersistenceState,status:string){this.state=state;this.status=status;}
  load():SaveData{
-  if(!this.storage){this.status='临时模式 · 存储不可用';return freshSave();}
-  for(const key of [SAVE_KEY,BACKUP_KEY,...LEGACY_KEYS])try{const raw=this.storage.getItem(key);if(!raw)continue;const parsed:unknown=JSON.parse(raw);if(key===SAVE_KEY&&record(parsed)&&Number(parsed.schemaVersion)>3){this.future=true;this.status='发现未来版本存档 · 使用内存模式，保留原文';}const save=validateSave(parsed);if(save){if(key!==SAVE_KEY){this.status=key===BACKUP_KEY?'已恢复有效备份':'旧存档已迁移至 v3';this.write(save);if(key===BACKUP_KEY)this.status='已恢复有效备份';}return save;}}catch{this.status='读取失败 · 尝试有效备份';}
+  this.sources=[];this.mark('new','尚无存档 · 首次保存后保存在此设备');
+  if(!this.storage){this.mark('unavailable','内存模式 · 存储不可用，可导出本页进度');return freshSave();}
+  let future=false;
+  for(const key of [SAVE_KEY,BACKUP_KEY,...LEGACY_KEYS]){
+   let raw:string|null;try{raw=this.storage.getItem(key);}catch{this.mark('unavailable','内存模式 · 存储读取失败，可导出本页进度');return freshSave();}
+   if(raw===null)continue;
+   let parsed:unknown;try{parsed=JSON.parse(raw);}catch{/* Keep even empty strings and invalid JSON. */}
+   if(key===SAVE_KEY&&record(parsed)&&Number(parsed.schemaVersion)>3)future=true;
+   const save=validateSave(parsed);
+   if(save){
+    if(future){this.mark('future','未来版本原文已保留 · 内存模式');return save;}
+    if(key===SAVE_KEY){this.mark('ready','本地存档已就绪');return save;}
+    this.mark('fallback',key===BACKUP_KEY?'已恢复有效备份':'旧存档已迁移至 v3');
+    const notice=this.status;try{this.protect(this.sources);this.storage.setItem(SAVE_KEY,JSON.stringify(save));this.mark('fallback',notice);}catch{this.mark('failed','备份已载入内存 · 写回失败，可导出');}return save;
+   }
+   this.sources.push({key,raw,reason:diagnoseSave(raw)});
+  }
+  if(future)this.mark('future','未来版本原文已保留 · 内存模式');
+  else if(this.sources.length)this.mark('corrupt','内存模式 · 原档待恢复');
   return freshSave();
  }
- write(save:SaveData){if(!this.storage||this.future){this.status=this.future?'未来版本原文已保留 · 可导出内存进度':'临时模式 · 本次进度无法保存';return false;}const validated=validateSave(save);if(!validated)return false;try{const previous=this.storage.getItem(SAVE_KEY);if(previous){try{const old=JSON.parse(previous);if(Number(old.schemaVersion)>3){this.future=true;return false;}if(validateSave(old)){let futureBackup=false;try{const backup=this.storage.getItem(BACKUP_KEY);futureBackup=!!backup&&Number(JSON.parse(backup).schemaVersion)>3;}catch{/* Invalid backups can be replaced by a valid one. */}if(!futureBackup)this.storage.setItem(BACKUP_KEY,previous);}}catch{/* Preserve a good backup. */}}this.storage.setItem(SAVE_KEY,JSON.stringify(validated));this.status='已保存在此设备';return true;}catch{this.status='保存失败 · 可导出存档备份';return false;}}
- reset(){try{for(const key of [SAVE_KEY,BACKUP_KEY,...LEGACY_KEYS])this.storage?.removeItem(key);}catch{/* Keep an in-memory save. */}this.future=false;return freshSave();}
+ private canWrite(){
+  if(['corrupt','future','unavailable'].includes(this.state)||!this.storage){
+   this.status=this.state==='corrupt'?'内存模式 · 原档待恢复':this.state==='future'?'未来版本原文已保留 · 可导出内存进度':'内存模式 · 本次进度无法保存';return false;
+  }return true;
+ }
+ write(save:SaveData){
+  if(!this.canWrite())return false;
+  const validated=validateSave(save);if(!validated)return false;
+  try{
+   const previous=this.storage!.getItem(SAVE_KEY);
+   if(previous!==null){
+    let old:unknown;try{old=JSON.parse(previous);}catch{/* Preserve any valid backup. */}
+    if(record(old)&&Number(old.schemaVersion)>3){this.sources=[{key:SAVE_KEY,raw:previous,reason:diagnoseSave(previous)}];this.mark('future','未来版本原文已保留 · 内存模式');return false;}
+    // A malformed external replacement is protected even if load() preceded it.
+    if(!validateSave(old)){this.sources=[{key:SAVE_KEY,raw:previous,reason:diagnoseSave(previous)}];this.mark('corrupt','内存模式 · 原档待恢复');return false;}
+    let futureBackup=false;try{const backup=this.storage!.getItem(BACKUP_KEY);futureBackup=backup!==null&&Number(JSON.parse(backup).schemaVersion)>3;}catch{/* Invalid backups can be replaced by a valid one. */}
+    if(!futureBackup)this.storage!.setItem(BACKUP_KEY,previous);
+   }
+   this.storage!.setItem(SAVE_KEY,JSON.stringify(validated));this.mark('ready','已保存在此设备');return true;
+  }catch{this.mark('failed','保存失败 · 可导出存档备份');return false;}
+ }
+ /** Archive all originals without borrowing the rotating backup slot. */
+ private protect(sources:RecoverySource[]){
+  for(const source of sources){
+   const base=RECOVERY_PREFIX+recoveryDigest(source.raw);let key=base;
+   for(let slot=0;;slot++){
+    key=slot?`${base}.${slot}`:base;const existing=this.storage!.getItem(key);
+    if(existing===source.raw)break;
+    if(existing!==null)continue;
+    this.storage!.setItem(key,source.raw);if(this.storage!.getItem(key)!==source.raw)throw Error('原文回读核对失败');break;
+   }
+  }
+ }
+ commitRecovery(kind:'fields'|'reset',sourceIndex=0):SaveData|null{
+  if(!this.storage||this.state==='future'||this.state==='unavailable'){this.status='原文保护仍生效 · 无法写入设备';return null;}
+  const candidate=kind==='reset'?freshSave():recoveryPreview(this.sources[sourceIndex]?.raw??'')?.save;
+  if(!candidate){this.status='无法按字段恢复此原文';return null;}
+  try{
+   // Recheck before archiving or replacing; an external change needs a fresh preview.
+   for(const s of kind==='fields'||this.state==='corrupt'?this.sources:[])if(this.storage.getItem(s.key)!==s.raw)throw Error('原文已在别处变化，请刷新');
+   const originals=[...this.sources];
+   if(kind==='reset')for(const key of [SAVE_KEY,BACKUP_KEY,...LEGACY_KEYS]){const raw=this.storage.getItem(key);if(raw!==null&&!originals.some(s=>s.key===key))originals.push({key,raw,reason:'重置前原文'});}
+   for(const s of originals){let v:unknown;try{v=JSON.parse(s.raw);}catch{}if(record(v)&&Number(v.schemaVersion)>3)throw Error('未来版本原文不能重置');}
+   this.protect(originals);
+   this.storage.setItem(SAVE_KEY,JSON.stringify(candidate));
+   if(kind==='reset')for(const key of [BACKUP_KEY,...LEGACY_KEYS])this.storage.removeItem(key);
+   this.sources=originals;this.mark('ready',kind==='reset'?'已保留原文并重置，已保存在此设备':'已按字段恢复并保存，恢复前原文可导出');return candidate;
+  }catch(e){this.status=`恢复未完成 · ${e instanceof Error?e.message:'写入失败'} · 原文可导出`;return null;}
+ }
+ reset(){return this.commitRecovery('reset');}
 }
 export function settleRun(save:SaveData,result:RunResult):SaveData{
  if(save.settledRuns.includes(result.id)||result.debug)return save;

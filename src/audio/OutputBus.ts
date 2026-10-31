@@ -1,7 +1,7 @@
 import type {Settings} from '../types';
 export type OutputPreset='full'|'phone';
 export function resolveAudioPreset(preset:Settings['audioPreset'],coarse:boolean,shortSide:number):OutputPreset{
- return preset==='auto'?(coarse&&shortSide<=600?'phone':'full'):preset;
+ return preset==='full'||preset==='phone'?preset:coarse&&shortSide<=600?'phone':'full';
 }
 export const OUTPUT_PROFILES={
  full:{highpass:25,shelf:0,threshold:-12,ratio:1},

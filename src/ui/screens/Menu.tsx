@@ -9,7 +9,7 @@ import {Button} from '../components/Button';
 import {characterArt} from '../../assets/bindings';
 import {artUrl,assetUrl} from '../../assets/manifest';
 
-export type Panel='characters'|'talents'|'codex'|'settings'|'controls'|'achievements'|'map'|'daily'|'credits';
+export type Panel='characters'|'talents'|'codex'|'settings'|'controls'|'achievements'|'map'|'daily'|'credits'|'recovery';
 export function Menu({open}:{open:(panel:Panel)=>void}){
   const save=useApp(s=>s.save),status=useApp(s=>s.saveStatus),settings=useApp(s=>s.settings),character=CHARACTERS.find(c=>c.id===save.selected)??CHARACTERS[0];
   const root=useRef<HTMLElement>(null),[missing,setMissing]=useState(false),art=characterArt[character.id];

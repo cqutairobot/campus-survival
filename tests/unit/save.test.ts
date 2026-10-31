@@ -1,3 +1,5 @@
+// 历史 v2 契约：schema 2 终点与 quality=auto 默认不适用于当前版本。
+// 当前迁移、0/false、未来档保护与防重复结算见 v3-foundation、v4-settings、v4-fixes。
 import { describe,expect,it } from 'vitest';
 import { BACKUP_KEY, freshSave, SAVE_KEY, SaveRepository, settleRun, validateSave } from '../../src/save/storage';
 import type { RunResult } from '../../src/types';

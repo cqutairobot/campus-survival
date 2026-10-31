@@ -20,6 +20,8 @@ export interface Character { id: string; name: string; subtitle: string; icon: s
 export interface Talent { id: string; name: string; icon: string; description: string; parent?: string }
 export interface Settings { settingsVersion:4;master: number; music: number; sfx: number; uiSfx:number;muted: boolean; quality: Quality; shake: number; flash: number; motion: boolean; damageNumbers: boolean; afterimages:boolean; haptics:boolean;quickChest:boolean;nickname:string;hitStop:number;zoomEffects:boolean;distortion:boolean;dynamicMusic:boolean;musicDucking:boolean;audioPreset:'auto'|'full'|'phone' }
 export interface AchievementState {progress:number;completed:boolean;claimed:boolean}
+export type PersistenceState='new'|'ready'|'fallback'|'corrupt'|'future'|'unavailable'|'failed'|'starting'|'observer'|'conflict'|'unsupported';
+export interface SaveOperation {kind:'saved'|'memory'|'invalid'|'failed';message:string}
 export interface DailyRecord {id:string;date:string;version:string;rule:string;character:string;nickname:string;score:number;victory:boolean;completedWeeks:number;seconds:number;build:string[];relics:string[];averageCurse:number;createdAt:number}
 export interface SaveData {
   schemaVersion: 3; contentVersion: string; credits: number; unlocked: string[]; selected: string;
