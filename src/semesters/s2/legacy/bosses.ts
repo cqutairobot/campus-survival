@@ -3,10 +3,11 @@ import type { ContentState } from './ContentState';
 import { distanceSq, TAU } from '../../../core/math';
 import { RANK_CODE } from '../../../data/enemies';
 import { slowFactor } from '../../../combat/status';
+import type {S2Hazard} from '../danger';
 export class BossSystem {
-  private attack=2.5;private summon=9;private skill=5;private lastStage=1;private doubleCharge=false;
+  private attack=2.5;private summon=9;private skill=5;private lastStage=1;private doubleCharge=false;private chargeWarning:S2Hazard|undefined;
   constructor(private g:ContentState){}
-  reset(){this.attack=2.5;this.summon=9;this.skill=5;this.lastStage=1;this.doubleCharge=false;}
+  reset(){this.attack=2.5;this.summon=9;this.skill=5;this.lastStage=1;this.doubleCharge=false;this.chargeWarning=undefined;}
   update(dt:number){
     const g=this.g,id=g.bossEnemy,e=g.enemies,p=g.player;if(id<0||!e.alive[id]||e.hp[id]<=0||e.frozen[id]>0)return;
     const kind=e.kind[id],ratio=e.hp[id]/e.maxHp[id],stage=kind===this.g.content.enemyIndex.proposal?(ratio<.5?2:1):kind===this.g.content.enemyIndex.defense?(ratio<.3?3:ratio<.6?2:1):(ratio<.35?3:ratio<.7?2:1);
@@ -15,7 +16,7 @@ export class BossSystem {
     this.attack-=dt;this.summon-=dt;this.skill-=dt;
     const dx=p.x-e.x[id],dy=p.y-e.y[id],dist=Math.hypot(dx,dy)||1;
     if(e.state[id]===1){
-      e.timer[id]-=dt;if(e.timer[id]<=0){e.state[id]=2;e.timer[id]=.6;}
+      const h=this.chargeWarning;if(!h||h.phase==='cancelled')e.state[id]=0;else if(h.phase==='active'){e.state[id]=2;e.timer[id]=.6;}
     }else if(e.state[id]===2){
       g.moveEnemy(id,Math.cos(e.angle[id])*560*dt,Math.sin(e.angle[id])*560*dt);e.timer[id]-=dt;
       if(e.timer[id]<=0){e.state[id]=0;if(stage>=2&&!this.doubleCharge){this.doubleCharge=true;this.charge();}else this.doubleCharge=false;}
@@ -45,26 +46,26 @@ export class BossSystem {
   private ring(count:number,speed:number,safe=false){
     const g=this.g,e=g.enemies,id=g.bossEnemy,rotation=g.streams.ai.range(0,TAU),safeA=Math.atan2(g.player.y-e.y[id],g.player.x-e.x[id]);
     g.emit({type:'warning',x:e.x[id],y:e.y[id],color:0xe57474,size:80,duration:.75});
-    for(let n=0;n<count;n++){const a=rotation+n*TAU/count;if(safe&&Math.cos(a-safeA)>.84)continue;g.enemyBullet(e.x[id],e.y[id],a,speed,10,7,.75,false);}
+    for(let n=0;n<count;n++){const a=rotation+n*TAU/count;if(safe&&Math.cos(a-safeA)>.84)continue;g.enemyBullet(e.x[id],e.y[id],a,speed,10,7,.75,false,id);}
   }
-  private charge(){const g=this.g,e=g.enemies,id=g.bossEnemy;e.angle[id]=Math.atan2(g.player.y-e.y[id],g.player.x-e.x[id]);e.state[id]=1;e.timer[id]=.9;g.addHazard('line',e.x[id],e.y[id],e.x[id]+Math.cos(e.angle[id])*380,e.y[id]+Math.sin(e.angle[id])*380,42,.9,0,0);}
+  private charge(){const g=this.g,e=g.enemies,id=g.bossEnemy,angle=Math.atan2(g.player.y-e.y[id],g.player.x-e.x[id]);this.chargeWarning=g.addHazard('line',e.x[id],e.y[id],e.x[id]+Math.cos(angle)*380,e.y[id]+Math.sin(angle)*380,42,1.2,.6,0);if(this.chargeWarning){e.angle[id]=angle;e.state[id]=1;}}
   private wall(){
     const g=this.g,p=g.player,vertical=g.streams.ai.next()<.5,gap=vertical?p.y:p.x;
     for(let n=-5;n<=5;n++){
       const offset=n*54;if(Math.abs(offset)<85)continue;
-      if(vertical)g.enemyBullet(p.x-450,gap+offset,0,160,12,11,.9,false);else g.enemyBullet(gap+offset,p.y-430,Math.PI/2,160,12,11,.9,false);
+      if(vertical)g.enemyBullet(p.x-450,gap+offset,0,160,12,11,.9,false,g.bossEnemy);else g.enemyBullet(gap+offset,p.y-430,Math.PI/2,160,12,11,.9,false,g.bossEnemy);
     }
     g.emit({type:'warning',x:p.x,y:p.y,color:0xb999d2,size:120,text:'弹幕通道',duration:.9});
   }
   private math(){const g=this.g,p=g.player;for(let y=-2;y<=2;y++)for(let x=-2;x<=2;x++){if(x===0&&y===0||g.streams.ai.next()<.25)continue;g.addHazard('circle',p.x+x*100,p.y+y*100,0,0,40,.9,.35,16);}}
-  private fan(){const g=this.g,e=g.enemies,id=g.bossEnemy,a=Math.atan2(g.player.y-e.y[id],g.player.x-e.x[id]);for(let n=0;n<11;n++)g.enemyBullet(e.x[id],e.y[id],a+(n-5)*.16,180,10,7,.8,false);}
+  private fan(){const g=this.g,e=g.enemies,id=g.bossEnemy,a=Math.atan2(g.player.y-e.y[id],g.player.x-e.x[id]);for(let n=0;n<11;n++)g.enemyBullet(e.x[id],e.y[id],a+(n-5)*.16,180,10,7,.8,false,id);}
   private exams(){const g=this.g,p=g.player;for(const [i,kind] of ['math','english','coding','mechanics'].entries()){const a=i*TAU/4;g.spawnEnemy(kind,p.x+Math.cos(a)*340,p.y+Math.sin(a)*340);}}
   updateExams(dt:number){
     const g=this.g,e=g.enemies,p=g.player;
     for(const id of e.active){if(e.rank[id]!==RANK_CODE.bossAdd||e.hp[id]<=0||e.frozen[id]>0||!['math','english','coding','mechanics'].includes(this.g.content.enemies[e.kind[id]].id))continue;e.cooldown[id]-=dt;if(e.cooldown[id]>0)continue;e.cooldown[id]=5+g.streams.ai.next()*2;
       const kind=e.kind[id];if(kind===this.g.content.enemyIndex.math){for(let n=0;n<4;n++)g.addHazard('circle',p.x+(n%2?85:-85),p.y+(n<2?85:-85),0,0,38,.9,.25,12);}
-      else if(kind===this.g.content.enemyIndex.english){const a=Math.atan2(p.y-e.y[id],p.x-e.x[id]);for(let n=-2;n<=2;n++)g.enemyBullet(e.x[id],e.y[id],a+n*.22,165,8,6,.8);}
-      else if(kind===this.g.content.enemyIndex.coding){for(let n=-2;n<=2;n++){if(n===0)continue;g.enemyBullet(p.x+n*60,p.y-350,Math.PI/2,145,9,7,.85);}}
+      else if(kind===this.g.content.enemyIndex.english){const a=Math.atan2(p.y-e.y[id],p.x-e.x[id]);for(let n=-2;n<=2;n++)g.enemyBullet(e.x[id],e.y[id],a+n*.22,165,8,6,.8,false,id);}
+      else if(kind===this.g.content.enemyIndex.coding){for(let n=-2;n<=2;n++){if(n===0)continue;g.enemyBullet(p.x+n*60,p.y-350,Math.PI/2,145,9,7,.85,false,id);}}
       else if(distanceSq(p.x,p.y,e.x[id],e.y[id])<600**2)g.addHazard('ring',e.x[id],e.y[id],0,0,250,.9,1.2,12,Math.atan2(p.y-e.y[id],p.x-e.x[id]));
     }
   }

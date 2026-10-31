@@ -3,12 +3,12 @@ import type {Immutable} from '../../runtime/contracts';
 import type {S2RunSnapshot} from '../../types';
 // P04 bounded port of src/progression/rules.ts; S1 source remains frozen.
 import { clamp, Random } from '../../../core/math';
+import {pressureAt} from '../pressure';
 import type { DraftCard, PlayerStats, Rarity, Skill } from '../../../types';
 
 export const xpForLevel = (level:number) => Math.ceil((12+6*(level-1)+.5*(level-1)**2)*(level<=12?.5:level<24?.5+(level-12)/24:1));
-export const spawnRate = (content:ContentCatalog,week:number) => content.waves.rates[clamp(Math.floor(week),1,22)-1];
-export function weekHpMultiplier(week:number){const w=clamp(week,1,22);if(w<=5)return(1+.16*(w-1))*(1+.008*(w-1)**2);const points=[[5,1.84992],[6,2],[8,2.25],[12,2.6],[16,2.9],[22,3.2]];for(let i=1;i<points.length;i++){const [x,y]=points[i],[px,py]=points[i-1];if(w<=x)return py+(y-py)*(w-px)/(x-px);}return 3.2;}
-export const weekDamageMultiplier=(week:number)=>Math.min(1.9,1+.045*(week-1));
+export const weekHpMultiplier=(week:number)=>pressureAt(week).hp;
+export const weekDamageMultiplier=(week:number)=>pressureAt(week).damage;
 export const xpGemTier=(value:number)=>value>=192?4:value>=48?3:value>=12?2:value>=4?1:0;
 export function statsFor(content:ContentCatalog,save:Immutable<S2RunSnapshot>, passives:Skill[]):PlayerStats {
   const character=content.characters.find(c=>c.id===save.character)??content.characters[0],t=save.talents;
@@ -26,7 +26,7 @@ export function statsFor(content:ContentCatalog,save:Immutable<S2RunSnapshot>, p
     regen:(t.regen??0)*.1+value('regen'),
     multi:lv('multi')?[1,1,2,2,3][lv('multi')-1]:0,
     summon:1+character.summon+(lv('multi')?[0,.05,.05,.1,.15][lv('multi')-1]:0),
-    invulnerability:Math.min(1.5,.65+value('calm')),
+    invulnerability:Math.min(1.5,.7+value('calm')),
     magnet:Math.min(420,120+(t.magnet??0)*10+value('magnetism')),
     luck:clamp((t.luck??0)*.03+lv('luck')*.1*content.rarityMultipliers[p('luck')?.rarity??0],0,1),
     push:1+value('push')/100,

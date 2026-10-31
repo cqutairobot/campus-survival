@@ -2,7 +2,7 @@ import {test,expect} from '@playwright/test';
 import {historicalSaves} from '../helpers/v5-saves';
 import type {SaveProfile} from '../../src/semesters/profile';
 
-test('v5 P05 单条冒烟：导入旧档→S2 入口保持关闭→S1 原旅程→结算刷新→分学期每日入口',async({page},info)=>{
+test('v5 P06 单条冒烟：导入旧档→S2 入口保持关闭→S1 原旅程→结算刷新→分学期每日入口',async({page},info)=>{
  const errors:string[]=[],assetFailures:string[]=[],requests:string[]=[];
  page.on('pageerror',e=>errors.push(e.message));
  page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
@@ -49,14 +49,14 @@ test('v5 P05 单条冒烟：导入旧档→S2 入口保持关闭→S1 原旅程�
  await expect(page.locator('.draft-card').first()).toBeVisible();await page.locator('.draft-card').first().click();await page.waitForFunction(()=>window.__CAMPUS__!.engine.phase==='playing');
  await page.getByRole('button',{name:'暂停游戏',exact:true}).click();await page.getByRole('button',{name:'继续这个学期',exact:true}).click();await page.waitForFunction(()=>window.__CAMPUS__!.engine.phase==='playing');
  await page.getByRole('button',{name:'暂停游戏',exact:true}).click();
- await page.evaluate(()=>Object.assign(window,{__P05_SCENE__:window.__CAMPUS__!.scene}));
+ await page.evaluate(()=>Object.assign(window,{__P06_SCENE__:window.__CAMPUS__!.scene}));
  await page.getByRole('button',{name:'结束本局并结算',exact:true}).click();await expect(page.locator('.result-card')).toBeVisible();
  const result=await page.evaluate(()=>window.__CAMPUS__!.engine.result!);expect(result.debug).toBe(false);expect(result.victory).toBe(false);
  await expect.poll(async()=>(await saved()).stats.runs).toBe(5);
  const settled=await saved();expect(settled.credits).toBe(imported.credits+result.credits);expect(settled.stats.wins).toBe(1);expect(settled.semesters.s2).toEqual(imported.semesters.s2);expect(settled.evolutions).toContain('orbit');expect(settled.daily.records[0]).toEqual(imported.daily.records[0]);
  await page.getByRole('button',{name:'返回校园',exact:true}).click();await page.waitForFunction(()=>!window.__CAMPUS__);
- await expect.poll(()=>page.evaluate(()=>(window as unknown as {__P05_SCENE__:{resourceState:{loader:{textures:number}}}}).__P05_SCENE__.resourceState.loader.textures)).toBe(0);
- expect(await page.evaluate(()=>(window as unknown as {__P05_SCENE__:{resourceState:unknown}}).__P05_SCENE__.resourceState)).toMatchObject({geometry:0,sessionVoices:0,canvas:false});
+ await expect.poll(()=>page.evaluate(()=>(window as unknown as {__P06_SCENE__:{resourceState:{loader:{textures:number}}}}).__P06_SCENE__.resourceState.loader.textures)).toBe(0);
+ expect(await page.evaluate(()=>(window as unknown as {__P06_SCENE__:{resourceState:unknown}}).__P06_SCENE__.resourceState)).toMatchObject({geometry:0,sessionVoices:0,canvas:false});
  await page.getByRole('button',{name:'每日挑战 · 本地榜',exact:true}).click();
  await expect(page.locator('.daily-panel')).toContainText('daily-v4.0.1');await expect(page.locator('.daily-panel')).toContainText('完整 22 周');await expect(page.locator('.daily-panel')).toContainText('1200 秒');
  await page.getByLabel('排行榜日期',{exact:true}).selectOption('2026-10-30');await page.getByLabel('排行榜规则版本',{exact:true}).selectOption('daily-v3.1');await expect(page.locator('.daily-table')).toContainText('12,345');
@@ -66,5 +66,5 @@ test('v5 P05 单条冒烟：导入旧档→S2 入口保持关闭→S1 原旅程�
  const reloaded=await saved();expect(reloaded.stats.runs).toBe(5);expect(reloaded.semesters.s2).toEqual(imported.semesters.s2);expect(reloaded.inheritance.choice).toEqual({id:'topic',weaponId:'orbit'});expect(reloaded.daily.records[0]).toEqual(imported.daily.records[0]);
  await page.screenshot({path:info.outputPath('semester-menu.png'),animations:'disabled'});
  expect(errors).toEqual([]);expect(assetFailures).toEqual([]);expect(requests.filter(url=>/\/s2\/|\/assets\/s2[-/]|SemesterEngine/.test(url))).toEqual([]);
- await info.attach('p05-smoke-summary',{body:JSON.stringify({schema:reloaded.schemaVersion,s1Runs:reloaded.stats.runs,s2Runs:reloaded.semesters.s2.stats.runs,selectedSemester:reloaded.selectedSemester,inheritance:reloaded.inheritance.choice,oldDailyVersion:reloaded.daily.records[0].version,errors,assetFailures}),contentType:'application/json'});
+ await info.attach('p06-smoke-summary',{body:JSON.stringify({schema:reloaded.schemaVersion,s1Runs:reloaded.stats.runs,s2Runs:reloaded.semesters.s2.stats.runs,selectedSemester:reloaded.selectedSemester,inheritance:reloaded.inheritance.choice,oldDailyVersion:reloaded.daily.records[0].version,errors,assetFailures}),contentType:'application/json'});
 });

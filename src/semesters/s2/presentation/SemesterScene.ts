@@ -10,6 +10,7 @@ import {LOGICAL_WIDTH,LOGICAL_HEIGHT} from '../../../core/run';
 import {RANK_CODE} from '../../../data/enemies';
 import {REGION_CONDITIONS} from '../../../world/landmarks';
 import {warningFloor} from '../world';
+import {ringRadius} from '../danger';
 import {InputController,presentationPhase,type Joystick,type SemesterControls} from './input';
 import { clamp, distanceSq, lerp, TAU } from '../../../core/math';
 import { botPosition } from '../legacy/system';
@@ -40,7 +41,7 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
   private textures!:TextureCatalog;private geometry!:TextureLibrary;private assetsRelease:(()=>void)|undefined;private loadAbort=new AbortController();
   private artTextures=new Map<ArtId,Texture>();private artReleases:(()=>void)[]=[];private requestedBosses=new Set<Bundle>();private playerShadow=new Graphics();
   readonly feedback:FeedbackDirector;readonly postFX=new PostFX();readonly deathFX=new DeathFX();private world=new Container();private ground=new Container();private dropLayer=new Container();private entityLayer=new Container();private propLayer=new Container();private effects=new Container();private dangerLayer=new Container();
-  private fxGraphic=new Graphics();private groundFX=new Graphics();private telegraphs=new Graphics();private debugGraphics=new Graphics();private particles!:ParticleFX;private numbers!:DamageNumbers;private player!:Sprite;
+  private fxGraphic=new Graphics();private groundFX=new Graphics();private telegraphs=new Graphics();private dangerGuides=new Graphics();private debugGraphics=new Graphics();private particles!:ParticleFX;private numbers!:DamageNumbers;private player!:Sprite;
   private whiteSprites:(Sprite|undefined)[]=[];private enemySprites:(Sprite|undefined)[]=[];private shotSprites:(Sprite|undefined)[]=[];private hostileSprites:(Sprite|undefined)[]=[];private dropSprites:(Sprite|undefined)[]=[];private orbitSprites:Sprite[]=[];private botSprites:Sprite[]=[];
   private transient:Transient[]=[];private props:Sprite[]=[];private input!:InputController;private resizeObserver!:ResizeObserver;private animation=0;private lastTime=0;private elapsed=0;private destroyed=false;private ready=false;
   private bloom=new AdvancedBloomFilter({threshold:.65,bloomScale:.6,brightness:1,blur:3,quality:2});private glow=new GlowFilter({distance:8,outerStrength:1.1,color:0x99e1b2,quality:.15});
@@ -74,7 +75,7 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
     await prepareFonts();if(this.destroyed){this.assetsRelease();this.destroyApplication();return;}
     this.host.appendChild(this.app.canvas);this.geometry=new TextureLibrary(this.app,this.content,this.game.world);this.textures=new TextureCatalog(this.geometry,this.artTextures,this.game.manifest.character,this.content);this.particles=new ParticleFX(this.textures);this.numbers=new DamageNumbers(this.textures);
     this.world.addChild(this.ground,this.gates,this.groundFX,this.dropLayer,this.entityLayer,this.propLayer,this.effects,this.numbers.container,this.debugGraphics);
-    this.effects.addChild(this.fxGraphic,this.deathFX.container,this.particles.container);this.dangerLayer.addChild(this.telegraphs,this.warningMask);this.telegraphs.mask=this.warningMask;
+    this.effects.addChild(this.fxGraphic,this.deathFX.container,this.particles.container);this.dangerLayer.addChild(this.telegraphs,this.warningMask,this.dangerGuides);this.telegraphs.mask=this.warningMask;
     this.chapterLabel.position.set(18,18);this.app.stage.addChild(this.letterbox,this.world,this.blackSprite,this.dangerLayer,this.hurtSprite,this.viewportMask,this.chapterLabel);
     this.createMap();this.playerShadow.ellipse(0,0,17,6).fill({color:0x172d31,alpha:.25});this.entityLayer.addChild(this.playerShadow);this.player=new Sprite(this.textures.get('player'));this.player.anchor.set(.5);this.player.scale.set(fitArtScale(this.player.texture,64));this.entityLayer.addChild(this.player);this.preloadBossArt();
     this.input=new InputController(this.app.canvas,this.controls!,this.onStick);this.resizeObserver=new ResizeObserver(()=>this.resize());this.resizeObserver.observe(this.host);
@@ -290,15 +291,53 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
 
   }
   private drawTelegraphs(){
-    const gr=this.telegraphs;gr.clear();
-    if(this.latest?.phase==='assessmentIntro'&&this.game.assessmentAdmission){const site=this.game.assessmentAdmission.site;gr.circle(site.center.x,site.center.y,site.radius).fill({color:0x76bfa9,alpha:.1}).stroke({color:0x4d968e,width:3,alpha:.85});gr.circle(site.player.x,site.player.y,24).stroke({color:0x4d968e,width:3});}
-    const g=this.game;for(const id of g.enemyShots.active){const s=g.enemyShots.data[id];if(s.age<0){const speed=Math.hypot(s.vx,s.vy)||1;gr.circle(s.x,s.y,s.radius+9).stroke({color:0xb65e8a,width:2,alpha:.9});gr.moveTo(s.x,s.y).lineTo(s.x+s.vx/speed*70,s.y+s.vy/speed*70).stroke({color:0xd480a3,width:2,alpha:.7});}}
-    gr.circle(g.player.x,g.player.y,19).stroke({color:0xf0ffe5,width:2,alpha:.75});
-    for(const h of this.game.hazards){const warning=h.warning>0,alpha=warning?.16+.08*Math.sin(this.elapsed*16):.35,color=warning?0xeb9b6b:0xe57577;
-      if(h.kind==='circle')gr.circle(h.x,h.y,h.radius).fill({color,alpha}).stroke({color,width:2,alpha:.85});
-      else if(h.kind==='line')gr.moveTo(h.x,h.y).lineTo(h.x2,h.y2).stroke({color,width:h.radius*2,alpha}).moveTo(h.x,h.y).lineTo(h.x2,h.y2).stroke({color,width:warning?2:5,alpha:.8});
-      else{const r=warning?h.radius:h.radius*clamp(1-h.life/1.3,0,1);gr.arc(h.x,h.y,Math.max(1,r),(h.safeAngle??0)+.62,(h.safeAngle??0)+TAU-.62).stroke({color,width:warning?2:12,alpha:warning?.5:.8});}
+    const gr=this.telegraphs,guides=this.dangerGuides,g=this.game;gr.clear();guides.clear();
+    // These unfiltered graphics sit over bloom, player attacks and weather.
+    this.dangerLayer.setChildIndex(guides,this.dangerLayer.children.length-1);
+    const dash=(x:number,y:number,x2:number,y2:number,color:number,width=3)=>{
+      const length=Math.hypot(x2-x,y2-y);for(let at=0;at<length;at+=16){const end=Math.min(length,at+9);gr.moveTo(x+(x2-x)*at/length,y+(y2-y)*at/length).lineTo(x+(x2-x)*end/length,y+(y2-y)*end/length).stroke({color,width});}
+    };
+    const edge=(x:number,y:number)=>{
+      if(this.inView(x,y,0))return;const dx=x-this.cameraX,dy=y-this.cameraY,halfW=this.viewWidth/2-28,halfH=this.viewHeight/2-28,t=Math.min(halfW/Math.max(1,Math.abs(dx)),halfH/Math.max(1,Math.abs(dy))),a=Math.atan2(dy,dx),cx=this.cameraX+dx*t,cy=this.cameraY+dy*t;
+      const point=(along:number,side:number)=>({x:cx+Math.cos(a)*along-Math.sin(a)*side,y:cy+Math.sin(a)*along+Math.cos(a)*side});
+      const tip=point(12,0),left=point(-8,10),right=point(-8,-10);guides.poly([tip.x,tip.y,left.x,left.y,right.x,right.y]).fill(0xffc46b).stroke({color:0x432d38,width:3});
+    };
+    if(this.latest?.phase==='assessmentIntro'&&g.assessmentAdmission){const site=g.assessmentAdmission.site;gr.circle(site.center.x,site.center.y,site.radius).fill({color:0x76bfa9,alpha:.1}).stroke({color:0x4d968e,width:3,alpha:.85});gr.circle(site.player.x,site.player.y,24).stroke({color:0x4d968e,width:3});}
+    for(const id of g.enemyShots.active){const s=g.enemyShots.data[id];
+      gr.circle(s.x,s.y,s.radius+3).stroke({color:0x432d38,width:3}).circle(s.x,s.y,s.radius+2).stroke({color:0xfff3da,width:1.5});
+      if(s.age<0){const speed=Math.hypot(s.vx,s.vy)||1;dash(s.x,s.y,s.x+s.vx/speed*70,s.y+s.vy/speed*70,0xb65e8a,2);gr.circle(s.x,s.y,s.radius+9).stroke({color:0xb65e8a,width:2});}
+      edge(s.x,s.y);
     }
+    for(const h of g.hazards){
+      const warning=h.phase==='warning',color=warning?0xb86122:0xc64055,points:number[]=[],r=h.kind==='ring'?(warning?h.radius:Math.max(1,ringRadius(h))):h.radius;
+      if(h.kind==='line'){
+        const a=Math.atan2(h.y2-h.y,h.x2-h.x);
+        for(let n=0;n<=12;n++){const t=a-Math.PI/2+n*Math.PI/12;points.push(h.x2+Math.cos(t)*r,h.y2+Math.sin(t)*r);}
+        for(let n=0;n<=12;n++){const t=a+Math.PI/2+n*Math.PI/12;points.push(h.x+Math.cos(t)*r,h.y+Math.sin(t)*r);}
+      }else{
+        const gap=h.kind==='ring'?h.safeHalfAngle:0,start=h.kind==='ring'?(h.safeAngle??0)+gap:0,end=h.kind==='ring'?(h.safeAngle??0)+TAU-gap:TAU;
+        for(let n=0;n<=64;n++){const a=start+(end-start)*n/64;points.push(h.x+Math.cos(a)*r,h.y+Math.sin(a)*r);}
+      }
+      if(!warning&&h.kind!=='ring')gr.poly(points).fill({color,alpha:.24});
+      // Dash the warning perimeter; solid double-contrast edges are damaging.
+      for(let n=2;n<points.length;n+=2){
+        if(warning){if(n%4===0)gr.moveTo(points[n-2],points[n-1]).lineTo(points[n],points[n+1]).stroke({color,width:3});}
+        else gr.moveTo(points[n-2],points[n-1]).lineTo(points[n],points[n+1]).stroke({color:0x422b38,width:h.kind==='ring'?15:5}).moveTo(points[n-2],points[n-1]).lineTo(points[n],points[n+1]).stroke({color,width:h.kind==='ring'?10:3});
+      }
+      if(h.kind!=='ring'){if(warning)dash(points.at(-2)!,points.at(-1)!,points[0],points[1],color);else gr.moveTo(points.at(-2)!,points.at(-1)!).lineTo(points[0],points[1]).stroke({color,width:3});}
+      if(h.kind==='line'){
+        const dx=h.x2-h.x,dy=h.y2-h.y,d=Math.hypot(dx,dy)||1,nx=-dy/d,ny=dx/d;
+        for(let at=20;at<d;at+=32){const x=h.x+dx*at/d,y=h.y+dy*at/d;gr.moveTo(x+nx*r*.7-dx/d*5,y+ny*r*.7-dy/d*5).lineTo(x-nx*r*.7+dx/d*5,y-ny*r*.7+dy/d*5).stroke({color,width:2,alpha:.65});}
+        gr.moveTo(h.x2-dx/d*20+nx*10,h.y2-dy/d*20+ny*10).lineTo(h.x2,h.y2).lineTo(h.x2-dx/d*20-nx*10,h.y2-dy/d*20-ny*10).stroke({color,width:4});
+      }else if(h.kind==='circle')for(let y=-r+16;y<r;y+=24){const half=Math.sqrt(Math.max(0,r*r-y*y))*.85;gr.moveTo(h.x-half,h.y+y).lineTo(h.x+half,h.y+y).stroke({color,width:2,alpha:.5});}
+      if(warning){const progress=clamp(1-h.warning/h.warningTotal,0,1);gr.circle(h.x,h.y,13).stroke({color:0x432d38,width:3});gr.arc(h.x,h.y,13,-Math.PI/2,-Math.PI/2+TAU*Math.max(.001,progress)).stroke({color:0xffe3a3,width:4});if(h.locked)gr.poly([h.x,h.y-5,h.x+5,h.y,h.x,h.y+5,h.x-5,h.y]).fill(color);}
+      if(h.kind==='ring')for(const a of [(h.safeAngle??0)-h.safeHalfAngle,(h.safeAngle??0)+h.safeHalfAngle])gr.moveTo(h.x,h.y).lineTo(h.x+Math.cos(a)*h.radius,h.y+Math.sin(a)*h.radius).stroke({color:0x286e65,width:3});
+      edge(h.x,h.y);
+    }
+    const route=[...g.hazards].sort((a,b)=>b.token-a.token)[0]?.route;
+    if(route){const end=route.points.at(-1)!;gr.poly([end.x,end.y-13,end.x+13,end.y,end.x,end.y+13,end.x-13,end.y]).stroke({color:0xf1ffe6,width:6}).stroke({color:0x286e65,width:3});}
+    // Player centre and projectile outlines remain legible during full effects.
+    guides.circle(g.player.x,g.player.y,19).stroke({color:0x253d43,width:4}).circle(g.player.x,g.player.y,19).stroke({color:0xf0ffe5,width:2}).circle(g.player.x,g.player.y,3).fill(0xf0ffe5);
   }
   private handleEvent(event:VisualEvent,hold=0){
     if(!this.inView(event.x,event.y,event.size))return;

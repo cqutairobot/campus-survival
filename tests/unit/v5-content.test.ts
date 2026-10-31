@@ -42,7 +42,9 @@ describe('v5 bounded legacy content port',()=>{
   }
   const modified={...structuredClone(content),enemies:[...structuredClone(content.enemies)].reverse()};modified.weapons[0].damage[0]=123;modified.enemies.find(e=>e.id==='homework')!.hp=77;
   const injected=createContentCatalog(modified),snapshot=opening(),s=new ContentState(injected,{snapshot,streams:randomStreams(snapshot.seed)});
-  expect(weaponParams(injected,s.weapons[0]).damage).toBe(123);const id=s.spawnEnemy('homework',3200,3072);expect(s.enemies.hp[id]).toBe(77);expect(s.enemies.kind[id]).toBe(injected.enemyIndex.homework);expect(projectContent(s).enemies.kind[id]).toBe('homework');
+  expect(weaponParams(injected,s.weapons[0]).damage).toBe(123);const id=s.spawnEnemy('homework',3200,3072);
+  // P06 applies S2 week-one HP to the injected base, exactly once.
+  expect(s.enemies.hp[id]).toBe(97);expect(s.enemies.kind[id]).toBe(injected.enemyIndex.homework);expect(projectContent(s).enemies.kind[id]).toBe('homework');
   const textures=new TextureCatalog({get:()=>Texture.EMPTY},new Map([['homework',Texture.WHITE]]),'balanced',injected);expect(textures.get('enemy-homework')).toBe(Texture.WHITE);expect(textures.get('enemy-unknown')).toBe(Texture.EMPTY);textures.destroy();expect(Texture.WHITE.destroyed).toBe(false);
   expect(content.weaponById.knife.damage[0]).toBe(14);expect(Object.isFrozen(content.weaponById.knife.damage)).toBe(true);s.dispose();
  });
@@ -92,8 +94,10 @@ describe('v5 bounded legacy content port',()=>{
  });
 
  it('uses real inheritance grants, plain immutable DTOs and assessment cleanup/reward gates without S1 settlement',()=>{
-  const snapshot=opening('knife',true),services={snapshot,streams:randomStreams(snapshot.seed)},s=new ContentState(content,services);s.enemies.clear();s.player.invincible=0;s.addHazard('circle',s.player.x,s.player.y,0,0,100,0,1,6);s.spawnDrop('xp',s.player.x,s.player.y,2);
-  let damageCalls=0,xpCalls=0;step(s,services,1,{damageAfterInheritance:n=>{damageCalls++;return n-2;},experienceAfterInheritance:n=>{xpCalls++;return n*1.08;}});expect(damageCalls).toBe(1);expect(xpCalls).toBe(1);expect(s.player.hp).toBe(s.stats.maxHp-4);expect(s.metrics.creditedXp).toBeCloseTo(2.16);s.dispose();
+  const snapshot=opening('knife',true),services={snapshot,streams:randomStreams(snapshot.seed)},s=new ContentState(content,services);s.enemies.clear();s.player.invincible=0;s.addHazard('circle',s.player.x,s.player.y,0,0,100,0,1,6);
+  // P06 requires a full warning; retain the same grant/DTO boundary assertions.
+  for(let tick=1;tick<=60;tick++)step(s,services,tick);s.spawnDrop('xp',s.player.x,s.player.y,2);
+  let damageCalls=0,xpCalls=0;step(s,services,61,{damageAfterInheritance:n=>{damageCalls++;return n-2;},experienceAfterInheritance:n=>{xpCalls++;return n*1.08;}});expect(damageCalls).toBe(1);expect(xpCalls).toBe(1);expect(s.player.hp).toBe(s.stats.maxHp-4);expect(s.metrics.creditedXp).toBeCloseTo(2.16);s.dispose();
   const choiceRules=legacyContentRules(content),choiceEngine=new SemesterEngine({snapshot:opening(),config:S2_RUNTIME_CONFIG,rules:{...choiceRules,create(services){const s=choiceRules.create(services);s.spawnDrop('xp',s.player.x,s.player.y,6);return s;}},view:{publish(){}}});
   choiceEngine.advance(1/60);const choice=choiceEngine.read();expect(choice.content.phase).toBe('draft');expect(choiceEngine.resume(choice.pause!.token)).toBe(false);expect(choiceEngine.dispatch({type:'choose',token:choice.content.draftToken+1,index:0})).toBe(false);expect(choiceEngine.dispatch({type:'choose',token:choice.content.draftToken,index:0})).toBe(true);expect(choiceEngine.read().pause).toBeNull();expect(choiceEngine.read().clock).toEqual(choice.clock);choiceEngine.dispose();
   // A full drop pool can collect raw XP while preparing a mini-boss handoff.

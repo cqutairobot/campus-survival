@@ -19,7 +19,7 @@ export function projectContent(s:ContentState){
   enemies:{...enemies,kind,active:[...e.active]},shots:shots(s.shots),enemyShots:shots(s.enemyShots),
   areas:{active:[...s.areas.active],data:Object.fromEntries(s.areas.active.map(id=>{const {hits:_,...area}=s.areas.data[id];return[id,{...area}];}))},
   drops:{active:[...s.drops.active],data:Object.fromEntries(s.drops.active.map(id=>[id,{...s.drops.data[id]}])),...identity(s.drops)},
-  hazards:s.hazards.map(h=>({...h})),turrets:s.weaponSystem.summons.turrets.map(t=>({...t})),visualEvents:s.visualEvents.map(v=>({serial:v.serial,event:{...v.event}})),
+  hazards:s.hazards.map(h=>({...h,route:h.route?structuredClone(h.route):null})),dangerQueue:s.danger.pending.map(h=>({id:h.id,retryTick:h.retryTick,tier:h.tier})),turrets:s.weaponSystem.summons.turrets.map(t=>({...t})),visualEvents:s.visualEvents.map(v=>({serial:v.serial,event:{...v.event}})),
   ultimate:s.ultimate.snapshot(),momentum:{active:s.momentum.active,combo:s.momentum.combo,charge:s.momentum.charge,remaining:s.momentum.remaining},
   level:s.level,xp:s.xp,xpNext:xpForLevel(s.level),kills:s.kills,bosses:s.bosses,damage:{...s.damage},bonusCredits:s.bonusCredits,progress:structuredClone(s.progress),discoveries:structuredClone(s.discoveries),
   cards:structuredClone(s.cards),draftToken:s.draftToken,reward:structuredClone(s.rewards.snapshot),rewardToken:s.rewards.token,chest:structuredClone(s.chest),notice:s.combatTime<s.noticeUntil?s.notice:'',assessmentRewardDone:s.assessmentRewardDone,
