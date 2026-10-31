@@ -1,4 +1,5 @@
 import type {AchievementState,DailyRecord,RunResult,SaveData} from '../types';
+import type {InheritanceChoice} from './types';
 
 export const PRODUCT_VERSION='5.0.0';
 export type SemesterId='s1'|'s2';
@@ -13,7 +14,7 @@ export interface SaveProfile extends Omit<SaveData,'schemaVersion'|'daily'> {
  schemaVersion:4;
  selectedSemester:SemesterId;
  semesters:{s1:SemesterHistory;s2:SemesterHistory&{unlocks:SaveData['unlocks'];achievements:Record<string,AchievementState>;stats:SaveData['stats']}};
- inheritance:{version:'carry-v1';alumniEligible:boolean};
+ inheritance:{version:'carry-v1';alumniEligible:boolean;choice:InheritanceChoice};
  daily:{records:SemesterDailyRecord[];attempts:Record<string,number>;completedKeys:string[]};
  migration:{fromSchema:number;fromContentVersion:string;legacyDigest:string|null};
 }

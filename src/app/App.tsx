@@ -10,17 +10,19 @@ import { INITIAL_HUD, useApp } from '../state/store';
 import type { GameSession } from './GameHost';
 import {getAudio,disposeAudio} from '../audio/audio';
 import {resources} from '../assets/loader';
+import type {SemesterId} from '../semesters/profile';
+import {semesterAccess} from '../semesters/registry';
 const GameHost=lazy(()=>import('./GameHost').then(m=>({default:m.GameHost})));
 const Laboratories=lazy(()=>import('../debug/Laboratories').then(m=>({default:m.Laboratories})));
 const params=new URLSearchParams(location.search),debug=params.get('debug')==='1';
 export function App(){
   const settings=useApp(s=>s.save.settings),persistence=useApp(s=>s.persistence),recoveryShown=useRef(false);
   const achievementCount=useApp(s=>Object.values(s.save.achievements).filter(a=>a.completed).length),previousAchievements=useRef(achievementCount);
-  const [mode,setMode]=useState<'normal'|'daily'>('normal'),[playing,setPlaying]=useState(false),[panel,setPanel]=useState<Panel|null>(()=>useApp.getState().persistence==='corrupt'?'recovery':null),[session,setSession]=useState<GameSession|null>(null),[seed,setSeed]=useState(Number(params.get('seed'))||Date.now()),[generation,setGeneration]=useState(0),pauseOwner=useRef(new ModalPauseOwner<GameSession>()),sessionRef=useRef<GameSession|null>(null),phase=useApp(s=>s.hud.phase),motion=useApp(s=>s.save.settings.motion);
+  const [semesterId,setSemesterId]=useState<SemesterId>('s1'),[mode,setMode]=useState<'normal'|'daily'>('normal'),[playing,setPlaying]=useState(false),[panel,setPanel]=useState<Panel|null>(()=>useApp.getState().persistence==='corrupt'?'recovery':null),[session,setSession]=useState<GameSession|null>(null),[seed,setSeed]=useState(Number(params.get('seed'))||Date.now()),[generation,setGeneration]=useState(0),pauseOwner=useRef(new ModalPauseOwner<GameSession>()),sessionRef=useRef<GameSession|null>(null),phase=useApp(s=>s.hud.phase),motion=useApp(s=>s.save.settings.motion);
   sessionRef.current=session;
   const open=useCallback((next:Panel)=>{pauseOwner.current.open(sessionRef.current);setPanel(next);},[]);
   const close=useCallback(()=>{setPanel(null);pauseOwner.current.close(sessionRef.current);},[]);
-  const launch=useCallback((nextMode:'normal'|'daily')=>{setMode(nextMode);setPanel(null);pauseOwner.current.clear();setPlaying(true);setGeneration(v=>v+1);setSeed(nextMode==='daily'?Date.now():Number(params.get('seed'))||Date.now());},[]);
+  const launch=useCallback((nextMode:'normal'|'daily')=>{const profile=useApp.getState().save;if(!semesterAccess(profile,profile.selectedSemester).playable){setPanel('semesters');return;}setSemesterId(profile.selectedSemester);setMode(nextMode);setPanel(null);pauseOwner.current.clear();setPlaying(true);setGeneration(v=>v+1);setSeed(nextMode==='daily'?Date.now():Number(params.get('seed'))||Date.now());},[]);
   const start=useCallback(()=>launch('normal'),[launch]),startDaily=useCallback(()=>launch('daily'),[launch]),restart=useCallback(()=>launch(mode),[launch,mode]);
   const menu=useCallback(()=>{setPlaying(false);setPanel(null);pauseOwner.current.clear();setSession(null);useApp.getState().publish({...INITIAL_HUD});},[]);
   const ready=useCallback((value:GameSession|null)=>setSession(value),[]);
@@ -32,5 +34,5 @@ export function App(){
   useEffect(()=>{if(!playing){getAudio(settings).setPaused(false);getAudio(settings).setTheme('menu');}},[playing,settings]);
   useEffect(()=>{if(persistence==='corrupt'&&!recoveryShown.current){recoveryShown.current=true;open('recovery');}},[persistence,open]);
   if(persistence==='starting')return <div className="loading-screen" role="status"><h2>正在检查本地存档…</h2></div>;
-  return <>{!playing?<Menu open={open}/>:<main className={`battle-screen phase-${phase}`}><Suspense fallback={<div className="loading-screen"><span className="loading-leaf">✦</span><h2>正在收拾书包…</h2><p>咖啡、笔记本，还有一点点勇气。</p></div>}><GameHost key={generation} onReady={ready} seed={seed} debug={debug} mode={mode}/></Suspense><HUD session={session} open={open}/><GameOverlays session={session} open={open} menu={menu} restart={restart}/>{debug&&<DebugPanel session={session}/>}</main>}{debug&&<Suspense fallback={null}><Laboratories pause={()=>sessionRef.current?.engine.send({type:'pause'})}/></Suspense>}{!playing&&<SaveNotice open={()=>open('recovery')}/>}{panel&&<ModalPanel panel={panel} close={close} start={start} startDaily={startDaily} inGame={playing&&phase!=='result'} returnToMenu={()=>{menu();setPanel('recovery');}}/>}</>;
+  return <>{!playing?<Menu open={open}/>:<main className={`battle-screen phase-${phase}`}><Suspense fallback={<div className="loading-screen"><span className="loading-leaf">✦</span><h2>正在收拾书包…</h2><p>咖啡、笔记本，还有一点点勇气。</p></div>}><GameHost key={generation} onReady={ready} seed={seed} debug={debug} mode={mode} semesterId={semesterId}/></Suspense><HUD session={session} open={open}/><GameOverlays session={session} open={open} menu={menu} restart={restart}/>{debug&&<DebugPanel session={session}/>}</main>}{debug&&<Suspense fallback={null}><Laboratories pause={()=>sessionRef.current?.engine.send({type:'pause'})}/></Suspense>}{!playing&&<SaveNotice open={()=>open('recovery')}/>}{panel&&<ModalPanel panel={panel} close={close} start={start} startDaily={startDaily} inGame={playing&&phase!=='result'} returnToMenu={()=>{menu();setPanel('recovery');}}/>}</>;
 }

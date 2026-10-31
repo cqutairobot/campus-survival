@@ -8,6 +8,7 @@ import './ui/styles/tokens.css';
 import './ui/styles/v4.css';
 import './ui/styles/p1.css';
 import './ui/styles/p2.css';
+import './ui/styles/v5.css';
 import {installTokens} from './design/tokens';
 installTokens();
 const LabApp=lazy(()=>import('./debug/LabApp').then(m=>({default:m.LabApp})));

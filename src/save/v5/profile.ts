@@ -6,6 +6,7 @@ import {freshSave,settleRun,validateSave} from '../storage';
 import {recoveryDigest} from '../recovery';
 import {compareDaily} from '../../challenges/scoring';
 import {S2_IDS} from '../../semesters/catalog-ids';
+import {validInheritanceChoice} from '../../semesters/inheritance';
 import {PRODUCT_VERSION,type Graduation,type Rating,type RunSummary,type SaveProfile,type SemesterDailyRecord,type SemesterHistory,type SemesterId,type SemesterResult} from '../../semesters/profile';
 import type {RunResult,SaveData} from '../../types';
 
@@ -19,7 +20,7 @@ const all=(kind:keyof typeof S1_IDS):string[]=>[...S1_IDS[kind],...S2_IDS[kind]]
 const emptyHistory=():SemesterHistory=>({graduation:null,bestRating:null,recentRuns:[]});
 function legacyEvidence(save:SaveData):Graduation|null{return save.stats.wins>=1?{source:'legacyWins'}:save.achievements.survivor?.progress>=1?{source:'legacyAchievement'}:null;}
 export function freshProfile():SaveProfile{
- const s=freshSave();return {...s,schemaVersion:4,contentVersion:PRODUCT_VERSION,selectedSemester:'s1',semesters:{s1:emptyHistory(),s2:{...emptyHistory(),unlocks:{weapons:[...S2_IDS.weapons],passives:[...S2_IDS.passives],regions:[...S2_IDS.regions]},achievements:Object.fromEntries(S2_IDS.achievements.map(id=>[id,{progress:0,completed:false,claimed:false}])),stats:structuredClone(s.stats)}},inheritance:{version:'carry-v1',alumniEligible:false},daily:{records:[],attempts:{},completedKeys:[]},migration:{fromSchema:4,fromContentVersion:PRODUCT_VERSION,legacyDigest:null}};
+ const s=freshSave();return {...s,schemaVersion:4,contentVersion:PRODUCT_VERSION,selectedSemester:'s1',semesters:{s1:emptyHistory(),s2:{...emptyHistory(),unlocks:{weapons:[...S2_IDS.weapons],passives:[...S2_IDS.passives],regions:[...S2_IDS.regions]},achievements:Object.fromEntries(S2_IDS.achievements.map(id=>[id,{progress:0,completed:false,claimed:false}])),stats:structuredClone(s.stats)}},inheritance:{version:'carry-v1',alumniEligible:false,choice:{id:'supply'}},daily:{records:[],attempts:{},completedKeys:[]},migration:{fromSchema:4,fromContentVersion:PRODUCT_VERSION,legacyDigest:null}};
 }
 export function migrateV3ToV4(save:SaveData,origin:{schemaVersion:number;contentVersion?:unknown;raw?:string}={schemaVersion:3}):SaveProfile{
  const out=freshProfile(),graduation=legacyEvidence(save);
@@ -84,6 +85,7 @@ export function validateProfile(value:unknown,raw?:string):SaveProfile|null{
   if(object(s2.achievements))for(const id of S2_IDS.achievements){const a=s2.achievements[id];if(object(a))out.semesters.s2.achievements[id]={progress:number(a.progress),completed:a.completed===true,claimed:a.completed===true&&a.claimed===true};}
  }
  out.inheritance.alumniEligible=!!out.semesters.s1.graduation;out.selectedSemester=value.selectedSemester==='s2'&&out.inheritance.alumniEligible?'s2':'s1';
+ if(object(value.inheritance)&&validInheritanceChoice(out,value.inheritance.choice)){const choice=value.inheritance.choice;out.inheritance.choice=choice.id==='topic'?{id:'topic',weaponId:choice.weaponId}:{id:choice.id};}
  out.daily={records:[],attempts:{},completedKeys:[]};
  if(object(value.daily)){
   if(Array.isArray(value.daily.records))out.daily.records=retainSemesterRecords(value.daily.records.map(dailyRecord).filter((r):r is SemesterDailyRecord=>!!r));

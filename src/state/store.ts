@@ -9,7 +9,10 @@ import {SaveCoordinator,browserSaveLocks} from '../save/coordinator';
 import {IS_FIXTURE} from '../debug/isolation';
 import {ProfileRepository} from '../save/v5/repository';
 import {settleS1Profile,toLegacyS1Save,validateProfile} from '../save/v5/profile';
-import type {SaveProfile} from '../semesters/profile';
+import type {SaveProfile,SemesterId} from '../semesters/profile';
+import type {Discovery,InheritanceChoice} from '../semesters/types';
+import {discoverProfile,legacyDiscovery} from '../save/v5/discovery';
+import {hasAlumniEligibility,validInheritanceChoice} from '../semesters/inheritance';
 import type {RepositoryPort} from '../save/coordinator';
 let storage:Storage|null=null;try{if(!IS_FIXTURE)storage=globalThis.localStorage??null;}catch{/* Private browsing can block storage. */}
 export const repository=new ProfileRepository(storage);
@@ -21,7 +24,8 @@ const legacyModel:StoreModel<SaveData>={validate:validateSave,settle:settleRun};
 export interface AppState<S extends WalletSave=SaveProfile> {
   save:S;hud:HUD;saveStatus:string;persistence:PersistenceState;recoverySources:RecoverySource[];savedRuns:string[];canPersist:boolean; publish:(hud:HUD)=>void;
   settings:(patch:Partial<Settings>)=>Promise<SaveOperation>;selectCharacter:(id:string)=>void;unlock:(id:string)=>boolean;
-  buyTalent:(id:string)=>void;resetTalents:()=>void;discover:(id:string,evolution?:boolean)=>void;
+  selectSemester:(id:SemesterId)=>void;selectInheritance:(choice:InheritanceChoice)=>void;
+  buyTalent:(id:string)=>void;resetTalents:()=>void;discover:(id:string|Discovery,evolution?:boolean)=>void;
   beginDaily:(id:string)=>void;settle:(result:RunResult)=>void;importSave:(raw:string)=>Promise<SaveOperation>;resetSave:()=>Promise<SaveOperation>;recoverSave:(kind:'fields'|'reset',index?:number)=>Promise<SaveOperation>;refreshSave:()=>Promise<SaveOperation>;takeoverSave:()=>Promise<SaveOperation>;whenIdle:()=>Promise<SaveOperation>;
 }
 export function createAppStore<S extends WalletSave=SaveData>(repository:RepositoryPort<S>,coordinator:SaveCoordinator<S>,model:StoreModel<S>=legacyModel as unknown as StoreModel<S>){
@@ -52,10 +56,12 @@ export function createAppStore<S extends WalletSave=SaveData>(repository:Reposit
     save:loaded,hud:{...INITIAL_HUD},...info(),savedRuns:[...loaded.settledRuns],publish:hud=>set({hud}),
     settings:patch=>persist({...get().save,settings:normalizeSettings({...get().save.settings,...patch})}),
     selectCharacter:id=>{if(get().save.unlocked.includes(id))persist({...get().save,selected:id});},
+    selectSemester:id=>{const s=get().save;if(s.schemaVersion===4&&['menu','result'].includes(get().hud.phase)&&(id==='s1'||id==='s2'&&hasAlumniEligibility(s)))persist({...s,selectedSemester:id});},
+    selectInheritance:choice=>{const s=get().save;if(s.schemaVersion===4&&['menu','result'].includes(get().hud.phase)&&hasAlumniEligibility(s)&&validInheritanceChoice(s,choice))persist({...s,inheritance:{...s.inheritance,choice:structuredClone(choice)}});},
     unlock:id=>{const s=get().save,c=CHARACTERS.find(c=>c.id===id);if(!c||c.achievement||s.credits<c.cost||s.unlocked.includes(id))return false;persist({...s,credits:s.credits-c.cost,unlocked:[...s.unlocked,id],selected:id});return true;},
     buyTalent:id=>{const s=get().save;if(canBuyTalent(legacy(s),id))persist({...s,credits:s.credits-talentCost(s.talents[id]??0),talents:{...s.talents,[id]:(s.talents[id]??0)+1}});},
     resetTalents:()=>{const s=get().save;persist({...s,credits:s.credits+talentRefund(s.talents),talents:{}});},
-    discover:(id,evolution=false)=>{const s=get().save,[prefix,content]=id.split(':');const categories={enemy:'discoveredEnemies',fusion:'fusions',relic:'relics',event:'events',region:'regions'} as const;const category=categories[prefix as keyof typeof categories];if(category){if(!s[category].includes(content))persist({...s,[category]:[...s[category],content]});return;}const key=evolution?'evolutions':'discovered';if(!s[key].includes(id))persist({...s,[key]:[...s[key],id]});},
+    discover:(id,evolution=false)=>{const s=get().save;if(s.schemaVersion===4){const next=discoverProfile(s,typeof id==='string'?legacyDiscovery(id,evolution):id);if(next!==s)persist({...s,...next});return;}if(typeof id!=='string')return;const at=id.indexOf(':'),prefix=at<0?'':id.slice(0,at),content=at<0?'':id.slice(at+1);const categories={enemy:'discoveredEnemies',fusion:'fusions',relic:'relics',event:'events',region:'regions'} as const;const category=categories[prefix as keyof typeof categories];if(category){if(!s[category].includes(content))persist({...s,[category]:[...s[category],content]});return;}const key=evolution?'evolutions':'discovered';if(!s[key].includes(id))persist({...s,[key]:[...s[key],id]});},
     beginDaily:id=>{const s=get().save;persist({...s,daily:{...s.daily,attempts:{...s.daily.attempts,[id]:(s.daily.attempts[id]??0)+1}}});},
     settle:result=>persist(model.settle(get().save,result)),
     importSave:async raw=>{try{const s=model.validate(JSON.parse(raw),raw);if(!s)return {kind:'invalid',message:'不是有效的校园生存存档'};delete s.persistence;repository.stageImport?.(raw);return persist(s);}catch{return {kind:'invalid',message:'JSON 无法解析'};}},
