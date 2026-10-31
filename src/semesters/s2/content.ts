@@ -2,10 +2,11 @@ import {createContentCatalog,LEGACY_CONTENT} from './legacy/catalog';
 import {FIRST_CHAPTER_ENEMIES,FIRST_THREAT_WEEKS} from './first-chapter';
 import {ADVANCED_ENEMIES,ADVANCED_WEEKS} from './advanced-enemies';
 import {PROJECT_REVIEW,REVIEW_ATTACHMENTS} from './project-review';
+import {S2_RELICS} from './relics';
 import {S2_FUSIONS} from './fusions';
 import {EXPO_FINAL} from './expo-final';
 import {PROPOSAL_BOARD} from './proposal-board';
 import {FIRST_CHAPTER_PASSIVES,FIRST_CHAPTER_WEAPONS} from './builds';
 
 /** Append only: all 25 legacy slots, IDs and definitions retain their order. */
-export const S2_CONTENT=createContentCatalog({...LEGACY_CONTENT,fusions:[...LEGACY_CONTENT.fusions,...S2_FUSIONS],weapons:[...LEGACY_CONTENT.weapons,...FIRST_CHAPTER_WEAPONS],passives:[...LEGACY_CONTENT.passives,...FIRST_CHAPTER_PASSIVES],enemies:[...LEGACY_CONTENT.enemies,...FIRST_CHAPTER_ENEMIES,PROPOSAL_BOARD,...ADVANCED_ENEMIES,PROJECT_REVIEW,...REVIEW_ATTACHMENTS,EXPO_FINAL],waves:{...LEGACY_CONTENT.waves,normalIds:[...LEGACY_CONTENT.waves.normalIds,...Object.keys(FIRST_THREAT_WEEKS),...Object.keys(ADVANCED_WEEKS)]}});
+export const S2_CONTENT=createContentCatalog({...LEGACY_CONTENT,relics:S2_RELICS,fusions:[...LEGACY_CONTENT.fusions,...S2_FUSIONS],weapons:[...LEGACY_CONTENT.weapons,...FIRST_CHAPTER_WEAPONS],passives:[...LEGACY_CONTENT.passives,...FIRST_CHAPTER_PASSIVES],enemies:[...LEGACY_CONTENT.enemies,...FIRST_CHAPTER_ENEMIES,PROPOSAL_BOARD,...ADVANCED_ENEMIES,PROJECT_REVIEW,...REVIEW_ATTACHMENTS,EXPO_FINAL],waves:{...LEGACY_CONTENT.waves,normalIds:[...LEGACY_CONTENT.waves.normalIds,...Object.keys(FIRST_THREAT_WEEKS),...Object.keys(ADVANCED_WEEKS)]}});

@@ -11,7 +11,9 @@ import {draftCards,protocolBonus,statsFor,weekHpMultiplier,weekDamageMultiplier,
 import {AdvancedEnemies} from '../advanced-enemies';
 import {ProtocolMarks} from '../protocol';
 import {EchoChip,Harness,type HitContext} from '../equipment';
-import {relicStats,clampStats,relicBulletSpeed} from '../../../progression/relics';
+import {ProjectRelics,s2RelicStats,markedDamageBonus} from '../relics';
+import {ProjectTables} from '../project-tables';
+import {clampStats,relicBulletSpeed} from '../../../progression/relics';
 import {RewardSystem} from './rewards';
 import {freshMetrics} from '../../../core/metrics';
 import {CombatMomentum,frenzyStats} from './momentum';
@@ -44,6 +46,7 @@ export class ContentState {
  readonly navigation:Navigation;readonly world:WorldSnapshot;readonly danger:DangerScheduler;readonly weaponSystem:WeaponSystem;readonly bossSystem:BossSystem;readonly director:EnemyDirector;readonly behaviors:EnemyBehaviors;readonly rewards:RewardSystem;readonly ultimate:UltimateSystem;readonly threats:FirstChapterBehaviors;
  readonly manifest;readonly streams;readonly random;readonly dropRandom;readonly draftRandom;
  readonly weapons:ContentSkill[]=[];readonly passives:ContentSkill[]=[];readonly consumed:string[]=[];readonly relics:string[]=[];readonly progress=freshProgress();readonly discoveries:Discovery[]=[];readonly visualEvents:{serial:number;event:ContentVisualEvent}[]=[];readonly hazards:S2Hazard[]=[];readonly deaths=new ContentDeathQueue();readonly momentum=new CombatMomentum();readonly protocol=new ProtocolMarks(this);readonly echo=new EchoChip(this);readonly harness=new Harness(this);readonly advanced=new AdvancedEnemies(this);
+ readonly projectRelics=new ProjectRelics(this);readonly projectTables=new ProjectTables(this);
  readonly additionalDamage:Record<string,{echo:number;mark:number}>={};
  readonly player:Player={x:3072,y:3072,prevX:3072,prevY:3072,vx:0,vy:0,facing:-Math.PI/2,hp:110,shield:0,shieldTime:0,invincible:1,lastHurt:-100};
  // Regional content and safety scheduling share this run's world.
@@ -73,8 +76,9 @@ export class ContentState {
  get activeEvent(){return null;}
  get combatStats(){let st=frenzyStats(this.stats,this.momentum.active);const u=this.ultimate;if(this.coffeeTime>0)st={...st,haste:st.haste*1.25};if(u.remaining>0){if(u.def.id==='overload')st={...st,haste:st.haste*1.4,area:st.area*1.25};if(u.def.id==='conference')st={...st,speed:st.speed*1.25};}if(this.landmarks.trackTime>0)st={...st,speed:st.speed*1.15};if(this.landmarks.rangeTime>0)st={...st,area:st.area*1.2};return clampStats(st);}
  get hasPendingRewards(){return this.pendingLevels>0||this.rewards.chests.length>0||this.phase!=='playing';}
- private calculateStats(relics=this.relics){const s=statsFor(this.content,this.manifest,this.passives);if(this.manifest.mode==='daily'){if(this.manifest.dailyRule==='piercing')s.multi++;if(this.manifest.dailyRule==='lastMinute')s.charge+=.35;if(this.manifest.dailyRule==='assistants')s.summon+=.25;if(this.manifest.dailyRule==='nightRun')s.speed*=1.2;if(this.manifest.dailyRule==='construction')s.area*=1.2;}const stats=relicStats(s,relics);stats.invulnerability=invulnerabilityFor(stats.invulnerability);return stats;}
- previewRelic(id:string){return this.calculateStats([...this.relics,id]);}
+ private calculateStats(relics=this.relics){const s=statsFor(this.content,this.manifest,this.passives);if(this.manifest.mode==='daily'){if(this.manifest.dailyRule==='piercing')s.multi++;if(this.manifest.dailyRule==='lastMinute')s.charge+=.35;if(this.manifest.dailyRule==='assistants')s.summon+=.25;if(this.manifest.dailyRule==='nightRun')s.speed*=1.2;if(this.manifest.dailyRule==='construction')s.area*=1.2;}const stats=s2RelicStats(s,relics);stats.invulnerability=invulnerabilityFor(stats.invulnerability);return stats;}
+ previewRelic(id:string,replace=''){return this.calculateStats([...this.relics.filter(r=>r!==replace),id]);}
+ get averageCurse(){return this.projectRelics.average;}
  recalculateStats(mode:'increase'|'ratio'='increase',previous=this.stats.maxHp){const hp=this.player.hp;this.stats=this.calculateStats();this.player.hp=Math.min(this.stats.maxHp,mode==='ratio'?hp*this.stats.maxHp/previous:hp+Math.max(0,this.stats.maxHp-previous)*(this.manifest.dailyRule==='overload'?.6:1));this.player.shield=Math.min(this.player.shield,this.stats.maxHp*.5);}
  discover(value:string,evolution=false){const split=value.indexOf(':'),prefixed=['enemy','fusion','relic','event','region','item'].includes(value.slice(0,split)),category:Discovery['category']=evolution?'evolution':prefixed?value.slice(0,split) as Discovery['category']:'item',id=prefixed?value.slice(split+1):value;if(!this.discoveries.some(d=>d.category===category&&d.id===id))this.discoveries.push({semesterId:'s2',category,id,evidence:'run'});}
  safePoint(x:number,y:number){return worldSafePoint(this.world,x,y);}
@@ -94,7 +98,7 @@ export class ContentState {
    this.movePlayer(dt);this.harness.update(dt);this.landmarks.zone=worldZoneAt(this.world,p.x,p.y);
    const visited=this.landmarks.zone?.id;if(visited&&!this.progress.visited.includes(visited)){this.progress.visited.push(visited);this.discover(`region:${visited}`);}
    this.navTimer-=dt;if(this.navTimer<=0){this.navigation.rebuild(p.x,p.y);this.navTimer=.5;}
-   this.director.update(dt);this.advanced.update(dt);this.behaviors.update(dt);this.bossSystem.update(dt);this.bossSystem.updateExams(dt);this.rebuildGrid();this.ultimate.update(dt);this.weaponSystem.update(dt);this.updateEnemyShots(dt);this.updateHazards();this.resolvePlayerHit();this.resolveDeaths();this.updateDrops(dt);
+   this.projectTables.update();this.director.update(dt);this.projectRelics.update(dt);this.advanced.update(dt);this.behaviors.update(dt);this.bossSystem.update(dt);this.bossSystem.updateExams(dt);this.rebuildGrid();this.ultimate.update(dt);this.weaponSystem.update(dt);this.updateEnemyShots(dt);this.updateHazards();this.resolvePlayerHit();this.resolveDeaths();this.updateDrops(dt);
    const currentZone=this.landmarks.zone;if(p.hp>0)this.heal((this.stats.regen+(currentZone?.id==='canteen'&&this.combatTime-p.lastHurt>2?1:0))*dt);if(this.stats.drain>0&&p.hp>0)p.hp=Math.max(1,p.hp-this.stats.maxHp*this.stats.drain*dt);
    if(p.hp<=0)return{defeated:true};if(this.deadBoss>=0)return{assessmentCleared:true};
    this.nextMerge-=dt;if(this.nextMerge<=0){this.mergeExperience();this.nextMerge=1;}this.handlePending();return this.phase==='playing'?{}:{pause:this.phase==='draft'?'choice' as const:'reward' as const};
@@ -121,18 +125,19 @@ export class ContentState {
   }else{
    this.waitingForAssessment=true;
    const checkpoint=[PROPOSAL_BOARD.id,PROJECT_REVIEW.id,EXPO_FINAL.id].includes(this.content.enemies[this.enemies.kind[this.deadBoss]]?.id);
-   this.bosses++;this.metrics.bossFights.push({boss:this.bossNumber,seconds:event.clock.assessmentSeconds,damage:this.enemies.maxHp[this.deadBoss]});this.deadBoss=-1;this.clearThreats();this.assessmentAdmission=null;this.magnet();if(checkpoint)this.heal(this.stats.maxHp*.15,true);this.rewards.openChest(3,true);
+   this.bosses++;this.metrics.bossFights.push({boss:this.bossNumber,seconds:event.clock.assessmentSeconds,damage:this.enemies.maxHp[this.deadBoss]});this.deadBoss=-1;this.clearThreats();this.assessmentAdmission=null;this.magnet();if(checkpoint)this.heal(this.stats.maxHp*.15,true);this.rewards.openChest(3,true,'',this.projectRelics.bossReward());
   }
   }finally{this.grantBoundary=null;}
  }
- private clearThreats(){this.inputX=this.inputY=0;this.bossEnemy=-1;this.enemies.clear();this.protocol.clear();this.echo.clear();this.deaths.clear();this.enemyShots.clear();this.shotOrigins.clear();this.danger.clear();this.threats.clear();this.advanced.clear();this.ordinarySpawnsAllowed=false;this.rebuildGrid();}
+ private clearThreats(){this.projectRelics.suspend();this.projectTables.clear();this.inputX=this.inputY=0;this.bossEnemy=-1;this.enemies.clear();this.protocol.clear();this.echo.clear();this.deaths.clear();this.enemyShots.clear();this.shotOrigins.clear();this.danger.clear();this.threats.clear();this.advanced.clear();this.ordinarySpawnsAllowed=false;this.rebuildGrid();}
  canAcknowledge(kind:'assessmentIntro'|'assessmentReward'){return!this.hasPendingRewards&&(kind==='assessmentIntro'?!!this.assessmentAdmission:this.assessmentRewardDone);}
  command(value:unknown){
   if(this.disposed||!value||typeof value!=='object')return{accepted:false};const c=value as Record<string,unknown>;
   if(c.type==='move'&&typeof c.x==='number'&&Number.isFinite(c.x)&&typeof c.y==='number'&&Number.isFinite(c.y)&&this.phase==='playing'&&!this.waitingForAssessment){this.inputX=clamp(c.x,-1,1);this.inputY=clamp(c.y,-1,1);return{accepted:true};}
+  if(c.type==='interact'&&!this.waitingForAssessment){const accepted=this.projectTables.interact();return{accepted,...(accepted?{pause:'choice' as const}:{})};}
   if(c.type==='ultimate'&&!this.waitingForAssessment)return{accepted:this.ultimate.release()};
   if(c.type==='choose'&&this.phase==='draft'&&Number.isInteger(c.index)&&c.token===this.draftToken&&this.cards[c.index as number])this.applyCard(c.index as number,c.token as number);
-  else if(c.type==='chooseReward'&&Number.isInteger(c.index)&&c.token===this.rewards.token&&this.rewards.options[c.index as number]&&this.phase==='reward')this.rewards.choose(c.token as number,c.index as number);
+  else if(c.type==='chooseReward'&&Number.isInteger(c.index)&&c.token===this.rewards.token&&(this.rewards.options[c.index as number]||c.index===-1&&this.phase==='contract')&&(this.phase==='reward'||this.phase==='contract'))this.rewards.choose(c.token as number,c.index as number);
   else if(c.type==='chestDone'&&c.token===this.rewards.token&&this.phase==='chest')this.rewards.finishChest();
   else if(c.type==='evolutionDone'&&c.token===this.rewards.token&&this.phase==='evolution')this.rewards.afterReward();
   else return{accepted:false};
@@ -150,12 +155,13 @@ export class ContentState {
  spawnSummon(kind:string,owner:number,x:number,y:number,lifetime=12,attached=false){const e=this.enemies;if(!this.enemySourceAlive(owner,e.generation[owner]))return-1;const id=this.spawnEnemy(kind,x,y,0,undefined,attached);if(id>=0){e.owner[id]=owner;e.ownerGeneration[id]=e.generation[owner];e.lifetime[id]=lifetime;e.xp[id]=0;e.rewardWeight[id]=0;e.chainXp[id]=0;e.chainWeight[id]=0;e.reward[id]=0;e.splitGeneration[id]=1;}return id;}
  enemySourceAlive(id:number,generation:number):boolean{const e=this.enemies;for(let depth=0;depth<e.capacity;depth++){if(!e.valid(id,generation)||e.hp[id]<=0)return false;if(e.owner[id]<0)return true;generation=e.ownerGeneration[id];id=e.owner[id];}return false;}
  cancelEnemyAttacks(id:number,generation=this.enemies.generation[id]){const e=this.enemies;if(!e.valid(id,generation))return;this.danger.cancelOwner(id,generation);this.threats.forget(id,generation);this.advanced.forget(id,generation);this.bossSystem.projectReview.forget(id,generation);this.bossSystem.expoFinal.forget(id,generation);this.cancelOwnedShots(id,generation);for(const child of [...e.active])if(e.owner[child]===id&&e.ownerGeneration[child]===generation)this.releaseEnemy(child);}
- releaseEnemy(id:number){if(!this.enemies.alive[id])return;this.cancelEnemyAttacks(id);this.protocol.forget(id);this.echo.forget(id);this.enemies.release(id);}
+ releaseEnemy(id:number){if(!this.enemies.alive[id])return;this.cancelEnemyAttacks(id);this.protocol.forget(id);this.projectRelics.forget(id);this.echo.forget(id);this.enemies.release(id);}
  frozenTarget(id:number){const e=this.enemies;if(e.owner[id]>=0||e.rank[id]===RANK_CODE.bossAdd)return;if(!e.frozenOnce[id]){e.frozenOnce[id]=1;this.progress.frozen++;}}
  hitEnemy(id:number,baseDamage:number,source:ContentWeaponId|ContentDamageSource,x:number,y:number,knockback=1,canCrit=true,canChain=true,clearChain=false,fixed=false,secondary=false,context:HitContext={}):number{
   const e=this.enemies;if(context.weapon&&!this.weaponSystem.accepts(context.weapon)||!e.alive[id]||e.hp[id]<=0||baseDamage<=0)return 0;const src=asSource(source),rank=rankName(e.rank[id]),crit=!context.settled&&!context.additional&&canCrit&&this.random.next()<this.stats.crit;let damage=baseDamage*(crit?this.stats.critDamage:1);
   if(!context.settled&&!fixed&&this.landmarks.zone?.id==='garden'&&['elite','miniBoss','boss'].includes(rank))damage*=1.2;
-  if(!context.settled&&!fixed&&src.kind==='weapon'){const bonus=protocolBonus(this.content,this.passives);if(bonus>0)damage*=1+this.protocol.hit(id,bonus,secondary)*(rank==='boss'?.5:1);}
+  if(!context.settled&&!fixed&&src.kind!=='weapon')damage*=1+this.projectRelics.weaponBonus(id,true);
+  if(!context.settled&&!fixed&&src.kind==='weapon'){const review=this.projectRelics.weaponBonus(id,secondary),bonus=protocolBonus(this.content,this.passives),protocol=bonus>0?this.protocol.hit(id,bonus,secondary)*(rank==='boss'?.5:1):0;damage*=this.projectRelics.movingMultiplier()*(1+markedDamageBonus(protocol,review));}
   if(!context.settled)damage*=1-Math.min(.4,Math.max(this.advanced.reduction(id),this.bossSystem.projectReview.reduction(id),this.bossSystem.expoFinal.reduction(id)));
   const absorbed=Math.min(e.shield[id],damage);e.shield[id]-=absorbed;const actual=actualDamage(e.hp[id],damage-absorbed),total=actual+absorbed;e.lastHit[id]=this.combatTime;
   this.metrics.hits++;this.metrics.shieldDamage+=absorbed;if(!e.hitCount[id])e.firstHit[id]=this.combatTime;e.hitCount[id]=Math.min(65535,e.hitCount[id]+1);this.metrics.criticalHits+=Number(crit);this.metrics.overkill+=Math.max(0,damage-total);e.hp[id]-=actual;const key=damageKey(src);this.damage[key]=(this.damage[key]??0)+total;e.flash[id]=crit?.077:.065;
@@ -172,7 +178,7 @@ export class ContentState {
   if(crit&&canChain&&e.owner[id]<0&&rank!=='bossAdd'&&src.kind==='weapon'&&this.momentum.critical())this.criticalChain(id,e.x[id],e.y[id],baseDamage*.25,src.id);return total;
  }
  resolveDeaths(){this.deaths.drain(this.enemies,d=>this.resolveDeath(d));}
- private resolveDeath(death:ContentDeath){const e=this.enemies,id=death.slot;if(this.rewardedGeneration[id]===death.generation)return;this.rewardedGeneration[id]=death.generation;this.protocol.forget(id);this.echo.forget(id);const def=this.content.enemies[e.kind[id]],rank=rankName(e.rank[id]),x=e.x[id],y=e.y[id],weight=e.rewardWeight[id]+(death.clearChain?e.chainWeight[id]:0),xp=e.xp[id]+(death.clearChain?e.chainXp[id]:0),attached=e.owner[id]>=0||rank==='bossAdd';
+ private resolveDeath(death:ContentDeath){const e=this.enemies,id=death.slot;if(this.rewardedGeneration[id]===death.generation)return;this.rewardedGeneration[id]=death.generation;this.projectRelics.death(id);this.protocol.forget(id);this.echo.forget(id);const def=this.content.enemies[e.kind[id]],rank=rankName(e.rank[id]),x=e.x[id],y=e.y[id],weight=e.rewardWeight[id]+(death.clearChain?e.chainWeight[id]:0),xp=e.xp[id]+(death.clearChain?e.chainXp[id]:0),attached=e.owner[id]>=0||rank==='bossAdd';
   this.emit({type:'death',slot:id,generation:e.generation[id],...enemyVisual(def.id),rank,batch:this.frame,angle:Math.atan2(e.vy[id],e.vx[id]),x,y,color:colorNumber(def.color),size:e.radius[id],weapon:death.source.kind==='weapon'?death.source.id:undefined,priority:rank!=='normal'});
   this.advanced.death(id);this.cancelEnemyAttacks(id);
   if(attached){e.release(id);return;}
@@ -199,7 +205,7 @@ export class ContentState {
  private resolvePlayerHit(){
   const p=this.player;if(p.invincible>0||p.hp<=0)return;
   const regional=this.landmarks.zone?.id==='garden'?1.1:1,hit=selectPlayerHit(this.incomingHits,this.stats.maxHp,this.stats.armor,regional);if(!hit)return;
-  let damage=this.harness.reduce(cappedDamage(hit,this.stats.maxHp,this.stats.armor,regional));const absorbed=Math.min(p.shield,damage);p.shield-=absorbed;damage=this.inheritanceDamage(damage-absorbed);p.hp-=damage;p.invincible=invulnerabilityFor(this.stats.invulnerability);p.lastHurt=this.combatTime;this.landmarks.channel=0;this.metrics.hurtCount++;this.metrics.hpLost+=damage;this.metrics.shieldAbsorbed+=absorbed;
+  let damage=this.harness.reduce(cappedDamage(hit,this.stats.maxHp,this.stats.armor,regional));const absorbed=Math.min(p.shield,damage);p.shield-=absorbed;this.projectRelics.shieldUsed(absorbed);damage=this.inheritanceDamage(damage-absorbed);p.hp-=damage;p.invincible=invulnerabilityFor(this.stats.invulnerability);p.lastHurt=this.combatTime;this.landmarks.channel=0;this.metrics.hurtCount++;this.metrics.hpLost+=damage;this.metrics.shieldAbsorbed+=absorbed;
   const dx=p.x-hit.x,dy=p.y-hit.y,d=Math.hypot(dx,dy)||1,push=this.passives.find(s=>s.id==='push'),resistance=push?[.05,.1,.15,.2,.25][push.level-1]:0,next=worldSlideMove(this.world,p.x,p.y,dx/d*12*(1-resistance),dy/d*12*(1-resistance),12,this.moveScratch);p.x=next.x;p.y=next.y;this.impact(5,.04);this.emit({type:'hurt',damageType:'hurt',angle:Math.atan2(dy,dx),x:p.x,y:p.y,color:0xe96c6c,size:24,value:Math.ceil(damage)});
  }
  heal(amount:number,fixed=false){const before=this.player.hp;if(this.player.hp>0&&amount>0)this.player.hp=Math.min(this.stats.maxHp,this.player.hp+amount*(fixed?1:this.manifest.dailyRule==='overload'?.6:1));const restored=this.player.hp-before;if(restored>=1)this.emit({type:'pickup',damageType:'heal',x:this.player.x,y:this.player.y,color:0x83e4be,size:8,value:restored});}
@@ -244,5 +250,5 @@ export class ContentState {
  private applyCard(index:number,token?:number){if(this.phase!=='draft'||token!==undefined&&token!==this.draftToken)return;const card=this.cards[index];if(!card)return;if(card.type==='heal')this.heal(30);else if(card.type==='shield')this.addShield(30,12*this.stats.duration);else if(card.type==='credit')this.bonusCredits+=3;else{const owned=card.type==='weapon'?this.weapons:this.passives,existing=owned.find(w=>w.id===card.id);if(existing)existing.level=Math.min(5,existing.level+1);else if(owned.length<6){const skill:ContentSkill={id:card.id as ContentSkill['id'],instanceId:this.nextInstance(),kind:'base',level:1,rarity:card.rarity,evolved:false};owned.push(skill);this.discover(skill.id);}this.recalculateStats();this.weaponSystem.reset(card.id);if(this.weapons[0]?.level===5)this.metrics.mainLv5??=this.combatTime;}this.cards=[];this.setPhase('playing');this.handlePending();}
  openChest(boss=false,preferred=''){this.rewards.openChest(boss?3:1,boss,preferred);}
  openContract(){this.rewards.openContract();}
- dispose(){if(this.disposed)return;this.disposed=true;this.inputX=this.inputY=0;for(const skill of this.weapons)this.weaponSystem.remove(skill.id);this.weaponSystem.summons.remove('s2:drone');this.weaponSystem.whiteboard.remove();this.rewards.clear();this.visualEvents.length=0;this.enemies.clear();this.shots.clear();this.enemyShots.clear();this.areas.clear();this.drops.clear();this.deaths.clear();this.protocol.clear();this.echo.clear();this.danger.clear();this.threats.clear();this.advanced.clear();this.shotOrigins.clear();this.incomingHits.length=0;}
+ dispose(){if(this.disposed)return;this.disposed=true;this.inputX=this.inputY=0;for(const skill of this.weapons)this.weaponSystem.remove(skill.id);this.weaponSystem.summons.remove('s2:drone');this.weaponSystem.whiteboard.remove();this.rewards.clear();this.visualEvents.length=0;this.enemies.clear();this.shots.clear();this.enemyShots.clear();this.areas.clear();this.drops.clear();this.deaths.clear();this.protocol.clear();this.echo.clear();this.projectRelics.clear();this.projectTables.clear();this.danger.clear();this.threats.clear();this.advanced.clear();this.shotOrigins.clear();this.incomingHits.length=0;}
 }

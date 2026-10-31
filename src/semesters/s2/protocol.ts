@@ -11,6 +11,7 @@ export class ProtocolMarks {
   if(!secondary&&bonus>0)this.marks.set(id,{generation:e.generation[id],expires:now+PROTOCOL_SECONDS,bonus:Math.max(active?old.bonus:0,bonus)});
   return result;
  }
+ has(id:number){const m=this.marks.get(id);return !!m&&this.g.enemies.valid(id,m.generation)&&m.expires>this.g.combatTime;}
  forget(id:number){this.marks.delete(id);}
  clear(){this.marks.clear();}
  snapshot(){const e=this.g.enemies;return [...this.marks].filter(([id,m])=>e.valid(id,m.generation)&&e.hp[id]>0&&m.expires>this.g.combatTime).map(([id,m])=>({id,...m}));}

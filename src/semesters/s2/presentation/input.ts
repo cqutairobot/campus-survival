@@ -26,6 +26,7 @@ export class InputController {
   if(e.target instanceof HTMLInputElement||e.target instanceof HTMLSelectElement||e.target instanceof HTMLTextAreaElement)return;
   const view=this.controls.read(),phase=presentationPhase(view);
   if(MOVEMENT.has(e.code)){e.preventDefault();if(phase==='playing'){this.keys.add(e.code);this.update();}}
+  if(!e.repeat&&e.code==='KeyE'&&phase==='playing'){e.preventDefault();this.clear();this.controls.dispatch({type:'interact'});}
   if(!e.repeat&&(e.code==='Space'||e.code==='KeyQ')){e.preventDefault();if(phase==='playing')this.controls.dispatch({type:'ultimate'});}
   if(!e.repeat&&(e.code==='Escape'||e.code==='KeyP')){e.preventDefault();this.clear();if(view.pause?.reason==='manual')this.controls.resume(view.pause.token);else this.controls.pause('manual');}
   if(!e.repeat&&['Digit1','Digit2','Digit3'].includes(e.code)){

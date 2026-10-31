@@ -6,6 +6,7 @@ import {RELICS} from '../../../data/relics';
 import {NORMAL_IDS,SPAWN_RATES,WAVE_WEIGHTS,WEEK_GROUP} from '../../../data/waves';
 import {immutableSnapshot} from '../../types';
 import type {Character,EnemyDef,EnemyBehaviorId} from '../../../types';
+import type {ContentRelicDef} from '../relics';
 import type {ContentFusionDef,ContentPassiveDef,ContentWeaponDef} from '../types';
 
 /** S2 extends its own directory without widening the frozen S1 unions. */
@@ -17,7 +18,7 @@ export interface ContentCatalog {
  readonly weapons:readonly ContentWeaponDef[];readonly passives:readonly ContentPassiveDef[];
  readonly fusions:readonly ContentFusionDef[];readonly enemies:readonly ContentEnemyDef[];
  readonly characters:readonly Character[];readonly rarityMultipliers:readonly number[];
- readonly pickups:typeof PICKUPS;readonly ultimates:typeof ULTIMATES;readonly relics:typeof RELICS;
+ readonly pickups:typeof PICKUPS;readonly ultimates:typeof ULTIMATES;readonly relics:readonly ContentRelicDef[];
  readonly waves:{normalIds:readonly string[];rates:readonly number[];weights:typeof WAVE_WEIGHTS;groups:readonly number[]};
  readonly weaponById:Readonly<Record<string,ContentWeaponDef>>;readonly passiveById:Readonly<Record<string,ContentPassiveDef>>;
  readonly fusionById:Readonly<Record<string,ContentFusionDef>>;readonly enemyById:Readonly<Record<string,ContentEnemyDef>>;
