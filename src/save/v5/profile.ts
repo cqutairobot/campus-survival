@@ -9,6 +9,8 @@ import {S2_IDS} from '../../semesters/catalog-ids';
 import {hasAlumniEligibility,validInheritanceChoice} from '../../semesters/inheritance';
 import {PRODUCT_VERSION,type Graduation,type Rating,type RunSummary,type SaveProfile,type SemesterDailyRecord,type SemesterHistory,type SemesterId,type SemesterResult} from '../../semesters/profile';
 import type {RunResult,SaveData} from '../../types';
+import {awardSemesterAchievements} from '../../semesters/s2/achievements';
+import {semesterRating} from '../../semesters/s2/rating';
 
 export const object=(v:unknown):v is Record<string,unknown>=>!!v&&typeof v==='object'&&!Array.isArray(v);
 const strings=(v:unknown):string[]=>Array.isArray(v)?[...new Set(v.filter((x):x is string=>typeof x==='string'&&x.length<160))]:[];
@@ -20,7 +22,7 @@ const all=(kind:keyof typeof S1_IDS):string[]=>[...S1_IDS[kind],...S2_IDS[kind]]
 const emptyHistory=():SemesterHistory=>({graduation:null,bestRating:null,recentRuns:[]});
 function legacyEvidence(save:SaveData):Graduation|null{return save.stats.wins>=1?{source:'legacyWins'}:save.achievements.survivor?.progress>=1?{source:'legacyAchievement'}:null;}
 export function freshProfile():SaveProfile{
- const s=freshSave();return {...s,schemaVersion:4,contentVersion:PRODUCT_VERSION,selectedSemester:'s1',semesters:{s1:emptyHistory(),s2:{...emptyHistory(),unlocks:{weapons:[...S2_IDS.weapons],passives:[...S2_IDS.passives],regions:[...S2_IDS.regions]},achievements:Object.fromEntries(S2_IDS.achievements.map(id=>[id,{progress:0,completed:false,claimed:false}])),stats:structuredClone(s.stats)}},inheritance:{version:'carry-v1',alumniEligible:false,choice:{id:'supply'}},daily:{records:[],attempts:{},completedKeys:[]},migration:{fromSchema:4,fromContentVersion:PRODUCT_VERSION,legacyDigest:null}};
+ const s=freshSave();return {...s,schemaVersion:4,contentVersion:PRODUCT_VERSION,selectedSemester:'s1',semesters:{s1:emptyHistory(),s2:{...emptyHistory(),unlocks:{weapons:[...S2_IDS.weapons],passives:[...S2_IDS.passives],regions:[...S2_IDS.regions]},achievements:Object.fromEntries(S2_IDS.achievements.map(id=>[id,{progress:0,completed:false,claimed:false}])),stats:structuredClone(s.stats),discoveredInteractions:[],evidence:{terminalClosures:0,evolutions:[]}}},inheritance:{version:'carry-v1',alumniEligible:false,choice:{id:'supply'}},daily:{records:[],attempts:{},completedKeys:[]},migration:{fromSchema:4,fromContentVersion:PRODUCT_VERSION,legacyDigest:null}};
 }
 export function migrateV3ToV4(save:SaveData,origin:{schemaVersion:number;contentVersion?:unknown;raw?:string}={schemaVersion:3}):SaveProfile{
  const out=freshProfile(),graduation=legacyEvidence(save);
@@ -35,7 +37,7 @@ export function toLegacyS1Save(profile:SaveProfile):SaveData{
  for(const key of ['credits','unlocked','selected','talents','settledRuns','unlocks','achievements','settings','stats','persistence'] as const)if(profile[key]!==undefined)Object.assign(out,{[key]:structuredClone(profile[key])});
  out.discovered=ids(profile.discovered,[...S1_IDS.weapons,...S1_IDS.passives,...S1_IDS.fusions]);out.evolutions=ids(profile.evolutions,S1_IDS.weapons);
  for(const [key,kind] of [['discoveredEnemies','enemies'],['fusions','fusions'],['relics','relics'],['events','events'],['regions','regions']] as const)out[key]=ids(profile[key],S1_IDS[kind]);
- out.daily={records:profile.daily.records.filter(r=>r.semesterId==='s1').map(({semesterId:_,...r})=>r),attempts:Object.fromEntries(Object.entries(profile.daily.attempts).filter(([k])=>k.startsWith('s1|')).map(([k,v])=>[k.slice(3),v])),completedDates:profile.daily.completedKeys.filter(k=>k.startsWith('s1|')).map(k=>k.slice(3))};return out;
+ out.daily={records:profile.daily.records.filter(r=>r.semesterId==='s1').map(({semesterId:_,rating:__,...r})=>r),attempts:Object.fromEntries(Object.entries(profile.daily.attempts).filter(([k])=>k.startsWith('s1|')).map(([k,v])=>[k.slice(3),v])),completedDates:profile.daily.completedKeys.filter(k=>k.startsWith('s1|')).map(k=>k.slice(3))};return out;
 }
 function graduation(v:unknown):Graduation|null{
  if(!object(v))return null;
@@ -55,14 +57,14 @@ function history(v:unknown,semesterId:SemesterId):SemesterHistory{
 /** Per-semester retention and dedup; S1 versions/scores/IDs remain unchanged. */
 export function retainSemesterRecords(records:SemesterDailyRecord[]):SemesterDailyRecord[]{
  return (['s1','s2'] as const).flatMap(semester=>{
-  const own=records.filter(r=>r.semesterId===semester),latest=own.map(r=>r.date).sort().at(-1),cutoff=latest?new Date(Date.parse(latest)-29*86400000).toISOString().slice(0,10):'',seen=new Set<string>(),counts=new Map<string,number>();
-  return own.sort(compareDaily).filter(r=>{if(r.date<cutoff||seen.has(r.id))return false;seen.add(r.id);const k=`${r.date}|${r.version}`,n=counts.get(k)??0;counts.set(k,n+1);return n<10;});
+  const own=records.filter(r=>r.semesterId===semester),dates=new Set([...new Set(own.map(r=>r.date))].sort().slice(-30)),seen=new Set<string>(),counts=new Map<string,number>();
+  return own.sort(compareDaily).filter(r=>{if(!dates.has(r.date)||seen.has(r.id))return false;seen.add(r.id);const k=`${r.date}|${r.version}`,n=counts.get(k)??0;counts.set(k,n+1);return n<10;});
  });
 }
 function dailyRecord(v:unknown):SemesterDailyRecord|null{
- if(!object(v)||!['s1','s2'].includes(String(v.semesterId))||!date(v.date)||typeof v.id!=='string'||v.id.length>160||typeof v.version!=='string'||v.version.length>80||!DAILY_RULES.some(r=>r.id===v.rule)||!CHARACTERS.some(c=>c.id===v.character)||typeof v.score!=='number'||!Number.isFinite(v.score)||v.score<0||typeof v.seconds!=='number'||!Number.isFinite(v.seconds)||v.seconds<0||v.seconds>(v.semesterId==='s1'?1200:1500)+1)return null;
+ if(!object(v)||!['s1','s2'].includes(String(v.semesterId))||!date(v.date)||typeof v.id!=='string'||v.id.length>160||typeof v.version!=='string'||v.version.length>80||!DAILY_RULES.some(r=>r.id===v.rule)||!CHARACTERS.some(c=>c.id===v.character)||typeof v.score!=='number'||!Number.isFinite(v.score)||v.score<0||typeof v.seconds!=='number'||!Number.isFinite(v.seconds)||v.seconds<0||v.seconds>(v.semesterId==='s1'?1201:1500))return null;
  const semesterId=v.semesterId as SemesterId,allowed=semesterId==='s1'?S1_IDS:{weapons:all('weapons'),passives:all('passives'),fusions:all('fusions'),relics:all('relics')};
- return {semesterId,id:v.id,date:v.date,version:v.version,rule:String(v.rule),character:String(v.character),nickname:typeof v.nickname==='string'?v.nickname.slice(0,20):'校园研究生',score:Math.floor(number(v.score)),victory:v.victory===true,completedWeeks:Math.floor(number(v.completedWeeks,semesterId==='s1'?22:24)),seconds:number(v.seconds,semesterId==='s1'?1200:1500),build:ids(v.build,[...allowed.weapons,...allowed.passives,...allowed.fusions]).slice(0,12),relics:ids(v.relics,allowed.relics).slice(0,3),averageCurse:number(v.averageCurse,3),createdAt:number(v.createdAt,1e14)};
+ return {semesterId,id:v.id,date:v.date,version:v.version,rule:String(v.rule),character:String(v.character),nickname:typeof v.nickname==='string'?v.nickname.slice(0,20):'校园研究生',score:Math.floor(number(v.score)),victory:v.victory===true,completedWeeks:Math.floor(number(v.completedWeeks,semesterId==='s1'?22:24)),seconds:number(v.seconds,semesterId==='s1'?1200:1500),build:ids(v.build,[...allowed.weapons,...allowed.passives,...allowed.fusions]).slice(0,12),relics:ids(v.relics,allowed.relics).slice(0,3),averageCurse:number(v.averageCurse,3),createdAt:number(v.createdAt,1e14),...(Object.hasOwn(v,'rating')?{rating:rating(v.rating,semesterId)}:{})};
 }
 export function validateProfile(value:unknown,raw?:string):SaveProfile|null{
  if(!object(value))return null;
@@ -80,6 +82,8 @@ export function validateProfile(value:unknown,raw?:string):SaveProfile|null{
  Object.assign(out.semesters.s2,history(semesters.s2,'s2'));
  if(object(semesters.s2)){
   const s2=semesters.s2;
+  out.semesters.s2.discoveredInteractions=ids(s2.discoveredInteractions,S2_IDS.interactions);
+  if(object(s2.evidence))out.semesters.s2.evidence={terminalClosures:Math.floor(number(s2.evidence.terminalClosures)),evolutions:ids(s2.evidence.evolutions,S2_IDS.weapons)};
   if(object(s2.unlocks))for(const k of ['weapons','passives','regions'] as const)out.semesters.s2.unlocks[k]=[...new Set([...S2_IDS[k],...ids(s2.unlocks[k],all(k))])];
   if(object(s2.stats)){for(const k of ['runs','wins','kills','bestWeek','elites','miniBosses','shieldKills','frozen'] as const)out.semesters.s2.stats[k]=number(s2.stats[k],k==='bestWeek'?24:1e9);out.semesters.s2.stats.visits=ids(s2.stats.visits,all('regions'));}
   if(object(s2.achievements))for(const id of S2_IDS.achievements){const a=s2.achievements[id];if(object(a))out.semesters.s2.achievements[id]={progress:number(a.progress),completed:a.completed===true,claimed:a.completed===true&&a.claimed===true};}
@@ -96,7 +100,8 @@ export function validateProfile(value:unknown,raw?:string):SaveProfile|null{
  return out;
 }
 function summarize(out:SaveProfile,result:RunResult|SemesterResult,semesterId:SemesterId){
- const history=out.semesters[semesterId];history.recentRuns=[...history.recentRuns,{id:result.id,semesterId,rulesVersion:result.manifest?.rulesVersion??(semesterId==='s1'?'campus-v4.0.1':'campus-s2-v5.0.0'),victory:result.victory,week:result.week,seconds:result.seconds,build:[...result.weapons,...result.passives].map(w=>w.id),rating:null}].slice(-10);
+ const history=out.semesters[semesterId],current=semesterId==='s2'?semesterRating(result as SemesterResult):null;history.recentRuns=[...history.recentRuns,{id:result.id,semesterId,rulesVersion:result.manifest?.rulesVersion??(semesterId==='s1'?'campus-v4.0.1':'campus-s2-v5.0.0'),victory:result.victory,week:result.week,seconds:result.seconds,build:[...result.weapons,...result.passives].map(w=>w.id),rating:current}].slice(-10);
+ if(current&&(!history.bestRating||history.bestRating.ratingVersion===current.ratingVersion&&history.bestRating.rulesVersion===current.rulesVersion&&current.value>history.bestRating.value))history.bestRating=current;
  if(result.victory&&result.manifest?.mode!=='daily')history.graduation??={source:'normalRun',runId:result.id};
  out.inheritance.alumniEligible=!!out.semesters.s1.graduation;
 }
@@ -107,7 +112,7 @@ export function settleS1Profile(profile:SaveProfile,result:RunResult):SaveProfil
  for(const key of ['unlocked','unlocks','achievements','stats'] as const)Object.assign(out,{[key]:after[key]});
  out.settledRuns.push(result.id);
  for(const key of ['discovered','evolutions','discoveredEnemies','fusions','relics','events','regions'] as const)out[key]=[...new Set([...out[key],...after[key]])];
- out.daily.records=retainSemesterRecords([...out.daily.records.filter(r=>r.semesterId!=='s1'),...after.daily.records.map(r=>({...r,semesterId:'s1' as const}))]);
+ out.daily.records=retainSemesterRecords([...out.daily.records,...after.daily.records.map(r=>({...r,semesterId:'s1' as const}))]);
  out.daily.completedKeys=[...new Set([...out.daily.completedKeys,...after.daily.completedDates.map(d=>`s1|${d}`)])];
  summarize(out,result,'s1');return out;
 }
@@ -116,12 +121,14 @@ export function settleS2Profile(profile:SaveProfile,result:SemesterResult):SaveP
  const mode=result.manifest?.mode;
  if(!mode||result.manifest?.rulesVersion!==(mode==='daily'?'daily-s2-v5.0.0':'campus-s2-v5.0.0')||result.victory&&(!result.settlement.finalRewardCommitted||result.settlement.assessmentsPassed!==3||result.completedWeeks!==24))return profile;
  if(mode==='daily'&&(!date(result.manifest?.date)||!result.dailyRecord||result.dailyRecord.semesterId!=='s2'||result.dailyRecord.id!==result.id||result.dailyRecord.date!==result.manifest.date||result.dailyRecord.version!==result.manifest.rulesVersion))return profile;
+ if(mode==='daily'&&!dailyRecord(result.dailyRecord))return profile;
  const out=structuredClone(profile),daily=result.manifest?.mode==='daily',s2=out.semesters.s2;
  out.settledRuns.push(result.id);
  if(!daily){out.credits+=number(result.credits);s2.stats.runs++;s2.stats.wins+=Number(result.victory);s2.stats.kills+=result.progress?.normalKills??result.kills;s2.stats.bestWeek=Math.max(s2.stats.bestWeek,Math.min(24,result.week));if(result.progress){for(const k of ['elites','miniBosses','shieldKills','frozen'] as const)s2.stats[k]+=result.progress[k];s2.stats.visits=[...new Set([...s2.stats.visits,...result.progress.visited])];}}
- if(daily&&result.dailyRecord?.semesterId==='s2')out.daily.records=retainSemesterRecords([...out.daily.records,result.dailyRecord]);
+ if(daily&&result.dailyRecord?.semesterId==='s2')out.daily.records=retainSemesterRecords([...out.daily.records,{...result.dailyRecord,rating:semesterRating(result)}]);
  if(daily&&result.victory&&result.manifest?.date)out.daily.completedKeys=[...new Set([...out.daily.completedKeys,`s2|${result.manifest.date}`])];
- if(!daily){for(const skill of [...result.weapons,...result.passives])out.discovered=[...new Set([...out.discovered,skill.id])];}
- if(!daily&&result.progress)for(const [key,from] of [['discoveredEnemies','enemies'],['fusions','fusions'],['relics','relics'],['events','events'],['regions','visited']] as const)out[key]=[...new Set([...out[key],...result.progress[from]])];
- if(!daily)summarize(out,result,'s2');return out;
+ for(const skill of [...result.weapons,...result.passives])out.discovered=[...new Set([...out.discovered,skill.id])];
+ if(result.progress)for(const [key,from] of [['discoveredEnemies','enemies'],['fusions','fusions'],['relics','relics'],['events','events'],['regions','visited']] as const)out[key]=[...new Set([...out[key],...result.progress[from]])];
+ out.evolutions=[...new Set([...out.evolutions,...(result.semesterEvidence?.evolutions??[]).filter(id=>all('weapons').includes(id))])];s2.discoveredInteractions=[...new Set([...s2.discoveredInteractions,...(result.semesterEvidence?.interactions??[]).filter(id=>(S2_IDS.interactions as readonly string[]).includes(id))])];if(!daily)summarize(out,result,'s2');
+ awardSemesterAchievements(out,result);return out;
 }

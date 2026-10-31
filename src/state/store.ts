@@ -14,6 +14,7 @@ import type {Discovery,InheritanceChoice} from '../semesters/types';
 import {discoverProfile,legacyDiscovery} from '../save/v5/discovery';
 import {hasAlumniEligibility,validInheritanceChoice} from '../semesters/inheritance';
 import type {RepositoryPort} from '../save/coordinator';
+import type {SemesterFilter} from '../semesters/collection';
 let storage:Storage|null=null;try{if(!IS_FIXTURE)storage=globalThis.localStorage??null;}catch{/* Private browsing can block storage. */}
 export const repository=new ProfileRepository(storage);
 export const INITIAL_HUD:HUD={phase:'menu',hp:110,maxHp:110,shield:0,xp:0,xpNext:6,level:1,kills:0,week:1,semesterTime:0,combatTime:0,bossTime:0,bosses:0,weapons:[],passives:[],cards:[],chest:null,boss:null,zone:'',event:'',fps:60,p95:16.7,entities:0,projectiles:0,drops:0,quality:'high',notice:'',result:null,combo:0,peakCombo:0,comboTier:0,frenzy:{charge:0,remaining:0,cooldown:0},ultimate:{id:'submission',name:'全校交稿',energy:60,cooldown:0,remaining:0,ready:false},reward:null,relics:[],interaction:null,manifest:null,score:0,eligible:true,directions:[]};
@@ -22,6 +23,7 @@ const legacy=(save:WalletSave)=>save.schemaVersion===4?toLegacyS1Save(save):save
 interface StoreModel<S extends WalletSave>{validate:(v:unknown,raw?:string)=>S|null;settle:(save:S,result:RunResult)=>S}
 const legacyModel:StoreModel<SaveData>={validate:validateSave,settle:settleRun};
 export interface AppState<S extends WalletSave=SaveProfile> {
+ collectionRequest:{semester:SemesterFilter;onlyIncomplete:boolean}|null;requestCollectionGaps:(semester:SemesterFilter)=>void;
   save:S;hud:HUD;saveStatus:string;persistence:PersistenceState;recoverySources:RecoverySource[];savedRuns:string[];canPersist:boolean; publish:(hud:HUD)=>void;
   settings:(patch:Partial<Settings>)=>Promise<SaveOperation>;selectCharacter:(id:string)=>void;unlock:(id:string)=>boolean;
   selectSemester:(id:SemesterId)=>void;selectInheritance:(choice:InheritanceChoice)=>void;
@@ -53,6 +55,7 @@ export function createAppStore<S extends WalletSave=SaveData>(repository:Reposit
    return {kind:coordinator.role==='writer'&&coordinator.state==='ready'?'saved':coordinator.state==='failed'?'failed':'memory',message:coordinator.status};
   };
   return{
+    collectionRequest:null,requestCollectionGaps:semester=>set({collectionRequest:{semester,onlyIncomplete:true}}),
     save:loaded,hud:{...INITIAL_HUD},...info(),savedRuns:[...loaded.settledRuns],publish:hud=>set({hud}),
     settings:patch=>persist({...get().save,settings:normalizeSettings({...get().save.settings,...patch})}),
     selectCharacter:id=>{if(get().save.unlocked.includes(id))persist({...get().save,selected:id});},

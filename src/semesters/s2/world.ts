@@ -26,6 +26,11 @@ export interface S2WorldSnapshot {
 }
 export type WorldSnapshot=Immutable<S2WorldSnapshot>;
 type Geometry=Pick<WorldSnapshot,'blockers'|'size'>;
+export const S2_REGION_DEFS:readonly WorldZone[]=[
+ {id:'s2:smartTeaching',name:'智慧教学楼外场',x:1408,y:1280,radius:530,color:0x8dbdc9,entrance:{x:1776,y:1536},legacy:false},
+ {id:'s2:jointLab',name:'产教联合实验园',x:5100,y:4480,radius:650,color:0x8099ac,entrance:{x:4480,y:4480},legacy:false},
+ {id:'s2:exhibitHall',name:'学生成果展廊',x:1376,y:4816,radius:570,color:0xcdb583,entrance:{x:1376,y:4608},legacy:false},
+];
 
 // The frozen S1 helpers only read their array. Adapt their mutable parameter type
 // here rather than changing those files or copying the collision algorithms.
@@ -82,9 +87,7 @@ export function createS2WorldSnapshot(unlocked:readonly string[]):WorldSnapshot 
  ];
  const buildings:WorldBuilding[]=[...BUILDINGS.map((b,n)=>({...b,id:buildingKeys[n],art:buildingArt[buildingKeys[n]]})),...extensions];
  const zones:WorldZone[]=[...ZONES.map(z=>({...z,art:landmarkArt[z.id],entrance:{x:z.x,y:['lab','workshop','garden'].includes(z.id)?z.y+z.radius+144:z.y},legacy:true})),
-  {id:newIds[0],name:'智慧教学楼外场',x:1408,y:1280,radius:530,color:0x8dbdc9,entrance:{x:1776,y:1536},legacy:false},
-  {id:newIds[1],name:'产教联合实验园',x:5100,y:4480,radius:650,color:0x8099ac,entrance:{x:4480,y:4480},legacy:false},
-  {id:newIds[2],name:'学生成果展廊',x:1376,y:4816,radius:570,color:0xcdb583,entrance:{x:1376,y:4608},legacy:false},
+  ...structuredClone(S2_REGION_DEFS),
  ];
  const assessmentSites=[
   site('s2:smart-square',newIds[0],'智慧教学楼环廊广场',1440,1456,224,[

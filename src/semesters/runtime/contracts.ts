@@ -49,7 +49,7 @@ export interface SemesterRules<State,Content> {
 }
 export interface RuntimeOutcome {
  semesterId:'s2';mode:'normal'|'daily';victory:boolean;reason:'completed'|'defeated'|'timeout'|'abandoned';
- week:number;completedWeeks:number;seconds:number;assessmentsPassed:number;
+ week:number;completedWeeks:number;seconds:number;assessmentsPassed:number;teachingSeconds?:number;
 }
 export interface SemesterRunView<Content> {
  semesterId:'s2';phase:RuntimePhase;clock:RuntimeClock;calendar:SemesterMetadata['calendar'];

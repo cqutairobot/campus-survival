@@ -12,6 +12,8 @@ import {REGION_CONDITIONS} from '../../../world/landmarks';
 import {warningFloor} from '../world';
 import {legacyFeedbackEvent,type ContentVisualEvent} from '../enemy-visuals';
 import {BuildPanel} from './BuildPanel';
+import {SemesterSettlementPanel} from './SettlementPanel';
+import type {SaveProfile,SemesterResult} from '../../profile';
 import {ringRadius} from '../danger';
 import {InputController,presentationPhase,type Joystick,type SemesterControls} from './input';
 import { clamp, distanceSq, lerp, TAU } from '../../../core/math';
@@ -39,6 +41,8 @@ import {qualityBudget,qualityName} from '../../../presentation/quality';
 
 interface Transient {event:ContentVisualEvent;life:number;total:number;hold?:number}
 export class SemesterScene implements SemesterView<LegacyContentDTO> {
+  private settlementPanel:SemesterSettlementPanel|undefined;
+  showSettlement(before:SaveProfile,after:SaveProfile,result:SemesterResult){this.settlementPanel?.destroy();this.settlementPanel=new SemesterSettlementPanel(this.host,before,after,result);}
   readonly app=new Application();readonly audio:GameAudio;
   private textures!:TextureCatalog;private geometry!:TextureLibrary;private assetsRelease:(()=>void)|undefined;private loadAbort=new AbortController();
   private artTextures=new Map<ArtId,Texture>();private artReleases:(()=>void)[]=[];private requestedBosses=new Set<Bundle>();private playerShadow=new Graphics();
@@ -485,7 +489,7 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
     this.app.destroy(true,{children:true,texture:false,textureSource:false});this.textures?.destroy();this.geometry?.destroy();for(const texture of this.uiTextures)texture.destroy(true);this.uiTextures=[];
   }
   destroy(){
-    if(this.destroyed)return;this.destroyed=true;cancelAnimationFrame(this.animation);this.resizeObserver?.disconnect();this.buildPanel?.destroy();this.buildPanel=null;this.input?.destroy();this.loadAbort.abort();this.assetsRelease?.();this.feedback.clear();this.deathFX.clear();this.particles?.clear();
+    if(this.destroyed)return;this.destroyed=true;cancelAnimationFrame(this.animation);this.resizeObserver?.disconnect();this.buildPanel?.destroy();this.buildPanel=null;this.settlementPanel?.destroy();this.settlementPanel=undefined;this.input?.destroy();this.loadAbort.abort();this.assetsRelease?.();this.feedback.clear();this.deathFX.clear();this.particles?.clear();
     // Release shader references before Pixi's render-texture pool and atlas sources.
     this.world.filters=[];this.effects.filters=[];if(this.player)this.player.filters=[];
     this.releaseFilterTextures();for(const filter of [this.bloom,this.glow,...this.postFX.filters])filter.destroy();

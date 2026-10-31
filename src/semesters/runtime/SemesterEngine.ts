@@ -123,7 +123,7 @@ export class SemesterEngine<State,Content> {
  abandon(){if(!this.disposed&&!this.result){this.finish('abandoned');this.publish();}}
  private finish(reason:RuntimeOutcome['reason']){
   if(this.result)return;
-  const clock=this.clock();this.result={semesterId:'s2',mode:this.snapshot.mode,victory:reason==='completed',reason,week:clock.week,completedWeeks:clock.completedWeeks,seconds:clock.combatSeconds,assessmentsPassed:this.assessmentsPassed};
+  const clock=this.clock();this.result={semesterId:'s2',mode:this.snapshot.mode,victory:reason==='completed',reason,week:clock.week,completedWeeks:clock.completedWeeks,seconds:clock.combatSeconds,assessmentsPassed:this.assessmentsPassed,teachingSeconds:clock.teachingSeconds};
   this.phase='finished';this.gate=null;this.suspension=null;
  }
  dispose(){

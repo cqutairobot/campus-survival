@@ -4,7 +4,7 @@ import type {S2Hazard} from './danger';
 
 export const PROJECT_REVIEW:ContentEnemyDef={id:'s2:projectReview',name:'项目中期验收',rank:'boss',behavior:'projectReview',tags:[],hp:46000,speed:0,damage:30,xp:140,radius:46,color:'#ba8758',from:16};
 export const REVIEW_ATTACHMENTS:readonly ContentEnemyDef[]=[
- {id:'s2:relayNode',name:'联调终端',rank:'bossAdd',behavior:'relayNode',tags:[],hp:800,speed:0,damage:0,xp:0,radius:22,color:'#c7ae65',from:16},
+ {id:'s2:relayNode',name:'联调终端',rank:'bossAdd',behavior:'relayNode',tags:[],hp:800,speed:0,damage:0,xp:0,radius:22,color:'#c7ae65',from:10},
  {id:'s2:reviewPanel',name:'移动评审屏',rank:'bossAdd',behavior:'reviewPanel',tags:[],hp:520,speed:24,damage:0,xp:0,radius:25,color:'#d48f79',from:16},
 ];
 interface Identity {id:number;generation:number}

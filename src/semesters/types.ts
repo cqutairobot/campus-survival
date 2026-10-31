@@ -2,7 +2,7 @@ import type {RunManifest} from '../types';
 import type {SemesterId} from './profile';
 
 export type InheritanceChoice={id:'supply'}|{id:'notes'}|{id:'topic';weaponId:string};
-export interface Discovery {category:'item'|'evolution'|'enemy'|'fusion'|'relic'|'event'|'region';id:string;semesterId:SemesterId;evidence:'run'|'debug'}
+export interface Discovery {category:'item'|'evolution'|'enemy'|'fusion'|'relic'|'event'|'region'|'interaction';id:string;semesterId:SemesterId;evidence:'run'|'debug'}
 export type InheritanceSnapshot=
  | {version:'carry-v1';id:'supply';shield:15;durationSeconds:60}
  | {version:'carry-v1';id:'notes';xpMultiplier:1.08;durationSeconds:120}

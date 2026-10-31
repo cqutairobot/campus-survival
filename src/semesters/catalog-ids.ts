@@ -8,4 +8,5 @@ export const S2_IDS={
  events:['s2:deliveryDay','s2:networkMaintenance','s2:jointExhibit','s2:openLab'],
  regions:['s2:smartTeaching','s2:jointLab','s2:exhibitHall'],
  achievements:['s2:proposal','s2:network','s2:guide','s2:collaboration','s2:multidiscipline','s2:survivor','s2:risk','s2:today'],
+ interactions:['s2:jointTable','s2:amendmentTable','s2:infirmary','s2:revision'],
 } as const;
