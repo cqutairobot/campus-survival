@@ -8,7 +8,7 @@ import {immutableSnapshot} from '../../types';
 import type {Character,EnemyDef,EnemyBehaviorId,PassiveDef,WeaponDef} from '../../../types';
 
 /** S2 extends its own directory without widening the frozen S1 unions. */
-export type ContentEnemyDef=Omit<EnemyDef,'id'|'behavior'>&{id:string;behavior:EnemyBehaviorId|'bike'|'reservation'|'parceler'|'dispatcher'};
+export type ContentEnemyDef=Omit<EnemyDef,'id'|'behavior'>&{id:string;behavior:EnemyBehaviorId|'bike'|'reservation'|'parceler'|'dispatcher'|'proposalBoard'};
 
 /** The only legacy-definition import boundary. Cloning protects the S1 arrays;
  * every S2 lookup (including presentation) uses this injected directory. */

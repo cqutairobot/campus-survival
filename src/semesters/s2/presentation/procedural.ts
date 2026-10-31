@@ -66,6 +66,13 @@ export class TextureLibrary {
         g.roundRect(48,45,34,29,3).fill(0xc99455).stroke({color:0xffefc6,width:3});g.rect(61,46,7,26).fill(0xffefc6);
         g.moveTo(31,75).lineTo(26,84).moveTo(60,75).lineTo(65,84).stroke({color:INK,width:6});return;
       }
+      if(def.id==='s2:proposalBoard'){
+        g.moveTo(23,55).lineTo(17,84).moveTo(73,55).lineTo(79,84).stroke({color:INK,width:6});
+        g.roundRect(9,15,78,52,7).fill(0x3d6374).stroke({color,width:5});g.roundRect(15,20,66,11,3).fill(color);
+        for(const x of [29,48,67]){g.circle(x,39,6).fill(0xf2d2a3).stroke({color:INK,width:1.5});g.roundRect(x-7,46,14,16,2).fill(0xf9e6bc).stroke({color:INK,width:1.5});g.moveTo(x-3,51).lineTo(x+4,51).moveTo(x-3,56).lineTo(x+2,56).stroke({color:0x557c85,width:1.5});}
+        g.poly([34,73,53,73,53,67,68,78,53,89,53,83,34,83]).fill(color).stroke({color:INK,width:2});
+        g.circle(13,18,7).fill(0xf9e6bc).stroke({color:INK,width:2});g.moveTo(13,13).lineTo(13,18).lineTo(17,20).stroke({color:INK,width:2});return;
+      }
       if(def.id==='s2:dispatcher'){
         g.roundRect(22,42,50,37,8).fill(0x3d6374).stroke({color,width:4});g.poly([30,44,42,44,42,77,30,77,54,44,65,44,65,77,54,77]).fill(color);
         g.circle(47,28,18).fill(0xf2d2a3).stroke(line);g.roundRect(24,8,48,14,4).fill(color).stroke(line);

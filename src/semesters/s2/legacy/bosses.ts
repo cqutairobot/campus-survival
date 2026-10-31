@@ -4,12 +4,16 @@ import { distanceSq, TAU } from '../../../core/math';
 import { RANK_CODE } from '../../../data/enemies';
 import { slowFactor } from '../../../combat/status';
 import type {S2Hazard} from '../danger';
+import {ProposalBoardSystem,PROPOSAL_BOARD} from '../proposal-board';
 export class BossSystem {
+  readonly proposalBoard:ProposalBoardSystem;
   private attack=2.5;private summon=9;private skill=5;private lastStage=1;private doubleCharge=false;private chargeWarning:S2Hazard|undefined;
-  constructor(private g:ContentState){}
-  reset(){this.attack=2.5;this.summon=9;this.skill=5;this.lastStage=1;this.doubleCharge=false;this.chargeWarning=undefined;}
+  constructor(private g:ContentState){this.proposalBoard=new ProposalBoardSystem(g);}
+  reset(){this.attack=2.5;this.summon=9;this.skill=5;this.lastStage=1;this.doubleCharge=false;this.chargeWarning=undefined;this.proposalBoard.reset();}
   update(dt:number){
-    const g=this.g,id=g.bossEnemy,e=g.enemies,p=g.player;if(id<0||!e.alive[id]||e.hp[id]<=0||e.frozen[id]>0)return;
+    const g=this.g,id=g.bossEnemy,e=g.enemies,p=g.player;if(id<0||!e.alive[id]||e.hp[id]<=0)return;
+    if(g.content.enemies[e.kind[id]].id===PROPOSAL_BOARD.id){this.proposalBoard.update(dt);return;}
+    if(e.frozen[id]>0)return;
     const kind=e.kind[id],ratio=e.hp[id]/e.maxHp[id],stage=kind===this.g.content.enemyIndex.proposal?(ratio<.5?2:1):kind===this.g.content.enemyIndex.defense?(ratio<.3?3:ratio<.6?2:1):(ratio<.35?3:ratio<.7?2:1);
     g.bossStage=stage;
     if(stage!==this.lastStage){this.lastStage=stage;g.emit({type:'boss',x:e.x[id],y:e.y[id],color:0xe6b75e,size:230,text:`阶段 ${stage}`});g.impact(6,.05);if(kind===this.g.content.enemyIndex.finals&&stage===2)this.exams();}

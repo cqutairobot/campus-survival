@@ -17,6 +17,7 @@ import type {Navigation} from '../../../world/navigation';
 import {DangerScheduler,dangerContains,ringRadius,warningSeconds,type HazardOptions,type S2Hazard} from '../danger';
 import {pressureAt} from '../pressure';
 import {FirstChapterBehaviors} from '../first-chapter-behaviors';
+import {PROPOSAL_BOARD} from '../proposal-board';
 import {cappedDamage,invulnerabilityFor,selectPlayerHit,tierForRank,type DamageOrigin,type IncomingHit} from '../player-damage';
 import {WeaponSystem} from './system';
 import {SpatialGrid} from '../../../core/grid';
@@ -44,7 +45,7 @@ export class ContentState {
  stats:PlayerStats;phase:Phase='playing';semesterTime=0;combatTime=0;bossTime=0;week=1;level=1;xp=0;kills=0;bosses=0;bossEnemy=-1;bossStage=1;bossActive=false;bossNumber=0;
  inputX=0;inputY=0;frame=0;damageMultiplier=1;notice='新学期，出发！';noticeUntil=5;cards:HUD['cards']=[];draftToken=0;chest:HUD['chest']=null;
  damage:Record<string,number>={};poolFailures=0;readonly metrics=freshMetrics();coffeeTime=0;bonusCredits=0;ordinarySpawnsAllowed=false;assessmentRewardDone=false;
- private incomingHits:IncomingHit[]=[];private shotOrigins=new Map<number,{generation:number;origin:DamageOrigin}>();
+ private incomingHits:IncomingHit[]=[];private shotOrigins=new Map<number,{generation:number;origin:DamageOrigin;owner?:number;ownerGeneration?:number}>();
  private rewardedGeneration=new Uint32Array(this.enemies.capacity);
  private navTimer=0;private pendingLevels=0;private levelFeedbackFrame=-1;private deadBoss=-1;private nextMerge=1;private specialCooldown:Record<string,number>={};private hazardId=0;private instanceSerial=0;private visualSerial=0;
  private disposed=false;private waitingForAssessment=false;private moveScratch={x:0,y:0};private grantBoundary:RuntimeGrants|null=null;private transitions=new Set<string>();
@@ -108,10 +109,11 @@ export class ContentState {
    const p=this.player;Object.assign(p,{...entry.site.player,prevX:entry.site.player.x,prevY:entry.site.player.y,vx:0,vy:0});this.navigation.rebuild(p.x,p.y,true);
    this.waitingForAssessment=false;
    this.bossNumber=event.assessment.index;this.bossStage=1;this.bossActive=true;this.bossTime=0;this.assessmentRewardDone=false;
-   const kind=['proposal','defense','finals'][this.bossNumber],point=entry.site.boss;this.bossEnemy=this.spawnEnemy(kind,point.x,point.y);this.bossSystem.reset();this.emit({type:'boss',x:point.x,y:point.y,color:0xe48475,size:240,text:this.content.enemyById[kind].name});
+   const kind=event.assessment.week===8&&this.bossNumber===0&&this.content.enemyById[PROPOSAL_BOARD.id]?PROPOSAL_BOARD.id:['proposal','defense','finals'][this.bossNumber],point=entry.site.boss;this.bossEnemy=this.spawnEnemy(kind,point.x,point.y);this.bossSystem.reset();this.emit({type:'boss',x:point.x,y:point.y,color:0xe48475,size:240,text:this.content.enemyById[kind].name});
   }else{
    this.waitingForAssessment=true;
-   this.bosses++;this.metrics.bossFights.push({boss:this.bossNumber,seconds:event.clock.assessmentSeconds,damage:this.enemies.maxHp[this.deadBoss]});this.deadBoss=-1;this.clearThreats();this.assessmentAdmission=null;this.magnet();this.rewards.openChest(3,true);
+   const checkpoint=this.content.enemies[this.enemies.kind[this.deadBoss]]?.id===PROPOSAL_BOARD.id;
+   this.bosses++;this.metrics.bossFights.push({boss:this.bossNumber,seconds:event.clock.assessmentSeconds,damage:this.enemies.maxHp[this.deadBoss]});this.deadBoss=-1;this.clearThreats();this.assessmentAdmission=null;this.magnet();if(checkpoint)this.heal(this.stats.maxHp*.15,true);this.rewards.openChest(3,true);
   }
   }finally{this.grantBoundary=null;}
  }
@@ -138,7 +140,7 @@ export class ContentState {
  }
  spawnSummon(kind:string,owner:number,x:number,y:number,lifetime=12,attached=false){const e=this.enemies;if(!this.enemySourceAlive(owner,e.generation[owner]))return-1;const id=this.spawnEnemy(kind,x,y,0,undefined,attached);if(id>=0){e.owner[id]=owner;e.ownerGeneration[id]=e.generation[owner];e.lifetime[id]=lifetime;e.xp[id]=0;e.rewardWeight[id]=0;e.chainXp[id]=0;e.chainWeight[id]=0;e.reward[id]=0;e.splitGeneration[id]=1;}return id;}
  enemySourceAlive(id:number,generation:number):boolean{const e=this.enemies;for(let depth=0;depth<e.capacity;depth++){if(!e.valid(id,generation)||e.hp[id]<=0)return false;if(e.owner[id]<0)return true;generation=e.ownerGeneration[id];id=e.owner[id];}return false;}
- private cancelEnemyAttacks(id:number){const e=this.enemies,generation=e.generation[id];this.danger.cancelOwner(id,generation);this.threats.forget(id,generation);for(const child of [...e.active])if(e.owner[child]===id&&e.ownerGeneration[child]===generation)this.releaseEnemy(child);}
+ cancelEnemyAttacks(id:number,generation=this.enemies.generation[id]){const e=this.enemies;if(!e.valid(id,generation))return;this.danger.cancelOwner(id,generation);this.threats.forget(id,generation);for(const child of [...e.active])if(e.owner[child]===id&&e.ownerGeneration[child]===generation)this.releaseEnemy(child);}
  releaseEnemy(id:number){if(!this.enemies.alive[id])return;this.cancelEnemyAttacks(id);this.enemies.release(id);}
  frozenTarget(id:number){const e=this.enemies;if(e.owner[id]>=0||e.rank[id]===RANK_CODE.bossAdd)return;if(!e.frozenOnce[id]){e.frozenOnce[id]=1;this.progress.frozen++;}}
  hitEnemy(id:number,baseDamage:number,source:WeaponKind|DamageSource,x:number,y:number,knockback=1,canCrit=true,canChain=true,clearChain=false,fixed=false):number{
@@ -150,6 +152,7 @@ export class ContentState {
   const dx=e.x[id]-x,dy=e.y[id]-y,d=Math.hypot(dx,dy)||1,resist=rank==='boss'?.05:rank==='miniBoss'?.1:rank==='elite'?.25:this.content.enemies[e.kind[id]].tags.includes('heavy')?.5:1;e.vx[id]+=dx/d*(crit?160:90)*knockback*this.stats.push*resist;e.vy[id]+=dy/d*(crit?160:90)*knockback*this.stats.push*resist;
   this.emit({type:'hit',slot:id,generation:e.generation[id],...enemyVisual(this.content.enemies[e.kind[id]].id),rank,batch:this.frame,sourceKey:key,damageType:absorbed>0?'shield':!canCrit&&src.kind==='weapon'&&['coffee','cryo','icefire','eraser'].includes(src.id)?'dot':'normal',x:e.x[id],y:e.y[id]-8,color:crit?0xf0bf5b:colorNumber(damageLabel(this.content,key).color),size:crit?11:6,value:Math.round(total),critical:crit,weapon:src.kind==='weapon'?src.id:undefined,angle:Math.atan2(dy,dx)});
   if(absorbed>0&&e.shield[id]<=0)this.emit({type:'shieldBreak',x:e.x[id],y:e.y[id],color:0x9be3ed,size:e.radius[id]*2,material:'glass',priority:true});if(crit)this.impact(1.5);
+  if(id===this.bossEnemy)this.bossSystem.proposalBoard.observeHealth();
   if(e.hp[id]<=0)this.deaths.mark(e,id,src,clearChain);
   if(crit&&canChain&&e.owner[id]<0&&rank!=='bossAdd'&&src.kind==='weapon'&&this.momentum.critical())this.criticalChain(id,e.x[id],e.y[id],baseDamage*.25,src.id);return total;
  }
@@ -183,16 +186,17 @@ export class ContentState {
   let damage=cappedDamage(hit,this.stats.maxHp,this.stats.armor,regional);const absorbed=Math.min(p.shield,damage);p.shield-=absorbed;damage=this.inheritanceDamage(damage-absorbed);p.hp-=damage;p.invincible=invulnerabilityFor(this.stats.invulnerability);p.lastHurt=this.combatTime;this.landmarks.channel=0;this.metrics.hurtCount++;this.metrics.hpLost+=damage;this.metrics.shieldAbsorbed+=absorbed;
   const dx=p.x-hit.x,dy=p.y-hit.y,d=Math.hypot(dx,dy)||1,push=this.passives.find(s=>s.id==='push'),resistance=push?[.05,.1,.15,.2,.25][push.level-1]:0,next=worldSlideMove(this.world,p.x,p.y,dx/d*12*(1-resistance),dy/d*12*(1-resistance),12,this.moveScratch);p.x=next.x;p.y=next.y;this.impact(5,.04);this.emit({type:'hurt',damageType:'hurt',angle:Math.atan2(dy,dx),x:p.x,y:p.y,color:0xe96c6c,size:24,value:Math.ceil(damage)});
  }
- heal(amount:number){const before=this.player.hp;if(this.player.hp>0&&amount>0)this.player.hp=Math.min(this.stats.maxHp,this.player.hp+amount*(this.manifest.dailyRule==='overload'?.6:1));const restored=this.player.hp-before;if(restored>=1)this.emit({type:'pickup',damageType:'heal',x:this.player.x,y:this.player.y,color:0x83e4be,size:8,value:restored});}
+ heal(amount:number,fixed=false){const before=this.player.hp;if(this.player.hp>0&&amount>0)this.player.hp=Math.min(this.stats.maxHp,this.player.hp+amount*(fixed?1:this.manifest.dailyRule==='overload'?.6:1));const restored=this.player.hp-before;if(restored>=1)this.emit({type:'pickup',damageType:'heal',x:this.player.x,y:this.player.y,color:0x83e4be,size:8,value:restored});}
  addShield(amount:number,seconds:number){this.player.shield=Math.min(this.stats.maxHp*.5,this.player.shield+amount);this.player.shieldTime=seconds;}
  enemyBullet(x:number,y:number,angle:number,speed:number,damage:number,radius=6,delay=0,ordinary=true,owner?:number){
   const id=this.enemyShots.acquire();if(id<0){this.poolFailures++;return;}
   const origin=owner!==undefined?this.originForEnemy(owner,'projectile'):{kind:'projectile' as const,id,generation:this.enemyShots.generation[id],tier:this.bossActive?'boss' as const:ordinary?'normal' as const:'elite' as const};
   delay=Math.max(delay,Math.hypot(x-this.player.x,y-this.player.y)<160?warningSeconds(origin.tier):0);
   const s=this.enemyShots.data[id];s.x=s.prevX=x;s.y=s.prevY=y;s.vx=Math.cos(angle)*speed;s.vy=Math.sin(angle)*speed;s.life=8+delay;s.age=-delay;s.damage=damage;s.radius=radius;s.kind='enemy';s.color=0xe8777d;s.frozen=0;s.ordinary=ordinary;
-  this.shotOrigins.set(id,{generation:this.enemyShots.generation[id],origin:{...origin,id,generation:this.enemyShots.generation[id]}});
+  this.shotOrigins.set(id,{generation:this.enemyShots.generation[id],origin:{...origin,id,generation:this.enemyShots.generation[id]},owner,ownerGeneration:owner===undefined?undefined:this.enemies.generation[owner]});
   if(delay>0)this.emit({type:'warning',x,y,angle,color:0xb65e8a,size:radius+9,duration:delay,priority:true});
  }
+ cancelEnemyProjectiles(owner:number,ownerGeneration:number){for(const id of [...this.enemyShots.active]){const source=this.shotOrigins.get(id);if(source?.generation===this.enemyShots.generation[id]&&source.owner===owner&&source.ownerGeneration===ownerGeneration){this.enemyShots.release(id);this.shotOrigins.delete(id);}}}
  freezeHostiles(radius:number,seconds:number){const p=this.player;for(const id of this.enemyShots.active){const s=this.enemyShots.data[id];if(s.ordinary&&distanceSq(p.x,p.y,s.x,s.y)<=radius**2)s.frozen=Math.max(s.frozen,seconds);}for(const h of this.hazards)if(h.ordinary!==false&&distanceSq(p.x,p.y,h.x,h.y)<=radius**2)h.frozen=Math.max(h.frozen??0,seconds);}
  cancelProjectiles(radius:number,limit=Infinity){const p=this.player;let count=0;for(const id of [...this.enemyShots.active]){const s=this.enemyShots.data[id];if(count>=limit)break;if(distanceSq(p.x,p.y,s.x,s.y)<=radius**2){this.enemyShots.release(id);count++;this.emit({type:'block',x:s.x,y:s.y,color:0xffffff,size:15});}}}
  clearEnemies(radius:number,source:DamageSource,percent:Partial<Record<EnemyRank,[number,number]>>){const p=this.player,e=this.enemies;for(const id of [...e.active]){if(e.hp[id]<=0||distanceSq(p.x,p.y,e.x[id],e.y[id])>radius**2)continue;const rank=rankName(e.rank[id]),value=percent[rank],damage=rank==='normal'||rank==='bossAdd'?e.hp[id]+e.shield[id]:value?Math.min(e.maxHp[id]*value[0],value[1]):0;this.hitEnemy(id,damage,source,p.x,p.y,3,false,false,true,true);}this.cancelProjectiles(radius);this.danger.cancelNear(p,radius);this.emit({type:'ring',x:p.x,y:p.y,color:0xe9bf5e,size:radius,duration:.8,text:'提前交稿！'});this.impact(8,.05);}

@@ -178,6 +178,12 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
     this.world.position.set(ox,oy);this.world.scale.set(scale);this.dangerLayer.position.copyFrom(this.world.position);this.dangerLayer.scale.set(scale);this.world.rotation=camera.rotation;this.dangerLayer.rotation=camera.rotation;
     this.player.texture=this.textures.get('player');const playerScale=fitArtScale(this.player.texture,64);this.player.position.set(px,py-11+(this.settings.motion?Math.sin(time*13)*Math.min(2,Math.hypot(p.vx,p.vy)/130):0));this.player.scale.set((p.vx< -8?-playerScale:playerScale)*(1+(this.settings.motion?Math.sin(time*13)*.025:0)),playerScale*(1-(this.settings.motion?Math.sin(time*13)*.02:0)));this.player.alpha=p.invincible>0&&Math.floor(time*16)%2===0?.55:1;this.playerShadow.position.set(px,py+17);
     this.chapterLabel.text=`第 ${g.chapter.chapter} 章 · ${g.chapter.title}${g.chapter.reached?' · 已抵达':''}\n${g.chapter.objective}${this.latest?.phase==='assessmentIntro'&&g.assessmentAdmission?`\n考场：${g.assessmentAdmission.site.name} · 等待确认入场`:''}`;
+    const board=g.proposalBoard;
+    if(board){
+      const attack=g.hazards.find(h=>h.id===board.handleId),moves={opening:'审查开始',transition:'安全过渡',recovery:'停手 · 集中输出',stagger:'错峰间隔',chase:'普通追击',line:`冲线 ${board.line}`,reservation:'预约落点'};
+      const timing=attack?`${attack.phase==='warning'?`预警 ${attack.warning.toFixed(1)} 秒${attack.locked?' · 已锁定':''}`:'生效'}`:board.attackPhase==='queued'?'等待安全放行':board.remaining>0?`${board.remaining.toFixed(1)} 秒`:'';
+      this.chapterLabel.text+=`\n联合选题审查 · 阶段 ${board.stage}/2 · ${Math.ceil(g.enemies.hp[board.owner])}/16000\n${moves[board.move]}${timing?` · ${timing}`:''}`;
+    }
     this.fxGraphic.clear();this.syncEntities(alpha);this.drawGroundEffects();this.drawOrbitAndBots();this.drawEnemyStatus();this.drawTelegraphs();
     if(g.frame%4===0)for(const prop of this.props){prop.visible=Math.abs(prop.x-p.x)<this.viewWidth*.65+450&&Math.abs(prop.y-p.y)<this.viewHeight*.65+400;prop.alpha=distanceSq(prop.x+prop.width*.5,prop.y+prop.height*.6,p.x,p.y)<150**2?.55:1;}
     this.audio.beginFrame();
@@ -304,6 +310,13 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
       const tip=point(12,0),left=point(-8,10),right=point(-8,-10);guides.poly([tip.x,tip.y,left.x,left.y,right.x,right.y]).fill(0xffc46b).stroke({color:0x432d38,width:3});
     };
     if(this.latest?.phase==='assessmentIntro'&&g.assessmentAdmission){const site=g.assessmentAdmission.site;gr.circle(site.center.x,site.center.y,site.radius).fill({color:0x76bfa9,alpha:.1}).stroke({color:0x4d968e,width:3,alpha:.85});gr.circle(site.player.x,site.player.y,24).stroke({color:0x4d968e,width:3});}
+    const board=g.proposalBoard;
+    if(board){
+      const x=g.enemies.x[board.owner],y=g.enemies.y[board.owner],r=g.enemies.radius[board.owner],ratio=clamp(g.enemies.hp[board.owner]/g.enemies.maxHp[board.owner],0,1);
+      guides.roundRect(x-60,y-r-28,120,8,3).fill(0x324c43).roundRect(x-59,y-r-27,Math.max(1,118*ratio),6,2).fill(board.stage===1?0xf2ca70:0x9cd9d0);
+      guides.moveTo(x,y-r-30).lineTo(x,y-r-18).stroke({color:0xffffff,width:2});
+      if(board.move==='recovery'||board.move==='transition')guides.circle(x,y,r+14).stroke({color:0x285f61,width:5}).circle(x,y,r+14).stroke({color:0xb9f2d3,width:2});
+    }
     for(const id of g.enemyShots.active){const s=g.enemyShots.data[id];
       gr.circle(s.x,s.y,s.radius+3).stroke({color:0x432d38,width:3}).circle(s.x,s.y,s.radius+2).stroke({color:0xfff3da,width:1.5});
       if(s.age<0){const speed=Math.hypot(s.vx,s.vy)||1;dash(s.x,s.y,s.x+s.vx/speed*70,s.y+s.vy/speed*70,0xb65e8a,2);gr.circle(s.x,s.y,s.radius+9).stroke({color:0xb65e8a,width:2});}
