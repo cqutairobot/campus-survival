@@ -294,6 +294,9 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
   }
   private drawGroundEffects(){
     const gr=this.groundFX,g=this.game;gr.clear();
+    for(const s of g.fiberSegments)this.fxGraphic.moveTo(s.x,s.y).lineTo(s.x2,s.y2).stroke({color:0x709fe8,width:s.connector?3:2,alpha:Math.min(.9,s.life)});
+    for(const b of g.inkBeads)this.fxGraphic.circle(b.x,b.y,5).fill(0xae7cd2);
+    for(const m of g.structureMarks)this.fxGraphic.rect(m.x-9,m.y-9,18,18).stroke({color:0xae7cd2,width:2}).moveTo(m.x-12,m.y).lineTo(m.x+12,m.y).stroke({color:0xae7cd2,width:1});
     for(const line of g.whiteboardLines){
       if(line.age<0)continue;const progress=line.hit?1:clamp(line.age/line.hitDelay,0,1),x2=lerp(line.x,line.x2,progress),y2=lerp(line.y,line.y2,progress),fade=line.hit?clamp((line.life-line.age)/.24,0,1):.6;
       // Thin paired chalk strokes and square endpoints, never danger stripes,

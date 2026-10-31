@@ -2,7 +2,7 @@ import {test,expect} from '@playwright/test';
 import {historicalSaves} from '../helpers/v5-saves';
 import type {SaveProfile} from '../../src/semesters/profile';
 
-test('v5 P09 单条冒烟：旧档/S1/每日→正式 S2 关闭→内部 S2 构筑/首考/奖励',async({page},info)=>{
+test('v5 P10–P12 单条冒烟：旧档/S1/每日→正式 S2 关闭→内部 S2 构筑/首考/奖励',async({page},info)=>{
  const errors:string[]=[],assetFailures:string[]=[],requests:string[]=[];
  page.on('pageerror',e=>errors.push(e.message));
  page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
@@ -78,7 +78,7 @@ test('v5 P09 单条冒烟：旧档/S1/每日→正式 S2 关闭→内部 S2 构�
  await page.getByRole('button',{name:'构筑图鉴',exact:true}).click();await page.getByText('白板推演',{exact:true}).click();await expect(page.getByRole('dialog')).toContainText('Lv.1 · 命中伤害 38');const codexPause=(await s2()).clock;
  await page.keyboard.press('KeyP');await page.keyboard.press('KeyQ');await page.keyboard.press('Digit1');expect((await s2()).clock).toEqual(codexPause);await page.getByRole('button',{name:'关闭图鉴',exact:true}).click();
  await page.keyboard.press('KeyP');expect((await s2()).pause?.reason).toBe('manual');await page.keyboard.press('KeyP');expect((await s2()).pause).toBeNull();
- const checkpoint=await page.evaluate(()=>(window as any).__S2_PREVIEW__.checkpoint());expect(checkpoint).toMatchObject({intro:{week:8,teachingSeconds:320},introAccepted:true,hpStart:16000,monotonic:true,transition:true,phase:'assessmentReward',passed:1});expect(checkpoint.recoveryDamage).toBeGreaterThan(0);for(const id of ['s2:drone','s2:whiteboard','laser'])expect(checkpoint.damage[id]).toBeGreaterThan(0);
+ const checkpoint=await page.evaluate(()=>(window as any).__S2_PREVIEW__.checkpoint());expect(checkpoint).toMatchObject({intro:{week:8,teachingSeconds:320},introAccepted:true,hpStart:16000,monotonic:true,transition:true,phase:'assessmentReward',passed:1});expect(checkpoint.recoveryDamage).toBeGreaterThan(0);for(const id of ['s2:drone','s2:whiteboard','laser','s2:spool','s2:printer'])expect(checkpoint.damage[id]).toBeGreaterThan(0);
  await page.screenshot({path:info.outputPath('s2-checkpoint-reward.png'),animations:'disabled'});await page.getByRole('button',{name:'继续',exact:true}).click();
  expect(await page.evaluate(()=>{const h=(window as any).__S2_PREVIEW__,gate=h.engine.read().gate;return[h.engine.acknowledge(gate.token),h.engine.acknowledge(gate.token)];})).toEqual([true,false]);
  await expect.poll(async()=>(await s2()).clock.week).toBe(9);expect(await page.evaluate(()=>{const h=(window as any).__S2_PREVIEW__;h.engine.abandon();return h.engine.read().result;})).toMatchObject({victory:false,reason:'abandoned',assessmentsPassed:1});

@@ -3,17 +3,18 @@ import type {ContentState} from './ContentState';
 import type {EnemyRank} from '../../../types';
 import type {ContentDamageSource} from '../types';
 import {rankName} from '../../../data/enemies';
+import {s2PassiveValue} from './rules';
 import {distanceSq,TAU} from '../../../core/math';
 import {freezeEnemy} from '../../../combat/status';
 export class UltimateSystem{
- energy=60;cooldown=0;remaining=0;elapsed=0;private tick=0;private secondary=0;private wave=0;readonly sources:Record<string,number>={};readonly def;
+ overflow=0;energy=60;cooldown=0;remaining=0;elapsed=0;private tick=0;private secondary=0;private wave=0;readonly sources:Record<string,number>={};readonly def;
  constructor(private g:ContentState){this.def=g.content.ultimates.find(u=>u.character===g.manifest.character)??g.content.ultimates[0];}
  get ready(){return this.energy>=240&&this.cooldown<=1e-6&&this.remaining<=0;}
- gain(amount:number,source:string){if(this.remaining>0||amount<=0)return;const gain=Math.min(240-this.energy,amount);this.energy+=gain;this.sources[source]=(this.sources[source]??0)+gain;if(this.energy>=240&&gain>0)this.g.emit({type:'charged',x:this.g.player.x,y:this.g.player.y,color:0xffd879,size:70,text:'大招就绪'});}
+ gain(amount:number,source:string){if(this.remaining>0||amount<=0)return;const capacity=s2PassiveValue(this.g.content,this.g.passives,'s2:battery');if(this.ready)this.overflow=Math.min(capacity,this.overflow+Math.max(0,amount-(240-this.energy)));const gain=Math.min(240-this.energy,amount);this.energy+=gain;this.sources[source]=(this.sources[source]??0)+gain;if(this.energy>=240&&gain>0)this.g.emit({type:'charged',x:this.g.player.x,y:this.g.player.y,color:0xffd879,size:70,text:'大招就绪'});}
  kill(rank:EnemyRank,weight:number,source:ContentDamageSource){if(source.kind==='ultimate')return;this.gain(({normal:1,elite:15,miniBoss:35,boss:60,bossAdd:0}[rank])*weight*this.g.stats.charge,rank);}
  release(){
   const g=this.g,p=g.player;if(g.phase!=='playing'||p.hp<=0||!this.ready)return false;
-  this.energy=0;this.cooldown=g.manifest.dailyRule==='overload'?20:30;this.elapsed=0;this.tick=0;this.secondary=0;this.wave=0;this.remaining={submission:.25,lastMinute:4,parallel:8,conference:6,barrier:8,overload:8}[this.def.id];p.invincible=Math.max(p.invincible,.5);
+  this.energy=Math.min(this.overflow,s2PassiveValue(g.content,g.passives,'s2:battery'));this.overflow=0;this.cooldown=g.manifest.dailyRule==='overload'?20:30;this.elapsed=0;this.tick=0;this.secondary=0;this.wave=0;this.remaining={submission:.25,lastMinute:4,parallel:8,conference:6,barrier:8,overload:8}[this.def.id];p.invincible=Math.max(p.invincible,.5);
   g.emit({type:'ultimate',x:p.x,y:p.y,color:parseInt(this.def.color.slice(1),16),size:900,ultimate:this.def.id,text:this.def.name,duration:1.1,priority:true});g.impact(6);
   if(this.def.id==='submission'){g.clearEnemies(900,{kind:'ultimate',id:this.def.id},{elite:[.5,1500],miniBoss:[.12,1800],boss:[.06,4000]});g.addShield(20,3);}
   if(this.def.id==='lastMinute'){
@@ -32,5 +33,5 @@ export class UltimateSystem{
   if(this.def.id==='barrier'){if(this.tick<=0){this.tick+=.5;this.blast(260,40+g.level);}if(this.secondary<=0){this.secondary+=.2;g.cancelProjectiles(260,1);}}
   if(this.def.id==='overload'&&this.tick<=0){this.tick+=2;let target=-1,best=800**2;for(const id of e.active){const d=distanceSq(p.x,p.y,e.x[id],e.y[id]);if(e.hp[id]>0&&d<best){best=d;target=id;}}const x=target>=0?e.x[target]:p.x+Math.cos(p.facing)*180,y=target>=0?e.y[target]:p.y+Math.sin(p.facing)*180;this.blast(160,120+2*g.level,x,y);}
  }
- snapshot(){return{id:this.def.id,name:this.def.name,energy:this.energy,cooldown:this.cooldown,remaining:this.remaining,ready:this.ready};}
+ snapshot(){return{id:this.def.id,name:this.def.name,energy:this.energy,overflow:this.overflow,cooldown:this.cooldown,remaining:this.remaining,ready:this.ready};}
 }

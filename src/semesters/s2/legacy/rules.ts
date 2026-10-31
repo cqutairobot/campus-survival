@@ -13,6 +13,10 @@ export const weekDamageMultiplier=(week:number)=>pressureAt(week).damage;
 export const xpGemTier=(value:number)=>value>=192?4:value>=48?3:value>=12?2:value>=4?1:0;
 /** S2 passive quality and final vulnerability cap are resolved only here. */
 export function protocolBonus(content:ContentCatalog,passives:readonly ContentSkill[]){const s=passives.find(p=>p.id==='s2:protocol');return s?Math.min(.15,content.passiveById[s.id].values[s.level-1]*content.rarityMultipliers[s.rarity]/100):0;}
+export function s2PassiveValue(content:ContentCatalog,passives:readonly ContentSkill[],id:'s2:battery'|'s2:harness'|'s2:echoChip',boss=false){
+ const s=passives.find(p=>p.id===id),value=s?content.passiveById[id].values[s.level-1]*content.rarityMultipliers[s.rarity]:0;
+ return id==='s2:battery'?Math.min(90,value):Math.min(id==='s2:harness'?.225:boss?.1:.3,value/100);
+}
 export function statsFor(content:ContentCatalog,save:Immutable<S2RunSnapshot>, passives:ContentSkill[]):PlayerStats {
   const character=content.characters.find(c=>c.id===save.character)??content.characters[0],t=save.talents;
   const p=(id:string)=>passives.find(p=>p.id===id);
