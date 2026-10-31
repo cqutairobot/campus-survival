@@ -39,4 +39,28 @@ function advanced(){
  const casts=[...s.danger.pending,...s.hazards].filter(h=>h.owner===marshal);s.hitEnemy(marshal,1e6,'laser',s.player.x,s.player.y,0,false,false);s.resolveDeaths();const cancelled=casts.length>0&&casts.every(h=>h.phase==='cancelled');
  const result={peers:peers.every(id=>id>=0),actors:[relay,coordinator,auditor,robot].every(id=>id>=0),links:links.length,support,zeroRewards,exposed,cancelled};s.week=previous.week;s.combatTime=previous.time;s.frame=previous.frame;return result;
 }
-Object.assign(window,{__S2_PREVIEW__:{engine,state:()=>state,scene,resources:resourceState,checkpoint,advanced,params:()=>state.weapons.map(w=>weaponParams(S2_CONTENT,w,state.combatStats,state.damageMultiplier))}});
+async function projectReview(){
+ let s!:ContentState;const view=new SemesterScene(document.querySelector<HTMLElement>('#game')!,S2_CONTENT,settings,()=>{}),engine=new SemesterEngine({snapshot,config:S2_RUNTIME_CONFIG,view,rules:{...base,create(services){s=base.create(services);s.player.invincible=1000;return s;},step(state,step){return step.phase==='teaching'?{}:base.step(state,step);}}});
+ view.attach(engine);await view.initialize();
+ const host={engine,state:()=>s,resources:()=>({loader:resources.debug,geometry:view['geometry'].textures.size,art:view['artTextures'].size,voices:view.audio.debug.sessionVoices,canvas:!!document.querySelector('canvas'),panels:document.querySelectorAll('.s2-build-panel').length})};Object.assign((window as unknown as {__S2_PREVIEW__:object}).__S2_PREVIEW__,{project:host});
+ const intro=()=>{for(let n=0;n<10000&&engine.read().phase==='teaching';n++)engine.advance(1/15);const read=engine.read();return{week:read.clock.week,teachingSeconds:read.clock.teachingSeconds,accepted:engine.acknowledge(read.gate!.token)};};
+ const first=intro();s.hitEnemy(s.bossEnemy,1e9,'knife',s.player.x,s.player.y,0,false,false);engine.advance(1/60);const firstToken=s.rewards.token;engine.dispatch({type:'chestDone',token:firstToken});engine.acknowledge(engine.read().gate!.token);engine.advance(1/60);const second=intro(),id=s.bossEnemy,e=s.enemies;
+ for(const w of s.weapons)s.weaponSystem.remove(w.id);const make=(id:ContentSkill['id'],level=5):ContentSkill=>({id,level,evolved:false,rarity:0,instanceId:s.nextInstance()});s.weapons.splice(0,s.weapons.length,...(['laser','knife','blueprint','lightning'] as const).map(id=>make(id)));s.passives.splice(0,s.passives.length,make('haste',3),make('multi',1),make('area',2),make('duration',2),make('armor',3),make('health',3));s.recalculateStats();s.stats.crit=0;s.damageMultiplier=1;s.player.hp=50;s.player.invincible=1000;s.player.x=e.x[id]-80;s.player.y=e.y[id];s.player.prevX=s.player.x;s.player.prevY=s.player.y;s.drops.clear();
+ let chests=0;const heals:number[]=[],open=s.rewards.openChest.bind(s.rewards),heal=s.heal.bind(s);s.rewards.openChest=(...args)=>{chests++;return open(...args);};s.heal=(amount,fixed=false)=>{if(fixed)heals.push(amount);return heal(amount,fixed);};
+ const stages=new Set<number>();let maxReduction=0,monotonic=true,previous=46000,recoveryDamage=0,nodeChecked=false,panelChecked=false,zeroRewards=true,nodeCancelled=false,panelCancelled=false,exposed=false;
+ for(let n=0;n<9000&&engine.read().phase==='assessment';n++){
+  const review=s.bossSystem.projectReview.snapshot()!;stages.add(review.stage);maxReduction=Math.max(maxReduction,review.reduction);
+  if(review.stage===2){
+   const target=!nodeChecked?review.nodes[0]:!panelChecked?review.panels[0]:undefined;
+   if(target){const before={kills:s.kills,energy:s.ultimate.energy,drops:s.drops.active.length,normal:s.progress.normalKills},paths=[...s.hazards,...s.danger.pending].filter(h=>h.owner===target.id&&h.ownerGeneration===target.generation);
+    if(!nodeChecked){const pending=s.addHazard('circle',e.x[target.id],e.y[target.id],0,0,48,1.5,.25,10,undefined,{owner:target.id,ownerGeneration:target.generation,cancelOnDeath:true,tier:'boss',ordinary:false});if(pending)paths.push(pending);}
+    s.hitEnemy(target.id,1e5,'laser',s.player.x,s.player.y,0,false,false);s.resolveDeaths();zeroRewards&&=JSON.stringify(before)===JSON.stringify({kills:s.kills,energy:s.ultimate.energy,drops:s.drops.active.length,normal:s.progress.normalKills});const cancelled=paths.length>0&&paths.every(h=>h.phase==='cancelled');
+    if(!nodeChecked){nodeChecked=true;nodeCancelled=cancelled;exposed=s.bossSystem.projectReview.reduction(id)===0;}else{panelChecked=true;panelCancelled=cancelled;}
+   }
+  }
+  const hp=e.hp[id],rest=review.move==='recovery';engine.dispatch({type:'move',x:e.x[id]-s.player.x-80,y:e.y[id]-s.player.y});engine.advance(1/60);if(rest)recoveryDamage+=hp-e.hp[id];monotonic&&=e.hp[id]<=previous&&e.maxHp[id]===46000;previous=e.hp[id];
+ }
+ const expectedHeal=s.stats.maxHp*.15,reward=engine.read(),prematureAcknowledgement=engine.acknowledge(reward.gate!.token),upgrade=s.rewards.options.findIndex(o=>o.id==='upgrade');if(upgrade>=0)engine.dispatch({type:'chooseReward',token:s.rewards.token,index:upgrade});
+ return{first,second,id:S2_CONTENT.enemies[e.kind[id]].id,hp:46000,stages:[...stages],maxReduction,monotonic,recoveryDamage,nodeChecked,panelChecked,nodeCancelled,panelCancelled,zeroRewards,exposed,chests,heals,expectedHeal,seconds:reward.clock.assessmentSeconds,phase:reward.phase,passed:reward.assessmentsPassed,prematureAcknowledgement,damage:{...s.damage}};
+}
+Object.assign(window,{__S2_PREVIEW__:{engine,state:()=>state,scene,resources:resourceState,checkpoint,advanced,projectReview,params:()=>state.weapons.map(w=>weaponParams(S2_CONTENT,w,state.combatStats,state.damageMultiplier))}});

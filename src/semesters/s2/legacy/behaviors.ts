@@ -21,8 +21,8 @@ export class EnemyBehaviors{
    if(e.lifetime[id]>0){e.lifetime[id]-=dt;if(e.lifetime[id]<=0){g.releaseEnemy(id);continue;}}
    if(e.burn[id]>0){e.burn[id]-=dt;e.burnTick[id]-=dt;if(e.burnTick[id]<=1e-6){e.burnTick[id]=.5;g.hitEnemy(id,e.burnDamage[id],e.burnSource[id],p.x,p.y,0,false);if(e.hp[id]<=0)continue;}}
    if(frozen)continue;
-   if(def.id==='node'||def.behavior==='relay'||def.behavior==='auditor')continue;
-   if(id===g.bossEnemy){if(g.bossSystem.proposalBoard.contactAllowed(id)&&distanceSq(p.x,p.y,e.x[id],e.y[id])<(e.radius[id]+12)**2)g.hurtPlayer(e.damage[id],e.x[id],e.y[id],g.originForEnemy(id));continue;}
+   if(def.behavior==='relayNode'||def.behavior==='reviewPanel'||def.id==='node'||def.behavior==='relay'||def.behavior==='auditor')continue;
+   if(id===g.bossEnemy){if(g.bossSystem.projectReview.contactAllowed(id)&&g.bossSystem.proposalBoard.contactAllowed(id)&&distanceSq(p.x,p.y,e.x[id],e.y[id])<(e.radius[id]+12)**2)g.hurtPlayer(e.damage[id],e.x[id],e.y[id],g.originForEnemy(id));continue;}
    const dx=p.x-e.x[id],dy=p.y-e.y[id],dist=Math.hypot(dx,dy)||1;
    if(dist>2000&&rank===RANK_CODE.normal&&e.owner[id]<0&&(!def.id.startsWith('s2:')||e.state[id]===0)){const point=g.safePoint(p.x-dx/dist*700,p.y-dy/dist*600);e.x[id]=point.x;e.y[id]=point.y;}
    let mx=dx/dist,my=dy/dist,speed=e.speed[id]*slowFactor(e,id)*relicEnemySpeed(g.relics)*(g.activeEvent==='examRage'?1.15:g.activeEvent==='rainstorm'&&rank===RANK_CODE.normal?.9:1),attackSpeed=1;

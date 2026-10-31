@@ -15,8 +15,8 @@ import {worldBlocked} from '../../src/semesters/s2/world';
 
 const all=(s:ContentState)=>[...s.hazards,...s.danger.pending];
 const hit=(s:ContentState,id:number,damage:number)=>s.hitEnemy(id,damage,'knife',s.player.x,s.player.y,0,false,false,false,true);
-function fixture(index=0,week=8){
- const profile=freshProfile();profile.stats.wins=1;const snapshot=createS2PreviewSnapshot(profile,77),services:RuntimeServices={snapshot,streams:randomStreams(snapshot.seed)},s=new ContentState(content,services);
+function fixture(index=0,week=8,catalog=content){
+ const profile=freshProfile();profile.stats.wins=1;const snapshot=createS2PreviewSnapshot(profile,77),services:RuntimeServices={snapshot,streams:randomStreams(snapshot.seed)},s=new ContentState(catalog,services);
  s.enemies.clear();s.weapons.length=0;s.week=week;s.stats.regen=0;
  const assessment={index,week,final:week===24},clock={tick:0,combatSeconds:week*40,teachingSeconds:week*40,assessmentSeconds:0,week,completedWeeks:week},boundary={...services,damageAfterInheritance:(n:number)=>n,experienceAfterInheritance:(n:number)=>n};
  s.assessment({stage:'prepare',assessment,clock},boundary);s.assessment({stage:'start',assessment,clock},boundary);
@@ -94,7 +94,7 @@ describe('v5 first checkpoint boss',()=>{
  it('lets lethal burst skip the transition, keeps later/legacy actors unchanged and never resurrects a same-step defeat',()=>{
   expect(content.enemies.slice(0,25)).toEqual(LEGACY_CONTENT.enemies);
   const f=fixture(),{s,id,e}=f,clear=vi.spyOn(s,'cancelEnemyProjectiles');hit(s,id,16001);expect(e.hp[id]).toBe(0);expect(s.bossStage).toBe(1);expect(clear).not.toHaveBeenCalled();s.player.hp=0;expect(f.step()).toEqual({defeated:true});expect(s.player.hp).toBe(0);expect(s.bosses).toBe(0);s.dispose();
-  for(const [index,week,actor] of [[1,16,'defense'],[2,24,'finals']] as const){const later=fixture(index,week);expect(content.enemies[later.e.kind[later.id]].id).toBe(actor);expect(projectContent(later.s).proposalBoard).toBeNull();later.s.dispose();}
+  for(const [index,week,actor] of [[1,16,'defense'],[2,24,'finals']] as const){const later=fixture(index,week,LEGACY_CONTENT);expect(content.enemies[later.e.kind[later.id]].id).toBe(actor);expect(projectContent(later.s).proposalBoard).toBeNull();later.s.dispose();}
   const fallback=new ContentState(LEGACY_CONTENT,f.boundary);fallback.enemies.clear();fallback.assessment({stage:'start',assessment:f.assessment,clock:f.clock},f.boundary);expect(LEGACY_CONTENT.enemies[fallback.enemies.kind[fallback.bossEnemy]].id).toBe('proposal');fallback.dispose();
  });
 });

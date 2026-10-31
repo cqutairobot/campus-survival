@@ -66,6 +66,12 @@ export class TextureLibrary {
         g.roundRect(48,45,34,29,3).fill(0xc99455).stroke({color:0xffefc6,width:3});g.rect(61,46,7,26).fill(0xffefc6);
         g.moveTo(31,75).lineTo(26,84).moveTo(60,75).lineTo(65,84).stroke({color:INK,width:6});return;
       }
+      if(['s2:projectReview','s2:relayNode','s2:reviewPanel'].includes(def.id)){
+        g.roundRect(10,16,76,57,6).fill(0x425867).stroke({color,width:5});g.roundRect(18,24,60,38,3).fill(0xf8e6bd).stroke(line);
+        if(def.id==='s2:relayNode'){g.circle(48,42,13).stroke({color,width:5});g.moveTo(48,29).lineTo(48,18).moveTo(35,42).lineTo(22,42).moveTo(61,42).lineTo(74,42).stroke({color,width:4});}
+        else{for(const x of [26,43,60])g.rect(x,33,9,20).fill(color);g.poly([24,67,59,67,59,61,77,73,59,85,59,78,24,78]).fill(0xe8b566).stroke(line);}
+        if(def.id==='s2:reviewPanel'){g.circle(24,79,8).fill(INK);g.circle(72,79,8).fill(INK);}else g.moveTo(26,73).lineTo(21,87).moveTo(70,73).lineTo(75,87).stroke({color:INK,width:5});return;
+      }
       if(def.id==='s2:proposalBoard'){
         g.moveTo(23,55).lineTo(17,84).moveTo(73,55).lineTo(79,84).stroke({color:INK,width:6});
         g.roundRect(9,15,78,52,7).fill(0x3d6374).stroke({color,width:5});g.roundRect(15,20,66,11,3).fill(color);
