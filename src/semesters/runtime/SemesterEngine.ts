@@ -63,7 +63,7 @@ export class SemesterEngine<State,Content> {
  private step(){
   if(!this.running)return;
   this.combatTicks++;
-  if(this.phase==='teaching')this.teachingTicks++;else this.assessmentTicks++;
+  if(this.phase==='teaching'){if(!this.rules.teachingPaused?.(this.state))this.teachingTicks++;}else this.assessmentTicks++;
   const clock=immutableSnapshot(this.clock()),nextWeek=this.config.calendar.bossWeeks[this.assessmentsPassed];
   const outcome=this.rules.step(this.state,{
    ...this.services,dt:this.loop.step,clock,phase:this.phase as 'teaching'|'assessment',assessment:this.assessment?immutableSnapshot(this.assessment):null,

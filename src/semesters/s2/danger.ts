@@ -10,13 +10,14 @@ export const DANGER_RETRY_TICKS=30;
 export const warningSeconds=(tier:DamageTier)=>tier==='boss'?1.2:1;
 export interface SafeRoute {points:Point[];travelSeconds:number;width:number}
 export interface S2Hazard extends Hazard {
+ sourceId?:string;sourceGeneration?:number;
  tier:DamageTier;phase:'queued'|'warning'|'active'|'cancelled';token:number;
  requestedTick:number;retryTick:number;startedTick:number;warningTotal:number;warningTicks:number;
  lifeTotal:number;lifeTicks:number;locked:boolean;safeHalfAngle:number;route:SafeRoute|null;
  /** Opt-in future S2 attacks may aim until the final 0.35s, never afterwards. */
  trackPlayer?:boolean;
 }
-export type HazardOptions=Partial<Hazard>&{tier?:DamageTier;trackPlayer?:boolean};
+export type HazardOptions=Partial<Hazard>&{tier?:DamageTier;trackPlayer?:boolean;sourceId?:string;sourceGeneration?:number};
 const angleDelta=(a:number,b:number)=>Math.atan2(Math.sin(a-b),Math.cos(a-b));
 
 /** Whole future footprint for route planning, or current footprint for a hit.
@@ -134,6 +135,7 @@ export class DangerScheduler {
   }
  }
  cancelOwner(owner:number,generation:number){for(const list of [this.pending,this.active])for(let n=list.length-1;n>=0;n--)if(list[n].owner===owner&&list[n].ownerGeneration===generation){this.cancel(list[n]);list.splice(n,1);}}
+ cancelSource(id:string,generation:number){for(const list of [this.pending,this.active])for(let n=list.length-1;n>=0;n--)if(list[n].sourceId===id&&list[n].sourceGeneration===generation){this.cancel(list[n]);list.splice(n,1);}}
  cancelNear(p:Point,radius:number){for(const list of [this.pending,this.active])for(let n=list.length-1;n>=0;n--)if(Math.hypot(list[n].x-p.x,list[n].y-p.y)<=radius){this.cancel(list[n]);list.splice(n,1);}}
  clear(){for(const h of [...this.pending,...this.active])this.cancel(h);this.pending.length=0;this.active.length=0;}
 }

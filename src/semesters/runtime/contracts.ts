@@ -38,6 +38,8 @@ export interface SemesterRules<State,Content> {
  assessment(state:State,event:AssessmentEvent,services:AssessmentServices):void;
  /** Export plain content DTOs inside the simulation boundary. */
  project(state:State):Content;
+ /** Elective encounters keep combat/daily clocks running while teaching waits. */
+ teachingPaused?(state:State):boolean;
  /** Content choices must also work while simulation is suspended. */
  command?(state:State,command:unknown,services:RuntimeServices):CommandOutcome;
  /** A runtime gate cannot skip a content reward or its presentation. */

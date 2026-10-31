@@ -13,6 +13,9 @@ import {ProtocolMarks} from '../protocol';
 import {EchoChip,Harness,type HitContext} from '../equipment';
 import {ProjectRelics,s2RelicStats,markedDamageBonus} from '../relics';
 import {ProjectTables} from '../project-tables';
+import {SemesterEvents} from '../events';
+import {SemesterLandmarks} from '../landmarks';
+import {RevisionSystem} from '../revision';
 import {clampStats,relicBulletSpeed} from '../../../progression/relics';
 import {RewardSystem} from './rewards';
 import {freshMetrics} from '../../../core/metrics';
@@ -47,6 +50,7 @@ export class ContentState {
  readonly manifest;readonly streams;readonly random;readonly dropRandom;readonly draftRandom;
  readonly weapons:ContentSkill[]=[];readonly passives:ContentSkill[]=[];readonly consumed:string[]=[];readonly relics:string[]=[];readonly progress=freshProgress();readonly discoveries:Discovery[]=[];readonly visualEvents:{serial:number;event:ContentVisualEvent}[]=[];readonly hazards:S2Hazard[]=[];readonly deaths=new ContentDeathQueue();readonly momentum=new CombatMomentum();readonly protocol=new ProtocolMarks(this);readonly echo=new EchoChip(this);readonly harness=new Harness(this);readonly advanced=new AdvancedEnemies(this);
  readonly projectRelics=new ProjectRelics(this);readonly projectTables=new ProjectTables(this);
+ readonly events=new SemesterEvents(this);readonly interactions=new SemesterLandmarks(this);readonly revision=new RevisionSystem(this);readonly completedSideBranches=new Set<string>();terminalClosures=0;
  readonly additionalDamage:Record<string,{echo:number;mark:number}>={};
  readonly player:Player={x:3072,y:3072,prevX:3072,prevY:3072,vx:0,vy:0,facing:-Math.PI/2,hp:110,shield:0,shieldTime:0,invincible:1,lastHurt:-100};
  // Regional content and safety scheduling share this run's world.
@@ -73,8 +77,8 @@ export class ContentState {
   this.rebuildGrid();this.navigation.rebuild(this.player.x,this.player.y);
  }
  nextInstance(){return++this.instanceSerial;}
- get activeEvent(){return null;}
- get combatStats(){let st=frenzyStats(this.stats,this.momentum.active);const u=this.ultimate;if(this.coffeeTime>0)st={...st,haste:st.haste*1.25};if(u.remaining>0){if(u.def.id==='overload')st={...st,haste:st.haste*1.4,area:st.area*1.25};if(u.def.id==='conference')st={...st,speed:st.speed*1.25};}if(this.landmarks.trackTime>0)st={...st,speed:st.speed*1.15};if(this.landmarks.rangeTime>0)st={...st,area:st.area*1.2};return clampStats(st);}
+ get activeEvent(){return this.events.kind;}
+ get combatStats(){let st=frenzyStats(this.stats,this.momentum.active);const u=this.ultimate;if(this.coffeeTime>0)st={...st,haste:st.haste*1.25};if(u.remaining>0){if(u.def.id==='overload')st={...st,haste:st.haste*1.4,area:st.area*1.25};if(u.def.id==='conference')st={...st,speed:st.speed*1.25};}if(this.activeEvent==='sports')st={...st,speed:st.speed*1.2};if(this.activeEvent==='rainstorm')st={...st,speed:st.speed*.9};if(this.activeEvent==='s2:openLab')st={...st,area:st.area*1.15};if(this.landmarks.trackTime>0)st={...st,speed:st.speed*1.15};if(this.landmarks.rangeTime>0)st={...st,area:st.area*1.2};return clampStats(st);}
  get hasPendingRewards(){return this.pendingLevels>0||this.rewards.chests.length>0||this.phase!=='playing';}
  private calculateStats(relics=this.relics){const s=statsFor(this.content,this.manifest,this.passives);if(this.manifest.mode==='daily'){if(this.manifest.dailyRule==='piercing')s.multi++;if(this.manifest.dailyRule==='lastMinute')s.charge+=.35;if(this.manifest.dailyRule==='assistants')s.summon+=.25;if(this.manifest.dailyRule==='nightRun')s.speed*=1.2;if(this.manifest.dailyRule==='construction')s.area*=1.2;}const stats=s2RelicStats(s,relics);stats.invulnerability=invulnerabilityFor(stats.invulnerability);return stats;}
  previewRelic(id:string,replace=''){return this.calculateStats([...this.relics.filter(r=>r!==replace),id]);}
@@ -98,7 +102,7 @@ export class ContentState {
    this.movePlayer(dt);this.harness.update(dt);this.landmarks.zone=worldZoneAt(this.world,p.x,p.y);
    const visited=this.landmarks.zone?.id;if(visited&&!this.progress.visited.includes(visited)){this.progress.visited.push(visited);this.discover(`region:${visited}`);}
    this.navTimer-=dt;if(this.navTimer<=0){this.navigation.rebuild(p.x,p.y);this.navTimer=.5;}
-   this.projectTables.update();this.director.update(dt);this.projectRelics.update(dt);this.advanced.update(dt);this.behaviors.update(dt);this.bossSystem.update(dt);this.bossSystem.updateExams(dt);this.rebuildGrid();this.ultimate.update(dt);this.weaponSystem.update(dt);this.updateEnemyShots(dt);this.updateHazards();this.resolvePlayerHit();this.resolveDeaths();this.updateDrops(dt);
+   this.revision.constrain();this.projectTables.update();this.events.update(dt);this.director.update(dt);this.projectRelics.update(dt);this.advanced.update(dt);this.behaviors.update(dt);this.bossSystem.update(dt);this.bossSystem.updateExams(dt);this.rebuildGrid();this.ultimate.update(dt);this.weaponSystem.update(dt);this.updateEnemyShots(dt);this.updateHazards();this.resolvePlayerHit();this.interactions.update(dt);this.resolveDeaths();this.updateDrops(dt);
    const currentZone=this.landmarks.zone;if(p.hp>0)this.heal((this.stats.regen+(currentZone?.id==='canteen'&&this.combatTime-p.lastHurt>2?1:0))*dt);if(this.stats.drain>0&&p.hp>0)p.hp=Math.max(1,p.hp-this.stats.maxHp*this.stats.drain*dt);
    if(p.hp<=0)return{defeated:true};if(this.deadBoss>=0)return{assessmentCleared:true};
    this.nextMerge-=dt;if(this.nextMerge<=0){this.mergeExperience();this.nextMerge=1;}this.handlePending();return this.phase==='playing'?{}:{pause:this.phase==='draft'?'choice' as const:'reward' as const};
@@ -110,6 +114,7 @@ export class ContentState {
   this.grantBoundary=services;
   try{
   if(event.stage==='prepare'){
+   this.events.cancel();this.revision.cancel();this.interactions.cancel();
    this.waitingForAssessment=true;
    // Finish the current mini-boss once, retaining its earned chest/XP; ordinary
    // threat cleanup is cancellation and never a source of free kill rewards.
@@ -129,12 +134,14 @@ export class ContentState {
   }
   }finally{this.grantBoundary=null;}
  }
- private clearThreats(){this.projectRelics.suspend();this.projectTables.clear();this.inputX=this.inputY=0;this.bossEnemy=-1;this.enemies.clear();this.protocol.clear();this.echo.clear();this.deaths.clear();this.enemyShots.clear();this.shotOrigins.clear();this.danger.clear();this.threats.clear();this.advanced.clear();this.ordinarySpawnsAllowed=false;this.rebuildGrid();}
+ clearThreats(preserveTables=false){this.events.cancel();this.interactions.cancel();this.projectRelics.suspend();if(!preserveTables)this.projectTables.clear();this.inputX=this.inputY=0;this.bossEnemy=-1;this.enemies.clear();this.protocol.clear();this.echo.clear();this.deaths.clear();this.enemyShots.clear();this.shotOrigins.clear();this.danger.clear();this.threats.clear();this.advanced.clear();this.ordinarySpawnsAllowed=false;this.rebuildGrid();}
  canAcknowledge(kind:'assessmentIntro'|'assessmentReward'){return!this.hasPendingRewards&&(kind==='assessmentIntro'?!!this.assessmentAdmission:this.assessmentRewardDone);}
  command(value:unknown){
   if(this.disposed||!value||typeof value!=='object')return{accepted:false};const c=value as Record<string,unknown>;
   if(c.type==='move'&&typeof c.x==='number'&&Number.isFinite(c.x)&&typeof c.y==='number'&&Number.isFinite(c.y)&&this.phase==='playing'&&!this.waitingForAssessment){this.inputX=clamp(c.x,-1,1);this.inputY=clamp(c.y,-1,1);return{accepted:true};}
-  if(c.type==='interact'&&!this.waitingForAssessment){const accepted=this.projectTables.interact();return{accepted,...(accepted?{pause:'choice' as const}:{})};}
+  if(c.type==='interact'&&!this.waitingForAssessment){const accepted=this.projectTables.interact()||this.interactions.interact();return{accepted,...(accepted&&this.phase!=='playing'?{pause:'choice' as const}:{})};}
+  if(c.type==='chooseRevision'){const accepted=this.revision.choose(c.token as number,c.id);return{accepted,resume:accepted};}
+  if(c.type==='revisionExit')return{accepted:this.revision.exit()};
   if(c.type==='ultimate'&&!this.waitingForAssessment)return{accepted:this.ultimate.release()};
   if(c.type==='choose'&&this.phase==='draft'&&Number.isInteger(c.index)&&c.token===this.draftToken&&this.cards[c.index as number])this.applyCard(c.index as number,c.token as number);
   else if(c.type==='chooseReward'&&Number.isInteger(c.index)&&c.token===this.rewards.token&&(this.rewards.options[c.index as number]||c.index===-1&&this.phase==='contract')&&(this.phase==='reward'||this.phase==='contract'))this.rewards.choose(c.token as number,c.index as number);
@@ -152,7 +159,7 @@ export class ContentState {
   if(def.behavior==='shield')e.shield[id]=e.maxShield[id]=e.maxHp[id]*.35;if(normal&&def.behavior==='split'){e.chainXp[id]=e.xp[id]*.5;e.xp[id]*=.5;e.chainWeight[id]=.5;e.rewardWeight[id]=.5;}
   if(def.rank==='elite'||eliteWeek!==undefined)configureElite(this,id,undefined,eliteWeek??this.week);if(def.rank==='miniBoss')e.reward[id]=2;this.metrics.spawned++;if(normal&&!attached)this.metrics.normalSpawned++;if(!this.progress.enemies.includes(kind))this.progress.enemies.push(kind);this.discover(`enemy:${kind}`);return id;
  }
- spawnSummon(kind:string,owner:number,x:number,y:number,lifetime=12,attached=false){const e=this.enemies;if(!this.enemySourceAlive(owner,e.generation[owner]))return-1;const id=this.spawnEnemy(kind,x,y,0,undefined,attached);if(id>=0){e.owner[id]=owner;e.ownerGeneration[id]=e.generation[owner];e.lifetime[id]=lifetime;e.xp[id]=0;e.rewardWeight[id]=0;e.chainXp[id]=0;e.chainWeight[id]=0;e.reward[id]=0;e.splitGeneration[id]=1;}return id;}
+ spawnSummon(kind:string,owner:number,x:number,y:number,lifetime=12,attached=false){const e=this.enemies;if(!this.enemySourceAlive(owner,e.generation[owner]))return-1;const id=this.spawnEnemy(kind,x,y,0,undefined,attached);if(id>=0){e.owner[id]=owner;e.ownerGeneration[id]=e.generation[owner];e.lifetime[id]=lifetime;e.xp[id]=0;e.rewardWeight[id]=0;e.chainXp[id]=0;e.chainWeight[id]=0;e.reward[id]=0;e.splitGeneration[id]=1;this.revision.attachment(id);}return id;}
  enemySourceAlive(id:number,generation:number):boolean{const e=this.enemies;for(let depth=0;depth<e.capacity;depth++){if(!e.valid(id,generation)||e.hp[id]<=0)return false;if(e.owner[id]<0)return true;generation=e.ownerGeneration[id];id=e.owner[id];}return false;}
  cancelEnemyAttacks(id:number,generation=this.enemies.generation[id]){const e=this.enemies;if(!e.valid(id,generation))return;this.danger.cancelOwner(id,generation);this.threats.forget(id,generation);this.advanced.forget(id,generation);this.bossSystem.projectReview.forget(id,generation);this.bossSystem.expoFinal.forget(id,generation);this.cancelOwnedShots(id,generation);for(const child of [...e.active])if(e.owner[child]===id&&e.ownerGeneration[child]===generation)this.releaseEnemy(child);}
  releaseEnemy(id:number){if(!this.enemies.alive[id])return;this.cancelEnemyAttacks(id);this.protocol.forget(id);this.projectRelics.forget(id);this.echo.forget(id);this.enemies.release(id);}
@@ -181,6 +188,8 @@ export class ContentState {
  private resolveDeath(death:ContentDeath){const e=this.enemies,id=death.slot;if(this.rewardedGeneration[id]===death.generation)return;this.rewardedGeneration[id]=death.generation;this.projectRelics.death(id);this.protocol.forget(id);this.echo.forget(id);const def=this.content.enemies[e.kind[id]],rank=rankName(e.rank[id]),x=e.x[id],y=e.y[id],weight=e.rewardWeight[id]+(death.clearChain?e.chainWeight[id]:0),xp=e.xp[id]+(death.clearChain?e.chainXp[id]:0),attached=e.owner[id]>=0||rank==='bossAdd';
   this.emit({type:'death',slot:id,generation:e.generation[id],...enemyVisual(def.id),rank,batch:this.frame,angle:Math.atan2(e.vy[id],e.vx[id]),x,y,color:colorNumber(def.color),size:e.radius[id],weapon:death.source.kind==='weapon'?death.source.id:undefined,priority:rank!=='normal'});
   this.advanced.death(id);this.cancelEnemyAttacks(id);
+  if(this.revision.win(id,death.generation))return;
+  if(def.id==='s2:relayNode'){this.terminalClosures++;this.events.terminalKilled(id,death.generation);}
   if(attached){e.release(id);return;}
   this.kills++;this.metrics.firstKill??=this.combatTime;
   if(rank==='normal'&&e.owner[id]<0){const band=this.week<=5?'early':this.week<=16?'middle':'late',seconds=this.combatTime-e.firstHit[id],bucket=seconds<.5?0:seconds<1?1:seconds<2?2:seconds<3?3:seconds<5?4:5;this.metrics.normalKillTimings[band].push(seconds);if(this.metrics.normalKillTimings[band].length>8192)this.metrics.normalKillTimings[band].shift();this.metrics.normalKillHits[band][Math.min(10,e.hitCount[id])]++;this.metrics.normalKillSeconds[band][bucket]++;if(def.tags.includes('heavy'))this.metrics.heavyKillHits[Math.min(10,e.hitCount[id])]++;this.progress.normalKills+=weight;if(def.id==='guard'&&weight>0)this.progress.shieldKills++;}
@@ -214,7 +223,7 @@ export class ContentState {
   const id=this.enemyShots.acquire();if(id<0){this.poolFailures++;return;}
   const origin=owner!==undefined?this.originForEnemy(owner,'projectile'):{kind:'projectile' as const,id,generation:this.enemyShots.generation[id],tier:this.bossActive?'boss' as const:ordinary?'normal' as const:'elite' as const};
   delay=Math.max(delay,Math.hypot(x-this.player.x,y-this.player.y)<160?warningSeconds(origin.tier):0);
-  const s=this.enemyShots.data[id];s.x=s.prevX=x;s.y=s.prevY=y;s.vx=Math.cos(angle)*speed;s.vy=Math.sin(angle)*speed;s.life=8+delay;s.age=-delay;s.damage=damage;s.radius=radius;s.kind='enemy';s.color=0xe8777d;s.frozen=0;s.ordinary=ordinary;
+  const s=this.enemyShots.data[id];s.x=s.prevX=x;s.y=s.prevY=y;s.vx=Math.cos(angle)*speed;s.vy=Math.sin(angle)*speed;s.life=8+delay;s.age=-delay;s.damage=damage*this.revision.damageScale(owner);s.radius=radius;s.kind='enemy';s.color=0xe8777d;s.frozen=0;s.ordinary=ordinary;
   this.shotOrigins.set(id,{generation:this.enemyShots.generation[id],origin:{...origin,id,generation:this.enemyShots.generation[id]},owner,ownerGeneration:owner===undefined?undefined:this.enemies.generation[owner]});
   if(delay>0)this.emit({type:'warning',x,y,angle,color:0xb65e8a,size:radius+9,duration:delay,priority:true});
  }
@@ -226,12 +235,12 @@ export class ContentState {
  private updateEnemyShots(dt:number){const p=this.player,speed=relicBulletSpeed(this.relics)*(this.manifest.dailyRule==='lastMinute'?1.2:1)*(this.activeEvent==='rainstorm'?.85:1);for(let n=this.enemyShots.active.length-1;n>=0;n--){const id=this.enemyShots.active[n],s=this.enemyShots.data[id];if(s.frozen>0){s.frozen=Math.max(0,s.frozen-dt);continue;}s.life-=dt;s.age+=dt;if(s.life<=0){this.enemyShots.release(id);continue;}if(s.age<0)continue;s.prevX=s.x;s.prevY=s.y;s.x+=s.vx*dt*speed;s.y+=s.vy*dt*speed;if(segmentDistanceSq(p.x,p.y,s.prevX,s.prevY,s.x,s.y)<(s.radius+12)**2){const stored=this.shotOrigins.get(id);this.hurtPlayer(s.damage,s.prevX,s.prevY,stored?.generation===this.enemyShots.generation[id]?stored.origin:{kind:'projectile',id,generation:this.enemyShots.generation[id],tier:'normal'});this.enemyShots.release(id);}}}
  addHazard(kind:S2Hazard['kind'],x:number,y:number,x2:number,y2:number,radius:number,warning:number,life:number,damage:number,safeAngle?:number,extra:HazardOptions={}){
   const owner=extra.owner??(this.bossActive&&this.bossEnemy>=0?this.bossEnemy:undefined),tier=extra.tier??(owner!==undefined?this.originForEnemy(owner).tier:this.bossActive?'boss':extra.ordinary===false?'elite':'normal');
-  const h={id:this.hazardId++,kind,x,y,x2,y2,radius,warning,life,damage,hit:false,safeAngle,ordinary:!this.bossActive,...(owner!==undefined?{owner,ownerGeneration:this.enemies.generation[owner],cancelOnDeath:true}:{}),...extra};
+  const h={id:this.hazardId++,kind,x,y,x2,y2,radius,warning,life,damage:damage*this.revision.damageScale(owner),hit:false,safeAngle,ordinary:!this.bossActive,...(owner!==undefined?{owner,ownerGeneration:this.enemies.generation[owner],cancelOnDeath:true}:{}),...extra};
   return this.danger.request(h,tier,this.frame,extra.trackPlayer);
  }
  private updateHazards(){
   const p=this.player;
-  this.danger.update(this.frame,this.week,p,this.combatStats.speed,h=>h.owner===undefined||this.enemySourceAlive(h.owner,h.ownerGeneration??0),h=>this.emit({type:'warning',x:h.x,y:h.y,x2:h.x2,y2:h.y2,color:0xeb9b6b,size:h.radius,duration:h.warningTotal,priority:true}));
+  this.danger.update(this.frame,this.week,p,this.combatStats.speed,h=>(h.owner===undefined||this.enemySourceAlive(h.owner,h.ownerGeneration??0))&&(!h.sourceId||this.events.sourceAlive(h.sourceId,h.sourceGeneration??0)),h=>this.emit({type:'warning',x:h.x,y:h.y,x2:h.x2,y2:h.y2,color:0xeb9b6b,size:h.radius,duration:h.warningTotal,priority:true}));
   for(const h of this.hazards){
    if(h.phase!=='active'||h.hit||!h.damage||(h.frozen??0)>0)continue;
    const collision=h.kind==='ring'?Math.abs(Math.hypot(p.x-h.x,p.y-h.y)-ringRadius(h))<20&&dangerContains(h,p,12,false):dangerContains(h,p,12,false);
@@ -250,5 +259,5 @@ export class ContentState {
  private applyCard(index:number,token?:number){if(this.phase!=='draft'||token!==undefined&&token!==this.draftToken)return;const card=this.cards[index];if(!card)return;if(card.type==='heal')this.heal(30);else if(card.type==='shield')this.addShield(30,12*this.stats.duration);else if(card.type==='credit')this.bonusCredits+=3;else{const owned=card.type==='weapon'?this.weapons:this.passives,existing=owned.find(w=>w.id===card.id);if(existing)existing.level=Math.min(5,existing.level+1);else if(owned.length<6){const skill:ContentSkill={id:card.id as ContentSkill['id'],instanceId:this.nextInstance(),kind:'base',level:1,rarity:card.rarity,evolved:false};owned.push(skill);this.discover(skill.id);}this.recalculateStats();this.weaponSystem.reset(card.id);if(this.weapons[0]?.level===5)this.metrics.mainLv5??=this.combatTime;}this.cards=[];this.setPhase('playing');this.handlePending();}
  openChest(boss=false,preferred=''){this.rewards.openChest(boss?3:1,boss,preferred);}
  openContract(){this.rewards.openContract();}
- dispose(){if(this.disposed)return;this.disposed=true;this.inputX=this.inputY=0;for(const skill of this.weapons)this.weaponSystem.remove(skill.id);this.weaponSystem.summons.remove('s2:drone');this.weaponSystem.whiteboard.remove();this.rewards.clear();this.visualEvents.length=0;this.enemies.clear();this.shots.clear();this.enemyShots.clear();this.areas.clear();this.drops.clear();this.deaths.clear();this.protocol.clear();this.echo.clear();this.projectRelics.clear();this.projectTables.clear();this.danger.clear();this.threats.clear();this.advanced.clear();this.shotOrigins.clear();this.incomingHits.length=0;}
+ dispose(){if(this.disposed)return;this.disposed=true;this.inputX=this.inputY=0;for(const skill of this.weapons)this.weaponSystem.remove(skill.id);this.weaponSystem.summons.remove('s2:drone');this.weaponSystem.whiteboard.remove();this.rewards.clear();this.visualEvents.length=0;this.enemies.clear();this.shots.clear();this.enemyShots.clear();this.areas.clear();this.drops.clear();this.deaths.clear();this.protocol.clear();this.echo.clear();this.projectRelics.clear();this.projectTables.clear();this.events.cancel();this.interactions.cancel();this.danger.clear();this.threats.clear();this.advanced.clear();this.shotOrigins.clear();this.incomingHits.length=0;}
 }

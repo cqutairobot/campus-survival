@@ -183,6 +183,10 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
     this.player.texture=this.textures.get('player');const playerScale=fitArtScale(this.player.texture,64);this.player.position.set(px,py-11+(this.settings.motion?Math.sin(time*13)*Math.min(2,Math.hypot(p.vx,p.vy)/130):0));this.player.scale.set((p.vx< -8?-playerScale:playerScale)*(1+(this.settings.motion?Math.sin(time*13)*.025:0)),playerScale*(1-(this.settings.motion?Math.sin(time*13)*.02:0)));this.player.alpha=p.invincible>0&&Math.floor(time*16)%2===0?.55:1;this.playerShadow.position.set(px,py+17);
     this.chapterLabel.text=`第 ${g.chapter.chapter} 章 · ${g.chapter.title}${g.chapter.reached?' · 已抵达':''}\n${g.chapter.objective}${this.latest?.phase==='assessmentIntro'&&g.assessmentAdmission?`\n考场：${g.assessmentAdmission.site.name} · 等待确认入场`:''}`;
     const board=g.proposalBoard;
+    if(g.event)this.chapterLabel.text+=`\n校园事件 · ${g.event.name} · ${g.event.warning>0?`${g.event.warning.toFixed(1)}秒后开始`:`剩余 ${Math.ceil(g.event.remaining)} 秒`}${g.event.kind==='s2:networkMaintenance'?` · 终端 ${g.event.closed}/2`:g.event.kind==='s2:jointExhibit'?` · 展点 ${g.event.visits}/2`:''}`;
+    if(g.revision.active)this.chapterLabel.text+=`\n旧课复习 · ${this.content.enemyById[g.revision.active.id].name} · 选修（教学暂停）`;
+    if(g.notice)this.chapterLabel.text+=`\n${g.notice}`;
+    this.blackSprite.visible=g.event?.kind==='blackout'&&g.event.warning<=0;
     if(board){
       const attack=g.hazards.find(h=>h.id===board.handleId),moves={opening:'审查开始',transition:'安全过渡',recovery:'停手 · 集中输出',stagger:'错峰间隔',chase:'普通追击',line:`冲线 ${board.line}`,reservation:'预约落点'};
       const timing=attack?`${attack.phase==='warning'?`预警 ${attack.warning.toFixed(1)} 秒${attack.locked?' · 已锁定':''}`:'生效'}`:board.attackPhase==='queued'?'等待安全放行':board.remaining>0?`${board.remaining.toFixed(1)} 秒`:'';
@@ -298,6 +302,9 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
   }
   private drawGroundEffects(){
     const gr=this.groundFX,g=this.game;gr.clear();
+    for(const point of g.interactions.points){if(!this.inView(point.x,point.y,80))continue;const color=point.id==='s2:infirmary'?0x579d8a:0x637b9f;gr.roundRect(point.x-28,point.y-23,56,46,7).fill({color,alpha:.85}).stroke({color:0xf6e8bc,width:2});if(point.id==='s2:infirmary')gr.rect(point.x-5,point.y-15,10,30).rect(point.x-15,point.y-5,30,10).fill(0xe4f3e9);else gr.rect(point.x-18,point.y-12,36,24).stroke({color:0xf6e8bc,width:3});}
+    if(g.revision.active){const site=g.revision.active.entry.site;gr.circle(site.center.x,site.center.y,site.radius+72).stroke({color:0x637b9f,width:4,alpha:.6});}
+    if(g.event&&g.event.warning<=0){const a=g.event;if(a.kind==='portal'||a.kind==='s2:jointExhibit')for(const [n,point] of [{x:a.x,y:a.y},{x:a.x2,y:a.y2}].entries())gr.circle(point.x,point.y,a.kind==='portal'?38:52).stroke({color:n<a.visits?0x6b9d86:0x637b9f,width:4,alpha:.8});}
     if(g.tables.table){const t=g.tables.table;gr.roundRect(t.x-26,t.y-18,52,36,5).fill({color:t.kind==='joint'?0xc7ae65:0x9a95c9,alpha:.8}).stroke({color:0xffedbb,width:3});gr.moveTo(t.x-32,t.y+22).lineTo(t.x+32,t.y+22).stroke({color:0x526b65,width:5});}
     for(const node of g.fusionAttacks.nodes){this.fxGraphic.roundRect(node.x-12,node.y-10,24,20,4).fill(0x61bdce).stroke({color:0xe0f8ef,width:2});if(node.stationary)this.fxGraphic.rect(node.x-17,node.y+12,34,4).fill(0x3c8295);else this.fxGraphic.moveTo(node.x-21,node.y-12).lineTo(node.x+21,node.y-12).stroke({color:0x9cddde,width:2});}
     for(const b of g.fusionAttacks.bolts)this.fxGraphic.circle(b.x,b.y,4).fill(0x61bdce);

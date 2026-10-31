@@ -65,14 +65,14 @@ export class BossSystem {
   }
   private math(){const g=this.g,p=g.player;for(let y=-2;y<=2;y++)for(let x=-2;x<=2;x++){if(x===0&&y===0||g.streams.ai.next()<.25)continue;g.addHazard('circle',p.x+x*100,p.y+y*100,0,0,40,.9,.35,16);}}
   private fan(){const g=this.g,e=g.enemies,id=g.bossEnemy,a=Math.atan2(g.player.y-e.y[id],g.player.x-e.x[id]);for(let n=0;n<11;n++)g.enemyBullet(e.x[id],e.y[id],a+(n-5)*.16,180,10,7,.8,false,id);}
-  private exams(){const g=this.g,p=g.player;for(const [i,kind] of ['math','english','coding','mechanics'].entries()){const a=i*TAU/4;g.spawnEnemy(kind,p.x+Math.cos(a)*340,p.y+Math.sin(a)*340);}}
+  private exams(){const g=this.g,p=g.player;for(const [i,kind] of ['math','english','coding','mechanics'].entries()){const a=i*TAU/4;g.spawnSummon(kind,g.bossEnemy,p.x+Math.cos(a)*340,p.y+Math.sin(a)*340,0,true);}}
   updateExams(dt:number){
     const g=this.g,e=g.enemies,p=g.player;
     for(const id of e.active){if(e.rank[id]!==RANK_CODE.bossAdd||e.hp[id]<=0||e.frozen[id]>0||!['math','english','coding','mechanics'].includes(this.g.content.enemies[e.kind[id]].id))continue;e.cooldown[id]-=dt;if(e.cooldown[id]>0)continue;e.cooldown[id]=5+g.streams.ai.next()*2;
-      const kind=e.kind[id];if(kind===this.g.content.enemyIndex.math){for(let n=0;n<4;n++)g.addHazard('circle',p.x+(n%2?85:-85),p.y+(n<2?85:-85),0,0,38,.9,.25,12);}
+      const kind=e.kind[id];if(kind===this.g.content.enemyIndex.math){for(let n=0;n<4;n++)g.addHazard('circle',p.x+(n%2?85:-85),p.y+(n<2?85:-85),0,0,38,.9,.25,12,undefined,{owner:id,ownerGeneration:e.generation[id],ordinary:false});}
       else if(kind===this.g.content.enemyIndex.english){const a=Math.atan2(p.y-e.y[id],p.x-e.x[id]);for(let n=-2;n<=2;n++)g.enemyBullet(e.x[id],e.y[id],a+n*.22,165,8,6,.8,false,id);}
       else if(kind===this.g.content.enemyIndex.coding){for(let n=-2;n<=2;n++){if(n===0)continue;g.enemyBullet(p.x+n*60,p.y-350,Math.PI/2,145,9,7,.85,false,id);}}
-      else if(distanceSq(p.x,p.y,e.x[id],e.y[id])<600**2)g.addHazard('ring',e.x[id],e.y[id],0,0,250,.9,1.2,12,Math.atan2(p.y-e.y[id],p.x-e.x[id]));
+      else if(distanceSq(p.x,p.y,e.x[id],e.y[id])<600**2)g.addHazard('ring',e.x[id],e.y[id],0,0,250,.9,1.2,12,Math.atan2(p.y-e.y[id],p.x-e.x[id]),{owner:id,ownerGeneration:e.generation[id],ordinary:false});
     }
   }
 }

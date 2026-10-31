@@ -9,6 +9,8 @@ import {FIRST_THREAT_WEEKS,LESSON_MELEE} from '../first-chapter';
 export class EnemyDirector {
  private budget=0;private scheduled=new Set<string>();readonly pendingElites:number[]=[];
  constructor(private g:ContentState){}
+ canReserveRevision(){return this.pendingElites.includes(this.g.week)||eliteSeconds(this.g.week).some(second=>!this.scheduled.has(`${this.g.week}:${second}`));}
+ reserveRevision(){const w=this.g.week,index=this.pendingElites.indexOf(w);if(index>=0){this.pendingElites.splice(index,1);return true;}const second=eliteSeconds(w).find(n=>!this.scheduled.has(`${w}:${n}`));if(second===undefined)return false;this.scheduled.add(`${w}:${second}`);return true;}
  update(dt:number){
   const g=this.g;if(!g.ordinarySpawnsAllowed||g.bossActive)return;
   const w=g.week,e=g.enemies,curve=pressureAt(w),counts:Record<string,number>={};let normals=0,elites=0,mini=false;
@@ -47,6 +49,7 @@ export class EnemyDirector {
    const ids=[...g.content.waves.normalIds],weights=ids.map(id=>w>=g.content.enemyById[id].from?normalWeight(id,w,lesson):0);
    for(const kind of ['summoner','leader','s2:relay','s2:peer']){const index=ids.indexOf(kind);if(index>=0&&!g.advanced.canSpawn(kind)){weights[0]+=weights[index];weights[index]=0;}}
    if(g.activeEvent==='sports')weights[ids.indexOf('charger')]*=2;
+   if(g.activeEvent==='s2:openLab')for(const kind of ['summoner','leader','s2:relay','s2:peer']){const index=ids.indexOf(kind);if(index>=0)weights[index]*=1.5;}
    if(g.manifest.dailyRule==='construction')weights[ids.indexOf('guard')]*=2;
    // The first lesson unit spends the next ordinary opportunity. Randomness
    // cannot postpone its first appearance until other mechanisms return.

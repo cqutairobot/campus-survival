@@ -14,7 +14,7 @@ export function projectContent(s:ContentState){
  const identity=(pool:ContentState['shots']|ContentState['drops'])=>({alive:Object.fromEntries(pool.active.map(id=>[id,1])),generation:Object.fromEntries(pool.active.map(id=>[id,pool.generation[id]]))});
  const shots=(pool:ContentState['shots'])=>({active:[...pool.active],data:Object.fromEntries(pool.active.map(id=>{const shot=pool.data[id];return[id,{...shot,hits:[...shot.hits]}];})),...identity(pool)});
  return {
-  player:{...s.player},stats:{...s.stats},combatStats:{...s.combatStats},damageMultiplier:s.damageMultiplier,weapons:structuredClone(s.weapons),passives:structuredClone(s.passives),consumed:[...s.consumed],relics:[...s.relics],averageCurse:s.averageCurse,risk:s.projectRelics.snapshot(),tables:s.projectTables.snapshot(),
+  player:{...s.player},stats:{...s.stats},combatStats:{...s.combatStats},damageMultiplier:s.damageMultiplier,weapons:structuredClone(s.weapons),passives:structuredClone(s.passives),consumed:[...s.consumed],relics:[...s.relics],averageCurse:s.averageCurse,risk:s.projectRelics.snapshot(),tables:s.projectTables.snapshot(),event:s.events.snapshot(),interactions:s.interactions.snapshot(),revision:s.revision.snapshot(),completedSideBranches:[...s.completedSideBranches],terminalClosures:s.terminalClosures,
   manifest:{character:s.manifest.character,regions:[...s.manifest.regions],mode:s.manifest.mode},world:s.world,chapter:{...goal,reached:s.progress.visited.includes(goal.regionId)},assessmentAdmission:s.assessmentAdmission?structuredClone(s.assessmentAdmission):null,phase:s.phase,frame:s.frame,week:s.week,combatTime:s.combatTime,bossTime:s.bossTime,bossActive:s.bossActive,bossStage:s.bossStage,bossEnemy:s.bossEnemy,
   enemies:{...enemies,kind,active:[...e.active]},shots:shots(s.shots),enemyShots:shots(s.enemyShots),
   areas:{active:[...s.areas.active],data:Object.fromEntries(s.areas.active.map(id=>{const {hits:_,...area}=s.areas.data[id];return[id,{...area}];}))},
@@ -27,5 +27,5 @@ export function projectContent(s:ContentState){
 }
 export type LegacyContentDTO=ReturnType<typeof projectContent>;
 export function legacyContentRules(content:ContentCatalog,world?:WorldSnapshot):SemesterRules<ContentState,LegacyContentDTO>{
- return {create:services=>new ContentState(content,services,world),step:(state,step)=>state.tick(step),assessment:(state,event,services)=>state.assessment(event,services),project:projectContent,command:(state,command)=>state.command(command),canAcknowledge:(state,kind)=>state.canAcknowledge(kind),canResume:(state,reason)=>reason==='manual'||reason==='loading'||!state.hasPendingRewards,dispose:state=>state.dispose()};
+ return {create:services=>new ContentState(content,services,world),step:(state,step)=>state.tick(step),assessment:(state,event,services)=>state.assessment(event,services),project:projectContent,teachingPaused:state=>!!state.revision.active,command:(state,command)=>state.command(command),canAcknowledge:(state,kind)=>state.canAcknowledge(kind),canResume:(state,reason)=>reason==='manual'||reason==='loading'||!state.hasPendingRewards,dispose:state=>state.dispose()};
 }

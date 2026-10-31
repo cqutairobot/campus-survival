@@ -25,8 +25,8 @@ export class BuildPanel {
  private text(tag:string,value:string){const e=document.createElement(tag);e.textContent=value;return e;}
  private close=()=>{this.codex=false;this.key='';const token=this.pauseToken;this.pauseToken=null;if(token!==null)this.controls.resume(token);this.update(this.controls.read());};
  update(view:Immutable<SemesterRunView<LegacyContentDTO>>){
-  const g=view.content,interaction=g.tables.interaction;this.interact.hidden=!interaction||!!view.pause||view.phase!=='teaching';this.interact.textContent=interaction?.name??'';this.interact.disabled=!!interaction?.locked;
-  const key=this.codex?'codex':`${g.phase}:${g.draftToken}:${g.rewardToken}`;if(key===this.key)return;this.key=key;
+  const g=view.content,interaction=g.tables.interaction??g.interactions.interaction;this.interact.hidden=!interaction||!!view.pause||view.phase!=='teaching';this.interact.textContent=interaction?`${interaction.name}${'progress'in interaction&&interaction.progress>0?` · ${Math.ceil(interaction.progress*100)}%`:''}`:'';this.interact.disabled=!!interaction?.locked;this.interact.title=interaction?.locked??'';
+  const key=this.codex?'codex':`${g.phase}:${g.draftToken}:${g.rewardToken}:${g.revision.selecting}:${g.revision.token}`;if(key===this.key)return;this.key=key;
   this.modal.replaceChildren();this.modal.hidden=!this.codex&&!['draft','reward','contract','chest','evolution'].includes(g.phase);if(this.modal.hidden)return;this.clearInput();
   this.modal.setAttribute('role','dialog');this.modal.setAttribute('aria-label',this.codex?'第二学期构筑图鉴':'选择构筑');
   const body=document.createElement('section');this.modal.append(body);
@@ -39,6 +39,10 @@ export class BuildPanel {
     if(!def.fusion)entry.append(this.text('h3',def.evolution.name),this.text('p',book.rows.join(' · ')));body.append(entry);
    }
    for(const def of this.content.passives)body.append(this.text('h3',def.name),this.text('p',`${def.description} 普通品质：${def.values.join(' / ')}${def.unit}`));
+  }else if(g.revision.selecting){
+   body.append(this.text('h2','旧课复习 · 选择选修'),this.text('p','每局一次，替代本周一次普通精英。教学暂停，战斗/每日计时继续；胜利给两份普通强化，退出不发奖。'));
+   for(const option of g.revision.options)body.append(this.button(`${option.name} · ${option.hp} HP`,()=>this.controls.dispatch({type:'chooseRevision',token:g.revision.token,id:option.id})));
+   body.append(this.button('取消复习选择',()=>this.controls.dispatch({type:'chooseRevision',token:g.revision.token,id:null})));
   }else if(g.phase==='draft'){
    body.append(this.text('h2','选择新灵感'));const choices=document.createElement('div');choices.className='s2-build-choices';body.append(choices);
    for(const [index,card] of g.cards.entries()){
