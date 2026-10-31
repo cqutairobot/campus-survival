@@ -3,7 +3,7 @@ import {artManifest,artUrl,pixiManifest,type ArtId,type Bundle} from './manifest
 
 export interface LoadProgress {completed:number;total:number;failed:number;label:string}
 export interface ResourceLease {textures:Map<ArtId,Texture>;release:()=>void}
-interface Entry {promise:Promise<Texture|null>;refs:number;unloading?:Promise<void>}
+interface Entry {promise:Promise<Texture|null>;refs:number;unloading?:Promise<void>;disposeRequested?:boolean}
 const bundleLabel=(bundle:Bundle)=>bundle==='battle-core'?'整理学术装备':bundle==='battle-content'?'准备校园地图':bundle.startsWith('boss-')?'准备本周考核':'准备校园画册';
 /** Shared ownership; cancellation never destroys a texture used by another UI. */
 interface ResourceBackend {init:()=>Promise<unknown>;load:(source:string)=>Promise<unknown>;unload:(source:string)=>Promise<unknown>}
@@ -25,7 +25,7 @@ export class ResourceLoader {
   async loadIds(requested:readonly ArtId[],signal?:AbortSignal,onProgress?:(p:LoadProgress)=>void,label='准备校园画册'):Promise<ResourceLease>{
     this.initialized??=this.backend.init().catch(()=>{});await this.initialized;
     const ids=[...new Set(requested)],textures=new Map<ArtId,Texture>();
-    const acquired:ArtId[]=[];let completed=0,failed=0;
+    const acquired:[ArtId,Entry][]=[];let completed=0,failed=0;
     const report=()=>onProgress?.({completed,total:ids.length,failed,label});
     if(!signal?.aborted)report();
     // A fixed six-request cap is shared by all concurrent bundles; never FPS based.
@@ -33,17 +33,17 @@ export class ResourceLoader {
       await Promise.all(ids.slice(start,start+6).map(async id=>{
         if(signal?.aborted)return;
         let entry=this.entries.get(id);
-        if(entry?.unloading){await entry.unloading;entry=this.entries.get(id);}
+        while(entry?.unloading){await entry.unloading;entry=this.entries.get(id);}
         if(signal?.aborted)return;
         if(!entry){entry={refs:0,promise:this.load(id)};this.entries.set(id,entry);}
-        entry.refs++;acquired.push(id);
+        entry.refs++;acquired.push([id,entry]);
         const texture=await entry.promise;
         if(texture&&!this.forced.has(id))textures.set(id,texture);else failed++;
         completed++;if(!signal?.aborted)report();
       }));
     }
     let released=false;
-    const release=()=>{if(released)return;released=true;for(const id of acquired){const entry=this.entries.get(id);if(entry)entry.refs=Math.max(0,entry.refs-1);}};
+    const release=()=>{if(released)return;released=true;for(const [id,entry] of acquired){entry.refs=Math.max(0,entry.refs-1);if(!entry.refs&&entry.disposeRequested)void this.sweep(id,entry);}};
     if(signal?.aborted){release();textures.clear();}
     return {textures,release};
   }
@@ -63,17 +63,19 @@ export class ResourceLoader {
       const next=this.waiting.shift();if(next)next();else this.active--;
     }
   }
-  async dispose(){
-    await Promise.all([...this.entries].map(async([id,entry])=>{
-      if(entry.refs)return;
-      entry.unloading??=(async()=>{
-        await entry.promise;if(entry.refs)return;
+  private sweep(id:ArtId,entry:Entry):Promise<void>{
+    if(entry.refs||this.entries.get(id)!==entry)return Promise.resolve();
+    return entry.unloading??=(async()=>{
+      try{
+        await entry.promise;if(entry.refs||this.entries.get(id)!==entry)return;
         const source=this.loadedSources.get(id);
-        if(source)await this.backend.unload(source).catch(()=>{});
+        if(source)try{await this.backend.unload(source);}catch{/* Failed cache cleanup must not reject an unawaited release. */}
         if(this.entries.get(id)===entry){this.entries.delete(id);this.loadedSources.delete(id);}
-      })();
-      await entry.unloading;
-    }));
+      }finally{entry.unloading=undefined;}
+    })();
+  }
+  async dispose(){
+    await Promise.all([...this.entries].map(([id,entry])=>{entry.disposeRequested=true;return this.sweep(id,entry);}));
   }
   get debug(){return{entries:this.entries.size,references:[...this.entries.values()].reduce((sum,e)=>sum+e.refs,0),textures:this.loadedSources.size,loading:this.active,waiting:this.waiting.length};}
 }

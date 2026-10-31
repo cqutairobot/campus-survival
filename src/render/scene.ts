@@ -14,6 +14,7 @@ import type { GameEngine } from '../core/engine';
 import { botPosition } from '../weapons/system';
 import { weaponParams } from '../weapons/params';
 import {TrailHistory} from '../fx/trails';
+import {afterimagePoint} from './trail-sampling';
 import {Haptics} from '../fx/haptics';
 import {drawUltimate} from '../fx/ultimates';
 import {drawSignature} from './signatures';
@@ -219,7 +220,7 @@ export class GameScene {
       if(this.settings.motion&&trail.history.sample(s.x,s.y,s.age,this.quality==='high'?32:this.quality==='medium'?12:4)&&this.quality!=='low')this.particles.burst(s.x,s.y,s.color,s.evolved?2:1,12,.5);
       const points=this.settings.motion?trail.history.points:[];for(let n=1;n<points.length;n++){const a=points[n-1],b=points[n];this.fxGraphic.moveTo(a.x,a.y).lineTo(b.x,b.y).stroke({color:s.color,width:(s.evolved?6:3)*n/points.length,alpha:n/points.length*.5});}
       if(this.settings.motion&&this.settings.afterimages&&this.quality!=='low')for(let layer=1;layer<=(this.quality==='high'?5:2);layer++){
-        const point=[...points].reverse().find(point=>s.age-point.time>=layer*.04&&s.age-point.time<=(this.quality==='high'?.22:.12));if(point)this.fxGraphic.roundRect(point.x-9*growth,point.y-5*growth,18*growth,10*growth,2).stroke({color:s.color,width:1.5,alpha:.22/layer});
+        const point=afterimagePoint(points,s.age,layer,this.quality==='high');if(point)this.fxGraphic.roundRect(point.x-9*growth,point.y-5*growth,18*growth,10*growth,2).stroke({color:s.color,width:1.5,alpha:.22/layer});
       }
     }
     for(const id of this.trails.keys())if(!g.shots.alive[id])this.trails.delete(id);

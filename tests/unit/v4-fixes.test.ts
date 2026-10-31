@@ -6,6 +6,9 @@ import {qualityBudget,qualityName} from '../../src/presentation/quality';
 import {resolveAudioPreset,OUTPUT_PROFILES} from '../../src/audio/OutputBus';
 import type {Settings,Quality} from '../../src/types';
 import {useApp,createAppStore} from '../../src/state/store';
+import {Texture,TextureSource} from 'pixi.js';
+import {ResourceLoader} from '../../src/assets/loader';
+import {afterimagePoint} from '../../src/render/trail-sampling';
 import {SaveCoordinator,type SaveLocks} from '../../src/save/coordinator';
 import {GameEngine} from '../../src/core/engine';
 import {ModalPauseOwner,blocksGameKey} from '../../src/ui/input/modal-input';
@@ -97,6 +100,24 @@ describe('v4.0.1 short regressions',()=>{
   for(const persistence of [null,{}, {revision:-1,epoch:0,ownerId:'x'}])expect(validateSave({...freshSave(),persistence})).toBeNull();
   storage.setItem(SAVE_KEY,JSON.stringify({...freshSave(),credits:18}));const memoryRepo=new SaveRepository(storage),unsupported=new SaveCoordinator(memoryRepo,storage,null),memory=createAppStore(memoryRepo,unsupported);await unsupported.initialize();const raw=storage.getItem(SAVE_KEY);expect(memory.getState().save.credits).toBe(18);await memory.getState().settings({muted:true});expect(storage.getItem(SAVE_KEY)).toBe(raw);expect(memory.getState().persistence).toBe('unsupported');
   ac.dispose();bc.dispose();unsupported.dispose();
+ });
+
+ it('R09 keeps reverse/find point identity and boundary order at every original trail layer',()=>{
+  const samples=[[],[0,.04,.08,.12,.16,.2,.22,.24],[.08,.08,.12],[1,2]];
+  for(const times of samples){const points=times.map((time,n)=>({x:n,y:-n,time})),before=[...points];
+   for(const high of [true,false])for(const age of [0,.12,.22,.24,1])for(let layer=1;layer<=(high?5:2);layer++)expect(afterimagePoint(points,age,layer,high)).toBe([...points].reverse().find(p=>age-p.time>=layer*.04&&age-p.time<=(high?.22:.12)));
+   expect(points).toEqual(before);points.forEach((p,n)=>expect(p).toBe(before[n]));
+  }
+ });
+ it('S01 fulfills dispose after aborted decode, retaining a reacquired shared lease until its last release',async()=>{
+  for(const reacquire of [false,true]){
+   const image=new Texture({source:new TextureSource({width:256,height:24})});let finish!:(texture:Texture)=>void;const gate=new Promise<Texture>(r=>{finish=r;}),abort=new AbortController(),unload=vi.fn(async()=>{}),loader=new ResourceLoader({init:async()=>{},load:()=>gate,unload});
+   const pending=loader.loadIds(['particles'],abort.signal);while(!loader.debug.loading)await Promise.resolve();abort.abort();await loader.dispose();
+   const second=reacquire?loader.loadIds(['particles']):null;if(second)while(loader.debug.references!==2)await Promise.resolve();
+   finish(image);const canceled=await pending;canceled.release();const retained=second?await second:null;
+   if(retained){expect(loader.debug.references).toBe(1);expect(unload).not.toHaveBeenCalled();retained.release();retained.release();}
+   for(let i=0;i<20&&loader.debug.entries;i++)await Promise.resolve();expect(loader.debug).toMatchObject({entries:0,references:0,textures:0});expect(unload).toHaveBeenCalledTimes(1);image.destroy(true);
+  }
  });
 
 });
