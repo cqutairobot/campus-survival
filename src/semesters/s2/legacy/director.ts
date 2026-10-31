@@ -3,6 +3,7 @@ import type {ContentState} from './ContentState';
 import {RANK_CODE} from '../../../data/enemies';
 import {relicSpawn} from '../../../progression/relics';
 import {eliteSeconds,MINI_BOSS_SLOTS,normalWeight,pressureAt} from '../pressure';
+import {ADVANCED_WEEKS} from '../advanced-enemies';
 import {FIRST_THREAT_WEEKS,LESSON_MELEE} from '../first-chapter';
 
 export class EnemyDirector {
@@ -18,12 +19,12 @@ export class EnemyDirector {
    if(e.rank[id]===RANK_CODE.miniBoss)mini=true;
   }
   const within=g.semesterTime-(w-1)*40;
-  const lesson=Object.entries(FIRST_THREAT_WEEKS).find(([id,from])=>w===from&&(within<12||!this.scheduled.has(`introduced:${id}`))&&g.content.enemyById[id])?.[0];
+  const lesson=Object.entries({...FIRST_THREAT_WEEKS,...ADVANCED_WEEKS}).find(([id,from])=>w===from&&within<12&&g.content.enemyById[id])?.[0];
   if(lesson&&!this.scheduled.has(`lesson:${lesson}`)){
    this.scheduled.add(`lesson:${lesson}`);
    // Cancel survivors of previous mechanisms without kills, drops or charge.
    for(const id of [...e.active])if(g.content.enemies[e.kind[id]].id!==lesson&&!(e.rank[id]===RANK_CODE.normal&&(LESSON_MELEE as readonly string[]).includes(g.content.enemies[e.kind[id]].id)))g.releaseEnemy(id);
-   g.danger.clear();g.enemyShots.clear();
+   // Releasing each mechanism source cancels only its own casts and shots.
    normals=e.active.filter(id=>e.hp[id]>0&&e.rank[id]===RANK_CODE.normal).length;
    for(const key of Object.keys(counts))counts[key]=0;
    for(const id of e.active){const kind=g.content.enemies[e.kind[id]].id;counts[kind]=(counts[kind]??0)+1;}
@@ -44,7 +45,7 @@ export class EnemyDirector {
   while(this.budget>=1-1e-9){
    this.budget=Math.max(0,this.budget-1);if(normals>=curve.normalCap)continue;
    const ids=[...g.content.waves.normalIds],weights=ids.map(id=>w>=g.content.enemyById[id].from?normalWeight(id,w,lesson):0);
-   for(const [kind,cap] of [['summoner',4],['leader',3]] as const){const index=ids.indexOf(kind);if(index>=0&&(counts[kind]??0)>=cap){weights[0]+=weights[index];weights[index]=0;}}
+   for(const kind of ['summoner','leader','s2:relay','s2:peer']){const index=ids.indexOf(kind);if(index>=0&&!g.advanced.canSpawn(kind)){weights[0]+=weights[index];weights[index]=0;}}
    if(g.activeEvent==='sports')weights[ids.indexOf('charger')]*=2;
    if(g.manifest.dailyRule==='construction')weights[ids.indexOf('guard')]*=2;
    // The first lesson unit spends the next ordinary opportunity. Randomness
@@ -57,7 +58,7 @@ export class EnemyDirector {
    if(within>=second&&!this.scheduled.has(key)){this.scheduled.add(key);if(!this.pendingElites.length)this.pendingElites.push(w);}
   }
   if(!lesson&&this.pendingElites.length&&elites<curve.eliteCap){
-   const spawnWeek=this.pendingElites.shift()!,kind=spawnWeek<=8?'ddl':g.streams.spawn.weighted(['ddl','thrower','charger','guard'],()=>1),id=g.spawnEnemy(kind,undefined,undefined,0,spawnWeek);
+   const spawnWeek=this.pendingElites.shift()!,kind=spawnWeek<=8?'ddl':g.streams.spawn.weighted(['ddl','thrower','charger','guard',...(w>=9?['s2:marshal']:[]),...(w>=12&&g.advanced.canSpawn('s2:coordinator')?['s2:coordinator']:[])],()=>1),id=g.spawnEnemy(kind,undefined,undefined,0,spawnWeek);
    if(id<0)this.pendingElites.push(spawnWeek);
   }
  }

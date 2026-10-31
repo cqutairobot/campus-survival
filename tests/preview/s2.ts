@@ -31,4 +31,12 @@ function checkpoint(){
  }
  return{intro:{week:intro.clock.week,teachingSeconds:intro.clock.teachingSeconds},introAccepted,hpStart,monotonic,transition,recoveryDamage,damage:{...state.damage},phase:engine.read().phase,passed:engine.read().assessmentsPassed};
 }
-Object.assign(window,{__S2_PREVIEW__:{engine,state:()=>state,scene,resources:resourceState,checkpoint,params:()=>state.weapons.map(w=>weaponParams(S2_CONTENT,w,state.combatStats,state.damageMultiplier))}});
+function advanced(){
+ const s=state,e=s.enemies,previous={week:s.week,time:s.combatTime,frame:s.frame};for(const id of [...e.active])s.releaseEnemy(id);s.advanced.clear();s.week=17;
+ const spawn=(kind:string,x:number)=>s.spawnEnemy(kind,s.player.x+x,s.player.y),peers=[spawn('s2:peer',100),spawn('s2:peer',130)],relay=spawn('s2:relay',150),coordinator=spawn('s2:coordinator',170),marshal=spawn('s2:marshal',200),auditor=spawn('s2:auditor',240),robot=spawn('s2:recycler',190);spawn('summoner',280);spawn('leader',300);
+ s.advanced.update(1/60);const links=s.advanced.snapshot().links,support=s.advanced.supportCounts();s.combatTime+=2;s.frame+=120;s.advanced.update(1/60);s.danger.update(s.frame,17,s.player,s.stats.speed,h=>h.owner===undefined||s.enemySourceAlive(h.owner,h.ownerGeneration??0),()=>{});
+ const node=e.active.find(id=>e.owner[id]===auditor)!,before={kills:s.kills,energy:s.ultimate.energy,drops:s.drops.active.length};s.hitEnemy(node,1e6,'laser',s.player.x,s.player.y,0,false,false);s.resolveDeaths();const zeroRewards=JSON.stringify(before)===JSON.stringify({kills:s.kills,energy:s.ultimate.energy,drops:s.drops.active.length}),exposed=s.advanced.reduction(auditor)===0;
+ const casts=[...s.danger.pending,...s.hazards].filter(h=>h.owner===marshal);s.hitEnemy(marshal,1e6,'laser',s.player.x,s.player.y,0,false,false);s.resolveDeaths();const cancelled=casts.length>0&&casts.every(h=>h.phase==='cancelled');
+ const result={peers:peers.every(id=>id>=0),actors:[relay,coordinator,auditor,robot].every(id=>id>=0),links:links.length,support,zeroRewards,exposed,cancelled};s.week=previous.week;s.combatTime=previous.time;s.frame=previous.frame;return result;
+}
+Object.assign(window,{__S2_PREVIEW__:{engine,state:()=>state,scene,resources:resourceState,checkpoint,advanced,params:()=>state.weapons.map(w=>weaponParams(S2_CONTENT,w,state.combatStats,state.damageMultiplier))}});

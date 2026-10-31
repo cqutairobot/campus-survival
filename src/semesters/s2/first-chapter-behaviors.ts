@@ -100,14 +100,14 @@ export class FirstChapterBehaviors {
   }
   if(a.recovery>0){a.recovery=Math.max(0,a.recovery-dt);return;}
   if(a.remaining>0){
-   const angle=Math.atan2(p.y-e.y[id],p.x-e.x[id]),side=a.remaining===2?-1:1;
+   const angle=Math.atan2(p.y-e.y[id],p.x-e.x[id]),side=g.week>=20?(a.remaining%2?-1:1):(a.remaining===2?-1:1);
    const child=g.spawnSummon('s2:bike',id,e.x[id]-Math.sin(angle)*76*side,e.y[id]+Math.cos(angle)*76*side,12,true);
    if(child>=0){e.rank[child]=RANK_CODE.bossAdd;e.cooldown[child]=0;a.child={slot:child,generation:e.generation[child]};a.remaining--;}
    else a.recovery=.5;
    return;
   }
   e.cooldown[id]-=dt;e.state[id]=0;
-  if(e.cooldown[id]<=0){a.remaining=2;e.state[id]=1;g.message('调度长 · 两条配送线依次放行，横向避让',4);return;}
+  if(e.cooldown[id]<=0){a.remaining=g.week>=20?3:2;e.state[id]=1;g.message(g.week>=20?'强化调度 · 三次交替放行，每条独立预警':'调度长 · 两条配送线依次放行，横向避让',4);return;}
   this.move(id,dt,m,340);
  }
 }

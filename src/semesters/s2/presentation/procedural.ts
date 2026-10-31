@@ -80,6 +80,13 @@ export class TextureLibrary {
         g.roundRect(73,41,14,28,3).fill(INK).stroke({color:0xffe3a3,width:2});g.moveTo(79,41).lineTo(79,27).stroke({color:INK,width:3});
         g.moveTo(32,80).lineTo(28,87).moveTo(60,80).lineTo(64,87).stroke({color:INK,width:6});return;
       }
+      if(['s2:peer','s2:relay','s2:recycler','s2:marshal','s2:coordinator','s2:auditor'].includes(def.id)){
+        if(def.id==='s2:relay'){g.poly([48,5,79,23,69,80,27,80,17,23]).fill(0x425867).stroke({color,width:5});g.circle(48,30,12).stroke({color:0xffe4a3,width:4});g.moveTo(48,42).lineTo(48,67).stroke({color,width:6});}
+        else if(def.id==='s2:peer'){for(const x of [29,67]){g.circle(x,28,14).fill(color).stroke(line);g.roundRect(x-13,44,26,32,5).fill(0xe9d6aa).stroke(line);}g.moveTo(38,52).lineTo(58,52).stroke({color:0xcbb56b,width:5});}
+        else if(def.id==='s2:recycler'){g.roundRect(16,37,64,40,8).fill(color).stroke(line);for(const x of [27,69])g.circle(x,77,10).fill(INK);g.poly([32,19,58,19,69,37,25,37]).fill(0xe8dab2).stroke(line);g.moveTo(31,50).lineTo(65,50).lineTo(58,64).stroke({color:INK,width:4});}
+        else{g.circle(48,23,17).fill(0xf2d2a3).stroke(line);g.roundRect(22,43,52,38,7).fill(color).stroke(line);if(def.id==='s2:marshal')g.moveTo(10,39).lineTo(86,39).moveTo(17,31).lineTo(17,76).moveTo(79,31).lineTo(79,76).stroke({color:0xffe4a3,width:6});else if(def.id==='s2:coordinator'){for(const x of [14,82])g.rect(x-6,54,12,17).fill(0xcbb56b).stroke(line);g.moveTo(20,61).lineTo(76,61).stroke({color:0xffe4a3,width:3});}else g.roundRect(54,39,29,36,3).fill(0xffe4a3).stroke(line).moveTo(60,49).lineTo(77,49).moveTo(60,58).lineTo(77,58).stroke(line);}
+        return;
+      }
       if(elite){g.circle(48,45,29).fill(color).stroke(line);g.circle(48,45,23).fill(0xf8d6bf).stroke(line);g.moveTo(48,28).lineTo(48,44).lineTo(59,49).stroke({color:INK,width:3});this.label(c,'DDL',48,68,11,INK);}
       else if(def.id==='receipt'){g.moveTo(25,17).lineTo(32,21).lineTo(40,17).lineTo(48,21).lineTo(56,17).lineTo(64,21).lineTo(71,17).lineTo(71,76).lineTo(63,72).lineTo(55,76).lineTo(47,72).lineTo(39,76).lineTo(31,72).lineTo(25,76).closePath().fill(0xf2e7cf).stroke(line);g.roundRect(30,23,36,8,2).fill(color);this.label(c,'¥',48,41,14,INK);}
       else if(def.id==='checkin'){g.circle(48,45,27).fill(color).stroke(line);g.circle(48,45,21).fill(0xffedb2).stroke({color:INK,width:1.5});g.moveTo(36,41).lineTo(44,49).lineTo(60,32).stroke({color:INK,width:3});}
