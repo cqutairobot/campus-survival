@@ -15,7 +15,7 @@ export interface WeaponParams {
 export function weaponParams(content:ContentCatalog,skill:Immutable<ContentSkill>,stats?:PlayerStats,damageMultiplier=1):WeaponParams {
   const def=content.weaponById[skill.id],lv=skill.level-1,ev=skill.evolved,e=def.evolution;
   const value=(key:'damage'|'interval'|'count'|'range'|'pierce'|'width'|'spread'|'explosion'|'duration',fallback:number)=>ev?(e[key]??fallback):(def[key]?.[lv]??fallback);
-  const scale=(stats?.damage??1)*content.rarityMultipliers[skill.rarity]*damageMultiplier*(['bot','blueprint','hub','s2:drone'].includes(def.id)?(stats?.summon??1):(stats?.nonSummon??1));
+  const scale=(stats?.damage??1)*content.rarityMultipliers[skill.rarity]*damageMultiplier*(['bot','blueprint','hub','s2:drone','s2:fieldHub'].includes(def.id)?(stats?.summon??1):(stats?.nonSummon??1));
   const area=stats?.area??1,multi=['knife','orbit','code','ppt','bot','rain','staple','mine','blueprint','shuttle','prism','brick','sword','binder','demolition','s2:drone'].includes(def.id)?stats?.multi??0:0;
   return {
     id:def.id,damage:value('damage',1)*scale,interval:Math.max(.08,value('interval',1)/(stats?.haste??1)),
@@ -23,8 +23,9 @@ export function weaponParams(content:ContentCatalog,skill:Immutable<ContentSkill
     pierce:value('pierce',def.id==='ppt'?99:1),width:value('width',8)*area,
     spread:value('spread',def.id==='staple'?60:120)*Math.PI/180,explosion:value('explosion',def.id==='code'?24:0)*area,
     duration:value('duration',def.id==='mine'?8:def.id==='rain'?2:0)*(stats?.duration??1),
-    secondaryDamage:({coffee:12,code:18,bot:80,rain:10,lightning:25,brick:35,sword:90,hub:180,sky:120,icefire:140,demolition:60} as Record<string,number>)[def.id]*scale||0,
+    secondaryDamage:(def.secondaryDamage??({coffee:12,code:18,bot:80,rain:10,lightning:25,brick:35,sword:90,hub:180,sky:120,icefire:140,demolition:60} as Record<string,number>)[def.id]??0)*scale,
     form:ev?e.name:def.forms[lv],level:skill.level,evolved:ev,
+    ...(def.fusion?{...(def.lineLength?{lineLength:def.lineLength[lv]*area}:{}),...(def.hitDelay?{hitDelay:def.hitDelay[lv],sequenceDelay:def.sequenceDelay![lv]}:{}),...(def.placementInterval?{placementInterval:def.placementInterval[lv]}:{}),...(def.syncInterval?{syncInterval:def.syncInterval}:{})}:{}),
     ...(def.id==='s2:drone'?{retargetInterval:ev?e.retargetInterval!:def.retargetInterval![lv],syncInterval:ev?e.syncInterval!:0}:{}),
     ...(def.id==='s2:spool'?{lineLength:(ev?e.lineLength!:def.lineLength![lv])*area,placementInterval:ev?e.placementInterval!:def.placementInterval![lv]}:{}),
     ...(def.id==='s2:printer'?{markDamage:(ev?e.markDamage!:def.markDamage![lv])*scale}:{}),

@@ -1,8 +1,9 @@
+import type {WeaponIdentity} from './types';
 import type {ContentState} from './legacy/ContentState';
 import {s2PassiveValue} from './legacy/rules';
 
 /** Explicitly settled hits skip every outgoing multiplier and enemy mitigation. */
-export interface HitContext {settled?:true;additional?:'echo'|'mark';attackId?:string;dot?:boolean}
+export interface HitContext {weapon?:WeaponIdentity;settled?:true;additional?:'echo'|'mark';attackId?:string;dot?:boolean}
 export class EchoChip {
  private targets=new Map<number,{generation:number;seen:Set<string>;next:number}>();
  private serial=0;

@@ -1,11 +1,11 @@
-import type {ContentSkill} from '../types';
+import type {ContentSkill,WeaponIdentity} from '../types';
 // P04 bounded port of src/weapons/summons.ts; S1 source remains frozen.
 import type {ContentState} from './ContentState';
 import type {WeaponParams} from './params';
 import {distanceSq,TAU} from '../../../core/math';
 export interface Turret{x:number;y:number;remaining:number;cooldown:number;source:'blueprint'}
 export interface Drone{x:number;y:number;index:number;instanceId:number;generation:number;target:number;targetGeneration:number;cooldown:number}
-export interface DroneBolt{x:number;y:number;prevX:number;prevY:number;instanceId:number;generation:number;target:number;targetGeneration:number;damage:number;life:number;sync:boolean}
+export interface DroneBolt{x:number;y:number;prevX:number;prevY:number;instanceId:number;generation:number;target:number;targetGeneration:number;damage:number;life:number;sync:boolean;source:WeaponIdentity}
 /** Fixed turrets are damage emitters, never navigation obstacles. */
 export class SummonSystem{
  readonly turrets:Turret[]=[];private redeploy=0;
@@ -23,7 +23,7 @@ export class SummonSystem{
   this.retarget-=dt;const assign=this.retarget<=0;if(assign)this.retarget+=params.retargetInterval!;
   const used=new Set<number>();
   const fire=(drone:Drone,target:number,sync=false)=>{
-   if(target<0)return;this.droneBolts.push({x:drone.x,y:drone.y,prevX:drone.x,prevY:drone.y,instanceId,generation:this.droneGeneration,target,targetGeneration:e.generation[target],damage:params.damage,life:params.range/720+.75,sync});
+   if(target<0)return;this.droneBolts.push({x:drone.x,y:drone.y,prevX:drone.x,prevY:drone.y,instanceId,generation:this.droneGeneration,target,targetGeneration:e.generation[target],damage:params.damage,life:params.range/720+.75,sync,source:g.weaponSystem.identity(skill)});
    g.emit({type:'shot',x:drone.x,y:drone.y,color:sync?0xc1f6ff:0x529fcc,size:8,weapon:'s2:drone',evolved:skill.evolved,level:skill.level,text:sync?'同步集火':'常规攻击'});
   };
   for(const drone of this.drones){
@@ -37,7 +37,7 @@ export class SummonSystem{
    const b=this.droneBolts[n];b.life-=dt;
    if(b.instanceId!==this.droneInstance||b.generation!==this.droneGeneration||b.life<=0||!e.valid(b.target,b.targetGeneration)||e.hp[b.target]<=0){this.droneBolts.splice(n,1);continue;}
    b.prevX=b.x;b.prevY=b.y;const dx=e.x[b.target]-b.x,dy=e.y[b.target]-b.y,d=Math.hypot(dx,dy),travel=720*dt;
-   if(d<=travel+e.radius[b.target]){g.hitEnemy(b.target,b.damage,'s2:drone',b.x,b.y);g.emit({type:'beam',x:b.x,y:b.y,x2:e.x[b.target],y2:e.y[b.target],size:b.sync?4:2,color:0x7dd7ec,weapon:'s2:drone',duration:.12});this.droneBolts.splice(n,1);}
+   if(d<=travel+e.radius[b.target]){g.hitEnemy(b.target,b.damage,'s2:drone',b.x,b.y,1,true,true,false,false,false,{weapon:b.source});g.emit({type:'beam',x:b.x,y:b.y,x2:e.x[b.target],y2:e.y[b.target],size:b.sync?4:2,color:0x7dd7ec,weapon:'s2:drone',duration:.12});this.droneBolts.splice(n,1);}
    else{b.x+=dx/d*travel;b.y+=dy/d*travel;}
   }
  }

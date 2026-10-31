@@ -2,7 +2,8 @@ import type {Immutable,SemesterRunView} from '../../runtime/contracts';
 import type {ContentCatalog} from '../legacy/catalog';
 import type {LegacyContentDTO} from '../legacy/rules-adapter';
 import type {SemesterControls} from './input';
-import {weaponCard,weaponCodex} from './build-details';
+import {parameterRows,weaponCard,weaponCodex} from './build-details';
+import {weaponParams} from '../legacy/params';
 import './build-panel.css';
 
 /** The internal S2 host uses these cards too; no S1 UI or catalog is extended. */
@@ -29,11 +30,11 @@ export class BuildPanel {
   const body=document.createElement('section');this.modal.append(body);
   if(this.codex){
    body.append(this.text('h2','第二学期构筑图鉴'),this.button('关闭图鉴',this.close),this.text('p','按当前品质和构筑显示；暴击、协议标记在命中时结算。'));
-   for(const def of this.content.weapons){
+   for(const def of [...this.content.weapons,...this.content.fusions]){
     const book=weaponCodex(this.content,def.id,g.weapons.find(w=>w.id===def.id),g.combatStats,g.damageMultiplier),entry=document.createElement('details');entry.append(this.text('summary',def.name));
     entry.append(this.text('p',def.description),this.text('p',book.recipe));
     for(const level of book.levels)entry.append(this.text('p',`Lv.${level.params.level} · ${level.rows.join(' · ')}`));
-    entry.append(this.text('h3',def.evolution.name),this.text('p',book.rows.join(' · ')));body.append(entry);
+    if(!def.fusion)entry.append(this.text('h3',def.evolution.name),this.text('p',book.rows.join(' · ')));body.append(entry);
    }
    for(const def of this.content.passives)body.append(this.text('h3',def.name),this.text('p',`${def.description} 普通品质：${def.values.join(' / ')}${def.unit}`));
   }else if(g.phase==='draft'){
@@ -51,6 +52,7 @@ export class BuildPanel {
    body.append(this.text('h2','宝箱选择'));
    for(const [index,o] of (g.reward?.options??[]).entries()){
     const b=this.button('',()=>this.controls.dispatch({type:'chooseReward',index,token:g.rewardToken}));b.append(this.text('h3',o.title),this.text('p',o.description));
+    if(o.kind==='fusion'){const def=this.content.fusionById[o.id],rarity=Math.max(...def.components.map(id=>g.weapons.find(w=>w.id===id)?.rarity??0)) as 0|1|2|3;b.dataset.itemId=o.id;b.append(this.text('p',parameterRows(weaponParams(this.content,{id:def.id,level:5,rarity,evolved:false},g.combatStats,g.damageMultiplier)).join(' · ')));}
     if(o.kind==='evolution'){const def=this.content.weaponById[o.id],book=weaponCodex(this.content,def.id,g.weapons.find(w=>w.id===o.id),g.combatStats,g.damageMultiplier);b.append(this.text('p',book.rows.join(' · ')));}
     body.append(b);
    }

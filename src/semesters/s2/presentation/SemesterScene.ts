@@ -297,6 +297,11 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
   }
   private drawGroundEffects(){
     const gr=this.groundFX,g=this.game;gr.clear();
+    for(const node of g.fusionAttacks.nodes){this.fxGraphic.roundRect(node.x-12,node.y-10,24,20,4).fill(0x61bdce).stroke({color:0xe0f8ef,width:2});if(node.stationary)this.fxGraphic.rect(node.x-17,node.y+12,34,4).fill(0x3c8295);else this.fxGraphic.moveTo(node.x-21,node.y-12).lineTo(node.x+21,node.y-12).stroke({color:0x9cddde,width:2});}
+    for(const b of g.fusionAttacks.bolts)this.fxGraphic.circle(b.x,b.y,4).fill(0x61bdce);
+    for(const line of g.fusionAttacks.lines)if(line.age>=0)gr.moveTo(line.x,line.y).lineTo(line.x2,line.y2).stroke({color:0x7bd7bd,width:line.hit?line.width:2,alpha:line.hit?.65:.4});
+    for(const segment of g.fusionAttacks.segments)gr.moveTo(segment.x,segment.y).lineTo(segment.x2,segment.y2).stroke({color:0xba9ae8,width:2,alpha:.8});
+    for(const c of g.fusionAttacks.constructs){const x=(c.x+c.x2)/2,y=(c.y+c.y2)/2;gr.rect(x-9,y-9,18,18).stroke({color:0xba9ae8,width:2});gr.circle(x,y,c.radius).stroke({color:0xba9ae8,width:1,alpha:.25});}
     for(const s of g.fiberSegments)this.fxGraphic.moveTo(s.x,s.y).lineTo(s.x2,s.y2).stroke({color:0x709fe8,width:s.connector?3:2,alpha:Math.min(.9,s.life)});
     for(const b of g.inkBeads)this.fxGraphic.circle(b.x,b.y,5).fill(0xae7cd2);
     for(const m of g.structureMarks)this.fxGraphic.rect(m.x-9,m.y-9,18,18).stroke({color:0xae7cd2,width:2}).moveTo(m.x-12,m.y).lineTo(m.x+12,m.y).stroke({color:0xae7cd2,width:1});

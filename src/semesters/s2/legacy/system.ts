@@ -1,4 +1,4 @@
-import type {ContentSkill} from '../types';
+import type {ContentSkill,WeaponIdentity} from '../types';
 // P04 bounded port of src/weapons/system.ts; S1 source remains frozen.
 import type { ContentState } from './ContentState';
 import { weaponParams, type WeaponParams } from './params';
@@ -7,6 +7,7 @@ import {applySlow,freezeEnemy} from '../../../combat/status';
 import {SummonSystem} from './summons';
 import {WhiteboardSystem} from '../whiteboard';
 import {SpoolSystem} from '../spool';
+import {FusionSystem} from '../fusions';
 import {PrinterSystem} from '../printer';
 import { inCone, sweptHit } from './damage';
 import type { Area, Shot } from '../../../entities/pools';
@@ -19,12 +20,15 @@ export class WeaponSystem {
   private chain:number[]=[];
   private cancelTimer=0;
   private focusTimer=0;private fusionTimers:Record<string,number>={};private rounds:Record<string,number>={};readonly summons:SummonSystem;
-  readonly spool:SpoolSystem;readonly printer:PrinterSystem;
+  readonly fusions:FusionSystem;readonly spool:SpoolSystem;readonly printer:PrinterSystem;
+  private generations:Record<string,number>={};private source?:WeaponIdentity;private owners=new WeakMap<object,WeaponIdentity>();
+  identity(skill:ContentSkill):WeaponIdentity{return{id:skill.id as WeaponIdentity['id'],instanceId:skill.instanceId!,generation:this.generations[skill.id]??0};}
+  accepts(source:WeaponIdentity){return (this.generations[source.id]??0)===source.generation&&this.game.weapons.some(w=>w.id===source.id&&w.instanceId===source.instanceId);}
   private attack=0;private attackId='';private identities=new WeakMap<object,string>();
-  private hit(id:number,damage:number,source:WeaponKind,x:number,y:number,knockback=1){return this.game.hitEnemy(id,damage,source,x,y,knockback,true,true,false,false,false,{attackId:this.attackId,dot:['coffee','eraser','cryo','icefire','ink'].includes(source)});}
+  private hit(id:number,damage:number,source:WeaponKind,x:number,y:number,knockback=1){return this.game.hitEnemy(id,damage,source,x,y,knockback,true,true,false,false,false,{weapon:this.source,attackId:this.attackId,dot:['coffee','eraser','cryo','icefire','ink'].includes(source)});}
   readonly whiteboard:WhiteboardSystem;
-  constructor(private game:ContentState){this.summons=new SummonSystem(game);this.whiteboard=new WhiteboardSystem(game);this.spool=new SpoolSystem(game);this.printer=new PrinterSystem(game);}
-  remove(id:string){if(id==='s2:spool')this.spool.remove();if(id==='s2:printer')this.printer.remove();this.summons.remove(id);if(id==='s2:whiteboard')this.whiteboard.remove();for(const target of this.game.enemies.active)if(this.game.enemies.burnSource[target]===id){this.game.enemies.burn[target]=0;this.game.enemies.burnDamage[target]=0;}delete this.cooldowns[id];const g=this.game;for(const n of [...g.shots.active])if(g.shots.data[n].source===id)g.shots.release(n);for(const n of [...g.areas.active])if(g.areas.data[n].source===id)g.areas.release(n);}
+  constructor(private game:ContentState){this.fusions=new FusionSystem(game);this.summons=new SummonSystem(game);this.whiteboard=new WhiteboardSystem(game);this.spool=new SpoolSystem(game);this.printer=new PrinterSystem(game);}
+  remove(id:string){this.generations[id]=(this.generations[id]??0)+1;this.fusions.remove(id);if(id==='s2:spool')this.spool.remove();if(id==='s2:printer')this.printer.remove();this.summons.remove(id);if(id==='s2:whiteboard')this.whiteboard.remove();for(const target of this.game.enemies.active)if(this.game.enemies.burnSource[target]===id){this.game.enemies.burn[target]=0;this.game.enemies.burnDamage[target]=0;}delete this.cooldowns[id];const g=this.game;for(const n of [...g.shots.active])if(g.shots.data[n].source===id)g.shots.release(n);for(const n of [...g.areas.active])if(g.areas.data[n].source===id)g.areas.release(n);}
   reset(id:string){this.cooldowns[id]=.05;if(id==='s2:whiteboard')this.whiteboard.reset();}
   private nearest(x:number,y:number,range:number,exclude?:number[]){
     const e=this.game.enemies;let result=-1,best=range*range;
@@ -34,7 +38,7 @@ export class WeaponSystem {
   }
   private shot(source:WeaponKind,x:number,y:number,angle:number,speed:number,damage:number,range:number,pierce:number,kind:Shot['kind']='straight',evolved=false,target=-1,fragment=false,params?:WeaponParams){
     const g=this.game,id=g.shots.acquire();if(id<0){g.poolFailures++;return;}
-    const s=g.shots.data[id];this.identities.set(s,this.attackId);s.x=s.prevX=s.originX=x;s.y=s.prevY=s.originY=y;s.vx=Math.cos(angle)*speed;s.vy=Math.sin(angle)*speed;
+    const s=g.shots.data[id];this.identities.set(s,this.attackId);if(this.source)this.owners.set(s,this.source);s.x=s.prevX=s.originX=x;s.y=s.prevY=s.originY=y;s.vx=Math.cos(angle)*speed;s.vy=Math.sin(angle)*speed;
     s.damage=damage;s.life=kind==='boomerang'?range/speed*2+1:range/speed;s.age=0;s.radius=source==='code'?7:source==='ppt'?12:source==='staple'?3:5;
     s.source=source;s.color=colorNumber(this.game.content.weaponById[source].color);s.kind=kind;s.pierce=pierce;s.hits.length=0;s.target=target;
     s.targetGeneration=target<0?0:g.enemies.generation[target];s.range=range;s.returning=false;s.evolved=evolved;s.fragment=fragment;
@@ -43,17 +47,18 @@ export class WeaponSystem {
   }
   private area(source:WeaponKind,kind:Area['kind'],x:number,y:number,radius:number,damage:number,life:number,delay=0,evolved=false,secondaryDamage=0){
     const g=this.game,id=g.areas.acquire();if(id<0){g.poolFailures++;return;}
-    const a=g.areas.data[id];this.identities.set(a,this.attackId);a.x=x;a.y=y;a.radius=kind==='pulse'?0:radius;a.maxRadius=radius;a.damage=damage;a.life=life;a.age=0;a.delay=delay;
+    const a=g.areas.data[id];this.identities.set(a,this.attackId);if(this.source)this.owners.set(a,this.source);a.x=x;a.y=y;a.radius=kind==='pulse'?0:radius;a.maxRadius=radius;a.damage=damage;a.life=life;a.age=0;a.delay=delay;
     a.source=source;a.kind=kind;a.color=colorNumber(this.game.content.weaponById[source].color);a.evolved=evolved;a.triggered=false;a.hits.clear();a.tick=0;a.cancelTick=0;a.secondaryDamage=secondaryDamage;a.interval=kind==='icefire'?.4:.5;a.burstTick=2;
     if(kind==='rain'||kind==='brick'||kind==='aftershock')g.emit({type:'rain',x,y,color:a.color,size:radius,duration:delay,weapon:source,evolved});
   }
   update(dt:number){
     const g=this.game,p=g.player,e=g.enemies,st=g.combatStats;
-    this.summons.prune();this.whiteboard.prune();this.spool.prune();this.printer.prune();
+    this.fusions.prune();this.summons.prune();this.whiteboard.prune();this.spool.prune();this.printer.prune();
     this.cancelTimer-=dt;this.focusTimer-=dt;
     for(const skill of g.weapons){
       const def=this.game.content.weaponById[skill.id],id=def.id,ev=skill.evolved,params=weaponParams(this.game.content,skill,st,g.damageMultiplier);
-      const {damage,range,count,interval}=params;this.attackId=`weapon:${++this.attack}`;
+      const {damage,range,count,interval}=params;this.source=this.identity(skill);this.attackId=`weapon:${++this.attack}`;
+      if(id==='s2:fieldHub'||id==='s2:holoReview'||id==='s2:digitalTwin'){this.fusions.update(skill,params,dt);continue;}
       if(id==='s2:spool'){this.spool.update(skill,params,dt);continue;}
       if(id==='s2:printer'){this.printer.update(skill,params,dt);continue;}
       if(id==='s2:drone'){this.summons.updateDrones(skill,params,dt);continue;}
@@ -171,7 +176,7 @@ export class WeaponSystem {
   private updateShots(dt:number){
     const g=this.game,e=g.enemies;
     for(let n=g.shots.active.length-1;n>=0;n--){
-      const id=g.shots.active[n],s=g.shots.data[id];this.attackId=this.identities.get(s)??`shot:${id}`;s.age+=dt;s.life-=dt;
+      const id=g.shots.active[n],s=g.shots.data[id];this.source=this.owners.get(s);if(this.source&&!this.accepts(this.source)){g.shots.release(id);continue;}this.attackId=this.identities.get(s)??`shot:${id}`;s.age+=dt;s.life-=dt;
       if(s.life<=0){g.shots.release(id);continue;}
       s.prevX=s.x;s.prevY=s.y;
       if(s.kind==='homing'){
@@ -202,7 +207,7 @@ export class WeaponSystem {
   private updateAreas(dt:number){
     const g=this.game,e=g.enemies;
     for(let n=g.areas.active.length-1;n>=0;n--){
-      const id=g.areas.active[n],a=g.areas.data[id];this.attackId=`${this.identities.get(a)}:${Math.floor(g.combatTime)}`;a.age+=dt;a.life-=dt;
+      const id=g.areas.active[n],a=g.areas.data[id];this.source=this.owners.get(a);if(this.source&&!this.accepts(this.source)){g.areas.release(id);continue;}this.attackId=`${this.identities.get(a)}:${Math.floor(g.combatTime)}`;a.age+=dt;a.life-=dt;
       if(a.life<0){g.areas.release(id);continue;}if(a.age<a.delay)continue;
       if(a.evolved&&a.kind==='eraser'){a.x=g.player.x;a.y=g.player.y;}
       if(a.kind==='pulse')a.radius=a.maxRadius*Math.min(1,(a.age-a.delay)/.45);

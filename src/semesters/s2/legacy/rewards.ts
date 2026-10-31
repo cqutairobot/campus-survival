@@ -2,7 +2,7 @@
 import type {ContentState} from './ContentState';
 import type {RewardOption} from '../../../types';
 import {evolutionReady,skillName} from './rules';
-import {fusionCandidates,fuseWeapons} from './fusions';
+import {fusionCandidates,fuseWeapons,fusionRecipe} from './fusions';
 export class RewardSystem{
  readonly chests:number[]=[];serial=0;token=0;options:RewardOption[]=[];private count=1;private boss=false;private contract=false;private committed=false;private evolution='';private fusion='';
  constructor(private g:ContentState){}
@@ -10,7 +10,7 @@ export class RewardSystem{
  get snapshot(){return this.g.phase==='draft'?{token:this.g.draftToken,options:[]}:this.options.length?{token:this.token,options:this.options}:null;}
  openChest(count=1,boss=false,preferred=''){const g=this.g;if(['result','chest','evolution','reward','contract'].includes(g.phase))return;this.count=count;this.boss=boss;this.contract=false;this.committed=false;this.evolution='';this.fusion='';this.token=this.nextToken();
   const evolutions=evolutionReady(this.g.content,g.weapons,g.passives).sort((a,b)=>Number(b.id===preferred)-Number(a.id===preferred)),fusions=fusionCandidates(this.g.content,g.weapons,g.week,g.progress.fusions.length,g.consumed);
-  this.options=[...fusions.map(f=>({id:f.id,kind:'fusion' as const,title:f.name,description:`消耗 ${f.components.map(id=>this.g.content.weaponById[id].name).join(' + ')}，得到 ${f.name}，释放一个武器槽。品质取较高值，被动保留。${f.description}`})),...evolutions.map(w=>({id:w.id,kind:'evolution' as const,title:this.g.content.weaponById[w.id].evolution.name,description:`${skillName(this.g.content,w)} Lv.5 → ${this.g.content.weaponById[w.id].evolution.description}`})),{id:'upgrade',kind:'upgrade',title:`普通强化 ×${count}`,description:'强化已有技能；无法强化时，每份回复 15 HP，满血转为结算绩点 +1。'}];
+  this.options=[...fusions.map(f=>({id:f.id,kind:'fusion' as const,title:f.name,description:`消耗 ${f.components.map(id=>this.g.content.weaponById[id].name).join(' + ')}，得到 ${f.name}，释放一个武器槽。品质取较高值，被动保留。${fusionRecipe(this.g.content,f.id)}${f.description}`})),...evolutions.map(w=>({id:w.id,kind:'evolution' as const,title:this.g.content.weaponById[w.id].evolution.name,description:`${skillName(this.g.content,w)} Lv.5 → ${this.g.content.weaponById[w.id].evolution.description}`})),{id:'upgrade',kind:'upgrade',title:`普通强化 ×${count}`,description:'强化已有技能；无法强化时，每份回复 15 HP，满血转为结算绩点 +1。'}];
   if(this.options.length===1)this.commit(0);else g.setPhase('reward');
  }
  openContract(){const g=this.g;if(g.phase!=='playing'||g.relics.length>=3)return;this.token=this.nextToken();this.contract=true;this.committed=false;const pool=this.g.content.relics.filter(r=>!g.relics.includes(r.id));this.options=[];while(this.options.length<3&&pool.length){const r=pool.splice(g.streams.relic.int(0,pool.length-1),1)[0];this.options.push({id:r.id,kind:'relic',title:`${r.name} / ${r.curse}`,description:`${r.benefit}；代价：${r.cost}`});}g.setPhase('contract');}

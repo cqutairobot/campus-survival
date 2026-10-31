@@ -60,7 +60,7 @@ describe('v5 bounded legacy content port',()=>{
  });
 
  it('commits each fusion once and stops material projectiles, summons and DOT while retaining passives, rarity and unrelated emitters',()=>{
-  for(const recipe of content.fusions){
+  for(const recipe of FUSIONS){
    const h=fixture(recipe.components[0]),s=h.state;s.week=9;s.weapons[0].level=5;s.weapons[0].rarity=1;s.weapons[0].evolved=true;s.weapons.push({id:recipe.components[1],level:5,rarity:3,evolved:true,instanceId:s.nextInstance(),kind:'base'});s.passives.push({id:'duration',level:2,rarity:2,evolved:false});s.recalculateStats();targets(s);for(let tick=1;tick<=18;tick++)step(s,h.services,tick);
    for(const source of [...recipe.components,'mentor'] as const){const shot=s.shots.acquire();s.shots.data[shot].source=source;const area=s.areas.acquire();s.areas.data[area].source=source;}
    const burned=s.enemies.active[0];s.enemies.burn[burned]=2;s.enemies.burnDamage[burned]=6;s.enemies.burnSource[burned]=recipe.components[0];const passive=structuredClone(s.passives),oldInstances=s.weapons.map(w=>w.instanceId!);

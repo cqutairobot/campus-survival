@@ -31,7 +31,7 @@ const hit=(s:ContentState,id:number,source:ContentWeaponId='knife',damage=100,se
 
 describe('v5 drone and whiteboard builds',()=>{
  it('shares every level/quality and both evolved parameters with actual attacks, card rows and codex, including old passive/relic modifiers',()=>{
-  expect(content.weapons.slice(0,22)).toEqual(LEGACY_CONTENT.weapons);expect(content.passives.slice(0,16)).toEqual(LEGACY_CONTENT.passives);expect(content.fusions).toEqual(LEGACY_CONTENT.fusions);
+  expect(content.weapons.slice(0,22)).toEqual(LEGACY_CONTENT.weapons);expect(content.passives.slice(0,16)).toEqual(LEGACY_CONTENT.passives);expect(content.fusions.slice(0,6)).toEqual(LEGACY_CONTENT.fusions);
   for(const id of ids)for(const level of [1,2,3,4,5])for(const rarity of [0,1,2,3] as const)for(const evolved of level===5?[false,true]:[false]){
    const {s}=fixture(id);s.weapons[0]=skill(s,id,level,evolved);s.weapons[0].rarity=rarity;s.passives.push(...(['night','haste','area','multi'] as const).map(id=>skill(s,id,3)));s.relics.push('assistant');s.recalculateStats();s.stats.crit=0;s.damageMultiplier=1.1;
    for(const x of [65,75,90,120,130,150,180,195])target(s,x);
