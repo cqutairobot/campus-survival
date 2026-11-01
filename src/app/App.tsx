@@ -9,7 +9,6 @@ import { DebugPanel } from '../debug/DebugPanel';
 import { INITIAL_HUD, useApp } from '../state/store';
 import type { ActiveGameSession } from './GameHost';
 import {getAudio,disposeAudio} from '../audio/audio';
-import {resources} from '../assets/loader';
 import type {SemesterId} from '../semesters/profile';
 import {semesterAccess} from '../semesters/registry';
 const GameHost=lazy(()=>import('./GameHost').then(m=>({default:m.GameHost})));
@@ -29,7 +28,8 @@ export function App(){
   const ready=useCallback((value:ActiveGameSession|null)=>setSession(value),[]);
   useEffect(()=>{document.body.classList.toggle('is-playing',playing);return()=>document.body.classList.remove('is-playing');},[playing]);
   useEffect(()=>{document.body.classList.toggle('reduce-motion',!motion);return()=>document.body.classList.remove('reduce-motion');},[motion]);
-  useEffect(()=>{getAudio(settings);return()=>{disposeAudio();void resources.dispose();};},[]);
+  // Each lazy scene releases its leases and sweeps idle renderer resources.
+  useEffect(()=>{getAudio(settings);return()=>{disposeAudio();};},[]);
   useEffect(()=>{getAudio(settings).apply(settings);document.documentElement.dataset.quality=settings.quality==='auto'?'high':settings.quality;},[settings]);
   useEffect(()=>{if(achievementCount>previousAchievements.current)getAudio(settings).play('ui-achievement');previousAchievements.current=achievementCount;},[achievementCount,settings]);
   useEffect(()=>{if(!playing){getAudio(settings).setPaused(false);getAudio(settings).setTheme('menu');}},[playing,settings]);

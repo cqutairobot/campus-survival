@@ -1,0 +1,3250 @@
+{
+  "version": "audit-loading-v1",
+  "label": "before",
+  "sourceCommit": "69b64cb8e0af57470657d6d81b5b06ab6d1aacac",
+  "method": "Same single Chromium, same 1280x800 viewport and full high-quality effects. Empty browser cache for shell, production formal menu-to-S2 entry, and week17 chapter-three test host. Shell uses ResourceTiming encoded body and transferSize; production first-scene server counts encoded and decoded bodies including workers, plus1024B/response. Chapter-three server reports uncompressed bodies plus1024B/response. Ready times are one headless local observation (fonts/images/audio readiness and Playwright polling), not repeated latency or device FPS evidence.",
+  "shell": {
+    "transferBytes": 974257,
+    "bodyBytes": 965557,
+    "requests": 29,
+    "readyMs": 456.5,
+    "rendererRequests": [
+      "/assets/pixi-BIek5k0s.js"
+    ]
+  },
+  "formalFirstScene": {
+    "files": [
+      {
+        "name": "/",
+        "status": 200,
+        "bytes": 769,
+        "decodedBytes": 1984,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/rolldown-runtime-XKyaHtl9.js",
+        "status": 200,
+        "bytes": 726,
+        "decodedBytes": 726,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/preload-CRzLMJPS.js",
+        "status": 200,
+        "bytes": 798,
+        "decodedBytes": 1534,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/pickups-DrtinUYm.js",
+        "status": 200,
+        "bytes": 12172,
+        "decodedBytes": 27927,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/registry-DvcEi2kG.js",
+        "status": 200,
+        "bytes": 3186,
+        "decodedBytes": 6143,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/rules-CH9Xsi0I.js",
+        "status": 200,
+        "bytes": 1658,
+        "decodedBytes": 3550,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/profile-D9b8tn2p.js",
+        "status": 200,
+        "bytes": 8747,
+        "decodedBytes": 26564,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/store-CnVsmIzb.js",
+        "status": 200,
+        "bytes": 5811,
+        "decodedBytes": 15818,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/index-R3cpTCaP.js",
+        "status": 200,
+        "bytes": 37021,
+        "decodedBytes": 108038,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/index-BbhIfAcz.css",
+        "status": 200,
+        "bytes": 36735,
+        "decodedBytes": 180497,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/download-HZisOxpe.js",
+        "status": 200,
+        "bytes": 207,
+        "decodedBytes": 207,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/manifest-Bf03WpZT.js",
+        "status": 200,
+        "bytes": 4308,
+        "decodedBytes": 33227,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/ui-CcscoRMQ.js",
+        "status": 200,
+        "bytes": 67806,
+        "decodedBytes": 219321,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/loader-DCA0v49n.js",
+        "status": 200,
+        "bytes": 2005,
+        "decodedBytes": 4513,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/bindings-ChnQBkkU.js",
+        "status": 200,
+        "bytes": 1398,
+        "decodedBytes": 4684,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/animation-BHS3Flg1.js",
+        "status": 200,
+        "bytes": 27049,
+        "decodedBytes": 69549,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/ContentArt-DhXxVyzo.js",
+        "status": 200,
+        "bytes": 2704,
+        "decodedBytes": 5109,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/audio-BoUbmLz4.js",
+        "status": 200,
+        "bytes": 10497,
+        "decodedBytes": 37580,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/pixi-BIek5k0s.js",
+        "status": 200,
+        "bytes": 185818,
+        "decodedBytes": 660367,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/fonts/campus-title-400-title.woff2",
+        "status": 200,
+        "bytes": 8260,
+        "decodedBytes": 8260,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/fonts/campus-sans-400-shell.woff2",
+        "status": 200,
+        "bytes": 73716,
+        "decodedBytes": 73716,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/fonts/campus-sans-400-game.woff2",
+        "status": 200,
+        "bytes": 74348,
+        "decodedBytes": 74348,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/ui/graduate-cap.svg",
+        "status": 200,
+        "bytes": 830,
+        "decodedBytes": 830,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/characters/coder/avatar.webp",
+        "status": 200,
+        "bytes": 9568,
+        "decodedBytes": 9568,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/characters/coder/portrait.webp",
+        "status": 200,
+        "bytes": 49376,
+        "decodedBytes": 49376,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/Laboratories-y8DsyYV_.js",
+        "status": 200,
+        "bytes": 781,
+        "decodedBytes": 1469,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/art/v4/ui/menu-campus.webp",
+        "status": 200,
+        "bytes": 239768,
+        "decodedBytes": 239768,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/fonts/campus-sans-600-shell.woff2",
+        "status": 200,
+        "bytes": 74860,
+        "decodedBytes": 74860,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/fonts/campus-digits-600-latin.woff2",
+        "status": 200,
+        "bytes": 8488,
+        "decodedBytes": 8488,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/fonts/v5/campus-semester-600-delta.woff2",
+        "status": 200,
+        "bytes": 15992,
+        "decodedBytes": 15992,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/fonts/v5/campus-semester-400-delta.woff2",
+        "status": 200,
+        "bytes": 15812,
+        "decodedBytes": 15812,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/modal-focus-UZPwGRmo.js",
+        "status": 200,
+        "bytes": 820,
+        "decodedBytes": 1793,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/FeedbackDirector-C3tA6bQ_.js",
+        "status": 200,
+        "bytes": 2479,
+        "decodedBytes": 6051,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/rules-B2oeheCf.js",
+        "status": 200,
+        "bytes": 4198,
+        "decodedBytes": 9115,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/Panels-3EFn0TQr.js",
+        "status": 200,
+        "bytes": 15277,
+        "decodedBytes": 45730,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/relics-DtQcZcCM.js",
+        "status": 200,
+        "bytes": 767,
+        "decodedBytes": 767,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/content-DIFJpv1v.js",
+        "status": 200,
+        "bytes": 15133,
+        "decodedBytes": 42888,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/status-CEfimkRV.js",
+        "status": 200,
+        "bytes": 789,
+        "decodedBytes": 789,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/collection-DRvaSLC4.js",
+        "status": 200,
+        "bytes": 2575,
+        "decodedBytes": 6006,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/world-D0bpeEbe.js",
+        "status": 200,
+        "bytes": 6726,
+        "decodedBytes": 15783,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/navigation-LPYpcWGN.js",
+        "status": 200,
+        "bytes": 648,
+        "decodedBytes": 1458,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/landmarks-BM1ojfmM.js",
+        "status": 200,
+        "bytes": 1459,
+        "decodedBytes": 3054,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/build-details-Cfv8cECh.js",
+        "status": 200,
+        "bytes": 1003,
+        "decodedBytes": 1865,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/audio/v4/ui-hover.ogg",
+        "status": 200,
+        "bytes": 5334,
+        "decodedBytes": 5334,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/ui-press.ogg",
+        "status": 200,
+        "bytes": 5012,
+        "decodedBytes": 5012,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/ui-confirm.ogg",
+        "status": 200,
+        "bytes": 5344,
+        "decodedBytes": 5344,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/ui-cancel.ogg",
+        "status": 200,
+        "bytes": 6950,
+        "decodedBytes": 6950,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/ui-tab.ogg",
+        "status": 200,
+        "bytes": 4180,
+        "decodedBytes": 4180,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/music-menu.ogg",
+        "status": 200,
+        "bytes": 428662,
+        "decodedBytes": 428662,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/ui-disabled.ogg",
+        "status": 200,
+        "bytes": 5575,
+        "decodedBytes": 5575,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/ui-reveal.ogg",
+        "status": 200,
+        "bytes": 7896,
+        "decodedBytes": 7896,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/ui-rarity-common.ogg",
+        "status": 200,
+        "bytes": 5344,
+        "decodedBytes": 5344,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/ui-rarity-rare.ogg",
+        "status": 200,
+        "bytes": 7896,
+        "decodedBytes": 7896,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/ui-rarity-epic.ogg",
+        "status": 200,
+        "bytes": 8939,
+        "decodedBytes": 8939,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/ui-rarity-legendary.ogg",
+        "status": 200,
+        "bytes": 8421,
+        "decodedBytes": 8421,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/ui-chest-latch.ogg",
+        "status": 200,
+        "bytes": 6919,
+        "decodedBytes": 6919,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/ui/gold-ornament.webp",
+        "status": 200,
+        "bytes": 23780,
+        "decodedBytes": 23780,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/ui-chest-open.ogg",
+        "status": 200,
+        "bytes": 6325,
+        "decodedBytes": 6325,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/ui-talent-upgrade.ogg",
+        "status": 200,
+        "bytes": 10753,
+        "decodedBytes": 10753,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/ui-achievement.ogg",
+        "status": 200,
+        "bytes": 10421,
+        "decodedBytes": 10421,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/pickup.ogg",
+        "status": 200,
+        "bytes": 4431,
+        "decodedBytes": 4431,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/level.ogg",
+        "status": 200,
+        "bytes": 8939,
+        "decodedBytes": 8939,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/hurt.ogg",
+        "status": 200,
+        "bytes": 8042,
+        "decodedBytes": 8042,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/boss.ogg",
+        "status": 200,
+        "bytes": 4791,
+        "decodedBytes": 4791,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/evolution.ogg",
+        "status": 200,
+        "bytes": 8421,
+        "decodedBytes": 8421,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/chest.ogg",
+        "status": 200,
+        "bytes": 6325,
+        "decodedBytes": 6325,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/critical.ogg",
+        "status": 200,
+        "bytes": 8682,
+        "decodedBytes": 8682,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/textures/paper.webp",
+        "status": 200,
+        "bytes": 2122,
+        "decodedBytes": 2122,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/fonts/campus-sans-600-game.woff2",
+        "status": 200,
+        "bytes": 75692,
+        "decodedBytes": 75692,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/GameHost-RoLVg51-.js",
+        "status": 200,
+        "bytes": 20546,
+        "decodedBytes": 62409,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/DeathFX-CRCubFaD.js",
+        "status": 200,
+        "bytes": 6702,
+        "decodedBytes": 18220,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/loop-Bs9qP86R.js",
+        "status": 200,
+        "bytes": 455,
+        "decodedBytes": 455,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/materials-BKV-pawM.js",
+        "status": 200,
+        "bytes": 575,
+        "decodedBytes": 1221,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/system-DkW183X1.js",
+        "status": 200,
+        "bytes": 5354,
+        "decodedBytes": 15298,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/grid-BXJfozPJ.js",
+        "status": 200,
+        "bytes": 1784,
+        "decodedBytes": 5242,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/input-t103cST2.js",
+        "status": 200,
+        "bytes": 1379,
+        "decodedBytes": 4335,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/adapter-DpEWbzPb.js",
+        "status": 200,
+        "bytes": 42780,
+        "decodedBytes": 128205,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/audio/v4/hit-paper-0.ogg",
+        "status": 200,
+        "bytes": 7805,
+        "decodedBytes": 7805,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/hit-paper-2.ogg",
+        "status": 200,
+        "bytes": 7352,
+        "decodedBytes": 7352,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/hit-paper-3.ogg",
+        "status": 200,
+        "bytes": 6973,
+        "decodedBytes": 6973,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/hit-paper-1.ogg",
+        "status": 200,
+        "bytes": 6669,
+        "decodedBytes": 6669,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/death-paper-0.ogg",
+        "status": 200,
+        "bytes": 9096,
+        "decodedBytes": 9096,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/death-paper-1.ogg",
+        "status": 200,
+        "bytes": 7993,
+        "decodedBytes": 7993,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/SemesterScene-CygQWw1w.css",
+        "status": 200,
+        "bytes": 875,
+        "decodedBytes": 2332,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/audio/v4/music-normal.ogg",
+        "status": 200,
+        "bytes": 949679,
+        "decodedBytes": 949679,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/SemesterScene-ek41ndUP.js",
+        "status": 200,
+        "bytes": 30362,
+        "decodedBytes": 92974,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/audio/v4/shot-paper-0.ogg",
+        "status": 200,
+        "bytes": 6263,
+        "decodedBytes": 6263,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/shot-paper-1.ogg",
+        "status": 200,
+        "bytes": 5905,
+        "decodedBytes": 5905,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/hit-key-0.ogg",
+        "status": 200,
+        "bytes": 7357,
+        "decodedBytes": 7357,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/hit-key-1.ogg",
+        "status": 200,
+        "bytes": 7045,
+        "decodedBytes": 7045,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/hit-key-2.ogg",
+        "status": 200,
+        "bytes": 7038,
+        "decodedBytes": 7038,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/hit-key-3.ogg",
+        "status": 200,
+        "bytes": 7045,
+        "decodedBytes": 7045,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/death-key-0.ogg",
+        "status": 200,
+        "bytes": 8552,
+        "decodedBytes": 8552,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/death-key-1.ogg",
+        "status": 200,
+        "bytes": 8198,
+        "decodedBytes": 8198,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/shot-key-0.ogg",
+        "status": 200,
+        "bytes": 5783,
+        "decodedBytes": 5783,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/shot-key-1.ogg",
+        "status": 200,
+        "bytes": 5850,
+        "decodedBytes": 5850,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/hit-metal-0.ogg",
+        "status": 200,
+        "bytes": 6305,
+        "decodedBytes": 6305,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/hit-metal-1.ogg",
+        "status": 200,
+        "bytes": 5912,
+        "decodedBytes": 5912,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/hit-metal-2.ogg",
+        "status": 200,
+        "bytes": 6699,
+        "decodedBytes": 6699,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/hit-metal-3.ogg",
+        "status": 200,
+        "bytes": 6078,
+        "decodedBytes": 6078,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/death-metal-0.ogg",
+        "status": 200,
+        "bytes": 6315,
+        "decodedBytes": 6315,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/death-metal-1.ogg",
+        "status": 200,
+        "bytes": 5918,
+        "decodedBytes": 5918,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/shot-metal-0.ogg",
+        "status": 200,
+        "bytes": 5742,
+        "decodedBytes": 5742,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/shot-metal-1.ogg",
+        "status": 200,
+        "bytes": 5623,
+        "decodedBytes": 5623,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/homework.webp",
+        "status": 200,
+        "bytes": 7550,
+        "decodedBytes": 7550,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/homework-white.webp",
+        "status": 200,
+        "bytes": 2526,
+        "decodedBytes": 2526,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/ddl.webp",
+        "status": 200,
+        "bytes": 9538,
+        "decodedBytes": 9538,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/characters/balanced/sprite.webp",
+        "status": 200,
+        "bytes": 3964,
+        "decodedBytes": 3964,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/fx/particles.webp",
+        "status": 200,
+        "bytes": 1304,
+        "decodedBytes": 1304,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/ddl-white.webp",
+        "status": 200,
+        "bytes": 3504,
+        "decodedBytes": 3504,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/characters/analysis/sprite.webp",
+        "status": 200,
+        "bytes": 3482,
+        "decodedBytes": 3482,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/fx/paper-blade.webp",
+        "status": 200,
+        "bytes": 1620,
+        "decodedBytes": 1620,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/characters/english/sprite.webp",
+        "status": 200,
+        "bytes": 2968,
+        "decodedBytes": 2968,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/characters/experiment/sprite.webp",
+        "status": 200,
+        "bytes": 3870,
+        "decodedBytes": 3870,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/characters/architect/sprite.webp",
+        "status": 200,
+        "bytes": 4428,
+        "decodedBytes": 4428,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/characters/coder/sprite.webp",
+        "status": 200,
+        "bytes": 4786,
+        "decodedBytes": 4786,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/hit-glass-0.ogg",
+        "status": 200,
+        "bytes": 6395,
+        "decodedBytes": 6395,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/hit-glass-1.ogg",
+        "status": 200,
+        "bytes": 6396,
+        "decodedBytes": 6396,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/hit-glass-2.ogg",
+        "status": 200,
+        "bytes": 6413,
+        "decodedBytes": 6413,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/hit-glass-3.ogg",
+        "status": 200,
+        "bytes": 6352,
+        "decodedBytes": 6352,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/death-glass-0.ogg",
+        "status": 200,
+        "bytes": 7594,
+        "decodedBytes": 7594,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/death-glass-1.ogg",
+        "status": 200,
+        "bytes": 7595,
+        "decodedBytes": 7595,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/textures/paving.webp",
+        "status": 200,
+        "bytes": 7240,
+        "decodedBytes": 7240,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/fx/slides.webp",
+        "status": 200,
+        "bytes": 2756,
+        "decodedBytes": 2756,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/fx/robot.webp",
+        "status": 200,
+        "bytes": 2804,
+        "decodedBytes": 2804,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/textures/metal.webp",
+        "status": 200,
+        "bytes": 734,
+        "decodedBytes": 734,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/textures/grass.webp",
+        "status": 200,
+        "bytes": 12394,
+        "decodedBytes": 12394,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/fx/book.webp",
+        "status": 200,
+        "bytes": 2970,
+        "decodedBytes": 2970,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/shot-glass-0.ogg",
+        "status": 200,
+        "bytes": 5700,
+        "decodedBytes": 5700,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/shot-glass-1.ogg",
+        "status": 200,
+        "bytes": 5540,
+        "decodedBytes": 5540,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/hit-brick-0.ogg",
+        "status": 200,
+        "bytes": 6276,
+        "decodedBytes": 6276,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/hit-brick-1.ogg",
+        "status": 200,
+        "bytes": 6460,
+        "decodedBytes": 6460,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/hit-brick-2.ogg",
+        "status": 200,
+        "bytes": 6215,
+        "decodedBytes": 6215,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/hit-brick-3.ogg",
+        "status": 200,
+        "bytes": 6292,
+        "decodedBytes": 6292,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/fx/shuttle.webp",
+        "status": 200,
+        "bytes": 1798,
+        "decodedBytes": 1798,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/charger.webp",
+        "status": 200,
+        "bytes": 7418,
+        "decodedBytes": 7418,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/bomber-white.webp",
+        "status": 200,
+        "bytes": 1724,
+        "decodedBytes": 1724,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/charger-white.webp",
+        "status": 200,
+        "bytes": 2364,
+        "decodedBytes": 2364,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/advisor-white.webp",
+        "status": 200,
+        "bytes": 1574,
+        "decodedBytes": 1574,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/bomber.webp",
+        "status": 200,
+        "bytes": 6412,
+        "decodedBytes": 6412,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/advisor.webp",
+        "status": 200,
+        "bytes": 4928,
+        "decodedBytes": 4928,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/death-brick-0.ogg",
+        "status": 200,
+        "bytes": 7111,
+        "decodedBytes": 7111,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/death-brick-1.ogg",
+        "status": 200,
+        "bytes": 7563,
+        "decodedBytes": 7563,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/shot-brick-0.ogg",
+        "status": 200,
+        "bytes": 5693,
+        "decodedBytes": 5693,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/shot-brick-1.ogg",
+        "status": 200,
+        "bytes": 5689,
+        "decodedBytes": 5689,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/hit-liquid-0.ogg",
+        "status": 200,
+        "bytes": 6572,
+        "decodedBytes": 6572,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/hit-liquid-1.ogg",
+        "status": 200,
+        "bytes": 6543,
+        "decodedBytes": 6543,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/checkin.webp",
+        "status": 200,
+        "bytes": 7314,
+        "decodedBytes": 7314,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/english.webp",
+        "status": 200,
+        "bytes": 7394,
+        "decodedBytes": 7394,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/coding-white.webp",
+        "status": 200,
+        "bytes": 1520,
+        "decodedBytes": 1520,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/checkin-white.webp",
+        "status": 200,
+        "bytes": 2364,
+        "decodedBytes": 2364,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/english-white.webp",
+        "status": 200,
+        "bytes": 2512,
+        "decodedBytes": 2512,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/coding.webp",
+        "status": 200,
+        "bytes": 6314,
+        "decodedBytes": 6314,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/hit-liquid-2.ogg",
+        "status": 200,
+        "bytes": 6672,
+        "decodedBytes": 6672,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/hit-liquid-3.ogg",
+        "status": 200,
+        "bytes": 6710,
+        "decodedBytes": 6710,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/death-liquid-0.ogg",
+        "status": 200,
+        "bytes": 8078,
+        "decodedBytes": 8078,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/death-liquid-1.ogg",
+        "status": 200,
+        "bytes": 8063,
+        "decodedBytes": 8063,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/shot-liquid-0.ogg",
+        "status": 200,
+        "bytes": 5758,
+        "decodedBytes": 5758,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/shot-liquid-1.ogg",
+        "status": 200,
+        "bytes": 5737,
+        "decodedBytes": 5737,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/examCharger.webp",
+        "status": 200,
+        "bytes": 6762,
+        "decodedBytes": 6762,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/leader-white.webp",
+        "status": 200,
+        "bytes": 1846,
+        "decodedBytes": 1846,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/guard.webp",
+        "status": 200,
+        "bytes": 7110,
+        "decodedBytes": 7110,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/examCharger-white.webp",
+        "status": 200,
+        "bytes": 2264,
+        "decodedBytes": 2264,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/guard-white.webp",
+        "status": 200,
+        "bytes": 1652,
+        "decodedBytes": 1652,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/leader.webp",
+        "status": 200,
+        "bytes": 5890,
+        "decodedBytes": 5890,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/node.webp",
+        "status": 200,
+        "bytes": 5810,
+        "decodedBytes": 5810,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/math.webp",
+        "status": 200,
+        "bytes": 6690,
+        "decodedBytes": 6690,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/node-white.webp",
+        "status": 200,
+        "bytes": 1682,
+        "decodedBytes": 1682,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/mechanics.webp",
+        "status": 200,
+        "bytes": 6328,
+        "decodedBytes": 6328,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/math-white.webp",
+        "status": 200,
+        "bytes": 2046,
+        "decodedBytes": 2046,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/mechanics-white.webp",
+        "status": 200,
+        "bytes": 2386,
+        "decodedBytes": 2386,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/hit-energy-0.ogg",
+        "status": 200,
+        "bytes": 5910,
+        "decodedBytes": 5910,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/hit-energy-1.ogg",
+        "status": 200,
+        "bytes": 5714,
+        "decodedBytes": 5714,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/hit-energy-2.ogg",
+        "status": 200,
+        "bytes": 5932,
+        "decodedBytes": 5932,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/hit-energy-3.ogg",
+        "status": 200,
+        "bytes": 5907,
+        "decodedBytes": 5907,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/death-energy-0.ogg",
+        "status": 200,
+        "bytes": 6008,
+        "decodedBytes": 6008,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/death-energy-1.ogg",
+        "status": 200,
+        "bytes": 5972,
+        "decodedBytes": 5972,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/receipt.webp",
+        "status": 200,
+        "bytes": 7210,
+        "decodedBytes": 7210,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/ppt.webp",
+        "status": 200,
+        "bytes": 6230,
+        "decodedBytes": 6230,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/review.webp",
+        "status": 200,
+        "bytes": 6752,
+        "decodedBytes": 6752,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/ppt-white.webp",
+        "status": 200,
+        "bytes": 2040,
+        "decodedBytes": 2040,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/review-white.webp",
+        "status": 200,
+        "bytes": 2164,
+        "decodedBytes": 2164,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/receipt-white.webp",
+        "status": 200,
+        "bytes": 1868,
+        "decodedBytes": 1868,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/shot-energy-0.ogg",
+        "status": 200,
+        "bytes": 5526,
+        "decodedBytes": 5526,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/shot-energy-1.ogg",
+        "status": 200,
+        "bytes": 5389,
+        "decodedBytes": 5389,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/fusion-sword.ogg",
+        "status": 200,
+        "bytes": 6341,
+        "decodedBytes": 6341,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/fusion-hub.ogg",
+        "status": 200,
+        "bytes": 6035,
+        "decodedBytes": 6035,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/fusion-binder.ogg",
+        "status": 200,
+        "bytes": 6341,
+        "decodedBytes": 6341,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/fusion-sky.ogg",
+        "status": 200,
+        "bytes": 9343,
+        "decodedBytes": 9343,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/summoner.webp",
+        "status": 200,
+        "bytes": 6030,
+        "decodedBytes": 6030,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/splitter.webp",
+        "status": 200,
+        "bytes": 6954,
+        "decodedBytes": 6954,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/summoner-white.webp",
+        "status": 200,
+        "bytes": 2070,
+        "decodedBytes": 2070,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/splitter-white.webp",
+        "status": 200,
+        "bytes": 2034,
+        "decodedBytes": 2034,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/thrower-white.webp",
+        "status": 200,
+        "bytes": 2708,
+        "decodedBytes": 2708,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/enemies/thrower.webp",
+        "status": 200,
+        "bytes": 7082,
+        "decodedBytes": 7082,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/fusion-icefire.ogg",
+        "status": 200,
+        "bytes": 10211,
+        "decodedBytes": 10211,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/buildings/architecture.webp",
+        "status": 200,
+        "bytes": 62420,
+        "decodedBytes": 62420,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/buildings/civil.webp",
+        "status": 200,
+        "bytes": 73598,
+        "decodedBytes": 73598,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/fusion-demolition.ogg",
+        "status": 200,
+        "bytes": 8266,
+        "decodedBytes": 8266,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/buildings/canteen.webp",
+        "status": 200,
+        "bytes": 72156,
+        "decodedBytes": 72156,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/ultimate-submission.ogg",
+        "status": 200,
+        "bytes": 9195,
+        "decodedBytes": 9195,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/ultimate-lastMinute.ogg",
+        "status": 200,
+        "bytes": 9320,
+        "decodedBytes": 9320,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/ultimate-parallel.ogg",
+        "status": 200,
+        "bytes": 5993,
+        "decodedBytes": 5993,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/buildings/activity.webp",
+        "status": 200,
+        "bytes": 63086,
+        "decodedBytes": 63086,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/buildings/basic.webp",
+        "status": 200,
+        "bytes": 58064,
+        "decodedBytes": 58064,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/ultimate-conference.ogg",
+        "status": 200,
+        "bytes": 5993,
+        "decodedBytes": 5993,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/buildings/basic-south.webp",
+        "status": 200,
+        "bytes": 83476,
+        "decodedBytes": 83476,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/ultimate-barrier.ogg",
+        "status": 200,
+        "bytes": 9093,
+        "decodedBytes": 9093,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/ultimate-overload.ogg",
+        "status": 200,
+        "bytes": 9320,
+        "decodedBytes": 9320,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/event-portal.ogg",
+        "status": 200,
+        "bytes": 6295,
+        "decodedBytes": 6295,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/event-advisor.ogg",
+        "status": 200,
+        "bytes": 7485,
+        "decodedBytes": 7485,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/event-blackout.ogg",
+        "status": 200,
+        "bytes": 6011,
+        "decodedBytes": 6011,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/event-examRage.ogg",
+        "status": 200,
+        "bytes": 6348,
+        "decodedBytes": 6348,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/buildings/experiment.webp",
+        "status": 200,
+        "bytes": 61878,
+        "decodedBytes": 61878,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/buildings/library.webp",
+        "status": 200,
+        "bytes": 86102,
+        "decodedBytes": 86102,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/landmarks/canteen.webp",
+        "status": 200,
+        "bytes": 93518,
+        "decodedBytes": 93518,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/buildings/dorm.webp",
+        "status": 200,
+        "bytes": 70442,
+        "decodedBytes": 70442,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/landmarks/garden.webp",
+        "status": 200,
+        "bytes": 110240,
+        "decodedBytes": 110240,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/buildings/dorm-west.webp",
+        "status": 200,
+        "bytes": 90676,
+        "decodedBytes": 90676,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/event-sports.ogg",
+        "status": 200,
+        "bytes": 8910,
+        "decodedBytes": 8910,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/event-rainstorm.ogg",
+        "status": 200,
+        "bytes": 10211,
+        "decodedBytes": 10211,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/event-end.ogg",
+        "status": 200,
+        "bytes": 6695,
+        "decodedBytes": 6695,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/shield-break.ogg",
+        "status": 200,
+        "bytes": 7595,
+        "decodedBytes": 7595,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/charged.ogg",
+        "status": 200,
+        "bytes": 10753,
+        "decodedBytes": 10753,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/rain-ambience.ogg",
+        "status": 200,
+        "bytes": 82052,
+        "decodedBytes": 82052,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/props/planter.webp",
+        "status": 200,
+        "bytes": 26368,
+        "decodedBytes": 26368,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/landmarks/library.webp",
+        "status": 200,
+        "bytes": 71144,
+        "decodedBytes": 71144,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/landmarks/track.webp",
+        "status": 200,
+        "bytes": 57490,
+        "decodedBytes": 57490,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/landmarks/workshop.webp",
+        "status": 200,
+        "bytes": 60750,
+        "decodedBytes": 60750,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/props/bench.webp",
+        "status": 200,
+        "bytes": 25908,
+        "decodedBytes": 25908,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/landmarks/lab.webp",
+        "status": 200,
+        "bytes": 93376,
+        "decodedBytes": 93376,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/frenzy.ogg",
+        "status": 200,
+        "bytes": 10027,
+        "decodedBytes": 10027,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/clear.ogg",
+        "status": 200,
+        "bytes": 10328,
+        "decodedBytes": 10328,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/combo.ogg",
+        "status": 200,
+        "bytes": 5999,
+        "decodedBytes": 5999,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v4/block.ogg",
+        "status": 200,
+        "bytes": 9128,
+        "decodedBytes": 9128,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/props/tree.webp",
+        "status": 200,
+        "bytes": 23790,
+        "decodedBytes": 23790,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v5/s2/atlases/enemies.webp",
+        "status": 200,
+        "bytes": 41040,
+        "decodedBytes": 41040,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v5/s2/atlases/particles.webp",
+        "status": 200,
+        "bytes": 1002,
+        "decodedBytes": 1002,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v5/s2/atlases/items.webp",
+        "status": 200,
+        "bytes": 42944,
+        "decodedBytes": 42944,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v5/s2/atlases/landmarks.webp",
+        "status": 200,
+        "bytes": 16616,
+        "decodedBytes": 16616,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v5/s2/building-smart-teaching.webp",
+        "status": 200,
+        "bytes": 102786,
+        "decodedBytes": 102786,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/icons/pickups/heal.webp",
+        "status": 200,
+        "bytes": 8142,
+        "decodedBytes": 8142,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/icons/pickups/magnet.webp",
+        "status": 200,
+        "bytes": 11812,
+        "decodedBytes": 11812,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/icons/pickups/bomb.webp",
+        "status": 200,
+        "bytes": 12528,
+        "decodedBytes": 12528,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/icons/pickups/freeze.webp",
+        "status": 200,
+        "bytes": 14244,
+        "decodedBytes": 14244,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/icons/pickups/shield.webp",
+        "status": 200,
+        "bytes": 9108,
+        "decodedBytes": 9108,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/icons/pickups/coffeeBoost.webp",
+        "status": 200,
+        "bytes": 10082,
+        "decodedBytes": 10082,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/icons/pickups/energy.webp",
+        "status": 200,
+        "bytes": 9720,
+        "decodedBytes": 9720,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v4/ui/chest-closed.webp",
+        "status": 200,
+        "bytes": 43860,
+        "decodedBytes": 43860,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v5/s2/shot-s2-drone.ogg",
+        "status": 200,
+        "bytes": 4342,
+        "decodedBytes": 4342,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v5/s2/shot-s2-whiteboard.ogg",
+        "status": 200,
+        "bytes": 5560,
+        "decodedBytes": 5560,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v5/s2/shot-s2-spool.ogg",
+        "status": 200,
+        "bytes": 4533,
+        "decodedBytes": 4533,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v5/s2/fusion-s2-fieldHub.ogg",
+        "status": 200,
+        "bytes": 5079,
+        "decodedBytes": 5079,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v5/s2/fusion-s2-holoReview.ogg",
+        "status": 200,
+        "bytes": 7867,
+        "decodedBytes": 7867,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v5/s2/shot-s2-printer.ogg",
+        "status": 200,
+        "bytes": 5550,
+        "decodedBytes": 5550,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/art/v5/s2/icons/item-drone-96.webp",
+        "status": 200,
+        "bytes": 4242,
+        "decodedBytes": 4242,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/SemesterUI-DQedgO3h.css",
+        "status": 200,
+        "bytes": 1341,
+        "decodedBytes": 4680,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/SemesterUI-Cd51PhAo.js",
+        "status": 200,
+        "bytes": 2537,
+        "decodedBytes": 6193,
+        "encoding": "gzip"
+      },
+      {
+        "name": "/assets/audio/v5/s2/fusion-s2-digitalTwin.ogg",
+        "status": 200,
+        "bytes": 8758,
+        "decodedBytes": 8758,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v5/s2/warning-s2-line.ogg",
+        "status": 200,
+        "bytes": 5476,
+        "decodedBytes": 5476,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v5/s2/warning-s2-reservation.ogg",
+        "status": 200,
+        "bytes": 5508,
+        "decodedBytes": 5508,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v5/s2/warning-s2-scan.ogg",
+        "status": 200,
+        "bytes": 6320,
+        "decodedBytes": 6320,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v5/s2/event-s2-deliveryDay.ogg",
+        "status": 200,
+        "bytes": 8979,
+        "decodedBytes": 8979,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v5/s2/event-s2-openLab.ogg",
+        "status": 200,
+        "bytes": 9073,
+        "decodedBytes": 9073,
+        "encoding": "identity"
+      },
+      {
+        "name": "/assets/audio/v5/s2/contract-s2-project.ogg",
+        "status": 200,
+        "bytes": 7621,
+        "decodedBytes": 7621,
+        "encoding": "identity"
+      }
+    ],
+    "bodyBytes": 5366188,
+    "decodedBodyBytes": 6675098,
+    "requestCount": 265,
+    "headerAllowancePerRequest": 1024,
+    "conservativeTransferBytes": 5637548,
+    "timing": {
+      "navigationToReadyMs": 2514.8,
+      "clickToReadyMs": 1263.1
+    }
+  },
+  "chapterThree": {
+    "bodyBytes": 5820183,
+    "requestCount": 265,
+    "headerAllowancePerRequest": 1024,
+    "conservativeTransferBytes": 6091543,
+    "includes": "HTML, JS, CSS, fonts, DOM images and dedicated-worker texture requests",
+    "files": [
+      {
+        "name": "/__s2-built__/budget.html",
+        "status": 200,
+        "bytes": 2490
+      },
+      {
+        "name": "/__s2-built__/assets/budget-BTqfzzAH.js",
+        "status": 200,
+        "bytes": 5926
+      },
+      {
+        "name": "/__s2-built__/assets/status-BPbLXFKj.js",
+        "status": 200,
+        "bytes": 29128
+      },
+      {
+        "name": "/__s2-built__/assets/landmarks-2Ust2OlJ.js",
+        "status": 200,
+        "bytes": 7640
+      },
+      {
+        "name": "/__s2-built__/assets/navigation-_A3PPpQ_.js",
+        "status": 200,
+        "bytes": 12946
+      },
+      {
+        "name": "/__s2-built__/assets/content-DcHgiwCS.js",
+        "status": 200,
+        "bytes": 42731
+      },
+      {
+        "name": "/__s2-built__/assets/grid-1yD300X9.js",
+        "status": 200,
+        "bytes": 5243
+      },
+      {
+        "name": "/__s2-built__/assets/input-CN-E4bV4.js",
+        "status": 200,
+        "bytes": 68573
+      },
+      {
+        "name": "/__s2-built__/assets/rolldown-runtime-WkwZ5CU-.js",
+        "status": 200,
+        "bytes": 599
+      },
+      {
+        "name": "/__s2-built__/assets/createRun-XJvL8SAw.js",
+        "status": 200,
+        "bytes": 91187
+      },
+      {
+        "name": "/__s2-built__/assets/CanvasPool-mHyysBfX.js",
+        "status": 200,
+        "bytes": 70513
+      },
+      {
+        "name": "/__s2-built__/assets/Filter-SJ0rmCkk.js",
+        "status": 200,
+        "bytes": 41970
+      },
+      {
+        "name": "/__s2-built__/assets/canvasUtils-DzEhRhxp.js",
+        "status": 200,
+        "bytes": 6011
+      },
+      {
+        "name": "/__s2-built__/assets/Cache-Wttkk4By.js",
+        "status": 200,
+        "bytes": 1100
+      },
+      {
+        "name": "/__s2-built__/assets/defaultFilter.vert-lMrgpiVD.js",
+        "status": 200,
+        "bytes": 24849
+      },
+      {
+        "name": "/__s2-built__/assets/GCManagedHash-DDxfehHz.js",
+        "status": 200,
+        "bytes": 19332
+      },
+      {
+        "name": "/__s2-built__/assets/RenderTargetSystem-B5oo0_g2.js",
+        "status": 200,
+        "bytes": 58801
+      },
+      {
+        "name": "/__s2-built__/assets/getTextureBatchBindGroup-AGvRzaot.js",
+        "status": 200,
+        "bytes": 344
+      },
+      {
+        "name": "/__s2-built__/assets/GraphicsContext-DbzhumAx.js",
+        "status": 200,
+        "bytes": 61677
+      },
+      {
+        "name": "/__s2-built__/assets/CanvasRenderer-B8TteX0n.js",
+        "status": 200,
+        "bytes": 27091
+      },
+      {
+        "name": "/__s2-built__/assets/getTexelRangeRects-UkDfrKWG.js",
+        "status": 200,
+        "bytes": 11358
+      },
+      {
+        "name": "/__s2-built__/assets/BitmapFont-NpMGeBea.js",
+        "status": 200,
+        "bytes": 33388
+      },
+      {
+        "name": "/__s2-built__/assets/SemesterScene-CygQWw1w.css",
+        "status": 200,
+        "bytes": 2332
+      },
+      {
+        "name": "/__s2-built__/assets/SemesterScene-DjTG1A1n.js",
+        "status": 200,
+        "bytes": 348219
+      },
+      {
+        "name": "/__s2-built__/assets/budget-DBKlwnKb.css",
+        "status": 200,
+        "bytes": 18160
+      },
+      {
+        "name": "/__s2-built__/assets/WebGLRenderer-J9Q7T_yO.js",
+        "status": 200,
+        "bytes": 60
+      },
+      {
+        "name": "/__s2-built__/assets/WebGLRenderer-Co8nyFR7.js",
+        "status": 200,
+        "bytes": 72824
+      },
+      {
+        "name": "/__s2-built__/assets/init-DPlBCuUK.js",
+        "status": 200,
+        "bytes": 14229
+      },
+      {
+        "name": "/__s2-built__/assets/browserAll-ChfJKL9I.js",
+        "status": 200,
+        "bytes": 43514
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/characters/balanced/sprite.webp",
+        "status": 200,
+        "bytes": 3964
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/homework.webp",
+        "status": 200,
+        "bytes": 7550
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/homework-white.webp",
+        "status": 200,
+        "bytes": 2526
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/fx/particles.webp",
+        "status": 200,
+        "bytes": 1304
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/ddl-white.webp",
+        "status": 200,
+        "bytes": 3504
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/ddl.webp",
+        "status": 200,
+        "bytes": 9538
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/characters/analysis/sprite.webp",
+        "status": 200,
+        "bytes": 3482
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/fx/paper-blade.webp",
+        "status": 200,
+        "bytes": 1620
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/characters/coder/sprite.webp",
+        "status": 200,
+        "bytes": 4786
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/characters/architect/sprite.webp",
+        "status": 200,
+        "bytes": 4428
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/characters/english/sprite.webp",
+        "status": 200,
+        "bytes": 2968
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/characters/experiment/sprite.webp",
+        "status": 200,
+        "bytes": 3870
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/textures/metal.webp",
+        "status": 200,
+        "bytes": 734
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/fx/robot.webp",
+        "status": 200,
+        "bytes": 2804
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/textures/grass.webp",
+        "status": 200,
+        "bytes": 12394
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/textures/paving.webp",
+        "status": 200,
+        "bytes": 7240
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/fx/book.webp",
+        "status": 200,
+        "bytes": 2970
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/fx/slides.webp",
+        "status": 200,
+        "bytes": 2756
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/fx/shuttle.webp",
+        "status": 200,
+        "bytes": 1798
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/advisor.webp",
+        "status": 200,
+        "bytes": 4928
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/advisor-white.webp",
+        "status": 200,
+        "bytes": 1574
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/bomber.webp",
+        "status": 200,
+        "bytes": 6412
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/bomber-white.webp",
+        "status": 200,
+        "bytes": 1724
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/charger-white.webp",
+        "status": 200,
+        "bytes": 2364
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/charger.webp",
+        "status": 200,
+        "bytes": 7418
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/checkin-white.webp",
+        "status": 200,
+        "bytes": 2364
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/checkin.webp",
+        "status": 200,
+        "bytes": 7314
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/english.webp",
+        "status": 200,
+        "bytes": 7394
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/english-white.webp",
+        "status": 200,
+        "bytes": 2512
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/coding-white.webp",
+        "status": 200,
+        "bytes": 1520
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/coding.webp",
+        "status": 200,
+        "bytes": 6314
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/examCharger.webp",
+        "status": 200,
+        "bytes": 6762
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/examCharger-white.webp",
+        "status": 200,
+        "bytes": 2264
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/leader.webp",
+        "status": 200,
+        "bytes": 5890
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/guard-white.webp",
+        "status": 200,
+        "bytes": 1652
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/leader-white.webp",
+        "status": 200,
+        "bytes": 1846
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/guard.webp",
+        "status": 200,
+        "bytes": 7110
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/math.webp",
+        "status": 200,
+        "bytes": 6690
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/mechanics.webp",
+        "status": 200,
+        "bytes": 6328
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/math-white.webp",
+        "status": 200,
+        "bytes": 2046
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/mechanics-white.webp",
+        "status": 200,
+        "bytes": 2386
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/node-white.webp",
+        "status": 200,
+        "bytes": 1682
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/node.webp",
+        "status": 200,
+        "bytes": 5810
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/review-white.webp",
+        "status": 200,
+        "bytes": 2164
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/receipt.webp",
+        "status": 200,
+        "bytes": 7210
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/receipt-white.webp",
+        "status": 200,
+        "bytes": 1868
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/ppt-white.webp",
+        "status": 200,
+        "bytes": 2040
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/review.webp",
+        "status": 200,
+        "bytes": 6752
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/ppt.webp",
+        "status": 200,
+        "bytes": 6230
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/summoner.webp",
+        "status": 200,
+        "bytes": 6030
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/summoner-white.webp",
+        "status": 200,
+        "bytes": 2070
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/splitter-white.webp",
+        "status": 200,
+        "bytes": 2034
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/thrower.webp",
+        "status": 200,
+        "bytes": 7082
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/thrower-white.webp",
+        "status": 200,
+        "bytes": 2708
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/splitter.webp",
+        "status": 200,
+        "bytes": 6954
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/buildings/architecture.webp",
+        "status": 200,
+        "bytes": 62420
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/buildings/civil.webp",
+        "status": 200,
+        "bytes": 73598
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/buildings/activity.webp",
+        "status": 200,
+        "bytes": 63086
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/buildings/basic-south.webp",
+        "status": 200,
+        "bytes": 83476
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/buildings/basic.webp",
+        "status": 200,
+        "bytes": 58064
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/buildings/canteen.webp",
+        "status": 200,
+        "bytes": 72156
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/buildings/experiment.webp",
+        "status": 200,
+        "bytes": 61878
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/buildings/dorm-west.webp",
+        "status": 200,
+        "bytes": 90676
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/buildings/dorm.webp",
+        "status": 200,
+        "bytes": 70442
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/landmarks/canteen.webp",
+        "status": 200,
+        "bytes": 93518
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/buildings/library.webp",
+        "status": 200,
+        "bytes": 86102
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/landmarks/garden.webp",
+        "status": 200,
+        "bytes": 110240
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/landmarks/lab.webp",
+        "status": 200,
+        "bytes": 93376
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/landmarks/workshop.webp",
+        "status": 200,
+        "bytes": 60750
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/props/bench.webp",
+        "status": 200,
+        "bytes": 25908
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/landmarks/library.webp",
+        "status": 200,
+        "bytes": 71144
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/props/planter.webp",
+        "status": 200,
+        "bytes": 26368
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/landmarks/track.webp",
+        "status": 200,
+        "bytes": 57490
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/props/tree.webp",
+        "status": 200,
+        "bytes": 23790
+      },
+      {
+        "name": "/__s2-built__/assets/art/v5/s2/atlases/enemies.webp",
+        "status": 200,
+        "bytes": 41040
+      },
+      {
+        "name": "/__s2-built__/assets/art/v5/s2/atlases/items.webp",
+        "status": 200,
+        "bytes": 42944
+      },
+      {
+        "name": "/__s2-built__/assets/art/v5/s2/atlases/particles.webp",
+        "status": 200,
+        "bytes": 1002
+      },
+      {
+        "name": "/__s2-built__/assets/art/v5/s2/building-smart-teaching.webp",
+        "status": 200,
+        "bytes": 102786
+      },
+      {
+        "name": "/__s2-built__/assets/art/v5/s2/atlases/landmarks.webp",
+        "status": 200,
+        "bytes": 16616
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/icons/pickups/heal.webp",
+        "status": 200,
+        "bytes": 8142
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/icons/pickups/bomb.webp",
+        "status": 200,
+        "bytes": 12528
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/icons/pickups/magnet.webp",
+        "status": 200,
+        "bytes": 11812
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/icons/pickups/freeze.webp",
+        "status": 200,
+        "bytes": 14244
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/icons/pickups/shield.webp",
+        "status": 200,
+        "bytes": 9108
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/icons/pickups/coffeeBoost.webp",
+        "status": 200,
+        "bytes": 10082
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/icons/pickups/energy.webp",
+        "status": 200,
+        "bytes": 9720
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/ui/chest-closed.webp",
+        "status": 200,
+        "bytes": 43860
+      },
+      {
+        "name": "/__s2-built__/assets/fonts/campus-digits-600-latin.woff2",
+        "status": 200,
+        "bytes": 8488
+      },
+      {
+        "name": "/__s2-built__/assets/fonts/campus-sans-400-shell.woff2",
+        "status": 200,
+        "bytes": 73716
+      },
+      {
+        "name": "/__s2-built__/assets/fonts/campus-sans-400-game.woff2",
+        "status": 200,
+        "bytes": 74348
+      },
+      {
+        "name": "/__s2-built__/assets/art/v5/s2/atlases/enemies-chapter-3.webp",
+        "status": 200,
+        "bytes": 14662
+      },
+      {
+        "name": "/__s2-built__/assets/art/v5/s2/atlases/landmarks-chapter-3.webp",
+        "status": 200,
+        "bytes": 11898
+      },
+      {
+        "name": "/__s2-built__/assets/art/v5/s2/building-exhibit-hall.webp",
+        "status": 200,
+        "bytes": 103376
+      },
+      {
+        "name": "/__s2-built__/assets/art/v5/s2/icons/item-drone-96.webp",
+        "status": 200,
+        "bytes": 4242
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/defense.webp",
+        "status": 200,
+        "bytes": 22410
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/defense-white.webp",
+        "status": 200,
+        "bytes": 7340
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/inspector.webp",
+        "status": 200,
+        "bytes": 17656
+      },
+      {
+        "name": "/__s2-built__/assets/art/v5/s2/building-joint-lab.webp",
+        "status": 200,
+        "bytes": 104086
+      },
+      {
+        "name": "/__s2-built__/assets/art/v5/s2/atlases/enemies-chapter-2.webp",
+        "status": 200,
+        "bytes": 69728
+      },
+      {
+        "name": "/__s2-built__/assets/art/v5/s2/atlases/landmarks-chapter-2.webp",
+        "status": 200,
+        "bytes": 10198
+      },
+      {
+        "name": "/__s2-built__/assets/fonts/campus-sans-600-shell.woff2",
+        "status": 200,
+        "bytes": 74860
+      },
+      {
+        "name": "/__s2-built__/assets/fonts/v5/campus-semester-600-delta.woff2",
+        "status": 200,
+        "bytes": 15992
+      },
+      {
+        "name": "/__s2-built__/assets/fonts/campus-sans-600-game.woff2",
+        "status": 200,
+        "bytes": 75692
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/inspector-white.webp",
+        "status": 200,
+        "bytes": 3938
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/teamlead.webp",
+        "status": 200,
+        "bytes": 17860
+      },
+      {
+        "name": "/__s2-built__/assets/art/v4/enemies/teamlead-white.webp",
+        "status": 200,
+        "bytes": 3592
+      },
+      {
+        "name": "/__s2-built__/assets/art/v5/s2/enemy-dispatcher.webp",
+        "status": 200,
+        "bytes": 34792
+      },
+      {
+        "name": "/__s2-built__/assets/art/v5/s2/enemy-dispatcher-white.webp",
+        "status": 200,
+        "bytes": 8652
+      },
+      {
+        "name": "/__s2-built__/assets/art/v5/s2/enemy-auditor.webp",
+        "status": 200,
+        "bytes": 36900
+      },
+      {
+        "name": "/__s2-built__/assets/art/v5/s2/enemy-project-review-white.webp",
+        "status": 200,
+        "bytes": 8112
+      },
+      {
+        "name": "/__s2-built__/assets/art/v5/s2/enemy-auditor-white.webp",
+        "status": 200,
+        "bytes": 12050
+      },
+      {
+        "name": "/__s2-built__/assets/art/v5/s2/enemy-project-review.webp",
+        "status": 200,
+        "bytes": 29786
+      },
+      {
+        "name": "/__s2-built__/assets/ZzFX-NzJr01FC.js",
+        "status": 200,
+        "bytes": 1653
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v5/s2/shot-s2-drone.ogg",
+        "status": 200,
+        "bytes": 4342
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v5/s2/shot-s2-whiteboard.ogg",
+        "status": 200,
+        "bytes": 5560
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v5/s2/shot-s2-spool.ogg",
+        "status": 200,
+        "bytes": 4533
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v5/s2/shot-s2-printer.ogg",
+        "status": 200,
+        "bytes": 5550
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v5/s2/fusion-s2-fieldHub.ogg",
+        "status": 200,
+        "bytes": 5079
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v5/s2/fusion-s2-holoReview.ogg",
+        "status": 200,
+        "bytes": 7867
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/ui-hover.ogg",
+        "status": 200,
+        "bytes": 5334
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/ui-press.ogg",
+        "status": 200,
+        "bytes": 5012
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/ui-confirm.ogg",
+        "status": 200,
+        "bytes": 5344
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/ui-cancel.ogg",
+        "status": 200,
+        "bytes": 6950
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/ui-tab.ogg",
+        "status": 200,
+        "bytes": 4180
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/ui-disabled.ogg",
+        "status": 200,
+        "bytes": 5575
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/music-normal.ogg",
+        "status": 200,
+        "bytes": 949679
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/hit-paper-0.ogg",
+        "status": 200,
+        "bytes": 7805
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/hit-paper-1.ogg",
+        "status": 200,
+        "bytes": 6669
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/hit-paper-2.ogg",
+        "status": 200,
+        "bytes": 7352
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/hit-paper-3.ogg",
+        "status": 200,
+        "bytes": 6973
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/death-paper-0.ogg",
+        "status": 200,
+        "bytes": 9096
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/death-paper-1.ogg",
+        "status": 200,
+        "bytes": 7993
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v5/s2/fusion-s2-digitalTwin.ogg",
+        "status": 200,
+        "bytes": 8758
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v5/s2/warning-s2-line.ogg",
+        "status": 200,
+        "bytes": 5476
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v5/s2/warning-s2-scan.ogg",
+        "status": 200,
+        "bytes": 6320
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v5/s2/warning-s2-reservation.ogg",
+        "status": 200,
+        "bytes": 5508
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v5/s2/event-s2-deliveryDay.ogg",
+        "status": 200,
+        "bytes": 8979
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v5/s2/event-s2-networkMaintenance.ogg",
+        "status": 200,
+        "bytes": 4549
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/ui-reveal.ogg",
+        "status": 200,
+        "bytes": 7896
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/ui-rarity-common.ogg",
+        "status": 200,
+        "bytes": 5344
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/ui-rarity-rare.ogg",
+        "status": 200,
+        "bytes": 7896
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/ui-rarity-epic.ogg",
+        "status": 200,
+        "bytes": 8939
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/ui-chest-latch.ogg",
+        "status": 200,
+        "bytes": 6919
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/shot-paper-0.ogg",
+        "status": 200,
+        "bytes": 6263
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/ui-rarity-legendary.ogg",
+        "status": 200,
+        "bytes": 8421
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/shot-paper-1.ogg",
+        "status": 200,
+        "bytes": 5905
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/hit-key-1.ogg",
+        "status": 200,
+        "bytes": 7045
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/hit-key-0.ogg",
+        "status": 200,
+        "bytes": 7357
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/hit-key-2.ogg",
+        "status": 200,
+        "bytes": 7038
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/hit-key-3.ogg",
+        "status": 200,
+        "bytes": 7045
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v5/s2/event-s2-jointExhibit.ogg",
+        "status": 200,
+        "bytes": 6697
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v5/s2/event-s2-openLab.ogg",
+        "status": 200,
+        "bytes": 9073
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v5/s2/contract-s2-project.ogg",
+        "status": 200,
+        "bytes": 7621
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v5/s2/contract-s2-amendment.ogg",
+        "status": 200,
+        "bytes": 5259
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v5/s2/ambience-s2-lab.ogg",
+        "status": 200,
+        "bytes": 60995
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v5/s2/ambience-s2-exhibit.ogg",
+        "status": 200,
+        "bytes": 90509
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/ui-chest-open.ogg",
+        "status": 200,
+        "bytes": 6325
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/ui-talent-upgrade.ogg",
+        "status": 200,
+        "bytes": 10753
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/ui-achievement.ogg",
+        "status": 200,
+        "bytes": 10421
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/pickup.ogg",
+        "status": 200,
+        "bytes": 4431
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/level.ogg",
+        "status": 200,
+        "bytes": 8939
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/hurt.ogg",
+        "status": 200,
+        "bytes": 8042
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/death-key-0.ogg",
+        "status": 200,
+        "bytes": 8552
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/death-key-1.ogg",
+        "status": 200,
+        "bytes": 8198
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/shot-key-0.ogg",
+        "status": 200,
+        "bytes": 5783
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/shot-key-1.ogg",
+        "status": 200,
+        "bytes": 5850
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/hit-metal-0.ogg",
+        "status": 200,
+        "bytes": 6305
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/hit-metal-1.ogg",
+        "status": 200,
+        "bytes": 5912
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/boss.ogg",
+        "status": 200,
+        "bytes": 4791
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/evolution.ogg",
+        "status": 200,
+        "bytes": 8421
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/chest.ogg",
+        "status": 200,
+        "bytes": 6325
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/critical.ogg",
+        "status": 200,
+        "bytes": 8682
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/hit-metal-2.ogg",
+        "status": 200,
+        "bytes": 6699
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/hit-metal-3.ogg",
+        "status": 200,
+        "bytes": 6078
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/death-metal-0.ogg",
+        "status": 200,
+        "bytes": 6315
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/death-metal-1.ogg",
+        "status": 200,
+        "bytes": 5918
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/shot-metal-0.ogg",
+        "status": 200,
+        "bytes": 5742
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/shot-metal-1.ogg",
+        "status": 200,
+        "bytes": 5623
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/hit-glass-0.ogg",
+        "status": 200,
+        "bytes": 6395
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/hit-glass-1.ogg",
+        "status": 200,
+        "bytes": 6396
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/hit-glass-2.ogg",
+        "status": 200,
+        "bytes": 6413
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/death-glass-0.ogg",
+        "status": 200,
+        "bytes": 7594
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/hit-glass-3.ogg",
+        "status": 200,
+        "bytes": 6352
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/death-glass-1.ogg",
+        "status": 200,
+        "bytes": 7595
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/shot-glass-0.ogg",
+        "status": 200,
+        "bytes": 5700
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/shot-glass-1.ogg",
+        "status": 200,
+        "bytes": 5540
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/hit-brick-0.ogg",
+        "status": 200,
+        "bytes": 6276
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/hit-brick-1.ogg",
+        "status": 200,
+        "bytes": 6460
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/hit-brick-2.ogg",
+        "status": 200,
+        "bytes": 6215
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/hit-brick-3.ogg",
+        "status": 200,
+        "bytes": 6292
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/death-brick-0.ogg",
+        "status": 200,
+        "bytes": 7111
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/shot-brick-0.ogg",
+        "status": 200,
+        "bytes": 5693
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/death-brick-1.ogg",
+        "status": 200,
+        "bytes": 7563
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/shot-brick-1.ogg",
+        "status": 200,
+        "bytes": 5689
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/hit-liquid-0.ogg",
+        "status": 200,
+        "bytes": 6572
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/hit-liquid-1.ogg",
+        "status": 200,
+        "bytes": 6543
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/hit-liquid-2.ogg",
+        "status": 200,
+        "bytes": 6672
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/hit-liquid-3.ogg",
+        "status": 200,
+        "bytes": 6710
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/death-liquid-1.ogg",
+        "status": 200,
+        "bytes": 8063
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/death-liquid-0.ogg",
+        "status": 200,
+        "bytes": 8078
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/shot-liquid-0.ogg",
+        "status": 200,
+        "bytes": 5758
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/shot-liquid-1.ogg",
+        "status": 200,
+        "bytes": 5737
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/hit-energy-0.ogg",
+        "status": 200,
+        "bytes": 5910
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/hit-energy-1.ogg",
+        "status": 200,
+        "bytes": 5714
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/hit-energy-2.ogg",
+        "status": 200,
+        "bytes": 5932
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/hit-energy-3.ogg",
+        "status": 200,
+        "bytes": 5907
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/death-energy-1.ogg",
+        "status": 200,
+        "bytes": 5972
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/death-energy-0.ogg",
+        "status": 200,
+        "bytes": 6008
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/shot-energy-0.ogg",
+        "status": 200,
+        "bytes": 5526
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/shot-energy-1.ogg",
+        "status": 200,
+        "bytes": 5389
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/fusion-hub.ogg",
+        "status": 200,
+        "bytes": 6035
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/fusion-sword.ogg",
+        "status": 200,
+        "bytes": 6341
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/fusion-binder.ogg",
+        "status": 200,
+        "bytes": 6341
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/fusion-sky.ogg",
+        "status": 200,
+        "bytes": 9343
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/fusion-icefire.ogg",
+        "status": 200,
+        "bytes": 10211
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/fusion-demolition.ogg",
+        "status": 200,
+        "bytes": 8266
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/ultimate-submission.ogg",
+        "status": 200,
+        "bytes": 9195
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/ultimate-lastMinute.ogg",
+        "status": 200,
+        "bytes": 9320
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/ultimate-parallel.ogg",
+        "status": 200,
+        "bytes": 5993
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/ultimate-conference.ogg",
+        "status": 200,
+        "bytes": 5993
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/ultimate-barrier.ogg",
+        "status": 200,
+        "bytes": 9093
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/event-portal.ogg",
+        "status": 200,
+        "bytes": 6295
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/event-advisor.ogg",
+        "status": 200,
+        "bytes": 7485
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/ultimate-overload.ogg",
+        "status": 200,
+        "bytes": 9320
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/event-blackout.ogg",
+        "status": 200,
+        "bytes": 6011
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/event-examRage.ogg",
+        "status": 200,
+        "bytes": 6348
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/event-sports.ogg",
+        "status": 200,
+        "bytes": 8910
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/event-rainstorm.ogg",
+        "status": 200,
+        "bytes": 10211
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/event-end.ogg",
+        "status": 200,
+        "bytes": 6695
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/shield-break.ogg",
+        "status": 200,
+        "bytes": 7595
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/rain-ambience.ogg",
+        "status": 200,
+        "bytes": 82052
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/charged.ogg",
+        "status": 200,
+        "bytes": 10753
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/frenzy.ogg",
+        "status": 200,
+        "bytes": 10027
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/clear.ogg",
+        "status": 200,
+        "bytes": 10328
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/combo.ogg",
+        "status": 200,
+        "bytes": 5999
+      },
+      {
+        "name": "/__s2-built__/assets/audio/v4/block.ogg",
+        "status": 200,
+        "bytes": 9128
+      }
+    ],
+    "readyMs": 3298.2
+  },
+  "audio": {
+    "loaded": [
+      "shot-s2-drone",
+      "shot-s2-whiteboard",
+      "shot-s2-spool",
+      "shot-s2-printer",
+      "fusion-s2-fieldHub",
+      "fusion-s2-holoReview",
+      "fusion-s2-digitalTwin",
+      "warning-s2-line",
+      "warning-s2-reservation",
+      "warning-s2-scan",
+      "event-s2-deliveryDay",
+      "event-s2-openLab",
+      "contract-s2-project",
+      "event-s2-networkMaintenance",
+      "event-s2-jointExhibit",
+      "contract-s2-amendment",
+      "ambience-s2-lab",
+      "ambience-s2-exhibit"
+    ],
+    "failed": [],
+    "voicePeak": 20
+  },
+  "chromium": {
+    "startTime": "2026-11-01T13:45:52.113Z",
+    "duration": 127874.863,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

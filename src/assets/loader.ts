@@ -1,5 +1,6 @@
 import {Assets,Texture} from 'pixi.js';
 import {artManifest,resourceManifest,artDefinition,artUrl,pixiManifest,type ArtId,type ResourceId,type ResourceBundle,type Bundle} from './manifest';
+import {ResourceAvailability,artAvailability} from './availability';
 
 export interface LoadProgress {completed:number;total:number;failed:number;label:string}
 export interface ResourceLease<Id extends ResourceId=ArtId> {textures:Map<Id,Texture>;release:()=>void}
@@ -22,15 +23,14 @@ function bounded<T>(promise:Promise<T>,signal?:AbortSignal,milliseconds?:number)
 }
 export class ResourceLoader {
   private entries=new Map<ResourceId,Entry>();
-  private forced=new Set<ResourceId>();
   private unloading=new Map<string,Promise<void>>();
   private initialized:Promise<unknown>|undefined;
   private active=0;
   private waiting:{start:()=>void}[]=[];
-  readonly failures=new Set<ResourceId>();
-  constructor(private backend:ResourceBackend={init:()=>Assets.init({manifest:pixiManifest}),load:source=>Assets.load(source),unload:source=>Assets.unload(source)},private timeoutMs=8000){}
-  forceMissing(id:ResourceId,missing:boolean){if(missing)this.forced.add(id);else this.forced.delete(id);}
-  isMissing(id:ResourceId){return this.forced.has(id)||this.failures.has(id);}
+  get failures(){return this.availability.failures;}
+  constructor(private backend:ResourceBackend={init:()=>Assets.init({manifest:pixiManifest}),load:source=>Assets.load(source),unload:source=>Assets.unload(source)},private timeoutMs=8000,private availability=new ResourceAvailability()){}
+  forceMissing(id:ResourceId,missing:boolean){this.availability.forceMissing(id,missing);}
+  isMissing(id:ResourceId){return this.availability.isMissing(id);}
   bundle(bundle:Bundle,signal?:AbortSignal,onProgress?:(p:LoadProgress)=>void){
     const ids=(Object.keys(artManifest) as ArtId[]).filter(id=>artManifest[id].bundle===bundle);
     return this.loadIds(ids,signal,onProgress,bundleLabel(bundle));
@@ -59,7 +59,7 @@ export class ResourceLoader {
         entry.refs++;acquired.push([id,entry]);
         if(fresh)entry.promise=this.load(id,entry);
         const texture=await bounded(entry.promise,signal);if(released||signal?.aborted)return;
-        if(texture&&!this.forced.has(id))textures.set(id,texture);else failed++;
+        if(texture&&!this.availability.isMissing(id))textures.set(id,texture);else failed++;
         completed++;if(!signal?.aborted)report();
       }));
      }
@@ -120,7 +120,7 @@ export class ResourceLoader {
   }
   get debug(){return{entries:this.entries.size,references:[...this.entries.values()].reduce((sum,e)=>sum+e.refs,0),textures:[...this.entries.values()].filter(e=>e.texture).length,loading:this.active,waiting:this.waiting.length};}
 }
-export const resources=new ResourceLoader();
+export const resources=new ResourceLoader(undefined,8000,artAvailability);
 /** Fonts have a finite wait; system fonts remain a valid fallback. */
 export async function prepareFonts(){
   if(!document.fonts)return;

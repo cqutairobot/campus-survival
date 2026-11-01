@@ -9,6 +9,11 @@ import {SEMESTERS} from '../../src/semesters/registry';
 import {simulateReleaseBoss,RELEASE_BUILDS,releaseBuildCost} from '../../scripts/s2-balance-simulation';
 const json=(path:string)=>JSON.parse(readFileSync(path,'utf8'));
 describe('v5 local release freeze',()=>{
+ it('keeps Pixi and filters outside the production first-screen static import closure',async()=>{
+  const {build}=await import('vite'),result=await build({logLevel:'silent',build:{write:false,copyPublicDir:false}}),output=(Array.isArray(result)?result:[result]).flatMap(r=>'output'in r?r.output:[]),chunks=output.filter(c=>c.type==='chunk'),byName=new Map(chunks.map(c=>[c.fileName,c])),seen=new Set<string>();
+  const visit=(name:string)=>{if(seen.has(name))return;seen.add(name);byName.get(name)?.imports.forEach(visit);};const entry=chunks.find(c=>c.isEntry&&c.facadeModuleId?.endsWith('/index.html'));expect(entry).toBeDefined();visit(entry!.fileName);
+  expect([...seen].flatMap(name=>Object.keys(byName.get(name)?.modules??{})).filter(id=>/\/(pixi\.js|pixi-filters)\//.test(id))).toEqual([]);
+ });
  it('release evidence fits six slots and owns every evolved weapon recipe',()=>{
   expect(RELEASE_BUILDS.map(b=>releaseBuildCost(b).totalSkillPoints)).toEqual([33,32,28,33]);expect(RELEASE_BUILDS.map(b=>releaseBuildCost(b).evolutionChests)).toEqual([0,2,4,4]);
   expect(()=>releaseBuildCost({...RELEASE_BUILDS[1],passives:RELEASE_BUILDS[1].passives.filter(([id])=>id!=='luck')})).toThrow('Missing evolution recipe');
