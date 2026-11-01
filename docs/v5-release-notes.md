@@ -34,3 +34,7 @@
 最终验证、逐章完整正文+每响应1KiB预算、dist总量/最大文件及来源审计见 [v5-implementation.md](v5-implementation.md)、[v5-release-budget.json](v5-release-budget.json)、[v5-source-audit.json](v5-source-audit.json)。唯一Chromium保留原24周里程碑检查，增加从正式学期选择页开始的S2普通局和每日局、正常退出结算、存档回读和资源归零；不代表完整24周真实游玩或真机听感。正式首场景统计冷缓存菜单到开局全部实际压缩响应正文（含图片worker）及每响应1KiB，逐章测试宿主仍保留未压缩正文的保守口径。
 
 发布前待用户决定：完成手机外放/耳机试听及完整效果手感确认；另行授权push与部署。本次已授权的正式入口开放在本地完成。
+
+## 审计后的证据限定（阶段 F1）
+
+上表与原 JSON 是历史观测，原 medium-mixed 漏列进化所需的幸运签，不能用于正常成型结论。新增合法六槽、配方和成本证据见 [阶段 F1 复核](v5-audit-f1-balance.md)；历史表保留，不重写旧报告。

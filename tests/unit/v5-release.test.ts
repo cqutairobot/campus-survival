@@ -6,9 +6,14 @@ import {S2_RUNTIME_CONFIG} from '../../src/semesters/s2/config';
 import {S2_SCORE_TABLE} from '../../src/semesters/s2/daily';
 import {S2_RELEASE_VERSIONS} from '../../src/semesters/s2/release';
 import {SEMESTERS} from '../../src/semesters/registry';
-import {simulateReleaseBoss} from '../../scripts/s2-balance-simulation';
+import {simulateReleaseBoss,RELEASE_BUILDS,releaseBuildCost} from '../../scripts/s2-balance-simulation';
 const json=(path:string)=>JSON.parse(readFileSync(path,'utf8'));
 describe('v5 local release freeze',()=>{
+ it('release evidence fits six slots and owns every evolved weapon recipe',()=>{
+  expect(RELEASE_BUILDS.map(b=>releaseBuildCost(b).totalSkillPoints)).toEqual([33,32,28,33]);expect(RELEASE_BUILDS.map(b=>releaseBuildCost(b).evolutionChests)).toEqual([0,2,4,4]);
+  expect(()=>releaseBuildCost({...RELEASE_BUILDS[1],passives:RELEASE_BUILDS[1].passives.filter(([id])=>id!=='luck')})).toThrow('Missing evolution recipe');
+  for(const build of RELEASE_BUILDS){expect(build.weapons.length).toBeLessThanOrEqual(6);expect(build.passives.length).toBeLessThanOrEqual(6);for(const weapon of build.weapons)if(weapon.evolved)expect(build.passives.some(([id])=>id===S2_CONTENT.weaponById[weapon.id].evolution.passive),`${build.id}: ${weapon.id} recipe`).toBe(true);}
+ });
  it('checks actual WOFF2 cmaps at both weights against the complete S1+S2 Han/CJK inventory and keeps the original fonts',()=>{
   const result=JSON.parse(execFileSync('python3',['scripts/subset-semester-fonts.py','--check'],{encoding:'utf8'}));expect(result.missing).toEqual([]);expect(result.required).toBeGreaterThan(1000);expect(result.weights).toEqual([400,600]);const ledger=json('font-src/s2/ledger.json');expect(ledger.license).toBe('SIL OFL 1.1');expect(ledger.outputs).toHaveLength(2);expect(ledger.existingFaces).toHaveLength(4);
  });

@@ -1,0 +1,732 @@
+{
+  "version": "audit-f1-legal-v1",
+  "method": "Legal ordinary six-slot fixtures, seed86, coder with topic starter matching each build, ordinary rarity, zero crit/no ultimate; invincible follower isolates output. Cost bounds do not prove ordinary acquisition or win rate.",
+  "builds": [
+    {
+      "id": "p12-old-base",
+      "cost": {
+        "starter": "laser",
+        "weaponSlots": 4,
+        "passiveSlots": 6,
+        "acquisitionDrafts": 9,
+        "reinforcementPoints": 24,
+        "totalSkillPoints": 33,
+        "evolutionChests": 0,
+        "minimumAcquisitionXP": 216,
+        "allDraftXP": 8280,
+        "allDraftLevel": 34,
+        "scope": "Cost lower bounds: ordinary chest upgrades can replace reinforcement points, never acquisitions; an evolution consumes one chest choice, including all three Boss reinforcements. Full real card pool is not guaranteed to offer a prescribed build."
+      }
+    },
+    {
+      "id": "medium-mixed",
+      "cost": {
+        "starter": "laser",
+        "weaponSlots": 4,
+        "passiveSlots": 6,
+        "acquisitionDrafts": 9,
+        "reinforcementPoints": 23,
+        "totalSkillPoints": 32,
+        "evolutionChests": 2,
+        "minimumAcquisitionXP": 216,
+        "allDraftXP": 7564,
+        "allDraftLevel": 33,
+        "scope": "Cost lower bounds: ordinary chest upgrades can replace reinforcement points, never acquisitions; an evolution consumes one chest choice, including all three Boss reinforcements. Full real card pool is not guaranteed to offer a prescribed build."
+      }
+    },
+    {
+      "id": "p13-strong-evolved",
+      "cost": {
+        "starter": "laser",
+        "weaponSlots": 4,
+        "passiveSlots": 5,
+        "acquisitionDrafts": 8,
+        "reinforcementPoints": 20,
+        "totalSkillPoints": 28,
+        "evolutionChests": 4,
+        "minimumAcquisitionXP": 170,
+        "allDraftXP": 5064,
+        "allDraftLevel": 29,
+        "scope": "Cost lower bounds: ordinary chest upgrades can replace reinforcement points, never acquisitions; an evolution consumes one chest choice, including all three Boss reinforcements. Full real card pool is not guaranteed to offer a prescribed build."
+      }
+    },
+    {
+      "id": "strong-s2-evolved",
+      "cost": {
+        "starter": "s2:drone",
+        "weaponSlots": 4,
+        "passiveSlots": 6,
+        "acquisitionDrafts": 9,
+        "reinforcementPoints": 24,
+        "totalSkillPoints": 33,
+        "evolutionChests": 4,
+        "minimumAcquisitionXP": 216,
+        "allDraftXP": 8280,
+        "allDraftLevel": 34,
+        "scope": "Cost lower bounds: ordinary chest upgrades can replace reinforcement points, never acquisitions; an evolution consumes one chest choice, including all three Boss reinforcements. Full real card pool is not guaranteed to offer a prescribed build."
+      }
+    }
+  ],
+  "observations": [
+    {
+      "build": "p12-old-base",
+      "label": "P12旧四基础Lv5",
+      "boss": 3,
+      "seed": 86,
+      "hp": 110000,
+      "seconds": 164.23,
+      "killed": true,
+      "remainingHp": 0,
+      "stages": [
+        1,
+        2,
+        3
+      ],
+      "maxReduction": 0.3,
+      "armoredSeconds": 74.6,
+      "recoveryDamage": 66425,
+      "minRecoveryTicks": 98,
+      "monotonic": true,
+      "fixedHp": true,
+      "weapons": [
+        {
+          "id": "laser",
+          "evolved": false
+        },
+        {
+          "id": "knife",
+          "evolved": false
+        },
+        {
+          "id": "blueprint",
+          "evolved": false
+        },
+        {
+          "id": "lightning",
+          "evolved": false
+        }
+      ],
+      "passives": [
+        [
+          "haste",
+          3
+        ],
+        [
+          "multi",
+          1
+        ],
+        [
+          "area",
+          2
+        ],
+        [
+          "duration",
+          2
+        ],
+        [
+          "armor",
+          3
+        ],
+        [
+          "health",
+          3
+        ]
+      ],
+      "cost": {
+        "starter": "laser",
+        "weaponSlots": 4,
+        "passiveSlots": 6,
+        "acquisitionDrafts": 9,
+        "reinforcementPoints": 24,
+        "totalSkillPoints": 33,
+        "evolutionChests": 0,
+        "minimumAcquisitionXP": 216,
+        "allDraftXP": 8280,
+        "allDraftLevel": 34,
+        "scope": "Cost lower bounds: ordinary chest upgrades can replace reinforcement points, never acquisitions; an evolution consumes one chest choice, including all three Boss reinforcements. Full real card pool is not guaranteed to offer a prescribed build."
+      }
+    },
+    {
+      "build": "medium-mixed",
+      "label": "合法中等混合/两进化",
+      "boss": 3,
+      "seed": 86,
+      "hp": 110000,
+      "seconds": 171.4,
+      "killed": true,
+      "remainingHp": 0,
+      "stages": [
+        1,
+        2,
+        3
+      ],
+      "maxReduction": 0.3,
+      "armoredSeconds": 77.7,
+      "recoveryDamage": 67552,
+      "minRecoveryTicks": 103,
+      "monotonic": true,
+      "fixedHp": true,
+      "weapons": [
+        {
+          "id": "laser",
+          "evolved": true
+        },
+        {
+          "id": "s2:drone",
+          "evolved": false
+        },
+        {
+          "id": "s2:whiteboard",
+          "evolved": false
+        },
+        {
+          "id": "s2:spool",
+          "evolved": true
+        }
+      ],
+      "passives": [
+        [
+          "haste",
+          3
+        ],
+        [
+          "multi",
+          1
+        ],
+        [
+          "luck",
+          1
+        ],
+        [
+          "duration",
+          2
+        ],
+        [
+          "s2:protocol",
+          3
+        ],
+        [
+          "s2:harness",
+          3
+        ]
+      ],
+      "cost": {
+        "starter": "laser",
+        "weaponSlots": 4,
+        "passiveSlots": 6,
+        "acquisitionDrafts": 9,
+        "reinforcementPoints": 23,
+        "totalSkillPoints": 32,
+        "evolutionChests": 2,
+        "minimumAcquisitionXP": 216,
+        "allDraftXP": 7564,
+        "allDraftLevel": 33,
+        "scope": "Cost lower bounds: ordinary chest upgrades can replace reinforcement points, never acquisitions; an evolution consumes one chest choice, including all three Boss reinforcements. Full real card pool is not guaranteed to offer a prescribed build."
+      }
+    },
+    {
+      "build": "p13-strong-evolved",
+      "label": "合法强旧四进化（补幸运签）",
+      "boss": 3,
+      "seed": 86,
+      "hp": 110000,
+      "seconds": 70.28,
+      "killed": true,
+      "remainingHp": 0,
+      "stages": [
+        1,
+        2,
+        3
+      ],
+      "maxReduction": 0.3,
+      "armoredSeconds": 30.48,
+      "recoveryDamage": 66264,
+      "minRecoveryTicks": 29,
+      "monotonic": true,
+      "fixedHp": true,
+      "weapons": [
+        {
+          "id": "laser",
+          "evolved": true
+        },
+        {
+          "id": "knife",
+          "evolved": true
+        },
+        {
+          "id": "blueprint",
+          "evolved": true
+        },
+        {
+          "id": "lightning",
+          "evolved": true
+        }
+      ],
+      "passives": [
+        [
+          "haste",
+          3
+        ],
+        [
+          "multi",
+          1
+        ],
+        [
+          "area",
+          2
+        ],
+        [
+          "duration",
+          2
+        ],
+        [
+          "luck",
+          1
+        ]
+      ],
+      "cost": {
+        "starter": "laser",
+        "weaponSlots": 4,
+        "passiveSlots": 5,
+        "acquisitionDrafts": 8,
+        "reinforcementPoints": 20,
+        "totalSkillPoints": 28,
+        "evolutionChests": 4,
+        "minimumAcquisitionXP": 170,
+        "allDraftXP": 5064,
+        "allDraftLevel": 29,
+        "scope": "Cost lower bounds: ordinary chest upgrades can replace reinforcement points, never acquisitions; an evolution consumes one chest choice, including all three Boss reinforcements. Full real card pool is not guaranteed to offer a prescribed build."
+      }
+    },
+    {
+      "build": "strong-s2-evolved",
+      "label": "强S2四进化",
+      "boss": 3,
+      "seed": 86,
+      "hp": 110000,
+      "seconds": 88.37,
+      "killed": true,
+      "remainingHp": 0,
+      "stages": [
+        1,
+        2,
+        3
+      ],
+      "maxReduction": 0.3,
+      "armoredSeconds": 35.43,
+      "recoveryDamage": 67435,
+      "minRecoveryTicks": 45,
+      "monotonic": true,
+      "fixedHp": true,
+      "weapons": [
+        {
+          "id": "s2:drone",
+          "evolved": true
+        },
+        {
+          "id": "s2:whiteboard",
+          "evolved": true
+        },
+        {
+          "id": "s2:spool",
+          "evolved": true
+        },
+        {
+          "id": "s2:printer",
+          "evolved": true
+        }
+      ],
+      "passives": [
+        [
+          "haste",
+          3
+        ],
+        [
+          "multi",
+          1
+        ],
+        [
+          "area",
+          2
+        ],
+        [
+          "duration",
+          2
+        ],
+        [
+          "s2:protocol",
+          3
+        ],
+        [
+          "s2:harness",
+          3
+        ]
+      ],
+      "cost": {
+        "starter": "s2:drone",
+        "weaponSlots": 4,
+        "passiveSlots": 6,
+        "acquisitionDrafts": 9,
+        "reinforcementPoints": 24,
+        "totalSkillPoints": 33,
+        "evolutionChests": 4,
+        "minimumAcquisitionXP": 216,
+        "allDraftXP": 8280,
+        "allDraftLevel": 34,
+        "scope": "Cost lower bounds: ordinary chest upgrades can replace reinforcement points, never acquisitions; an evolution consumes one chest choice, including all three Boss reinforcements. Full real card pool is not guaranteed to offer a prescribed build."
+      }
+    },
+    {
+      "build": "p12-old-base",
+      "label": "P12旧四基础Lv5",
+      "boss": 2,
+      "seed": 86,
+      "hp": 46000,
+      "seconds": 59.72,
+      "killed": true,
+      "remainingHp": 0,
+      "stages": [
+        1,
+        2,
+        3
+      ],
+      "maxReduction": 0.25,
+      "armoredSeconds": 9.98,
+      "recoveryDamage": 21440,
+      "minRecoveryTicks": 56,
+      "monotonic": true,
+      "fixedHp": true,
+      "weapons": [
+        {
+          "id": "laser",
+          "evolved": false
+        },
+        {
+          "id": "knife",
+          "evolved": false
+        },
+        {
+          "id": "blueprint",
+          "evolved": false
+        },
+        {
+          "id": "lightning",
+          "evolved": false
+        }
+      ],
+      "passives": [
+        [
+          "haste",
+          3
+        ],
+        [
+          "multi",
+          1
+        ],
+        [
+          "area",
+          2
+        ],
+        [
+          "duration",
+          2
+        ],
+        [
+          "armor",
+          3
+        ],
+        [
+          "health",
+          3
+        ]
+      ],
+      "cost": {
+        "starter": "laser",
+        "weaponSlots": 4,
+        "passiveSlots": 6,
+        "acquisitionDrafts": 9,
+        "reinforcementPoints": 24,
+        "totalSkillPoints": 33,
+        "evolutionChests": 0,
+        "minimumAcquisitionXP": 216,
+        "allDraftXP": 8280,
+        "allDraftLevel": 34,
+        "scope": "Cost lower bounds: ordinary chest upgrades can replace reinforcement points, never acquisitions; an evolution consumes one chest choice, including all three Boss reinforcements. Full real card pool is not guaranteed to offer a prescribed build."
+      }
+    },
+    {
+      "build": "medium-mixed",
+      "label": "合法中等混合/两进化",
+      "boss": 1,
+      "seed": 86,
+      "hp": 16000,
+      "seconds": 19.12,
+      "killed": true,
+      "remainingHp": 0,
+      "stages": [
+        1,
+        2
+      ],
+      "maxReduction": 0,
+      "armoredSeconds": 0,
+      "recoveryDamage": 2685,
+      "minRecoveryTicks": 120,
+      "monotonic": true,
+      "fixedHp": true,
+      "weapons": [
+        {
+          "id": "laser",
+          "evolved": true
+        },
+        {
+          "id": "s2:drone",
+          "evolved": false
+        },
+        {
+          "id": "s2:whiteboard",
+          "evolved": false
+        },
+        {
+          "id": "s2:spool",
+          "evolved": true
+        }
+      ],
+      "passives": [
+        [
+          "haste",
+          3
+        ],
+        [
+          "multi",
+          1
+        ],
+        [
+          "luck",
+          1
+        ],
+        [
+          "duration",
+          2
+        ],
+        [
+          "s2:protocol",
+          3
+        ],
+        [
+          "s2:harness",
+          3
+        ]
+      ],
+      "cost": {
+        "starter": "laser",
+        "weaponSlots": 4,
+        "passiveSlots": 6,
+        "acquisitionDrafts": 9,
+        "reinforcementPoints": 23,
+        "totalSkillPoints": 32,
+        "evolutionChests": 2,
+        "minimumAcquisitionXP": 216,
+        "allDraftXP": 7564,
+        "allDraftLevel": 33,
+        "scope": "Cost lower bounds: ordinary chest upgrades can replace reinforcement points, never acquisitions; an evolution consumes one chest choice, including all three Boss reinforcements. Full real card pool is not guaranteed to offer a prescribed build."
+      }
+    },
+    {
+      "build": "medium-mixed",
+      "label": "合法中等混合/两进化",
+      "boss": 2,
+      "seed": 86,
+      "hp": 46000,
+      "seconds": 62.63,
+      "killed": true,
+      "remainingHp": 0,
+      "stages": [
+        1,
+        2,
+        3
+      ],
+      "maxReduction": 0.25,
+      "armoredSeconds": 6.65,
+      "recoveryDamage": 21129,
+      "minRecoveryTicks": 30,
+      "monotonic": true,
+      "fixedHp": true,
+      "weapons": [
+        {
+          "id": "laser",
+          "evolved": true
+        },
+        {
+          "id": "s2:drone",
+          "evolved": false
+        },
+        {
+          "id": "s2:whiteboard",
+          "evolved": false
+        },
+        {
+          "id": "s2:spool",
+          "evolved": true
+        }
+      ],
+      "passives": [
+        [
+          "haste",
+          3
+        ],
+        [
+          "multi",
+          1
+        ],
+        [
+          "luck",
+          1
+        ],
+        [
+          "duration",
+          2
+        ],
+        [
+          "s2:protocol",
+          3
+        ],
+        [
+          "s2:harness",
+          3
+        ]
+      ],
+      "cost": {
+        "starter": "laser",
+        "weaponSlots": 4,
+        "passiveSlots": 6,
+        "acquisitionDrafts": 9,
+        "reinforcementPoints": 23,
+        "totalSkillPoints": 32,
+        "evolutionChests": 2,
+        "minimumAcquisitionXP": 216,
+        "allDraftXP": 7564,
+        "allDraftLevel": 33,
+        "scope": "Cost lower bounds: ordinary chest upgrades can replace reinforcement points, never acquisitions; an evolution consumes one chest choice, including all three Boss reinforcements. Full real card pool is not guaranteed to offer a prescribed build."
+      }
+    }
+  ],
+  "natural": [
+    {
+      "semester": "s1",
+      "seed": 86,
+      "seconds": 180.00000000003539,
+      "survived": true,
+      "credits": 8,
+      "creditsPerCombatMinute": 2.67,
+      "level": 14,
+      "normalKills": 724,
+      "choices": 13,
+      "chests": 2,
+      "weapons": [
+        {
+          "id": "knife",
+          "kind": "base",
+          "instanceId": 1,
+          "level": 5,
+          "rarity": 0,
+          "evolved": true
+        },
+        {
+          "id": "bot",
+          "instanceId": 2,
+          "kind": "base",
+          "level": 5,
+          "rarity": 1,
+          "evolved": false
+        },
+        {
+          "id": "wifi",
+          "instanceId": 3,
+          "kind": "base",
+          "level": 3,
+          "rarity": 1,
+          "evolved": false
+        }
+      ],
+      "passives": [
+        {
+          "id": "haste",
+          "instanceId": 4,
+          "kind": "base",
+          "level": 2,
+          "rarity": 0,
+          "evolved": false
+        }
+      ],
+      "limits": "180-second movement/draft pilot on common central roads, zero talents, no manual ultimate or relic risk; S2 topic chooses knife, so no opening shield/XP bonus. This is neither graduation evidence nor a win-rate sample."
+    },
+    {
+      "semester": "s2",
+      "seed": 86,
+      "seconds": 180,
+      "survived": true,
+      "credits": 10,
+      "creditsPerCombatMinute": 3.33,
+      "level": 17,
+      "normalKills": 1047,
+      "choices": 16,
+      "chests": 2,
+      "weapons": [
+        {
+          "id": "knife",
+          "level": 5,
+          "rarity": 0,
+          "evolved": true,
+          "kind": "base",
+          "instanceId": 1
+        },
+        {
+          "id": "s2:printer",
+          "instanceId": 3,
+          "kind": "base",
+          "level": 2,
+          "rarity": 0,
+          "evolved": false
+        },
+        {
+          "id": "lightning",
+          "instanceId": 4,
+          "kind": "base",
+          "level": 1,
+          "rarity": 0,
+          "evolved": false
+        }
+      ],
+      "passives": [
+        {
+          "id": "haste",
+          "instanceId": 2,
+          "kind": "base",
+          "level": 5,
+          "rarity": 2,
+          "evolved": false
+        },
+        {
+          "id": "area",
+          "instanceId": 5,
+          "kind": "base",
+          "level": 5,
+          "rarity": 0,
+          "evolved": false
+        }
+      ],
+      "limits": "180-second movement/draft pilot on common central roads, zero talents, no manual ultimate or relic risk; S2 topic chooses knife, so no opening shield/XP bonus. This is neither graduation evidence nor a win-rate sample."
+    }
+  ],
+  "baseIncome": {
+    "s1": {
+      "graduation": 93,
+      "teachingSeconds": 880
+    },
+    "s2": {
+      "graduation": 96,
+      "teachingSeconds": 960
+    },
+    "excludes": "Kills, risk and bonus rewards; Boss time further lowers per-minute income."
+  }
+}
