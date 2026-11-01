@@ -515,7 +515,7 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
     }
   }
   private destroyApplication(){
-    if(!this.appInitialized)return;this.appInitialized=false;
+    if(!this.appInitialized&&!this.app.renderer)return;this.appInitialized=false;
     this.app.destroy(true,{children:true,texture:false,textureSource:false});this.textures?.destroy();this.geometry?.destroy();for(const texture of this.uiTextures)texture.destroy(true);this.uiTextures=[];
   }
   destroy(){

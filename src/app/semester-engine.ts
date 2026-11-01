@@ -8,3 +8,8 @@ export function createGameEngine(route:Awaited<ReturnType<typeof loadSemesterRun
  if('createS2Engine' in route)return {semesterId:'s2' as const,...route.createS2Engine(profile,seed,s2Hooks,mode),prepareScene:route.prepareS2Scene};
  return {semesterId:'s1' as const,...route.createS1Engine(profile,seed,hooks,mode)};
 }
+/** A failed opening owns its partial scene and simulation until both are freed. */
+export async function initializeGameScene<T extends {initialize:()=>Promise<void>;destroy:()=>void}>(scene:T,engine:{dispose:()=>void}){
+ try{await scene.initialize();return scene;}
+ catch(error){try{scene.destroy();}finally{engine.dispose();}throw error;}
+}

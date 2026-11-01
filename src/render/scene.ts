@@ -50,20 +50,20 @@ export class GameScene {
   private blackSprite=new Sprite();private hurtSprite=new Sprite();private uiTextures:Texture[]=[];private hitFlash=0;
   private cameraX=3072;private cameraY=3072;private cameraZoom=1;private baseScale=1;private settings:Settings;private quality:'high'|'medium'|'low'='high';private samples:number[]=[];private perfFrames:number[]=[];private perfTimer=0;private lastRender=0;private renderedPhase='';
   private haptics=new Haptics();private trails=new Map<number,{generation:number;history:TrailHistory}>();private bloomClimax=0;private longFrames=0;
-  private ownsAudio=false;private brokenOrbitEdge=-1;private orbitRebuildUntil=0;
+  private ownsAudio=false;private appInitialized=false;private brokenOrbitEdge=-1;private orbitRebuildUntil=0;
   private previewQueue:VisualEvent[]=[];private previewSprite:Sprite|undefined;private previewSerial=0;private previewPoint={x:0,y:0};private previewUntil=0;private previewKind=0;private previewTimers=new Set<ReturnType<typeof setTimeout>>();
   debugGeometry=false;debugNavigation=false;
   clearUIInput(){this.input?.clear();}
   constructor(private host:HTMLElement,readonly game:GameEngine,settings:Settings,private onStick:(stick:Joystick)=>void,readonly debug=false,audio?:GameAudio,private onLoad?:(p:LoadProgress)=>void){this.settings=settings;this.ownsAudio=!audio;this.audio=audio??new GameAudio(settings);this.feedback=new FeedbackDirector(settings);}
   async initialize(){
     await this.app.init({resizeTo:this.host,background:0xedecd9,antialias:true,resolution:Math.min(devicePixelRatio,qualityBudget(this.settings.quality).dpr),autoDensity:true,preference:'webgl',powerPreference:'high-performance',autoStart:false});
-    if(this.destroyed){this.app.destroy(true,{children:true});return;}
+    this.appInitialized=true;if(this.destroyed){this.destroyApplication();return;}
     this.assetsRelease=()=>{for(const release of this.artReleases)release();this.artReleases=[];};
     const acquire=async(promise:ReturnType<typeof resources.bundle>)=>{const lease=await promise;if(this.destroyed){lease.release();return;}this.artReleases.push(lease.release);for(const [id,texture] of lease.textures)this.artTextures.set(id,texture);};
     await acquire(resources.bundle('battle-core',this.loadAbort.signal,this.onLoad));
     await acquire(resources.bundle('battle-content',this.loadAbort.signal,this.onLoad));
     await acquire(resources.loadIds([characterArt[this.game.manifest.character].sprite,...['heal','magnet','bomb','freeze','shield','coffeeBoost','energy'].map(id=>itemArt[id]),uiArt['chest-closed']],this.loadAbort.signal,this.onLoad,'整理随身补给'));
-    await prepareFonts();if(this.destroyed){this.assetsRelease();this.app.destroy(true,{children:true});return;}
+    await prepareFonts();if(this.destroyed){this.assetsRelease();this.destroyApplication();return;}
     this.host.appendChild(this.app.canvas);this.geometry=new TextureLibrary(this.app);this.textures=new TextureCatalog(this.geometry,this.artTextures,this.game.manifest.character);this.particles=new ParticleFX(this.textures);this.numbers=new DamageNumbers(this.textures);
     this.world.addChild(this.ground,this.gates,this.groundFX,this.dropLayer,this.entityLayer,this.propLayer,this.effects,this.numbers.container,this.debugGraphics);
     this.effects.addChild(this.fxGraphic,this.deathFX.container,this.particles.container);this.dangerLayer.addChild(this.telegraphs);
@@ -402,12 +402,16 @@ export class GameScene {
       else if(resource?._resourceType==='textureSampler')group.setResource(Texture.WHITE.source.style,Number(binding));
     }
   }
+  private destroyApplication(){
+    if(!this.appInitialized&&!this.app.renderer)return;this.appInitialized=false;
+    this.app.destroy(true,{children:true,texture:false,textureSource:false});this.textures?.destroy();this.geometry?.destroy();for(const texture of this.uiTextures)texture.destroy(true);this.uiTextures=[];
+  }
   destroy(){
     if(this.destroyed)return;this.destroyed=true;cancelAnimationFrame(this.animation);this.resizeObserver?.disconnect();this.input?.destroy();this.clearPreview();this.loadAbort.abort();this.assetsRelease?.();this.feedback.clear();this.deathFX.clear();this.particles?.clear();this.loop.reset();
     // Release shader references before Pixi's render-texture pool and atlas sources.
     this.world.filters=[];this.effects.filters=[];if(this.player)this.player.filters=[];
     this.releaseFilterTextures();for(const filter of [this.bloom,this.glow,...this.postFX.filters])filter.destroy();
-    if(this.ready){this.app.destroy(true,{children:true,texture:false,textureSource:false});this.textures.destroy();this.geometry.destroy();for(const texture of this.uiTextures)texture.destroy(true);}
+    this.destroyApplication();
     this.artTextures.clear();this.uiTextures=[];this.trails.clear();this.transient=[];this.previewSprite=undefined;this.enemySprites=[];this.whiteSprites=[];this.shotSprites=[];this.hostileSprites=[];this.dropSprites=[];this.orbitSprites=[];this.botSprites=[];this.props=[];this.zoneLabels=[];if(!this.ownsAudio)this.audio.releaseSession();else this.audio.destroy();void resources.dispose();
   }
 }

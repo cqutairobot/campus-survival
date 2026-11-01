@@ -1,11 +1,11 @@
 import {describe,it,expect,vi} from 'vitest';
-import {createGameEngine} from '../../src/app/semester-engine';
+import {createGameEngine,initializeGameScene} from '../../src/app/semester-engine';
 import {GameEngine} from '../../src/core/engine';
 import {createS1Engine} from '../../src/semesters/s1/adapter';
 import {createS2Engine,createS2Snapshot,prepareS2Scene,type S2Engine} from '../../src/semesters/s2/adapter';
 import {loadSemesterRuntime,SEMESTERS} from '../../src/semesters/registry';
 import {SemesterEngine} from '../../src/semesters/runtime/SemesterEngine';
-import {freshProfile,settleS2Profile,validateProfile} from '../../src/save/v5/profile';
+import {freshProfile,settleS2Profile,validateProfile,toLegacyS1Save} from '../../src/save/v5/profile';
 import {createAppStore} from '../../src/state/store';
 import {ProfileRepository} from '../../src/save/v5/repository';
 import {SaveCoordinator,type SaveLocks} from '../../src/save/coordinator';
@@ -34,6 +34,10 @@ function complete(engine:S2Engine){
  }
 }
 describe('v5 formal semester two entry',()=>{
+ it('cleans failed initialization immediately instead of waiting for host unmount',async()=>{
+  const engine=new GameEngine(toLegacyS1Save(freshProfile()),86),dispose=vi.spyOn(engine,'dispose'),release=vi.fn(),scene={initialize:async()=>{throw Error('fixture initialization');},destroy:release};
+  await expect(initializeGameScene(scene,engine)).rejects.toThrow('fixture initialization');expect(release).toHaveBeenCalledOnce();expect(dispose).toHaveBeenCalledOnce();
+ });
  it('starts without randomUUID, keeps fallback IDs unique and receipts stable without consuming gameplay RNG',()=>{
   const ids:string[]=[],random=crypto.getRandomValues.bind(crypto);
   try{

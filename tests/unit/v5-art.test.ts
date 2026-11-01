@@ -1,4 +1,4 @@
-import {describe,it,expect} from 'vitest';
+import {describe,it,expect,vi} from 'vitest';
 import {readFileSync,existsSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {Texture,TextureSource} from 'pixi.js';
@@ -17,6 +17,28 @@ const json=(path:string)=>JSON.parse(readFileSync(path,'utf8'));
 const bindings=S2_ART_BINDINGS as Record<string,{icon:ResourceId;detail?:ResourceId}>;
 const frames=S2_ART_FRAMES as Record<string,{atlas:ResourceId;frame:readonly number[];white?:readonly number[];whiteAtlas?:ResourceId}>;
 describe('v5 first-chapter art contracts',()=>{
+ it('immediately cancels consumers, preserves shared owners, bounds hung loads and reclaims late generations',async()=>{
+  vi.useFakeTimers();
+  const gates:{source:string;signal?:AbortSignal;resolve:(texture:Texture)=>void}[]=[],unload=vi.fn(async()=>{});
+  const backend={init:async()=>{},load:(source:string,signal?:AbortSignal)=>new Promise<Texture>(resolve=>gates.push({source,signal,resolve})),unload};
+  try{
+   const loader=new ResourceLoader(backend,10),abort=new AbortController();
+   const first=loader.loadIds(['s2:item-atlas'],abort.signal),second=loader.loadIds(['s2:item-atlas']);await vi.advanceTimersByTimeAsync(0);
+   expect(gates).toHaveLength(1);expect(loader.debug.references).toBe(2);let cancelled=false;void first.then(()=>{cancelled=true;});
+   abort.abort();await vi.advanceTimersByTimeAsync(0);expect(cancelled).toBe(true);expect(loader.debug.references).toBe(1);expect(gates[0].signal?.aborted).toBe(false);
+   gates[0].resolve(Texture.EMPTY);const held=await second;expect(held.textures.size).toBe(1);await loader.dispose();expect(unload).not.toHaveBeenCalled();held.release();held.release();await loader.dispose();expect(loader.debug).toEqual({entries:0,references:0,textures:0,loading:0,waiting:0});
+
+   gates.length=0;unload.mockClear();const gone=new AbortController(),pending=loader.loadIds(['s2:item-atlas'],gone.signal);await vi.advanceTimersByTimeAsync(0);gone.abort();await pending;await loader.dispose();expect(loader.debug).toEqual({entries:0,references:0,textures:0,loading:0,waiting:0});expect(gates[0].signal?.aborted).toBe(true);
+   const replacement=loader.loadIds(['s2:item-atlas']);await vi.advanceTimersByTimeAsync(0);gates[0].resolve(Texture.EMPTY);await vi.advanceTimersByTimeAsync(0);expect(unload).not.toHaveBeenCalled();gates[1].resolve(Texture.EMPTY);const lease=await replacement;expect(lease.textures.size).toBe(1);lease.release();await loader.dispose();expect(unload).toHaveBeenCalledTimes(1);
+
+   gates.length=0;unload.mockClear();const timeout=loader.loadIds(['s2:item-atlas']);await vi.advanceTimersByTimeAsync(20);expect(gates).toHaveLength(3);expect(gates[2].source).toMatch(/\.png$/);gates[2].resolve(Texture.EMPTY);const fallback=await timeout;expect(fallback.textures.size).toBe(1);gates[0].resolve(Texture.EMPTY);gates[1].resolve(Texture.EMPTY);await vi.advanceTimersByTimeAsync(0);expect(unload).toHaveBeenCalledWith(gates[0].source);expect(unload).not.toHaveBeenCalledWith(gates[2].source);fallback.release();await loader.dispose();
+   const exhausted=loader.loadIds(['s2:item-atlas']);await vi.advanceTimersByTimeAsync(40);const empty=await exhausted;expect(empty.textures.size).toBe(0);empty.release();expect(loader.failures.has('s2:item-atlas')).toBe(true);await loader.dispose();expect(loader.debug.loading).toBe(0);
+
+   gates.length=0;const controllers=Array.from({length:7},()=>new AbortController()),queued=(Object.keys(artManifest).slice(0,7) as ResourceId[]).map((id,n)=>loader.loadIds([id],controllers[n].signal));await vi.advanceTimersByTimeAsync(0);expect(loader.debug).toMatchObject({loading:6,waiting:1,references:7});controllers.forEach(c=>c.abort());await Promise.all(queued);await loader.dispose();expect(loader.debug).toEqual({entries:0,references:0,textures:0,loading:0,waiting:0});gates.forEach(g=>g.resolve(Texture.EMPTY));await vi.advanceTimersByTimeAsync(0);
+
+   const initGate=new ResourceLoader({...backend,init:()=>new Promise(()=>{})},10),initAbort=new AbortController(),initializing=initGate.loadIds(['s2:item-atlas'],initAbort.signal);let stopped=false;void initializing.then(()=>{stopped=true;});initAbort.abort();await vi.advanceTimersByTimeAsync(0);expect(stopped).toBe(true);await vi.advanceTimersByTimeAsync(10);await initGate.dispose();
+  }finally{vi.useRealTimers();}
+ });
  it('covers every first-chapter actor/item/evolution/building/landmark with real files and in-bounds atlas frames, while preserving the oldS1 asset catalog and paths',()=>{
   expect(Object.keys(artManifest).some(id=>id.startsWith('s2:'))).toBe(false);expect(artUrl('homework')).toContain('assets/art/v4/enemies/homework.webp');
   for(const id of [...FIRST_CHAPTER_ENEMIES.map(e=>e.id),PROPOSAL_BOARD.id,'s2:drone','s2:whiteboard','s2:drone:evolved','s2:whiteboard:evolved','s2:infirmary','s2:jointTable','s2:glassLink','s2:networkHub'])expect(bindings[id],id).toBeDefined();
