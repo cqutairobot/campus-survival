@@ -20,8 +20,15 @@ import {CampusMap} from '../../src/ui/screens/CampusMap';
 import {Codex} from '../../src/ui/screens/Codex';
 import type {S2GameSession} from '../../src/app/GameHost';
 import {sessionPanelContext} from '../../src/ui/session-context';
+import type {ContentState} from '../../src/semesters/s2/legacy/ContentState';
 
 const profile=()=>validateProfile(historicalSaves().v3)!;
+it('small HUD includes inherited shields and explains full-energy cooldown/active duration',()=>{
+ const h=hooks(),run=createS2Engine(h.saved,86,h),s=(run.engine.runtime as unknown as {state:ContentState}).state;
+ expect(run.engine.readHUD().inheritance.shield).toBe(15);expect(run.engine.readHUD().content.player.shield).toBe(0);
+ s.ultimate.energy=240;s.ultimate.cooldown=5;const token=run.engine.pause()!;expect(run.engine.readHUD().content.ultimateStatus).toBe('冷却 5 秒');expect(run.engine.readHUD().content.ultimate.ready).toBe(false);
+ s.ultimate.remaining=2;run.engine.resume(token);expect(run.engine.readHUD().content.ultimateStatus).toBe('持续 2 秒 · 冷却 5 秒');run.engine.dispose();
+});
 it('shared panels read the active S2 session rather than stale S1 HUD or menu selection',()=>{
  const h=hooks(),run=createS2Engine(h.saved,86,h),session={...run,semesterId:'s2',scene:{}} as S2GameSession;
  expect(renderToStaticMarkup(createElement(CampusMap,{session} as never))).toContain('智慧教学楼外场');

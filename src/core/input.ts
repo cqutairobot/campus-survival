@@ -1,3 +1,4 @@
+import {nativeKeyTarget} from '../ui/input/modal-focus';
 import type { GameEngine } from './engine';
 const MOVEMENT=new Set(['KeyW','KeyA','KeyS','KeyD','ArrowUp','ArrowDown','ArrowLeft','ArrowRight']);
 export interface Joystick {active:boolean;x:number;y:number;dx:number;dy:number}
@@ -11,6 +12,7 @@ export class InputController {
   }
   private keyDown=(e:KeyboardEvent)=>{
     if(e.target instanceof HTMLInputElement||e.target instanceof HTMLSelectElement||e.target instanceof HTMLTextAreaElement)return;
+    if(nativeKeyTarget(e.target)&&['Space','Enter','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.code))return;
     if(MOVEMENT.has(e.code)){e.preventDefault();if(this.game.phase==='playing'){this.keys.add(e.code);this.update();}}
     if(!e.repeat&&(e.code==='Space'||e.code==='KeyQ')){e.preventDefault();this.game.send({type:'ultimate'});}
     if(!e.repeat&&e.code==='KeyE'){e.preventDefault();this.game.send({type:'interact',held:true});}
@@ -18,7 +20,8 @@ export class InputController {
     if(!e.repeat&&['reward','contract'].includes(this.game.phase)&&['Digit1','Digit2','Digit3'].includes(e.code))this.game.send({type:'chooseReward',token:this.game.rewards.token,index:Number(e.code.slice(-1))-1});
     if(!e.repeat&&this.game.phase==='draft'&&['Digit1','Digit2','Digit3'].includes(e.code))this.game.send({type:'choose',index:Number(e.code.slice(-1))-1,token:this.game.draftToken});
   };
-  private keyUp=(e:KeyboardEvent)=>{if(e.code==='KeyE')this.game.send({type:'interact',held:false});if(MOVEMENT.has(e.code)){this.keys.delete(e.code);this.update();}};
+  private keyUp=(e:KeyboardEvent)=>{if(e.code==='KeyE')this.game.send({type:'interact',held:false});if(nativeKeyTarget(e.target)&&['Space','Enter','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.code))return;
+    if(MOVEMENT.has(e.code)){this.keys.delete(e.code);this.update();}};
   private update(){
     const x=Number(this.keys.has('KeyD')||this.keys.has('ArrowRight'))-Number(this.keys.has('KeyA')||this.keys.has('ArrowLeft'))+this.stickX;
     const y=Number(this.keys.has('KeyS')||this.keys.has('ArrowDown'))-Number(this.keys.has('KeyW')||this.keys.has('ArrowUp'))+this.stickY;

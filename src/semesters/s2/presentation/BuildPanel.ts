@@ -1,3 +1,4 @@
+import {ModalFocus} from '../../../ui/input/modal-focus';
 import type {Immutable,SemesterRunView} from '../../runtime/contracts';
 import type {ContentCatalog} from '../legacy/catalog';
 import type {LegacyContentDTO} from '../legacy/rules-adapter';
@@ -13,12 +14,13 @@ import './build-panel.css';
 export class BuildPanel {
  private root=document.createElement('div');private modal=document.createElement('div');private codex=false;private pauseToken:number|null=null;private key='';
  private interact=document.createElement('button');
+ private focus=new ModalFocus(this.modal,()=>{if(this.codex)this.close();},10);
  private icons=document.createElement('div');private iconsKey='';
  private icon(id:string){const binding=(S2_ART_BINDINGS as Record<string,{icon:ResourceId}>)[id];if(!binding||resources.isMissing(binding.icon))return null;const img=document.createElement('img');img.src=artUrl(binding.icon);img.alt=this.content.weaponById[id.replace(':evolved','')]?.name??'';img.width=56;img.height=56;img.dataset.contentArt=id;img.onerror=()=>{if(img.dataset.png){img.remove();return;}img.dataset.png='true';img.src=artUrl(binding.icon,'png');};return img;}
  private keyDown=(event:KeyboardEvent)=>{
-  if(this.modal.hidden||!['KeyW','KeyA','KeyS','KeyD','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space','KeyQ','KeyE','KeyP','Escape','Digit1','Digit2','Digit3'].includes(event.code))return;
-  event.preventDefault();event.stopImmediatePropagation();
-  if(this.codex){if(event.code==='Escape'&&!event.repeat)this.close();return;}
+  if(this.modal.hidden||!this.focus.top||!['KeyW','KeyA','KeyS','KeyD','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space','KeyQ','KeyE','KeyP','Escape','Digit1','Digit2','Digit3'].includes(event.code))return;
+  event.stopPropagation();
+  if(this.codex)return;
   if(!event.repeat&&event.code.startsWith('Digit')){const g=this.controls.read().content,index=Number(event.code.slice(-1))-1;if(g.phase==='draft')this.controls.dispatch({type:'choose',index,token:g.draftToken});else if(g.phase==='reward'||g.phase==='contract')this.controls.dispatch({type:'chooseReward',index,token:g.rewardToken});}
  };
  constructor(host:HTMLElement,private content:ContentCatalog,private controls:SemesterControls,private clearInput:()=>void){
@@ -34,7 +36,7 @@ export class BuildPanel {
   const g=view.content,interaction=g.tables.interaction??g.interactions.interaction;this.interact.hidden=!interaction||!!view.pause||view.phase!=='teaching';this.interact.textContent=interaction?`${interaction.name}${'progress'in interaction&&interaction.progress>0?` · ${Math.ceil(interaction.progress*100)}%`:''}`:'';this.interact.disabled=!!interaction?.locked;this.interact.title=interaction?.locked??'';
   const iconsKey=g.weapons.map(w=>`${w.id}:${w.level}:${w.evolved}`).join('|');if(iconsKey!==this.iconsKey){this.iconsKey=iconsKey;this.icons.replaceChildren();for(const w of g.weapons){const box=document.createElement('span'),img=this.icon(w.id+(w.evolved?':evolved':''));box.title=this.content.weaponById[w.id].name;if(img)box.append(img);else box.append(this.text('b',this.content.weaponById[w.id].name));box.append(this.text('small',w.evolved?'进化':`Lv.${w.level}`));this.icons.append(box);}}
   const key=this.codex?'codex':`${g.phase}:${g.draftToken}:${g.rewardToken}:${g.revision.selecting}:${g.revision.token}`;if(key===this.key)return;this.key=key;
-  this.modal.replaceChildren();this.modal.hidden=!this.codex&&!['draft','reward','contract','chest','evolution'].includes(g.phase);if(this.modal.hidden)return;this.clearInput();
+  this.modal.replaceChildren();this.modal.hidden=!this.codex&&!['draft','reward','contract','chest','evolution'].includes(g.phase);if(this.modal.hidden){this.focus.close();return;}this.clearInput();
   this.modal.setAttribute('role','dialog');this.modal.setAttribute('aria-label',this.codex?'第二学期构筑图鉴':'选择构筑');
   const body=document.createElement('section');this.modal.append(body);
   if(this.codex){
@@ -77,6 +79,7 @@ export class BuildPanel {
   }else{
    body.append(this.text('h2',g.phase==='evolution'?'构筑进化':'获得强化'),this.text('p',g.chest?.names.join(' · ')??''),this.button('继续',()=>this.controls.dispatch({type:g.phase==='evolution'?'evolutionDone':'chestDone',token:g.rewardToken})));
   }
+  this.focus.open();this.focus.refresh();
  }
- destroy(){window.removeEventListener('keydown',this.keyDown,true);this.root.remove();}
+ destroy(){this.focus.close();window.removeEventListener('keydown',this.keyDown,true);this.root.remove();}
 }

@@ -22,5 +22,5 @@ const builtHost={name:'s2-built-test-host',configureServer(server){
  });
  server.middlewares.use('/__s2-built__',(req,res,next)=>{const url=new URL(req.url??'/', 'http://localhost'),file=resolve(built,'.'+decodeURIComponent(url.pathname));if(!file.startsWith(built+sep))return next();let stat;try{stat=statSync(file);if(!stat.isFile())return next();}catch{return next();}res.setHeader('Content-Type',types[extname(file)]??'application/octet-stream');res.setHeader('Content-Length',stat.size);createReadStream(file).pipe(res);});
 }};
-const server=await createServer({configFile:false,plugins:[builtHost],root,publicDir:join(repo,'public'),cacheDir:join(tmpdir(),'campus-s2-preview-vite'),server:{host:'127.0.0.1',port:5174,strictPort:true,fs:{allow:[repo]}}});
+const server=await createServer({configFile:false,optimizeDeps:{include:['react','react-dom','react-dom/client']},plugins:[builtHost],root,publicDir:join(repo,'public'),cacheDir:join(tmpdir(),'campus-s2-preview-vite'),server:{host:'127.0.0.1',port:5174,strictPort:true,fs:{allow:[repo]}}});
 await server.listen();

@@ -2,7 +2,7 @@
 
 /* The measured 667x375 overlap only needs a compact low-height build. */
 .s2-live-hud{padding:var(--edge-top,12px) var(--edge-right,12px) var(--edge-bottom,12px) var(--edge-left,12px)}
-.s2-hud-bottom{left:var(--edge-left,12px);bottom:calc(var(--edge-bottom,12px) + 76px)}
+.s2-hud-bottom{left:var(--edge-left,12px);bottom:calc(var(--edge-bottom,12px) + 116px)}
 .s2-loadout-detail{display:grid;gap:5px}.s2-build-toggle{display:none}
 .s2-hud-actions{position:absolute;right:var(--edge-right,12px);bottom:var(--edge-bottom,12px);pointer-events:auto;max-width:160px}.s2-ultimate{min-height:64px;min-width:84px;touch-action:none}
 .s2-build-codex{right:var(--edge-right,12px);top:var(--edge-top,12px)}
@@ -11,6 +11,8 @@
 @media(max-width:650px){.s2-hud-top nav{right:var(--edge-right,12px);top:calc(var(--edge-top,12px) + 54px)}.s2-hud-bottom{max-width:calc(100% - var(--edge-left,12px) - var(--edge-right,12px))}}
 @media(max-height:500px){
  .s2-hud-top section{font-size:12px;padding:8px;width:min(300px,46vw)}.s2-hud-top p{font-size:12px;margin:3px 0}.s2-hud-top nav{margin-right:100px}
- .s2-build-toggle{display:block}.s2-loadout-detail{display:none;max-height:max(64px,min(200px,calc(100dvh - 300px)));overflow:auto;overscroll-behavior:contain;background:#f8f8edfa;padding:6px;border-radius:12px;pointer-events:auto}.s2-loadout-detail.is-expanded{display:grid}.s2-hud-bottom{max-width:min(420px,60%)}
+ .s2-build-toggle{display:block}.s2-loadout-detail{display:none;max-height:max(64px,min(200px,calc(100dvh - 320px)));overflow:auto;overscroll-behavior:contain;background:#f8f8edfa;padding:6px;border-radius:12px;pointer-events:auto}.s2-loadout-detail.is-expanded{display:grid}.s2-hud-bottom{bottom:var(--edge-bottom,12px);max-width:min(420px,60%)}
  .s2-hud-information{max-width:45%;font-size:12px}.s2-hud-information p,.s2-hud-boss{padding:5px;margin:4px 0}.s2-build-modal section,.s2-settlement>section{max-height:calc(100dvh - var(--edge-top,12px) - var(--edge-bottom,12px));padding:12px}
 }
+
+.s2-hud-top small{font-size:12px;line-height:1.5}.s2-inherited-shield{display:block}.s2-live-hud .s2-ultimate{font-size:14px;line-height:1.4;min-height:64px}.s2-ultimate small{font-size:12px}.s2-live-hud button:focus-visible,.s2-build-panel :focus-visible,.s2-pause :focus-visible,.s2-settlement :focus-visible{outline:3px solid #32756c;outline-offset:3px}

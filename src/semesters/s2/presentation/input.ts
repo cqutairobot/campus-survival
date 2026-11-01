@@ -1,3 +1,4 @@
+import {nativeKeyTarget} from '../../../ui/input/modal-focus';
 import type {Immutable,SemesterRunView} from '../../runtime/contracts';
 import type {LegacyContentDTO} from '../legacy/rules-adapter';
 import type {PauseReason} from '../../runtime/contracts';
@@ -25,6 +26,7 @@ export class InputController {
  }
  private keyDown=(e:KeyboardEvent)=>{
   if(e.target instanceof HTMLInputElement||e.target instanceof HTMLSelectElement||e.target instanceof HTMLTextAreaElement)return;
+  if(nativeKeyTarget(e.target)&&['Space','Enter','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.code))return;
   const view=this.controls.read(),phase=presentationPhase(view);
   if(MOVEMENT.has(e.code)){e.preventDefault();if(phase==='playing'){this.keys.add(e.code);this.update();}}
   if(!e.repeat&&e.code==='KeyE'&&phase==='playing'){e.preventDefault();this.clear();this.controls.dispatch({type:'interact'});}
