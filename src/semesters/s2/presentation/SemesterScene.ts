@@ -68,6 +68,9 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
   private haptics=new Haptics();private trails=new Map<number,{generation:number;history:TrailHistory}>();private bloomClimax=0;
   private ownsAudio=false;private appInitialized=false;private brokenOrbitEdge=-1;private orbitRebuildUntil=0;
   clearUIInput(){this.input?.clear();}
+  private hudInset=0;
+  setHUDInset(pixels:number){this.hudInset=pixels;this.chapterLabel.y=18+pixels;}
+  get resourceState(){return{loader:resources.debug,geometry:this.geometry?.textures.size??0,art:this.artTextures.size,sessionVoices:this.audio.debug.sessionVoices,audio:this.semesterAudio.debug,canvas:this.appInitialized&&this.app.canvas.isConnected};}
   private latest:Immutable<SemesterRunView<LegacyContentDTO>>|null=null;
   private controls:SemesterControls|null=null;private eventCursor=0;
   private buildPanel:BuildPanel|null=null;
@@ -93,7 +96,7 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
     this.host.appendChild(this.app.canvas);this.geometry=new TextureLibrary(this.app,this.content,this.game.world);this.textures=new TextureCatalog(this.geometry,this.artTextures,this.game.manifest.character,this.content);this.particles=new ParticleFX(this.textures);this.numbers=new DamageNumbers(this.textures);
     this.world.addChild(this.ground,this.gates,this.groundFX,this.dropLayer,this.entityLayer,this.propLayer,this.effects,this.numbers.container,this.debugGraphics);
     this.effects.addChild(this.fxGraphic,this.deathFX.container,this.particles.container);this.dangerLayer.addChild(this.telegraphs,this.warningMask,this.dangerGuides);this.telegraphs.mask=this.warningMask;
-    this.chapterLabel.position.set(18,18);this.app.stage.addChild(this.letterbox,this.world,this.blackSprite,this.dangerLayer,this.hurtSprite,this.viewportMask,this.chapterLabel);
+    this.chapterLabel.position.set(18,18+this.hudInset);this.app.stage.addChild(this.letterbox,this.world,this.blackSprite,this.dangerLayer,this.hurtSprite,this.viewportMask,this.chapterLabel);
     this.createMap();this.playerShadow.ellipse(0,0,17,6).fill({color:0x172d31,alpha:.25});this.entityLayer.addChild(this.playerShadow);this.player=new Sprite(this.textures.get('player'));this.player.anchor.set(.5);this.player.scale.set(fitArtScale(this.player.texture,64));this.entityLayer.addChild(this.player);this.preloadBossArt();
     await Promise.all([...this.pendingArt.values()]);if(this.destroyed)return;
     this.input=new InputController(this.app.canvas,this.controls!,this.onStick);this.resizeObserver=new ResizeObserver(()=>this.resize());this.resizeObserver.observe(this.host);

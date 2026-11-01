@@ -16,7 +16,7 @@ import {SAVE_KEY} from '../../src/save/storage';
 import type {InheritanceChoice} from '../../src/semesters/types';
 
 describe('v5 semester routing and inheritance',()=>{
- it('S1 adapter preserves manifest, starting weapon, stats and all eight random streams; S2 runtime stays closed',async()=>{
+ it('S1 adapter preserves manifest, starting weapon, stats and all eight random streams; S2 runtime opens lazily',async()=>{
   const p=validateProfile(historicalSaves().v3)!,before=structuredClone(p);p.inheritance.choice={id:'topic',weaponId:'orbit'};
   for(const mode of ['normal','daily'] as const){
    const snapshot=createS1Snapshot(p,99,mode,'2026-10-31'),old=createManifest(toLegacyS1Save(p),99,mode,'2026-10-31');
@@ -28,7 +28,7 @@ describe('v5 semester routing and inheritance',()=>{
   expect(adapted.engine.exportSession()).toEqual(original.exportSession());expect(adapted.engine.player).toEqual(original.player);original.dispose();adapted.engine.dispose();
   expect(p.stats).toEqual(before.stats);expect(p.credits).toBe(before.credits);
   expect(SEMESTERS.s1.calendar).toMatchObject({weeks:22,weekSeconds:WEEK_SECONDS,bossWeeks:BOSS_WEEKS,dailyLimitSeconds:1200});expect(SEMESTERS.s2.calendar).toMatchObject({weeks:24,weekSeconds:40,bossWeeks:[8,16,24],dailyLimitSeconds:1500});
-  const route=await loadSemesterRuntime('s1',p);expect(route.createS1Engine).toBe(createS1Engine);await expect(loadSemesterRuntime('s2',p)).rejects.toThrow('暂未开放');await expect(loadSemesterRuntime('s2',freshProfile())).rejects.toThrow('普通模式');
+  const route=await loadSemesterRuntime('s1',p);expect('createS1Engine'in route&&route.createS1Engine).toBe(createS1Engine);const s2=await loadSemesterRuntime('s2',p);expect('createS2Engine'in s2).toBe(true);await expect(loadSemesterRuntime('s2',freshProfile())).rejects.toThrow('普通模式');
  });
  it('three mutually exclusive immutable inheritances use legal base weapons; fixed daily ignores personal power and choice',()=>{
   const p=validateProfile(historicalSaves().v2)!,before=structuredClone(p),choices:InheritanceChoice[]=[{id:'supply'},{id:'notes'},{id:'topic',weaponId:'orbit'},{id:'topic',weaponId:'s2:drone'}];

@@ -1,6 +1,6 @@
 import {useEffect,useRef,useState} from 'react';
 import {DEFAULT_UI_PARAMETERS,UI_SCREENS,type UiParameters} from './fixtures';
-import {download} from '../ui/screens/Panels';
+import {download} from '../ui/download';
 export function MotionLab(){
  const [params,setParams]=useState<UiParameters>(DEFAULT_UI_PARAMETERS),frame=useRef<HTMLIFrameElement>(null),[ready,setReady]=useState(false),patch=(p:Partial<UiParameters>)=>setParams(v=>({...v,...p}));
  useEffect(()=>{if(ready)frame.current?.contentWindow?.postMessage({type:'campus-ui-fixture',params},location.origin);},[params,ready]);

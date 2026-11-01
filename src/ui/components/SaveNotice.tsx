@@ -1,5 +1,5 @@
 import {useApp} from '../../state/store';
-import {download} from '../screens/Panels';
+import {download} from '../download';
 import {IS_FIXTURE} from '../../debug/isolation';
 export function SaveNotice({open,embedded=false}:{open:()=>void;embedded?:boolean}){
  const state=useApp(s=>s.persistence),status=useApp(s=>s.saveStatus),refresh=useApp(s=>s.refreshSave),inGame=useApp(s=>!['menu','result'].includes(s.hud.phase));

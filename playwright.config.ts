@@ -3,6 +3,6 @@ export default defineConfig({
  testDir:'./tests/e2e',testMatch:'smoke.spec.ts',timeout:240000,expect:{timeout:15000},fullyParallel:false,workers:1,
  reporter:[['list'],['html',{open:'never'}]],
  use:{baseURL:'http://127.0.0.1:5173',trace:'retain-on-failure',screenshot:'only-on-failure'},
- webServer:[{command:'npm run build && npm run preview -- --port 5173',url:'http://127.0.0.1:5173',reuseExistingServer:true,timeout:30000},{command:'node tests/helpers/s2-preview-server.mjs',url:'http://127.0.0.1:5174',reuseExistingServer:false,timeout:30000}],
+ webServer:[{command:process.env.CAMPUS_E2E_BUILT==='1'?'node tests/helpers/production-preview-server.mjs':'npm run build && node tests/helpers/production-preview-server.mjs',url:'http://127.0.0.1:5173',reuseExistingServer:false,timeout:30000},{command:'node tests/helpers/s2-preview-server.mjs',url:'http://127.0.0.1:5174',reuseExistingServer:false,timeout:30000}],
  projects:[{name:'chromium',use:{...devices['Desktop Chrome'],viewport:{width:1280,height:800},launchOptions:{args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader']}}}],
 });

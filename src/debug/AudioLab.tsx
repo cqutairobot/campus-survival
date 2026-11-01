@@ -2,7 +2,7 @@ import {useEffect,useRef,useState} from 'react';
 import {getAudio} from '../audio/audio';
 import {MATERIALS,MUSIC_THEMES} from '../audio/catalog';
 import {useApp} from '../state/store';
-import {download} from '../ui/screens/Panels';
+import {download} from '../ui/download';
 export function AudioLab(){
  const settings=useApp(s=>s.save.settings),patch=useApp(s=>s.settings),audio=getAudio(),[material,setMaterial]=useState('paper'),[kind,setKind]=useState('hit'),[rank,setRank]=useState('normal'),[failure,setFailure]=useState('none'),[stats,setStats]=useState(audio.debug),[theme,setTheme]=useState('menu'),[density,setDensity]=useState(1),curve=useRef<HTMLCanvasElement>(null),history=useRef<number[]>([]),timers=useRef(new Set<ReturnType<typeof setTimeout>>());
  useEffect(()=>{audio.prepareCombat();const id=setInterval(()=>{setStats(audio.debug);history.current.push(audio.debug.duck);if(history.current.length>160)history.current.shift();const el=curve.current,ctx=el?.getContext('2d');if(!ctx||!el)return;ctx.clearRect(0,0,el.width,el.height);ctx.strokeStyle='#66d9bf';ctx.beginPath();history.current.forEach((gain,n)=>{const x=n/159*el.width,y=8+(1-gain)*(el.height-16);if(!n)ctx.moveTo(x,y);else ctx.lineTo(x,y);});ctx.stroke();},50);return()=>{clearInterval(id);for(const timer of timers.current)clearTimeout(timer);audio.releaseSession();audio.previewMusic(null);audio.simulateFailure(false);};},[audio]);

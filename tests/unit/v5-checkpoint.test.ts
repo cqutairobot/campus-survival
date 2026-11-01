@@ -87,7 +87,7 @@ describe('v5 first checkpoint boss',()=>{
   s.assessment(passed,boundary);s.assessment(passed,boundary);s.resolveDeaths();expect(heal.mock.calls.filter(([,fixed])=>fixed)).toEqual([[max*.15,true]]);expect(chest).toHaveBeenCalledTimes(1);expect(s.bosses).toBe(1);expect(s.metrics.bossFights).toHaveLength(1);expect(s.progress.bossIds).toEqual(['s2:proposalBoard']);
   expect(engine.acknowledge(reward.gate!.token)).toBe(false);expect(engine.dispatch({type:'chestDone',token:token+1})).toBe(false);expect(engine.dispatch({type:'chestDone',token})).toBe(true);expect(engine.dispatch({type:'chestDone',token})).toBe(false);
   expect(s.assessmentRewardDone).toBe(true);expect(engine.acknowledge(reward.gate!.token)).toBe(true);expect(engine.acknowledge(reward.gate!.token)).toBe(false);engine.advance(1/60);
-  expect(engine.read()).toMatchObject({phase:'teaching',clock:{week:9,completedWeeks:8},assessmentsPassed:1,result:null});expect(s.player.hp).toBeCloseTo(50+max*.15);expect(SEMESTERS.s2.runtimeAvailable).toBe(false);expect(semesterAccess(profile,'s2').playable).toBe(false);
+  expect(engine.read()).toMatchObject({phase:'teaching',clock:{week:9,completedWeeks:8},assessmentsPassed:1,result:null});expect(s.player.hp).toBeCloseTo(50+max*.15);expect(SEMESTERS.s2.runtimeAvailable).toBe(true);expect(semesterAccess(profile,'s2').playable).toBe(true);
   engine.abandon();expect(engine.read().result).toMatchObject({reason:'abandoned',victory:false,completedWeeks:8,assessmentsPassed:1});expect(profile).toEqual(original);engine.dispose();
  });
 

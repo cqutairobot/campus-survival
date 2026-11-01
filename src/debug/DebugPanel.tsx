@@ -12,7 +12,7 @@ import {fusionCandidates} from '../weapons/fusions';
 import {replayVersionMessage} from '../core/replay';
 import {useApp} from '../state/store';
 import {Icon} from '../ui/components/Icon';
-import {download} from '../ui/screens/Panels';
+import {download} from '../ui/download';
 export function DebugPanel({session}:{session:GameSession|null}){
  const [open,setOpen]=useState(false),[week,setWeek]=useState(4),[skill,setSkill]=useState('ruler'),[seed,setSeed]=useState('20261030'),[geometry,setGeometry]=useState(false),[nav,setNav]=useState(false),[enemy,setEnemy]=useState('guard'),[rank,setRank]=useState<EnemyRank>('normal'),[affixes,setAffixes]=useState<string[]>([]),[fusion,setFusion]=useState('sword'),[pickup,setPickup]=useState<PickupId>('freeze'),[event,setEvent]=useState<EventId>('examRage'),[landmark,setLandmark]=useState('lab'),[date,setDate]=useState(beijingDate()),[replayMessage,setReplayMessage]=useState(''),hud=useApp(s=>s.hud),g=session?.engine;
  if(!session||!g)return null;const candidates=fusionCandidates(g.weapons,g.week,g.progress.fusions.length,g.consumed);let preview='日期无效';try{const d=dailyChallenge(date);preview=`${d.date} / ${d.version} / ${d.rule.name} / ${d.rule.character} / seed ${d.seed}`;}catch{/* Input is incomplete while typing. */}
