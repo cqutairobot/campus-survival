@@ -1,7 +1,7 @@
 [
   {
     "id": "s2-ai",
-    "title": "第二学期首章AI美术",
+    "title": "第二学期AI美术",
     "author": "image_gen内置（供应方未暴露具体模型ID）",
     "source": "image_gen built-in",
     "license": "AI来源，不宣称CC0",
@@ -22,7 +22,7 @@
       },
       {
         "original": "art-src/s2/masters/building-smart-teaching.png",
-        "output": "assets/art/v5/s2/building-smart-teaching.webp / assets/art/v5/s2/building-smart-teaching.png",
+        "output": "assets/art/v5/s2/building-smart-teaching.webp / assets/art/v5/s2/building-smart-teaching.png / assets/art/v5/s2/thumbs/building-smart-teaching.webp / assets/art/v5/s2/thumbs/building-smart-teaching.png",
         "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
         "sha256": "46343ac8dee09504b57907537c00ddbab1f99b2de8ec80975ef0b80cb5147d3f"
       },
@@ -79,6 +79,186 @@
         "output": "assets/art/v5/s2/thumbs/landmark-joint-table.webp / assets/art/v5/s2/thumbs/landmark-joint-table.png / assets/art/v5/s2/atlases/landmarks.webp / assets/art/v5/s2/atlases/landmarks.png",
         "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
         "sha256": "ca3e32debde2c870f85db16633593257149845f7b5981bd0210f9f70f03379f4"
+      },
+      {
+        "original": "art-src/s2/masters/enemy-peer.png",
+        "output": "assets/art/v5/s2/thumbs/enemy-peer.webp / assets/art/v5/s2/thumbs/enemy-peer.png / assets/art/v5/s2/atlases/enemies-chapter-2.webp / assets/art/v5/s2/atlases/enemies-chapter-2.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "99b7776bbe73031b18253cbe52fb94b7a9568e93a07a3bc067abd1a20aed192f"
+      },
+      {
+        "original": "art-src/s2/masters/enemy-relay.png",
+        "output": "assets/art/v5/s2/thumbs/enemy-relay.webp / assets/art/v5/s2/thumbs/enemy-relay.png / assets/art/v5/s2/atlases/enemies-chapter-2.webp / assets/art/v5/s2/atlases/enemies-chapter-2.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "b2eed7a905bf75350ee54fae9eb52c3d3604be27af1d2e80682a16c4259182a9"
+      },
+      {
+        "original": "art-src/s2/masters/enemy-recycler.png",
+        "output": "assets/art/v5/s2/thumbs/enemy-recycler.webp / assets/art/v5/s2/thumbs/enemy-recycler.png / assets/art/v5/s2/atlases/enemies-chapter-3.webp / assets/art/v5/s2/atlases/enemies-chapter-3.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "6d2fe23d923267e582396a1d6a1209c14d32b9edb7236a9e629511d65cddd29d"
+      },
+      {
+        "original": "art-src/s2/masters/enemy-marshal.png",
+        "output": "assets/art/v5/s2/thumbs/enemy-marshal.webp / assets/art/v5/s2/thumbs/enemy-marshal.png / assets/art/v5/s2/atlases/enemies-chapter-2.webp / assets/art/v5/s2/atlases/enemies-chapter-2.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "d4a75818ac7287ccbd7da23eb74acc4622c66f46629c0a721be7cf142493d807"
+      },
+      {
+        "original": "art-src/s2/masters/enemy-coordinator.png",
+        "output": "assets/art/v5/s2/thumbs/enemy-coordinator.webp / assets/art/v5/s2/thumbs/enemy-coordinator.png / assets/art/v5/s2/atlases/enemies-chapter-2.webp / assets/art/v5/s2/atlases/enemies-chapter-2.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "b026cb8a3491ca383423cd7552166b780f56781a384a78c4064cef4d60c8dc04"
+      },
+      {
+        "original": "art-src/s2/masters/enemy-auditor.png",
+        "output": "assets/art/v5/s2/enemy-auditor.webp / assets/art/v5/s2/enemy-auditor.png / assets/art/v5/s2/enemy-auditor-white.webp / assets/art/v5/s2/enemy-auditor-white.png / assets/art/v5/s2/thumbs/enemy-auditor.webp / assets/art/v5/s2/thumbs/enemy-auditor.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "e1c4168a0e221473881612132597a1f841eb86fc62adf6359f7f6fe59d180f2c"
+      },
+      {
+        "original": "art-src/s2/masters/enemy-project-review.png",
+        "output": "assets/art/v5/s2/enemy-project-review.webp / assets/art/v5/s2/enemy-project-review.png / assets/art/v5/s2/enemy-project-review-white.webp / assets/art/v5/s2/enemy-project-review-white.png / assets/art/v5/s2/thumbs/enemy-project-review.webp / assets/art/v5/s2/thumbs/enemy-project-review.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "777dffb02bc32fdeaac822cc646a0b591102d4a5073c35f85e516a671e0f2da8"
+      },
+      {
+        "original": "art-src/s2/masters/enemy-expo-final.png",
+        "output": "assets/art/v5/s2/enemy-expo-final.webp / assets/art/v5/s2/enemy-expo-final.png / assets/art/v5/s2/enemy-expo-final-white.webp / assets/art/v5/s2/enemy-expo-final-white.png / assets/art/v5/s2/thumbs/enemy-expo-final.webp / assets/art/v5/s2/thumbs/enemy-expo-final.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "f50611f902e04d5c14ec2d8140f3fd94113929269b63b570b3c60a115fad2ef3"
+      },
+      {
+        "original": "art-src/s2/masters/enemy-relay-node.png",
+        "output": "assets/art/v5/s2/thumbs/enemy-relay-node.webp / assets/art/v5/s2/thumbs/enemy-relay-node.png / assets/art/v5/s2/atlases/enemies-chapter-2.webp / assets/art/v5/s2/atlases/enemies-chapter-2.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "f6d2df1eb7184defd36833c7ee63632a8f341962e33356c19e25be543a05fb22"
+      },
+      {
+        "original": "art-src/s2/masters/enemy-review-panel.png",
+        "output": "assets/art/v5/s2/thumbs/enemy-review-panel.webp / assets/art/v5/s2/thumbs/enemy-review-panel.png / assets/art/v5/s2/atlases/enemies-chapter-2.webp / assets/art/v5/s2/atlases/enemies-chapter-2.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "f972af4849eebae49f81c7ec7b382e162abc70d29b37b90619cb8bce0d489fbb"
+      },
+      {
+        "original": "art-src/s2/masters/item-spool.png",
+        "output": "assets/art/v5/s2/icons/item-spool-96.webp / assets/art/v5/s2/icons/item-spool-96.png / assets/art/v5/s2/icons/item-spool-192.webp / assets/art/v5/s2/icons/item-spool-192.png / assets/art/v5/s2/atlases/items-chapter-2.webp / assets/art/v5/s2/atlases/items-chapter-2.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "ba3dcb29184c0b072c2ac827ef45e9d2c6e6da696927d9c42a1f58bf42bb8cbe"
+      },
+      {
+        "original": "art-src/s2/masters/item-printer.png",
+        "output": "assets/art/v5/s2/icons/item-printer-96.webp / assets/art/v5/s2/icons/item-printer-96.png / assets/art/v5/s2/icons/item-printer-192.webp / assets/art/v5/s2/icons/item-printer-192.png / assets/art/v5/s2/atlases/items-chapter-2.webp / assets/art/v5/s2/atlases/items-chapter-2.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "2b5cf74ef61edc81e48a0ec5ac329c10e8f352443b8eafc7838dcf5ee0648f21"
+      },
+      {
+        "original": "art-src/s2/masters/item-spool-evolved.png",
+        "output": "assets/art/v5/s2/icons/item-spool-evolved-96.webp / assets/art/v5/s2/icons/item-spool-evolved-96.png / assets/art/v5/s2/icons/item-spool-evolved-192.webp / assets/art/v5/s2/icons/item-spool-evolved-192.png / assets/art/v5/s2/atlases/items-chapter-2.webp / assets/art/v5/s2/atlases/items-chapter-2.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "58e52640adaa2b5d976eb8b9ba915abce50684b642fdd59a39893c2c1232a45b"
+      },
+      {
+        "original": "art-src/s2/masters/item-printer-evolved.png",
+        "output": "assets/art/v5/s2/icons/item-printer-evolved-96.webp / assets/art/v5/s2/icons/item-printer-evolved-96.png / assets/art/v5/s2/icons/item-printer-evolved-192.webp / assets/art/v5/s2/icons/item-printer-evolved-192.png / assets/art/v5/s2/atlases/items-chapter-2.webp / assets/art/v5/s2/atlases/items-chapter-2.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "eea2d06c393a73db19d024041ae0e1ec3ff2eb5b7e85c3dc58603946da779682"
+      },
+      {
+        "original": "art-src/s2/masters/item-field-hub.png",
+        "output": "assets/art/v5/s2/icons/item-field-hub-96.webp / assets/art/v5/s2/icons/item-field-hub-96.png / assets/art/v5/s2/icons/item-field-hub-192.webp / assets/art/v5/s2/icons/item-field-hub-192.png / assets/art/v5/s2/atlases/items-chapter-2.webp / assets/art/v5/s2/atlases/items-chapter-2.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "9ce0acad2955cc9e217de72060b5eae858f7c42bdd7dbecfd36ec5f931990570"
+      },
+      {
+        "original": "art-src/s2/masters/item-holo-review.png",
+        "output": "assets/art/v5/s2/icons/item-holo-review-96.webp / assets/art/v5/s2/icons/item-holo-review-96.png / assets/art/v5/s2/icons/item-holo-review-192.webp / assets/art/v5/s2/icons/item-holo-review-192.png / assets/art/v5/s2/atlases/items-chapter-2.webp / assets/art/v5/s2/atlases/items-chapter-2.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "63d4aebdd1accf0b5bce7cb0b84a2dfb62cfe6df43f62626cb3e0406f105322e"
+      },
+      {
+        "original": "art-src/s2/masters/item-digital-twin.png",
+        "output": "assets/art/v5/s2/icons/item-digital-twin-96.webp / assets/art/v5/s2/icons/item-digital-twin-96.png / assets/art/v5/s2/icons/item-digital-twin-192.webp / assets/art/v5/s2/icons/item-digital-twin-192.png / assets/art/v5/s2/atlases/items-chapter-2.webp / assets/art/v5/s2/atlases/items-chapter-2.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "422d1b954909edcbf5b4e3db4c494ab033b7e48df0ea697d4a94c0abc684c6f9"
+      },
+      {
+        "original": "art-src/s2/masters/item-battery.png",
+        "output": "assets/art/v5/s2/icons/item-battery-96.webp / assets/art/v5/s2/icons/item-battery-96.png / assets/art/v5/s2/icons/item-battery-192.webp / assets/art/v5/s2/icons/item-battery-192.png / assets/art/v5/s2/atlases/items-chapter-1.webp / assets/art/v5/s2/atlases/items-chapter-1.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "e01323f3871d18a8f008551eb7ee3966445c3237699de1a596bd9a62d15346c4"
+      },
+      {
+        "original": "art-src/s2/masters/item-protocol.png",
+        "output": "assets/art/v5/s2/icons/item-protocol-96.webp / assets/art/v5/s2/icons/item-protocol-96.png / assets/art/v5/s2/icons/item-protocol-192.webp / assets/art/v5/s2/icons/item-protocol-192.png / assets/art/v5/s2/atlases/items-chapter-1.webp / assets/art/v5/s2/atlases/items-chapter-1.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "9391a00284727bcdd32379eec7339b5a6f3852059289781e5bbad54d13684055"
+      },
+      {
+        "original": "art-src/s2/masters/item-harness.png",
+        "output": "assets/art/v5/s2/icons/item-harness-96.webp / assets/art/v5/s2/icons/item-harness-96.png / assets/art/v5/s2/icons/item-harness-192.webp / assets/art/v5/s2/icons/item-harness-192.png / assets/art/v5/s2/atlases/items-chapter-2.webp / assets/art/v5/s2/atlases/items-chapter-2.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "cb56606d537dc6fbe7dfcd5e6d1acfd871f254aa4bfe90857147f3a39afdc2fc"
+      },
+      {
+        "original": "art-src/s2/masters/item-echo-chip.png",
+        "output": "assets/art/v5/s2/icons/item-echo-chip-96.webp / assets/art/v5/s2/icons/item-echo-chip-96.png / assets/art/v5/s2/icons/item-echo-chip-192.webp / assets/art/v5/s2/icons/item-echo-chip-192.png / assets/art/v5/s2/atlases/items-chapter-2.webp / assets/art/v5/s2/atlases/items-chapter-2.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "13c25e3577c6894745c48223f6be66ecb66755ce1dbe459918ff0840889fce44"
+      },
+      {
+        "original": "art-src/s2/masters/item-route-permit.png",
+        "output": "assets/art/v5/s2/icons/item-route-permit-96.webp / assets/art/v5/s2/icons/item-route-permit-96.png / assets/art/v5/s2/icons/item-route-permit-192.webp / assets/art/v5/s2/icons/item-route-permit-192.png / assets/art/v5/s2/atlases/items-chapter-1.webp / assets/art/v5/s2/atlases/items-chapter-1.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "3e7ecf8fc46d3a0192be5de40c397c550d7fc4668c91e37dec8be75f07db39d6"
+      },
+      {
+        "original": "art-src/s2/masters/item-buffer-badge.png",
+        "output": "assets/art/v5/s2/icons/item-buffer-badge-96.webp / assets/art/v5/s2/icons/item-buffer-badge-96.png / assets/art/v5/s2/icons/item-buffer-badge-192.webp / assets/art/v5/s2/icons/item-buffer-badge-192.png / assets/art/v5/s2/atlases/items-chapter-1.webp / assets/art/v5/s2/atlases/items-chapter-1.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "2140b7b2cf88f84027b033abc13fc06fa6a5877b2e34b34c167938e9d9091dba"
+      },
+      {
+        "original": "art-src/s2/masters/item-review-seal.png",
+        "output": "assets/art/v5/s2/icons/item-review-seal-96.webp / assets/art/v5/s2/icons/item-review-seal-96.png / assets/art/v5/s2/icons/item-review-seal-192.webp / assets/art/v5/s2/icons/item-review-seal-192.png / assets/art/v5/s2/atlases/items-chapter-2.webp / assets/art/v5/s2/atlases/items-chapter-2.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "bcde568e5a150f5c6e4eaed98e7c032e68e6be50d0e269c934ecf44d73f4f6bf"
+      },
+      {
+        "original": "art-src/s2/masters/item-project-grant.png",
+        "output": "assets/art/v5/s2/icons/item-project-grant-96.webp / assets/art/v5/s2/icons/item-project-grant-96.png / assets/art/v5/s2/icons/item-project-grant-192.webp / assets/art/v5/s2/icons/item-project-grant-192.png / assets/art/v5/s2/atlases/items-chapter-2.webp / assets/art/v5/s2/atlases/items-chapter-2.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "e48f5589dce5f09f6216293fa832034b4c687145e58b9e329a7a203df2282a9f"
+      },
+      {
+        "original": "art-src/s2/masters/building-joint-lab.png",
+        "output": "assets/art/v5/s2/building-joint-lab.webp / assets/art/v5/s2/building-joint-lab.png / assets/art/v5/s2/thumbs/building-joint-lab.webp / assets/art/v5/s2/thumbs/building-joint-lab.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "ba38c5abfc2106c45b67b8f91cabff5cf2ac532f2b7d0cc86da5bd59baa16af8"
+      },
+      {
+        "original": "art-src/s2/masters/building-exhibit-hall.png",
+        "output": "assets/art/v5/s2/building-exhibit-hall.webp / assets/art/v5/s2/building-exhibit-hall.png / assets/art/v5/s2/thumbs/building-exhibit-hall.webp / assets/art/v5/s2/thumbs/building-exhibit-hall.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "5f8772c99ec63ae3960b865745926a28b1fff0b19d1e28e0ece7060ac1b35aea"
+      },
+      {
+        "original": "art-src/s2/masters/landmark-amendment-table.png",
+        "output": "assets/art/v5/s2/thumbs/landmark-amendment-table.webp / assets/art/v5/s2/thumbs/landmark-amendment-table.png / assets/art/v5/s2/atlases/landmarks-chapter-2.webp / assets/art/v5/s2/atlases/landmarks-chapter-2.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "3e4b30de10055f3e29e08fe4a8882e2ce8b31d19fc8c163eb500965ece15667b"
+      },
+      {
+        "original": "art-src/s2/masters/landmark-revision.png",
+        "output": "assets/art/v5/s2/thumbs/landmark-revision.webp / assets/art/v5/s2/thumbs/landmark-revision.png / assets/art/v5/s2/atlases/landmarks-chapter-3.webp / assets/art/v5/s2/atlases/landmarks-chapter-3.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "a01ea8d230de807ee6cd1c3a7645b8845e1fe043fd6ce1d7a2234c1ae38c93bf"
+      },
+      {
+        "original": "art-src/s2/masters/semester-cover.png",
+        "output": "assets/art/v5/s2/semester-cover.webp / assets/art/v5/s2/semester-cover.png",
+        "modifications": "Lanczos cover fit to2048x1152; opaque landscape; runtime1024x576",
+        "sha256": "02c6861b2af5ee2426aedf2bbdffb62b1c0c15ce10d6f4bede3572143e8e3ec1"
       }
     ]
   },

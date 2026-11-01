@@ -1,6 +1,27 @@
 {
   "version": "s2-art-v1",
   "assets": {
+    "s2:enemy-atlas": {
+      "path": "atlases/enemies",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-start",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-atlas": {
+      "path": "atlases/items",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-start",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:landmark-atlas": {
+      "path": "atlases/landmarks",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-start",
+      "pngFallback": true,
+      "placeholder": false
+    },
     "s2:thumb-enemy-bike": {
       "path": "thumbs/enemy-bike",
       "root": "assets/art/v5/s2",
@@ -11,14 +32,14 @@
     "s2:item-drone-96": {
       "path": "icons/item-drone-96",
       "root": "assets/art/v5/s2",
-      "bundle": "s2-items",
+      "bundle": "s2-codex",
       "pngFallback": true,
       "placeholder": false
     },
     "s2:item-drone-192": {
       "path": "icons/item-drone-192",
       "root": "assets/art/v5/s2",
-      "bundle": "s2-items",
+      "bundle": "s2-details",
       "pngFallback": true,
       "placeholder": false
     },
@@ -26,6 +47,13 @@
       "path": "building-smart-teaching",
       "root": "assets/art/v5/s2",
       "bundle": "s2-start",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:thumb-building-smart-teaching": {
+      "path": "thumbs/building-smart-teaching",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-codex",
       "pngFallback": true,
       "placeholder": false
     },
@@ -88,77 +116,469 @@
     "s2:item-whiteboard-96": {
       "path": "icons/item-whiteboard-96",
       "root": "assets/art/v5/s2",
-      "bundle": "s2-items",
+      "bundle": "s2-codex",
       "pngFallback": true,
       "placeholder": false
     },
     "s2:item-whiteboard-192": {
       "path": "icons/item-whiteboard-192",
       "root": "assets/art/v5/s2",
-      "bundle": "s2-items",
+      "bundle": "s2-details",
       "pngFallback": true,
       "placeholder": false
     },
     "s2:item-drone-evolved-96": {
       "path": "icons/item-drone-evolved-96",
       "root": "assets/art/v5/s2",
-      "bundle": "s2-items",
+      "bundle": "s2-codex",
       "pngFallback": true,
       "placeholder": false
     },
     "s2:item-drone-evolved-192": {
       "path": "icons/item-drone-evolved-192",
       "root": "assets/art/v5/s2",
-      "bundle": "s2-items",
+      "bundle": "s2-details",
       "pngFallback": true,
       "placeholder": false
     },
     "s2:item-whiteboard-evolved-96": {
       "path": "icons/item-whiteboard-evolved-96",
       "root": "assets/art/v5/s2",
-      "bundle": "s2-items",
+      "bundle": "s2-codex",
       "pngFallback": true,
       "placeholder": false
     },
     "s2:item-whiteboard-evolved-192": {
       "path": "icons/item-whiteboard-evolved-192",
       "root": "assets/art/v5/s2",
-      "bundle": "s2-items",
+      "bundle": "s2-details",
       "pngFallback": true,
       "placeholder": false
     },
     "s2:thumb-landmark-infirmary": {
       "path": "thumbs/landmark-infirmary",
       "root": "assets/art/v5/s2",
-      "bundle": "s2-landmarks",
+      "bundle": "s2-codex",
       "pngFallback": true,
       "placeholder": false
     },
     "s2:thumb-landmark-joint-table": {
       "path": "thumbs/landmark-joint-table",
       "root": "assets/art/v5/s2",
-      "bundle": "s2-landmarks",
+      "bundle": "s2-codex",
       "pngFallback": true,
       "placeholder": false
     },
-    "s2:enemy-atlas": {
-      "path": "atlases/enemies",
+    "s2:enemy-chapter-2-atlas": {
+      "path": "atlases/enemies-chapter-2",
       "root": "assets/art/v5/s2",
-      "bundle": "s2-start",
+      "bundle": "s2-chapter-2",
       "pngFallback": true,
       "placeholder": false
     },
-    "s2:item-atlas": {
-      "path": "atlases/items",
+    "s2:thumb-enemy-peer": {
+      "path": "thumbs/enemy-peer",
       "root": "assets/art/v5/s2",
-      "bundle": "s2-start",
+      "bundle": "s2-codex",
       "pngFallback": true,
       "placeholder": false
     },
-    "s2:landmark-atlas": {
-      "path": "atlases/landmarks",
+    "s2:thumb-enemy-relay": {
+      "path": "thumbs/enemy-relay",
       "root": "assets/art/v5/s2",
-      "bundle": "s2-start",
+      "bundle": "s2-codex",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:enemy-chapter-3-atlas": {
+      "path": "atlases/enemies-chapter-3",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-chapter-3",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:thumb-enemy-recycler": {
+      "path": "thumbs/enemy-recycler",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-codex",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:thumb-enemy-marshal": {
+      "path": "thumbs/enemy-marshal",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-codex",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:thumb-enemy-coordinator": {
+      "path": "thumbs/enemy-coordinator",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-codex",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:enemy-auditor": {
+      "path": "enemy-auditor",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-boss-auditor",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:enemy-auditor-white": {
+      "path": "enemy-auditor-white",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-boss-auditor",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:thumb-enemy-auditor": {
+      "path": "thumbs/enemy-auditor",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-codex",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:enemy-project-review": {
+      "path": "enemy-project-review",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-boss-projectReview",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:enemy-project-review-white": {
+      "path": "enemy-project-review-white",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-boss-projectReview",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:thumb-enemy-project-review": {
+      "path": "thumbs/enemy-project-review",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-codex",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:enemy-expo-final": {
+      "path": "enemy-expo-final",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-boss-expoFinal",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:enemy-expo-final-white": {
+      "path": "enemy-expo-final-white",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-boss-expoFinal",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:thumb-enemy-expo-final": {
+      "path": "thumbs/enemy-expo-final",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-codex",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:thumb-enemy-relay-node": {
+      "path": "thumbs/enemy-relay-node",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-codex",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:thumb-enemy-review-panel": {
+      "path": "thumbs/enemy-review-panel",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-codex",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-chapter-2-atlas": {
+      "path": "atlases/items-chapter-2",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-items-2",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-spool-96": {
+      "path": "icons/item-spool-96",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-codex",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-spool-192": {
+      "path": "icons/item-spool-192",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-details",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-printer-96": {
+      "path": "icons/item-printer-96",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-codex",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-printer-192": {
+      "path": "icons/item-printer-192",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-details",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-spool-evolved-96": {
+      "path": "icons/item-spool-evolved-96",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-codex",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-spool-evolved-192": {
+      "path": "icons/item-spool-evolved-192",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-details",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-printer-evolved-96": {
+      "path": "icons/item-printer-evolved-96",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-codex",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-printer-evolved-192": {
+      "path": "icons/item-printer-evolved-192",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-details",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-field-hub-96": {
+      "path": "icons/item-field-hub-96",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-codex",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-field-hub-192": {
+      "path": "icons/item-field-hub-192",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-details",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-holo-review-96": {
+      "path": "icons/item-holo-review-96",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-codex",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-holo-review-192": {
+      "path": "icons/item-holo-review-192",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-details",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-digital-twin-96": {
+      "path": "icons/item-digital-twin-96",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-codex",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-digital-twin-192": {
+      "path": "icons/item-digital-twin-192",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-details",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-chapter-1-atlas": {
+      "path": "atlases/items-chapter-1",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-items-1",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-battery-96": {
+      "path": "icons/item-battery-96",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-codex",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-battery-192": {
+      "path": "icons/item-battery-192",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-details",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-protocol-96": {
+      "path": "icons/item-protocol-96",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-codex",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-protocol-192": {
+      "path": "icons/item-protocol-192",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-details",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-harness-96": {
+      "path": "icons/item-harness-96",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-codex",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-harness-192": {
+      "path": "icons/item-harness-192",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-details",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-echo-chip-96": {
+      "path": "icons/item-echo-chip-96",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-codex",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-echo-chip-192": {
+      "path": "icons/item-echo-chip-192",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-details",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-route-permit-96": {
+      "path": "icons/item-route-permit-96",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-codex",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-route-permit-192": {
+      "path": "icons/item-route-permit-192",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-details",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-buffer-badge-96": {
+      "path": "icons/item-buffer-badge-96",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-codex",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-buffer-badge-192": {
+      "path": "icons/item-buffer-badge-192",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-details",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-review-seal-96": {
+      "path": "icons/item-review-seal-96",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-codex",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-review-seal-192": {
+      "path": "icons/item-review-seal-192",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-details",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-project-grant-96": {
+      "path": "icons/item-project-grant-96",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-codex",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:item-project-grant-192": {
+      "path": "icons/item-project-grant-192",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-details",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:building-joint-lab": {
+      "path": "building-joint-lab",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-chapter-2",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:thumb-building-joint-lab": {
+      "path": "thumbs/building-joint-lab",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-codex",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:building-exhibit-hall": {
+      "path": "building-exhibit-hall",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-chapter-3",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:thumb-building-exhibit-hall": {
+      "path": "thumbs/building-exhibit-hall",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-codex",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:landmark-chapter-2-atlas": {
+      "path": "atlases/landmarks-chapter-2",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-chapter-2",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:thumb-landmark-amendment-table": {
+      "path": "thumbs/landmark-amendment-table",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-codex",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:landmark-chapter-3-atlas": {
+      "path": "atlases/landmarks-chapter-3",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-chapter-3",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:thumb-landmark-revision": {
+      "path": "thumbs/landmark-revision",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-codex",
+      "pngFallback": true,
+      "placeholder": false
+    },
+    "s2:semester-cover": {
+      "path": "semester-cover",
+      "root": "assets/art/v5/s2",
+      "bundle": "s2-cover",
       "pngFallback": true,
       "placeholder": false
     },
@@ -181,15 +601,18 @@
       "kind": "item"
     },
     "s2:glassLink": {
-      "icon": "s2:building-smart-teaching",
+      "icon": "s2:thumb-building-smart-teaching",
+      "detail": "s2:building-smart-teaching",
       "kind": "building"
     },
     "s2:networkHub": {
-      "icon": "s2:building-smart-teaching",
+      "icon": "s2:thumb-building-smart-teaching",
+      "detail": "s2:building-smart-teaching",
       "kind": "building"
     },
     "s2:smartTeaching": {
-      "icon": "s2:building-smart-teaching",
+      "icon": "s2:thumb-building-smart-teaching",
+      "detail": "s2:building-smart-teaching",
       "kind": "building"
     },
     "s2:reservation": {
@@ -230,6 +653,173 @@
     "s2:jointTable": {
       "icon": "s2:thumb-landmark-joint-table",
       "kind": "landmark"
+    },
+    "s2:peer": {
+      "icon": "s2:thumb-enemy-peer",
+      "kind": "enemy"
+    },
+    "s2:relay": {
+      "icon": "s2:thumb-enemy-relay",
+      "kind": "enemy"
+    },
+    "s2:recycler": {
+      "icon": "s2:thumb-enemy-recycler",
+      "kind": "enemy"
+    },
+    "s2:marshal": {
+      "icon": "s2:thumb-enemy-marshal",
+      "kind": "enemy"
+    },
+    "s2:coordinator": {
+      "icon": "s2:thumb-enemy-coordinator",
+      "kind": "enemy"
+    },
+    "s2:auditor": {
+      "icon": "s2:thumb-enemy-auditor",
+      "kind": "enemy"
+    },
+    "s2:projectReview": {
+      "icon": "s2:thumb-enemy-project-review",
+      "kind": "enemy"
+    },
+    "s2:expoFinal": {
+      "icon": "s2:thumb-enemy-expo-final",
+      "kind": "enemy"
+    },
+    "s2:relayNode": {
+      "icon": "s2:thumb-enemy-relay-node",
+      "kind": "enemy"
+    },
+    "s2:reviewPanel": {
+      "icon": "s2:thumb-enemy-review-panel",
+      "kind": "enemy"
+    },
+    "s2:spool": {
+      "icon": "s2:item-spool-96",
+      "detail": "s2:item-spool-192",
+      "kind": "item"
+    },
+    "s2:printer": {
+      "icon": "s2:item-printer-96",
+      "detail": "s2:item-printer-192",
+      "kind": "item"
+    },
+    "s2:spool:evolved": {
+      "icon": "s2:item-spool-evolved-96",
+      "detail": "s2:item-spool-evolved-192",
+      "kind": "item"
+    },
+    "s2:printer:evolved": {
+      "icon": "s2:item-printer-evolved-96",
+      "detail": "s2:item-printer-evolved-192",
+      "kind": "item"
+    },
+    "s2:fieldHub": {
+      "icon": "s2:item-field-hub-96",
+      "detail": "s2:item-field-hub-192",
+      "kind": "item"
+    },
+    "s2:holoReview": {
+      "icon": "s2:item-holo-review-96",
+      "detail": "s2:item-holo-review-192",
+      "kind": "item"
+    },
+    "s2:digitalTwin": {
+      "icon": "s2:item-digital-twin-96",
+      "detail": "s2:item-digital-twin-192",
+      "kind": "item"
+    },
+    "s2:battery": {
+      "icon": "s2:item-battery-96",
+      "detail": "s2:item-battery-192",
+      "kind": "item"
+    },
+    "s2:protocol": {
+      "icon": "s2:item-protocol-96",
+      "detail": "s2:item-protocol-192",
+      "kind": "item"
+    },
+    "s2:harness": {
+      "icon": "s2:item-harness-96",
+      "detail": "s2:item-harness-192",
+      "kind": "item"
+    },
+    "s2:echoChip": {
+      "icon": "s2:item-echo-chip-96",
+      "detail": "s2:item-echo-chip-192",
+      "kind": "item"
+    },
+    "s2:routePermit": {
+      "icon": "s2:item-route-permit-96",
+      "detail": "s2:item-route-permit-192",
+      "kind": "item"
+    },
+    "s2:bufferBadge": {
+      "icon": "s2:item-buffer-badge-96",
+      "detail": "s2:item-buffer-badge-192",
+      "kind": "item"
+    },
+    "s2:reviewSeal": {
+      "icon": "s2:item-review-seal-96",
+      "detail": "s2:item-review-seal-192",
+      "kind": "item"
+    },
+    "s2:projectGrant": {
+      "icon": "s2:item-project-grant-96",
+      "detail": "s2:item-project-grant-192",
+      "kind": "item"
+    },
+    "s2:assemblyA": {
+      "icon": "s2:thumb-building-joint-lab",
+      "detail": "s2:building-joint-lab",
+      "kind": "building"
+    },
+    "s2:logisticsA": {
+      "icon": "s2:thumb-building-joint-lab",
+      "detail": "s2:building-joint-lab",
+      "kind": "building"
+    },
+    "s2:assemblyB": {
+      "icon": "s2:thumb-building-joint-lab",
+      "detail": "s2:building-joint-lab",
+      "kind": "building"
+    },
+    "s2:logisticsB": {
+      "icon": "s2:thumb-building-joint-lab",
+      "detail": "s2:building-joint-lab",
+      "kind": "building"
+    },
+    "s2:jointLab": {
+      "icon": "s2:thumb-building-joint-lab",
+      "detail": "s2:building-joint-lab",
+      "kind": "building"
+    },
+    "s2:displayWest": {
+      "icon": "s2:thumb-building-exhibit-hall",
+      "detail": "s2:building-exhibit-hall",
+      "kind": "building"
+    },
+    "s2:displayEast": {
+      "icon": "s2:thumb-building-exhibit-hall",
+      "detail": "s2:building-exhibit-hall",
+      "kind": "building"
+    },
+    "s2:exhibitHall": {
+      "icon": "s2:thumb-building-exhibit-hall",
+      "detail": "s2:building-exhibit-hall",
+      "kind": "building"
+    },
+    "s2:amendmentTable": {
+      "icon": "s2:thumb-landmark-amendment-table",
+      "kind": "landmark"
+    },
+    "s2:revision": {
+      "icon": "s2:thumb-landmark-revision",
+      "kind": "landmark"
+    },
+    "s2:cover": {
+      "icon": "s2:semester-cover",
+      "kind": "cover"
     }
   },
   "frames": {
@@ -241,13 +831,13 @@
         192,
         192
       ],
+      "kind": "enemy",
       "white": [
         0,
         192,
         192,
         192
-      ],
-      "kind": "enemy"
+      ]
     },
     "s2:drone": {
       "atlas": "s2:item-atlas",
@@ -267,13 +857,13 @@
         192,
         192
       ],
+      "kind": "enemy",
       "white": [
         192,
         192,
         192,
         192
-      ],
-      "kind": "enemy"
+      ]
     },
     "s2:parceler": {
       "atlas": "s2:enemy-atlas",
@@ -283,13 +873,13 @@
         192,
         192
       ],
+      "kind": "enemy",
       "white": [
         384,
         192,
         192,
         192
-      ],
-      "kind": "enemy"
+      ]
     },
     "s2:dispatcher": {
       "atlas": "s2:enemy-dispatcher",
@@ -369,6 +959,339 @@
       "atlas": "s2:landmark-atlas",
       "frame": [
         192,
+        0,
+        192,
+        192
+      ],
+      "kind": "landmark"
+    },
+    "s2:peer": {
+      "atlas": "s2:enemy-chapter-2-atlas",
+      "frame": [
+        0,
+        0,
+        192,
+        192
+      ],
+      "kind": "enemy",
+      "white": [
+        0,
+        192,
+        192,
+        192
+      ]
+    },
+    "s2:relay": {
+      "atlas": "s2:enemy-chapter-2-atlas",
+      "frame": [
+        192,
+        0,
+        192,
+        192
+      ],
+      "kind": "enemy",
+      "white": [
+        192,
+        192,
+        192,
+        192
+      ]
+    },
+    "s2:recycler": {
+      "atlas": "s2:enemy-chapter-3-atlas",
+      "frame": [
+        0,
+        0,
+        192,
+        192
+      ],
+      "kind": "enemy",
+      "white": [
+        0,
+        192,
+        192,
+        192
+      ]
+    },
+    "s2:marshal": {
+      "atlas": "s2:enemy-chapter-2-atlas",
+      "frame": [
+        384,
+        0,
+        192,
+        192
+      ],
+      "kind": "enemy",
+      "white": [
+        384,
+        192,
+        192,
+        192
+      ]
+    },
+    "s2:coordinator": {
+      "atlas": "s2:enemy-chapter-2-atlas",
+      "frame": [
+        576,
+        0,
+        192,
+        192
+      ],
+      "kind": "enemy",
+      "white": [
+        576,
+        192,
+        192,
+        192
+      ]
+    },
+    "s2:auditor": {
+      "atlas": "s2:enemy-auditor",
+      "whiteAtlas": "s2:enemy-auditor-white",
+      "frame": [
+        0,
+        0,
+        384,
+        384
+      ],
+      "white": [
+        0,
+        0,
+        384,
+        384
+      ],
+      "kind": "enemy"
+    },
+    "s2:projectReview": {
+      "atlas": "s2:enemy-project-review",
+      "whiteAtlas": "s2:enemy-project-review-white",
+      "frame": [
+        0,
+        0,
+        384,
+        384
+      ],
+      "white": [
+        0,
+        0,
+        384,
+        384
+      ],
+      "kind": "enemy"
+    },
+    "s2:expoFinal": {
+      "atlas": "s2:enemy-expo-final",
+      "whiteAtlas": "s2:enemy-expo-final-white",
+      "frame": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "white": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "kind": "enemy"
+    },
+    "s2:relayNode": {
+      "atlas": "s2:enemy-chapter-2-atlas",
+      "frame": [
+        768,
+        0,
+        192,
+        192
+      ],
+      "kind": "enemy",
+      "white": [
+        768,
+        192,
+        192,
+        192
+      ]
+    },
+    "s2:reviewPanel": {
+      "atlas": "s2:enemy-chapter-2-atlas",
+      "frame": [
+        0,
+        384,
+        192,
+        192
+      ],
+      "kind": "enemy",
+      "white": [
+        0,
+        576,
+        192,
+        192
+      ]
+    },
+    "s2:spool": {
+      "atlas": "s2:item-chapter-2-atlas",
+      "frame": [
+        0,
+        0,
+        192,
+        192
+      ],
+      "kind": "item"
+    },
+    "s2:printer": {
+      "atlas": "s2:item-chapter-2-atlas",
+      "frame": [
+        192,
+        0,
+        192,
+        192
+      ],
+      "kind": "item"
+    },
+    "s2:spool:evolved": {
+      "atlas": "s2:item-chapter-2-atlas",
+      "frame": [
+        384,
+        0,
+        192,
+        192
+      ],
+      "kind": "item"
+    },
+    "s2:printer:evolved": {
+      "atlas": "s2:item-chapter-2-atlas",
+      "frame": [
+        576,
+        0,
+        192,
+        192
+      ],
+      "kind": "item"
+    },
+    "s2:fieldHub": {
+      "atlas": "s2:item-chapter-2-atlas",
+      "frame": [
+        768,
+        0,
+        192,
+        192
+      ],
+      "kind": "item"
+    },
+    "s2:holoReview": {
+      "atlas": "s2:item-chapter-2-atlas",
+      "frame": [
+        0,
+        192,
+        192,
+        192
+      ],
+      "kind": "item"
+    },
+    "s2:digitalTwin": {
+      "atlas": "s2:item-chapter-2-atlas",
+      "frame": [
+        192,
+        192,
+        192,
+        192
+      ],
+      "kind": "item"
+    },
+    "s2:battery": {
+      "atlas": "s2:item-chapter-1-atlas",
+      "frame": [
+        0,
+        0,
+        192,
+        192
+      ],
+      "kind": "item"
+    },
+    "s2:protocol": {
+      "atlas": "s2:item-chapter-1-atlas",
+      "frame": [
+        192,
+        0,
+        192,
+        192
+      ],
+      "kind": "item"
+    },
+    "s2:harness": {
+      "atlas": "s2:item-chapter-2-atlas",
+      "frame": [
+        384,
+        192,
+        192,
+        192
+      ],
+      "kind": "item"
+    },
+    "s2:echoChip": {
+      "atlas": "s2:item-chapter-2-atlas",
+      "frame": [
+        576,
+        192,
+        192,
+        192
+      ],
+      "kind": "item"
+    },
+    "s2:routePermit": {
+      "atlas": "s2:item-chapter-1-atlas",
+      "frame": [
+        384,
+        0,
+        192,
+        192
+      ],
+      "kind": "item"
+    },
+    "s2:bufferBadge": {
+      "atlas": "s2:item-chapter-1-atlas",
+      "frame": [
+        576,
+        0,
+        192,
+        192
+      ],
+      "kind": "item"
+    },
+    "s2:reviewSeal": {
+      "atlas": "s2:item-chapter-2-atlas",
+      "frame": [
+        768,
+        192,
+        192,
+        192
+      ],
+      "kind": "item"
+    },
+    "s2:projectGrant": {
+      "atlas": "s2:item-chapter-2-atlas",
+      "frame": [
+        0,
+        384,
+        192,
+        192
+      ],
+      "kind": "item"
+    },
+    "s2:amendmentTable": {
+      "atlas": "s2:landmark-chapter-2-atlas",
+      "frame": [
+        0,
+        0,
+        192,
+        192
+      ],
+      "kind": "landmark"
+    },
+    "s2:revision": {
+      "atlas": "s2:landmark-chapter-3-atlas",
+      "frame": [
+        0,
         0,
         192,
         192

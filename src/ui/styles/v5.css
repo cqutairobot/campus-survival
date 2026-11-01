@@ -2,3 +2,5 @@
 .v4-menu .menu-extra{flex-wrap:wrap}
 
 .collection-filters{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:12px 0}.collection-filters label{display:flex;align-items:center;gap:6px}.collection-filters select{max-width:100%;padding:8px}.collection-source{color:var(--muted,#8fb0ae);line-height:1.7}.result-collection{margin:16px 0;padding:16px;border:1px solid #70b8a355;border-radius:12px}.result-collection h3{font-size:16px}.result-collection li{margin:8px 0;line-height:1.6}.result-collection button{margin-top:10px}
+
+.s2-semester-cover{display:block;width:100%;max-height:240px;object-fit:cover;border-radius:12px;margin:12px 0}

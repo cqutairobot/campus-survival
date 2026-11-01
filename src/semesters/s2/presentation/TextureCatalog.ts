@@ -14,7 +14,7 @@ export class TextureCatalog {
   constructor(private geometry:Pick<TextureLibrary,'get'>,private art:Map<ResourceId,Texture>,private character:string,private content:ContentCatalog){}
   external(id:ResourceId){return resources.isMissing(id)?undefined:this.art.get(id);}
   frameTexture(id:string,white=false){const frame=frames[id];if(!frame)return;const atlas=this.external(white&&frame.whiteAtlas?frame.whiteAtlas:frame.atlas),rect=white?frame.white:frame.frame;if(!atlas||!rect)return;const key=`s2:${id}:${white}`;let texture=this.fragments.get(key);if(!texture||texture.source!==atlas.source){texture?.destroy(false);texture=new Texture({source:atlas.source,frame:new Rectangle(rect[0],rect[1],rect[2],rect[3])});this.fragments.set(key,texture);}return texture;}
-  building(id:string){const binding=bindings[id];return binding?.kind==='building'?this.external(binding.icon):undefined;}
+  building(id:string){const binding=bindings[id];return binding?.kind==='building'?this.external(binding.detail??binding.icon):undefined;}
   get(id:string){
     const enemy=/^enemy-(.+?)(-white)?$/.exec(id),s2=enemy?this.frameTexture(enemy[1],!!enemy[2]):this.frameTexture(id);if(s2)return s2;
     if(id.startsWith('fragment-')){

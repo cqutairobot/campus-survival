@@ -1,0 +1,1772 @@
+{
+  "version": "p19",
+  "measurement": "Cold-cache production-built test host, all HTTP response bodies including dedicated Pixi workers, plus1024B per response; masters/raw not deployed",
+  "shell": {
+    "transferBytes": 983254,
+    "bodyBytes": 974854,
+    "requests": 28
+  },
+  "chapters": {
+    "1": {
+      "bodyBytes": 3246392,
+      "requestCount": 112,
+      "headerAllowancePerRequest": 1024,
+      "conservativeTransferBytes": 3361080,
+      "includes": "HTML, JS, CSS, fonts, DOM images and dedicated-worker texture requests",
+      "files": [
+        {
+          "name": "/__s2-built__/budget.html",
+          "status": 200,
+          "bytes": 1580
+        },
+        {
+          "name": "/__s2-built__/assets/canvasUtils-CMoSNiEb.js",
+          "status": 200,
+          "bytes": 6011
+        },
+        {
+          "name": "/__s2-built__/assets/Filter-BksFePSf.js",
+          "status": 200,
+          "bytes": 41970
+        },
+        {
+          "name": "/__s2-built__/assets/Cache-Bk142Oj_.js",
+          "status": 200,
+          "bytes": 1100
+        },
+        {
+          "name": "/__s2-built__/assets/CanvasPool-4dmTyGYP.js",
+          "status": 200,
+          "bytes": 71061
+        },
+        {
+          "name": "/__s2-built__/assets/defaultFilter.vert-Bzgc-A3z.js",
+          "status": 200,
+          "bytes": 24849
+        },
+        {
+          "name": "/__s2-built__/assets/budget-RWSPB3Er.css",
+          "status": 200,
+          "bytes": 18857
+        },
+        {
+          "name": "/__s2-built__/assets/GCManagedHash-Du35rc_A.js",
+          "status": 200,
+          "bytes": 19332
+        },
+        {
+          "name": "/__s2-built__/assets/getTextureBatchBindGroup-C_euVsKt.js",
+          "status": 200,
+          "bytes": 344
+        },
+        {
+          "name": "/__s2-built__/assets/RenderTargetSystem-S2anIDp-.js",
+          "status": 200,
+          "bytes": 58801
+        },
+        {
+          "name": "/__s2-built__/assets/budget-CHL6IDfx.js",
+          "status": 200,
+          "bytes": 582952
+        },
+        {
+          "name": "/__s2-built__/assets/GraphicsContext-BMFow7og.js",
+          "status": 200,
+          "bytes": 61677
+        },
+        {
+          "name": "/__s2-built__/assets/getTexelRangeRects-Cf_aXOea.js",
+          "status": 200,
+          "bytes": 11358
+        },
+        {
+          "name": "/__s2-built__/assets/CanvasRenderer-BRy0SXVV.js",
+          "status": 200,
+          "bytes": 27091
+        },
+        {
+          "name": "/__s2-built__/assets/BitmapFont-F11sHK_5.js",
+          "status": 200,
+          "bytes": 33388
+        },
+        {
+          "name": "/__s2-built__/assets/WebGLRenderer-CJ_MtsUA.js",
+          "status": 200,
+          "bytes": 60
+        },
+        {
+          "name": "/__s2-built__/assets/WebGLRenderer-D9VNZ3hA.js",
+          "status": 200,
+          "bytes": 72824
+        },
+        {
+          "name": "/__s2-built__/assets/browserAll-BB94HBdO.js",
+          "status": 200,
+          "bytes": 43514
+        },
+        {
+          "name": "/__s2-built__/assets/init-C27j8TSY.js",
+          "status": 200,
+          "bytes": 14229
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/homework-white.webp",
+          "status": 200,
+          "bytes": 2526
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/homework.webp",
+          "status": 200,
+          "bytes": 7550
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/ddl.webp",
+          "status": 200,
+          "bytes": 9538
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/characters/balanced/sprite.webp",
+          "status": 200,
+          "bytes": 3964
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/ddl-white.webp",
+          "status": 200,
+          "bytes": 3504
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/fx/particles.webp",
+          "status": 200,
+          "bytes": 1304
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/fx/paper-blade.webp",
+          "status": 200,
+          "bytes": 1620
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/characters/coder/sprite.webp",
+          "status": 200,
+          "bytes": 4786
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/characters/english/sprite.webp",
+          "status": 200,
+          "bytes": 2968
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/characters/analysis/sprite.webp",
+          "status": 200,
+          "bytes": 3482
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/characters/architect/sprite.webp",
+          "status": 200,
+          "bytes": 4428
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/characters/experiment/sprite.webp",
+          "status": 200,
+          "bytes": 3870
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/textures/grass.webp",
+          "status": 200,
+          "bytes": 12394
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/textures/metal.webp",
+          "status": 200,
+          "bytes": 734
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/fx/book.webp",
+          "status": 200,
+          "bytes": 2970
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/textures/paving.webp",
+          "status": 200,
+          "bytes": 7240
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/fx/robot.webp",
+          "status": 200,
+          "bytes": 2804
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/fx/slides.webp",
+          "status": 200,
+          "bytes": 2756
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/fx/shuttle.webp",
+          "status": 200,
+          "bytes": 1798
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/advisor-white.webp",
+          "status": 200,
+          "bytes": 1574
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/bomber-white.webp",
+          "status": 200,
+          "bytes": 1724
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/advisor.webp",
+          "status": 200,
+          "bytes": 4928
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/charger.webp",
+          "status": 200,
+          "bytes": 7418
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/charger-white.webp",
+          "status": 200,
+          "bytes": 2364
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/bomber.webp",
+          "status": 200,
+          "bytes": 6412
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/coding-white.webp",
+          "status": 200,
+          "bytes": 1520
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/checkin-white.webp",
+          "status": 200,
+          "bytes": 2364
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/checkin.webp",
+          "status": 200,
+          "bytes": 7314
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/coding.webp",
+          "status": 200,
+          "bytes": 6314
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/english.webp",
+          "status": 200,
+          "bytes": 7394
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/english-white.webp",
+          "status": 200,
+          "bytes": 2512
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/examCharger-white.webp",
+          "status": 200,
+          "bytes": 2264
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/guard-white.webp",
+          "status": 200,
+          "bytes": 1652
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/guard.webp",
+          "status": 200,
+          "bytes": 7110
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/examCharger.webp",
+          "status": 200,
+          "bytes": 6762
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/leader.webp",
+          "status": 200,
+          "bytes": 5890
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/leader-white.webp",
+          "status": 200,
+          "bytes": 1846
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/math-white.webp",
+          "status": 200,
+          "bytes": 2046
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/mechanics-white.webp",
+          "status": 200,
+          "bytes": 2386
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/mechanics.webp",
+          "status": 200,
+          "bytes": 6328
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/node.webp",
+          "status": 200,
+          "bytes": 5810
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/node-white.webp",
+          "status": 200,
+          "bytes": 1682
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/math.webp",
+          "status": 200,
+          "bytes": 6690
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/receipt.webp",
+          "status": 200,
+          "bytes": 7210
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/ppt.webp",
+          "status": 200,
+          "bytes": 6230
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/ppt-white.webp",
+          "status": 200,
+          "bytes": 2040
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/receipt-white.webp",
+          "status": 200,
+          "bytes": 1868
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/review.webp",
+          "status": 200,
+          "bytes": 6752
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/review-white.webp",
+          "status": 200,
+          "bytes": 2164
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/splitter.webp",
+          "status": 200,
+          "bytes": 6954
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/thrower.webp",
+          "status": 200,
+          "bytes": 7082
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/splitter-white.webp",
+          "status": 200,
+          "bytes": 2034
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/summoner.webp",
+          "status": 200,
+          "bytes": 6030
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/summoner-white.webp",
+          "status": 200,
+          "bytes": 2070
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/thrower-white.webp",
+          "status": 200,
+          "bytes": 2708
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/buildings/basic.webp",
+          "status": 200,
+          "bytes": 58064
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/buildings/activity.webp",
+          "status": 200,
+          "bytes": 63086
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/buildings/architecture.webp",
+          "status": 200,
+          "bytes": 62420
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/buildings/basic-south.webp",
+          "status": 200,
+          "bytes": 83476
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/buildings/canteen.webp",
+          "status": 200,
+          "bytes": 72156
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/buildings/civil.webp",
+          "status": 200,
+          "bytes": 73598
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/buildings/dorm-west.webp",
+          "status": 200,
+          "bytes": 90676
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/buildings/experiment.webp",
+          "status": 200,
+          "bytes": 61878
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/landmarks/canteen.webp",
+          "status": 200,
+          "bytes": 93518
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/buildings/dorm.webp",
+          "status": 200,
+          "bytes": 70442
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/buildings/library.webp",
+          "status": 200,
+          "bytes": 86102
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/landmarks/garden.webp",
+          "status": 200,
+          "bytes": 110240
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/landmarks/lab.webp",
+          "status": 200,
+          "bytes": 93376
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/props/planter.webp",
+          "status": 200,
+          "bytes": 26368
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/landmarks/workshop.webp",
+          "status": 200,
+          "bytes": 60750
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/landmarks/track.webp",
+          "status": 200,
+          "bytes": 57490
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/landmarks/library.webp",
+          "status": 200,
+          "bytes": 71144
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/props/bench.webp",
+          "status": 200,
+          "bytes": 25908
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/props/tree.webp",
+          "status": 200,
+          "bytes": 23790
+        },
+        {
+          "name": "/__s2-built__/assets/art/v5/s2/atlases/particles.webp",
+          "status": 200,
+          "bytes": 1002
+        },
+        {
+          "name": "/__s2-built__/assets/art/v5/s2/atlases/enemies.webp",
+          "status": 200,
+          "bytes": 41040
+        },
+        {
+          "name": "/__s2-built__/assets/art/v5/s2/atlases/items.webp",
+          "status": 200,
+          "bytes": 42944
+        },
+        {
+          "name": "/__s2-built__/assets/art/v5/s2/atlases/landmarks.webp",
+          "status": 200,
+          "bytes": 16616
+        },
+        {
+          "name": "/__s2-built__/assets/art/v5/s2/building-smart-teaching.webp",
+          "status": 200,
+          "bytes": 102786
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/icons/pickups/freeze.webp",
+          "status": 200,
+          "bytes": 14244
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/icons/pickups/bomb.webp",
+          "status": 200,
+          "bytes": 12528
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/icons/pickups/magnet.webp",
+          "status": 200,
+          "bytes": 11812
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/icons/pickups/heal.webp",
+          "status": 200,
+          "bytes": 8142
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/icons/pickups/shield.webp",
+          "status": 200,
+          "bytes": 9108
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/icons/pickups/energy.webp",
+          "status": 200,
+          "bytes": 9720
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/icons/pickups/coffeeBoost.webp",
+          "status": 200,
+          "bytes": 10082
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/ui/chest-closed.webp",
+          "status": 200,
+          "bytes": 43860
+        },
+        {
+          "name": "/__s2-built__/assets/fonts/campus-digits-600-latin.woff2",
+          "status": 200,
+          "bytes": 8488
+        },
+        {
+          "name": "/__s2-built__/assets/fonts/campus-sans-400-game.woff2",
+          "status": 200,
+          "bytes": 74348
+        },
+        {
+          "name": "/__s2-built__/assets/fonts/campus-sans-400-shell.woff2",
+          "status": 200,
+          "bytes": 73716
+        },
+        {
+          "name": "/__s2-built__/assets/art/v5/s2/icons/item-drone-96.webp",
+          "status": 200,
+          "bytes": 4242
+        },
+        {
+          "name": "/__s2-built__/assets/fonts/campus-sans-600-shell.woff2",
+          "status": 200,
+          "bytes": 74860
+        },
+        {
+          "name": "/__s2-built__/assets/fonts/campus-sans-600-game.woff2",
+          "status": 200,
+          "bytes": 75692
+        }
+      ],
+      "targetBytes": 6291456,
+      "limitBytes": 8388608,
+      "noDetailPrefetch": true
+    },
+    "2": {
+      "bodyBytes": 3430404,
+      "requestCount": 115,
+      "headerAllowancePerRequest": 1024,
+      "conservativeTransferBytes": 3548164,
+      "includes": "HTML, JS, CSS, fonts, DOM images and dedicated-worker texture requests",
+      "files": [
+        {
+          "name": "/__s2-built__/budget.html",
+          "status": 200,
+          "bytes": 1580
+        },
+        {
+          "name": "/__s2-built__/assets/canvasUtils-CMoSNiEb.js",
+          "status": 200,
+          "bytes": 6011
+        },
+        {
+          "name": "/__s2-built__/assets/Cache-Bk142Oj_.js",
+          "status": 200,
+          "bytes": 1100
+        },
+        {
+          "name": "/__s2-built__/assets/Filter-BksFePSf.js",
+          "status": 200,
+          "bytes": 41970
+        },
+        {
+          "name": "/__s2-built__/assets/defaultFilter.vert-Bzgc-A3z.js",
+          "status": 200,
+          "bytes": 24849
+        },
+        {
+          "name": "/__s2-built__/assets/CanvasPool-4dmTyGYP.js",
+          "status": 200,
+          "bytes": 71061
+        },
+        {
+          "name": "/__s2-built__/assets/budget-CHL6IDfx.js",
+          "status": 200,
+          "bytes": 582952
+        },
+        {
+          "name": "/__s2-built__/assets/GCManagedHash-Du35rc_A.js",
+          "status": 200,
+          "bytes": 19332
+        },
+        {
+          "name": "/__s2-built__/assets/getTextureBatchBindGroup-C_euVsKt.js",
+          "status": 200,
+          "bytes": 344
+        },
+        {
+          "name": "/__s2-built__/assets/RenderTargetSystem-S2anIDp-.js",
+          "status": 200,
+          "bytes": 58801
+        },
+        {
+          "name": "/__s2-built__/assets/GraphicsContext-BMFow7og.js",
+          "status": 200,
+          "bytes": 61677
+        },
+        {
+          "name": "/__s2-built__/assets/CanvasRenderer-BRy0SXVV.js",
+          "status": 200,
+          "bytes": 27091
+        },
+        {
+          "name": "/__s2-built__/assets/getTexelRangeRects-Cf_aXOea.js",
+          "status": 200,
+          "bytes": 11358
+        },
+        {
+          "name": "/__s2-built__/assets/BitmapFont-F11sHK_5.js",
+          "status": 200,
+          "bytes": 33388
+        },
+        {
+          "name": "/__s2-built__/assets/budget-RWSPB3Er.css",
+          "status": 200,
+          "bytes": 18857
+        },
+        {
+          "name": "/__s2-built__/assets/WebGLRenderer-CJ_MtsUA.js",
+          "status": 200,
+          "bytes": 60
+        },
+        {
+          "name": "/__s2-built__/assets/WebGLRenderer-D9VNZ3hA.js",
+          "status": 200,
+          "bytes": 72824
+        },
+        {
+          "name": "/__s2-built__/assets/browserAll-BB94HBdO.js",
+          "status": 200,
+          "bytes": 43514
+        },
+        {
+          "name": "/__s2-built__/assets/init-C27j8TSY.js",
+          "status": 200,
+          "bytes": 14229
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/characters/balanced/sprite.webp",
+          "status": 200,
+          "bytes": 3964
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/homework-white.webp",
+          "status": 200,
+          "bytes": 2526
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/homework.webp",
+          "status": 200,
+          "bytes": 7550
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/ddl-white.webp",
+          "status": 200,
+          "bytes": 3504
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/ddl.webp",
+          "status": 200,
+          "bytes": 9538
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/fx/particles.webp",
+          "status": 200,
+          "bytes": 1304
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/fx/paper-blade.webp",
+          "status": 200,
+          "bytes": 1620
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/characters/coder/sprite.webp",
+          "status": 200,
+          "bytes": 4786
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/characters/english/sprite.webp",
+          "status": 200,
+          "bytes": 2968
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/characters/architect/sprite.webp",
+          "status": 200,
+          "bytes": 4428
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/characters/analysis/sprite.webp",
+          "status": 200,
+          "bytes": 3482
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/characters/experiment/sprite.webp",
+          "status": 200,
+          "bytes": 3870
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/fx/robot.webp",
+          "status": 200,
+          "bytes": 2804
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/textures/paving.webp",
+          "status": 200,
+          "bytes": 7240
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/textures/grass.webp",
+          "status": 200,
+          "bytes": 12394
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/fx/slides.webp",
+          "status": 200,
+          "bytes": 2756
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/fx/book.webp",
+          "status": 200,
+          "bytes": 2970
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/textures/metal.webp",
+          "status": 200,
+          "bytes": 734
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/fx/shuttle.webp",
+          "status": 200,
+          "bytes": 1798
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/advisor-white.webp",
+          "status": 200,
+          "bytes": 1574
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/bomber.webp",
+          "status": 200,
+          "bytes": 6412
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/charger-white.webp",
+          "status": 200,
+          "bytes": 2364
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/charger.webp",
+          "status": 200,
+          "bytes": 7418
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/advisor.webp",
+          "status": 200,
+          "bytes": 4928
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/bomber-white.webp",
+          "status": 200,
+          "bytes": 1724
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/checkin.webp",
+          "status": 200,
+          "bytes": 7314
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/checkin-white.webp",
+          "status": 200,
+          "bytes": 2364
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/coding.webp",
+          "status": 200,
+          "bytes": 6314
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/coding-white.webp",
+          "status": 200,
+          "bytes": 1520
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/english.webp",
+          "status": 200,
+          "bytes": 7394
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/english-white.webp",
+          "status": 200,
+          "bytes": 2512
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/examCharger-white.webp",
+          "status": 200,
+          "bytes": 2264
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/guard.webp",
+          "status": 200,
+          "bytes": 7110
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/guard-white.webp",
+          "status": 200,
+          "bytes": 1652
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/leader.webp",
+          "status": 200,
+          "bytes": 5890
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/examCharger.webp",
+          "status": 200,
+          "bytes": 6762
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/leader-white.webp",
+          "status": 200,
+          "bytes": 1846
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/math-white.webp",
+          "status": 200,
+          "bytes": 2046
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/math.webp",
+          "status": 200,
+          "bytes": 6690
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/node-white.webp",
+          "status": 200,
+          "bytes": 1682
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/mechanics.webp",
+          "status": 200,
+          "bytes": 6328
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/mechanics-white.webp",
+          "status": 200,
+          "bytes": 2386
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/node.webp",
+          "status": 200,
+          "bytes": 5810
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/ppt.webp",
+          "status": 200,
+          "bytes": 6230
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/receipt-white.webp",
+          "status": 200,
+          "bytes": 1868
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/receipt.webp",
+          "status": 200,
+          "bytes": 7210
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/review-white.webp",
+          "status": 200,
+          "bytes": 2164
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/review.webp",
+          "status": 200,
+          "bytes": 6752
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/ppt-white.webp",
+          "status": 200,
+          "bytes": 2040
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/splitter.webp",
+          "status": 200,
+          "bytes": 6954
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/summoner.webp",
+          "status": 200,
+          "bytes": 6030
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/splitter-white.webp",
+          "status": 200,
+          "bytes": 2034
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/thrower-white.webp",
+          "status": 200,
+          "bytes": 2708
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/thrower.webp",
+          "status": 200,
+          "bytes": 7082
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/summoner-white.webp",
+          "status": 200,
+          "bytes": 2070
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/buildings/architecture.webp",
+          "status": 200,
+          "bytes": 62420
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/buildings/activity.webp",
+          "status": 200,
+          "bytes": 63086
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/buildings/basic.webp",
+          "status": 200,
+          "bytes": 58064
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/buildings/canteen.webp",
+          "status": 200,
+          "bytes": 72156
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/buildings/civil.webp",
+          "status": 200,
+          "bytes": 73598
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/buildings/basic-south.webp",
+          "status": 200,
+          "bytes": 83476
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/buildings/experiment.webp",
+          "status": 200,
+          "bytes": 61878
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/buildings/dorm-west.webp",
+          "status": 200,
+          "bytes": 90676
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/buildings/dorm.webp",
+          "status": 200,
+          "bytes": 70442
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/landmarks/garden.webp",
+          "status": 200,
+          "bytes": 110240
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/landmarks/canteen.webp",
+          "status": 200,
+          "bytes": 93518
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/buildings/library.webp",
+          "status": 200,
+          "bytes": 86102
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/landmarks/track.webp",
+          "status": 200,
+          "bytes": 57490
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/landmarks/workshop.webp",
+          "status": 200,
+          "bytes": 60750
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/props/planter.webp",
+          "status": 200,
+          "bytes": 26368
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/landmarks/lab.webp",
+          "status": 200,
+          "bytes": 93376
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/landmarks/library.webp",
+          "status": 200,
+          "bytes": 71144
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/props/bench.webp",
+          "status": 200,
+          "bytes": 25908
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/props/tree.webp",
+          "status": 200,
+          "bytes": 23790
+        },
+        {
+          "name": "/__s2-built__/assets/art/v5/s2/atlases/enemies.webp",
+          "status": 200,
+          "bytes": 41040
+        },
+        {
+          "name": "/__s2-built__/assets/art/v5/s2/atlases/landmarks.webp",
+          "status": 200,
+          "bytes": 16616
+        },
+        {
+          "name": "/__s2-built__/assets/art/v5/s2/atlases/particles.webp",
+          "status": 200,
+          "bytes": 1002
+        },
+        {
+          "name": "/__s2-built__/assets/art/v5/s2/atlases/items.webp",
+          "status": 200,
+          "bytes": 42944
+        },
+        {
+          "name": "/__s2-built__/assets/art/v5/s2/building-smart-teaching.webp",
+          "status": 200,
+          "bytes": 102786
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/icons/pickups/heal.webp",
+          "status": 200,
+          "bytes": 8142
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/icons/pickups/magnet.webp",
+          "status": 200,
+          "bytes": 11812
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/icons/pickups/shield.webp",
+          "status": 200,
+          "bytes": 9108
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/icons/pickups/freeze.webp",
+          "status": 200,
+          "bytes": 14244
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/icons/pickups/bomb.webp",
+          "status": 200,
+          "bytes": 12528
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/icons/pickups/coffeeBoost.webp",
+          "status": 200,
+          "bytes": 10082
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/icons/pickups/energy.webp",
+          "status": 200,
+          "bytes": 9720
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/ui/chest-closed.webp",
+          "status": 200,
+          "bytes": 43860
+        },
+        {
+          "name": "/__s2-built__/assets/fonts/campus-digits-600-latin.woff2",
+          "status": 200,
+          "bytes": 8488
+        },
+        {
+          "name": "/__s2-built__/assets/fonts/campus-sans-400-shell.woff2",
+          "status": 200,
+          "bytes": 73716
+        },
+        {
+          "name": "/__s2-built__/assets/fonts/campus-sans-400-game.woff2",
+          "status": 200,
+          "bytes": 74348
+        },
+        {
+          "name": "/__s2-built__/assets/art/v5/s2/atlases/landmarks-chapter-2.webp",
+          "status": 200,
+          "bytes": 10198
+        },
+        {
+          "name": "/__s2-built__/assets/art/v5/s2/building-joint-lab.webp",
+          "status": 200,
+          "bytes": 104086
+        },
+        {
+          "name": "/__s2-built__/assets/art/v5/s2/atlases/enemies-chapter-2.webp",
+          "status": 200,
+          "bytes": 69728
+        },
+        {
+          "name": "/__s2-built__/assets/art/v5/s2/icons/item-drone-96.webp",
+          "status": 200,
+          "bytes": 4242
+        },
+        {
+          "name": "/__s2-built__/assets/fonts/campus-sans-600-shell.woff2",
+          "status": 200,
+          "bytes": 74860
+        },
+        {
+          "name": "/__s2-built__/assets/fonts/campus-sans-600-game.woff2",
+          "status": 200,
+          "bytes": 75692
+        }
+      ],
+      "targetBytes": 6291456,
+      "limitBytes": 8388608,
+      "noDetailPrefetch": true
+    },
+    "3": {
+      "bodyBytes": 3376328,
+      "requestCount": 115,
+      "headerAllowancePerRequest": 1024,
+      "conservativeTransferBytes": 3494088,
+      "includes": "HTML, JS, CSS, fonts, DOM images and dedicated-worker texture requests",
+      "files": [
+        {
+          "name": "/__s2-built__/budget.html",
+          "status": 200,
+          "bytes": 1580
+        },
+        {
+          "name": "/__s2-built__/assets/Filter-BksFePSf.js",
+          "status": 200,
+          "bytes": 41970
+        },
+        {
+          "name": "/__s2-built__/assets/CanvasPool-4dmTyGYP.js",
+          "status": 200,
+          "bytes": 71061
+        },
+        {
+          "name": "/__s2-built__/assets/canvasUtils-CMoSNiEb.js",
+          "status": 200,
+          "bytes": 6011
+        },
+        {
+          "name": "/__s2-built__/assets/Cache-Bk142Oj_.js",
+          "status": 200,
+          "bytes": 1100
+        },
+        {
+          "name": "/__s2-built__/assets/defaultFilter.vert-Bzgc-A3z.js",
+          "status": 200,
+          "bytes": 24849
+        },
+        {
+          "name": "/__s2-built__/assets/budget-CHL6IDfx.js",
+          "status": 200,
+          "bytes": 582952
+        },
+        {
+          "name": "/__s2-built__/assets/GCManagedHash-Du35rc_A.js",
+          "status": 200,
+          "bytes": 19332
+        },
+        {
+          "name": "/__s2-built__/assets/RenderTargetSystem-S2anIDp-.js",
+          "status": 200,
+          "bytes": 58801
+        },
+        {
+          "name": "/__s2-built__/assets/getTextureBatchBindGroup-C_euVsKt.js",
+          "status": 200,
+          "bytes": 344
+        },
+        {
+          "name": "/__s2-built__/assets/GraphicsContext-BMFow7og.js",
+          "status": 200,
+          "bytes": 61677
+        },
+        {
+          "name": "/__s2-built__/assets/CanvasRenderer-BRy0SXVV.js",
+          "status": 200,
+          "bytes": 27091
+        },
+        {
+          "name": "/__s2-built__/assets/getTexelRangeRects-Cf_aXOea.js",
+          "status": 200,
+          "bytes": 11358
+        },
+        {
+          "name": "/__s2-built__/assets/BitmapFont-F11sHK_5.js",
+          "status": 200,
+          "bytes": 33388
+        },
+        {
+          "name": "/__s2-built__/assets/budget-RWSPB3Er.css",
+          "status": 200,
+          "bytes": 18857
+        },
+        {
+          "name": "/__s2-built__/assets/WebGLRenderer-CJ_MtsUA.js",
+          "status": 200,
+          "bytes": 60
+        },
+        {
+          "name": "/__s2-built__/assets/WebGLRenderer-D9VNZ3hA.js",
+          "status": 200,
+          "bytes": 72824
+        },
+        {
+          "name": "/__s2-built__/assets/browserAll-BB94HBdO.js",
+          "status": 200,
+          "bytes": 43514
+        },
+        {
+          "name": "/__s2-built__/assets/init-C27j8TSY.js",
+          "status": 200,
+          "bytes": 14229
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/characters/balanced/sprite.webp",
+          "status": 200,
+          "bytes": 3964
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/homework.webp",
+          "status": 200,
+          "bytes": 7550
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/ddl.webp",
+          "status": 200,
+          "bytes": 9538
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/fx/particles.webp",
+          "status": 200,
+          "bytes": 1304
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/ddl-white.webp",
+          "status": 200,
+          "bytes": 3504
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/homework-white.webp",
+          "status": 200,
+          "bytes": 2526
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/fx/paper-blade.webp",
+          "status": 200,
+          "bytes": 1620
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/characters/analysis/sprite.webp",
+          "status": 200,
+          "bytes": 3482
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/characters/architect/sprite.webp",
+          "status": 200,
+          "bytes": 4428
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/characters/coder/sprite.webp",
+          "status": 200,
+          "bytes": 4786
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/characters/english/sprite.webp",
+          "status": 200,
+          "bytes": 2968
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/characters/experiment/sprite.webp",
+          "status": 200,
+          "bytes": 3870
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/textures/metal.webp",
+          "status": 200,
+          "bytes": 734
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/textures/paving.webp",
+          "status": 200,
+          "bytes": 7240
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/fx/book.webp",
+          "status": 200,
+          "bytes": 2970
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/fx/slides.webp",
+          "status": 200,
+          "bytes": 2756
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/textures/grass.webp",
+          "status": 200,
+          "bytes": 12394
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/fx/robot.webp",
+          "status": 200,
+          "bytes": 2804
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/fx/shuttle.webp",
+          "status": 200,
+          "bytes": 1798
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/advisor-white.webp",
+          "status": 200,
+          "bytes": 1574
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/advisor.webp",
+          "status": 200,
+          "bytes": 4928
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/charger.webp",
+          "status": 200,
+          "bytes": 7418
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/bomber.webp",
+          "status": 200,
+          "bytes": 6412
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/charger-white.webp",
+          "status": 200,
+          "bytes": 2364
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/bomber-white.webp",
+          "status": 200,
+          "bytes": 1724
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/checkin.webp",
+          "status": 200,
+          "bytes": 7314
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/checkin-white.webp",
+          "status": 200,
+          "bytes": 2364
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/coding.webp",
+          "status": 200,
+          "bytes": 6314
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/coding-white.webp",
+          "status": 200,
+          "bytes": 1520
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/english.webp",
+          "status": 200,
+          "bytes": 7394
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/english-white.webp",
+          "status": 200,
+          "bytes": 2512
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/examCharger.webp",
+          "status": 200,
+          "bytes": 6762
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/guard.webp",
+          "status": 200,
+          "bytes": 7110
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/examCharger-white.webp",
+          "status": 200,
+          "bytes": 2264
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/leader-white.webp",
+          "status": 200,
+          "bytes": 1846
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/leader.webp",
+          "status": 200,
+          "bytes": 5890
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/guard-white.webp",
+          "status": 200,
+          "bytes": 1652
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/math.webp",
+          "status": 200,
+          "bytes": 6690
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/mechanics.webp",
+          "status": 200,
+          "bytes": 6328
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/node-white.webp",
+          "status": 200,
+          "bytes": 1682
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/mechanics-white.webp",
+          "status": 200,
+          "bytes": 2386
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/math-white.webp",
+          "status": 200,
+          "bytes": 2046
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/node.webp",
+          "status": 200,
+          "bytes": 5810
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/ppt.webp",
+          "status": 200,
+          "bytes": 6230
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/receipt.webp",
+          "status": 200,
+          "bytes": 7210
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/ppt-white.webp",
+          "status": 200,
+          "bytes": 2040
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/receipt-white.webp",
+          "status": 200,
+          "bytes": 1868
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/review-white.webp",
+          "status": 200,
+          "bytes": 2164
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/review.webp",
+          "status": 200,
+          "bytes": 6752
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/splitter.webp",
+          "status": 200,
+          "bytes": 6954
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/summoner.webp",
+          "status": 200,
+          "bytes": 6030
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/summoner-white.webp",
+          "status": 200,
+          "bytes": 2070
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/splitter-white.webp",
+          "status": 200,
+          "bytes": 2034
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/thrower-white.webp",
+          "status": 200,
+          "bytes": 2708
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/enemies/thrower.webp",
+          "status": 200,
+          "bytes": 7082
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/buildings/activity.webp",
+          "status": 200,
+          "bytes": 63086
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/buildings/architecture.webp",
+          "status": 200,
+          "bytes": 62420
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/buildings/basic.webp",
+          "status": 200,
+          "bytes": 58064
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/buildings/basic-south.webp",
+          "status": 200,
+          "bytes": 83476
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/buildings/canteen.webp",
+          "status": 200,
+          "bytes": 72156
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/buildings/civil.webp",
+          "status": 200,
+          "bytes": 73598
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/buildings/dorm.webp",
+          "status": 200,
+          "bytes": 70442
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/landmarks/canteen.webp",
+          "status": 200,
+          "bytes": 93518
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/buildings/experiment.webp",
+          "status": 200,
+          "bytes": 61878
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/buildings/library.webp",
+          "status": 200,
+          "bytes": 86102
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/landmarks/garden.webp",
+          "status": 200,
+          "bytes": 110240
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/buildings/dorm-west.webp",
+          "status": 200,
+          "bytes": 90676
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/landmarks/workshop.webp",
+          "status": 200,
+          "bytes": 60750
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/landmarks/track.webp",
+          "status": 200,
+          "bytes": 57490
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/props/planter.webp",
+          "status": 200,
+          "bytes": 26368
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/landmarks/lab.webp",
+          "status": 200,
+          "bytes": 93376
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/props/bench.webp",
+          "status": 200,
+          "bytes": 25908
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/landmarks/library.webp",
+          "status": 200,
+          "bytes": 71144
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/props/tree.webp",
+          "status": 200,
+          "bytes": 23790
+        },
+        {
+          "name": "/__s2-built__/assets/art/v5/s2/atlases/enemies.webp",
+          "status": 200,
+          "bytes": 41040
+        },
+        {
+          "name": "/__s2-built__/assets/art/v5/s2/atlases/items.webp",
+          "status": 200,
+          "bytes": 42944
+        },
+        {
+          "name": "/__s2-built__/assets/art/v5/s2/atlases/particles.webp",
+          "status": 200,
+          "bytes": 1002
+        },
+        {
+          "name": "/__s2-built__/assets/art/v5/s2/atlases/landmarks.webp",
+          "status": 200,
+          "bytes": 16616
+        },
+        {
+          "name": "/__s2-built__/assets/art/v5/s2/building-smart-teaching.webp",
+          "status": 200,
+          "bytes": 102786
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/icons/pickups/heal.webp",
+          "status": 200,
+          "bytes": 8142
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/icons/pickups/bomb.webp",
+          "status": 200,
+          "bytes": 12528
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/icons/pickups/shield.webp",
+          "status": 200,
+          "bytes": 9108
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/icons/pickups/freeze.webp",
+          "status": 200,
+          "bytes": 14244
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/icons/pickups/magnet.webp",
+          "status": 200,
+          "bytes": 11812
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/icons/pickups/coffeeBoost.webp",
+          "status": 200,
+          "bytes": 10082
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/icons/pickups/energy.webp",
+          "status": 200,
+          "bytes": 9720
+        },
+        {
+          "name": "/__s2-built__/assets/art/v4/ui/chest-closed.webp",
+          "status": 200,
+          "bytes": 43860
+        },
+        {
+          "name": "/__s2-built__/assets/fonts/campus-digits-600-latin.woff2",
+          "status": 200,
+          "bytes": 8488
+        },
+        {
+          "name": "/__s2-built__/assets/fonts/campus-sans-400-shell.woff2",
+          "status": 200,
+          "bytes": 73716
+        },
+        {
+          "name": "/__s2-built__/assets/fonts/campus-sans-400-game.woff2",
+          "status": 200,
+          "bytes": 74348
+        },
+        {
+          "name": "/__s2-built__/assets/art/v5/s2/atlases/enemies-chapter-3.webp",
+          "status": 200,
+          "bytes": 14662
+        },
+        {
+          "name": "/__s2-built__/assets/art/v5/s2/atlases/landmarks-chapter-3.webp",
+          "status": 200,
+          "bytes": 11898
+        },
+        {
+          "name": "/__s2-built__/assets/art/v5/s2/building-exhibit-hall.webp",
+          "status": 200,
+          "bytes": 103376
+        },
+        {
+          "name": "/__s2-built__/assets/art/v5/s2/icons/item-drone-96.webp",
+          "status": 200,
+          "bytes": 4242
+        },
+        {
+          "name": "/__s2-built__/assets/fonts/campus-sans-600-shell.woff2",
+          "status": 200,
+          "bytes": 74860
+        },
+        {
+          "name": "/__s2-built__/assets/fonts/campus-sans-600-game.woff2",
+          "status": 200,
+          "bytes": 75692
+        }
+      ],
+      "targetBytes": 6291456,
+      "limitBytes": 8388608,
+      "noDetailPrefetch": true
+    }
+  },
+  "dist": {
+    "bytes": 30431009,
+    "files": 738,
+    "maxFile": "assets/art/v5/s2/semester-cover.png",
+    "maxFileBytes": 1620068
+  },
+  "art": {
+    "aiMasters": 42,
+    "selectedNewMasters": 30,
+    "imageGenCallsP19": 31,
+    "discardedStyleDrafts": 1,
+    "placeholders": [],
+    "runtimeFiles": 168,
+    "runtimeBytes": 7971059
+  }
+}
