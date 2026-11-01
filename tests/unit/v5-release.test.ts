@@ -1,0 +1,32 @@
+import {describe,it,expect} from 'vitest';
+import {execFileSync} from 'node:child_process';
+import {readFileSync} from 'node:fs';
+import {S2_CONTENT} from '../../src/semesters/s2/content';
+import {S2_RUNTIME_CONFIG} from '../../src/semesters/s2/config';
+import {S2_SCORE_TABLE} from '../../src/semesters/s2/daily';
+import {S2_RELEASE_VERSIONS} from '../../src/semesters/s2/release';
+import {SEMESTERS} from '../../src/semesters/registry';
+import {simulateReleaseBoss} from '../../scripts/s2-balance-simulation';
+const json=(path:string)=>JSON.parse(readFileSync(path,'utf8'));
+describe('v5 local release freeze',()=>{
+ it('checks actual WOFF2 cmaps at both weights against the complete S1+S2 Han/CJK inventory and keeps the original fonts',()=>{
+  const result=JSON.parse(execFileSync('python3',['scripts/subset-semester-fonts.py','--check'],{encoding:'utf8'}));expect(result.missing).toEqual([]);expect(result.required).toBeGreaterThan(1000);expect(result.weights).toEqual([400,600]);const ledger=json('font-src/s2/ledger.json');expect(ledger.license).toBe('SIL OFL 1.1');expect(ledger.outputs).toHaveLength(2);expect(ledger.existingFaces).toHaveLength(4);
+ });
+ it('pins the complete behavior/data/save/calendar/score/ratings closure, rejects a numeric source mutation, and keeps the formal entry closed',async()=>{
+  // JS auditor is the exact same implementation used by the CLI release gate.
+  // @ts-expect-error Offline .mjs auditor intentionally has no runtime dependency declaration.
+  const {auditSemesterTwo,semesterCatalogSnapshot}=await import('../../scripts/s2-freeze.mjs');
+  const pin=json('freeze/s2-v5.0.0.json'),metadata={versions:S2_RELEASE_VERSIONS,catalog:semesterCatalogSnapshot(S2_CONTENT),calendar:S2_RUNTIME_CONFIG.calendar,scoring:S2_SCORE_TABLE};expect(auditSemesterTwo(process.cwd(),pin,metadata).passed).toBe(true);
+  const changed=auditSemesterTwo(process.cwd(),pin,metadata,(path:string)=>path==='src/semesters/s2/expo-final.ts'?Buffer.from(readFileSync(path,'utf8').replace('hp:110000','hp:110001')):readFileSync(path));expect(changed.passed).toBe(false);expect(changed.checks.filter((c:{passed:boolean})=>!c.passed).map((c:{name:string})=>c.name)).toContain('src/semesters/s2/expo-final.ts');
+  for(const file of ['src/semesters/runtime/SemesterEngine.ts','src/semesters/s2/expo-final.ts','src/semesters/s2/legacy/ContentState.ts','src/semesters/s2/legacy/system.ts','src/semesters/s2/spool.ts','src/semesters/s2/settlement.ts','src/semesters/s2/rating.ts','src/semesters/inheritance.ts','src/save/v5/profile.ts'])expect(pin.runtimeFiles[file],file).toBeDefined();expect(SEMESTERS.s2.runtimeAvailable).toBe(false);expect(S2_RELEASE_VERSIONS).toMatchObject({score:'score-s2-v1',rating:'rating-s2-v1',daily:'daily-s2-v5.0.0',inheritance:'carry-v1'});
+ });
+ it('lets the weaker P12 base and medium mixed builds beat all three final phases at fixed110000 HP without healing',()=>{
+  for(const i of [0,1]){const a=simulateReleaseBoss(i);expect(a.killed).toBe(true);expect(a.hp).toBe(110000);expect(a.fixedHp).toBe(true);expect(a.monotonic).toBe(true);expect(a.stages).toEqual([1,2,3]);expect(a.maxReduction).toBe(.30);expect(a.seconds).toBeLessThan(300);}
+ });
+ it('keeps both strong builds70–100s and repeats the exact P13 fixture deterministically',()=>{
+  const first=simulateReleaseBoss(2);for(const a of [first,simulateReleaseBoss(3)]){expect(a.killed).toBe(true);expect(a.fixedHp&&a.monotonic).toBe(true);expect(a.stages).toEqual([1,2,3]);expect(a.maxReduction).toBe(.30);expect(a.seconds).toBeGreaterThanOrEqual(70);expect(a.seconds).toBeLessThanOrEqual(100);}expect(simulateReleaseBoss(2).seconds).toBe(first.seconds);
+ });
+ it('keeps the middle build inside the1500s full calendar and reproduces the untouched Boss2 old-build timing',()=>{
+  const medium=simulateReleaseBoss(1,1).seconds+simulateReleaseBoss(1,2).seconds+simulateReleaseBoss(1).seconds;expect(960+medium).toBeLessThan(1500);expect(simulateReleaseBoss(0,2).seconds).toBe(59.72);
+ });
+});

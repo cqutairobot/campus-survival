@@ -1,0 +1,4183 @@
+{
+  "version": "s2-source-audit-v1",
+  "passed": true,
+  "sources": {
+    "aiMasters": 42,
+    "cc0Shapes": 2,
+    "cc0SoundClips": 18,
+    "fontLicense": "SIL OFL1.1",
+    "music": "original five tracks, unchanged",
+    "s1PreservedFiles": 321
+  },
+  "uniqueFilesHashed": 873,
+  "checks": [
+    {
+      "name": "42 real AI masters / zero placeholders",
+      "passed": true
+    },
+    {
+      "name": "18 logical audio clips / 36 encodings",
+      "passed": true
+    },
+    {
+      "name": "enemy-bike: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/enemy-bike.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/enemy-bike.png",
+      "passed": true
+    },
+    {
+      "name": "docs/v4.0.1-battle.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "item-drone: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/item-drone.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-drone.png",
+      "passed": true
+    },
+    {
+      "name": "docs/v4.0.1-battle.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "building-smart-teaching: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/building-smart-teaching.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/building-smart-teaching.png",
+      "passed": true
+    },
+    {
+      "name": "docs/v4.0.1-battle.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "enemy-reservation: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/enemy-reservation.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/enemy-reservation.png",
+      "passed": true
+    },
+    {
+      "name": "docs/v4.0.1-battle.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "enemy-parceler: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/enemy-parceler.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/enemy-parceler.png",
+      "passed": true
+    },
+    {
+      "name": "docs/v4.0.1-battle.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "enemy-dispatcher: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/enemy-dispatcher.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/enemy-dispatcher.png",
+      "passed": true
+    },
+    {
+      "name": "docs/v4.0.1-battle.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "enemy-proposal-board: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/enemy-proposal-board.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/enemy-proposal-board.png",
+      "passed": true
+    },
+    {
+      "name": "docs/v4.0.1-battle.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "item-whiteboard: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/item-whiteboard.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-whiteboard.png",
+      "passed": true
+    },
+    {
+      "name": "docs/v4.0.1-battle.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "item-drone-evolved: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/item-drone-evolved.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-drone-evolved.png",
+      "passed": true
+    },
+    {
+      "name": "docs/v4.0.1-battle.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "item-whiteboard-evolved: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/item-whiteboard-evolved.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-whiteboard-evolved.png",
+      "passed": true
+    },
+    {
+      "name": "docs/v4.0.1-battle.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "landmark-infirmary: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/landmark-infirmary.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/landmark-infirmary.png",
+      "passed": true
+    },
+    {
+      "name": "docs/v4.0.1-battle.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "landmark-joint-table: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/landmark-joint-table.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/landmark-joint-table.png",
+      "passed": true
+    },
+    {
+      "name": "docs/v4.0.1-battle.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "enemy-peer: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/enemy-peer.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/enemy-peer.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/enemy-parceler.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "enemy-relay: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/enemy-relay.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/enemy-relay.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-drone.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "enemy-recycler: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/enemy-recycler.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/enemy-recycler.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-drone.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "enemy-marshal: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/enemy-marshal.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/enemy-marshal.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/enemy-parceler.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "enemy-coordinator: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/enemy-coordinator.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/enemy-coordinator.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/enemy-parceler.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "enemy-auditor: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/enemy-auditor.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/enemy-auditor.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-drone.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "enemy-project-review: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/enemy-project-review.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/enemy-project-review.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-drone.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "enemy-expo-final: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/enemy-expo-final.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/enemy-expo-final.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-drone.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "enemy-relay-node: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/enemy-relay-node.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/enemy-relay-node.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-drone.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "enemy-review-panel: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/enemy-review-panel.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/enemy-review-panel.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-drone.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "item-spool: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/item-spool.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-spool.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-drone.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "item-printer: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/item-printer.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-printer.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-drone.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "item-spool-evolved: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/item-spool-evolved.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-spool-evolved.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-drone.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "item-printer-evolved: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/item-printer-evolved.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-printer-evolved.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-drone.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "item-field-hub: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/item-field-hub.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-field-hub.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-drone.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "item-holo-review: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/item-holo-review.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-holo-review.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-drone.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "item-digital-twin: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/item-digital-twin.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-digital-twin.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-drone.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "item-battery: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/item-battery.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-battery.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-drone.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "item-protocol: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/item-protocol.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-protocol.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-drone.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "item-harness: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/item-harness.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-harness.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-drone.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "item-echo-chip: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/item-echo-chip.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-echo-chip.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-drone.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "item-route-permit: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/item-route-permit.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-route-permit.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-drone.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "item-buffer-badge: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/item-buffer-badge.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-buffer-badge.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-drone.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "item-review-seal: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/item-review-seal.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-review-seal.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-drone.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "item-project-grant: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/item-project-grant.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-project-grant.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-drone.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "building-joint-lab: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/building-joint-lab.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/building-joint-lab.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/building-smart-teaching.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "building-exhibit-hall: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/building-exhibit-hall.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/building-exhibit-hall.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/building-smart-teaching.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "landmark-amendment-table: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/landmark-amendment-table.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/landmark-amendment-table.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-drone.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "landmark-revision: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/landmark-revision.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/landmark-revision.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/item-drone.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "semester-cover: AI provenance",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/raw/semester-cover.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/semester-cover.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/masters/building-smart-teaching.png: style reference",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/cc0/spark_04.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/cc0/Kenney-Particle-Pack-License.txt",
+      "passed": true
+    },
+    {
+      "name": "particle-spark_04.png: CC0",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/cc0/smoke_03.png",
+      "passed": true
+    },
+    {
+      "name": "art-src/s2/cc0/Kenney-Particle-Pack-License.txt",
+      "passed": true
+    },
+    {
+      "name": "particle-smoke_03.png: CC0",
+      "passed": true
+    },
+    {
+      "name": "public license interface-sounds",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/raw/interface-sounds/glitch_001.ogg",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/licenses/interface-sounds-License.txt",
+      "passed": true
+    },
+    {
+      "name": "shot-s2-drone: CC0 and mastering",
+      "passed": true
+    },
+    {
+      "name": "public license interface-sounds",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/raw/interface-sounds/scratch_001.ogg",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/licenses/interface-sounds-License.txt",
+      "passed": true
+    },
+    {
+      "name": "shot-s2-whiteboard: CC0 and mastering",
+      "passed": true
+    },
+    {
+      "name": "public license interface-sounds",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/raw/interface-sounds/glitch_002.ogg",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/licenses/interface-sounds-License.txt",
+      "passed": true
+    },
+    {
+      "name": "shot-s2-spool: CC0 and mastering",
+      "passed": true
+    },
+    {
+      "name": "public license impact-sounds",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/raw/impact-sounds/impactMetal_light_001.ogg",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/licenses/impact-sounds-License.txt",
+      "passed": true
+    },
+    {
+      "name": "shot-s2-printer: CC0 and mastering",
+      "passed": true
+    },
+    {
+      "name": "public license impact-sounds",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/raw/impact-sounds/impactMetal_medium_001.ogg",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/licenses/impact-sounds-License.txt",
+      "passed": true
+    },
+    {
+      "name": "fusion-s2-fieldHub: CC0 and mastering",
+      "passed": true
+    },
+    {
+      "name": "public license interface-sounds",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/raw/interface-sounds/glass_004.ogg",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/licenses/interface-sounds-License.txt",
+      "passed": true
+    },
+    {
+      "name": "fusion-s2-holoReview: CC0 and mastering",
+      "passed": true
+    },
+    {
+      "name": "public license impact-sounds",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/raw/impact-sounds/impactMining_002.ogg",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/licenses/impact-sounds-License.txt",
+      "passed": true
+    },
+    {
+      "name": "fusion-s2-digitalTwin: CC0 and mastering",
+      "passed": true
+    },
+    {
+      "name": "public license interface-sounds",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/raw/interface-sounds/error_004.ogg",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/licenses/interface-sounds-License.txt",
+      "passed": true
+    },
+    {
+      "name": "warning-s2-line: CC0 and mastering",
+      "passed": true
+    },
+    {
+      "name": "public license interface-sounds",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/raw/interface-sounds/question_004.ogg",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/licenses/interface-sounds-License.txt",
+      "passed": true
+    },
+    {
+      "name": "warning-s2-reservation: CC0 and mastering",
+      "passed": true
+    },
+    {
+      "name": "public license interface-sounds",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/raw/interface-sounds/error_008.ogg",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/licenses/interface-sounds-License.txt",
+      "passed": true
+    },
+    {
+      "name": "warning-s2-scan: CC0 and mastering",
+      "passed": true
+    },
+    {
+      "name": "public license impact-sounds",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/raw/impact-sounds/impactPlate_medium_004.ogg",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/licenses/impact-sounds-License.txt",
+      "passed": true
+    },
+    {
+      "name": "event-s2-deliveryDay: CC0 and mastering",
+      "passed": true
+    },
+    {
+      "name": "public license interface-sounds",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/raw/interface-sounds/glitch_004.ogg",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/licenses/interface-sounds-License.txt",
+      "passed": true
+    },
+    {
+      "name": "event-s2-networkMaintenance: CC0 and mastering",
+      "passed": true
+    },
+    {
+      "name": "public license interface-sounds",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/raw/interface-sounds/confirmation_004.ogg",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/licenses/interface-sounds-License.txt",
+      "passed": true
+    },
+    {
+      "name": "event-s2-jointExhibit: CC0 and mastering",
+      "passed": true
+    },
+    {
+      "name": "public license interface-sounds",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/raw/interface-sounds/maximize_004.ogg",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/licenses/interface-sounds-License.txt",
+      "passed": true
+    },
+    {
+      "name": "event-s2-openLab: CC0 and mastering",
+      "passed": true
+    },
+    {
+      "name": "public license interface-sounds",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/raw/interface-sounds/confirmation_002.ogg",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/licenses/interface-sounds-License.txt",
+      "passed": true
+    },
+    {
+      "name": "contract-s2-project: CC0 and mastering",
+      "passed": true
+    },
+    {
+      "name": "public license interface-sounds",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/raw/interface-sounds/switch_004.ogg",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/licenses/interface-sounds-License.txt",
+      "passed": true
+    },
+    {
+      "name": "contract-s2-amendment: CC0 and mastering",
+      "passed": true
+    },
+    {
+      "name": "public license impact-sounds",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/raw/impact-sounds/impactMetal_light_004.ogg",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/licenses/impact-sounds-License.txt",
+      "passed": true
+    },
+    {
+      "name": "ambience-s2-lab: CC0 and mastering",
+      "passed": true
+    },
+    {
+      "name": "public license interface-sounds",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/raw/interface-sounds/scroll_004.ogg",
+      "passed": true
+    },
+    {
+      "name": "audio-src/s2/licenses/interface-sounds-License.txt",
+      "passed": true
+    },
+    {
+      "name": "ambience-s2-exhibit: CC0 and mastering",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/enemy-bike.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/enemy-bike.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-drone-96.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-drone-96.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-drone-192.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-drone-192.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/building-smart-teaching.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/building-smart-teaching.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/building-smart-teaching.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/building-smart-teaching.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/enemy-reservation.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/enemy-reservation.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/enemy-parceler.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/enemy-parceler.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/enemy-dispatcher.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/enemy-dispatcher.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/enemy-dispatcher-white.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/enemy-dispatcher-white.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/enemy-dispatcher.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/enemy-dispatcher.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/enemy-proposal-board.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/enemy-proposal-board.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/enemy-proposal-board-white.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/enemy-proposal-board-white.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/enemy-proposal-board.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/enemy-proposal-board.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-whiteboard-96.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-whiteboard-96.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-whiteboard-192.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-whiteboard-192.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-drone-evolved-96.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-drone-evolved-96.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-drone-evolved-192.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-drone-evolved-192.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-whiteboard-evolved-96.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-whiteboard-evolved-96.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-whiteboard-evolved-192.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-whiteboard-evolved-192.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/landmark-infirmary.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/landmark-infirmary.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/landmark-joint-table.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/landmark-joint-table.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/enemy-peer.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/enemy-peer.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/enemy-relay.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/enemy-relay.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/enemy-recycler.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/enemy-recycler.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/enemy-marshal.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/enemy-marshal.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/enemy-coordinator.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/enemy-coordinator.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/enemy-auditor.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/enemy-auditor.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/enemy-auditor-white.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/enemy-auditor-white.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/enemy-auditor.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/enemy-auditor.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/enemy-project-review.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/enemy-project-review.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/enemy-project-review-white.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/enemy-project-review-white.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/enemy-project-review.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/enemy-project-review.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/enemy-expo-final.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/enemy-expo-final.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/enemy-expo-final-white.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/enemy-expo-final-white.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/enemy-expo-final.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/enemy-expo-final.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/enemy-relay-node.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/enemy-relay-node.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/enemy-review-panel.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/enemy-review-panel.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-spool-96.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-spool-96.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-spool-192.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-spool-192.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-printer-96.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-printer-96.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-printer-192.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-printer-192.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-spool-evolved-96.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-spool-evolved-96.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-spool-evolved-192.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-spool-evolved-192.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-printer-evolved-96.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-printer-evolved-96.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-printer-evolved-192.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-printer-evolved-192.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-field-hub-96.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-field-hub-96.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-field-hub-192.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-field-hub-192.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-holo-review-96.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-holo-review-96.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-holo-review-192.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-holo-review-192.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-digital-twin-96.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-digital-twin-96.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-digital-twin-192.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-digital-twin-192.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-battery-96.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-battery-96.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-battery-192.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-battery-192.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-protocol-96.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-protocol-96.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-protocol-192.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-protocol-192.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-harness-96.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-harness-96.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-harness-192.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-harness-192.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-echo-chip-96.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-echo-chip-96.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-echo-chip-192.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-echo-chip-192.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-route-permit-96.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-route-permit-96.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-route-permit-192.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-route-permit-192.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-buffer-badge-96.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-buffer-badge-96.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-buffer-badge-192.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-buffer-badge-192.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-review-seal-96.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-review-seal-96.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-review-seal-192.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-review-seal-192.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-project-grant-96.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-project-grant-96.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-project-grant-192.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/icons/item-project-grant-192.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/building-joint-lab.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/building-joint-lab.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/building-joint-lab.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/building-joint-lab.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/building-exhibit-hall.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/building-exhibit-hall.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/building-exhibit-hall.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/building-exhibit-hall.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/landmark-amendment-table.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/landmark-amendment-table.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/landmark-revision.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/thumbs/landmark-revision.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/semester-cover.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/semester-cover.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/atlases/enemies.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/atlases/enemies.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/atlases/items.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/atlases/items.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/atlases/landmarks.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/atlases/landmarks.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/atlases/enemies-chapter-2.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/atlases/enemies-chapter-2.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/atlases/enemies-chapter-3.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/atlases/enemies-chapter-3.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/atlases/items-chapter-2.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/atlases/items-chapter-2.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/atlases/items-chapter-1.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/atlases/items-chapter-1.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/atlases/landmarks-chapter-2.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/atlases/landmarks-chapter-2.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/atlases/landmarks-chapter-3.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/atlases/landmarks-chapter-3.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/atlases/particles.webp",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2/atlases/particles.png",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/shot-s2-drone.ogg",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/shot-s2-drone.mp3",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/shot-s2-whiteboard.ogg",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/shot-s2-whiteboard.mp3",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/shot-s2-spool.ogg",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/shot-s2-spool.mp3",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/shot-s2-printer.ogg",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/shot-s2-printer.mp3",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/fusion-s2-fieldHub.ogg",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/fusion-s2-fieldHub.mp3",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/fusion-s2-holoReview.ogg",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/fusion-s2-holoReview.mp3",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/fusion-s2-digitalTwin.ogg",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/fusion-s2-digitalTwin.mp3",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/warning-s2-line.ogg",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/warning-s2-line.mp3",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/warning-s2-reservation.ogg",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/warning-s2-reservation.mp3",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/warning-s2-scan.ogg",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/warning-s2-scan.mp3",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/event-s2-deliveryDay.ogg",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/event-s2-deliveryDay.mp3",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/event-s2-networkMaintenance.ogg",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/event-s2-networkMaintenance.mp3",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/event-s2-jointExhibit.ogg",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/event-s2-jointExhibit.mp3",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/event-s2-openLab.ogg",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/event-s2-openLab.mp3",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/contract-s2-project.ogg",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/contract-s2-project.mp3",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/contract-s2-amendment.ogg",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/contract-s2-amendment.mp3",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/ambience-s2-lab.ogg",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/ambience-s2-lab.mp3",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/ambience-s2-exhibit.ogg",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2/ambience-s2-exhibit.mp3",
+      "passed": true
+    },
+    {
+      "name": "public/assets/fonts/v5/campus-semester-400-delta.woff2",
+      "passed": true
+    },
+    {
+      "name": "public/assets/fonts/v5/campus-semester-600-delta.woff2",
+      "passed": true
+    },
+    {
+      "name": "public/assets/fonts/campus-sans-400-shell.woff2",
+      "passed": true
+    },
+    {
+      "name": "public/assets/fonts/campus-sans-400-game.woff2",
+      "passed": true
+    },
+    {
+      "name": "public/assets/fonts/campus-sans-600-shell.woff2",
+      "passed": true
+    },
+    {
+      "name": "public/assets/fonts/campus-sans-600-game.woff2",
+      "passed": true
+    },
+    {
+      "name": "public font OFL",
+      "passed": true
+    },
+    {
+      "name": "public particle CC0",
+      "passed": true
+    },
+    {
+      "name": "font OFL and no missing Han/CJK",
+      "passed": true
+    },
+    {
+      "name": "all Chinese codepoints weight400",
+      "passed": true
+    },
+    {
+      "name": "all Chinese codepoints weight600",
+      "passed": true
+    },
+    {
+      "name": "P18 preserved art-src/s2/raw/enemy-bike.png",
+      "passed": true
+    },
+    {
+      "name": "P18 preserved art-src/s2/masters/enemy-bike.png",
+      "passed": true
+    },
+    {
+      "name": "P18 preserved art-src/s2/raw/item-drone.png",
+      "passed": true
+    },
+    {
+      "name": "P18 preserved art-src/s2/masters/item-drone.png",
+      "passed": true
+    },
+    {
+      "name": "P18 preserved art-src/s2/raw/building-smart-teaching.png",
+      "passed": true
+    },
+    {
+      "name": "P18 preserved art-src/s2/masters/building-smart-teaching.png",
+      "passed": true
+    },
+    {
+      "name": "P18 preserved art-src/s2/raw/enemy-reservation.png",
+      "passed": true
+    },
+    {
+      "name": "P18 preserved art-src/s2/masters/enemy-reservation.png",
+      "passed": true
+    },
+    {
+      "name": "P18 preserved art-src/s2/raw/enemy-parceler.png",
+      "passed": true
+    },
+    {
+      "name": "P18 preserved art-src/s2/masters/enemy-parceler.png",
+      "passed": true
+    },
+    {
+      "name": "P18 preserved art-src/s2/raw/enemy-dispatcher.png",
+      "passed": true
+    },
+    {
+      "name": "P18 preserved art-src/s2/masters/enemy-dispatcher.png",
+      "passed": true
+    },
+    {
+      "name": "P18 preserved art-src/s2/raw/enemy-proposal-board.png",
+      "passed": true
+    },
+    {
+      "name": "P18 preserved art-src/s2/masters/enemy-proposal-board.png",
+      "passed": true
+    },
+    {
+      "name": "P18 preserved art-src/s2/raw/item-whiteboard.png",
+      "passed": true
+    },
+    {
+      "name": "P18 preserved art-src/s2/masters/item-whiteboard.png",
+      "passed": true
+    },
+    {
+      "name": "P18 preserved art-src/s2/raw/item-drone-evolved.png",
+      "passed": true
+    },
+    {
+      "name": "P18 preserved art-src/s2/masters/item-drone-evolved.png",
+      "passed": true
+    },
+    {
+      "name": "P18 preserved art-src/s2/raw/item-whiteboard-evolved.png",
+      "passed": true
+    },
+    {
+      "name": "P18 preserved art-src/s2/masters/item-whiteboard-evolved.png",
+      "passed": true
+    },
+    {
+      "name": "P18 preserved art-src/s2/raw/landmark-infirmary.png",
+      "passed": true
+    },
+    {
+      "name": "P18 preserved art-src/s2/masters/landmark-infirmary.png",
+      "passed": true
+    },
+    {
+      "name": "P18 preserved art-src/s2/raw/landmark-joint-table.png",
+      "passed": true
+    },
+    {
+      "name": "P18 preserved art-src/s2/masters/landmark-joint-table.png",
+      "passed": true
+    },
+    {
+      "name": "P18 preserved art-src/s2/cc0/spark_04.png",
+      "passed": true
+    },
+    {
+      "name": "P18 preserved art-src/s2/cc0/smoke_03.png",
+      "passed": true
+    },
+    {
+      "name": "P18 preserved docs/v5-p18-sample.png",
+      "passed": true
+    },
+    {
+      "name": "P18 preserved docs/v5-p18-art-normal.png",
+      "passed": true
+    },
+    {
+      "name": "P18 preserved docs/v5-p18-art-fallback.png",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/event-portal.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ui-reveal.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/shot-paper-0.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/block.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ui-rarity-common.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ui-rarity-epic.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/charged.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/death-metal-0.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-brick-3.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/evolution.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-metal-3.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-glass-0.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/death-energy-1.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/shield-break.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/death-liquid-0.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/boss.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ui-press.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-brick-0.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/combo.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/death-brick-1.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/shot-energy-0.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/music-result.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ultimate-barrier.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/shot-energy-0.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-glass-2.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ultimate-barrier.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-paper-2.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/music-normal.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/death-glass-0.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-energy-0.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-liquid-0.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/pickup.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-key-0.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ui-reveal.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ultimate-parallel.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/charged.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/shield-break.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/fusion-sky.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-paper-1.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/death-energy-1.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-glass-1.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ui-tab.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/shot-paper-0.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-glass-0.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/death-liquid-1.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/shot-glass-1.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/shot-key-1.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-energy-0.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ui-talent-upgrade.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/fusion-sky.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/fusion-hub.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/death-metal-1.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-glass-1.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/evolution.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-paper-3.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ui-confirm.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ui-rarity-common.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-paper-0.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-glass-3.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/death-glass-1.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/event-sports.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ultimate-lastMinute.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/shot-key-0.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-brick-1.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-brick-3.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/music-elite.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/level.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/music-elite.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/frenzy.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/event-blackout.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/music-normal.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ui-hover.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/critical.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-paper-2.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-key-2.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/death-paper-0.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ui-chest-open.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/event-portal.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/fusion-demolition.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ui-tab.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ultimate-overload.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/shot-liquid-0.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ultimate-conference.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/shot-brick-1.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/event-sports.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/rain-ambience.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/shot-glass-1.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/shot-liquid-1.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/event-blackout.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/shot-key-1.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/shot-paper-1.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/shot-metal-0.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/clear.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-brick-0.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/fusion-binder.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/block.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/death-brick-0.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/boss.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/death-key-0.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/shot-key-0.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-metal-2.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-metal-2.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/event-rainstorm.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-energy-3.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/shot-liquid-1.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/fusion-icefire.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/shot-glass-0.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/shot-brick-0.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-key-3.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-metal-1.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/fusion-icefire.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/death-key-1.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-brick-1.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/event-advisor.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/shot-brick-0.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/shot-liquid-0.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ui-chest-latch.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-key-1.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ui-achievement.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ui-disabled.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/clear.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ultimate-lastMinute.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-energy-3.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hurt.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ultimate-conference.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-energy-1.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/event-examRage.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-energy-1.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-key-1.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/music-menu.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-energy-2.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/chest.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-paper-1.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/music-result.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-liquid-2.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/fusion-demolition.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ui-chest-latch.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/shot-paper-1.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/combo.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-liquid-2.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/death-liquid-1.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/fusion-hub.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ui-achievement.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-key-2.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/death-metal-0.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/death-key-0.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ui-cancel.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/death-liquid-0.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/shot-energy-1.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/shot-metal-0.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ui-cancel.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/music-boss.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/shot-glass-0.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/shot-brick-1.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/shot-energy-1.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/fusion-binder.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-brick-2.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/event-end.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ultimate-overload.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/music-menu.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/pickup.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/fusion-sword.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ultimate-submission.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-paper-0.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ui-hover.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/death-paper-0.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/death-key-1.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/event-examRage.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/event-rainstorm.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hurt.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ui-rarity-legendary.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-key-0.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/event-end.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-liquid-3.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/shot-metal-1.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ui-disabled.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-metal-0.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/fusion-sword.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-key-3.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-liquid-3.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/chest.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-metal-1.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/event-advisor.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-glass-2.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-metal-0.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-liquid-1.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-liquid-1.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/shot-metal-1.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-energy-2.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ui-press.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-paper-3.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/death-brick-1.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/death-brick-0.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ultimate-submission.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ui-rarity-rare.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/death-glass-0.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ui-confirm.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ultimate-parallel.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/critical.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/death-paper-1.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-brick-2.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-liquid-0.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ui-rarity-rare.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/level.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/death-paper-1.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-glass-3.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/music-boss.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ui-chest-open.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/hit-metal-3.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ui-rarity-epic.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/death-energy-0.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/rain-ambience.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ui-rarity-legendary.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/death-energy-0.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/ui-talent-upgrade.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/frenzy.ogg",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/death-metal-1.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved public/assets/audio/v4/death-glass-1.mp3",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved src/audio/OutputBus.ts",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved src/audio/MusicDirector.ts",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved src/audio/AudioDirector.ts",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved src/audio/audio.ts",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved src/audio/catalog.ts",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved src/audio/mix.ts",
+      "passed": true
+    },
+    {
+      "name": "S1 audio preserved src/assets/audio-loops.json",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/buildings/activity.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/buildings/architecture.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/buildings/basic-south.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/buildings/basic.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/buildings/canteen.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/buildings/civil.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/buildings/dorm-west.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/buildings/dorm.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/buildings/experiment.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/buildings/library.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/characters/analysis/avatar.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/characters/analysis/avatar.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/characters/analysis/portrait.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/characters/analysis/sprite.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/characters/analysis/sprite.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/characters/architect/avatar.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/characters/architect/avatar.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/characters/architect/portrait.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/characters/architect/sprite.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/characters/architect/sprite.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/characters/balanced/avatar.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/characters/balanced/avatar.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/characters/balanced/portrait.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/characters/balanced/sprite.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/characters/balanced/sprite.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/characters/coder/avatar.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/characters/coder/avatar.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/characters/coder/portrait.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/characters/coder/sprite.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/characters/coder/sprite.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/characters/english/avatar.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/characters/english/avatar.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/characters/english/portrait.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/characters/english/sprite.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/characters/english/sprite.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/characters/experiment/avatar.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/characters/experiment/avatar.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/characters/experiment/portrait.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/characters/experiment/sprite.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/characters/experiment/sprite.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/advisor-white.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/advisor-white.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/advisor.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/advisor.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/bomber-white.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/bomber-white.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/bomber.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/bomber.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/charger-white.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/charger-white.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/charger.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/charger.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/checkin-white.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/checkin-white.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/checkin.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/checkin.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/coding-white.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/coding-white.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/coding.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/coding.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/ddl-white.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/ddl-white.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/ddl.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/ddl.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/defense-white.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/defense-white.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/defense.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/defense.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/english-white.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/english-white.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/english.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/english.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/examCharger-white.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/examCharger-white.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/examCharger.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/examCharger.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/finals-white.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/finals-white.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/finals.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/finals.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/guard-white.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/guard-white.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/guard.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/guard.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/homework-white.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/homework-white.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/homework.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/homework.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/inspector-white.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/inspector-white.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/inspector.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/inspector.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/leader-white.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/leader-white.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/leader.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/leader.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/math-white.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/math-white.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/math.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/math.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/mechanics-white.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/mechanics-white.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/mechanics.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/mechanics.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/node-white.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/node-white.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/node.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/node.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/ppt-white.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/ppt-white.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/ppt.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/ppt.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/proposal-white.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/proposal-white.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/proposal.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/proposal.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/receipt-white.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/receipt-white.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/receipt.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/receipt.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/review-white.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/review-white.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/review.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/review.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/splitter-white.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/splitter-white.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/splitter.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/splitter.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/summoner-white.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/summoner-white.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/summoner.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/summoner.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/teamlead-white.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/teamlead-white.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/teamlead.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/teamlead.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/thrower-white.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/thrower-white.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/thrower.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/enemies/thrower.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/fx/book.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/fx/paper-blade.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/fx/particles.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/fx/robot.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/fx/shuttle.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/fx/slides.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/fusions/binder.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/fusions/binder.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/fusions/demolition.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/fusions/demolition.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/fusions/hub.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/fusions/hub.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/fusions/icefire.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/fusions/icefire.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/fusions/sky.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/fusions/sky.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/fusions/sword.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/fusions/sword.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/area.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/area.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/armor.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/armor.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/calm.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/calm.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/duration.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/duration.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/focus.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/focus.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/haste.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/haste.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/health.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/health.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/luck.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/luck.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/magnetism.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/magnetism.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/multi.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/multi.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/night.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/night.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/push.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/push.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/regen.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/regen.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/speed.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/speed.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/thesis.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/thesis.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/xp.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/passives/xp.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/pickups/bomb.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/pickups/bomb.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/pickups/coffeeBoost.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/pickups/coffeeBoost.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/pickups/energy.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/pickups/energy.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/pickups/freeze.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/pickups/freeze.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/pickups/heal.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/pickups/heal.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/pickups/magnet.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/pickups/magnet.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/pickups/shield.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/pickups/shield.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/relics/assistant.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/relics/assistant.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/relics/clockShard.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/relics/clockShard.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/relics/emergency.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/relics/emergency.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/relics/obsidian.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/relics/obsidian.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/relics/redNotebook.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/relics/redNotebook.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/relics/scholarship.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/relics/scholarship.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/ultimates/barrier.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/ultimates/barrier.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/ultimates/conference.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/ultimates/conference.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/ultimates/lastMinute.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/ultimates/lastMinute.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/ultimates/overload.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/ultimates/overload.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/ultimates/parallel.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/ultimates/parallel.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/ultimates/submission.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/ultimates/submission.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/blueprint.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/blueprint.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/bot.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/bot.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/brick.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/brick.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/broadcast.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/broadcast.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/code.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/code.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/coffee.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/coffee.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/cryo.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/cryo.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/eraser.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/eraser.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/keyboard.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/keyboard.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/knife.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/knife.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/laser.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/laser.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/lightning.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/lightning.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/mentor.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/mentor.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/mine.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/mine.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/orbit.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/orbit.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/ppt.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/ppt.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/prism.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/prism.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/rain.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/rain.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/ruler.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/ruler.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/shuttle.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/shuttle.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/staple.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/staple.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/wifi.png",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/icons/weapons/wifi.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/landmarks/canteen.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/landmarks/garden.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/landmarks/lab.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/landmarks/library.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/landmarks/track.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/landmarks/workshop.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/props/bench.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/props/planter.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/props/tree.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/textures/grass.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/textures/metal.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/textures/paper.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/textures/paving.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/ui/academic-crest.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/ui/chest-closed.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/ui/chest-open.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/ui/gold-ornament.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/ui/graduate-cap.svg",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/ui/input-keyboard_a.svg",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/ui/input-keyboard_d.svg",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/ui/input-keyboard_s.svg",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/ui/input-keyboard_space.svg",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/ui/input-keyboard_w.svg",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/ui/menu-campus-portrait.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/ui/menu-campus.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/ui/result-defeat.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/art/v4/ui/result-victory.webp",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/fonts/campus-digits-600-latin.woff2",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/fonts/campus-sans-400-game.woff2",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/fonts/campus-sans-400-shell.woff2",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/fonts/campus-sans-600-game.woff2",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/fonts/campus-sans-600-shell.woff2",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/assets/fonts/campus-title-400-title.woff2",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/licenses/CC-BY-3.0.txt",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/licenses/CC0-1.0.txt",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/licenses/USER-PROVIDED-AI-ART.txt",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/licenses/ai-art-metadata.json",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/licenses/attributions.json",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/licenses/impact-sounds.txt",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/licenses/input-prompts.txt",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/licenses/interface-sounds.txt",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/licenses/music-jingles.txt",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/licenses/notosanssc-OFL.txt",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/licenses/particle-pack.txt",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/licenses/rajdhani-OFL.txt",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/licenses/rpg-audio.txt",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/licenses/ui-pack.txt",
+      "passed": true
+    },
+    {
+      "name": "S1 source public/licenses/zcoolqingkehuangyou-OFL.txt",
+      "passed": true
+    },
+    {
+      "name": "S1 source src/assets/attributions.json",
+      "passed": true
+    },
+    {
+      "name": "public/assets/art/v5/s2: no undeclared deployed file",
+      "passed": true
+    },
+    {
+      "name": "public/assets/audio/v5/s2: no undeclared deployed file",
+      "passed": true
+    },
+    {
+      "name": "public ledgers match reviewable sources",
+      "passed": true
+    },
+    {
+      "name": "original sources not in public",
+      "passed": true
+    }
+  ]
+}

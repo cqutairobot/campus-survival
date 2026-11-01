@@ -1,0 +1,792 @@
+{
+  "method": "seed86, coder genuinely unlocked, ordinary rarity, fixed Lv5 weapons, listed passives, zero crit, no manual ultimate; follow boss at80px; invincible test player isolates output, no production parameter overrides; teaching/prior assessments use existing P12/P13 short path",
+  "before": [
+    {
+      "build": "p12-old-base",
+      "label": "P12旧四基础Lv5",
+      "boss": 3,
+      "seed": 86,
+      "hp": 110000,
+      "seconds": 143.95,
+      "killed": true,
+      "remainingHp": 0,
+      "stages": [
+        1,
+        2,
+        3
+      ],
+      "maxReduction": 0.25,
+      "armoredSeconds": 22.18,
+      "recoveryDamage": 59779,
+      "monotonic": true,
+      "fixedHp": true,
+      "weapons": [
+        {
+          "id": "laser",
+          "evolved": false
+        },
+        {
+          "id": "knife",
+          "evolved": false
+        },
+        {
+          "id": "blueprint",
+          "evolved": false
+        },
+        {
+          "id": "lightning",
+          "evolved": false
+        }
+      ],
+      "passives": [
+        [
+          "haste",
+          3
+        ],
+        [
+          "multi",
+          1
+        ],
+        [
+          "area",
+          2
+        ],
+        [
+          "duration",
+          2
+        ],
+        [
+          "armor",
+          3
+        ],
+        [
+          "health",
+          3
+        ]
+      ],
+      "shortestObservedRecoveryFragmentTicks": 120
+    },
+    {
+      "build": "medium-mixed",
+      "label": "中等新旧混合/两进化",
+      "boss": 3,
+      "seed": 86,
+      "hp": 110000,
+      "seconds": 150.1,
+      "killed": true,
+      "remainingHp": 0,
+      "stages": [
+        1,
+        2,
+        3
+      ],
+      "maxReduction": 0.25,
+      "armoredSeconds": 17.03,
+      "recoveryDamage": 60351,
+      "monotonic": true,
+      "fixedHp": true,
+      "weapons": [
+        {
+          "id": "laser",
+          "evolved": true
+        },
+        {
+          "id": "s2:drone",
+          "evolved": false
+        },
+        {
+          "id": "s2:whiteboard",
+          "evolved": false
+        },
+        {
+          "id": "s2:spool",
+          "evolved": true
+        }
+      ],
+      "passives": [
+        [
+          "haste",
+          3
+        ],
+        [
+          "multi",
+          1
+        ],
+        [
+          "area",
+          2
+        ],
+        [
+          "duration",
+          2
+        ],
+        [
+          "s2:protocol",
+          3
+        ],
+        [
+          "s2:harness",
+          3
+        ]
+      ],
+      "shortestObservedRecoveryFragmentTicks": 78
+    },
+    {
+      "build": "p13-strong-evolved",
+      "label": "P13强旧四进化（原62.75秒）",
+      "boss": 3,
+      "seed": 86,
+      "hp": 110000,
+      "seconds": 62.75,
+      "killed": true,
+      "remainingHp": 0,
+      "stages": [
+        1,
+        2,
+        3
+      ],
+      "maxReduction": 0.25,
+      "armoredSeconds": 9.35,
+      "recoveryDamage": 59978,
+      "monotonic": true,
+      "fixedHp": true,
+      "weapons": [
+        {
+          "id": "laser",
+          "evolved": true
+        },
+        {
+          "id": "knife",
+          "evolved": true
+        },
+        {
+          "id": "blueprint",
+          "evolved": true
+        },
+        {
+          "id": "lightning",
+          "evolved": true
+        }
+      ],
+      "passives": [
+        [
+          "haste",
+          3
+        ],
+        [
+          "multi",
+          1
+        ],
+        [
+          "area",
+          2
+        ],
+        [
+          "duration",
+          2
+        ]
+      ],
+      "shortestObservedRecoveryFragmentTicks": 5
+    },
+    {
+      "build": "strong-s2-evolved",
+      "label": "强S2四进化",
+      "boss": 3,
+      "seed": 86,
+      "hp": 110000,
+      "seconds": 80.02,
+      "killed": true,
+      "remainingHp": 0,
+      "stages": [
+        1,
+        2,
+        3
+      ],
+      "maxReduction": 0.25,
+      "armoredSeconds": 7.85,
+      "recoveryDamage": 61315,
+      "monotonic": true,
+      "fixedHp": true,
+      "weapons": [
+        {
+          "id": "s2:drone",
+          "evolved": true
+        },
+        {
+          "id": "s2:whiteboard",
+          "evolved": true
+        },
+        {
+          "id": "s2:spool",
+          "evolved": true
+        },
+        {
+          "id": "s2:printer",
+          "evolved": true
+        }
+      ],
+      "passives": [
+        [
+          "haste",
+          3
+        ],
+        [
+          "multi",
+          1
+        ],
+        [
+          "area",
+          2
+        ],
+        [
+          "duration",
+          2
+        ],
+        [
+          "s2:protocol",
+          3
+        ],
+        [
+          "s2:harness",
+          3
+        ]
+      ],
+      "shortestObservedRecoveryFragmentTicks": 120
+    },
+    {
+      "build": "p12-old-base",
+      "label": "P12旧四基础Lv5",
+      "boss": 2,
+      "seed": 86,
+      "hp": 46000,
+      "seconds": 59.72,
+      "killed": true,
+      "remainingHp": 0,
+      "stages": [
+        1,
+        2,
+        3
+      ],
+      "maxReduction": 0.25,
+      "armoredSeconds": 9.98,
+      "recoveryDamage": 21440,
+      "monotonic": true,
+      "fixedHp": true,
+      "weapons": [
+        {
+          "id": "laser",
+          "evolved": false
+        },
+        {
+          "id": "knife",
+          "evolved": false
+        },
+        {
+          "id": "blueprint",
+          "evolved": false
+        },
+        {
+          "id": "lightning",
+          "evolved": false
+        }
+      ],
+      "passives": [
+        [
+          "haste",
+          3
+        ],
+        [
+          "multi",
+          1
+        ],
+        [
+          "area",
+          2
+        ],
+        [
+          "duration",
+          2
+        ],
+        [
+          "armor",
+          3
+        ],
+        [
+          "health",
+          3
+        ]
+      ],
+      "shortestObservedRecoveryFragmentTicks": 56
+    }
+  ],
+  "after": [
+    {
+      "build": "p12-old-base",
+      "label": "P12旧四基础Lv5",
+      "boss": 3,
+      "seed": 86,
+      "hp": 110000,
+      "seconds": 164.23,
+      "killed": true,
+      "remainingHp": 0,
+      "stages": [
+        1,
+        2,
+        3
+      ],
+      "maxReduction": 0.3,
+      "armoredSeconds": 74.6,
+      "recoveryDamage": 66425,
+      "monotonic": true,
+      "fixedHp": true,
+      "weapons": [
+        {
+          "id": "laser",
+          "evolved": false
+        },
+        {
+          "id": "knife",
+          "evolved": false
+        },
+        {
+          "id": "blueprint",
+          "evolved": false
+        },
+        {
+          "id": "lightning",
+          "evolved": false
+        }
+      ],
+      "passives": [
+        [
+          "haste",
+          3
+        ],
+        [
+          "multi",
+          1
+        ],
+        [
+          "area",
+          2
+        ],
+        [
+          "duration",
+          2
+        ],
+        [
+          "armor",
+          3
+        ],
+        [
+          "health",
+          3
+        ]
+      ],
+      "shortestObservedRecoveryFragmentTicks": 98
+    },
+    {
+      "build": "medium-mixed",
+      "label": "中等新旧混合/两进化",
+      "boss": 3,
+      "seed": 86,
+      "hp": 110000,
+      "seconds": 169.92,
+      "killed": true,
+      "remainingHp": 0,
+      "stages": [
+        1,
+        2,
+        3
+      ],
+      "maxReduction": 0.3,
+      "armoredSeconds": 75.97,
+      "recoveryDamage": 66789,
+      "monotonic": true,
+      "fixedHp": true,
+      "weapons": [
+        {
+          "id": "laser",
+          "evolved": true
+        },
+        {
+          "id": "s2:drone",
+          "evolved": false
+        },
+        {
+          "id": "s2:whiteboard",
+          "evolved": false
+        },
+        {
+          "id": "s2:spool",
+          "evolved": true
+        }
+      ],
+      "passives": [
+        [
+          "haste",
+          3
+        ],
+        [
+          "multi",
+          1
+        ],
+        [
+          "area",
+          2
+        ],
+        [
+          "duration",
+          2
+        ],
+        [
+          "s2:protocol",
+          3
+        ],
+        [
+          "s2:harness",
+          3
+        ]
+      ],
+      "shortestObservedRecoveryFragmentTicks": 59
+    },
+    {
+      "build": "p13-strong-evolved",
+      "label": "P13强旧四进化（原62.75秒）",
+      "boss": 3,
+      "seed": 86,
+      "hp": 110000,
+      "seconds": 70.28,
+      "killed": true,
+      "remainingHp": 0,
+      "stages": [
+        1,
+        2,
+        3
+      ],
+      "maxReduction": 0.3,
+      "armoredSeconds": 30.48,
+      "recoveryDamage": 66264,
+      "monotonic": true,
+      "fixedHp": true,
+      "weapons": [
+        {
+          "id": "laser",
+          "evolved": true
+        },
+        {
+          "id": "knife",
+          "evolved": true
+        },
+        {
+          "id": "blueprint",
+          "evolved": true
+        },
+        {
+          "id": "lightning",
+          "evolved": true
+        }
+      ],
+      "passives": [
+        [
+          "haste",
+          3
+        ],
+        [
+          "multi",
+          1
+        ],
+        [
+          "area",
+          2
+        ],
+        [
+          "duration",
+          2
+        ]
+      ],
+      "shortestObservedRecoveryFragmentTicks": 29
+    },
+    {
+      "build": "strong-s2-evolved",
+      "label": "强S2四进化",
+      "boss": 3,
+      "seed": 86,
+      "hp": 110000,
+      "seconds": 88.37,
+      "killed": true,
+      "remainingHp": 0,
+      "stages": [
+        1,
+        2,
+        3
+      ],
+      "maxReduction": 0.3,
+      "armoredSeconds": 35.43,
+      "recoveryDamage": 67435,
+      "monotonic": true,
+      "fixedHp": true,
+      "weapons": [
+        {
+          "id": "s2:drone",
+          "evolved": true
+        },
+        {
+          "id": "s2:whiteboard",
+          "evolved": true
+        },
+        {
+          "id": "s2:spool",
+          "evolved": true
+        },
+        {
+          "id": "s2:printer",
+          "evolved": true
+        }
+      ],
+      "passives": [
+        [
+          "haste",
+          3
+        ],
+        [
+          "multi",
+          1
+        ],
+        [
+          "area",
+          2
+        ],
+        [
+          "duration",
+          2
+        ],
+        [
+          "s2:protocol",
+          3
+        ],
+        [
+          "s2:harness",
+          3
+        ]
+      ],
+      "shortestObservedRecoveryFragmentTicks": 45
+    },
+    {
+      "build": "p12-old-base",
+      "label": "P12旧四基础Lv5",
+      "boss": 2,
+      "seed": 86,
+      "hp": 46000,
+      "seconds": 59.72,
+      "killed": true,
+      "remainingHp": 0,
+      "stages": [
+        1,
+        2,
+        3
+      ],
+      "maxReduction": 0.25,
+      "armoredSeconds": 9.98,
+      "recoveryDamage": 21440,
+      "monotonic": true,
+      "fixedHp": true,
+      "weapons": [
+        {
+          "id": "laser",
+          "evolved": false
+        },
+        {
+          "id": "knife",
+          "evolved": false
+        },
+        {
+          "id": "blueprint",
+          "evolved": false
+        },
+        {
+          "id": "lightning",
+          "evolved": false
+        }
+      ],
+      "passives": [
+        [
+          "haste",
+          3
+        ],
+        [
+          "multi",
+          1
+        ],
+        [
+          "area",
+          2
+        ],
+        [
+          "duration",
+          2
+        ],
+        [
+          "armor",
+          3
+        ],
+        [
+          "health",
+          3
+        ]
+      ],
+      "shortestObservedRecoveryFragmentTicks": 56
+    },
+    {
+      "build": "medium-mixed",
+      "label": "中等新旧混合/两进化",
+      "boss": 1,
+      "seed": 86,
+      "hp": 16000,
+      "seconds": 19.82,
+      "killed": true,
+      "remainingHp": 0,
+      "stages": [
+        1,
+        2
+      ],
+      "maxReduction": 0,
+      "armoredSeconds": 0,
+      "recoveryDamage": 2957,
+      "monotonic": true,
+      "fixedHp": true,
+      "weapons": [
+        {
+          "id": "laser",
+          "evolved": true
+        },
+        {
+          "id": "s2:drone",
+          "evolved": false
+        },
+        {
+          "id": "s2:whiteboard",
+          "evolved": false
+        },
+        {
+          "id": "s2:spool",
+          "evolved": true
+        }
+      ],
+      "passives": [
+        [
+          "haste",
+          3
+        ],
+        [
+          "multi",
+          1
+        ],
+        [
+          "area",
+          2
+        ],
+        [
+          "duration",
+          2
+        ],
+        [
+          "s2:protocol",
+          3
+        ],
+        [
+          "s2:harness",
+          3
+        ]
+      ],
+      "shortestObservedRecoveryFragmentTicks": 120
+    },
+    {
+      "build": "medium-mixed",
+      "label": "中等新旧混合/两进化",
+      "boss": 2,
+      "seed": 86,
+      "hp": 46000,
+      "seconds": 62.63,
+      "killed": true,
+      "remainingHp": 0,
+      "stages": [
+        1,
+        2,
+        3
+      ],
+      "maxReduction": 0.25,
+      "armoredSeconds": 6.65,
+      "recoveryDamage": 21392,
+      "monotonic": true,
+      "fixedHp": true,
+      "weapons": [
+        {
+          "id": "laser",
+          "evolved": true
+        },
+        {
+          "id": "s2:drone",
+          "evolved": false
+        },
+        {
+          "id": "s2:whiteboard",
+          "evolved": false
+        },
+        {
+          "id": "s2:spool",
+          "evolved": true
+        }
+      ],
+      "passives": [
+        [
+          "haste",
+          3
+        ],
+        [
+          "multi",
+          1
+        ],
+        [
+          "area",
+          2
+        ],
+        [
+          "duration",
+          2
+        ],
+        [
+          "s2:protocol",
+          3
+        ],
+        [
+          "s2:harness",
+          3
+        ]
+      ],
+      "shortestObservedRecoveryFragmentTicks": 36
+    }
+  ],
+  "mediumFullCalendar": {
+    "teachingSeconds": 960,
+    "assessmentSeconds": 252.37,
+    "totalSeconds": 1212.37,
+    "dailyLimitSeconds": 1500,
+    "marginSeconds": 287.63
+  },
+  "changes": {
+    "bossHp": 110000,
+    "phaseThresholds": [
+      0.7,
+      0.35
+    ],
+    "activeStage1And3Reduction": 0.3,
+    "stage2BaseReduction": 0.1,
+    "stage2TerminalReductionEach": 0.075,
+    "stage2Cap": 0.25,
+    "ownedTerminalHp": 1600,
+    "recoveryAndTransitionReduction": 0,
+    "stage3RecoveryTicks": 180
+  },
+  "notes": "The shortest observed recovery fragment includes health-threshold interruptions. Complete final-stage output windows retain180 ticks and are tested independently. These observations are not full-run win rates or phone feel tests."
+}

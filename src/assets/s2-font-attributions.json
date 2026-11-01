@@ -1,0 +1,23 @@
+[
+  {
+    "id": "s2-font-delta",
+    "title": "第二学期 · Campus Sans补充子集",
+    "author": "Adobe / Noto Sans SC contributors",
+    "source": "https://github.com/google/fonts/tree/main/ofl/notosanssc",
+    "license": "SIL OFL 1.1",
+    "licenseUrl": "https://openfontlicense.org/open-font-license-official-text/",
+    "notes": "从S1+S2全量中文字符清单生成400/600补充子集，保留原字体和许可；内部名称重命名，缺字校验与SHA-256见字体账本。",
+    "files": [
+      {
+        "original": "NotoSansSC[wght].ttf",
+        "output": "assets/fonts/v5/campus-semester-400-delta.woff2",
+        "modifications": "Variable font fixed at400/600; subset only glyphs absent from existing faces; internal names renamed; union covers the full S1+S2 inventory without duplicating old glyph downloads"
+      },
+      {
+        "original": "NotoSansSC[wght].ttf",
+        "output": "assets/fonts/v5/campus-semester-600-delta.woff2",
+        "modifications": "Variable font fixed at400/600; subset only glyphs absent from existing faces; internal names renamed; union covers the full S1+S2 inventory without duplicating old glyph downloads"
+      }
+    ]
+  }
+]
