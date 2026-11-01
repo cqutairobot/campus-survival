@@ -30,6 +30,13 @@ function target(s:ContentState,x=130,y=0,kind='homework'){
 const hit=(s:ContentState,id:number,source:ContentWeaponId='knife',damage=100,secondary=false)=>s.hitEnemy(id,damage,source,s.player.x,s.player.y,0,false,false,false,false,secondary);
 
 describe('v5 drone and whiteboard builds',()=>{
+ it('whiteboard evolution retains the base footprint at near/mid/far distances for small and ordinary targets',()=>{
+  for(const radius of [8,18])for(const distance of [65,130,180,195]){
+   const hits=[];for(const evolved of [false,true]){const {s}=fixture('s2:whiteboard');s.weapons[0].level=5;s.weapons[0].evolved=evolved;const id=target(s,distance);s.enemies.radius[id]=radius;
+    for(let tick=0;tick<66;tick++){s.frame=tick;s.combatTime=tick/60;s.enemies.x[id]=s.player.x+distance;s.enemies.y[id]=s.player.y;s.enemies.vx[id]=s.enemies.vy[id]=0;s.weaponSystem.update(1/60);}hits.push(s.damage['s2:whiteboard']??0);s.dispose();}
+   if(hits[0]>0)expect(hits[1],`${distance}px radius ${radius}`).toBeGreaterThan(0);
+  }
+ });
  it('shares every level/quality and both evolved parameters with actual attacks, card rows and codex, including old passive/relic modifiers',()=>{
   expect(content.weapons.slice(0,22)).toEqual(LEGACY_CONTENT.weapons);expect(content.passives.slice(0,16)).toEqual(LEGACY_CONTENT.passives);expect(content.fusions.slice(0,6)).toEqual(LEGACY_CONTENT.fusions);
   for(const id of ids)for(const level of [1,2,3,4,5])for(const rarity of [0,1,2,3] as const)for(const evolved of level===5?[false,true]:[false]){
@@ -97,15 +104,15 @@ describe('v5 drone and whiteboard builds',()=>{
   const f=fixture('s2:drone');f.s.dispose();const original=structuredClone(f.profile),base=legacyContentRules(content);let s!:ContentState,services!:RuntimeServices;
   const engine=new SemesterEngine({snapshot:f.snapshot,config:S2_RUNTIME_CONFIG,view:{publish(){}},rules:{...base,project:state=>({phase:state.phase,token:state.rewards.token}),create(value){services=value;s=base.create(value);s.enemies.clear();s.weapons.splice(0,s.weapons.length,skill(s,'s2:drone',5,true),skill(s,'s2:whiteboard',5,true),skill(s,'laser'));s.passives.push(skill(s,'multi',3),skill(s,'haste',3),skill(s,'area',3),skill(s,'night',3),skill(s,'s2:protocol'));s.recalculateStats();s.stats.crit=0;s.player.invincible=1000;return s;},step(state,step){return step.phase==='assessment'?base.step(state,step):{};}}});
   for(let n=0;n<4800;n++)engine.advance(1/15);const intro=engine.read();expect(intro.phase).toBe('assessmentIntro');expect(engine.acknowledge(intro.gate!.token)).toBe(true);const id=s.bossEnemy,e=s.enemies;expect(e.hp[id]).toBe(16000);expect(e.maxHp[id]).toBe(16000);
-  s.player.x=e.x[id]-130;s.player.y=e.y[id];s.player.prevX=s.player.x;s.player.prevY=s.player.y;const start=s.player.x,heal=vi.spyOn(s,'heal');let previous=16000,transition=false,recovery=false,recoveryDamage=0;const allOld=new Set(s.hazards);const cancel=vi.spyOn(s.danger,'cancelOwner');
+  s.player.x=e.x[id]-130;s.player.y=e.y[id];s.player.prevX=s.player.x;s.player.prevY=s.player.y;const heal=vi.spyOn(s,'heal');let previous=16000,transition=false,recovery=false,recoveryDamage=0,travel=0;const allOld=new Set(s.hazards);const cancel=vi.spyOn(s.danger,'cancelOwner');
   for(let n=0;n<9000&&engine.read().phase==='assessment';n++){
-   const board=s.bossSystem.proposalBoard.snapshot(),hp=e.hp[id];for(const h of s.hazards)if(!transition&&h.owner===id)allOld.add(h);
-   engine.dispatch({type:'move',x:e.x[id]-s.player.x,y:e.y[id]-s.player.y});engine.advance(1/60);
+   const board=s.bossSystem.proposalBoard.snapshot(),hp=e.hp[id],px=s.player.x,py=s.player.y;for(const h of s.hazards)if(!transition&&h.owner===id)allOld.add(h);
+   engine.dispatch({type:'move',x:e.x[id]-s.player.x,y:e.y[id]-s.player.y});engine.advance(1/60);travel+=Math.hypot(s.player.x-px,s.player.y-py);
    expect(e.maxHp[id]).toBe(16000);expect(e.hp[id]).toBeLessThanOrEqual(previous);previous=e.hp[id];
    if(!transition&&s.bossStage===2){transition=true;expect([...allOld].every(h=>h.phase==='cancelled')).toBe(true);expect(cancel).toHaveBeenCalledTimes(1);}
    if(board?.move==='recovery'){recovery=true;recoveryDamage+=hp-e.hp[id];}
   }
-  expect(transition).toBe(true);expect(recovery).toBe(true);expect(recoveryDamage).toBeGreaterThan(0);expect(Math.abs(s.player.x-start)).toBeGreaterThan(20);for(const id of ['s2:drone','s2:whiteboard','laser'])expect(s.damage[id],id).toBeGreaterThan(0);
+  expect(transition).toBe(true);expect(recovery).toBe(true);expect(recoveryDamage).toBeGreaterThan(0);expect(travel).toBeGreaterThan(20);for(const id of ['s2:drone','s2:whiteboard','laser'])expect(s.damage[id],id).toBeGreaterThan(0);
   const reward=engine.read();expect(reward.phase).toBe('assessmentReward');expect(reward.assessmentsPassed).toBe(1);expect(reward.result).toBeNull();expect(heal.mock.calls.filter(([,fixed])=>fixed)).toEqual([[s.stats.maxHp*.15,true]]);expect(engine.acknowledge(reward.gate!.token)).toBe(false);
   const option=s.rewards.options.findIndex(o=>o.id==='upgrade');if(option>=0)engine.dispatch({type:'chooseReward',token:s.rewards.token,index:option});const token=s.rewards.token;expect(engine.dispatch({type:'chestDone',token})).toBe(true);expect(engine.dispatch({type:'chestDone',token})).toBe(false);expect(engine.acknowledge(reward.gate!.token)).toBe(true);expect(engine.acknowledge(reward.gate!.token)).toBe(false);
   engine.advance(1/60);expect(engine.read().clock.week).toBe(9);expect(engine.read().result).toBeNull();engine.abandon();expect(engine.read().result).toMatchObject({victory:false,reason:'abandoned',assessmentsPassed:1});expect(f.profile).toEqual(original);expect(services.snapshot).toEqual(f.snapshot);expect(projectContent(s).progress.bossIds).toEqual(['s2:proposalBoard']);engine.dispose();

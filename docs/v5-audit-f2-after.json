@@ -1,0 +1,634 @@
+{
+  "version": "audit-f2-targeted-v1",
+  "method": "Seed86 ordinary Lv5, zero crit/talents/ultimate/risk. Static receipt targets restored each fixed step, real status and attacks, 20s; ring 12 targets at140px. Legal six occupied slots use same six Lv1 passives, replace the released slot with base code Lv5 (cost +5 skill points and +1 fusion chest; never claimed free). Real Boss follows at80px with invincibility only to isolate output; fixed HP/stages/window unchanged.",
+  "whiteboard": [
+    {
+      "radius": 8,
+      "distance": 80,
+      "base": 72.25,
+      "evolved": 84
+    },
+    {
+      "radius": 8,
+      "distance": 130,
+      "base": 72.25,
+      "evolved": 81.6
+    },
+    {
+      "radius": 8,
+      "distance": 180,
+      "base": 72.25,
+      "evolved": 40.8
+    },
+    {
+      "radius": 8,
+      "distance": 195,
+      "base": 72.25,
+      "evolved": 81.6
+    },
+    {
+      "radius": 18,
+      "distance": 80,
+      "base": 72.25,
+      "evolved": 84
+    },
+    {
+      "radius": 18,
+      "distance": 130,
+      "base": 72.25,
+      "evolved": 81.6
+    },
+    {
+      "radius": 18,
+      "distance": 180,
+      "base": 72.25,
+      "evolved": 40.8
+    },
+    {
+      "radius": 18,
+      "distance": 195,
+      "base": 72.25,
+      "evolved": 81.6
+    }
+  ],
+  "isolated": [
+    {
+      "fusion": "s2:digitalTwin",
+      "targets": 1,
+      "materials": 655.6,
+      "fused": 150
+    },
+    {
+      "fusion": "s2:digitalTwin",
+      "targets": 12,
+      "materials": 487.5,
+      "fused": 1730
+    },
+    {
+      "fusion": "sky",
+      "targets": 1,
+      "materials": 203.5,
+      "fused": 127.5
+    },
+    {
+      "fusion": "sky",
+      "targets": 12,
+      "materials": 483.5,
+      "fused": 885
+    }
+  ],
+  "legal": [
+    {
+      "fusion": "s2:digitalTwin",
+      "passiveBudget": [
+        {
+          "id": "s2:harness",
+          "level": 1
+        },
+        {
+          "id": "duration",
+          "level": 1
+        },
+        {
+          "id": "haste",
+          "level": 1
+        },
+        {
+          "id": "multi",
+          "level": 1
+        },
+        {
+          "id": "area",
+          "level": 1
+        },
+        {
+          "id": "luck",
+          "level": 1
+        }
+      ],
+      "formation": {
+        "starter": "s2:spool",
+        "weaponSlots": 6,
+        "passiveSlots": 6,
+        "acquisitionDrafts": 11,
+        "reinforcementPoints": 24,
+        "totalSkillPoints": 35,
+        "evolutionChests": 2,
+        "minimumAcquisitionXP": 331,
+        "allDraftXP": 9829,
+        "allDraftLevel": 36,
+        "scope": "Cost lower bounds: ordinary chest upgrades can replace reinforcement points, never acquisitions; an evolution consumes one chest choice, including all three Boss reinforcements. Full real card pool is not guaranteed to offer a prescribed build."
+      },
+      "boss": [
+        {
+          "fusion": "s2:digitalTwin",
+          "fused": false,
+          "build": {
+            "cost": {
+              "starter": "s2:spool",
+              "weaponSlots": 6,
+              "passiveSlots": 6,
+              "acquisitionDrafts": 11,
+              "reinforcementPoints": 24,
+              "totalSkillPoints": 35,
+              "evolutionChests": 2,
+              "minimumAcquisitionXP": 331,
+              "allDraftXP": 9829,
+              "allDraftLevel": 36,
+              "scope": "Cost lower bounds: ordinary chest upgrades can replace reinforcement points, never acquisitions; an evolution consumes one chest choice, including all three Boss reinforcements. Full real card pool is not guaranteed to offer a prescribed build."
+            },
+            "extraSkillPoints": 0,
+            "extraFusionChests": 0,
+            "occupied": 6,
+            "passives": [
+              {
+                "id": "s2:harness",
+                "level": 1
+              },
+              {
+                "id": "duration",
+                "level": 1
+              },
+              {
+                "id": "haste",
+                "level": 1
+              },
+              {
+                "id": "multi",
+                "level": 1
+              },
+              {
+                "id": "area",
+                "level": 1
+              },
+              {
+                "id": "luck",
+                "level": 1
+              }
+            ],
+            "weapons": [
+              {
+                "id": "s2:spool",
+                "evolved": true
+              },
+              {
+                "id": "s2:printer",
+                "evolved": true
+              },
+              {
+                "id": "knife",
+                "evolved": false
+              },
+              {
+                "id": "laser",
+                "evolved": false
+              },
+              {
+                "id": "coffee",
+                "evolved": false
+              },
+              {
+                "id": "bot",
+                "evolved": false
+              }
+            ]
+          },
+          "seconds": 87.83,
+          "killed": true,
+          "stages": [
+            1,
+            2,
+            3
+          ],
+          "maxReduction": 0.3,
+          "minFinalWindowTicks": 180,
+          "monotonic": true,
+          "damage": {
+            "knife": 91821.99365234375,
+            "laser": 6407.5,
+            "coffee": 3940.799999999999,
+            "s2:printer": 47820.399999999994,
+            "bot": 22135.599999999922,
+            "s2:spool": 12833.999999999987
+          }
+        },
+        {
+          "fusion": "s2:digitalTwin",
+          "fused": true,
+          "build": {
+            "cost": {
+              "starter": "s2:spool",
+              "weaponSlots": 6,
+              "passiveSlots": 6,
+              "acquisitionDrafts": 11,
+              "reinforcementPoints": 24,
+              "totalSkillPoints": 35,
+              "evolutionChests": 2,
+              "minimumAcquisitionXP": 331,
+              "allDraftXP": 9829,
+              "allDraftLevel": 36,
+              "scope": "Cost lower bounds: ordinary chest upgrades can replace reinforcement points, never acquisitions; an evolution consumes one chest choice, including all three Boss reinforcements. Full real card pool is not guaranteed to offer a prescribed build."
+            },
+            "extraSkillPoints": 5,
+            "extraFusionChests": 1,
+            "occupied": 6,
+            "passives": [
+              {
+                "id": "s2:harness",
+                "level": 1
+              },
+              {
+                "id": "duration",
+                "level": 1
+              },
+              {
+                "id": "haste",
+                "level": 1
+              },
+              {
+                "id": "multi",
+                "level": 1
+              },
+              {
+                "id": "area",
+                "level": 1
+              },
+              {
+                "id": "luck",
+                "level": 1
+              }
+            ],
+            "weapons": [
+              {
+                "id": "knife",
+                "evolved": false
+              },
+              {
+                "id": "laser",
+                "evolved": false
+              },
+              {
+                "id": "coffee",
+                "evolved": false
+              },
+              {
+                "id": "bot",
+                "evolved": false
+              },
+              {
+                "id": "s2:digitalTwin",
+                "evolved": false
+              },
+              {
+                "id": "code",
+                "evolved": false
+              }
+            ]
+          },
+          "seconds": 125.02,
+          "killed": true,
+          "stages": [
+            1,
+            2,
+            3
+          ],
+          "maxReduction": 0.3,
+          "minFinalWindowTicks": 180,
+          "monotonic": true,
+          "damage": {
+            "knife": 103527.71020507812,
+            "laser": 8536.5,
+            "coffee": 4954.800000000001,
+            "bot": 31303.69999999985,
+            "code": 17541.500000000036,
+            "s2:digitalTwin": 24544
+          }
+        }
+      ],
+      "crowd": [
+        {
+          "fused": false,
+          "targets": 12,
+          "distance": 140,
+          "radius": 18,
+          "dps": 1556.8,
+          "damage": {
+            "laser": 1500,
+            "coffee": 3840,
+            "s2:printer": 13166,
+            "bot": 5610,
+            "knife": 7020
+          },
+          "poolFailures": 0
+        },
+        {
+          "fused": true,
+          "targets": 12,
+          "distance": 140,
+          "radius": 18,
+          "dps": 2909.5,
+          "damage": {
+            "laser": 1500,
+            "coffee": 3840,
+            "bot": 5610,
+            "knife": 7020,
+            "s2:digitalTwin": 37000,
+            "code": 3220
+          },
+          "poolFailures": 0
+        }
+      ]
+    },
+    {
+      "fusion": "sky",
+      "passiveBudget": [
+        {
+          "id": "luck",
+          "level": 1
+        },
+        {
+          "id": "thesis",
+          "level": 1
+        },
+        {
+          "id": "haste",
+          "level": 1
+        },
+        {
+          "id": "multi",
+          "level": 1
+        },
+        {
+          "id": "area",
+          "level": 1
+        },
+        {
+          "id": "duration",
+          "level": 1
+        }
+      ],
+      "formation": {
+        "starter": "laser",
+        "weaponSlots": 6,
+        "passiveSlots": 6,
+        "acquisitionDrafts": 11,
+        "reinforcementPoints": 24,
+        "totalSkillPoints": 35,
+        "evolutionChests": 2,
+        "minimumAcquisitionXP": 331,
+        "allDraftXP": 9829,
+        "allDraftLevel": 36,
+        "scope": "Cost lower bounds: ordinary chest upgrades can replace reinforcement points, never acquisitions; an evolution consumes one chest choice, including all three Boss reinforcements. Full real card pool is not guaranteed to offer a prescribed build."
+      },
+      "boss": [
+        {
+          "fusion": "sky",
+          "fused": false,
+          "build": {
+            "cost": {
+              "starter": "laser",
+              "weaponSlots": 6,
+              "passiveSlots": 6,
+              "acquisitionDrafts": 11,
+              "reinforcementPoints": 24,
+              "totalSkillPoints": 35,
+              "evolutionChests": 2,
+              "minimumAcquisitionXP": 331,
+              "allDraftXP": 9829,
+              "allDraftLevel": 36,
+              "scope": "Cost lower bounds: ordinary chest upgrades can replace reinforcement points, never acquisitions; an evolution consumes one chest choice, including all three Boss reinforcements. Full real card pool is not guaranteed to offer a prescribed build."
+            },
+            "extraSkillPoints": 0,
+            "extraFusionChests": 0,
+            "occupied": 6,
+            "passives": [
+              {
+                "id": "luck",
+                "level": 1
+              },
+              {
+                "id": "thesis",
+                "level": 1
+              },
+              {
+                "id": "haste",
+                "level": 1
+              },
+              {
+                "id": "multi",
+                "level": 1
+              },
+              {
+                "id": "area",
+                "level": 1
+              },
+              {
+                "id": "duration",
+                "level": 1
+              }
+            ],
+            "weapons": [
+              {
+                "id": "laser",
+                "evolved": true
+              },
+              {
+                "id": "prism",
+                "evolved": true
+              },
+              {
+                "id": "knife",
+                "evolved": false
+              },
+              {
+                "id": "coffee",
+                "evolved": false
+              },
+              {
+                "id": "bot",
+                "evolved": false
+              },
+              {
+                "id": "lightning",
+                "evolved": false
+              }
+            ]
+          },
+          "seconds": 128.58,
+          "killed": true,
+          "stages": [
+            1,
+            2,
+            3
+          ],
+          "maxReduction": 0.3,
+          "minFinalWindowTicks": 180,
+          "monotonic": true,
+          "damage": {
+            "knife": 105584.32431793213,
+            "laser": 20339.650024414062,
+            "prism": 21812.30249786377,
+            "coffee": 5394.600000000002,
+            "lightning": 6096.987548828125,
+            "bot": 32225.30499267561
+          }
+        },
+        {
+          "fusion": "sky",
+          "fused": true,
+          "build": {
+            "cost": {
+              "starter": "laser",
+              "weaponSlots": 6,
+              "passiveSlots": 6,
+              "acquisitionDrafts": 11,
+              "reinforcementPoints": 24,
+              "totalSkillPoints": 35,
+              "evolutionChests": 2,
+              "minimumAcquisitionXP": 331,
+              "allDraftXP": 9829,
+              "allDraftLevel": 36,
+              "scope": "Cost lower bounds: ordinary chest upgrades can replace reinforcement points, never acquisitions; an evolution consumes one chest choice, including all three Boss reinforcements. Full real card pool is not guaranteed to offer a prescribed build."
+            },
+            "extraSkillPoints": 5,
+            "extraFusionChests": 1,
+            "occupied": 6,
+            "passives": [
+              {
+                "id": "luck",
+                "level": 1
+              },
+              {
+                "id": "thesis",
+                "level": 1
+              },
+              {
+                "id": "haste",
+                "level": 1
+              },
+              {
+                "id": "multi",
+                "level": 1
+              },
+              {
+                "id": "area",
+                "level": 1
+              },
+              {
+                "id": "duration",
+                "level": 1
+              }
+            ],
+            "weapons": [
+              {
+                "id": "knife",
+                "evolved": false
+              },
+              {
+                "id": "coffee",
+                "evolved": false
+              },
+              {
+                "id": "bot",
+                "evolved": false
+              },
+              {
+                "id": "lightning",
+                "evolved": false
+              },
+              {
+                "id": "sky",
+                "evolved": false
+              },
+              {
+                "id": "code",
+                "evolved": false
+              }
+            ]
+          },
+          "seconds": 114.57,
+          "killed": true,
+          "stages": [
+            1,
+            2,
+            3
+          ],
+          "maxReduction": 0.3,
+          "minFinalWindowTicks": 180,
+          "monotonic": true,
+          "damage": {
+            "knife": 100632.35998535156,
+            "coffee": 4794.700048828126,
+            "lightning": 5452.035048828124,
+            "sky": 34401.734130859375,
+            "bot": 28414.100073242087,
+            "code": 15988.950000000028
+          }
+        }
+      ],
+      "crowd": [
+        {
+          "fused": false,
+          "targets": 12,
+          "distance": 140,
+          "radius": 18,
+          "dps": 1599.38,
+          "damage": {
+            "laser": 3240,
+            "prism": 9000,
+            "coffee": 3840,
+            "lightning": 3277.6823249999975,
+            "bot": 5610,
+            "knife": 7020
+          },
+          "poolFailures": 0
+        },
+        {
+          "fused": true,
+          "targets": 12,
+          "distance": 140,
+          "radius": 18,
+          "dps": 2078.38,
+          "damage": {
+            "sky": 18600,
+            "coffee": 3840,
+            "lightning": 3277.6823249999975,
+            "bot": 5610,
+            "knife": 7020,
+            "code": 3220
+          },
+          "poolFailures": 0
+        }
+      ]
+    }
+  ],
+  "income": [
+    {
+      "victory": false,
+      "s1Credits": 6,
+      "s1TeachingSeconds": 180,
+      "s2Credits": 6,
+      "s2TeachingSeconds": 180,
+      "excludes": "Kills, risk, bonus rewards and Boss duration; complete legal Boss times reported separately."
+    },
+    {
+      "victory": true,
+      "s1Credits": 93,
+      "s1TeachingSeconds": 880,
+      "s2Credits": 96,
+      "s2TeachingSeconds": 960,
+      "excludes": "Kills, risk, bonus rewards and Boss duration; complete legal Boss times reported separately."
+    }
+  ],
+  "source": {
+    "commit": "c68495ef2f4b5b54444b928ad80045e218f823ca",
+    "workingChanges": true,
+    "hashes": {
+      "src/semesters/s2/whiteboard.ts": "28ee2920a31aaf57de7cc3446b59bd1e91d2d7952abedeeb36b574b0821994f7",
+      "src/semesters/s2/fusions.ts": "cf2a5b8e4a1ae5920aba1bb454106aa6430c50d81b881a2f2f953b2b05aabe56",
+      "src/semesters/s2/expo-final.ts": "484093befd0a512204d4e4ea37f35c42f86a0c88c94ac0f0014ec621dd54cc5d",
+      "src/semesters/registry.ts": "110ab01eb33115d9f0b2a2d186db17f10e0ea974773f045d9cde6a845605f368",
+      "scripts/s2-audit-balance.ts": "439d3557752d2890601d48d55dbc7c486b203d3dbd022102bb57f11164e2912e"
+    }
+  }
+}

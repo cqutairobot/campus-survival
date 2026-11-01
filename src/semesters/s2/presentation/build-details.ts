@@ -7,7 +7,7 @@ import {weaponChanges,weaponParams,type WeaponParams} from '../legacy/params';
 
 const number=(n:number)=>String(Math.round(n*100)/100);
 export function parameterRows(p:WeaponParams){
- const rows=[`命中伤害 ${number(p.damage)}`,`冷却 ${number(p.interval)} 秒`,`${p.id==='s2:drone'?'无人机':p.id==='s2:whiteboard'?'线段':'数量'} ${p.count}`,`范围 ${number(p.range)}`];
+ const rows=[`命中伤害 ${number(p.damage)}`,`冷却 ${number(p.interval)} 秒`,`${p.id==='mentor'?'表现印章':p.id==='s2:drone'?'无人机':p.id==='s2:whiteboard'?'线段':'数量'} ${p.count}`,`范围 ${number(p.range)}`];
  if(p.markDamage!==undefined)rows.push(`印记伤害 ${number(p.markDamage)}`,`穿透 ${p.pierce}`,`印记半径 ${number(p.explosion)}`,`印记持续 ${number(p.duration)} 秒`);
  if(p.placementInterval!==undefined)rows.push(`轨迹长度 ${number(p.lineLength!)}`,`铺设间隔 ${number(p.placementInterval)} 秒`,`轨迹持续 ${number(p.duration)} 秒`);
  if(p.hitDelay!==undefined)rows.push(`线长 ${number(p.lineLength!)}`,`线宽 ${number(p.width)}`,`命中延迟 ${number(p.hitDelay!)} 秒`,`逐线间隔 ${number(p.sequenceDelay!)} 秒`);

@@ -6,9 +6,9 @@ import {distanceSq,TAU} from '../../core/math';
 const fixed=(n:number)=>Array(5).fill(n);
 function fusion(id:ContentFusionId,name:string,icon:string,color:string,components:ContentFusionDef['components'],damage:number,interval:number,count:number,range:number,description:string,extra:Partial<ContentFusionDef>={}):ContentFusionDef{return{id,name,icon,color,components,fusion:true,tag:'第二学期融合',description,damage:fixed(damage),interval:fixed(interval),count:fixed(count),range:fixed(range),forms:Array(5).fill(name),evolution:{name,passive:'haste',description,damage,interval,count,range},...extra};}
 export const S2_FUSIONS:readonly ContentFusionDef[]=[
- fusion('s2:fieldHub','外场协同站','blueprint','#61bdce',['s2:drone','blueprint'],70,.5,4,750,'移动无人机与固定支援点每3秒轮换集火；与智慧校园中枢互斥，二者都消耗蓝图炮台。',{secondaryDamage:220,explosion:fixed(140),syncInterval:3}),
- fusion('s2:holoReview','全息评审阵列','laser','#7bd7bd',['s2:whiteboard','laser'],180,1.8,3,900,'先投影路径，0.45秒后逐线贯穿；侧后方仍需移动保护。',{width:fixed(26),lineLength:fixed(900),hitDelay:fixed(.45),sequenceDelay:fixed(.16)}),
- fusion('s2:digitalTwin','数字孪生试验台','brick','#ba9ae8',['s2:spool','s2:printer'],200,1.4,6,160,'沿轨迹铺设构件并周期爆破；站立也展开小闭环。每轮每目标一次。',{width:fixed(18),duration:fixed(3),explosion:fixed(120),lineLength:fixed(180),placementInterval:fixed(.28),hitDelay:fixed(.4),sequenceDelay:fixed(0)}),
+ fusion('s2:fieldHub','外场协同站','blueprint','#61bdce',['s2:drone','blueprint'],70,.5,4,750,'移动无人机与固定支援点每3秒轮换集火；专精持续支援与范围协同，单体收益随位置变化，释放一槽；与智慧校园中枢互斥，二者都消耗蓝图炮台。',{secondaryDamage:220,explosion:fixed(140),syncInterval:3}),
+ fusion('s2:holoReview','全息评审阵列','laser','#7bd7bd',['s2:whiteboard','laser'],180,1.8,3,900,'先投影路径，0.45秒后逐线贯穿；侧后方仍需移动保护。专精前方贯穿，单体输出与材料不同，释放一槽。',{width:fixed(26),lineLength:fixed(900),hitDelay:fixed(.45),sequenceDelay:fixed(.16)}),
+ fusion('s2:digitalTwin','数字孪生试验台','brick','#ba9ae8',['s2:spool','s2:printer'],200,1.4,6,160,'沿轨迹铺设构件并周期爆破；站立也展开小闭环。每轮每目标一次。近身范围专精：单体输出明显低于两件进化材料，换取周身敌群覆盖和一个空槽；远处目标需走位接近。',{width:fixed(18),duration:fixed(3),explosion:fixed(120),lineLength:fixed(180),placementInterval:fixed(.28),hitDelay:fixed(.4),sequenceDelay:fixed(0)}),
 ];
 interface Point {x:number;y:number}
 export interface FusionNode extends Point {source:WeaponIdentity;index:number;stationary:boolean}

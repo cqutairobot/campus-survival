@@ -17,6 +17,12 @@ const skill=(s:ContentState,id:ContentSkill['id'],rarity:ContentSkill['rarity']=
 function target(s:ContentState,x=120,y=0){const id=s.spawnEnemy('homework',s.player.x+x,s.player.y+y);s.enemies.hp[id]=s.enemies.maxHp[id]=1e7;s.enemies.speed[id]=0;s.rebuildGrid();return id;}
 function finish(s:ContentState){const token=s.rewards.token;s.command({type:'chestDone',token});if(s.phase==='evolution')s.command({type:'evolutionDone',token});}
 describe('v5 cross semester fusion transactions',()=>{
+ it('explains range specialization and keeps digital-twin damage once per target per wave',()=>{
+  for(const id of ['sky','s2:digitalTwin'] as const)expect(weaponCard(content,id,5,0).description).toContain('单体');
+  expect(weaponCard(content,'mentor',5,0).rows.join(' ')).toContain('表现印章 5');
+  const {s}=fixture();s.weapons.push({...skill(s,'s2:digitalTwin'),evolved:false,kind:'fusion',components:['s2:spool','s2:printer']});target(s,80);const hit=vi.spyOn(s,'hitEnemy');
+  for(let n=0;n<120;n++){s.frame=n;s.combatTime=n/60;s.weaponSystem.update(1/60);}const calls=hit.mock.calls.filter(c=>c[2]==='s2:digitalTwin');expect(calls).toHaveLength(2);expect(s.damage['s2:digitalTwin']).toBe(400);expect(new Set(calls.map(c=>c[11]?.attackId)).size).toBe(2);s.dispose();
+ });
  it('keeps the six old definitions, requires two Lv5 materials from week9, accepts evolution, shares two uses and retains rarity/slots/passives/consumed exclusions',()=>{
   expect(content.fusions.slice(0,6)).toEqual(LEGACY_CONTENT.fusions);expect(content.fusions).toHaveLength(9);
   const {s,services}=fixture();s.weapons.push(...['s2:drone','blueprint','knife','ruler','s2:whiteboard','laser'].map(id=>skill(s,id as ContentSkill['id'],id==='blueprint'?3:1)));s.passives.push(skill(s,'area'));const passive=structuredClone(s.passives);

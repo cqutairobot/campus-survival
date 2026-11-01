@@ -1,7 +1,7 @@
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {runtimeClosure,catalogSnapshot,sha256} from './s1-baseline.mjs';
-export const S1_ACTIVE_BASELINE='freeze/s1-v5.0.2.json';
+export const S1_ACTIVE_BASELINE='freeze/s1-v5.0.3.json';
 export async function auditCurrentS1(root,pin){
  const read=file=>readFileSync(resolve(root,file)),checks=[],check=(name,passed)=>checks.push({name,passed});
  const original=JSON.parse(read('freeze/s1-v4.0.1.json'));

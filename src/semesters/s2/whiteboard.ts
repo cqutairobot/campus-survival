@@ -2,6 +2,7 @@ import type {ContentState} from './legacy/ContentState';
 import type {WeaponParams} from './legacy/params';
 import type {ContentSkill,WeaponIdentity} from './types';
 import {sweptHit} from './legacy/damage';
+import {weaponParams} from './legacy/params';
 
 export interface WhiteboardLine {x:number;y:number;x2:number;y2:number;width:number;damage:number;age:number;hitDelay:number;life:number;hit:boolean;instanceId:number;generation:number;index:number;evolved:boolean;attackId:string;source:WeaponIdentity}
 /** Player attacks only: never registered as world geometry or enemy hazards. */
@@ -17,8 +18,11 @@ export class WhiteboardSystem {
   this.cooldown-=dt;
   if(this.cooldown<=0){
    this.cooldown+=params.interval;const attackId=`board:${this.instance}:${this.generation}:${++this.serial}`,groups=skill.evolved?params.count/2:params.count;
+   // Three perpendicular lines retain the entire base footprint; the other
+   // three keep the extended tilted pattern and the original sequence delay.
+   const baseRange=skill.evolved?weaponParams(g.content,{...skill,evolved:false},g.combatStats,g.damageMultiplier).range:params.range;
    for(let n=0;n<params.count;n++){
-    const group=skill.evolved?Math.floor(n/2):n,forward=params.range*(group+1)/(groups+1),cx=p.x+Math.cos(p.facing)*forward,cy=p.y+Math.sin(p.facing)*forward,a=p.facing+Math.PI/2+(skill.evolved?(n%2?-.48:.48):0),half=params.lineLength!*.5;
+    const group=skill.evolved?Math.floor(n/2):n,primary=!skill.evolved||n%2===0,forward=(primary?baseRange:params.range)*(group+1)/(groups+1),cx=p.x+Math.cos(p.facing)*forward,cy=p.y+Math.sin(p.facing)*forward,a=p.facing+Math.PI/2+(!primary?(group%2?-.48:.48):0),half=params.lineLength!*.5;
     this.lines.push({x:cx-Math.cos(a)*half,y:cy-Math.sin(a)*half,x2:cx+Math.cos(a)*half,y2:cy+Math.sin(a)*half,width:params.width,damage:params.damage,age:-n*params.sequenceDelay!,hitDelay:params.hitDelay!,life:params.hitDelay!+.24,hit:false,instanceId:this.instance,generation:this.generation,index:n,evolved:skill.evolved,attackId,source:g.weaponSystem.identity(skill)});
    }
   }

@@ -25,7 +25,7 @@ export function weaponParams(skill:Skill,stats?:PlayerStats,damageMultiplier=1):
 export function weaponChanges(id:string,nextLevel:number,rarity=0):{label:string;before:string;after:string}[] {
   const skill={id:id as WeaponKind,level:nextLevel,rarity:rarity as Skill['rarity'],evolved:false},next=weaponParams(skill);
   const previous=nextLevel>1?weaponParams({...skill,level:nextLevel-1}):null;
-  const fields:[keyof WeaponParams,string,string][]=[['damage','伤害',''],['interval','冷却','秒'],['count',id==='bot'?'助手':'数量',''],['pierce','穿透',''],['range',id==='lightning'?'跳距':id==='ppt'?'回旋距离':'范围',''],['width','束宽',''],['spread','扇角','°'],['explosion','爆炸半径',''],['duration','持续','秒']];
+  const fields:[keyof WeaponParams,string,string][]=[['damage','伤害',''],['interval','冷却','秒'],['count',id==='mentor'?'表现印章':id==='bot'?'助手':'数量',''],['pierce','穿透',''],['range',id==='lightning'?'跳距':id==='ppt'?'回旋距离':'范围',''],['width','束宽',''],['spread','扇角','°'],['explosion','爆炸半径',''],['duration','持续','秒']];
   const changes=fields.filter(([key])=>typeof next[key]==='number'&&(!previous||next[key]!==previous[key])).filter(([key])=>!['pierce','width','spread','explosion','duration'].includes(key)||WEAPON_MAP[id][key as 'pierce']!==undefined);
   const format=(key:keyof WeaponParams,value:number,unit:string)=>`${Math.round((key==='spread'?value*180/Math.PI:value)*100)/100}${unit}`;
   return [...changes.map(([key,label,unit])=>({label,before:previous?format(key,previous[key] as number,unit):'',after:format(key,next[key] as number,unit)})),{label:'形态',before:previous?.form??'',after:next.form}];
