@@ -34,6 +34,20 @@ function complete(engine:S2Engine){
  }
 }
 describe('v5 formal semester two entry',()=>{
+ it('starts without randomUUID, keeps fallback IDs unique and receipts stable without consuming gameplay RNG',()=>{
+  const ids:string[]=[],random=crypto.getRandomValues.bind(crypto);
+  try{
+   const p=profile(),baseline=createS2Engine(p,86,hooks(p));const streams=baseline.engine.runtime['services'].streams;
+   vi.stubGlobal('crypto',{getRandomValues:random});
+   for(const mode of ['normal','normal','daily'] as const){
+    const h=hooks(p),{engine}=createS2Engine(p,86,h,mode,'2026-10-31');
+    if(mode==='normal')expect(engine.runtime['services'].streams).toEqual(streams);
+    engine.abandon();engine.abandon();engine.advance(1);expect(h.commits).toHaveLength(1);
+    const receipt=engine.result!;ids.push(receipt.id);expect(settleS2Profile(h.saved,receipt)).toBe(h.saved);engine.dispose();
+   }
+   expect(new Set(ids).size).toBe(3);baseline.engine.dispose();
+  }finally{vi.unstubAllGlobals();}
+ });
  it('loads the eligible S2 adapter and selects each real engine through the GameHost dispatcher',async()=>{
   const p=profile(),legacyHooks={publish:vi.fn(),discover:vi.fn(),settle:vi.fn()},s2Hooks=hooks(p);
   const first=await loadSemesterRuntime('s1',p),second=await loadSemesterRuntime('s2',p);

@@ -69,7 +69,7 @@ export function createAppStore<S extends WalletSave=SaveData>(repository:Reposit
     beginDaily:id=>{const s=get().save;persist({...s,daily:{...s.daily,attempts:{...s.daily.attempts,[id]:(s.daily.attempts[id]??0)+1}}});},
     settle:result=>persist(model.settle(get().save,result)),
     settleS2:result=>{const save=get().save;if(save.schemaVersion!==4)throw Error('第二学期需要 v5 存档');const next=settleS2Profile(save,result);if(next!==save)void persist(next as S);return next;},
-    importSave:async raw=>{try{const s=model.validate(JSON.parse(raw),raw);if(!s)return {kind:'invalid',message:'不是有效的校园生存存档'};delete s.persistence;repository.stageImport?.(raw);return persist(s);}catch{return {kind:'invalid',message:'JSON 无法解析'};}},
+    importSave:async raw=>{if(!['menu','result'].includes(get().hud.phase))return {kind:'failed',message:'请先返回校园，再导入存档。'};try{const s=model.validate(JSON.parse(raw),raw);if(!s)return {kind:'invalid',message:'不是有效的校园生存存档'};delete s.persistence;repository.stageImport?.(raw);return persist(s);}catch{return {kind:'invalid',message:'JSON 无法解析'};}},
     resetSave:()=>recover('reset'),recoverSave:recover,refreshSave:()=>reload(false),takeoverSave:()=>reload(true),whenIdle:()=>pending,
   };
  });

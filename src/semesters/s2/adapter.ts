@@ -17,6 +17,14 @@ export interface S2Hooks {
  beginDaily:(id:string)=>void;
 }
 interface Presentation extends SemesterView<LegacyContentDTO> {settled?:(before:SaveProfile,after:SaveProfile,result:SemesterResult)=>void}
+let runSequence=0;
+/** Receipt entropy is independent of all gameplay streams and is sampled once. */
+function runId(){
+ const crypto=globalThis.crypto;
+ if(crypto?.randomUUID)return `s2-${crypto.randomUUID()}`;
+ const random=crypto?.getRandomValues?Array.from(crypto.getRandomValues(new Uint32Array(2)),n=>n.toString(36)).join('-'):Math.random().toString(36).slice(2);
+ return `s2-${random}-${Date.now().toString(36)}-${++runSequence}`;
+}
 
 /** The preview snapshot is the frozen opening contract, also used in production. */
 export function createS2Snapshot(profile:SaveProfile,seed:number,mode:'normal'|'daily'='normal',date?:string):S2RunSnapshot {
@@ -24,7 +32,7 @@ export function createS2Snapshot(profile:SaveProfile,seed:number,mode:'normal'|'
 }
 export function createS2Engine(profile:SaveProfile,seed:number,hooks:S2Hooks,mode:'normal'|'daily'='normal',date?:string,identity?:SettlementIdentity){
  const snapshot=createS2Snapshot(profile,seed,mode,date),before=structuredClone(profile),seen=new Set<string>(),listeners=new Set<()=>void>();
- const receipt=identity??{id:`s2-${crypto.randomUUID()}`,createdAt:Date.now(),nickname:profile.settings.nickname};
+ const receipt=identity??{id:runId(),createdAt:Date.now(),nickname:profile.settings.nickname};
  let latest:S2View,result:SemesterResult|null=null,presentation:Presentation|undefined,disposed=false,lastPhase:Phase|undefined;
  if(mode==='daily')hooks.beginDaily(`s2|${snapshot.date}|${snapshot.rulesVersion}`);
  const runtime=createSemesterTwoRun(snapshot,{publish(view,alpha){

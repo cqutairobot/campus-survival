@@ -48,7 +48,7 @@ test('v5 P22 单条冒烟：旧档/S1/每日→正式 S2 开局/结算→S2 构�
  // One XP pickup exercises real upgrade UI without a debug command or long combat run.
  await page.evaluate(()=>{const g=window.__CAMPUS__!.engine;g.spawnDrop('xp',g.player.x,g.player.y,6);});
  await expect(page.locator('.draft-card').first()).toBeVisible();await page.locator('.draft-card').first().click();await page.waitForFunction(()=>window.__CAMPUS__!.engine.phase==='playing');
- await page.getByRole('button',{name:'暂停游戏',exact:true}).click();await page.getByRole('button',{name:'继续这个学期',exact:true}).click();await page.waitForFunction(()=>window.__CAMPUS__!.engine.phase==='playing');
+ await page.getByRole('button',{name:'暂停游戏',exact:true}).click();await page.getByRole('button',{name:'设置',exact:true}).click();await expect(page.getByRole('button',{name:'导入存档',exact:true})).toBeDisabled();await expect(page.getByText('请先返回校园，再导入存档。',{exact:true})).toBeVisible();await close();await page.getByRole('button',{name:'继续这个学期',exact:true}).click();await page.waitForFunction(()=>window.__CAMPUS__!.engine.phase==='playing');
  await page.getByRole('button',{name:'暂停游戏',exact:true}).click();
  await page.evaluate(()=>Object.assign(window,{__P06_SCENE__:window.__CAMPUS__!.scene}));
  await page.getByRole('button',{name:'结束本局并结算',exact:true}).click();await expect(page.locator('.result-card')).toBeVisible();

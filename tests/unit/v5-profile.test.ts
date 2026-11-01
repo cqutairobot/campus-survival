@@ -91,4 +91,25 @@ describe('v5 profile core boundaries',()=>{
   const disk=storage.getItem(SAVE_KEY);storage.setItem(SAVE_KEY,JSON.stringify({...freshProfile(),credits:9}));await store.getState().settings({motion:true});expect(next.role).toBe('conflict');expect(storage.getItem(SAVE_KEY)).not.toBe(disk);
   old.dispose();next.dispose();
  });
+ it.each(['saved','quota','silent','readback'])('preserves a valid schema4 backup when the main profile is invalid: %s',failure=>{
+  const storage=new Memory(),good=JSON.stringify({...freshProfile(),credits:321}),bad=JSON.stringify({schemaVersion:4,credits:-1});
+  storage.setItem(SAVE_KEY,bad);storage.setItem(BACKUP_KEY,good);
+  const repo=new ProfileRepository(storage),save=repo.load();expect(save.credits).toBe(321);expect(repo.state).toBe('fallback');
+  const write=storage.setItem.bind(storage),read=storage.getItem.bind(storage);let written=false;
+  storage.setItem=(key,value)=>{if(key===SAVE_KEY){if(failure==='quota')throw Error('quota');if(failure==='silent')return;written=true;}write(key,value);};
+  storage.getItem=key=>{if(key===SAVE_KEY&&written&&failure==='readback'){written=false;throw Error('readback');}return read(key);};
+  expect(repo.writeLoaded(save)).toBe(failure==='saved');expect(read(BACKUP_KEY)).toBe(good);
+  expect(validateProfile(JSON.parse(read(BACKUP_KEY)!))?.credits).toBe(321);
+  expect([...storage.data].filter(([key])=>key.startsWith(RECOVERY_PREFIX)).map(([,raw])=>raw)).toContain(bad);
+ });
+ it('refuses imports throughout an active run, including after asynchronous file reading',async()=>{
+  const storage=new Memory(),repo=new ProfileRepository(storage),coordinator=new SaveCoordinator(repo,storage,new Locks()),store=createAppStore(repo,coordinator,{validate:validateProfile,settle:settleS1Profile});await coordinator.initialize();
+  const original=store.getState().save,disk=[...storage.data],raw=JSON.stringify({...freshProfile(),credits:999});
+  for(const phase of ['playing','paused','draft','reward','contract','chest','bossIntro','bossDeath','evolution'] as const){
+   store.getState().publish({...store.getState().hud,phase});
+   const result=await store.getState().importSave(await Promise.resolve(raw));
+   expect(result.kind).toBe('failed');expect(result.message).toContain('返回校园');expect(store.getState().save).toBe(original);expect([...storage.data]).toEqual(disk);
+  }
+  coordinator.dispose();
+ });
 });

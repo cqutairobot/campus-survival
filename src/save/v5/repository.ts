@@ -77,7 +77,7 @@ export class ProfileRepository {
    if(previous!==null&&!validateProfile(previousValue)&&!(this.sources.some(s=>s.key===SAVE_KEY&&s.raw===previous))){this.mark('corrupt','内存模式 · 原文已变化，待恢复');return false;}
    this.originals();
    // The first migration preserves the existing rotating backup. Later writes rotate schema 4 normally.
-   if(object(previousValue)&&previousValue.schemaVersion===4){this.storage!.setItem(BACKUP_KEY,previous!);if(this.storage!.getItem(BACKUP_KEY)!==previous)throw Error('轮转备份回读核对失败');}
+   if(object(previousValue)&&previousValue.schemaVersion===4&&validateProfile(previousValue)){this.storage!.setItem(BACKUP_KEY,previous!);if(this.storage!.getItem(BACKUP_KEY)!==previous)throw Error('轮转备份回读核对失败');}
    const serialized=JSON.stringify(valid);this.storage!.setItem(SAVE_KEY,serialized);if(this.storage!.getItem(SAVE_KEY)!==serialized)throw Error('主档回读核对失败');
    this.observed.clear();this.importRaws=[];this.mark('ready','已保存在此设备');return true;
   }catch(e){this.mark('failed',`内存模式 · 保存失败，原文已保留，可导出：${e instanceof Error?e.message:'写入失败'}`);return false;}
