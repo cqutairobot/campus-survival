@@ -1,3 +1,4 @@
+import {S2_ART_MANIFEST} from '../semesters/s2/presentation/art-manifest';
 // Source IDs are shared by DOM and Pixi. Small assets never pull in large portraits.
 export const assetUrl=(path:string)=>`${import.meta.env.BASE_URL}${path.replace(/^\//,'')}`;
 export const artManifest = {
@@ -843,6 +844,11 @@ export const artManifest = {
   }
 } as const;
 export type ArtId=keyof typeof artManifest;
+/** S1 enumeration stays frozen; extension metadata registers with the same loader. */
+export const resourceManifest={...artManifest,...S2_ART_MANIFEST} as const;
+export type ResourceId=keyof typeof resourceManifest;
+export type ResourceBundle=typeof resourceManifest[ResourceId]['bundle'];
+export const artDefinition=(id:ResourceId)=>resourceManifest[id];
 export type Bundle=typeof artManifest[ArtId]['bundle'];
-export const artUrl=(id:ArtId,format='webp')=>assetUrl(`assets/art/v4/${artManifest[id].path}.${format}`);
-export const pixiManifest={bundles:[...new Set(Object.values(artManifest).map(asset=>asset.bundle))].map(name=>({name,assets:(Object.keys(artManifest) as ArtId[]).filter(id=>artManifest[id].bundle===name).map(id=>({alias:id,src:artUrl(id)}))}))};
+export const artUrl=(id:ResourceId,format='webp')=>{const def=resourceManifest[id];return assetUrl(`${'root'in def?def.root:'assets/art/v4'}/${def.path}.${format}`);};
+export const pixiManifest={bundles:[...new Set(Object.values(resourceManifest).map(asset=>asset.bundle))].map(name=>({name,assets:(Object.keys(resourceManifest) as ResourceId[]).filter(id=>resourceManifest[id].bundle===name).map(id=>({alias:id,src:artUrl(id)}))}))};

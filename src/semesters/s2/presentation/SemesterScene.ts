@@ -12,6 +12,7 @@ import {REGION_CONDITIONS} from '../../../world/landmarks';
 import {warningFloor} from '../world';
 import {legacyFeedbackEvent,type ContentVisualEvent} from '../enemy-visuals';
 import {BuildPanel} from './BuildPanel';
+import {S2_ART_MANIFEST} from './art-manifest';
 import {SemesterSettlementPanel} from './SettlementPanel';
 import type {SaveProfile,SemesterResult} from '../../profile';
 import {ringRadius} from '../danger';
@@ -28,12 +29,12 @@ import {xpGemTier} from '../legacy/rules';
 import type { Settings } from '../../../types';
 import { GameAudio } from '../../../audio/audio';
 import { TextureCatalog } from './TextureCatalog';
-import { resources,prepareFonts,type LoadProgress } from '../../../assets/loader';
+import { resources,prepareFonts,type LoadProgress,type ResourceLease } from '../../../assets/loader';
 import { FeedbackDirector } from '../../../presentation/FeedbackDirector';
 import { PostFX,eventPixelPosition } from '../../../fx/PostFX';
 import { DeathFX } from '../../../fx/DeathFX';
 import {characterArt,textureArt,itemArt,uiArt} from '../../../assets/bindings';
-import {type ArtId,type Bundle} from '../../../assets/manifest';
+import {type ResourceId,type ResourceBundle} from '../../../assets/manifest';
 import {buildingPlacement,enemyArtSize,fitArtScale} from '../../../presentation/art-layout';
 import {enemyMaterial} from '../../../presentation/materials';
 import {attackFeel} from '../../../presentation/weapon-feedback';
@@ -42,13 +43,14 @@ import {qualityBudget,qualityName} from '../../../presentation/quality';
 interface Transient {event:ContentVisualEvent;life:number;total:number;hold?:number}
 export class SemesterScene implements SemesterView<LegacyContentDTO> {
   private settlementPanel:SemesterSettlementPanel|undefined;
+  private landmarkSprites=new Map<string,Sprite>();
   showSettlement(before:SaveProfile,after:SaveProfile,result:SemesterResult){this.settlementPanel?.destroy();this.settlementPanel=new SemesterSettlementPanel(this.host,before,after,result);}
   readonly app=new Application();readonly audio:GameAudio;
   private textures!:TextureCatalog;private geometry!:TextureLibrary;private assetsRelease:(()=>void)|undefined;private loadAbort=new AbortController();
-  private artTextures=new Map<ArtId,Texture>();private artReleases:(()=>void)[]=[];private requestedBosses=new Set<Bundle>();private playerShadow=new Graphics();
+  private artTextures=new Map<ResourceId,Texture>();private artReleases:(()=>void)[]=[];private requestedBosses=new Set<ResourceBundle>();private playerShadow=new Graphics();
   readonly feedback:FeedbackDirector;readonly postFX=new PostFX();readonly deathFX=new DeathFX();private world=new Container();private ground=new Container();private dropLayer=new Container();private entityLayer=new Container();private propLayer=new Container();private effects=new Container();private dangerLayer=new Container();
   private fxGraphic=new Graphics();private groundFX=new Graphics();private telegraphs=new Graphics();private dangerGuides=new Graphics();private debugGraphics=new Graphics();private particles!:ParticleFX;private numbers!:DamageNumbers;private player!:Sprite;
-  private whiteSprites:(Sprite|undefined)[]=[];private enemySprites:(Sprite|undefined)[]=[];private shotSprites:(Sprite|undefined)[]=[];private hostileSprites:(Sprite|undefined)[]=[];private dropSprites:(Sprite|undefined)[]=[];private orbitSprites:Sprite[]=[];private botSprites:Sprite[]=[];
+  private whiteSprites:(Sprite|undefined)[]=[];private enemySprites:(Sprite|undefined)[]=[];private shotSprites:(Sprite|undefined)[]=[];private hostileSprites:(Sprite|undefined)[]=[];private dropSprites:(Sprite|undefined)[]=[];private orbitSprites:Sprite[]=[];private botSprites:Sprite[]=[];private droneSprites:Sprite[]=[];
   private transient:Transient[]=[];private props:Sprite[]=[];private input!:InputController;private resizeObserver!:ResizeObserver;private animation=0;private lastTime=0;private elapsed=0;private destroyed=false;private ready=false;
   private bloom=new AdvancedBloomFilter({threshold:.65,bloomScale:.6,brightness:1,blur:3,quality:2});private glow=new GlowFilter({distance:8,outerStrength:1.1,color:0x99e1b2,quality:.15});
   private gates=new Graphics();private warningMask=new Graphics();
@@ -75,9 +77,10 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
     await this.app.init({resizeTo:this.host,background:0xedecd9,antialias:true,resolution:Math.min(devicePixelRatio,qualityBudget(this.settings.quality).dpr),autoDensity:true,preference:'webgl',powerPreference:'high-performance',autoStart:false});
     this.appInitialized=true;if(this.destroyed){this.destroyApplication();return;}
     this.assetsRelease=()=>{for(const release of this.artReleases)release();this.artReleases=[];};
-    const acquire=async(promise:ReturnType<typeof resources.bundle>)=>{const lease=await promise;if(this.destroyed){lease.release();return;}this.artReleases.push(lease.release);for(const [id,texture] of lease.textures)this.artTextures.set(id,texture);};
+    const acquire=async(promise:Promise<ResourceLease<ResourceId>>)=>{const lease=await promise;if(this.destroyed){lease.release();return;}this.artReleases.push(lease.release);for(const [id,texture] of lease.textures)this.artTextures.set(id,texture);};
     await acquire(resources.bundle('battle-core',this.loadAbort.signal,this.onLoad));
     await acquire(resources.bundle('battle-content',this.loadAbort.signal,this.onLoad));
+    await acquire(resources.loadIds((Object.keys(S2_ART_MANIFEST) as ResourceId[]).filter(id=>S2_ART_MANIFEST[id as keyof typeof S2_ART_MANIFEST].bundle==='s2-start'),this.loadAbort.signal,this.onLoad,'准备第二学期首章'));
     await acquire(resources.loadIds([characterArt[this.game.manifest.character].sprite,...['heal','magnet','bomb','freeze','shield','coffeeBoost','energy'].map(id=>itemArt[id]),uiArt['chest-closed']],this.loadAbort.signal,this.onLoad,'整理随身补给'));
     await prepareFonts();if(this.destroyed){this.assetsRelease();this.destroyApplication();return;}
     this.host.appendChild(this.app.canvas);this.geometry=new TextureLibrary(this.app,this.content,this.game.world);this.textures=new TextureCatalog(this.geometry,this.artTextures,this.game.manifest.character,this.content);this.particles=new ParticleFX(this.textures);this.numbers=new DamageNumbers(this.textures);
@@ -93,7 +96,7 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
     const g=new Graphics(),map=this.game.world,{size,spawn,square,track}=map;
     this.cameraX=spawn.x;this.cameraY=spawn.y;
     this.ground.addChild(new Graphics().rect(0,0,size,size).fill(0xe9ecd8));
-    const tile=(id:ArtId,x:number,y:number,width:number,height:number,alpha:number)=>{const texture=this.textures.external(id);if(!texture)return;const s=new TilingSprite({texture,width,height});s.position.set(x,y);s.alpha=alpha;s.tileScale.set(.8);this.ground.addChild(s);};
+    const tile=(id:ResourceId,x:number,y:number,width:number,height:number,alpha:number)=>{const texture=this.textures.external(id);if(!texture)return;const s=new TilingSprite({texture,width,height});s.position.set(x,y);s.alpha=alpha;s.tileScale.set(.8);this.ground.addChild(s);};
     tile(textureArt.grass,0,0,size,size,.48);
     for(const path of [...map.paths,square])tile(textureArt.paving,path.x,path.y,path.w,path.h,.9);
     this.ground.addChild(g);
@@ -117,9 +120,9 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
     // Locked legacy regions visibly occupy the same footprint as their blocker.
     for(const gate of map.gates)this.gates.rect(gate.x,gate.y,gate.w,gate.h).fill({color:0x788b80,alpha:.22}).stroke({color:0x6d7760,width:3});
     for(const b of map.buildings){
-      const art=b.art?this.textures.external(b.art):undefined,sprite=new Sprite(art??this.textures.get(`building-${b.id}`));
+      const art=this.textures.building(b.id)??(b.art?this.textures.external(b.art):undefined),sprite=new Sprite(art??this.textures.get(`building-${b.id}`));
       // The plinth and every local placeholder exactly match the collision rect.
-      g.roundRect(b.x,b.y,b.w,b.h,6).fill({color:b.color,alpha:.9}).stroke({color:0x526b65,width:3,alpha:.8});
+      g.roundRect(b.x,b.y,b.w,b.h,6).fill({color:art&&b.id.startsWith('s2:')?0xbdb9a5:b.color,alpha:.9}).stroke({color:0x526b65,width:3,alpha:.8});
       if(art){const placement=buildingPlacement(b,art);sprite.position.set(placement.x,placement.y);sprite.width=placement.width;sprite.height=placement.height;}
       else if(b.placeholder){sprite.position.set(b.x,b.y);sprite.width=b.w;sprite.height=b.h;}
       else sprite.position.set(b.x-5,b.y-8);
@@ -141,7 +144,7 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
     const sign=new Text({text:'北京建筑大学\nBEIJING UNIVERSITY OF CIVIL ENGINEERING AND ARCHITECTURE',style:{fontFamily:['Campus Sans','sans-serif'],fontSize:15,fill:0x8b997c,align:'center',letterSpacing:2,lineHeight:27}});sign.anchor.set(.5);sign.position.set(spawn.x,spawn.y+138);this.ground.addChild(sign);
   }
   private preloadBossArt(){
-    for(const def of this.content.enemies){if(!['boss','miniBoss'].includes(def.rank)||def.from>this.game.week+1)continue;const bundle=`boss-${def.id}` as Bundle;if(this.requestedBosses.has(bundle))continue;this.requestedBosses.add(bundle);void resources.bundle(bundle,this.loadAbort.signal).then(lease=>{if(this.destroyed){lease.release();return;}this.artReleases.push(lease.release);for(const [id,texture] of lease.textures)this.artTextures.set(id,texture);});}
+    for(const def of this.content.enemies){if(!['boss','miniBoss'].includes(def.rank)||def.from>this.game.week+1)continue;const bundle=(def.id==='s2:dispatcher'?'s2-boss-dispatcher':def.id==='s2:proposalBoard'?'s2-boss-proposalBoard':`boss-${def.id}`) as ResourceBundle;if(this.requestedBosses.has(bundle))continue;this.requestedBosses.add(bundle);void resources.extensionBundle(bundle,this.loadAbort.signal).then(lease=>{if(this.destroyed){lease.release();return;}this.artReleases.push(lease.release);for(const [id,texture] of lease.textures)this.artTextures.set(id,texture);});}
   }
   private resize(){
     if(this.destroyed)return;this.releaseFilterTextures();const w=this.host.clientWidth,h=this.host.clientHeight;this.app.renderer.resize(w,h);
@@ -281,12 +284,14 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
       }
       for(let n=count;n<sprites.length;n++)sprites[n].visible=false;
     };draw(orbit,this.orbitSprites,'orbit');draw(bot,this.botSprites,'bot');
-    for(const drone of g.drones){
+    for(const [n,drone] of g.drones.entries()){
+      const art=this.textures.frameTexture(g.weapons.find(w=>w.id==='s2:drone')?.evolved?'s2:drone:evolved':'s2:drone');let sprite=this.droneSprites[n];if(art){if(!sprite){sprite=new Sprite(art);sprite.anchor.set(.5);this.entityLayer.addChild(sprite);this.droneSprites[n]=sprite;}sprite.texture=art;sprite.visible=true;sprite.position.set(drone.x,drone.y);sprite.scale.set(fitArtScale(art,48));sprite.rotation=this.settings.motion?Math.sin(g.combatTime*4+n)*.06:0;}else if(sprite)sprite.visible=false;
       const gr=this.fxGraphic,x=drone.x,y=drone.y,t=g.combatTime*24;
-      gr.roundRect(x-12,y-8,24,16,5).fill(0xd7edf0).stroke({color:0x357594,width:2});gr.circle(x,y,4).fill(0x4089ac);
+      if(!art)gr.roundRect(x-12,y-8,24,16,5).fill(0xd7edf0).stroke({color:0x357594,width:2});gr.circle(x,y,4).fill(0x4089ac);
       for(const side of [-1,1]){gr.moveTo(x,y).lineTo(x+side*19,y-8).stroke({color:0x357594,width:2});gr.ellipse(x+side*19,y-9,10,3+Math.sin(t)*1.5).stroke({color:0x529fcc,width:2,alpha:.9});}
       if(g.weapons.find(w=>w.id==='s2:drone')?.evolved)gr.moveTo(p.x,p.y).lineTo(x,y).stroke({color:0x7dd7ec,width:1,alpha:.3});
     }
+    for(let n=g.drones.length;n<this.droneSprites.length;n++)this.droneSprites[n].visible=false;
     for(const bolt of g.droneBolts)this.fxGraphic.moveTo(bolt.prevX,bolt.prevY).lineTo(bolt.x,bolt.y).stroke({color:bolt.sync?0xc1f6ff:0x529fcc,width:bolt.sync?4:2,alpha:.9});
   }
   private drawEnemyStatus(){
@@ -306,10 +311,12 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
   }
   private drawGroundEffects(){
     const gr=this.groundFX,g=this.game;gr.clear();
-    for(const point of g.interactions.points){if(!this.inView(point.x,point.y,80))continue;const color=point.id==='s2:infirmary'?0x579d8a:0x637b9f;gr.roundRect(point.x-28,point.y-23,56,46,7).fill({color,alpha:.85}).stroke({color:0xf6e8bc,width:2});if(point.id==='s2:infirmary')gr.rect(point.x-5,point.y-15,10,30).rect(point.x-15,point.y-5,30,10).fill(0xe4f3e9);else gr.rect(point.x-18,point.y-12,36,24).stroke({color:0xf6e8bc,width:3});}
+    const artLandmark=(id:string,x:number,y:number)=>{const texture=this.textures.frameTexture(id);let sprite=this.landmarkSprites.get(id);if(!texture){if(sprite)sprite.visible=false;return false;}if(!sprite){sprite=new Sprite(texture);sprite.anchor.set(.5,.82);this.landmarkSprites.set(id,sprite);this.propLayer.addChild(sprite);}sprite.texture=texture;sprite.position.set(x,y+22);sprite.scale.set(fitArtScale(texture,86));sprite.visible=true;return true;};
+    for(const sprite of this.landmarkSprites.values())sprite.visible=false;
+    for(const point of g.interactions.points){if(!this.inView(point.x,point.y,80))continue;if(artLandmark(point.id,point.x,point.y))continue;const color=point.id==='s2:infirmary'?0x579d8a:0x637b9f;gr.roundRect(point.x-28,point.y-23,56,46,7).fill({color,alpha:.85}).stroke({color:0xf6e8bc,width:2});if(point.id==='s2:infirmary')gr.rect(point.x-5,point.y-15,10,30).rect(point.x-15,point.y-5,30,10).fill(0xe4f3e9);else gr.rect(point.x-18,point.y-12,36,24).stroke({color:0xf6e8bc,width:3});}
     if(g.revision.active){const site=g.revision.active.entry.site;gr.circle(site.center.x,site.center.y,site.radius+72).stroke({color:0x637b9f,width:4,alpha:.6});}
     if(g.event&&g.event.warning<=0){const a=g.event;if(a.kind==='portal'||a.kind==='s2:jointExhibit')for(const [n,point] of [{x:a.x,y:a.y},{x:a.x2,y:a.y2}].entries())gr.circle(point.x,point.y,a.kind==='portal'?38:52).stroke({color:n<a.visits?0x6b9d86:0x637b9f,width:4,alpha:.8});}
-    if(g.tables.table){const t=g.tables.table;gr.roundRect(t.x-26,t.y-18,52,36,5).fill({color:t.kind==='joint'?0xc7ae65:0x9a95c9,alpha:.8}).stroke({color:0xffedbb,width:3});gr.moveTo(t.x-32,t.y+22).lineTo(t.x+32,t.y+22).stroke({color:0x526b65,width:5});}
+    if(g.tables.table){const t=g.tables.table;if(!artLandmark(t.kind==='joint'?'s2:jointTable':'s2:amendmentTable',t.x,t.y)){gr.roundRect(t.x-26,t.y-18,52,36,5).fill({color:t.kind==='joint'?0xc7ae65:0x9a95c9,alpha:.8}).stroke({color:0xffedbb,width:3});gr.moveTo(t.x-32,t.y+22).lineTo(t.x+32,t.y+22).stroke({color:0x526b65,width:5});}}
     for(const node of g.fusionAttacks.nodes){this.fxGraphic.roundRect(node.x-12,node.y-10,24,20,4).fill(0x61bdce).stroke({color:0xe0f8ef,width:2});if(node.stationary)this.fxGraphic.rect(node.x-17,node.y+12,34,4).fill(0x3c8295);else this.fxGraphic.moveTo(node.x-21,node.y-12).lineTo(node.x+21,node.y-12).stroke({color:0x9cddde,width:2});}
     for(const b of g.fusionAttacks.bolts)this.fxGraphic.circle(b.x,b.y,4).fill(0x61bdce);
     for(const line of g.fusionAttacks.lines)if(line.age>=0)gr.moveTo(line.x,line.y).lineTo(line.x2,line.y2).stroke({color:0x7bd7bd,width:line.hit?line.width:2,alpha:line.hit?.65:.4});
@@ -494,6 +501,6 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
     this.world.filters=[];this.effects.filters=[];if(this.player)this.player.filters=[];
     this.releaseFilterTextures();for(const filter of [this.bloom,this.glow,...this.postFX.filters])filter.destroy();
     this.destroyApplication();
-    this.artTextures.clear();this.uiTextures=[];this.trails.clear();this.transient=[];this.enemySprites=[];this.whiteSprites=[];this.shotSprites=[];this.hostileSprites=[];this.dropSprites=[];this.orbitSprites=[];this.botSprites=[];this.props=[];if(!this.ownsAudio)this.audio.releaseSession();else this.audio.destroy();void resources.dispose();
+    this.artTextures.clear();this.uiTextures=[];this.trails.clear();this.transient=[];this.enemySprites=[];this.whiteSprites=[];this.shotSprites=[];this.hostileSprites=[];this.dropSprites=[];this.orbitSprites=[];this.botSprites=[];this.droneSprites=[];this.landmarkSprites.clear();this.props=[];if(!this.ownsAudio)this.audio.releaseSession();else this.audio.destroy();void resources.dispose();
   }
 }

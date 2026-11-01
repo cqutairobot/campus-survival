@@ -1,0 +1,1458 @@
+{
+  "version": "s2-art-v1",
+  "sampleOnly": false,
+  "sharedParticleSource": {
+    "file": "public/assets/art/v4/fx/particles.webp",
+    "sha256": "b71446354afd58aa01174fc9094c314781c07dc3c86e4da585b1417c2bf15a41",
+    "modifications": "Preserve8 original code-drawn fragments byte-for-byte; replace spark/smoke with two credited CC0 shapes; one shared texture source for all10 materials"
+  },
+  "assets": [
+    {
+      "key": "enemy-bike",
+      "sourceType": "ai",
+      "aiGenerated": true,
+      "placeholder": false,
+      "model": "image_gen built-in; model identifier not exposed by provider",
+      "tool": "image_gen built-in",
+      "generatedAt": "2026-10-31",
+      "prompt": "Use case: stylized-concept. Asset type: transparent raster game asset for Campus Survival second semester. Style: detailed hand-painted modern Chinese university campus illustration, elevated top-down view with mild front perspective, clean strong silhouettes readable at small game sizes, fine dark blue-green contour lines, subtle watercolor/colored-pencil surface detail. Palette: warm ivory and sandstone, jade/teal, muted navy, restrained gold, natural greenery only where appropriate. Soft sunlight from upper left and a short subtle contact shadow toward lower right. Match a warm paved modern campus with glass teaching buildings and landscaped grounds. Transparent background with real alpha; isolated subject, centered, all extremities and shadow visible, 10 percent transparent padding, no floor tile, no backdrop. Avoid fantasy/castles/magic, photorealism, glossy toy 3D, pixel art, neon bloom, red/orange danger markings, circles/arrows/countdowns, UI frames, logos, letters, text, watermark.\nSubject: One compact modern university electric cargo bicycle, jade-teal frame, two dark rubber wheels, small ivory insulated parcel box on rear rack with a plain gold fastening strap; no rider. Three-quarter elevated top-down angle, facing lower right. Mechanically plausible and visibly a bicycle, strong wheel/frame silhouette. Gameplay use: ordinary enemy, final display about48px.\nOutput: single transparent PNG master, generous clean alpha margin.",
+      "reference": {
+        "file": "docs/v4.0.1-battle.png",
+        "sha256": "d304f2b4a9d4290e5a856167a6a75fd951890abc089dd1b43b7438a583248729",
+        "role": "repository style reference, visually inspected and described in prompt"
+      },
+      "raw": "art-src/s2/raw/enemy-bike.png",
+      "rawSha256": "fb49758179b563e3dafe1d3aa9f742b4666fd478f23d3bb5e19d51a65c8df9f4",
+      "master": "art-src/s2/masters/enemy-bike.png",
+      "masterSha256": "07f0c4b3b85e89534e2e8689ed7449027f0844e569d0e19eda7b2d70141bb657",
+      "masterSize": [
+        512,
+        512
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "license": "AI-generated; no CC0 claim",
+      "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+      "outputs": [
+        {
+          "file": "public/assets/art/v5/s2/thumbs/enemy-bike.webp",
+          "bytes": 5956,
+          "sha256": "12cce873c02fb38978aa8b3c1fd3aa694f569c7108079d79970bd73e6c5151ce",
+          "size": [
+            96,
+            96
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/thumbs/enemy-bike.png",
+          "bytes": 13448,
+          "sha256": "509d0659fa2b37353edb132ee5bd9db6631a0a8013791520eeab7881b6128877",
+          "size": [
+            96,
+            96
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/atlases/enemies.webp",
+          "bytes": 41040,
+          "sha256": "ab024efa292401f831a808ed665653cf77939d856937d7a8319b1927fc7df968",
+          "size": [
+            1024,
+            512
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/atlases/enemies.png",
+          "bytes": 124869,
+          "sha256": "d744614cfb7276b8c105b68a561f697e25a4a5eca83407be7a932a51fe9e15df",
+          "size": [
+            1024,
+            512
+          ]
+        }
+      ]
+    },
+    {
+      "key": "item-drone",
+      "sourceType": "ai",
+      "aiGenerated": true,
+      "placeholder": false,
+      "model": "image_gen built-in; model identifier not exposed by provider",
+      "tool": "image_gen built-in",
+      "generatedAt": "2026-10-31",
+      "prompt": "Use case: stylized-concept. Asset type: transparent raster game asset for Campus Survival second semester. Style: detailed hand-painted modern Chinese university campus illustration, elevated top-down view with mild front perspective, clean strong silhouettes readable at small game sizes, fine dark blue-green contour lines, subtle watercolor/colored-pencil surface detail. Palette: warm ivory and sandstone, jade/teal, muted navy, restrained gold, natural greenery only where appropriate. Soft sunlight from upper left and a short subtle contact shadow toward lower right. Match a warm paved modern campus with glass teaching buildings and landscaped grounds. Transparent background with real alpha; isolated subject, centered, all extremities and shadow visible, 10 percent transparent padding, no floor tile, no backdrop. Avoid fantasy/castles/magic, photorealism, glossy toy 3D, pixel art, neon bloom, red/orange danger markings, circles/arrows/countdowns, UI frames, logos, letters, text, watermark.\nSubject: One small research quadcopter drone: ivory body, navy structural frame, four jade rotor housings, small camera lens and gold battery clasp. Four clear rotors and no weapons. Three-quarter elevated top-down angle. Gameplay use: inventory icon96/192px and small summon sprite.\nOutput: single transparent PNG master, generous clean alpha margin.",
+      "reference": {
+        "file": "docs/v4.0.1-battle.png",
+        "sha256": "d304f2b4a9d4290e5a856167a6a75fd951890abc089dd1b43b7438a583248729",
+        "role": "repository style reference, visually inspected and described in prompt"
+      },
+      "raw": "art-src/s2/raw/item-drone.png",
+      "rawSha256": "c14e48497c559825886850601d28011670df99a27a9e56eeb306c568f3bef46b",
+      "master": "art-src/s2/masters/item-drone.png",
+      "masterSha256": "d2437fb98dc95fdaec10124b0a5b5d2441131eeb6e78d84f262a71a887c7cd1c",
+      "masterSize": [
+        512,
+        512
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "license": "AI-generated; no CC0 claim",
+      "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+      "outputs": [
+        {
+          "file": "public/assets/art/v5/s2/icons/item-drone-96.webp",
+          "bytes": 4242,
+          "sha256": "03744ef32e515d4be2ae3b1cfe9743585e8950fb4e944be3dbecc70a23123cc0",
+          "size": [
+            96,
+            96
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/icons/item-drone-96.png",
+          "bytes": 8384,
+          "sha256": "8a7043598aac107a1a7464ac62d4c88e81eb4b27c1d33edfbc98d23a961a85d7",
+          "size": [
+            96,
+            96
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/icons/item-drone-192.webp",
+          "bytes": 10316,
+          "sha256": "26782e6fe79122492279815b0e905f977348f7a1abf9415a2cfa16d8b0cfad02",
+          "size": [
+            192,
+            192
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/icons/item-drone-192.png",
+          "bytes": 25268,
+          "sha256": "5260db89ddc298984525366c1f220aab1d697fe96f5b0bbd1b822af6db5e0972",
+          "size": [
+            192,
+            192
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/atlases/items.webp",
+          "bytes": 42944,
+          "sha256": "9cf9ad8b7f8a63f890f0dd1f1c1135deca56ec610912bce5f1c826259d0802b7",
+          "size": [
+            1024,
+            256
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/atlases/items.png",
+          "bytes": 121210,
+          "sha256": "23edee62718213c7cd3fe3a3920a317e5be7d4f3db4328dc838c73c172ab6aa7",
+          "size": [
+            1024,
+            256
+          ]
+        }
+      ]
+    },
+    {
+      "key": "building-smart-teaching",
+      "sourceType": "ai",
+      "aiGenerated": true,
+      "placeholder": false,
+      "model": "image_gen built-in; model identifier not exposed by provider",
+      "tool": "image_gen built-in",
+      "generatedAt": "2026-10-31",
+      "prompt": "Use case: stylized-concept. Asset type: transparent raster game asset for Campus Survival second semester. Style: detailed hand-painted modern Chinese university campus illustration, elevated top-down view with mild front perspective, clean strong silhouettes readable at small game sizes, fine dark blue-green contour lines, subtle watercolor/colored-pencil surface detail. Palette: warm ivory and sandstone, jade/teal, muted navy, restrained gold, natural greenery only where appropriate. Soft sunlight from upper left and a short subtle contact shadow toward lower right. Match a warm paved modern campus with glass teaching buildings and landscaped grounds. Transparent background with real alpha; isolated subject, centered, all extremities and shadow visible, 10 percent transparent padding, no floor tile, no backdrop. Avoid fantasy/castles/magic, photorealism, glossy toy 3D, pixel art, neon bloom, red/orange danger markings, circles/arrows/countdowns, UI frames, logos, letters, text, watermark.\nSubject: One wide, low modern university smart teaching building with a glass connecting corridor, flat light sandstone roof, white structural pillars, blue-gray glazing, jade door panels, subtle warm facade accents. Long rectangular massing, main entry visible on front bottom edge, roof clearly seen. No trees obscuring the building footprint. Isolated architecture cutout; no surrounding terrain or paving. Gentle overhead architectural game view, NOT a tall isometric tower. Approximately2:1 landscape composition, intended1536px master.\nOutput: single transparent PNG master, generous clean alpha margin.",
+      "reference": {
+        "file": "docs/v4.0.1-battle.png",
+        "sha256": "d304f2b4a9d4290e5a856167a6a75fd951890abc089dd1b43b7438a583248729",
+        "role": "repository style reference, visually inspected and described in prompt"
+      },
+      "raw": "art-src/s2/raw/building-smart-teaching.png",
+      "rawSha256": "4da7ea74dac4dea01010b3d4396123b2d24fcd105b971f686d4a04a027c685bf",
+      "master": "art-src/s2/masters/building-smart-teaching.png",
+      "masterSha256": "46343ac8dee09504b57907537c00ddbab1f99b2de8ec80975ef0b80cb5147d3f",
+      "masterSize": [
+        1536,
+        768
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "anchor": [
+        0.5,
+        0.82
+      ],
+      "license": "AI-generated; no CC0 claim",
+      "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+      "outputs": [
+        {
+          "file": "public/assets/art/v5/s2/building-smart-teaching.webp",
+          "bytes": 102786,
+          "sha256": "81ee0185e870ff6649c7bca4267f19cf960a5737d38964853683dbd8bf280641",
+          "size": [
+            1024,
+            512
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/building-smart-teaching.png",
+          "bytes": 459138,
+          "sha256": "5b480257c82fd5658a567fc55e9a1085bf1c119539b2ba74d200ce5458e2eaf0",
+          "size": [
+            1024,
+            512
+          ]
+        }
+      ]
+    },
+    {
+      "key": "enemy-reservation",
+      "sourceType": "ai",
+      "aiGenerated": true,
+      "placeholder": false,
+      "model": "image_gen built-in; model identifier not exposed by provider",
+      "tool": "image_gen built-in",
+      "generatedAt": "2026-10-31",
+      "prompt": "Use case: stylized-concept. Asset type: transparent raster game asset for Campus Survival second semester. Style: detailed hand-painted modern Chinese university campus illustration, elevated top-down view with mild front perspective, clean strong silhouettes readable at small game sizes, fine dark blue-green contour lines, subtle watercolor/colored-pencil surface detail. Palette: warm ivory and sandstone, jade/teal, muted navy, restrained gold, natural greenery only where appropriate. Soft sunlight from upper left and a short subtle contact shadow toward lower right. Match a warm paved modern campus with glass teaching buildings and landscaped grounds. Transparent background with real alpha; isolated subject, centered, all extremities and shadow visible, 10 percent transparent padding, no floor tile, no backdrop. Avoid fantasy/castles/magic, photorealism, glossy toy 3D, pixel art, neon bloom, red/orange danger markings, circles/arrows/countdowns, UI frames, logos, letters, text, watermark.\nSubject: One freestanding modern campus seat-booking kiosk: compact navy A-frame stand with ivory display housing, a jade blank screen showing only a simple clock-like pictogram with no numerals, small gold lower shelf. Elevated top-down angle, clearly a solid physical campus sign. Ordinary enemy about48px.\nOutput: single transparent PNG master, generous clean alpha margin.",
+      "reference": {
+        "file": "docs/v4.0.1-battle.png",
+        "sha256": "d304f2b4a9d4290e5a856167a6a75fd951890abc089dd1b43b7438a583248729",
+        "role": "repository style reference, visually inspected and described in prompt"
+      },
+      "raw": "art-src/s2/raw/enemy-reservation.png",
+      "rawSha256": "18ade3cfb824b5319b0b2a7f6e8ff2998e21b4f0b2ec7323ebace49bec04e4aa",
+      "master": "art-src/s2/masters/enemy-reservation.png",
+      "masterSha256": "dce4ecff1111f26859148dd4da7769b37a3960859b5bc43e2c726d757882f56e",
+      "masterSize": [
+        512,
+        512
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "license": "AI-generated; no CC0 claim",
+      "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+      "outputs": [
+        {
+          "file": "public/assets/art/v5/s2/thumbs/enemy-reservation.webp",
+          "bytes": 3490,
+          "sha256": "a23f70fb57b18ae018fb37688c8d8d7bdf156693aaa4e1bf85aff2c8e772f24a",
+          "size": [
+            96,
+            96
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/thumbs/enemy-reservation.png",
+          "bytes": 8677,
+          "sha256": "7974a1b13f2374c115deb19d63111899915ecf173d29dd4afceecadb2989e9c7",
+          "size": [
+            96,
+            96
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/atlases/enemies.webp",
+          "bytes": 41040,
+          "sha256": "ab024efa292401f831a808ed665653cf77939d856937d7a8319b1927fc7df968",
+          "size": [
+            1024,
+            512
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/atlases/enemies.png",
+          "bytes": 124869,
+          "sha256": "d744614cfb7276b8c105b68a561f697e25a4a5eca83407be7a932a51fe9e15df",
+          "size": [
+            1024,
+            512
+          ]
+        }
+      ]
+    },
+    {
+      "key": "enemy-parceler",
+      "sourceType": "ai",
+      "aiGenerated": true,
+      "placeholder": false,
+      "model": "image_gen built-in; model identifier not exposed by provider",
+      "tool": "image_gen built-in",
+      "generatedAt": "2026-10-31",
+      "prompt": "Use case: stylized-concept. Asset type: transparent raster game asset for Campus Survival second semester. Style: detailed hand-painted modern Chinese university campus illustration, elevated top-down view with mild front perspective, clean strong silhouettes readable at small game sizes, fine dark blue-green contour lines, subtle watercolor/colored-pencil surface detail. Palette: warm ivory and sandstone, jade/teal, muted navy, restrained gold, natural greenery only where appropriate. Soft sunlight from upper left and a short subtle contact shadow toward lower right. Match a warm paved modern campus with glass teaching buildings and landscaped grounds. Transparent background with real alpha; isolated subject, centered, all extremities and shadow visible, 10 percent transparent padding, no floor tile, no backdrop. Avoid fantasy/castles/magic, photorealism, glossy toy 3D, pixel art, neon bloom, red/orange danger markings, circles/arrows/countdowns, UI frames, logos, letters, text, watermark.\nSubject: One friendly stylized university logistics delivery worker, full body visible, jade work jacket and navy trousers, plain ivory cap, carrying one taped cardboard parcel across the torso. Small chibi proportions consistent with a hand-painted campus survival game, face very simple, no branding. Elevated top-down angle. Ordinary enemy about48px.\nOutput: single transparent PNG master, generous clean alpha margin.",
+      "reference": {
+        "file": "docs/v4.0.1-battle.png",
+        "sha256": "d304f2b4a9d4290e5a856167a6a75fd951890abc089dd1b43b7438a583248729",
+        "role": "repository style reference, visually inspected and described in prompt"
+      },
+      "raw": "art-src/s2/raw/enemy-parceler.png",
+      "rawSha256": "27bac2dea78579247211b43d7a52598d56bc9355341fc3ac7ad4df23291df846",
+      "master": "art-src/s2/masters/enemy-parceler.png",
+      "masterSha256": "33e3a4c00f85386ec48fd08a0b956daf6e95e4ef1c561ee2e5b1b03f0f78f514",
+      "masterSize": [
+        512,
+        512
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "license": "AI-generated; no CC0 claim",
+      "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+      "outputs": [
+        {
+          "file": "public/assets/art/v5/s2/thumbs/enemy-parceler.webp",
+          "bytes": 3100,
+          "sha256": "70ca5742dd326606c8865fed005872d693321a3eaa61117a02bc36af53ae093c",
+          "size": [
+            96,
+            96
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/thumbs/enemy-parceler.png",
+          "bytes": 7374,
+          "sha256": "0b160e994c39171b2c125d6046827d4ddecb13ab4ed8511a03781ab29180d489",
+          "size": [
+            96,
+            96
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/atlases/enemies.webp",
+          "bytes": 41040,
+          "sha256": "ab024efa292401f831a808ed665653cf77939d856937d7a8319b1927fc7df968",
+          "size": [
+            1024,
+            512
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/atlases/enemies.png",
+          "bytes": 124869,
+          "sha256": "d744614cfb7276b8c105b68a561f697e25a4a5eca83407be7a932a51fe9e15df",
+          "size": [
+            1024,
+            512
+          ]
+        }
+      ]
+    },
+    {
+      "key": "enemy-dispatcher",
+      "sourceType": "ai",
+      "aiGenerated": true,
+      "placeholder": false,
+      "model": "image_gen built-in; model identifier not exposed by provider",
+      "tool": "image_gen built-in",
+      "generatedAt": "2026-10-31",
+      "prompt": "Use case: stylized-concept. Asset type: transparent raster game asset for Campus Survival second semester. Style: detailed hand-painted modern Chinese university campus illustration, elevated top-down view with mild front perspective, clean strong silhouettes readable at small game sizes, fine dark blue-green contour lines, subtle watercolor/colored-pencil surface detail. Palette: warm ivory and sandstone, jade/teal, muted navy, restrained gold, natural greenery only where appropriate. Soft sunlight from upper left and a short subtle contact shadow toward lower right. Match a warm paved modern campus with glass teaching buildings and landscaped grounds. Transparent background with real alpha; isolated subject, centered, all extremities and shadow visible, 10 percent transparent padding, no floor tile, no backdrop. Avoid fantasy/castles/magic, photorealism, glossy toy 3D, pixel art, neon bloom, red/orange danger markings, circles/arrows/countdowns, UI frames, logos, letters, text, watermark.\nSubject: One campus outdoor logistics dispatcher mini-boss: a sturdy blue-gray wheeled dispatch cart with ivory console, jade control screen, two compact parcel stacks held by gold straps and a small physical antenna. No driver, no writing, no holographic rings or arrows. Readable broad silhouette and obvious wheels. Elevated top-down view, final display about110px.\nOutput: single transparent PNG master, generous clean alpha margin.",
+      "reference": {
+        "file": "docs/v4.0.1-battle.png",
+        "sha256": "d304f2b4a9d4290e5a856167a6a75fd951890abc089dd1b43b7438a583248729",
+        "role": "repository style reference, visually inspected and described in prompt"
+      },
+      "raw": "art-src/s2/raw/enemy-dispatcher.png",
+      "rawSha256": "7938b20aa12afe66eaeac623bb42a79b8c0c5cf2ce4af7c0e2aba72a067ca76e",
+      "master": "art-src/s2/masters/enemy-dispatcher.png",
+      "masterSha256": "2044a1e15499872e617b3177d55a946804640b647eb1be39ea7ce20b119282b6",
+      "masterSize": [
+        1024,
+        1024
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "license": "AI-generated; no CC0 claim",
+      "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+      "outputs": [
+        {
+          "file": "public/assets/art/v5/s2/enemy-dispatcher.webp",
+          "bytes": 34792,
+          "sha256": "30e803303b9875d7bfa13b123097f68df376a46517f42885bfd16bff74b874e7",
+          "size": [
+            384,
+            384
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/enemy-dispatcher.png",
+          "bytes": 165624,
+          "sha256": "33a95a008dbade8c170b9b3ee5b5e8337a075548b691d3ccaac27c8e0afc41bb",
+          "size": [
+            384,
+            384
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/enemy-dispatcher-white.webp",
+          "bytes": 8652,
+          "sha256": "a19784d290d3690881e6b7e0d20115ef13e0f2228341bc10ab24295ac6ca60b4",
+          "size": [
+            384,
+            384
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/enemy-dispatcher-white.png",
+          "bytes": 16619,
+          "sha256": "b2cfaac1bf0e51e4a4a058ce4d3b003933bd10b831060def3c019e7dbcebf362",
+          "size": [
+            384,
+            384
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/thumbs/enemy-dispatcher.webp",
+          "bytes": 4976,
+          "sha256": "a950e472d468853bb5c891b4279399d235bc38bc2fbcbe3b570842606b6b5a2a",
+          "size": [
+            96,
+            96
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/thumbs/enemy-dispatcher.png",
+          "bytes": 14654,
+          "sha256": "582ff9c06b4825073ae892f2d8bb57f91dd576147713d7fd675cef2b9277ab48",
+          "size": [
+            96,
+            96
+          ]
+        }
+      ]
+    },
+    {
+      "key": "enemy-proposal-board",
+      "sourceType": "ai",
+      "aiGenerated": true,
+      "placeholder": false,
+      "model": "image_gen built-in; model identifier not exposed by provider",
+      "tool": "image_gen built-in",
+      "generatedAt": "2026-10-31",
+      "prompt": "Use case: stylized-concept. Asset type: transparent raster game asset for Campus Survival second semester. Style: detailed hand-painted modern Chinese university campus illustration, elevated top-down view with mild front perspective, clean strong silhouettes readable at small game sizes, fine dark blue-green contour lines, subtle watercolor/colored-pencil surface detail. Palette: warm ivory and sandstone, jade/teal, muted navy, restrained gold, natural greenery only where appropriate. Soft sunlight from upper left and a short subtle contact shadow toward lower right. Match a warm paved modern campus with glass teaching buildings and landscaped grounds. Transparent background with real alpha; isolated subject, centered, all extremities and shadow visible, 10 percent transparent padding, no floor tile, no backdrop. Avoid fantasy/castles/magic, photorealism, glossy toy 3D, pixel art, neon bloom, red/orange danger markings, circles/arrows/countdowns, UI frames, logos, letters, text, watermark.\nSubject: One modern university joint-topic review board boss: wide physical navy mobile display on two solid support feet, ivory panel subdivided into three small project-diagram cards with only abstract lines and blocks, muted jade screens, gold structural trim and small side clipboards. No text, faces, arrows, warning patterns or frame UI. Elevated top-down angle. Clearly a campus review apparatus, not a fantasy monster. Final display about140px.\nOutput: single transparent PNG master, generous clean alpha margin.",
+      "reference": {
+        "file": "docs/v4.0.1-battle.png",
+        "sha256": "d304f2b4a9d4290e5a856167a6a75fd951890abc089dd1b43b7438a583248729",
+        "role": "repository style reference, visually inspected and described in prompt"
+      },
+      "raw": "art-src/s2/raw/enemy-proposal-board.png",
+      "rawSha256": "50ae396acde9c4581c346453a128b91fe4c8a292381dda33d85ac18f1611b074",
+      "master": "art-src/s2/masters/enemy-proposal-board.png",
+      "masterSha256": "909beeccab353fa76d620be9e71d79baa5d4758c978bd1dcfafd451291280cb2",
+      "masterSize": [
+        1024,
+        1024
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "license": "AI-generated; no CC0 claim",
+      "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+      "outputs": [
+        {
+          "file": "public/assets/art/v5/s2/enemy-proposal-board.webp",
+          "bytes": 27488,
+          "sha256": "2249443a8c1d02edc9f75e170467adfa51c16253a5dfa1de04a129670f67289d",
+          "size": [
+            384,
+            384
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/enemy-proposal-board.png",
+          "bytes": 106620,
+          "sha256": "aa1158e214e13d89496fb544dc5831b47b854898e84114d8673cb274950947f1",
+          "size": [
+            384,
+            384
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/enemy-proposal-board-white.webp",
+          "bytes": 8472,
+          "sha256": "357b34e595566b0020c364aec5139767ca19518798fde5f0629a25147426ca2b",
+          "size": [
+            384,
+            384
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/enemy-proposal-board-white.png",
+          "bytes": 15145,
+          "sha256": "911082f32958792bda3ed77cf401593517c6f9ce1d2bf218eacaf952dc0ca160",
+          "size": [
+            384,
+            384
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/thumbs/enemy-proposal-board.webp",
+          "bytes": 4080,
+          "sha256": "9db5f18e09148e488ae09eb1aac5f24b56158ed4ddfef2d34bc4a6366ba687a7",
+          "size": [
+            96,
+            96
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/thumbs/enemy-proposal-board.png",
+          "bytes": 9940,
+          "sha256": "e0babee617051ecaa5a6c6ed01b2b6293e0fdd68d2b16e1a37368993fe674bad",
+          "size": [
+            96,
+            96
+          ]
+        }
+      ]
+    },
+    {
+      "key": "item-whiteboard",
+      "sourceType": "ai",
+      "aiGenerated": true,
+      "placeholder": false,
+      "model": "image_gen built-in; model identifier not exposed by provider",
+      "tool": "image_gen built-in",
+      "generatedAt": "2026-10-31",
+      "prompt": "Use case: stylized-concept. Asset type: transparent raster game asset for Campus Survival second semester. Style: detailed hand-painted modern Chinese university campus illustration, elevated top-down view with mild front perspective, clean strong silhouettes readable at small game sizes, fine dark blue-green contour lines, subtle watercolor/colored-pencil surface detail. Palette: warm ivory and sandstone, jade/teal, muted navy, restrained gold, natural greenery only where appropriate. Soft sunlight from upper left and a short subtle contact shadow toward lower right. Match a warm paved modern campus with glass teaching buildings and landscaped grounds. Transparent background with real alpha; isolated subject, centered, all extremities and shadow visible, 10 percent transparent padding, no floor tile, no backdrop. Avoid fantasy/castles/magic, photorealism, glossy toy 3D, pixel art, neon bloom, red/orange danger markings, circles/arrows/countdowns, UI frames, logos, letters, text, watermark.\nSubject: One compact portable academic whiteboard tilted gently in perspective, ivory writing surface, navy thin frame, jade marker clipped to lower tray and two gold magnets. A few short pale mint mathematical line segments without letters, symbols, arrows or text. Clear recognizable whiteboard icon, no background. Final display96/192px.\nOutput: single transparent PNG master, generous clean alpha margin.",
+      "reference": {
+        "file": "docs/v4.0.1-battle.png",
+        "sha256": "d304f2b4a9d4290e5a856167a6a75fd951890abc089dd1b43b7438a583248729",
+        "role": "repository style reference, visually inspected and described in prompt"
+      },
+      "raw": "art-src/s2/raw/item-whiteboard.png",
+      "rawSha256": "a9fbbf516965fdb8dcc912bde803aa121fbb3875f81dd6f2f65b22bb29f4a488",
+      "master": "art-src/s2/masters/item-whiteboard.png",
+      "masterSha256": "68ce741fffc25a781032015b2685ee0829fce03b0417f1de41971ccdf9db8872",
+      "masterSize": [
+        512,
+        512
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "license": "AI-generated; no CC0 claim",
+      "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+      "outputs": [
+        {
+          "file": "public/assets/art/v5/s2/icons/item-whiteboard-96.webp",
+          "bytes": 4690,
+          "sha256": "daecd01eaa89ebdfa5e084ef1a737452e456c24da9befe3147d0b811c6e6ede4",
+          "size": [
+            96,
+            96
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/icons/item-whiteboard-96.png",
+          "bytes": 10885,
+          "sha256": "2cfdeefd2541118143ad94edfbb06ee6ae33b9b3d2013f87bbee8ac102f541e3",
+          "size": [
+            96,
+            96
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/icons/item-whiteboard-192.webp",
+          "bytes": 11120,
+          "sha256": "aed283c97d48121b49b51a6fb984ca4caaf97938301bad359d152ffb6a594d18",
+          "size": [
+            192,
+            192
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/icons/item-whiteboard-192.png",
+          "bytes": 32752,
+          "sha256": "e67a654b7f3dc6655262f5425b41d952646271739ca2d78bda7e2fb500a1ed6d",
+          "size": [
+            192,
+            192
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/atlases/items.webp",
+          "bytes": 42944,
+          "sha256": "9cf9ad8b7f8a63f890f0dd1f1c1135deca56ec610912bce5f1c826259d0802b7",
+          "size": [
+            1024,
+            256
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/atlases/items.png",
+          "bytes": 121210,
+          "sha256": "23edee62718213c7cd3fe3a3920a317e5be7d4f3db4328dc838c73c172ab6aa7",
+          "size": [
+            1024,
+            256
+          ]
+        }
+      ]
+    },
+    {
+      "key": "item-drone-evolved",
+      "sourceType": "ai",
+      "aiGenerated": true,
+      "placeholder": false,
+      "model": "image_gen built-in; model identifier not exposed by provider",
+      "tool": "image_gen built-in",
+      "generatedAt": "2026-10-31",
+      "prompt": "Use case: stylized-concept. Asset type: transparent raster game asset for Campus Survival second semester. Style: detailed hand-painted modern Chinese university campus illustration, elevated top-down view with mild front perspective, clean strong silhouettes readable at small game sizes, fine dark blue-green contour lines, subtle watercolor/colored-pencil surface detail. Palette: warm ivory and sandstone, jade/teal, muted navy, restrained gold, natural greenery only where appropriate. Soft sunlight from upper left and a short subtle contact shadow toward lower right. Match a warm paved modern campus with glass teaching buildings and landscaped grounds. Transparent background with real alpha; isolated subject, centered, all extremities and shadow visible, 10 percent transparent padding, no floor tile, no backdrop. Avoid fantasy/castles/magic, photorealism, glossy toy 3D, pixel art, neon bloom, red/orange danger markings, circles/arrows/countdowns, UI frames, logos, letters, text, watermark.\nSubject: One coordinated research drone swarm icon consisting of three small quadcopters in a compact triangular grouping, same ivory bodies, navy frames, jade rotors and gold battery clasps as a university research drone. Small connecting mint cables or short line segments only, no enclosing ring, no arrows, no magical glow. Final display96/192px.\nOutput: single transparent PNG master, generous clean alpha margin.",
+      "reference": {
+        "file": "docs/v4.0.1-battle.png",
+        "sha256": "d304f2b4a9d4290e5a856167a6a75fd951890abc089dd1b43b7438a583248729",
+        "role": "repository style reference, visually inspected and described in prompt"
+      },
+      "raw": "art-src/s2/raw/item-drone-evolved.png",
+      "rawSha256": "6c636973ffdec2297e48250d3241c376cc5f725d0124ee35a5ebf86ad00511f5",
+      "master": "art-src/s2/masters/item-drone-evolved.png",
+      "masterSha256": "3a9c08605cbcdf52dcf95b72665eaa013925b1334da72eaae4651f19c4da70ed",
+      "masterSize": [
+        512,
+        512
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "license": "AI-generated; no CC0 claim",
+      "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+      "outputs": [
+        {
+          "file": "public/assets/art/v5/s2/icons/item-drone-evolved-96.webp",
+          "bytes": 4588,
+          "sha256": "d604298de8cf374b5bcdd99b10b0be697d52469c7227fc9b00bdd718a05795b7",
+          "size": [
+            96,
+            96
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/icons/item-drone-evolved-96.png",
+          "bytes": 8765,
+          "sha256": "81b61b423ce1f8b4cadbd16320721d0ed689c21c9f9da7b93638e0f2c131101a",
+          "size": [
+            96,
+            96
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/icons/item-drone-evolved-192.webp",
+          "bytes": 12050,
+          "sha256": "34ca49ea3981f39395b8e6927254eddc9e3e028e4692793f41f3643123e741ca",
+          "size": [
+            192,
+            192
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/icons/item-drone-evolved-192.png",
+          "bytes": 27065,
+          "sha256": "f9f1ab6ebd7d7d08e049543bc03820ccdae1a74ed5f64ee1c25bdf79acf13873",
+          "size": [
+            192,
+            192
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/atlases/items.webp",
+          "bytes": 42944,
+          "sha256": "9cf9ad8b7f8a63f890f0dd1f1c1135deca56ec610912bce5f1c826259d0802b7",
+          "size": [
+            1024,
+            256
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/atlases/items.png",
+          "bytes": 121210,
+          "sha256": "23edee62718213c7cd3fe3a3920a317e5be7d4f3db4328dc838c73c172ab6aa7",
+          "size": [
+            1024,
+            256
+          ]
+        }
+      ]
+    },
+    {
+      "key": "item-whiteboard-evolved",
+      "sourceType": "ai",
+      "aiGenerated": true,
+      "placeholder": false,
+      "model": "image_gen built-in; model identifier not exposed by provider",
+      "tool": "image_gen built-in",
+      "generatedAt": "2026-10-31",
+      "prompt": "Use case: stylized-concept. Asset type: transparent raster game asset for Campus Survival second semester. Style: detailed hand-painted modern Chinese university campus illustration, elevated top-down view with mild front perspective, clean strong silhouettes readable at small game sizes, fine dark blue-green contour lines, subtle watercolor/colored-pencil surface detail. Palette: warm ivory and sandstone, jade/teal, muted navy, restrained gold, natural greenery only where appropriate. Soft sunlight from upper left and a short subtle contact shadow toward lower right. Match a warm paved modern campus with glass teaching buildings and landscaped grounds. Transparent background with real alpha; isolated subject, centered, all extremities and shadow visible, 10 percent transparent padding, no floor tile, no backdrop. Avoid fantasy/castles/magic, photorealism, glossy toy 3D, pixel art, neon bloom, red/orange danger markings, circles/arrows/countdowns, UI frames, logos, letters, text, watermark.\nSubject: One joint academic review matrix icon made of two small overlapping physical ivory whiteboards with navy frames, jade marker trays and restrained gold clips. Thin mint intersecting chalk line segments on surfaces without letters, numerals, equations, arrows or text. Clear compact silhouette. Final display96/192px.\nOutput: single transparent PNG master, generous clean alpha margin.",
+      "reference": {
+        "file": "docs/v4.0.1-battle.png",
+        "sha256": "d304f2b4a9d4290e5a856167a6a75fd951890abc089dd1b43b7438a583248729",
+        "role": "repository style reference, visually inspected and described in prompt"
+      },
+      "raw": "art-src/s2/raw/item-whiteboard-evolved.png",
+      "rawSha256": "020fa431ac9bdfd07e618245e9794350a3457c460788512d1d1c5846620e8212",
+      "master": "art-src/s2/masters/item-whiteboard-evolved.png",
+      "masterSha256": "758bb6d040d171880d63c154ce3cbad3274bd832ce80a18587f517482770cd0a",
+      "masterSize": [
+        512,
+        512
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "license": "AI-generated; no CC0 claim",
+      "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+      "outputs": [
+        {
+          "file": "public/assets/art/v5/s2/icons/item-whiteboard-evolved-96.webp",
+          "bytes": 3924,
+          "sha256": "b05d23f3058f2ab3b630a2805ba6be3a0b362de8489d1b5d86a93a853284f180",
+          "size": [
+            96,
+            96
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/icons/item-whiteboard-evolved-96.png",
+          "bytes": 10478,
+          "sha256": "b1ba5a2d891e50d2e1b31e6d084829e59e8633b2730511a2a82604e6772635ba",
+          "size": [
+            96,
+            96
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/icons/item-whiteboard-evolved-192.webp",
+          "bytes": 9772,
+          "sha256": "e1b8065325247876193815061ef377fbe502f1c65c250ac408b4543a1cc0fdd9",
+          "size": [
+            192,
+            192
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/icons/item-whiteboard-evolved-192.png",
+          "bytes": 33096,
+          "sha256": "37cb7144a2bbbd3c8f30cc5f4edb19416739961d1e350636b808bb2c739db57d",
+          "size": [
+            192,
+            192
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/atlases/items.webp",
+          "bytes": 42944,
+          "sha256": "9cf9ad8b7f8a63f890f0dd1f1c1135deca56ec610912bce5f1c826259d0802b7",
+          "size": [
+            1024,
+            256
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/atlases/items.png",
+          "bytes": 121210,
+          "sha256": "23edee62718213c7cd3fe3a3920a317e5be7d4f3db4328dc838c73c172ab6aa7",
+          "size": [
+            1024,
+            256
+          ]
+        }
+      ]
+    },
+    {
+      "key": "landmark-infirmary",
+      "sourceType": "ai",
+      "aiGenerated": true,
+      "placeholder": false,
+      "model": "image_gen built-in; model identifier not exposed by provider",
+      "tool": "image_gen built-in",
+      "generatedAt": "2026-10-31",
+      "prompt": "Use case: stylized-concept. Asset type: transparent raster game asset for Campus Survival second semester. Style: detailed hand-painted modern Chinese university campus illustration, elevated top-down view with mild front perspective, clean strong silhouettes readable at small game sizes, fine dark blue-green contour lines, subtle watercolor/colored-pencil surface detail. Palette: warm ivory and sandstone, jade/teal, muted navy, restrained gold, natural greenery only where appropriate. Soft sunlight from upper left and a short subtle contact shadow toward lower right. Match a warm paved modern campus with glass teaching buildings and landscaped grounds. Transparent background with real alpha; isolated subject, centered, all extremities and shadow visible, 10 percent transparent padding, no floor tile, no backdrop. Avoid fantasy/castles/magic, photorealism, glossy toy 3D, pixel art, neon bloom, red/orange danger markings, circles/arrows/countdowns, UI frames, logos, letters, text, watermark.\nSubject: One small modern university medical first-aid station: ivory-and-jade freestanding cabinet kiosk with a simple green medical plus pictogram, navy lower plinth, a small supply drawer and no lettering. No red-cross emblem, no people, no background. Elevated top-down view, physical cabinet with grounded short shadow. Final display72px.\nOutput: single transparent PNG master, generous clean alpha margin.",
+      "reference": {
+        "file": "docs/v4.0.1-battle.png",
+        "sha256": "d304f2b4a9d4290e5a856167a6a75fd951890abc089dd1b43b7438a583248729",
+        "role": "repository style reference, visually inspected and described in prompt"
+      },
+      "raw": "art-src/s2/raw/landmark-infirmary.png",
+      "rawSha256": "a65c4392c9e81208b98f323b114203b5ed72cd689a99716bd26a6f9ba06d95dd",
+      "master": "art-src/s2/masters/landmark-infirmary.png",
+      "masterSha256": "db99148fd9e518d6e107a98e4dfcb71d921c0d6e22389ee846a5dec8f8006a46",
+      "masterSize": [
+        768,
+        768
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "anchor": [
+        0.5,
+        0.82
+      ],
+      "license": "AI-generated; no CC0 claim",
+      "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+      "outputs": [
+        {
+          "file": "public/assets/art/v5/s2/thumbs/landmark-infirmary.webp",
+          "bytes": 2990,
+          "sha256": "c68a962f82047018e3a53ef068af35505f015c23b27be717eba516d3b5f896db",
+          "size": [
+            96,
+            96
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/thumbs/landmark-infirmary.png",
+          "bytes": 8805,
+          "sha256": "4fbef06fe8e22c51505eb931b856f8e44709e87557ee1132a61e3073b82f1a45",
+          "size": [
+            96,
+            96
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/atlases/landmarks.webp",
+          "bytes": 16616,
+          "sha256": "8f503c3ae6d0b2d2d0014024f4ebe1adc73683e8c140794762388075676d6aa8",
+          "size": [
+            512,
+            256
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/atlases/landmarks.png",
+          "bytes": 64997,
+          "sha256": "43a4366a2247aa7827240848cf846464d9a853518929d907c9b9ec93cd2a713f",
+          "size": [
+            512,
+            256
+          ]
+        }
+      ]
+    },
+    {
+      "key": "landmark-joint-table",
+      "sourceType": "ai",
+      "aiGenerated": true,
+      "placeholder": false,
+      "model": "image_gen built-in; model identifier not exposed by provider",
+      "tool": "image_gen built-in",
+      "generatedAt": "2026-10-31",
+      "prompt": "Use case: stylized-concept. Asset type: transparent raster game asset for Campus Survival second semester. Style: detailed hand-painted modern Chinese university campus illustration, elevated top-down view with mild front perspective, clean strong silhouettes readable at small game sizes, fine dark blue-green contour lines, subtle watercolor/colored-pencil surface detail. Palette: warm ivory and sandstone, jade/teal, muted navy, restrained gold, natural greenery only where appropriate. Soft sunlight from upper left and a short subtle contact shadow toward lower right. Match a warm paved modern campus with glass teaching buildings and landscaped grounds. Transparent background with real alpha; isolated subject, centered, all extremities and shadow visible, 10 percent transparent padding, no floor tile, no backdrop. Avoid fantasy/castles/magic, photorealism, glossy toy 3D, pixel art, neon bloom, red/orange danger markings, circles/arrows/countdowns, UI frames, logos, letters, text, watermark.\nSubject: One modern university joint-project contract desk: small ivory tabletop with navy legs, a jade closed project folder and a gold paper clip with a small blue-gray display tablet. No lettering, no glowing symbols, no people, no surroundings. Elevated top-down view with clearly visible work surface and short grounded shadow. Final display72px.\nOutput: single transparent PNG master, generous clean alpha margin.",
+      "reference": {
+        "file": "docs/v4.0.1-battle.png",
+        "sha256": "d304f2b4a9d4290e5a856167a6a75fd951890abc089dd1b43b7438a583248729",
+        "role": "repository style reference, visually inspected and described in prompt"
+      },
+      "raw": "art-src/s2/raw/landmark-joint-table.png",
+      "rawSha256": "bbed639a734aa53ab00c0ceba4fb785faa2c0ae99a94b9315d4a8e8f7b09a69d",
+      "master": "art-src/s2/masters/landmark-joint-table.png",
+      "masterSha256": "ca3e32debde2c870f85db16633593257149845f7b5981bd0210f9f70f03379f4",
+      "masterSize": [
+        768,
+        768
+      ],
+      "alphaExtrema": [
+        0,
+        255
+      ],
+      "anchor": [
+        0.5,
+        0.82
+      ],
+      "license": "AI-generated; no CC0 claim",
+      "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+      "outputs": [
+        {
+          "file": "public/assets/art/v5/s2/thumbs/landmark-joint-table.webp",
+          "bytes": 4060,
+          "sha256": "b2f2d7e1efaadb865d6bb0799cfa2eb7f76c0df65c8bccf099f24489f674abb1",
+          "size": [
+            96,
+            96
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/thumbs/landmark-joint-table.png",
+          "bytes": 11207,
+          "sha256": "b455ce1a1d2314177459bc961ddbaefec3790952f4dbce379b1e541f9d78092d",
+          "size": [
+            96,
+            96
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/atlases/landmarks.webp",
+          "bytes": 16616,
+          "sha256": "8f503c3ae6d0b2d2d0014024f4ebe1adc73683e8c140794762388075676d6aa8",
+          "size": [
+            512,
+            256
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/atlases/landmarks.png",
+          "bytes": 64997,
+          "sha256": "43a4366a2247aa7827240848cf846464d9a853518929d907c9b9ec93cd2a713f",
+          "size": [
+            512,
+            256
+          ]
+        }
+      ]
+    },
+    {
+      "key": "particle-spark_04.png",
+      "sourceType": "cc0",
+      "aiGenerated": false,
+      "placeholder": false,
+      "author": "Kenney",
+      "source": "https://kenney.nl/assets/particle-pack",
+      "original": "PNG (Transparent)/spark_04.png",
+      "sourceFile": "art-src/s2/cc0/spark_04.png",
+      "sha256": "3cba35b80a97c12283a8ecd41780a0412194de14562cbffc7f04e9157183f772",
+      "license": "CC0 1.0",
+      "licenseFile": "art-src/s2/cc0/Kenney-Particle-Pack-License.txt",
+      "licenseSha256": "f9e70b81d8cc07c4e07c9f2eff1d94fd371a06070b18cb67c651c41158ec2975",
+      "modifications": "Lanczos contain in24px atlas tile; replace only spark/smoke in copied shared atlas, preserving other8 fragments; tint from existing renderer",
+      "outputs": [
+        {
+          "file": "public/assets/art/v5/s2/atlases/particles.webp",
+          "bytes": 1002,
+          "sha256": "09fbc80dcd51a4302bc02e1d3e7b90611cc97abda3b9cbf13b08eddea018afab",
+          "size": [
+            256,
+            24
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/atlases/particles.png",
+          "bytes": 1834,
+          "sha256": "8af7af12cb79030711e30d2d85ef9a7514835aa95c34ae7570b96988b4ae0df4",
+          "size": [
+            256,
+            24
+          ]
+        }
+      ]
+    },
+    {
+      "key": "particle-smoke_03.png",
+      "sourceType": "cc0",
+      "aiGenerated": false,
+      "placeholder": false,
+      "author": "Kenney",
+      "source": "https://kenney.nl/assets/particle-pack",
+      "original": "PNG (Transparent)/smoke_03.png",
+      "sourceFile": "art-src/s2/cc0/smoke_03.png",
+      "sha256": "a71f8abcac64f8d73a94625cc9a10033dbeafa7eaea750560cba0daa73fe8752",
+      "license": "CC0 1.0",
+      "licenseFile": "art-src/s2/cc0/Kenney-Particle-Pack-License.txt",
+      "licenseSha256": "f9e70b81d8cc07c4e07c9f2eff1d94fd371a06070b18cb67c651c41158ec2975",
+      "modifications": "Lanczos contain in24px atlas tile; replace only spark/smoke in copied shared atlas, preserving other8 fragments; tint from existing renderer",
+      "outputs": [
+        {
+          "file": "public/assets/art/v5/s2/atlases/particles.webp",
+          "bytes": 1002,
+          "sha256": "09fbc80dcd51a4302bc02e1d3e7b90611cc97abda3b9cbf13b08eddea018afab",
+          "size": [
+            256,
+            24
+          ]
+        },
+        {
+          "file": "public/assets/art/v5/s2/atlases/particles.png",
+          "bytes": 1834,
+          "sha256": "8af7af12cb79030711e30d2d85ef9a7514835aa95c34ae7570b96988b4ae0df4",
+          "size": [
+            256,
+            24
+          ]
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "file": "public/assets/art/v5/s2/thumbs/enemy-bike.webp",
+      "bytes": 5956,
+      "sha256": "12cce873c02fb38978aa8b3c1fd3aa694f569c7108079d79970bd73e6c5151ce",
+      "size": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/thumbs/enemy-bike.png",
+      "bytes": 13448,
+      "sha256": "509d0659fa2b37353edb132ee5bd9db6631a0a8013791520eeab7881b6128877",
+      "size": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/icons/item-drone-96.webp",
+      "bytes": 4242,
+      "sha256": "03744ef32e515d4be2ae3b1cfe9743585e8950fb4e944be3dbecc70a23123cc0",
+      "size": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/icons/item-drone-96.png",
+      "bytes": 8384,
+      "sha256": "8a7043598aac107a1a7464ac62d4c88e81eb4b27c1d33edfbc98d23a961a85d7",
+      "size": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/icons/item-drone-192.webp",
+      "bytes": 10316,
+      "sha256": "26782e6fe79122492279815b0e905f977348f7a1abf9415a2cfa16d8b0cfad02",
+      "size": [
+        192,
+        192
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/icons/item-drone-192.png",
+      "bytes": 25268,
+      "sha256": "5260db89ddc298984525366c1f220aab1d697fe96f5b0bbd1b822af6db5e0972",
+      "size": [
+        192,
+        192
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/building-smart-teaching.webp",
+      "bytes": 102786,
+      "sha256": "81ee0185e870ff6649c7bca4267f19cf960a5737d38964853683dbd8bf280641",
+      "size": [
+        1024,
+        512
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/building-smart-teaching.png",
+      "bytes": 459138,
+      "sha256": "5b480257c82fd5658a567fc55e9a1085bf1c119539b2ba74d200ce5458e2eaf0",
+      "size": [
+        1024,
+        512
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/thumbs/enemy-reservation.webp",
+      "bytes": 3490,
+      "sha256": "a23f70fb57b18ae018fb37688c8d8d7bdf156693aaa4e1bf85aff2c8e772f24a",
+      "size": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/thumbs/enemy-reservation.png",
+      "bytes": 8677,
+      "sha256": "7974a1b13f2374c115deb19d63111899915ecf173d29dd4afceecadb2989e9c7",
+      "size": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/thumbs/enemy-parceler.webp",
+      "bytes": 3100,
+      "sha256": "70ca5742dd326606c8865fed005872d693321a3eaa61117a02bc36af53ae093c",
+      "size": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/thumbs/enemy-parceler.png",
+      "bytes": 7374,
+      "sha256": "0b160e994c39171b2c125d6046827d4ddecb13ab4ed8511a03781ab29180d489",
+      "size": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/enemy-dispatcher.webp",
+      "bytes": 34792,
+      "sha256": "30e803303b9875d7bfa13b123097f68df376a46517f42885bfd16bff74b874e7",
+      "size": [
+        384,
+        384
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/enemy-dispatcher.png",
+      "bytes": 165624,
+      "sha256": "33a95a008dbade8c170b9b3ee5b5e8337a075548b691d3ccaac27c8e0afc41bb",
+      "size": [
+        384,
+        384
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/enemy-dispatcher-white.webp",
+      "bytes": 8652,
+      "sha256": "a19784d290d3690881e6b7e0d20115ef13e0f2228341bc10ab24295ac6ca60b4",
+      "size": [
+        384,
+        384
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/enemy-dispatcher-white.png",
+      "bytes": 16619,
+      "sha256": "b2cfaac1bf0e51e4a4a058ce4d3b003933bd10b831060def3c019e7dbcebf362",
+      "size": [
+        384,
+        384
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/thumbs/enemy-dispatcher.webp",
+      "bytes": 4976,
+      "sha256": "a950e472d468853bb5c891b4279399d235bc38bc2fbcbe3b570842606b6b5a2a",
+      "size": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/thumbs/enemy-dispatcher.png",
+      "bytes": 14654,
+      "sha256": "582ff9c06b4825073ae892f2d8bb57f91dd576147713d7fd675cef2b9277ab48",
+      "size": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/enemy-proposal-board.webp",
+      "bytes": 27488,
+      "sha256": "2249443a8c1d02edc9f75e170467adfa51c16253a5dfa1de04a129670f67289d",
+      "size": [
+        384,
+        384
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/enemy-proposal-board.png",
+      "bytes": 106620,
+      "sha256": "aa1158e214e13d89496fb544dc5831b47b854898e84114d8673cb274950947f1",
+      "size": [
+        384,
+        384
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/enemy-proposal-board-white.webp",
+      "bytes": 8472,
+      "sha256": "357b34e595566b0020c364aec5139767ca19518798fde5f0629a25147426ca2b",
+      "size": [
+        384,
+        384
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/enemy-proposal-board-white.png",
+      "bytes": 15145,
+      "sha256": "911082f32958792bda3ed77cf401593517c6f9ce1d2bf218eacaf952dc0ca160",
+      "size": [
+        384,
+        384
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/thumbs/enemy-proposal-board.webp",
+      "bytes": 4080,
+      "sha256": "9db5f18e09148e488ae09eb1aac5f24b56158ed4ddfef2d34bc4a6366ba687a7",
+      "size": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/thumbs/enemy-proposal-board.png",
+      "bytes": 9940,
+      "sha256": "e0babee617051ecaa5a6c6ed01b2b6293e0fdd68d2b16e1a37368993fe674bad",
+      "size": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/icons/item-whiteboard-96.webp",
+      "bytes": 4690,
+      "sha256": "daecd01eaa89ebdfa5e084ef1a737452e456c24da9befe3147d0b811c6e6ede4",
+      "size": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/icons/item-whiteboard-96.png",
+      "bytes": 10885,
+      "sha256": "2cfdeefd2541118143ad94edfbb06ee6ae33b9b3d2013f87bbee8ac102f541e3",
+      "size": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/icons/item-whiteboard-192.webp",
+      "bytes": 11120,
+      "sha256": "aed283c97d48121b49b51a6fb984ca4caaf97938301bad359d152ffb6a594d18",
+      "size": [
+        192,
+        192
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/icons/item-whiteboard-192.png",
+      "bytes": 32752,
+      "sha256": "e67a654b7f3dc6655262f5425b41d952646271739ca2d78bda7e2fb500a1ed6d",
+      "size": [
+        192,
+        192
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/icons/item-drone-evolved-96.webp",
+      "bytes": 4588,
+      "sha256": "d604298de8cf374b5bcdd99b10b0be697d52469c7227fc9b00bdd718a05795b7",
+      "size": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/icons/item-drone-evolved-96.png",
+      "bytes": 8765,
+      "sha256": "81b61b423ce1f8b4cadbd16320721d0ed689c21c9f9da7b93638e0f2c131101a",
+      "size": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/icons/item-drone-evolved-192.webp",
+      "bytes": 12050,
+      "sha256": "34ca49ea3981f39395b8e6927254eddc9e3e028e4692793f41f3643123e741ca",
+      "size": [
+        192,
+        192
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/icons/item-drone-evolved-192.png",
+      "bytes": 27065,
+      "sha256": "f9f1ab6ebd7d7d08e049543bc03820ccdae1a74ed5f64ee1c25bdf79acf13873",
+      "size": [
+        192,
+        192
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/icons/item-whiteboard-evolved-96.webp",
+      "bytes": 3924,
+      "sha256": "b05d23f3058f2ab3b630a2805ba6be3a0b362de8489d1b5d86a93a853284f180",
+      "size": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/icons/item-whiteboard-evolved-96.png",
+      "bytes": 10478,
+      "sha256": "b1ba5a2d891e50d2e1b31e6d084829e59e8633b2730511a2a82604e6772635ba",
+      "size": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/icons/item-whiteboard-evolved-192.webp",
+      "bytes": 9772,
+      "sha256": "e1b8065325247876193815061ef377fbe502f1c65c250ac408b4543a1cc0fdd9",
+      "size": [
+        192,
+        192
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/icons/item-whiteboard-evolved-192.png",
+      "bytes": 33096,
+      "sha256": "37cb7144a2bbbd3c8f30cc5f4edb19416739961d1e350636b808bb2c739db57d",
+      "size": [
+        192,
+        192
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/thumbs/landmark-infirmary.webp",
+      "bytes": 2990,
+      "sha256": "c68a962f82047018e3a53ef068af35505f015c23b27be717eba516d3b5f896db",
+      "size": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/thumbs/landmark-infirmary.png",
+      "bytes": 8805,
+      "sha256": "4fbef06fe8e22c51505eb931b856f8e44709e87557ee1132a61e3073b82f1a45",
+      "size": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/thumbs/landmark-joint-table.webp",
+      "bytes": 4060,
+      "sha256": "b2f2d7e1efaadb865d6bb0799cfa2eb7f76c0df65c8bccf099f24489f674abb1",
+      "size": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/thumbs/landmark-joint-table.png",
+      "bytes": 11207,
+      "sha256": "b455ce1a1d2314177459bc961ddbaefec3790952f4dbce379b1e541f9d78092d",
+      "size": [
+        96,
+        96
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/atlases/enemies.webp",
+      "bytes": 41040,
+      "sha256": "ab024efa292401f831a808ed665653cf77939d856937d7a8319b1927fc7df968",
+      "size": [
+        1024,
+        512
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/atlases/enemies.png",
+      "bytes": 124869,
+      "sha256": "d744614cfb7276b8c105b68a561f697e25a4a5eca83407be7a932a51fe9e15df",
+      "size": [
+        1024,
+        512
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/atlases/items.webp",
+      "bytes": 42944,
+      "sha256": "9cf9ad8b7f8a63f890f0dd1f1c1135deca56ec610912bce5f1c826259d0802b7",
+      "size": [
+        1024,
+        256
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/atlases/items.png",
+      "bytes": 121210,
+      "sha256": "23edee62718213c7cd3fe3a3920a317e5be7d4f3db4328dc838c73c172ab6aa7",
+      "size": [
+        1024,
+        256
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/atlases/landmarks.webp",
+      "bytes": 16616,
+      "sha256": "8f503c3ae6d0b2d2d0014024f4ebe1adc73683e8c140794762388075676d6aa8",
+      "size": [
+        512,
+        256
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/atlases/landmarks.png",
+      "bytes": 64997,
+      "sha256": "43a4366a2247aa7827240848cf846464d9a853518929d907c9b9ec93cd2a713f",
+      "size": [
+        512,
+        256
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/atlases/particles.webp",
+      "bytes": 1002,
+      "sha256": "09fbc80dcd51a4302bc02e1d3e7b90611cc97abda3b9cbf13b08eddea018afab",
+      "size": [
+        256,
+        24
+      ]
+    },
+    {
+      "file": "public/assets/art/v5/s2/atlases/particles.png",
+      "bytes": 1834,
+      "sha256": "8af7af12cb79030711e30d2d85ef9a7514835aa95c34ae7570b96988b4ae0df4",
+      "size": [
+        256,
+        24
+      ]
+    }
+  ],
+  "missing": []
+}

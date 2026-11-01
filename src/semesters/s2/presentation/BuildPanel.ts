@@ -4,12 +4,17 @@ import type {LegacyContentDTO} from '../legacy/rules-adapter';
 import type {SemesterControls} from './input';
 import {parameterRows,weaponCard,weaponCodex} from './build-details';
 import {weaponParams} from '../legacy/params';
+import {S2_ART_BINDINGS} from './art-manifest';
+import {artUrl,type ResourceId} from '../../../assets/manifest';
+import {resources} from '../../../assets/loader';
 import './build-panel.css';
 
 /** The internal S2 host uses these cards too; no S1 UI or catalog is extended. */
 export class BuildPanel {
  private root=document.createElement('div');private modal=document.createElement('div');private codex=false;private pauseToken:number|null=null;private key='';
  private interact=document.createElement('button');
+ private icons=document.createElement('div');private iconsKey='';
+ private icon(id:string){const binding=(S2_ART_BINDINGS as Record<string,{icon:ResourceId}>)[id];if(!binding||resources.isMissing(binding.icon))return null;const img=document.createElement('img');img.src=artUrl(binding.icon);img.alt=this.content.weaponById[id.replace(':evolved','')]?.name??'';img.width=56;img.height=56;img.dataset.contentArt=id;img.onerror=()=>{if(img.dataset.png){img.remove();return;}img.dataset.png='true';img.src=artUrl(binding.icon,'png');};return img;}
  private keyDown=(event:KeyboardEvent)=>{
   if(this.modal.hidden||!['KeyW','KeyA','KeyS','KeyD','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space','KeyQ','KeyE','KeyP','Escape','Digit1','Digit2','Digit3'].includes(event.code))return;
   event.preventDefault();event.stopImmediatePropagation();
@@ -20,12 +25,14 @@ export class BuildPanel {
   this.root.className='s2-build-panel';this.modal.className='s2-build-modal';this.modal.hidden=true;
   const open=this.button('构筑图鉴',()=>{if(this.controls.read().phase==='finished')return;this.clearInput();const v=this.controls.read();this.pauseToken=v.pause?null:this.controls.pause('manual');this.codex=true;this.key='';this.update(this.controls.read());});open.className='s2-build-codex';this.interact.type='button';this.interact.className='s2-table-interact';this.interact.hidden=true;this.interact.addEventListener('click',()=>this.controls.dispatch({type:'interact'}));this.root.append(open,this.interact,this.modal);host.append(this.root);
   window.addEventListener('keydown',this.keyDown,true);
+  this.icons.className='s2-build-icons';this.root.append(this.icons);
  }
  private button(label:string,action:()=>void){const b=document.createElement('button');b.type='button';b.textContent=label;b.addEventListener('click',action);return b;}
  private text(tag:string,value:string){const e=document.createElement(tag);e.textContent=value;return e;}
  private close=()=>{this.codex=false;this.key='';const token=this.pauseToken;this.pauseToken=null;if(token!==null)this.controls.resume(token);this.update(this.controls.read());};
  update(view:Immutable<SemesterRunView<LegacyContentDTO>>){
   const g=view.content,interaction=g.tables.interaction??g.interactions.interaction;this.interact.hidden=!interaction||!!view.pause||view.phase!=='teaching';this.interact.textContent=interaction?`${interaction.name}${'progress'in interaction&&interaction.progress>0?` · ${Math.ceil(interaction.progress*100)}%`:''}`:'';this.interact.disabled=!!interaction?.locked;this.interact.title=interaction?.locked??'';
+  const iconsKey=g.weapons.map(w=>`${w.id}:${w.level}:${w.evolved}`).join('|');if(iconsKey!==this.iconsKey){this.iconsKey=iconsKey;this.icons.replaceChildren();for(const w of g.weapons){const box=document.createElement('span'),img=this.icon(w.id+(w.evolved?':evolved':''));box.title=this.content.weaponById[w.id].name;if(img)box.append(img);else box.append(this.text('b',this.content.weaponById[w.id].name));box.append(this.text('small',w.evolved?'进化':`Lv.${w.level}`));this.icons.append(box);}}
   const key=this.codex?'codex':`${g.phase}:${g.draftToken}:${g.rewardToken}:${g.revision.selecting}:${g.revision.token}`;if(key===this.key)return;this.key=key;
   this.modal.replaceChildren();this.modal.hidden=!this.codex&&!['draft','reward','contract','chest','evolution'].includes(g.phase);if(this.modal.hidden)return;this.clearInput();
   this.modal.setAttribute('role','dialog');this.modal.setAttribute('aria-label',this.codex?'第二学期构筑图鉴':'选择构筑');
@@ -35,6 +42,7 @@ export class BuildPanel {
    for(const def of [...this.content.weapons,...this.content.fusions]){
     const book=weaponCodex(this.content,def.id,g.weapons.find(w=>w.id===def.id),g.combatStats,g.damageMultiplier),entry=document.createElement('details');entry.append(this.text('summary',def.name));
     entry.append(this.text('p',def.description),this.text('p',book.recipe));
+    const icon=this.icon(def.id);if(icon)entry.append(icon);
     for(const level of book.levels)entry.append(this.text('p',`Lv.${level.params.level} · ${level.rows.join(' · ')}`));
     if(!def.fusion)entry.append(this.text('h3',def.evolution.name),this.text('p',book.rows.join(' · ')));body.append(entry);
    }
@@ -49,6 +57,7 @@ export class BuildPanel {
     const def=card.type==='weapon'?this.content.weaponById[card.id]:this.content.passiveById[card.id],b=this.button('',()=>this.controls.dispatch({type:'choose',index,token:g.draftToken}));b.className='s2-build-card';
     const fallback:Record<string,string>={heal:'回复生命',shield:'临时护盾',credit:'额外绩点'};
     b.dataset.itemId=card.id;b.append(this.text('h3',def?.name??fallback[card.type]??card.id),this.text('p',`Lv.${card.nextLevel} · ${['普通','精良','史诗','传说'][card.rarity]}`));
+    const icon=this.icon(card.id);if(icon)b.prepend(icon);
     if(card.type==='weapon'){
      const detail=weaponCard(this.content,this.content.weaponById[card.id].id,card.nextLevel,card.rarity,g.combatStats,g.damageMultiplier);b.append(this.text('p',detail.description),this.text('p',detail.rows.join(' · ')),this.text('small',detail.recipe));
     }else if(def&&'values'in def)b.append(this.text('p',def.description),this.text('p',`本级效果 ${Math.round(def.values[card.nextLevel-1]*this.content.rarityMultipliers[card.rarity]*100)/100}${def.unit}`));

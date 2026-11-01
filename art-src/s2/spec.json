@@ -1,0 +1,187 @@
+{
+  "version": "s2-art-v1",
+  "reference": "docs/v4.0.1-battle.png",
+  "assets": [
+    {
+      "key": "enemy-bike",
+      "kind": "enemy",
+      "contentIds": [
+        "s2:bike"
+      ],
+      "master": "art-src/s2/masters/enemy-bike.png",
+      "masterSize": 512,
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: transparent raster game asset for Campus Survival second semester. Style: detailed hand-painted modern Chinese university campus illustration, elevated top-down view with mild front perspective, clean strong silhouettes readable at small game sizes, fine dark blue-green contour lines, subtle watercolor/colored-pencil surface detail. Palette: warm ivory and sandstone, jade/teal, muted navy, restrained gold, natural greenery only where appropriate. Soft sunlight from upper left and a short subtle contact shadow toward lower right. Match a warm paved modern campus with glass teaching buildings and landscaped grounds. Transparent background with real alpha; isolated subject, centered, all extremities and shadow visible, 10 percent transparent padding, no floor tile, no backdrop. Avoid fantasy/castles/magic, photorealism, glossy toy 3D, pixel art, neon bloom, red/orange danger markings, circles/arrows/countdowns, UI frames, logos, letters, text, watermark.\nSubject: One compact modern university electric cargo bicycle, jade-teal frame, two dark rubber wheels, small ivory insulated parcel box on rear rack with a plain gold fastening strap; no rider. Three-quarter elevated top-down angle, facing lower right. Mechanically plausible and visibly a bicycle, strong wheel/frame silhouette. Gameplay use: ordinary enemy, final display about48px.\nOutput: single transparent PNG master, generous clean alpha margin.",
+      "sample": true
+    },
+    {
+      "key": "item-drone",
+      "kind": "item",
+      "contentIds": [
+        "s2:drone"
+      ],
+      "master": "art-src/s2/masters/item-drone.png",
+      "masterSize": 512,
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: transparent raster game asset for Campus Survival second semester. Style: detailed hand-painted modern Chinese university campus illustration, elevated top-down view with mild front perspective, clean strong silhouettes readable at small game sizes, fine dark blue-green contour lines, subtle watercolor/colored-pencil surface detail. Palette: warm ivory and sandstone, jade/teal, muted navy, restrained gold, natural greenery only where appropriate. Soft sunlight from upper left and a short subtle contact shadow toward lower right. Match a warm paved modern campus with glass teaching buildings and landscaped grounds. Transparent background with real alpha; isolated subject, centered, all extremities and shadow visible, 10 percent transparent padding, no floor tile, no backdrop. Avoid fantasy/castles/magic, photorealism, glossy toy 3D, pixel art, neon bloom, red/orange danger markings, circles/arrows/countdowns, UI frames, logos, letters, text, watermark.\nSubject: One small research quadcopter drone: ivory body, navy structural frame, four jade rotor housings, small camera lens and gold battery clasp. Four clear rotors and no weapons. Three-quarter elevated top-down angle. Gameplay use: inventory icon96/192px and small summon sprite.\nOutput: single transparent PNG master, generous clean alpha margin.",
+      "sample": true
+    },
+    {
+      "key": "building-smart-teaching",
+      "kind": "building",
+      "contentIds": [
+        "s2:glassLink",
+        "s2:networkHub"
+      ],
+      "master": "art-src/s2/masters/building-smart-teaching.png",
+      "masterSize": 1536,
+      "anchor": [
+        0.5,
+        0.82
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: transparent raster game asset for Campus Survival second semester. Style: detailed hand-painted modern Chinese university campus illustration, elevated top-down view with mild front perspective, clean strong silhouettes readable at small game sizes, fine dark blue-green contour lines, subtle watercolor/colored-pencil surface detail. Palette: warm ivory and sandstone, jade/teal, muted navy, restrained gold, natural greenery only where appropriate. Soft sunlight from upper left and a short subtle contact shadow toward lower right. Match a warm paved modern campus with glass teaching buildings and landscaped grounds. Transparent background with real alpha; isolated subject, centered, all extremities and shadow visible, 10 percent transparent padding, no floor tile, no backdrop. Avoid fantasy/castles/magic, photorealism, glossy toy 3D, pixel art, neon bloom, red/orange danger markings, circles/arrows/countdowns, UI frames, logos, letters, text, watermark.\nSubject: One wide, low modern university smart teaching building with a glass connecting corridor, flat light sandstone roof, white structural pillars, blue-gray glazing, jade door panels, subtle warm facade accents. Long rectangular massing, main entry visible on front bottom edge, roof clearly seen. No trees obscuring the building footprint. Isolated architecture cutout; no surrounding terrain or paving. Gentle overhead architectural game view, NOT a tall isometric tower. Approximately2:1 landscape composition, intended1536px master.\nOutput: single transparent PNG master, generous clean alpha margin.",
+      "sample": true
+    },
+    {
+      "key": "enemy-reservation",
+      "kind": "enemy",
+      "contentIds": [
+        "s2:reservation"
+      ],
+      "master": "art-src/s2/masters/enemy-reservation.png",
+      "masterSize": 512,
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: transparent raster game asset for Campus Survival second semester. Style: detailed hand-painted modern Chinese university campus illustration, elevated top-down view with mild front perspective, clean strong silhouettes readable at small game sizes, fine dark blue-green contour lines, subtle watercolor/colored-pencil surface detail. Palette: warm ivory and sandstone, jade/teal, muted navy, restrained gold, natural greenery only where appropriate. Soft sunlight from upper left and a short subtle contact shadow toward lower right. Match a warm paved modern campus with glass teaching buildings and landscaped grounds. Transparent background with real alpha; isolated subject, centered, all extremities and shadow visible, 10 percent transparent padding, no floor tile, no backdrop. Avoid fantasy/castles/magic, photorealism, glossy toy 3D, pixel art, neon bloom, red/orange danger markings, circles/arrows/countdowns, UI frames, logos, letters, text, watermark.\nSubject: One freestanding modern campus seat-booking kiosk: compact navy A-frame stand with ivory display housing, a jade blank screen showing only a simple clock-like pictogram with no numerals, small gold lower shelf. Elevated top-down angle, clearly a solid physical campus sign. Ordinary enemy about48px.\nOutput: single transparent PNG master, generous clean alpha margin.",
+      "sample": false
+    },
+    {
+      "key": "enemy-parceler",
+      "kind": "enemy",
+      "contentIds": [
+        "s2:parceler"
+      ],
+      "master": "art-src/s2/masters/enemy-parceler.png",
+      "masterSize": 512,
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: transparent raster game asset for Campus Survival second semester. Style: detailed hand-painted modern Chinese university campus illustration, elevated top-down view with mild front perspective, clean strong silhouettes readable at small game sizes, fine dark blue-green contour lines, subtle watercolor/colored-pencil surface detail. Palette: warm ivory and sandstone, jade/teal, muted navy, restrained gold, natural greenery only where appropriate. Soft sunlight from upper left and a short subtle contact shadow toward lower right. Match a warm paved modern campus with glass teaching buildings and landscaped grounds. Transparent background with real alpha; isolated subject, centered, all extremities and shadow visible, 10 percent transparent padding, no floor tile, no backdrop. Avoid fantasy/castles/magic, photorealism, glossy toy 3D, pixel art, neon bloom, red/orange danger markings, circles/arrows/countdowns, UI frames, logos, letters, text, watermark.\nSubject: One friendly stylized university logistics delivery worker, full body visible, jade work jacket and navy trousers, plain ivory cap, carrying one taped cardboard parcel across the torso. Small chibi proportions consistent with a hand-painted campus survival game, face very simple, no branding. Elevated top-down angle. Ordinary enemy about48px.\nOutput: single transparent PNG master, generous clean alpha margin.",
+      "sample": false
+    },
+    {
+      "key": "enemy-dispatcher",
+      "kind": "enemy",
+      "contentIds": [
+        "s2:dispatcher"
+      ],
+      "master": "art-src/s2/masters/enemy-dispatcher.png",
+      "masterSize": 1024,
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: transparent raster game asset for Campus Survival second semester. Style: detailed hand-painted modern Chinese university campus illustration, elevated top-down view with mild front perspective, clean strong silhouettes readable at small game sizes, fine dark blue-green contour lines, subtle watercolor/colored-pencil surface detail. Palette: warm ivory and sandstone, jade/teal, muted navy, restrained gold, natural greenery only where appropriate. Soft sunlight from upper left and a short subtle contact shadow toward lower right. Match a warm paved modern campus with glass teaching buildings and landscaped grounds. Transparent background with real alpha; isolated subject, centered, all extremities and shadow visible, 10 percent transparent padding, no floor tile, no backdrop. Avoid fantasy/castles/magic, photorealism, glossy toy 3D, pixel art, neon bloom, red/orange danger markings, circles/arrows/countdowns, UI frames, logos, letters, text, watermark.\nSubject: One campus outdoor logistics dispatcher mini-boss: a sturdy blue-gray wheeled dispatch cart with ivory console, jade control screen, two compact parcel stacks held by gold straps and a small physical antenna. No driver, no writing, no holographic rings or arrows. Readable broad silhouette and obvious wheels. Elevated top-down view, final display about110px.\nOutput: single transparent PNG master, generous clean alpha margin.",
+      "sample": false
+    },
+    {
+      "key": "enemy-proposal-board",
+      "kind": "enemy",
+      "contentIds": [
+        "s2:proposalBoard"
+      ],
+      "master": "art-src/s2/masters/enemy-proposal-board.png",
+      "masterSize": 1024,
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: transparent raster game asset for Campus Survival second semester. Style: detailed hand-painted modern Chinese university campus illustration, elevated top-down view with mild front perspective, clean strong silhouettes readable at small game sizes, fine dark blue-green contour lines, subtle watercolor/colored-pencil surface detail. Palette: warm ivory and sandstone, jade/teal, muted navy, restrained gold, natural greenery only where appropriate. Soft sunlight from upper left and a short subtle contact shadow toward lower right. Match a warm paved modern campus with glass teaching buildings and landscaped grounds. Transparent background with real alpha; isolated subject, centered, all extremities and shadow visible, 10 percent transparent padding, no floor tile, no backdrop. Avoid fantasy/castles/magic, photorealism, glossy toy 3D, pixel art, neon bloom, red/orange danger markings, circles/arrows/countdowns, UI frames, logos, letters, text, watermark.\nSubject: One modern university joint-topic review board boss: wide physical navy mobile display on two solid support feet, ivory panel subdivided into three small project-diagram cards with only abstract lines and blocks, muted jade screens, gold structural trim and small side clipboards. No text, faces, arrows, warning patterns or frame UI. Elevated top-down angle. Clearly a campus review apparatus, not a fantasy monster. Final display about140px.\nOutput: single transparent PNG master, generous clean alpha margin.",
+      "sample": false
+    },
+    {
+      "key": "item-whiteboard",
+      "kind": "item",
+      "contentIds": [
+        "s2:whiteboard"
+      ],
+      "master": "art-src/s2/masters/item-whiteboard.png",
+      "masterSize": 512,
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: transparent raster game asset for Campus Survival second semester. Style: detailed hand-painted modern Chinese university campus illustration, elevated top-down view with mild front perspective, clean strong silhouettes readable at small game sizes, fine dark blue-green contour lines, subtle watercolor/colored-pencil surface detail. Palette: warm ivory and sandstone, jade/teal, muted navy, restrained gold, natural greenery only where appropriate. Soft sunlight from upper left and a short subtle contact shadow toward lower right. Match a warm paved modern campus with glass teaching buildings and landscaped grounds. Transparent background with real alpha; isolated subject, centered, all extremities and shadow visible, 10 percent transparent padding, no floor tile, no backdrop. Avoid fantasy/castles/magic, photorealism, glossy toy 3D, pixel art, neon bloom, red/orange danger markings, circles/arrows/countdowns, UI frames, logos, letters, text, watermark.\nSubject: One compact portable academic whiteboard tilted gently in perspective, ivory writing surface, navy thin frame, jade marker clipped to lower tray and two gold magnets. A few short pale mint mathematical line segments without letters, symbols, arrows or text. Clear recognizable whiteboard icon, no background. Final display96/192px.\nOutput: single transparent PNG master, generous clean alpha margin.",
+      "sample": false
+    },
+    {
+      "key": "item-drone-evolved",
+      "kind": "item",
+      "contentIds": [
+        "s2:drone:evolved"
+      ],
+      "master": "art-src/s2/masters/item-drone-evolved.png",
+      "masterSize": 512,
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: transparent raster game asset for Campus Survival second semester. Style: detailed hand-painted modern Chinese university campus illustration, elevated top-down view with mild front perspective, clean strong silhouettes readable at small game sizes, fine dark blue-green contour lines, subtle watercolor/colored-pencil surface detail. Palette: warm ivory and sandstone, jade/teal, muted navy, restrained gold, natural greenery only where appropriate. Soft sunlight from upper left and a short subtle contact shadow toward lower right. Match a warm paved modern campus with glass teaching buildings and landscaped grounds. Transparent background with real alpha; isolated subject, centered, all extremities and shadow visible, 10 percent transparent padding, no floor tile, no backdrop. Avoid fantasy/castles/magic, photorealism, glossy toy 3D, pixel art, neon bloom, red/orange danger markings, circles/arrows/countdowns, UI frames, logos, letters, text, watermark.\nSubject: One coordinated research drone swarm icon consisting of three small quadcopters in a compact triangular grouping, same ivory bodies, navy frames, jade rotors and gold battery clasps as a university research drone. Small connecting mint cables or short line segments only, no enclosing ring, no arrows, no magical glow. Final display96/192px.\nOutput: single transparent PNG master, generous clean alpha margin.",
+      "sample": false
+    },
+    {
+      "key": "item-whiteboard-evolved",
+      "kind": "item",
+      "contentIds": [
+        "s2:whiteboard:evolved"
+      ],
+      "master": "art-src/s2/masters/item-whiteboard-evolved.png",
+      "masterSize": 512,
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: transparent raster game asset for Campus Survival second semester. Style: detailed hand-painted modern Chinese university campus illustration, elevated top-down view with mild front perspective, clean strong silhouettes readable at small game sizes, fine dark blue-green contour lines, subtle watercolor/colored-pencil surface detail. Palette: warm ivory and sandstone, jade/teal, muted navy, restrained gold, natural greenery only where appropriate. Soft sunlight from upper left and a short subtle contact shadow toward lower right. Match a warm paved modern campus with glass teaching buildings and landscaped grounds. Transparent background with real alpha; isolated subject, centered, all extremities and shadow visible, 10 percent transparent padding, no floor tile, no backdrop. Avoid fantasy/castles/magic, photorealism, glossy toy 3D, pixel art, neon bloom, red/orange danger markings, circles/arrows/countdowns, UI frames, logos, letters, text, watermark.\nSubject: One joint academic review matrix icon made of two small overlapping physical ivory whiteboards with navy frames, jade marker trays and restrained gold clips. Thin mint intersecting chalk line segments on surfaces without letters, numerals, equations, arrows or text. Clear compact silhouette. Final display96/192px.\nOutput: single transparent PNG master, generous clean alpha margin.",
+      "sample": false
+    },
+    {
+      "key": "landmark-infirmary",
+      "kind": "landmark",
+      "contentIds": [
+        "s2:infirmary"
+      ],
+      "master": "art-src/s2/masters/landmark-infirmary.png",
+      "masterSize": 768,
+      "anchor": [
+        0.5,
+        0.82
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: transparent raster game asset for Campus Survival second semester. Style: detailed hand-painted modern Chinese university campus illustration, elevated top-down view with mild front perspective, clean strong silhouettes readable at small game sizes, fine dark blue-green contour lines, subtle watercolor/colored-pencil surface detail. Palette: warm ivory and sandstone, jade/teal, muted navy, restrained gold, natural greenery only where appropriate. Soft sunlight from upper left and a short subtle contact shadow toward lower right. Match a warm paved modern campus with glass teaching buildings and landscaped grounds. Transparent background with real alpha; isolated subject, centered, all extremities and shadow visible, 10 percent transparent padding, no floor tile, no backdrop. Avoid fantasy/castles/magic, photorealism, glossy toy 3D, pixel art, neon bloom, red/orange danger markings, circles/arrows/countdowns, UI frames, logos, letters, text, watermark.\nSubject: One small modern university medical first-aid station: ivory-and-jade freestanding cabinet kiosk with a simple green medical plus pictogram, navy lower plinth, a small supply drawer and no lettering. No red-cross emblem, no people, no background. Elevated top-down view, physical cabinet with grounded short shadow. Final display72px.\nOutput: single transparent PNG master, generous clean alpha margin.",
+      "sample": false
+    },
+    {
+      "key": "landmark-joint-table",
+      "kind": "landmark",
+      "contentIds": [
+        "s2:jointTable"
+      ],
+      "master": "art-src/s2/masters/landmark-joint-table.png",
+      "masterSize": 768,
+      "anchor": [
+        0.5,
+        0.82
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: transparent raster game asset for Campus Survival second semester. Style: detailed hand-painted modern Chinese university campus illustration, elevated top-down view with mild front perspective, clean strong silhouettes readable at small game sizes, fine dark blue-green contour lines, subtle watercolor/colored-pencil surface detail. Palette: warm ivory and sandstone, jade/teal, muted navy, restrained gold, natural greenery only where appropriate. Soft sunlight from upper left and a short subtle contact shadow toward lower right. Match a warm paved modern campus with glass teaching buildings and landscaped grounds. Transparent background with real alpha; isolated subject, centered, all extremities and shadow visible, 10 percent transparent padding, no floor tile, no backdrop. Avoid fantasy/castles/magic, photorealism, glossy toy 3D, pixel art, neon bloom, red/orange danger markings, circles/arrows/countdowns, UI frames, logos, letters, text, watermark.\nSubject: One modern university joint-project contract desk: small ivory tabletop with navy legs, a jade closed project folder and a gold paper clip with a small blue-gray display tablet. No lettering, no glowing symbols, no people, no surroundings. Elevated top-down view with clearly visible work surface and short grounded shadow. Final display72px.\nOutput: single transparent PNG master, generous clean alpha margin.",
+      "sample": false
+    }
+  ]
+}

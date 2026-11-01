@@ -1,0 +1,108 @@
+[
+  {
+    "id": "s2-ai",
+    "title": "第二学期首章AI美术",
+    "author": "image_gen内置（供应方未暴露具体模型ID）",
+    "source": "image_gen built-in",
+    "license": "AI来源，不宣称CC0",
+    "licenseUrl": "",
+    "notes": "完整提示词、模型可见性、日期、参考图和SHA-256见S2账本；派生/白闪/双格式不另计生成张数。",
+    "files": [
+      {
+        "original": "art-src/s2/masters/enemy-bike.png",
+        "output": "assets/art/v5/s2/thumbs/enemy-bike.webp / assets/art/v5/s2/thumbs/enemy-bike.png / assets/art/v5/s2/atlases/enemies.webp / assets/art/v5/s2/atlases/enemies.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "07f0c4b3b85e89534e2e8689ed7449027f0844e569d0e19eda7b2d70141bb657"
+      },
+      {
+        "original": "art-src/s2/masters/item-drone.png",
+        "output": "assets/art/v5/s2/icons/item-drone-96.webp / assets/art/v5/s2/icons/item-drone-96.png / assets/art/v5/s2/icons/item-drone-192.webp / assets/art/v5/s2/icons/item-drone-192.png / assets/art/v5/s2/atlases/items.webp / assets/art/v5/s2/atlases/items.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "d2437fb98dc95fdaec10124b0a5b5d2441131eeb6e78d84f262a71a887c7cd1c"
+      },
+      {
+        "original": "art-src/s2/masters/building-smart-teaching.png",
+        "output": "assets/art/v5/s2/building-smart-teaching.webp / assets/art/v5/s2/building-smart-teaching.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "46343ac8dee09504b57907537c00ddbab1f99b2de8ec80975ef0b80cb5147d3f"
+      },
+      {
+        "original": "art-src/s2/masters/enemy-reservation.png",
+        "output": "assets/art/v5/s2/thumbs/enemy-reservation.webp / assets/art/v5/s2/thumbs/enemy-reservation.png / assets/art/v5/s2/atlases/enemies.webp / assets/art/v5/s2/atlases/enemies.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "dce4ecff1111f26859148dd4da7769b37a3960859b5bc43e2c726d757882f56e"
+      },
+      {
+        "original": "art-src/s2/masters/enemy-parceler.png",
+        "output": "assets/art/v5/s2/thumbs/enemy-parceler.webp / assets/art/v5/s2/thumbs/enemy-parceler.png / assets/art/v5/s2/atlases/enemies.webp / assets/art/v5/s2/atlases/enemies.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "33e3a4c00f85386ec48fd08a0b956daf6e95e4ef1c561ee2e5b1b03f0f78f514"
+      },
+      {
+        "original": "art-src/s2/masters/enemy-dispatcher.png",
+        "output": "assets/art/v5/s2/enemy-dispatcher.webp / assets/art/v5/s2/enemy-dispatcher.png / assets/art/v5/s2/enemy-dispatcher-white.webp / assets/art/v5/s2/enemy-dispatcher-white.png / assets/art/v5/s2/thumbs/enemy-dispatcher.webp / assets/art/v5/s2/thumbs/enemy-dispatcher.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "2044a1e15499872e617b3177d55a946804640b647eb1be39ea7ce20b119282b6"
+      },
+      {
+        "original": "art-src/s2/masters/enemy-proposal-board.png",
+        "output": "assets/art/v5/s2/enemy-proposal-board.webp / assets/art/v5/s2/enemy-proposal-board.png / assets/art/v5/s2/enemy-proposal-board-white.webp / assets/art/v5/s2/enemy-proposal-board-white.png / assets/art/v5/s2/thumbs/enemy-proposal-board.webp / assets/art/v5/s2/thumbs/enemy-proposal-board.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "909beeccab353fa76d620be9e71d79baa5d4758c978bd1dcfafd451291280cb2"
+      },
+      {
+        "original": "art-src/s2/masters/item-whiteboard.png",
+        "output": "assets/art/v5/s2/icons/item-whiteboard-96.webp / assets/art/v5/s2/icons/item-whiteboard-96.png / assets/art/v5/s2/icons/item-whiteboard-192.webp / assets/art/v5/s2/icons/item-whiteboard-192.png / assets/art/v5/s2/atlases/items.webp / assets/art/v5/s2/atlases/items.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "68ce741fffc25a781032015b2685ee0829fce03b0417f1de41971ccdf9db8872"
+      },
+      {
+        "original": "art-src/s2/masters/item-drone-evolved.png",
+        "output": "assets/art/v5/s2/icons/item-drone-evolved-96.webp / assets/art/v5/s2/icons/item-drone-evolved-96.png / assets/art/v5/s2/icons/item-drone-evolved-192.webp / assets/art/v5/s2/icons/item-drone-evolved-192.png / assets/art/v5/s2/atlases/items.webp / assets/art/v5/s2/atlases/items.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "3a9c08605cbcdf52dcf95b72665eaa013925b1334da72eaae4651f19c4da70ed"
+      },
+      {
+        "original": "art-src/s2/masters/item-whiteboard-evolved.png",
+        "output": "assets/art/v5/s2/icons/item-whiteboard-evolved-96.webp / assets/art/v5/s2/icons/item-whiteboard-evolved-96.png / assets/art/v5/s2/icons/item-whiteboard-evolved-192.webp / assets/art/v5/s2/icons/item-whiteboard-evolved-192.png / assets/art/v5/s2/atlases/items.webp / assets/art/v5/s2/atlases/items.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "758bb6d040d171880d63c154ce3cbad3274bd832ce80a18587f517482770cd0a"
+      },
+      {
+        "original": "art-src/s2/masters/landmark-infirmary.png",
+        "output": "assets/art/v5/s2/thumbs/landmark-infirmary.webp / assets/art/v5/s2/thumbs/landmark-infirmary.png / assets/art/v5/s2/atlases/landmarks.webp / assets/art/v5/s2/atlases/landmarks.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "db99148fd9e518d6e107a98e4dfcb71d921c0d6e22389ee846a5dec8f8006a46"
+      },
+      {
+        "original": "art-src/s2/masters/landmark-joint-table.png",
+        "output": "assets/art/v5/s2/thumbs/landmark-joint-table.webp / assets/art/v5/s2/thumbs/landmark-joint-table.png / assets/art/v5/s2/atlases/landmarks.webp / assets/art/v5/s2/atlases/landmarks.png",
+        "modifications": "Alpha>=8 bounding crop, Lanczos contain and transparent padding; white flash preserves alpha; WebP/PNG derivation",
+        "sha256": "ca3e32debde2c870f85db16633593257149845f7b5981bd0210f9f70f03379f4"
+      }
+    ]
+  },
+  {
+    "id": "s2-kenney-particles",
+    "title": "Particle Pack · 第二学期选用2形状",
+    "author": "Kenney",
+    "source": "https://kenney.nl/assets/particle-pack",
+    "license": "CC0 1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "notes": "按下载包License.txt记录，只引入spark_04与smoke_03两文件，不导入整包。",
+    "files": [
+      {
+        "original": "PNG (Transparent)/spark_04.png",
+        "output": "assets/art/v5/s2/atlases/particles.webp / assets/art/v5/s2/atlases/particles.png",
+        "modifications": "Lanczos contain in24px atlas tile; replace only spark/smoke in copied shared atlas, preserving other8 fragments; tint from existing renderer",
+        "sha256": "3cba35b80a97c12283a8ecd41780a0412194de14562cbffc7f04e9157183f772"
+      },
+      {
+        "original": "PNG (Transparent)/smoke_03.png",
+        "output": "assets/art/v5/s2/atlases/particles.webp / assets/art/v5/s2/atlases/particles.png",
+        "modifications": "Lanczos contain in24px atlas tile; replace only spark/smoke in copied shared atlas, preserving other8 fragments; tint from existing renderer",
+        "sha256": "a71f8abcac64f8d73a94625cc9a10033dbeafa7eaea750560cba0daa73fe8752"
+      }
+    ]
+  }
+]

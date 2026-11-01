@@ -2,7 +2,7 @@ import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import {ModalPauseOwner} from '../ui/input/modal-input';
 import {SaveNotice} from '../ui/components/SaveNotice';
 import { Menu, type Panel } from '../ui/screens/Menu';
-import { ModalPanel } from '../ui/screens/Panels';
+const ModalPanel=lazy(()=>import('../ui/screens/Panels').then(m=>({default:m.ModalPanel})));
 import { HUD } from '../ui/hud/HUD';
 import { GameOverlays } from '../ui/screens/Overlays';
 import { DebugPanel } from '../debug/DebugPanel';
@@ -34,5 +34,5 @@ export function App(){
   useEffect(()=>{if(!playing){getAudio(settings).setPaused(false);getAudio(settings).setTheme('menu');}},[playing,settings]);
   useEffect(()=>{if(persistence==='corrupt'&&!recoveryShown.current){recoveryShown.current=true;open('recovery');}},[persistence,open]);
   if(persistence==='starting')return <div className="loading-screen" role="status"><h2>正在检查本地存档…</h2></div>;
-  return <>{!playing?<Menu open={open}/>:<main className={`battle-screen phase-${phase}`}><Suspense fallback={<div className="loading-screen"><span className="loading-leaf">✦</span><h2>正在收拾书包…</h2><p>咖啡、笔记本，还有一点点勇气。</p></div>}><GameHost key={generation} onReady={ready} seed={seed} debug={debug} mode={mode} semesterId={semesterId}/></Suspense><HUD session={session} open={open}/><GameOverlays key={generation} session={session} open={open} menu={menu} restart={restart}/>{debug&&<DebugPanel session={session}/>}</main>}{debug&&<Suspense fallback={null}><Laboratories pause={()=>sessionRef.current?.engine.send({type:'pause'})}/></Suspense>}{!playing&&<SaveNotice open={()=>open('recovery')}/>}{panel&&<ModalPanel panel={panel} close={close} start={start} startDaily={startDaily} inGame={playing&&phase!=='result'} returnToMenu={()=>{menu();setPanel('recovery');}}/>}</>;
+  return <>{!playing?<Menu open={open}/>:<main className={`battle-screen phase-${phase}`}><Suspense fallback={<div className="loading-screen"><span className="loading-leaf">✦</span><h2>正在收拾书包…</h2><p>咖啡、笔记本，还有一点点勇气。</p></div>}><GameHost key={generation} onReady={ready} seed={seed} debug={debug} mode={mode} semesterId={semesterId}/></Suspense><HUD session={session} open={open}/><GameOverlays key={generation} session={session} open={open} menu={menu} restart={restart}/>{debug&&<DebugPanel session={session}/>}</main>}{debug&&<Suspense fallback={null}><Laboratories pause={()=>sessionRef.current?.engine.send({type:'pause'})}/></Suspense>}{!playing&&<SaveNotice open={()=>open('recovery')}/>}{panel&&<Suspense fallback={null}><ModalPanel panel={panel} close={close} start={start} startDaily={startDaily} inGame={playing&&phase!=='result'} returnToMenu={()=>{menu();setPanel('recovery');}}/></Suspense>}</>;
 }
