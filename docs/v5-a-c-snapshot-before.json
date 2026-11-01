@@ -1,0 +1,109 @@
+{
+  "version": "s2-snapshot-a-c-v1",
+  "commit": "7304f2f47ab15f41b59c2fadbe6d7d6cff10f8c1",
+  "node": "v24.22.1",
+  "cpu": "Intel(R) Xeon(R) Processor",
+  "warmups": 5,
+  "samples": 25,
+  "percentile": "sorted[floor(N*q)]",
+  "method": "full dynamic projection; fixed unread event batch; no renderer or simulation inside timed read; no cache shortcut",
+  "auditP95Ms": {
+    "empty": 0.524,
+    "medium": 6.724,
+    "dense": 8.172
+  },
+  "scenes": [
+    {
+      "name": "empty",
+      "enemies": 0,
+      "shots": 0,
+      "drops": 0,
+      "events": 0,
+      "dtoBytes": 50216,
+      "dtoSha256": "e7a93fbdc5accf3074f46585883ff7e963f65b5bc96ae1f786cf28690906aac4",
+      "p50Ms": 0.6421139999999923,
+      "p95Ms": 0.731392000000028,
+      "afterAcknowledgement": {
+        "p50Ms": 0.4708699999999908,
+        "p95Ms": 0.7169589999999744
+      }
+    },
+    {
+      "name": "medium",
+      "enemies": 240,
+      "shots": 240,
+      "drops": 240,
+      "events": 2000,
+      "dtoBytes": 388896,
+      "dtoSha256": "32771868e8756470d16f8e2b5f252043602c48c479610dcc74f824acae774139",
+      "p50Ms": 5.664473000000044,
+      "p95Ms": 6.458433999999897,
+      "afterAcknowledgement": {
+        "p50Ms": 5.692682000000104,
+        "p95Ms": 6.631953000000067
+      }
+    },
+    {
+      "name": "dense",
+      "enemies": 1200,
+      "shots": 300,
+      "drops": 800,
+      "events": 2000,
+      "dtoBytes": 474056,
+      "dtoSha256": "8a881f439be7847086fb8428a1bf0732f8ab8eb5b05b3654ce025e75ed6ca2b3",
+      "p50Ms": 4.796101000000135,
+      "p95Ms": 5.01003999999989,
+      "afterAcknowledgement": {
+        "p50Ms": 4.866216000000122,
+        "p95Ms": 5.7026740000001155
+      }
+    }
+  ],
+  "deterministic": [
+    {
+      "fps": 30,
+      "ticks": 240,
+      "viewSha256": "3c8ec519287d729017432cd197db85b6c7d37e7fff1df2af8cae468033592957",
+      "rng": {
+        "spawn": 1223092142,
+        "ai": 976925461,
+        "combat": 1404064361,
+        "drop": 2580658863,
+        "draft": 1970304132,
+        "event": 2031467239,
+        "affix": 2993232873,
+        "relic": 705422692
+      }
+    },
+    {
+      "fps": 60,
+      "ticks": 240,
+      "viewSha256": "3c8ec519287d729017432cd197db85b6c7d37e7fff1df2af8cae468033592957",
+      "rng": {
+        "spawn": 1223092142,
+        "ai": 976925461,
+        "combat": 1404064361,
+        "drop": 2580658863,
+        "draft": 1970304132,
+        "event": 2031467239,
+        "affix": 2993232873,
+        "relic": 705422692
+      }
+    },
+    {
+      "fps": 120,
+      "ticks": 240,
+      "viewSha256": "3c8ec519287d729017432cd197db85b6c7d37e7fff1df2af8cae468033592957",
+      "rng": {
+        "spawn": 1223092142,
+        "ai": 976925461,
+        "combat": 1404064361,
+        "drop": 2580658863,
+        "draft": 1970304132,
+        "event": 2031467239,
+        "affix": 2993232873,
+        "relic": 705422692
+      }
+    }
+  ]
+}

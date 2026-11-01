@@ -64,12 +64,13 @@ export class ContentState {
  private navTimer=0;private pendingLevels=0;private levelFeedbackFrame=-1;private deadBoss=-1;private nextMerge=1;private specialCooldown:Record<string,number>={};private hazardId=0;private instanceSerial=0;private visualSerial=0;
  private disposed=false;private waitingForAssessment=false;private moveScratch={x:0,y:0};private grantBoundary:RuntimeGrants|null=null;private transitions=new Set<string>();
  private drafts=0;private offeredNew=false;
+ private visualBacklog:ContentState['visualEvents']|null=null;private visualReadSerial=0;private visualAcknowledged=0;
  constructor(readonly content:ContentCatalog,services:RuntimeServices,world:WorldSnapshot=createS2WorldSnapshot(services.snapshot.regions)){
   this.manifest=services.snapshot;this.streams=services.streams;this.random=this.streams.combat;this.dropRandom=this.streams.drop;this.draftRandom=this.streams.draft;
   const initial=this.manifest.initialWeapon,definition=content.weaponById[initial.id];
   if(!definition||definition.fusion||!content.characters.some(c=>c.id===this.manifest.character))throw Error('Content not ported for opening snapshot');
   if(world.version!==this.manifest.worldVersion||world.size!==6144)throw Error('Unsupported semester world snapshot');
-  this.world=immutableSnapshot(world);this.navigation=worldNavigation(this.world);this.danger=new DangerScheduler(this.world,this.hazards);this.rewards=new RewardSystem(this);this.ultimate=new UltimateSystem(this);
+  this.world=Object.isFrozen(world)?world:immutableSnapshot(world);this.navigation=worldNavigation(this.world);this.danger=new DangerScheduler(this.world,this.hazards);this.rewards=new RewardSystem(this);this.ultimate=new UltimateSystem(this);
   Object.assign(this.player,{...this.world.spawn,prevX:this.world.spawn.x,prevY:this.world.spawn.y});
   this.weapons.push({...initial,id:definition.id,kind:'base',instanceId:this.nextInstance()});this.stats=this.calculateStats();this.player.hp=this.stats.maxHp;
   this.weaponSystem=new WeaponSystem(this);this.bossSystem=new BossSystem(this);this.director=new EnemyDirector(this);this.threats=new FirstChapterBehaviors(this);this.behaviors=new EnemyBehaviors(this);this.discover(initial.id);
@@ -87,7 +88,16 @@ export class ContentState {
  discover(value:string,evolution=false){const split=value.indexOf(':'),prefixed=['enemy','fusion','relic','event','region','item','interaction'].includes(value.slice(0,split)),category:Discovery['category']=evolution?'evolution':prefixed?value.slice(0,split) as Discovery['category']:'item',id=prefixed?value.slice(split+1):value;if(!this.discoveries.some(d=>d.category===category&&d.id===id))this.discoveries.push({semesterId:'s2',category,id,evidence:'run'});}
  safePoint(x:number,y:number){return worldSafePoint(this.world,x,y);}
  rebuildGrid(){this.grid.rebuild(this.enemies.active,this.enemies.x,this.enemies.y);}
- emit(event:ContentVisualEvent){this.visualEvents.push({serial:++this.visualSerial,event});if(this.visualEvents.length>2000)this.visualEvents.shift();}
+ emit(event:ContentVisualEvent){const record=Object.freeze({serial:++this.visualSerial,event:Object.freeze({...event})});this.visualEvents.push(record);if(this.visualEvents.length>2000)this.visualEvents.shift();this.visualBacklog?.push(record);}
+ /** Rendering keeps every unacknowledged event; headless rules retain only the
+  * existing bounded diagnostic history. Reading never consumes either queue. */
+ enableVisualEvents(){this.visualBacklog??=[...this.visualEvents];}
+ readVisualEvents(){const events=this.visualBacklog??this.visualEvents;this.visualReadSerial=events.at(-1)?.serial??this.visualReadSerial;return [...events];}
+ acknowledgeVisualEvents(serial:number){
+  if(!this.visualBacklog||!Number.isSafeInteger(serial)||serial<=this.visualAcknowledged||serial>this.visualReadSerial)return false;
+  let count=0;while(count<this.visualBacklog.length&&this.visualBacklog[count].serial<=serial)count++;
+  this.visualBacklog.splice(0,count);this.visualAcknowledged=serial;return true;
+ }
  impact(_strength:number,_stop=0){/* Presentation owns camera/visual holds; no extra simulation clock. */}
  message(text:string,seconds=4){this.notice=text;this.noticeUntil=this.combatTime+seconds;}
  setPhase(phase:Phase){const previous=this.phase;this.phase=phase;if(phase!=='playing'||previous!=='playing')this.inputX=this.inputY=0;if(phase==='playing'&&previous!=='playing')this.player.invincible=Math.max(this.player.invincible,.75);}
@@ -259,5 +269,5 @@ export class ContentState {
  private applyCard(index:number,token?:number){if(this.phase!=='draft'||token!==undefined&&token!==this.draftToken)return;const card=this.cards[index];if(!card)return;if(card.type==='heal')this.heal(30);else if(card.type==='shield')this.addShield(30,12*this.stats.duration);else if(card.type==='credit')this.bonusCredits+=3;else{const owned=card.type==='weapon'?this.weapons:this.passives,existing=owned.find(w=>w.id===card.id);if(existing)existing.level=Math.min(5,existing.level+1);else if(owned.length<6){const skill:ContentSkill={id:card.id as ContentSkill['id'],instanceId:this.nextInstance(),kind:'base',level:1,rarity:card.rarity,evolved:false};owned.push(skill);this.discover(skill.id);}this.recalculateStats();this.weaponSystem.reset(card.id);if(this.weapons[0]?.level===5)this.metrics.mainLv5??=this.combatTime;}this.cards=[];this.setPhase('playing');this.handlePending();}
  openChest(boss=false,preferred=''){this.rewards.openChest(boss?3:1,boss,preferred);}
  openContract(){this.rewards.openContract();}
- dispose(){if(this.disposed)return;this.disposed=true;this.inputX=this.inputY=0;for(const skill of this.weapons)this.weaponSystem.remove(skill.id);this.weaponSystem.summons.remove('s2:drone');this.weaponSystem.whiteboard.remove();this.rewards.clear();this.visualEvents.length=0;this.enemies.clear();this.shots.clear();this.enemyShots.clear();this.areas.clear();this.drops.clear();this.deaths.clear();this.protocol.clear();this.echo.clear();this.projectRelics.clear();this.projectTables.clear();this.events.cancel();this.interactions.cancel();this.danger.clear();this.threats.clear();this.advanced.clear();this.shotOrigins.clear();this.incomingHits.length=0;}
+ dispose(){if(this.disposed)return;this.disposed=true;this.inputX=this.inputY=0;for(const skill of this.weapons)this.weaponSystem.remove(skill.id);this.weaponSystem.summons.remove('s2:drone');this.weaponSystem.whiteboard.remove();this.rewards.clear();this.visualEvents.length=0;this.visualBacklog=null;this.enemies.clear();this.shots.clear();this.enemyShots.clear();this.areas.clear();this.drops.clear();this.deaths.clear();this.protocol.clear();this.echo.clear();this.projectRelics.clear();this.projectTables.clear();this.events.cancel();this.interactions.cancel();this.danger.clear();this.threats.clear();this.advanced.clear();this.shotOrigins.clear();this.incomingHits.length=0;}
 }

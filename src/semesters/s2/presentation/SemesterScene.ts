@@ -72,14 +72,20 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
   setHUDInset(pixels:number){this.hudInset=pixels;this.chapterLabel.y=18+pixels;}
   get resourceState(){return{loader:resources.debug,geometry:this.geometry?.textures.size??0,art:this.artTextures.size,sessionVoices:this.audio.debug.sessionVoices,audio:this.semesterAudio.debug,canvas:this.appInitialized&&this.app.canvas.isConnected};}
   private latest:Immutable<SemesterRunView<LegacyContentDTO>>|null=null;
-  private controls:SemesterControls|null=null;private eventCursor=0;
+  private controls:SemesterControls|null=null;private eventCursor=0;private pendingEvents:Immutable<LegacyContentDTO['visualEvents'][number]>[]=[];
   private buildPanel:BuildPanel|null=null;
   private viewWidth=LOGICAL_WIDTH;private viewHeight=LOGICAL_HEIGHT;
   private get game(){if(!this.latest)throw Error('Publish opening DTO before initialization');return this.latest.content;}
   private get phase(){return presentationPhase(this.latest!);}
   constructor(private host:HTMLElement,private content:ContentCatalog,settings:Settings,private onStick:(stick:Joystick)=>void,audio?:GameAudio,private onLoad?:(p:LoadProgress)=>void,private onView?:(v:Immutable<SemesterRunView<LegacyContentDTO>>)=>void){this.settings=settings;this.ownsAudio=!audio;this.audio=audio??new GameAudio(settings);this.semesterAudio=new SemesterAudio(this.audio,settings);this.audio.prepareCombat();this.feedback=new FeedbackDirector(settings);}
-  attach(controls:SemesterControls){this.controls=controls;}
-  publish(view:Immutable<SemesterRunView<LegacyContentDTO>>){if(this.destroyed)return;this.latest=view;this.onView?.(view);}
+  attach(controls:SemesterControls){this.controls=controls;controls.enableVisualEvents?.();controls.acknowledgeVisualEvents?.(this.eventCursor);}
+  publish(view:Immutable<SemesterRunView<LegacyContentDTO>>){
+    if(this.destroyed)return;this.latest=view;
+    // Several command/publication boundaries can precede one RAF. Queue each
+    // serial once before acknowledging; replacing latest cannot erase effects.
+    for(const record of view.content.visualEvents??[])if(record.serial>this.eventCursor){this.pendingEvents.push(record);this.eventCursor=record.serial;}
+    this.controls?.acknowledgeVisualEvents?.(this.eventCursor);this.onView?.(view);
+  }
   dispose(){this.destroy();}
   async initialize(){
     if(this.destroyed)return;
@@ -226,7 +232,7 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
     this.fxGraphic.clear();this.syncEntities(alpha);this.drawGroundEffects();this.drawOrbitAndBots();this.drawEnemyStatus();this.drawTelegraphs();
     if(g.frame%4===0)for(const prop of this.props){prop.visible=Math.abs(prop.x-p.x)<this.viewWidth*.65+450&&Math.abs(prop.y-p.y)<this.viewHeight*.65+400;prop.alpha=distanceSq(prop.x+prop.width*.5,prop.y+prop.height*.6,p.x,p.y)<150**2?.55:1;}
     this.audio.beginFrame();
-    const unseen=g.visualEvents.filter(v=>v.serial>this.eventCursor);this.eventCursor=Math.max(this.eventCursor,unseen.at(-1)?.serial??0);
+    const unseen=this.pendingEvents.splice(0);
     const allEvents=unseen.map(v=>v.event).map(event=>{
       const skill=event.weapon?g.weapons.find(skill=>skill.id===event.weapon):undefined;
       return skill?{...event,evolved:event.evolved??skill.evolved,level:event.level??skill.level}:event;
@@ -525,6 +531,6 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
     this.releaseFilterTextures();for(const filter of [this.bloom,this.glow,...this.postFX.filters])filter.destroy();
     this.destroyApplication();
     for(const lease of this.extensionLeases.values())lease.release();this.extensionLeases.clear();this.buildingSprites.clear();
-    this.artTextures.clear();this.uiTextures=[];this.trails.clear();this.transient=[];this.enemySprites=[];this.whiteSprites=[];this.shotSprites=[];this.hostileSprites=[];this.dropSprites=[];this.orbitSprites=[];this.botSprites=[];this.droneSprites=[];this.landmarkSprites.clear();this.props=[];if(!this.ownsAudio)this.audio.releaseSession();else this.audio.destroy();void resources.dispose();
+    this.artTextures.clear();this.uiTextures=[];this.trails.clear();this.transient=[];this.pendingEvents=[];this.enemySprites=[];this.whiteSprites=[];this.shotSprites=[];this.hostileSprites=[];this.dropSprites=[];this.orbitSprites=[];this.botSprites=[];this.droneSprites=[];this.landmarkSprites.clear();this.props=[];if(!this.ownsAudio)this.audio.releaseSession();else this.audio.destroy();void resources.dispose();
   }
 }

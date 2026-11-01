@@ -8,6 +8,7 @@ import {s2DailyChallenge} from './daily';
 import {semesterTwoResult,type SettlementIdentity} from './settlement';
 import type {LegacyContentDTO} from './legacy/rules-adapter';
 import {presentationPhase} from './presentation/input';
+import {projectHUD,hudUrgency,type S2HUD} from './presentation/hud';
 
 export type S2View=Immutable<SemesterRunView<LegacyContentDTO>>;
 export interface S2Hooks {
@@ -31,22 +32,25 @@ export function createS2Snapshot(profile:SaveProfile,seed:number,mode:'normal'|'
  return mode==='daily'?createS2PreviewSnapshot(profile,seed,{mode,assignment:s2DailyChallenge(date).assignment}):createS2PreviewSnapshot(profile,seed);
 }
 export function createS2Engine(profile:SaveProfile,seed:number,hooks:S2Hooks,mode:'normal'|'daily'='normal',date?:string,identity?:SettlementIdentity){
- const snapshot=createS2Snapshot(profile,seed,mode,date),before=structuredClone(profile),seen=new Set<string>(),listeners=new Set<()=>void>();
+ const snapshot=createS2Snapshot(profile,seed,mode,date),before=structuredClone(profile),seen=new Set<string>(),listeners=new Set<()=>void>(),hudListeners=new Set<()=>void>();
  const receipt=identity??{id:runId(),createdAt:Date.now(),nickname:profile.settings.nickname};
- let latest:S2View,result:SemesterResult|null=null,presentation:Presentation|undefined,disposed=false,lastPhase:Phase|undefined;
+ let latest:S2View,latestHUD:S2HUD,lastHUDKey='',lastHUDTick=-6,result:SemesterResult|null=null,presentation:Presentation|undefined,disposed=false,lastPhase:Phase|undefined;
  if(mode==='daily')hooks.beginDaily(`s2|${snapshot.date}|${snapshot.rulesVersion}`);
  const runtime=createSemesterTwoRun(snapshot,{publish(view,alpha){
   latest=view;
+  const key=hudUrgency(view);if(key!==lastHUDKey||view.clock.tick-lastHUDTick>=6){latestHUD=projectHUD(view);lastHUDKey=key;lastHUDTick=view.clock.tick;for(const listener of hudListeners)listener();}
   for(const discovery of view.content.discoveries){const key=`${discovery.category}|${discovery.id}|${discovery.evidence}`;if(!seen.has(key)){seen.add(key);hooks.discover({...discovery});}}
   if(view.result&&!result){result=semesterTwoResult(snapshot,view.result,view.content,receipt);if(result){const after=hooks.settle(result);presentation?.settled?.(before,after,result);}}
   presentation?.publish(view,alpha);
   const phase=presentationPhase(view);if(phase!==lastPhase){lastPhase=phase;hooks.publish(phase);}
   for(const listener of listeners)listener();
- },dispose(){presentation?.dispose?.();listeners.clear();}});
+ },dispose(){presentation?.dispose?.();listeners.clear();hudListeners.clear();}});
  const engine={
   runtime,snapshot,
   get phase(){return presentationPhase(latest);},get result(){return result;},get damage(){return latest.content.damage;},
   read:()=>latest,subscribe:(listener:()=>void)=>{listeners.add(listener);return()=>{listeners.delete(listener);};},
+  readHUD:()=>latestHUD,subscribeHUD:(listener:()=>void)=>{hudListeners.add(listener);return()=>{hudListeners.delete(listener);};},
+  enableVisualEvents:()=>runtime.enableVisualEvents(),acknowledgeVisualEvents:(serial:number)=>runtime.acknowledgeVisualEvents(serial),
   advance:(seconds:number)=>runtime.advance(seconds),dispatch:(command:unknown)=>runtime.dispatch(command),
   pause:(reason:Parameters<typeof runtime.pause>[0]='manual')=>runtime.pause(reason),resume:(token:number)=>runtime.resume(token),
   acknowledge:(token:number)=>runtime.acknowledge(token),abandon:()=>runtime.abandon(),

@@ -6,8 +6,9 @@ export interface SemesterControls {
  read():Immutable<SemesterRunView<LegacyContentDTO>>;
  advance(seconds:number):number;dispatch(command:unknown):boolean;
  pause(reason?:PauseReason):number|null;resume(token:number):boolean;
+ enableVisualEvents?():void;acknowledgeVisualEvents?(serial:number):boolean;
 }
-export function presentationPhase(view:Immutable<SemesterRunView<LegacyContentDTO>>):Phase {
+export function presentationPhase(view:Immutable<Pick<SemesterRunView<{phase:Phase}>,'phase'|'pause'|'content'>>):Phase {
  if(view.phase==='finished')return'result';if(view.pause?.reason==='manual'||view.pause?.reason==='loading')return'paused';
  if(view.content.phase!=='playing')return view.content.phase;
  return view.phase==='assessmentIntro'?'bossIntro':view.phase==='assessmentReward'?'bossDeath':'playing';

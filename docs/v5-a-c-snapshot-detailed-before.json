@@ -1,0 +1,115 @@
+{
+  "version": "s2-snapshot-a-c-v1",
+  "commit": "7304f2f47ab15f41b59c2fadbe6d7d6cff10f8c1",
+  "sources": {
+    "src/semesters/runtime/SemesterEngine.ts": "7e538cfa14d26886d14a35e12ccc262c799923d082a2de06436dbb7ea950ea0a",
+    "src/semesters/s2/legacy/ContentState.ts": "18d34c29eda91a89d4bbecb3e79f31cddc4efdab1736c2c081fb2413ed24db07",
+    "src/semesters/s2/legacy/rules-adapter.ts": "540fa95447058ebfa83c65d68904927d679d569eb866e9fe077eaf91f020b045"
+  },
+  "node": "v24.22.1",
+  "cpu": "Intel(R) Xeon(R) Processor",
+  "warmups": 5,
+  "samples": 25,
+  "eventPayload": "full optional visual-event fields",
+  "percentile": "sorted[floor(N*q)]",
+  "method": "full dynamic projection; fixed unread event batch; no renderer or simulation inside timed read; no cache shortcut",
+  "auditP95Ms": {
+    "empty": 0.524,
+    "medium": 6.724,
+    "dense": 8.172
+  },
+  "scenes": [
+    {
+      "name": "empty",
+      "enemies": 0,
+      "shots": 0,
+      "drops": 0,
+      "events": 0,
+      "dtoBytes": 50216,
+      "dtoSha256": "e7a93fbdc5accf3074f46585883ff7e963f65b5bc96ae1f786cf28690906aac4",
+      "p50Ms": 0.6616050000000087,
+      "p95Ms": 0.7893299999999499,
+      "afterAcknowledgement": {
+        "p50Ms": 0.6438570000000254,
+        "p95Ms": 0.8360709999999472
+      }
+    },
+    {
+      "name": "medium",
+      "enemies": 240,
+      "shots": 240,
+      "drops": 240,
+      "events": 2000,
+      "dtoBytes": 1146686,
+      "dtoSha256": "7c286f62160b4c6fe82c467f52b3775d5ca824e8e524a75d282ecfcc8ff64a72",
+      "p50Ms": 7.3737390000000005,
+      "p95Ms": 10.728493999999955,
+      "afterAcknowledgement": {
+        "p50Ms": 11.100448000000142,
+        "p95Ms": 12.71920799999998
+      }
+    },
+    {
+      "name": "dense",
+      "enemies": 1200,
+      "shots": 300,
+      "drops": 800,
+      "events": 2000,
+      "dtoBytes": 1232796,
+      "dtoSha256": "1b902ec9639f5ba683f6cfc92dd8a472e62b61bb74b23b6f15317eb186993cf2",
+      "p50Ms": 8.096295999999938,
+      "p95Ms": 9.54399599999988,
+      "afterAcknowledgement": {
+        "p50Ms": 8.93603300000018,
+        "p95Ms": 10.143268000000035
+      }
+    }
+  ],
+  "deterministic": [
+    {
+      "fps": 30,
+      "ticks": 240,
+      "viewSha256": "3c8ec519287d729017432cd197db85b6c7d37e7fff1df2af8cae468033592957",
+      "rng": {
+        "spawn": 1223092142,
+        "ai": 976925461,
+        "combat": 1404064361,
+        "drop": 2580658863,
+        "draft": 1970304132,
+        "event": 2031467239,
+        "affix": 2993232873,
+        "relic": 705422692
+      }
+    },
+    {
+      "fps": 60,
+      "ticks": 240,
+      "viewSha256": "3c8ec519287d729017432cd197db85b6c7d37e7fff1df2af8cae468033592957",
+      "rng": {
+        "spawn": 1223092142,
+        "ai": 976925461,
+        "combat": 1404064361,
+        "drop": 2580658863,
+        "draft": 1970304132,
+        "event": 2031467239,
+        "affix": 2993232873,
+        "relic": 705422692
+      }
+    },
+    {
+      "fps": 120,
+      "ticks": 240,
+      "viewSha256": "3c8ec519287d729017432cd197db85b6c7d37e7fff1df2af8cae468033592957",
+      "rng": {
+        "spawn": 1223092142,
+        "ai": 976925461,
+        "combat": 1404064361,
+        "drop": 2580658863,
+        "draft": 1970304132,
+        "event": 2031467239,
+        "affix": 2993232873,
+        "relic": 705422692
+      }
+    }
+  ]
+}

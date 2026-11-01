@@ -1,6 +1,6 @@
 import {FixedLoop} from '../../core/loop';
 import {randomStreams} from '../../core/run';
-import {immutableSnapshot,type S2RunSnapshot} from '../types';
+import {immutableSnapshot,freezeSnapshot,type S2RunSnapshot} from '../types';
 import {RuntimeInheritance} from './inheritance';
 import type {Assessment,Immutable,PauseReason,RuntimeClock,RuntimeOutcome,RuntimePhase,RuntimeServices,SemesterRules,SemesterRunView,SemesterRuntimeConfig,SemesterView} from './contracts';
 
@@ -25,6 +25,7 @@ export class SemesterEngine<State,Content> {
  private result:RuntimeOutcome|null=null;
  private serial=0;
  private disposed=false;
+ private publishedView:Immutable<SemesterRunView<Content>>|undefined;
  private readonly weekTicks:number;
  private readonly dailyTicks:number;
 
@@ -49,16 +50,19 @@ export class SemesterEngine<State,Content> {
   return {tick:this.combatTicks,combatSeconds:this.combatTicks*this.loop.step,teachingSeconds:this.teachingTicks*this.loop.step,assessmentSeconds:this.assessmentTicks*this.loop.step,week:Math.min(this.config.calendar.weeks,Math.floor(Math.max(0,this.teachingTicks-1)/this.weekTicks)+1),completedWeeks:Math.floor(this.teachingTicks/this.weekTicks)};
  }
  read():Immutable<SemesterRunView<Content>>{
-  return immutableSnapshot({semesterId:'s2' as const,phase:this.phase,clock:this.clock(),calendar:this.config.calendar,assessment:this.assessment,assessmentsPassed:this.assessmentsPassed,gate:this.gate,pause:this.suspension,inheritance:this.inheritance.view(this.combatTicks*this.loop.step),result:this.result,content:this.rules.project(this.state)}) as Immutable<SemesterRunView<Content>>;
+  const projected=this.rules.project(this.state),content=this.rules.ownedProjection?freezeSnapshot(projected):immutableSnapshot(projected);
+  return freezeSnapshot({semesterId:'s2' as const,phase:this.phase,clock:this.clock(),calendar:this.config.calendar,assessment:this.assessment?{...this.assessment}:null,assessmentsPassed:this.assessmentsPassed,gate:this.gate?{...this.gate}:null,pause:this.suspension?{...this.suspension}:null,inheritance:this.inheritance.view(this.combatTicks*this.loop.step),result:this.result?{...this.result}:null,content}) as Immutable<SemesterRunView<Content>>;
  }
- private publish(interpolation=0){if(!this.disposed)this.view.publish(this.read(),interpolation);}
+ enableVisualEvents(){this.rules.enableVisualEvents?.(this.state);}
+ acknowledgeVisualEvents(serial:number){return this.rules.acknowledgeVisualEvents?.(this.state,serial)??false;}
+ private publish(interpolation=0,reuse=false){if(!this.disposed){const view=reuse&&this.publishedView?this.publishedView:this.read();this.publishedView=view;this.view.publish(view,interpolation);}}
  advance(deltaSeconds:number){
   if(this.disposed)return 0;
   if(!Number.isFinite(deltaSeconds)||deltaSeconds<0)throw Error('Frame delta must be finite and nonnegative');
   if(!this.running){this.loop.reset();return 0;}
-  const alpha=this.loop.advance(deltaSeconds,()=>this.step());
+  let stepped=false;const alpha=this.loop.advance(deltaSeconds,()=>{stepped=true;this.step();});
   if(!this.running)this.loop.reset();
-  this.publish(this.running?alpha:0);return this.running?alpha:0;
+  this.publish(this.running?alpha:0,!stepped);return this.running?alpha:0;
  }
  private step(){
   if(!this.running)return;
@@ -127,7 +131,7 @@ export class SemesterEngine<State,Content> {
   this.phase='finished';this.gate=null;this.suspension=null;
  }
  dispose(){
-  if(this.disposed)return;this.disposed=true;this.loop.reset();
+  if(this.disposed)return;this.disposed=true;this.loop.reset();this.publishedView=undefined;
   try{this.rules.dispose?.(this.state);}finally{this.view.dispose?.();}
  }
 }

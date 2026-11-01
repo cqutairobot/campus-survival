@@ -1,0 +1,141 @@
+{
+  "version": "s2-snapshot-a-c-v1",
+  "commit": "7304f2f47ab15f41b59c2fadbe6d7d6cff10f8c1",
+  "sources": {
+    "src/semesters/runtime/SemesterEngine.ts": "2903e8ba51e58aac99cb3c9b81eed7cf6bad75dfc382d0a97cea7c4b8930324f",
+    "src/semesters/s2/legacy/ContentState.ts": "5f4958be5acb816d8b653e5e162351b9cfec2c3cf9db6b0d5b9f06829d3e5e08",
+    "src/semesters/s2/legacy/rules-adapter.ts": "7772ac48e237357b01f31ff04cb91df723122c32ede696ee159ac3a9c7d0de77"
+  },
+  "node": "v24.22.1",
+  "cpu": "Intel(R) Xeon(R) Processor",
+  "warmups": 5,
+  "samples": 25,
+  "eventPayload": "full optional visual-event fields",
+  "percentile": "sorted[floor(N*q)]",
+  "method": "full dynamic projection; fixed unread event batch; no renderer or simulation inside timed read; no cache shortcut",
+  "auditP95Ms": {
+    "empty": 0.524,
+    "medium": 6.724,
+    "dense": 8.172
+  },
+  "scenes": [
+    {
+      "name": "empty",
+      "enemies": 0,
+      "shots": 0,
+      "drops": 0,
+      "events": 0,
+      "dtoBytes": 50216,
+      "dtoSha256": "e7a93fbdc5accf3074f46585883ff7e963f65b5bc96ae1f786cf28690906aac4",
+      "p50Ms": 0.048512999999957174,
+      "p95Ms": 0.13297100000011142,
+      "afterAcknowledgement": {
+        "p50Ms": 0.04662199999995664,
+        "p95Ms": 0.06522200000006251
+      }
+    },
+    {
+      "name": "medium",
+      "enemies": 240,
+      "shots": 240,
+      "drops": 240,
+      "events": 2000,
+      "dtoBytes": 1146686,
+      "dtoSha256": "7c286f62160b4c6fe82c467f52b3775d5ca824e8e524a75d282ecfcc8ff64a72",
+      "p50Ms": 0.5265729999999849,
+      "p95Ms": 0.5884770000000117,
+      "afterAcknowledgement": {
+        "p50Ms": 0.47529899999994996,
+        "p95Ms": 1.0051359999999931
+      }
+    },
+    {
+      "name": "dense",
+      "enemies": 1200,
+      "shots": 300,
+      "drops": 800,
+      "events": 2000,
+      "dtoBytes": 1232796,
+      "dtoSha256": "1b902ec9639f5ba683f6cfc92dd8a472e62b61bb74b23b6f15317eb186993cf2",
+      "p50Ms": 1.2262049999999363,
+      "p95Ms": 2.07908499999985,
+      "afterAcknowledgement": {
+        "p50Ms": 0.7105799999999363,
+        "p95Ms": 0.7912229999999454
+      }
+    }
+  ],
+  "deterministic": [
+    {
+      "fps": 30,
+      "ticks": 240,
+      "viewSha256": "3c8ec519287d729017432cd197db85b6c7d37e7fff1df2af8cae468033592957",
+      "rng": {
+        "spawn": 1223092142,
+        "ai": 976925461,
+        "combat": 1404064361,
+        "drop": 2580658863,
+        "draft": 1970304132,
+        "event": 2031467239,
+        "affix": 2993232873,
+        "relic": 705422692
+      }
+    },
+    {
+      "fps": 60,
+      "ticks": 240,
+      "viewSha256": "3c8ec519287d729017432cd197db85b6c7d37e7fff1df2af8cae468033592957",
+      "rng": {
+        "spawn": 1223092142,
+        "ai": 976925461,
+        "combat": 1404064361,
+        "drop": 2580658863,
+        "draft": 1970304132,
+        "event": 2031467239,
+        "affix": 2993232873,
+        "relic": 705422692
+      }
+    },
+    {
+      "fps": 120,
+      "ticks": 240,
+      "viewSha256": "3c8ec519287d729017432cd197db85b6c7d37e7fff1df2af8cae468033592957",
+      "rng": {
+        "spawn": 1223092142,
+        "ai": 976925461,
+        "combat": 1404064361,
+        "drop": 2580658863,
+        "draft": 1970304132,
+        "event": 2031467239,
+        "affix": 2993232873,
+        "relic": 705422692
+      }
+    }
+  ],
+  "comparison": [
+    {
+      "name": "empty",
+      "beforeP95Ms": 0.7893299999999499,
+      "afterP95Ms": 0.13297100000011142,
+      "ratio": 0.16846059316144052,
+      "auditRatio": 0.253761450381892,
+      "sameDTO": true
+    },
+    {
+      "name": "medium",
+      "beforeP95Ms": 10.728493999999955,
+      "afterP95Ms": 0.5884770000000117,
+      "ratio": 0.05485178068795249,
+      "auditRatio": 0.08751888756692619,
+      "sameDTO": true
+    },
+    {
+      "name": "dense",
+      "beforeP95Ms": 9.54399599999988,
+      "afterP95Ms": 2.07908499999985,
+      "ratio": 0.21784219104868405,
+      "auditRatio": 0.2544156877141275,
+      "sameDTO": true
+    }
+  ]
+}

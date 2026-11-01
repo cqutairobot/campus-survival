@@ -38,6 +38,11 @@ export interface SemesterRules<State,Content> {
  assessment(state:State,event:AssessmentEvent,services:AssessmentServices):void;
  /** Export plain content DTOs inside the simulation boundary. */
  project(state:State):Content;
+ /** Owned projections contain detached mutable data or deeply frozen shared
+  * references. Other adapters retain the defensive clone before publication. */
+ ownedProjection?:boolean;
+ enableVisualEvents?(state:State):void;
+ acknowledgeVisualEvents?(state:State,serial:number):boolean;
  /** Elective encounters keep combat/daily clocks running while teaching waits. */
  teachingPaused?(state:State):boolean;
  /** Content choices must also work while simulation is suspended. */
@@ -59,7 +64,7 @@ export interface SemesterRunView<Content> {
  inheritance:InheritanceView;result:RuntimeOutcome|null;content:Content;
 }
 export interface SemesterView<Content> {
- /** The engine clones/freezes DTOs before publishing. Presentation receives
+ /** The engine freezes owned DTOs and clones other adapters before publishing. Presentation receives
   * neither live state, effect functions nor simulation RNG. */
  publish(view:Immutable<SemesterRunView<Content>>,interpolation:number):void;
  dispose?():void;

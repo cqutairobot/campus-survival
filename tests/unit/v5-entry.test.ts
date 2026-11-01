@@ -13,6 +13,7 @@ import {SAVE_KEY} from '../../src/save/storage';
 import {historicalSaves} from '../helpers/v5-saves';
 import {s2DailyChallenge} from '../../src/semesters/s2/daily';
 import type {SaveProfile,SemesterResult} from '../../src/semesters/profile';
+import {SemesterScene} from '../../src/semesters/s2/presentation/SemesterScene';
 
 const profile=()=>validateProfile(historicalSaves().v3)!;
 function hooks(initial=profile()){
@@ -34,6 +35,34 @@ function complete(engine:S2Engine){
  }
 }
 describe('v5 formal semester two entry',()=>{
+ it('reuses frozen world data, isolates mutable simulation fields and publishes a small independent HUD snapshot',()=>{
+  const {engine}=createS2Engine(profile(),86,hooks()),state=engine.runtime['state'],a=engine.runtime.read(),b=engine.runtime.read();
+  expect(a.content.world).toBe(state.world);expect(b.content.world).toBe(a.content.world);expect(a.calendar).toBe(engine.runtime.config.calendar);
+  const id=state.enemies.active[0],hp=a.content.enemies.hp[id];state.enemies.hp[id]--;state.weapons[0].level=2;
+  expect(a.content.enemies.hp[id]).toBe(hp);expect(a.content.weapons[0].level).toBe(1);expect(Object.isFrozen(a.content.player)).toBe(true);expect(Object.isFrozen(state.player)).toBe(false);
+  const hud=engine.readHUD(),notify=vi.fn(),unsubscribe=engine.subscribeHUD(notify);expect('enemies'in hud.content||'world'in hud.content||'visualEvents'in hud.content).toBe(false);
+  engine.advance(1/60);expect(notify).toHaveBeenCalledOnce();notify.mockClear();const unchanged=engine.readHUD();
+  for(let n=0;n<5;n++)engine.advance(1/60);expect(engine.readHUD()).toBe(unchanged);expect(notify).not.toHaveBeenCalled();engine.advance(1/60);expect(notify).toHaveBeenCalledOnce();
+  notify.mockClear();engine.pause();expect(notify).toHaveBeenCalledOnce();expect(engine.readHUD().pause?.reason).toBe('manual');unsubscribe();engine.dispose();
+ });
+ it('keeps interpolation frames on the previous DTO and queues events across multiple publications before rendering',()=>{
+  const {engine}=createS2Engine(profile(),86,hooks()),runtime=engine.runtime,project=vi.spyOn(runtime['rules'],'project'),scene=Object.create(SemesterScene.prototype) as SemesterScene;
+  Object.assign(scene,{destroyed:false,eventCursor:0,pendingEvents:[],controls:null});engine.attachView({publish:view=>scene.publish(view)});scene.attach(engine);
+  const view=engine.read();expect(engine.advance(1/120)).toBeCloseTo(.5);expect(engine.read()).toBe(view);expect(project).not.toHaveBeenCalled();expect(engine.advance(1/120)).toBeCloseTo(0);expect(project).toHaveBeenCalledOnce();
+  scene['pendingEvents'].length=0;const state=runtime['state'];for(const type of ['hit','warning','death'] as const){state.emit({type,x:0,y:0,size:24,color:0xffffff});runtime['publish']();}
+  expect(scene['pendingEvents'].map(record=>record.event.type)).toEqual(['hit','warning','death']);expect(runtime.read().content.visualEvents).toHaveLength(0);runtime['publish']();expect(scene['pendingEvents']).toHaveLength(3);engine.dispose();
+ });
+ it('delivers every visual event until acknowledged, including more than2000 between render frames',()=>{
+  const {engine}=createS2Engine(profile(),86,hooks()),runtime=engine.runtime,state=runtime['state'];engine.enableVisualEvents();
+  const rng=Object.values(state.streams).map(r=>r.state),start=runtime.read().content.visualEvents.at(-1)?.serial??0;
+  engine.acknowledgeVisualEvents(start);
+  for(let n=0;n<2100;n++)state.emit({type:n%3===0?'hit':n%3===1?'warning':'death',x:n,y:0,size:12,color:0xffffff});
+  const first=runtime.read().content.visualEvents;expect(first).toHaveLength(2100);expect(first.map(v=>v.serial)).toEqual(Array.from({length:2100},(_,n)=>start+n+1));
+  expect(engine.acknowledgeVisualEvents(first.at(-1)!.serial+1)).toBe(false);expect(runtime.read().content.visualEvents).toHaveLength(2100);
+  expect(engine.acknowledgeVisualEvents(first[999].serial)).toBe(true);expect(runtime.read().content.visualEvents).toEqual(first.slice(1000));expect(engine.acknowledgeVisualEvents(first[999].serial)).toBe(false);
+  state.emit({type:'warning',x:0,y:0,size:40,color:0xff0000});expect(engine.acknowledgeVisualEvents(first.at(-1)!.serial)).toBe(true);expect(runtime.read().content.visualEvents).toHaveLength(1);
+  expect(first).toHaveLength(2100);expect(Object.values(state.streams).map(r=>r.state)).toEqual(rng);engine.dispose();expect(state.visualEvents).toHaveLength(0);
+ });
  it('cleans failed initialization immediately instead of waiting for host unmount',async()=>{
   const engine=new GameEngine(toLegacyS1Save(freshProfile()),86),dispose=vi.spyOn(engine,'dispose'),release=vi.fn(),scene={initialize:async()=>{throw Error('fixture initialization');},destroy:release};
   await expect(initializeGameScene(scene,engine)).rejects.toThrow('fixture initialization');expect(release).toHaveBeenCalledOnce();expect(dispose).toHaveBeenCalledOnce();

@@ -23,6 +23,11 @@ export interface S1RunSnapshot extends RunSnapshot {readonly semesterId:'s1';rea
 export interface S2RunSnapshot extends RunSnapshot {readonly semesterId:'s2';readonly inheritance:InheritanceSnapshot}
 /** Clone before freezing: caller-owned profile/options remain editable and unmodified. */
 export function immutableSnapshot<T>(value:T):T{
+ return freezeSnapshot(structuredClone(value));
+}
+/** Freeze an owned DTO. Already immutable shared subtrees keep their identity;
+ * callers must copy every mutable simulation reference before using this. */
+export function freezeSnapshot<T>(value:T):T{
  const freeze=(v:unknown)=>{if(v&&typeof v==='object'&&!Object.isFrozen(v)){for(const child of Object.values(v))freeze(child);Object.freeze(v);}};
- const out=structuredClone(value);freeze(out);return out;
+ freeze(value);return value;
 }
