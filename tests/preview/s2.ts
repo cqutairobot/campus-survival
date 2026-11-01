@@ -118,6 +118,20 @@ async function semesterExtras(){
 }
 Object.assign((window as any).__S2_PREVIEW__,{semesterExtras});
 
+/** Layout-only practice session, independent of formal settlement evidence. */
+async function fullHUD(){
+ const [{createElement},{createRoot},{SemesterUI},{createS2Engine,prepareS2Scene}]=await Promise.all([import('react'),import('react-dom/client'),import('../../src/semesters/s2/presentation/SemesterUI'),import('../../src/semesters/s2/adapter')]);
+ for(const sheet of ['main','tokens','v4','p1','p2','v5'])await import(`../../src/ui/styles/${sheet}.css`);
+ const run=createS2Engine(profile,86,{publish(){},discover(){},settle:()=>profile,beginDaily(){}},'normal',undefined,{id:'layout-practice',createdAt:1,nickname:'布局',practice:true});
+ const s=(run.engine.runtime as any).state as ContentState;s.enemies.clear();s.level=100;s.god=true;
+ s.weapons.splice(0,s.weapons.length,...['s2:drone','s2:whiteboard','s2:spool','s2:printer','knife','laser'].map(id=>({id,level:5,rarity:0,evolved:false,kind:'base',instanceId:s.nextInstance()} as ContentSkill)));
+ s.passives.splice(0,s.passives.length,...['multi','haste','area','duration','s2:protocol','luck'].map(id=>({id,level:5,rarity:0,evolved:false} as ContentSkill)));s.relics.push('clockShard','redNotebook','s2:projectGrant');s.recalculateStats();(run.engine.runtime as any).publish();
+ const scene=await prepareS2Scene(run.engine,{host:document.querySelector<HTMLElement>('#game')!,settings,onStick(){}}),ui=document.createElement('div');ui.id='layout-ui';document.querySelector('#game')!.append(ui);const root=createRoot(ui);root.render(createElement(SemesterUI,{session:{semesterId:'s2',engine:run.engine,scene,snapshot:run.snapshot},open(){},menu(){},restart(){}}));
+ Object.assign((window as any).__S2_PREVIEW__,{layout:{engine:run.engine,state:s,dispose(){root.unmount();ui.remove();run.engine.dispose();},resources:()=>({loader:resources.debug,canvas:!!document.querySelector('canvas'),panels:document.querySelectorAll('.s2-build-panel').length})}});
+ return {weapons:s.weapons.length,passives:s.passives.length,relics:s.relics.length};
+}
+Object.assign((window as any).__S2_PREVIEW__,{fullHUD});
+
 async function semesterBoards(){
  const [{createElement},{createRoot},{DailyChallenge},{useApp,coordinator}]=await Promise.all([import('react'),import('react-dom/client'),import('../../src/ui/screens/DailyChallenge'),import('../../src/state/store')]);await coordinator.initialize();
  const p=validateProfile(profile)!,day=s2DailyChallenge('2026-10-31');p.selectedSemester='s2';p.daily.records=[{id:'same-record',semesterId:'s1',date:'2026-10-30',version:'daily-v3.1',rule:'piercing',character:'balanced',nickname:'第一学期旧成绩',score:12345,victory:true,completedWeeks:22,seconds:1100,build:['knife'],relics:[],averageCurse:0,createdAt:1},{id:'same-record',semesterId:'s2',date:'2026-10-31',version:day.version,rule:day.rule.id,character:day.rule.character,nickname:'第二学期样例成绩',score:77777,victory:true,completedWeeks:24,seconds:1500,build:['s2:drone','s2:protocol'],relics:['s2:bufferBadge'],averageCurse:1,createdAt:2}];

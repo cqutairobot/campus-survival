@@ -14,8 +14,21 @@ import {historicalSaves} from '../helpers/v5-saves';
 import {s2DailyChallenge} from '../../src/semesters/s2/daily';
 import type {SaveProfile,SemesterResult} from '../../src/semesters/profile';
 import {SemesterScene} from '../../src/semesters/s2/presentation/SemesterScene';
+import {createElement} from 'react';
+import {renderToStaticMarkup} from 'react-dom/server';
+import {CampusMap} from '../../src/ui/screens/CampusMap';
+import {Codex} from '../../src/ui/screens/Codex';
+import type {S2GameSession} from '../../src/app/GameHost';
+import {sessionPanelContext} from '../../src/ui/session-context';
 
 const profile=()=>validateProfile(historicalSaves().v3)!;
+it('shared panels read the active S2 session rather than stale S1 HUD or menu selection',()=>{
+ const h=hooks(),run=createS2Engine(h.saved,86,h),session={...run,semesterId:'s2',scene:{}} as S2GameSession;
+ expect(renderToStaticMarkup(createElement(CampusMap,{session} as never))).toContain('智慧教学楼外场');
+ expect(renderToStaticMarkup(createElement(Codex,{inGame:true,session} as never))).toContain('value="s2" selected=""');
+ const view=run.engine.read(),context=sessionPanelContext({...session,engine:{...run.engine,read:()=>({...view,content:{...view.content,week:9,weapons:[{id:'s2:whiteboard',level:5,rarity:0,evolved:false},{id:'laser',level:5,rarity:0,evolved:false}],passives:[{id:'s2:protocol',level:1,rarity:0,evolved:false}]}})}},h.saved);
+ expect(context.world).toBe(view.content.world);expect(context.regions).toEqual(run.snapshot.regions);expect(context.ready).toContain('s2:whiteboard');expect(context.fusionReady).toContain('s2:holoReview');run.engine.dispose();
+});
 function hooks(initial=profile()){
  let saved=initial;const commits:SemesterResult[]=[];
  return{get saved(){return saved;},commits,publish:vi.fn(),discover:vi.fn(),beginDaily:vi.fn(),settle:(result:SemesterResult)=>{commits.push(result);return saved=settleS2Profile(saved,result);}};

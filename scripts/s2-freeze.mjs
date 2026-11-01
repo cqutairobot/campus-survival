@@ -2,7 +2,7 @@ import {readFileSync,existsSync,statSync} from 'node:fs';
 import {resolve,dirname,relative,join} from 'node:path';
 import {stripTypeScriptTypes} from 'node:module';
 import {createHash} from 'node:crypto';
-export const S2_ACTIVE_BASELINE='freeze/s2-v5.0.5.json';
+export const S2_ACTIVE_BASELINE='freeze/s2-v5.0.6.json';
 export const S2_ENTRY_ENTRIES=['vite.config.ts','src/app/App.tsx','src/app/GameHost.tsx','src/app/semester-engine.ts','src/state/store.ts','src/semesters/s2/adapter.ts','src/semesters/s2/presentation/SemesterUI.tsx','src/semesters/s2/presentation/SemesterScene.ts','src/semesters/s2/presentation/SettlementPanel.ts','src/ui/screens/Semesters.tsx','src/ui/screens/DailyChallenge.tsx','src/ui/screens/Panels.tsx'];
 export const S2_FREEZE_ENTRIES=[
  'src/semesters/s2/createRun.ts','src/semesters/s2/settlement.ts','src/semesters/s2/daily.ts','src/semesters/s2/rating.ts','src/semesters/s2/achievements.ts','src/semesters/inheritance.ts','src/save/v5/profile.ts','src/save/v5/repository.ts','src/semesters/s2/release.ts',
