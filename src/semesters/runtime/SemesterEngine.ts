@@ -60,7 +60,7 @@ export class SemesterEngine<State,Content> {
   if(this.disposed)return 0;
   if(!Number.isFinite(deltaSeconds)||deltaSeconds<0)throw Error('Frame delta must be finite and nonnegative');
   if(!this.running){this.loop.reset();return 0;}
-  let stepped=false;const alpha=this.loop.advance(deltaSeconds,()=>{stepped=true;this.step();});
+  let stepped=false;const alpha=this.loop.advance(deltaSeconds,()=>{stepped=true;this.step();return this.running;});
   if(!this.running)this.loop.reset();
   this.publish(this.running?alpha:0,!stepped);return this.running?alpha:0;
  }
@@ -92,7 +92,7 @@ export class SemesterEngine<State,Content> {
   this.rules.assessment(this.state,immutableSnapshot({stage,assessment:this.assessment!,clock}),{...this.services,damageAfterInheritance:amount=>this.inheritance.absorb(amount,clock.combatSeconds),experienceAfterInheritance:amount=>this.inheritance.experience(amount,clock.combatSeconds)});
  }
  private setGate(kind:'assessmentIntro'|'assessmentReward'){
-  this.phase=kind;this.gate={kind,token:++this.serial};
+  this.rules.clearInput?.(this.state);this.loop.reset();this.phase=kind;this.gate={kind,token:++this.serial};
  }
  /** UI waits use tokens: stale/repeated acknowledgements cannot spawn or reward twice. */
  acknowledge(token:number){
@@ -107,7 +107,9 @@ export class SemesterEngine<State,Content> {
  /** Plain commands cross the same simulation boundary as fixed steps. Manual
   * and loading pauses cannot be dismissed by a late content choice. */
  dispatch(command:unknown){
-  if(this.disposed||this.result||this.suspension&&['manual','loading'].includes(this.suspension.reason))return false;
+  if(this.disposed||this.result)return false;
+  if(command&&typeof command==='object'&&'type'in command&&command.type==='move'&&'x'in command&&command.x===0&&'y'in command&&command.y===0){this.rules.clearInput?.(this.state);return true;}
+  if(this.suspension&&['manual','loading'].includes(this.suspension.reason))return false;
   const outcome=this.rules.command?.(this.state,structuredClone(command),this.services);
   if(!outcome?.accepted)return false;
   if(outcome.resume&&this.suspension)this.resume(this.suspension.token);
@@ -116,7 +118,7 @@ export class SemesterEngine<State,Content> {
  }
  pause(reason:PauseReason='manual'){
   if(this.disposed||this.phase==='finished')return null;
-  if(!this.suspension){this.suspension={reason,token:++this.serial};this.loop.reset();this.publish();}
+  if(!this.suspension){this.rules.clearInput?.(this.state);this.suspension={reason,token:++this.serial};this.loop.reset();this.publish();}
   return this.suspension.token;
  }
  resume(token:number){

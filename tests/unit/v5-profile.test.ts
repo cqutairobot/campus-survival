@@ -24,6 +24,12 @@ class Locks implements SaveLocks {
 }
 function result(id='new-run'):RunResult{const engine=new GameEngine(freshSave(),17);engine.finish(false);const r={...engine.result!,id,credits:20};engine.dispose();return r;}
 describe('v5 profile core boundaries',()=>{
+ it('keeps legacy best ratings and daily scores while accepting a new rules group',()=>{
+  const p=validateProfile(historicalSaves().v3)!,old={grade:'S' as const,value:99,ratingVersion:'rating-s2-v0',rulesVersion:'campus-s2-v0',semesterId:'s2' as const,runId:'old-best'};p.semesters.s2.bestRating=old;
+  p.daily.records.push({...p.daily.records[0],id:'permanent-old',date:'2020-01-01',version:'daily-v4.0.1'});
+  const r:SemesterResult={...result('new-version'),dailyRecord:undefined,semesterId:'s2',settlement:{eligible:true,assessmentsPassed:0,finalRewardCommitted:false},manifest:{...result().manifest!,mode:'normal',rulesVersion:'campus-s2-v5.0.1'},weapons:[{id:'s2:drone'}],passives:[]};
+  const out=settleS2Profile(validateProfile(p)!,r);expect(out.settledRuns).toContain(r.id);expect(out.semesters.s2.bestRatings?.['campus-s2-v0|rating-s2-v0']).toEqual(old);expect(out.semesters.s2.bestRatings?.['campus-s2-v5.0.1|rating-s2-v1']?.runId).toBe(r.id);expect(out.daily.records.some(d=>d.id==='permanent-old')).toBe(true);expect(validateProfile(out)).toEqual(out);
+ });
  it('6.5 historical matrix preserves original bytes, fields, settings, dedup and reloads idempotently',()=>{
   for(const [version,input] of Object.entries(historicalSaves())){
    const raw=JSON.stringify(input),before=structuredClone(input),old=validateSave(input)!,profile=validateProfile(input,raw)!;
@@ -62,11 +68,11 @@ describe('v5 profile core boundaries',()=>{
  });
  it('S1/S2 settlements preserve the other semester, merge wallet deltas, isolate daily/practice and dedup globally',()=>{
   let p=validateProfile(historicalSaves().v3)!;p.discoveredEnemies.push('s2:bike');p.fusions.push('s2:fieldHub');
-  const r=result('s1'),s1stats=structuredClone(p.stats);const r2:SemesterResult={...result('s2'),dailyRecord:undefined,semesterId:'s2',settlement:{eligible:true,assessmentsPassed:3,finalRewardCommitted:true},manifest:{...result().manifest!,mode:'normal',rulesVersion:'campus-s2-v5.0.0'},completedWeeks:24,week:24,victory:true,credits:30,weapons:[{id:'s2:drone'}],passives:[]};
+  const r=result('s1'),s1stats=structuredClone(p.stats);const r2:SemesterResult={...result('s2'),dailyRecord:undefined,semesterId:'s2',settlement:{eligible:true,assessmentsPassed:3,finalRewardCommitted:true},manifest:{...result().manifest!,mode:'normal',rulesVersion:'campus-s2-v5.0.1'},completedWeeks:24,week:24,victory:true,credits:30,weapons:[{id:'s2:drone'}],passives:[]};
   const second=settleS2Profile(p,r2);expect(second.stats).toEqual(s1stats);expect(second.semesters.s2.stats).toMatchObject({runs:1,wins:1,bestWeek:24});expect(second.credits).toBe(167);expect(settleS2Profile(second,r2)).toBe(second);expect(settleS1Profile(second,{...r,id:'s2'})).toBe(second);
   const s2=structuredClone(second.semesters.s2);p=settleS1Profile(second,r);expect(p.semesters.s2).toEqual(s2);expect(p.credits).toBe(187);expect(p.fusions).toContain('s2:fieldHub');expect(p.discoveredEnemies).toContain('s2:bike');
   expect(settleS2Profile(p,{...r2,id:'practice',practice:true})).toBe(p);expect(settleS2Profile(p,{...r2,id:'debug',debug:true})).toBe(p);
-  const daily=settleS2Profile(p,{...r2,id:'daily-s2',manifest:{...r2.manifest!,mode:'daily',rulesVersion:'daily-s2-v5.0.0',date:'2026-10-31'},dailyRecord:{...p.daily.records[0],id:'daily-s2',semesterId:'s2',date:'2026-10-31',version:'daily-s2-v5.0.0'}});expect(daily.stats).toEqual(p.stats);expect(daily.semesters.s2.stats).toEqual(s2.stats);expect(daily.credits).toBe(p.credits);expect(toLegacyS1Save(daily).daily.completedDates).not.toContain('2026-10-31');
+  const daily=settleS2Profile(p,{...r2,id:'daily-s2',manifest:{...r2.manifest!,mode:'daily',rulesVersion:'daily-s2-v5.0.1',date:'2026-10-31'},dailyRecord:{...p.daily.records[0],id:'daily-s2',semesterId:'s2',date:'2026-10-31',version:'daily-s2-v5.0.1'}});expect(daily.stats).toEqual(p.stats);expect(daily.semesters.s2.stats).toEqual(s2.stats);expect(daily.credits).toBe(p.credits);expect(toLegacyS1Save(daily).daily.completedDates).not.toContain('2026-10-31');
   for(let i=0;i<12;i++)p=settleS1Profile(p,{...r,id:`summary-${i}`});expect(p.semesters.s1.recentRuns).toHaveLength(10);expect(validateProfile(p)).toEqual(p);
  });
  it('backs up raw text before writes, refuses quota/readback/future failures, recovers corrupt/fallback explicitly',async()=>{

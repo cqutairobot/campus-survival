@@ -148,7 +148,7 @@ export class GameScene {
   private animate=(now:number)=>{
     if(this.destroyed||!this.ready)return;this.animation=requestAnimationFrame(this.animate);
     const delta=Math.max(0,(now-this.lastTime)/1000);this.lastTime=now;this.elapsed+=delta;
-    const alpha=this.loop.advance(delta,dt=>this.game.tick(dt));
+    const alpha=this.loop.advance(delta,dt=>{const running=this.game.phase==='playing';this.game.tick(dt);return running&&this.game.phase==='playing';});
     if(document.hidden){this.loop.reset();return;}
     const renderDelta=this.lastRender?(now-this.lastRender)/1000:delta;this.lastRender=now;
     this.trackPerformance(renderDelta);this.render(Math.min(.1,renderDelta),alpha);

@@ -32,6 +32,13 @@ function targets(s:ContentState){for(const radius of [35,75,150,240])for(let n=0
 function finishReward(s:ContentState){const token=s.rewards.token;expect(s.command({type:'chestDone',token}).accepted).toBe(true);if(s.phase==='evolution')expect(s.command({type:'evolutionDone',token}).accepted).toBe(true);}
 
 describe('v5 bounded legacy content port',()=>{
+ it('manual/reward pauses clear movement and velocity immediately and never resume from a neutral move',()=>{
+  let state!:ContentState;const rules=legacyContentRules(content),g=new SemesterEngine({snapshot:opening(),config:S2_RUNTIME_CONFIG,rules:{...rules,create:s=>state=rules.create(s)},view:{publish(){}}});
+  g.dispatch({type:'move',x:1,y:0});g.advance(1/60);const token=g.pause('manual')!,before=g.read();
+  expect([state.inputX,state.inputY,state.player.vx,state.player.vy]).toEqual([0,0,0,0]);expect(g.dispatch({type:'move',x:0,y:0})).toBe(true);expect(g.dispatch({type:'move',x:1,y:0})).toBe(false);expect(g.read().pause?.token).toBe(token);
+  g.advance(100);expect(g.read().clock).toEqual(before.clock);g.resume(token);const x=state.player.x;g.advance(1/120);expect(state.player.x).toBe(x);g.advance(1/120);expect(state.player.x).toBe(x);
+  state.openChest();const reward=g.pause('reward')!;expect(g.dispatch({type:'move',x:0,y:0})).toBe(true);expect(g.read().pause?.token).toBe(reward);g.dispose();
+ });
  it('retains complete ordered definitions and every level/rarity/evolution parameter; lookups honor an injected directory',()=>{
   expect([content.weapons.length,content.weapons.filter(w=>w.evolution).length,content.fusions.length,content.enemies.length,content.passives.length]).toEqual([22,22,6,25,16]);
   for(const [actual,original] of [[content.weapons,WEAPONS],[content.passives,PASSIVES],[content.fusions,FUSIONS],[content.enemies,ENEMIES],[content.characters,CHARACTERS],[content.pickups,PICKUPS],[content.ultimates,ULTIMATES],[content.relics,RELICS],[content.rarityMultipliers,RARITY_MULTIPLIERS]] as const){expect(actual).toEqual(original);expect(actual).not.toBe(original);}

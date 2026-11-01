@@ -11,6 +11,22 @@ import {TALENTS} from '../../src/data/catalog';
 import type {DailyRecord} from '../../src/types';
 const record=(patch:Partial<DailyRecord>={}):DailyRecord=>({id:'one',date:'2026-10-30',version:DAILY_RULES_VERSION,rule:'piercing',character:'balanced',nickname:'同学',score:100,victory:false,completedWeeks:1,seconds:100,build:['knife'],relics:[],averageCurse:0,createdAt:1,...patch});
 describe('v3 P2 每日规则与最终交付边界',()=>{
+ it('固定步在暂停边界丢弃积压，恢复从新的半帧开始',()=>{
+  const loop=new FixedLoop();let ticks=0;loop.advance(.1,()=>{ticks++;return false;});expect(ticks).toBe(1);loop.advance(1/120,()=>{ticks++;});expect(ticks).toBe(1);loop.advance(1/120,()=>{ticks++;});expect(ticks).toBe(2);
+ });
+ it('S1 截止前可胜，截止同帧及死亡优先；奖励确认不能改写截止结果',()=>{
+  for(const [remaining,dead,victory] of [[2/60,false,true],[1/60,false,false],[2/60,true,false]] as const){
+   const g=new GameEngine(freshSave(),86,undefined,{mode:'daily',date:'2026-10-30'});g.enemies.clear();g.weapons.length=0;g.startBoss(2);g.send({type:'introDone'});g.tick(1/60);g.hitStop=0;g.combatTime=1200-remaining;g.semesterTime=880;
+   g.hitEnemy(g.bossEnemy,1e9,'knife',0,0,0,false);if(dead)g.player.hp=0;g.tick(1/60);
+   if(victory){expect(g.phase).toBe('bossDeath');g.send({type:'bossDeathDone'});g.tick(1/60);g.send({type:'chestDone',token:g.rewards.token});g.tick(1/60);}
+   expect(g.result?.victory).toBe(victory);const result=g.result;g.send({type:'chestDone',token:g.rewards.token});g.tick(1/60);expect(g.result).toBe(result);g.dispose();
+  }
+ });
+ it('连续宝箱与演出使用各自令牌，旧消息不能关闭下一箱',()=>{
+  const g=new GameEngine(freshSave(),86);g.openChest();const token=g.rewards.token;g.rewards.chests.push(1);
+  g.send({type:'chestDone',token});g.send({type:'chestDone',token});g.tick(1/60);expect(g.phase).toBe('chest');expect(g.rewards.token).not.toBe(token);
+  g.send({type:'chestDone',token});g.send({type:'evolutionDone',token});g.tick(1/60);expect(g.phase).toBe('chest');g.send({type:'chestDone',token:g.rewards.token});g.tick(1/60);expect(g.phase).toBe('playing');g.dispose();
+ });
  it('北京时间零点切日、固定 FNV 种子、版本变化分榜；日期非法时拒绝',()=>{expect(beijingDate(new Date('2026-10-30T15:59:59Z'))).toBe('2026-10-30');expect(beijingDate(new Date('2026-10-30T16:00:00Z'))).toBe('2026-10-31');expect(dailyChallenge('2026-10-30').seed).toBe(dailySeed('2026-10-30'));expect(dailySeed('2026-10-30','next')).not.toBe(dailySeed('2026-10-30'));expect(()=>dailyChallenge('2026-02-30')).toThrow();});
  it('全部六套规则可达，标准 Lv.3 天赋和完整内容池与个人养成、URL 种子独立',()=>{const rules=new Set<string>();for(let n=1;n<=31;n++)rules.add(dailyChallenge(`2026-10-${String(n).padStart(2,'0')}`).rule.id);expect([...rules].sort()).toEqual(DAILY_RULES.map(r=>r.id).sort());const save=freshSave();save.talents={hp:5,damage:5};const a=createManifest(save,1,'daily','2026-10-30'),b=createManifest(freshSave(),999,'daily','2026-10-30');expect(a).toEqual(b);expect([a.weapons.length,a.passives.length,a.regions.length]).toEqual([22,16,6]);expect(TALENTS.every(t=>a.talents[t.id]===3)).toBe(true);save.unlocks.weapons.push('blueprint');expect(createManifest(freshSave(),123).weapons).not.toContain('blueprint');});
  it('八条随机流独立，视觉和窗口变化不影响玩法序列',()=>{const a=randomStreams(1),b=randomStreams(1);for(let n=0;n<10;n++)a.spawn.next();for(const key of ['ai','combat','drop','draft','event','affix','relic'] as const)expect(a[key].next()).toBe(b[key].next());});

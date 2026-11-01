@@ -31,7 +31,7 @@ export function pilot(g:GameEngine,strategy:Strategy='balanced') {
     g.send({type:'choose',index:score.indexOf(Math.max(...score))});return;
   }
   const command=g.phase==='bossIntro'?'introDone':g.phase==='bossDeath'?'bossDeathDone':g.phase==='chest'?'chestDone':g.phase==='evolution'?'evolutionDone':null;
-  if(command){g.send({type:command});return;}
+  if(command){g.send(command==='chestDone'||command==='evolutionDone'?{type:command,token:g.rewards.token}:{type:command});return;}
   if(g.phase!=='playing'||g.frame%6!==0)return;
   const p=g.player,e=g.enemies;let tx=3072+Math.cos(g.combatTime*.023)*280,ty=3072+Math.sin(g.combatTime*.023)*240,closest=Infinity;
   for(const id of g.drops.active){const d=g.drops.data[id],dist=distanceSq(p.x,p.y,d.x,d.y),weight=d.kind==='chest'?.04:d.kind==='heal'&&p.hp<g.stats.maxHp*.8?.1:1;if(dist*weight<closest&&!isBlocked(d.x,d.y,20)){closest=dist*weight;tx=d.x;ty=d.y;}}

@@ -1,5 +1,5 @@
-export const DAILY_RULES_VERSION='daily-v4.0.1';
-export const RULES_VERSION='campus-v4.0.1';
+export const DAILY_RULES_VERSION='daily-v5.0.1';
+export const RULES_VERSION='campus-v5.0.1';
 export const DAILY_RULES=[
  {id:'piercing',name:'穿透学期',character:'balanced',positive:'适用武器数量 +1',pressure:'普通刷怪 +20%'},
  {id:'lastMinute',name:'最后五分钟',character:'analysis',positive:'大招充能 +35%',pressure:'敌弹速度 +20%'},

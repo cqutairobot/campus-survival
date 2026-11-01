@@ -6,7 +6,7 @@ export type SemesterId='s1'|'s2';
 export interface Graduation {source:'legacyWins'|'legacyAchievement'|'normalRun';runId?:string}
 export interface Rating {grade:'S'|'A'|'B'|'C';value:number;ratingVersion:string;rulesVersion:string;semesterId:SemesterId;runId:string}
 export interface RunSummary {id:string;semesterId:SemesterId;rulesVersion:string;victory:boolean;week:number;seconds:number;build:string[];rating:Rating|null}
-export interface SemesterHistory {graduation:Graduation|null;bestRating:Rating|null;recentRuns:RunSummary[]}
+export interface SemesterHistory {graduation:Graduation|null;bestRating:Rating|null;bestRatings?:Record<string,Rating>;recentRuns:RunSummary[]}
 export interface SemesterDailyRecord extends DailyRecord {semesterId:SemesterId;rating?:Rating|null}
 /** Root wallet, characters, talents, settings, dedup IDs and collections are shared.
  * Root unlocks/achievements/stats describe S1 only. Never write S2 weeks into them. */

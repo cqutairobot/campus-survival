@@ -50,6 +50,8 @@ export interface SemesterRules<State,Content> {
  /** A runtime gate cannot skip a content reward or its presentation. */
  canAcknowledge?(state:State,kind:'assessmentIntro'|'assessmentReward'):boolean;
  canResume?(state:State,reason:PauseReason):boolean;
+ /** Clear movement at every suspension boundary, before the next fixed step. */
+ clearInput?(state:State):void;
  dispose?(state:State):void;
 }
 export interface RuntimeOutcome {

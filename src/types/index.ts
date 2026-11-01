@@ -65,7 +65,8 @@ export interface HUD {
   reward:{token:number;options:RewardOption[]}|null;relics:string[];interaction:{name:string;progress:number;locked?:string}|null;manifest:RunManifest|null;score:number;eligible:boolean;directions:{name:string;angle:number}[];
 }
 export type GameCommand =
-  | { type: 'pause' | 'resume' | 'chestDone' | 'evolutionDone' | 'introDone' | 'bossDeathDone' | 'abandon' | 'step' | 'magnet' | 'bomb' | 'chest'|'ultimate'|'ultimateFull'|'contract'|'unlockRun' }
+  | {type:'chestDone'|'evolutionDone';token?:number}
+  | { type: 'pause' | 'resume' | 'introDone' | 'bossDeathDone' | 'abandon' | 'step' | 'magnet' | 'bomb' | 'chest'|'ultimate'|'ultimateFull'|'contract'|'unlockRun' }
   | {type:'interact';held:boolean}
   | {type:'chooseReward';token:number;index:number}
   | { type: 'choose'; index: number;token?:number }

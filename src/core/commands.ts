@@ -7,7 +7,8 @@ export const DEBUG_COMMANDS=new Set(['step','magnet','bomb','chest','week','boss
 export function validCommand(value:unknown):value is GameCommand{
  if(typeof value!=='object'||value===null||!('type'in value)||typeof value.type!=='string')return false;
  const v=value as Record<string,unknown>,type=value.type;
- if(['pause','resume','chestDone','evolutionDone','introDone','bossDeathDone','abandon','step','magnet','bomb','chest','ultimate','ultimateFull','contract','unlockRun'].includes(type))return true;
+ if(['pause','resume','introDone','bossDeathDone','abandon','step','magnet','bomb','chest','ultimate','ultimateFull','contract','unlockRun'].includes(type))return true;
+ if(type==='chestDone'||type==='evolutionDone')return Number.isSafeInteger(v.token)&&Number(v.token)>0;
  if(type==='interact')return typeof v.held==='boolean';
  if(type==='chooseReward')return Number.isSafeInteger(v.token)&&Number.isInteger(v.index)&&Number(v.index)>=-1&&Number(v.index)<64;
  if(type==='choose')return Number.isInteger(v.index)&&Number(v.index)>=0&&Number(v.index)<3&&(v.token===undefined||Number.isSafeInteger(v.token));

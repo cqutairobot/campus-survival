@@ -86,7 +86,7 @@ describe('v5 formal semester two entry',()=>{
   const first=await loadSemesterRuntime('s1',p),second=await loadSemesterRuntime('s2',p);
   expect('createS1Engine'in first&&first.createS1Engine).toBe(createS1Engine);expect('createS2Engine'in second&&second.createS2Engine).toBe(createS2Engine);expect(SEMESTERS.s2.runtimeAvailable).toBe(true);
   const a=createGameEngine(first,p,86,legacyHooks,s2Hooks,'normal'),b=createGameEngine(second,p,86,legacyHooks,s2Hooks,'normal');
-  expect(a).toMatchObject({semesterId:'s1',snapshot:{semesterId:'s1'}});expect(a.engine).toBeInstanceOf(GameEngine);expect(b).toMatchObject({semesterId:'s2',snapshot:{semesterId:'s2',rulesVersion:'campus-s2-v5.0.0'}});expect('runtime'in b.engine&&b.engine.runtime).toBeInstanceOf(SemesterEngine);expect(s2Hooks.beginDaily).not.toHaveBeenCalled();a.engine.dispose();b.engine.dispose();
+  expect(a).toMatchObject({semesterId:'s1',snapshot:{semesterId:'s1'}});expect(a.engine).toBeInstanceOf(GameEngine);expect(b).toMatchObject({semesterId:'s2',snapshot:{semesterId:'s2',rulesVersion:'campus-s2-v5.0.1'}});expect('runtime'in b.engine&&b.engine.runtime).toBeInstanceOf(SemesterEngine);expect(s2Hooks.beginDaily).not.toHaveBeenCalled();a.engine.dispose();b.engine.dispose();
   await expect(loadSemesterRuntime('s2',freshProfile())).rejects.toThrow('普通模式');
  });
  it('settles victory only after the final reward receipt, preserving S1 and committing once',()=>{
@@ -100,7 +100,7 @@ describe('v5 formal semester two entry',()=>{
  });
  it('locks the frozen daily date/seed/assignment independently of personal choices and times out at1500s',()=>{
   const p=profile(),day=s2DailyChallenge('2026-10-31'),snapshot=createS2Snapshot(p,7,'daily',day.date),h=hooks(p),{engine}=createS2Engine(p,999,h,'daily',day.date);
-  expect(snapshot).toEqual(engine.snapshot);expect(snapshot).toMatchObject({seed:day.seed,date:day.date,dailyRule:day.rule.id,rulesVersion:'daily-s2-v5.0.0',character:day.rule.character});expect(snapshot.weapons).toHaveLength(26);expect(snapshot.passives).toHaveLength(20);expect(snapshot.regions).toHaveLength(9);expect(Object.values(snapshot.talents)).toEqual(Array(8).fill(3));expect(Object.isFrozen(snapshot.inheritance)).toBe(true);expect(h.beginDaily).toHaveBeenCalledExactlyOnceWith(day.id);
+  expect(snapshot).toEqual(engine.snapshot);expect(snapshot).toMatchObject({seed:day.seed,date:day.date,dailyRule:day.rule.id,rulesVersion:'daily-s2-v5.0.1',character:day.rule.character});expect(snapshot.weapons).toHaveLength(26);expect(snapshot.passives).toHaveLength(20);expect(snapshot.regions).toHaveLength(9);expect(Object.values(snapshot.talents)).toEqual(Array(8).fill(3));expect(Object.isFrozen(snapshot.inheritance)).toBe(true);expect(h.beginDaily).toHaveBeenCalledExactlyOnceWith(day.id);
   p.selected='balanced';p.talents={};p.inheritance.choice={id:'notes'};expect(createS2Snapshot(p,1,'daily',day.date)).toEqual(snapshot);
   engine.runtime['combatTicks']=89999;engine.advance(1/60);expect(engine.read().result).toMatchObject({reason:'timeout',seconds:1500});expect(h.saved.daily.records.find(r=>r.id===engine.result!.id)).toMatchObject({semesterId:'s2',version:day.version,date:day.date,seconds:1500,rating:{ratingVersion:'rating-s2-v1'}});expect(h.saved.stats).toEqual(profile().stats);expect(h.saved.semesters.s2.stats.runs).toBe(0);engine.dispose();
  });

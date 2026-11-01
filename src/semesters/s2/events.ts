@@ -21,7 +21,7 @@ const LESSONS=['s2:deliveryDay','s2:networkMaintenance','s2:jointExhibit'] as co
 /** One run-local event. All delayed attacks carry this event's generation;
  * cancellation is distinct from completion and cannot grant an end reward. */
 export class SemesterEvents {
- active:CampusEvent|null=null;private serial=0;private next=110;private last='';private taught=new Set<number>();private rotation:SemesterEventId[]=[];
+ active:CampusEvent|null=null;private serial=0;private next=110;private nextBlackout=90;private last='';private taught=new Set<number>();private rotation:SemesterEventId[]=[];
  constructor(private g:ContentState){}
  get kind(){return this.active&&this.active.warning<=0?this.active.kind:null;}
  sourceAlive(id:string,generation:number){return this.active?.kind===id&&this.active.generation===generation;}
@@ -41,7 +41,8 @@ export class SemesterEvents {
    // New-mechanism introductions retain their first 12s of isolation.
    if(!g.ordinarySpawnsAllowed||g.phase!=='playing'||g.semesterTime-(g.week-1)*40<14)return;
    if(g.week>=lessonWeek&&!this.taught.has(chapter)){if(this.start(LESSONS[chapter-1]))this.taught.add(chapter);return;}
-   if(g.week>=3&&g.semesterTime>=this.next){this.next=g.semesterTime+g.streams.event.range(85,105);if(!this.rotation.length)this.rotation=SEMESTER_EVENTS.filter(d=>d.from<=g.week).map(d=>d.id).sort((x,y)=>x<y?-1:x>y?1:0);const eligible=this.rotation.filter(id=>id!==this.last);if(eligible.length){const id=eligible[g.streams.event.int(0,eligible.length-1)];this.rotation.splice(this.rotation.indexOf(id),1);this.start(id);}}return;
+   if(g.manifest.dailyRule==='nightRun'&&g.semesterTime>=this.nextBlackout){if(this.start('blackout'))this.nextBlackout=(Math.floor(g.semesterTime/90)+1)*90;return;}
+   if(g.week>=3&&g.semesterTime>=this.next){this.next=g.semesterTime+g.streams.event.range(85,105);if(!this.rotation.length)this.rotation=SEMESTER_EVENTS.filter(d=>d.from<=g.week&&!(g.manifest.dailyRule==='nightRun'&&d.id==='blackout')).map(d=>d.id).sort((x,y)=>x<y?-1:x>y?1:0);const eligible=this.rotation.filter(id=>id!==this.last);if(eligible.length){const id=eligible[g.streams.event.int(0,eligible.length-1)];this.rotation.splice(this.rotation.indexOf(id),1);this.start(id);}}return;
   }
   if(a.warning>0){a.warning=Math.max(0,(a.started-g.frame)/60);if(a.warning>0)return;
    a.hurtCount=g.metrics.hurtCount;

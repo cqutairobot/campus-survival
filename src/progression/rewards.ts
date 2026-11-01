@@ -8,7 +8,7 @@ export class RewardSystem{
  readonly chests:number[]=[];serial=0;token=0;options:RewardOption[]=[];private count=1;private boss=false;private contract=false;private committed=false;private evolution='';private fusion='';
  constructor(private g:GameEngine){}
  nextToken(){return++this.serial;}
- get snapshot(){return this.g.phase==='draft'?{token:this.g.draftToken,options:[]}:this.options.length?{token:this.token,options:this.options}:null;}
+ get snapshot(){return this.g.phase==='draft'?{token:this.g.draftToken,options:[]}:this.options.length||['chest','evolution'].includes(this.g.phase)?{token:this.token,options:this.options}:null;}
  openChest(count=1,boss=false,preferred=''){const g=this.g;if(['result','chest','evolution','reward','contract'].includes(g.phase))return;this.count=count;this.boss=boss;this.contract=false;this.committed=false;this.evolution='';this.fusion='';this.token=this.nextToken();
   const evolutions=evolutionReady(g.weapons,g.passives).sort((a,b)=>Number(b.id===preferred)-Number(a.id===preferred)),fusions=fusionCandidates(g.weapons,g.week,g.progress.fusions.length,g.consumed);
   this.options=[...fusions.map(f=>({id:f.id,kind:'fusion' as const,title:f.name,description:`消耗 ${f.components.map(id=>WEAPON_MAP[id].name).join(' + ')}，得到 ${f.name}，释放一个武器槽。品质取较高值，被动保留。${f.description}`})),...evolutions.map(w=>({id:w.id,kind:'evolution' as const,title:WEAPON_MAP[w.id].evolution.name,description:`${skillName(w)} Lv.5 → ${WEAPON_MAP[w.id].evolution.description}`})),{id:'upgrade',kind:'upgrade',title:`普通强化 ×${count}`,description:'强化已有技能；无法强化时，每份回复 15 HP，满血转为结算绩点 +1。'}];
@@ -23,7 +23,7 @@ export class RewardSystem{
   else for(let n=0;n<this.count;n++){const pool=[...g.weapons,...g.passives].filter(s=>s.level<5&&!s.evolved&&s.kind!=='fusion');if(pool.length){const skill=pool[g.draftRandom.int(0,pool.length-1)];skill.level++;names.push(`${skillName(skill)} Lv.${skill.level}`);g.weaponSystem.reset(skill.id);}else if(g.player.hp<g.stats.maxHp){g.heal(15);names.push('回复 15 HP');}else{g.bonusCredits++;names.push('结算绩点 +1');}}
   g.recalculateStats();g.chest={names,evolvedId:this.evolution||undefined,fusionId:this.fusion||undefined};g.setPhase('chest');
  }
- finishChest(){const g=this.g;if(g.phase!=='chest')return;const id=this.fusion||this.evolution;if(id){const def=WEAPON_MAP[id];g.emit({type:this.fusion?'fusion':'evolution',x:g.player.x,y:g.player.y,color:parseInt(def.color.slice(1),16),size:500,text:this.fusion?def.name:def.evolution.name,weapon:def.id,evolved:!this.fusion,duration:this.fusion?1.5:1.2});g.setPhase('evolution');}else this.afterReward();}
+ finishChest(token?:number){const g=this.g;if(g.phase!=='chest'||token!==this.token)return;const id=this.fusion||this.evolution;if(id){const def=WEAPON_MAP[id];g.emit({type:this.fusion?'fusion':'evolution',x:g.player.x,y:g.player.y,color:parseInt(def.color.slice(1),16),size:500,text:this.fusion?def.name:def.evolution.name,weapon:def.id,evolved:!this.fusion,duration:this.fusion?1.5:1.2});g.setPhase('evolution');}else this.afterReward();}
  afterReward(){const g=this.g;this.evolution='';this.fusion='';g.chest=null;if(this.boss){this.boss=false;g.bossActive=false;if(g.bossNumber===2){g.finish(true);return;}}g.setPhase('playing');g.handlePending();}
  clear(){this.chests.length=0;this.options=[];this.boss=false;this.committed=true;}
 }

@@ -1,7 +1,8 @@
 import {CHARACTERS,ENEMIES,PASSIVES,WEAPONS,CONTENT_VERSION} from '../../data/catalog';
 import {FUSIONS} from '../../data/fusions';
 import {RELICS} from '../../data/relics';
-import {DAILY_RULES} from '../../data/daily';
+import {DAILY_RULES,DAILY_RULES_VERSION} from '../../data/daily';
+import {SEMESTERS} from '../../semesters/registry';
 import {freshSave,settleRun,validateSave} from '../storage';
 import {recoveryDigest} from '../recovery';
 import {compareDaily} from '../../challenges/scoring';
@@ -52,13 +53,16 @@ function history(v:unknown,semesterId:SemesterId):SemesterHistory{
  if(!object(v))return emptyHistory();
  const recentRuns:RunSummary[]=[];
  if(Array.isArray(v.recentRuns))for(const r of v.recentRuns){if(!object(r)||typeof r.id!=='string'||typeof r.rulesVersion!=='string'||r.semesterId!==semesterId||recentRuns.some(x=>x.id===r.id))continue;recentRuns.push({id:r.id,semesterId,rulesVersion:r.rulesVersion,victory:r.victory===true,week:number(r.week,semesterId==='s1'?22:24),seconds:number(r.seconds),build:ids(r.build,[...all('weapons'),...all('passives'),...all('fusions')]).slice(0,12),rating:rating(r.rating,semesterId)});}
- return {graduation:graduation(v.graduation),bestRating:rating(v.bestRating,semesterId),recentRuns:recentRuns.slice(-10)};
+ const bestRating=rating(v.bestRating,semesterId),bestRatings:Record<string,Rating>={};
+ if(object(v.bestRatings))for(const entry of Object.values(v.bestRatings)){const r=rating(entry,semesterId);if(r){const key=`${r.rulesVersion}|${r.ratingVersion}`;if(!bestRatings[key]||r.value>bestRatings[key].value)bestRatings[key]=r;}}
+ if(bestRating){const key=`${bestRating.rulesVersion}|${bestRating.ratingVersion}`;if(!bestRatings[key]||bestRating.value>bestRatings[key].value)bestRatings[key]=bestRating;}
+ return {graduation:graduation(v.graduation),bestRating,...(object(v.bestRatings)?{bestRatings}:{}),recentRuns:recentRuns.slice(-10)};
 }
 /** Per-semester retention and dedup; S1 versions/scores/IDs remain unchanged. */
 export function retainSemesterRecords(records:SemesterDailyRecord[]):SemesterDailyRecord[]{
  return (['s1','s2'] as const).flatMap(semester=>{
   const own=records.filter(r=>r.semesterId===semester),dates=new Set([...new Set(own.map(r=>r.date))].sort().slice(-30)),seen=new Set<string>(),counts=new Map<string,number>();
-  return own.sort(compareDaily).filter(r=>{if(!dates.has(r.date)||seen.has(r.id))return false;seen.add(r.id);const k=`${r.date}|${r.version}`,n=counts.get(k)??0;counts.set(k,n+1);return n<10;});
+  return own.sort(compareDaily).filter(r=>{if(seen.has(r.id))return false;seen.add(r.id);if(r.version!==(semester==='s1'?DAILY_RULES_VERSION:SEMESTERS.s2.dailyRulesVersion))return true;if(!dates.has(r.date))return false;const k=`${r.date}|${r.version}`,n=counts.get(k)??0;counts.set(k,n+1);return n<10;});
  });
 }
 function dailyRecord(v:unknown):SemesterDailyRecord|null{
@@ -101,7 +105,10 @@ export function validateProfile(value:unknown,raw?:string):SaveProfile|null{
 }
 function summarize(out:SaveProfile,result:RunResult|SemesterResult,semesterId:SemesterId){
  const history=out.semesters[semesterId],current=semesterId==='s2'?semesterRating(result as SemesterResult):null;history.recentRuns=[...history.recentRuns,{id:result.id,semesterId,rulesVersion:result.manifest?.rulesVersion??(semesterId==='s1'?'campus-v4.0.1':'campus-s2-v5.0.0'),victory:result.victory,week:result.week,seconds:result.seconds,build:[...result.weapons,...result.passives].map(w=>w.id),rating:current}].slice(-10);
- if(current&&(!history.bestRating||history.bestRating.ratingVersion===current.ratingVersion&&history.bestRating.rulesVersion===current.rulesVersion&&current.value>history.bestRating.value))history.bestRating=current;
+ if(current){
+  const groups=history.bestRatings??={};if(history.bestRating){const old=history.bestRating,key=`${old.rulesVersion}|${old.ratingVersion}`;if(!groups[key]||old.value>groups[key].value)groups[key]=old;}
+  const key=`${current.rulesVersion}|${current.ratingVersion}`;if(!groups[key]||current.value>groups[key].value)groups[key]=current;history.bestRating=groups[key];
+ }
  if(result.victory&&result.manifest?.mode!=='daily')history.graduation??={source:'normalRun',runId:result.id};
  out.inheritance.alumniEligible=!!out.semesters.s1.graduation;
 }
@@ -119,7 +126,7 @@ export function settleS1Profile(profile:SaveProfile,result:RunResult):SaveProfil
 export function settleS2Profile(profile:SaveProfile,result:SemesterResult):SaveProfile{
  if(profile.settledRuns.includes(result.id)||result.debug||result.practice||result.semesterId!=='s2'||!hasAlumniEligibility(profile)||!result.settlement?.eligible)return profile;
  const mode=result.manifest?.mode;
- if(!mode||result.manifest?.rulesVersion!==(mode==='daily'?'daily-s2-v5.0.0':'campus-s2-v5.0.0')||result.victory&&(!result.settlement.finalRewardCommitted||result.settlement.assessmentsPassed!==3||result.completedWeeks!==24))return profile;
+ if(!mode||result.manifest?.rulesVersion!==(mode==='daily'?SEMESTERS.s2.dailyRulesVersion:SEMESTERS.s2.rulesVersion)||result.victory&&(!result.settlement.finalRewardCommitted||result.settlement.assessmentsPassed!==3||result.completedWeeks!==24))return profile;
  if(mode==='daily'&&(!date(result.manifest?.date)||!result.dailyRecord||result.dailyRecord.semesterId!=='s2'||result.dailyRecord.id!==result.id||result.dailyRecord.date!==result.manifest.date||result.dailyRecord.version!==result.manifest.rulesVersion))return profile;
  if(mode==='daily'&&!dailyRecord(result.dailyRecord))return profile;
  const out=structuredClone(profile),daily=result.manifest?.mode==='daily',s2=out.semesters.s2;
