@@ -1,0 +1,912 @@
+{
+  "version": "s2-audio-v1",
+  "logicalClips": 18,
+  "files": 36,
+  "targetLufs": -23,
+  "ceilingDbtp": -3,
+  "analysis": "Same v4 BS.1770 gated integrated loudness; short clips periodically extended only for metering; encoded outputs measured independently",
+  "assets": [
+    {
+      "id": "shot-s2-drone",
+      "pack": "interface-sounds",
+      "author": "Kenney",
+      "source": "https://kenney.nl/assets/interface-sounds",
+      "original": "Audio/glitch_001.ogg",
+      "sourceFile": "audio-src/s2/raw/interface-sounds/glitch_001.ogg",
+      "sourceSha256": "da78c642bbd95da2c364ed0e991ebbfc5a4c0d281165d932b5819e0dd31a39d2",
+      "license": "CC0 1.0",
+      "licenseFile": "audio-src/s2/licenses/interface-sounds-License.txt",
+      "licenseSha256": "f7966c773bbed0eca6a9c75081c44a178b38eae112724dbb5fdfbd4192d118a9",
+      "loop": false,
+      "chapter": 1,
+      "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only",
+      "outputs": [
+        {
+          "file": "public/assets/audio/v5/s2/shot-s2-drone.ogg",
+          "sha256": "6d43e43837d2bd8aa5d807f6d0b804aa8cddf5c71f713397c71d3760ac5fce21",
+          "integratedLufs": -23.17,
+          "truePeakDbtp": -4.47,
+          "bytes": 4342
+        },
+        {
+          "file": "public/assets/audio/v5/s2/shot-s2-drone.mp3",
+          "sha256": "5c4747ad09d4b0981efcdc46e37a74ce002e78d831f181a2e0e8707ed7f8b0ff",
+          "integratedLufs": -23.6,
+          "truePeakDbtp": -4.82,
+          "bytes": 2603
+        }
+      ]
+    },
+    {
+      "id": "shot-s2-whiteboard",
+      "pack": "interface-sounds",
+      "author": "Kenney",
+      "source": "https://kenney.nl/assets/interface-sounds",
+      "original": "Audio/scratch_001.ogg",
+      "sourceFile": "audio-src/s2/raw/interface-sounds/scratch_001.ogg",
+      "sourceSha256": "5c294d2e1a6b6d07ee2d75b17105a55ad3527e5482dd60652dc49c2ea4c70096",
+      "license": "CC0 1.0",
+      "licenseFile": "audio-src/s2/licenses/interface-sounds-License.txt",
+      "licenseSha256": "f7966c773bbed0eca6a9c75081c44a178b38eae112724dbb5fdfbd4192d118a9",
+      "loop": false,
+      "chapter": 1,
+      "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only",
+      "outputs": [
+        {
+          "file": "public/assets/audio/v5/s2/shot-s2-whiteboard.ogg",
+          "sha256": "9249c616ecfbe70a68eb6dac76eae6adf24289790f06727e854d49e221366828",
+          "integratedLufs": -22.97,
+          "truePeakDbtp": -12.97,
+          "bytes": 5560
+        },
+        {
+          "file": "public/assets/audio/v5/s2/shot-s2-whiteboard.mp3",
+          "sha256": "481c2b4e2dfc8437a7edf060a0bd85d4e97061eb58fa2bdad671d40832d5b92b",
+          "integratedLufs": -23.45,
+          "truePeakDbtp": -14.59,
+          "bytes": 2969
+        }
+      ]
+    },
+    {
+      "id": "shot-s2-spool",
+      "pack": "interface-sounds",
+      "author": "Kenney",
+      "source": "https://kenney.nl/assets/interface-sounds",
+      "original": "Audio/glitch_002.ogg",
+      "sourceFile": "audio-src/s2/raw/interface-sounds/glitch_002.ogg",
+      "sourceSha256": "1da06a2e63ce131f5e0316ca27c75fc0d672db7a8f9b986c70693f2bd992eabc",
+      "license": "CC0 1.0",
+      "licenseFile": "audio-src/s2/licenses/interface-sounds-License.txt",
+      "licenseSha256": "f7966c773bbed0eca6a9c75081c44a178b38eae112724dbb5fdfbd4192d118a9",
+      "loop": false,
+      "chapter": 1,
+      "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only",
+      "outputs": [
+        {
+          "file": "public/assets/audio/v5/s2/shot-s2-spool.ogg",
+          "sha256": "fcc96ff3d591c72fb87dee94cebe66439df13a768eabcbef2a8ccf86241a5c2b",
+          "integratedLufs": -23.27,
+          "truePeakDbtp": -3.78,
+          "bytes": 4533
+        },
+        {
+          "file": "public/assets/audio/v5/s2/shot-s2-spool.mp3",
+          "sha256": "b39a0ebf420a14dffc3c1f4507365341574bee02bc782c476b20cd534933ec4e",
+          "integratedLufs": -23.6,
+          "truePeakDbtp": -4.55,
+          "bytes": 2603
+        }
+      ]
+    },
+    {
+      "id": "shot-s2-printer",
+      "pack": "impact-sounds",
+      "author": "Kenney",
+      "source": "https://kenney.nl/assets/impact-sounds",
+      "original": "Audio/impactMetal_light_001.ogg",
+      "sourceFile": "audio-src/s2/raw/impact-sounds/impactMetal_light_001.ogg",
+      "sourceSha256": "fba69c467ddd85da7b1d82e259f936b876d9ba6a3d6f1b24bdd10468e46bfe08",
+      "license": "CC0 1.0",
+      "licenseFile": "audio-src/s2/licenses/impact-sounds-License.txt",
+      "licenseSha256": "b49aa9c56b04528b95913de13e506a0f7c5e807b9925db9bfef86af1f91120db",
+      "loop": false,
+      "chapter": 1,
+      "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only",
+      "outputs": [
+        {
+          "file": "public/assets/audio/v5/s2/shot-s2-printer.ogg",
+          "sha256": "c8a1649e0f8e0b878c0ee4d068ffedd428e1b93dcec44b072e8eb6066d65cad8",
+          "integratedLufs": -22.92,
+          "truePeakDbtp": -6.57,
+          "bytes": 5550
+        },
+        {
+          "file": "public/assets/audio/v5/s2/shot-s2-printer.mp3",
+          "sha256": "fb90c0b884f564a7cacf16fa73dd841dc630d1fcd322ad885c8bc6696da934ab",
+          "integratedLufs": -23.47,
+          "truePeakDbtp": -6.55,
+          "bytes": 4432
+        }
+      ]
+    },
+    {
+      "id": "fusion-s2-fieldHub",
+      "pack": "impact-sounds",
+      "author": "Kenney",
+      "source": "https://kenney.nl/assets/impact-sounds",
+      "original": "Audio/impactMetal_medium_001.ogg",
+      "sourceFile": "audio-src/s2/raw/impact-sounds/impactMetal_medium_001.ogg",
+      "sourceSha256": "e8a9eaba7c4d27422e4eeb3e6c7100d5d7dc0f83e005efc98c960adcc5265337",
+      "license": "CC0 1.0",
+      "licenseFile": "audio-src/s2/licenses/impact-sounds-License.txt",
+      "licenseSha256": "b49aa9c56b04528b95913de13e506a0f7c5e807b9925db9bfef86af1f91120db",
+      "loop": false,
+      "chapter": 1,
+      "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only",
+      "outputs": [
+        {
+          "file": "public/assets/audio/v5/s2/fusion-s2-fieldHub.ogg",
+          "sha256": "98f53c825bc208f21cb6d48ac9c65f17f60b6ffe83fcde8e0fde6ebd456aacc2",
+          "integratedLufs": -23.6,
+          "truePeakDbtp": -4.39,
+          "bytes": 5079
+        },
+        {
+          "file": "public/assets/audio/v5/s2/fusion-s2-fieldHub.mp3",
+          "sha256": "3e34e345226a505c549bac193db6a91e0cfeaf4751371272a6990bd6cc712cad",
+          "integratedLufs": -23.44,
+          "truePeakDbtp": -4.97,
+          "bytes": 2969
+        }
+      ]
+    },
+    {
+      "id": "fusion-s2-holoReview",
+      "pack": "interface-sounds",
+      "author": "Kenney",
+      "source": "https://kenney.nl/assets/interface-sounds",
+      "original": "Audio/glass_004.ogg",
+      "sourceFile": "audio-src/s2/raw/interface-sounds/glass_004.ogg",
+      "sourceSha256": "2379b58f953e3d86982aa8cddcae763022c6258e9820171bf905ce58b4e97766",
+      "license": "CC0 1.0",
+      "licenseFile": "audio-src/s2/licenses/interface-sounds-License.txt",
+      "licenseSha256": "f7966c773bbed0eca6a9c75081c44a178b38eae112724dbb5fdfbd4192d118a9",
+      "loop": false,
+      "chapter": 1,
+      "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only",
+      "outputs": [
+        {
+          "file": "public/assets/audio/v5/s2/fusion-s2-holoReview.ogg",
+          "sha256": "5d84c2124e5b075bf6bb8dd5f9ec936a09bd285e9d1832a755bf98de4e7185eb",
+          "integratedLufs": -23.13,
+          "truePeakDbtp": -9.7,
+          "bytes": 7867
+        },
+        {
+          "file": "public/assets/audio/v5/s2/fusion-s2-holoReview.mp3",
+          "sha256": "f1a950d9f5488513393470807d5375834857edcdd72a80099e4a052c0dd70e10",
+          "integratedLufs": -23.45,
+          "truePeakDbtp": -10.03,
+          "bytes": 10649
+        }
+      ]
+    },
+    {
+      "id": "fusion-s2-digitalTwin",
+      "pack": "impact-sounds",
+      "author": "Kenney",
+      "source": "https://kenney.nl/assets/impact-sounds",
+      "original": "Audio/impactMining_002.ogg",
+      "sourceFile": "audio-src/s2/raw/impact-sounds/impactMining_002.ogg",
+      "sourceSha256": "059558ec751115ca6b1441e00f0adc837c1a3eeb0a066b109e0fd879fc5d0b0c",
+      "license": "CC0 1.0",
+      "licenseFile": "audio-src/s2/licenses/impact-sounds-License.txt",
+      "licenseSha256": "b49aa9c56b04528b95913de13e506a0f7c5e807b9925db9bfef86af1f91120db",
+      "loop": false,
+      "chapter": 1,
+      "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only",
+      "outputs": [
+        {
+          "file": "public/assets/audio/v5/s2/fusion-s2-digitalTwin.ogg",
+          "sha256": "38fc86907713852774e46bbf6a135c290bef4281008a3b0c4d56d853ba864e53",
+          "integratedLufs": -23.26,
+          "truePeakDbtp": -4.2,
+          "bytes": 8758
+        },
+        {
+          "file": "public/assets/audio/v5/s2/fusion-s2-digitalTwin.mp3",
+          "sha256": "169de5222c9ff68b48eda1910affc28bbc2b8afffb30a2010e5d0c3e4b0b6bbf",
+          "integratedLufs": -23.54,
+          "truePeakDbtp": -4.82,
+          "bytes": 12112
+        }
+      ]
+    },
+    {
+      "id": "warning-s2-line",
+      "pack": "interface-sounds",
+      "author": "Kenney",
+      "source": "https://kenney.nl/assets/interface-sounds",
+      "original": "Audio/error_004.ogg",
+      "sourceFile": "audio-src/s2/raw/interface-sounds/error_004.ogg",
+      "sourceSha256": "0b574cea597d96507e782ae9764f88482ce49f46e931e57054bf7150047f2d69",
+      "license": "CC0 1.0",
+      "licenseFile": "audio-src/s2/licenses/interface-sounds-License.txt",
+      "licenseSha256": "f7966c773bbed0eca6a9c75081c44a178b38eae112724dbb5fdfbd4192d118a9",
+      "loop": false,
+      "chapter": 1,
+      "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only",
+      "outputs": [
+        {
+          "file": "public/assets/audio/v5/s2/warning-s2-line.ogg",
+          "sha256": "bc64baf8f7196f88c47589108ec4a5599f0d49ba21a028431523492c16970bb1",
+          "integratedLufs": -23.6,
+          "truePeakDbtp": -7.44,
+          "bytes": 5476
+        },
+        {
+          "file": "public/assets/audio/v5/s2/warning-s2-line.mp3",
+          "sha256": "a741ff2a81e1d2403545e629ae6ebf36a911841f9eba5ccab9eed5c0b2bbb581",
+          "integratedLufs": -23.43,
+          "truePeakDbtp": -7.83,
+          "bytes": 2603
+        }
+      ]
+    },
+    {
+      "id": "warning-s2-reservation",
+      "pack": "interface-sounds",
+      "author": "Kenney",
+      "source": "https://kenney.nl/assets/interface-sounds",
+      "original": "Audio/question_004.ogg",
+      "sourceFile": "audio-src/s2/raw/interface-sounds/question_004.ogg",
+      "sourceSha256": "585ecb58b529dc49b5c5ce5ba93427bf73b7052bae55e49c43ba8f169c93ac99",
+      "license": "CC0 1.0",
+      "licenseFile": "audio-src/s2/licenses/interface-sounds-License.txt",
+      "licenseSha256": "f7966c773bbed0eca6a9c75081c44a178b38eae112724dbb5fdfbd4192d118a9",
+      "loop": false,
+      "chapter": 1,
+      "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only",
+      "outputs": [
+        {
+          "file": "public/assets/audio/v5/s2/warning-s2-reservation.ogg",
+          "sha256": "b138251d6b1f678d6ddebbecbe09172c8109e98561a66c7e9cd8aa503561dc92",
+          "integratedLufs": -22.9,
+          "truePeakDbtp": -13.1,
+          "bytes": 5508
+        },
+        {
+          "file": "public/assets/audio/v5/s2/warning-s2-reservation.mp3",
+          "sha256": "4bf631de3a16860c1c8f3a529ea4d99c155522985bd51a07c2cc418219cd1ee2",
+          "integratedLufs": -23.45,
+          "truePeakDbtp": -13.53,
+          "bytes": 5529
+        }
+      ]
+    },
+    {
+      "id": "warning-s2-scan",
+      "pack": "interface-sounds",
+      "author": "Kenney",
+      "source": "https://kenney.nl/assets/interface-sounds",
+      "original": "Audio/error_008.ogg",
+      "sourceFile": "audio-src/s2/raw/interface-sounds/error_008.ogg",
+      "sourceSha256": "eba17ecb2a426bfd4a8a6acff5f8a86202b6424a77af0fd842e37809a1ab6d81",
+      "license": "CC0 1.0",
+      "licenseFile": "audio-src/s2/licenses/interface-sounds-License.txt",
+      "licenseSha256": "f7966c773bbed0eca6a9c75081c44a178b38eae112724dbb5fdfbd4192d118a9",
+      "loop": false,
+      "chapter": 1,
+      "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only",
+      "outputs": [
+        {
+          "file": "public/assets/audio/v5/s2/warning-s2-scan.ogg",
+          "sha256": "f7a2b2bb9dc38ecc5606062c838ad0643e3a0743c2b2e9680d56b99a34798479",
+          "integratedLufs": -23.13,
+          "truePeakDbtp": -4.65,
+          "bytes": 6320
+        },
+        {
+          "file": "public/assets/audio/v5/s2/warning-s2-scan.mp3",
+          "sha256": "eabd6aee563fe20f1193aa3afefd370d1fe62395063101004a4e40b6103a9d61",
+          "integratedLufs": -23.52,
+          "truePeakDbtp": -4.96,
+          "bytes": 2969
+        }
+      ]
+    },
+    {
+      "id": "event-s2-deliveryDay",
+      "pack": "impact-sounds",
+      "author": "Kenney",
+      "source": "https://kenney.nl/assets/impact-sounds",
+      "original": "Audio/impactPlate_medium_004.ogg",
+      "sourceFile": "audio-src/s2/raw/impact-sounds/impactPlate_medium_004.ogg",
+      "sourceSha256": "f0e8164081190839caff6c2958361b22780ffba5617f77f2d4ee3a4275b318bf",
+      "license": "CC0 1.0",
+      "licenseFile": "audio-src/s2/licenses/impact-sounds-License.txt",
+      "licenseSha256": "b49aa9c56b04528b95913de13e506a0f7c5e807b9925db9bfef86af1f91120db",
+      "loop": false,
+      "chapter": 1,
+      "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only",
+      "outputs": [
+        {
+          "file": "public/assets/audio/v5/s2/event-s2-deliveryDay.ogg",
+          "sha256": "e5f0dd3ec8162b75f412aecf830ef72bf482273bdab7107944e6fe76ed2c65c8",
+          "integratedLufs": -23.2,
+          "truePeakDbtp": -4.14,
+          "bytes": 8979
+        },
+        {
+          "file": "public/assets/audio/v5/s2/event-s2-deliveryDay.mp3",
+          "sha256": "94f4b50f9859f74eb158cbdfa32f1ac200e1f80394f6fc6a2b0d58a4aa73a64e",
+          "integratedLufs": -23.55,
+          "truePeakDbtp": -4.65,
+          "bytes": 8454
+        }
+      ]
+    },
+    {
+      "id": "event-s2-networkMaintenance",
+      "pack": "interface-sounds",
+      "author": "Kenney",
+      "source": "https://kenney.nl/assets/interface-sounds",
+      "original": "Audio/glitch_004.ogg",
+      "sourceFile": "audio-src/s2/raw/interface-sounds/glitch_004.ogg",
+      "sourceSha256": "d0f4db4d12f88592bc328bd621d356d099eaa2dda37bab37a6cf17891c5026d1",
+      "license": "CC0 1.0",
+      "licenseFile": "audio-src/s2/licenses/interface-sounds-License.txt",
+      "licenseSha256": "f7966c773bbed0eca6a9c75081c44a178b38eae112724dbb5fdfbd4192d118a9",
+      "loop": false,
+      "chapter": 2,
+      "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only",
+      "outputs": [
+        {
+          "file": "public/assets/audio/v5/s2/event-s2-networkMaintenance.ogg",
+          "sha256": "55252be9f472290d52b740ff97cdf1168d5574a0435967509d82cdcdd40c7423",
+          "integratedLufs": -23.29,
+          "truePeakDbtp": -4.33,
+          "bytes": 4549
+        },
+        {
+          "file": "public/assets/audio/v5/s2/event-s2-networkMaintenance.mp3",
+          "sha256": "45e7946ffbb93f0752327f241e7dd9e54092529d929a8c1cda0156c32aecfadc",
+          "integratedLufs": -23.5,
+          "truePeakDbtp": -4.54,
+          "bytes": 2603
+        }
+      ]
+    },
+    {
+      "id": "event-s2-jointExhibit",
+      "pack": "interface-sounds",
+      "author": "Kenney",
+      "source": "https://kenney.nl/assets/interface-sounds",
+      "original": "Audio/confirmation_004.ogg",
+      "sourceFile": "audio-src/s2/raw/interface-sounds/confirmation_004.ogg",
+      "sourceSha256": "568967a3d9f8a8f6af54ea01729c4882284308f2a27d78c07ffd7ee0d6951661",
+      "license": "CC0 1.0",
+      "licenseFile": "audio-src/s2/licenses/interface-sounds-License.txt",
+      "licenseSha256": "f7966c773bbed0eca6a9c75081c44a178b38eae112724dbb5fdfbd4192d118a9",
+      "loop": false,
+      "chapter": 3,
+      "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only",
+      "outputs": [
+        {
+          "file": "public/assets/audio/v5/s2/event-s2-jointExhibit.ogg",
+          "sha256": "7d2fa7f01b933d43295b1b68ee8e6c6fe6250acad06f74d8226d1cf31597fb0b",
+          "integratedLufs": -22.96,
+          "truePeakDbtp": -12.67,
+          "bytes": 6697
+        },
+        {
+          "file": "public/assets/audio/v5/s2/event-s2-jointExhibit.mp3",
+          "sha256": "50452057c430971445658a4b9e06c97f045f4cdd493250304f6c97313b420e68",
+          "integratedLufs": -23.44,
+          "truePeakDbtp": -13.12,
+          "bytes": 7723
+        }
+      ]
+    },
+    {
+      "id": "event-s2-openLab",
+      "pack": "interface-sounds",
+      "author": "Kenney",
+      "source": "https://kenney.nl/assets/interface-sounds",
+      "original": "Audio/maximize_004.ogg",
+      "sourceFile": "audio-src/s2/raw/interface-sounds/maximize_004.ogg",
+      "sourceSha256": "59c7a24b204be24d2a44a86d1e4d18c2cf51fa0446967a14b2590e8fb3afaf34",
+      "license": "CC0 1.0",
+      "licenseFile": "audio-src/s2/licenses/interface-sounds-License.txt",
+      "licenseSha256": "f7966c773bbed0eca6a9c75081c44a178b38eae112724dbb5fdfbd4192d118a9",
+      "loop": false,
+      "chapter": 1,
+      "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only",
+      "outputs": [
+        {
+          "file": "public/assets/audio/v5/s2/event-s2-openLab.ogg",
+          "sha256": "97b1c88530c596a5523a51e4efdc10e110fb9b2f2065ee21558003d5e37721d4",
+          "integratedLufs": -23.3,
+          "truePeakDbtp": -12.03,
+          "bytes": 9073
+        },
+        {
+          "file": "public/assets/audio/v5/s2/event-s2-openLab.mp3",
+          "sha256": "7f4361cb2625ea801b62eaec01533e2d83232887d63655aa5f038effa44da199",
+          "integratedLufs": -23.46,
+          "truePeakDbtp": -12.14,
+          "bytes": 6626
+        }
+      ]
+    },
+    {
+      "id": "contract-s2-project",
+      "pack": "interface-sounds",
+      "author": "Kenney",
+      "source": "https://kenney.nl/assets/interface-sounds",
+      "original": "Audio/confirmation_002.ogg",
+      "sourceFile": "audio-src/s2/raw/interface-sounds/confirmation_002.ogg",
+      "sourceSha256": "33b17a9a9a2397c62b285c52c33a907fdffb476909c99e42dde603f6a7a8b12c",
+      "license": "CC0 1.0",
+      "licenseFile": "audio-src/s2/licenses/interface-sounds-License.txt",
+      "licenseSha256": "f7966c773bbed0eca6a9c75081c44a178b38eae112724dbb5fdfbd4192d118a9",
+      "loop": false,
+      "chapter": 1,
+      "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only",
+      "outputs": [
+        {
+          "file": "public/assets/audio/v5/s2/contract-s2-project.ogg",
+          "sha256": "80e186e6e683f8da0bc42f9794fb6a42b16acaf08f614ade5ec238850a93f437",
+          "integratedLufs": -22.97,
+          "truePeakDbtp": -10.65,
+          "bytes": 7621
+        },
+        {
+          "file": "public/assets/audio/v5/s2/contract-s2-project.mp3",
+          "sha256": "89ca44c93e34b3fd2dbdc21d77093e2180b2321d963b5f46c901a4064480a4f9",
+          "integratedLufs": -23.45,
+          "truePeakDbtp": -11.29,
+          "bytes": 8454
+        }
+      ]
+    },
+    {
+      "id": "contract-s2-amendment",
+      "pack": "interface-sounds",
+      "author": "Kenney",
+      "source": "https://kenney.nl/assets/interface-sounds",
+      "original": "Audio/switch_004.ogg",
+      "sourceFile": "audio-src/s2/raw/interface-sounds/switch_004.ogg",
+      "sourceSha256": "541c19cc1ab712a9efc5765df602e7d0da09d9cafdd297ce1e19b092289fd62f",
+      "license": "CC0 1.0",
+      "licenseFile": "audio-src/s2/licenses/interface-sounds-License.txt",
+      "licenseSha256": "f7966c773bbed0eca6a9c75081c44a178b38eae112724dbb5fdfbd4192d118a9",
+      "loop": false,
+      "chapter": 2,
+      "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only",
+      "outputs": [
+        {
+          "file": "public/assets/audio/v5/s2/contract-s2-amendment.ogg",
+          "sha256": "0656bc4eb6a8ec148f83da0d868a2d42255a088280b29a99739efb40c689ec21",
+          "integratedLufs": -23.19,
+          "truePeakDbtp": -4.25,
+          "bytes": 5259
+        },
+        {
+          "file": "public/assets/audio/v5/s2/contract-s2-amendment.mp3",
+          "sha256": "f7230977710676bfe8210c6cae0688b3503254aaa9f9ced8023b6d38884a9dae",
+          "integratedLufs": -23.61,
+          "truePeakDbtp": -4.16,
+          "bytes": 8089
+        }
+      ]
+    },
+    {
+      "id": "ambience-s2-lab",
+      "pack": "impact-sounds",
+      "author": "Kenney",
+      "source": "https://kenney.nl/assets/impact-sounds",
+      "original": "Audio/impactMetal_light_004.ogg",
+      "sourceFile": "audio-src/s2/raw/impact-sounds/impactMetal_light_004.ogg",
+      "sourceSha256": "9b1c35820fba507081261f19ab5f461f69a5e2627a7d91acdb73ca3cfc997979",
+      "license": "CC0 1.0",
+      "licenseFile": "audio-src/s2/licenses/impact-sounds-License.txt",
+      "licenseSha256": "b49aa9c56b04528b95913de13e506a0f7c5e807b9925db9bfef86af1f91120db",
+      "loop": true,
+      "chapter": 2,
+      "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; 8-second low-pass rhythmic design loop from the credited clip,60ms loop-edge fades; not a field recording",
+      "outputs": [
+        {
+          "file": "public/assets/audio/v5/s2/ambience-s2-lab.ogg",
+          "sha256": "9b26c06f91fe96446057c413b5aec181661cae41701889d8f76cdfbee8cd4724",
+          "integratedLufs": -23.31,
+          "truePeakDbtp": -4.19,
+          "bytes": 60995
+        },
+        {
+          "file": "public/assets/audio/v5/s2/ambience-s2-lab.mp3",
+          "sha256": "e9d54bc72254362ee72d9615de58bd307671c16321d1678b2257c46429dfa001",
+          "integratedLufs": -23.55,
+          "truePeakDbtp": -4.89,
+          "bytes": 106832
+        }
+      ]
+    },
+    {
+      "id": "ambience-s2-exhibit",
+      "pack": "interface-sounds",
+      "author": "Kenney",
+      "source": "https://kenney.nl/assets/interface-sounds",
+      "original": "Audio/scroll_004.ogg",
+      "sourceFile": "audio-src/s2/raw/interface-sounds/scroll_004.ogg",
+      "sourceSha256": "431398a3c12ba3aa30ead97f3e2f9b05eb00978facf04b31bda138ab77a2f54c",
+      "license": "CC0 1.0",
+      "licenseFile": "audio-src/s2/licenses/interface-sounds-License.txt",
+      "licenseSha256": "f7966c773bbed0eca6a9c75081c44a178b38eae112724dbb5fdfbd4192d118a9",
+      "loop": true,
+      "chapter": 3,
+      "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; 8-second low-pass rhythmic design loop from the credited clip,60ms loop-edge fades; not a field recording",
+      "outputs": [
+        {
+          "file": "public/assets/audio/v5/s2/ambience-s2-exhibit.ogg",
+          "sha256": "77136c80f1147f526c593f7983dc3c441db6e35805fa28b8a0d3e0e1813dba06",
+          "integratedLufs": -23.12,
+          "truePeakDbtp": -5.29,
+          "bytes": 90509
+        },
+        {
+          "file": "public/assets/audio/v5/s2/ambience-s2-exhibit.mp3",
+          "sha256": "187ec284d42b7b8780599d5556aee1400c9d867ebef3523723df3957ee104fd3",
+          "integratedLufs": -23.42,
+          "truePeakDbtp": -6.25,
+          "bytes": 112683
+        }
+      ]
+    }
+  ],
+  "measurements": [
+    {
+      "id": "shot-s2-drone",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 4.5,
+      "masterLufs": -23.16,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.17,
+          "truePeakDbtp": -4.47,
+          "bytes": 4342
+        },
+        "mp3": {
+          "integratedLufs": -23.6,
+          "truePeakDbtp": -4.82,
+          "bytes": 2603
+        }
+      }
+    },
+    {
+      "id": "shot-s2-whiteboard",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -13.51,
+      "masterLufs": -22.99,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -22.97,
+          "truePeakDbtp": -12.97,
+          "bytes": 5560
+        },
+        "mp3": {
+          "integratedLufs": -23.45,
+          "truePeakDbtp": -14.59,
+          "bytes": 2969
+        }
+      }
+    },
+    {
+      "id": "shot-s2-spool",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 11.23,
+      "masterLufs": -23.28,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.27,
+          "truePeakDbtp": -3.78,
+          "bytes": 4533
+        },
+        "mp3": {
+          "integratedLufs": -23.6,
+          "truePeakDbtp": -4.55,
+          "bytes": 2603
+        }
+      }
+    },
+    {
+      "id": "shot-s2-printer",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -5.32,
+      "masterLufs": -23.0,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -22.92,
+          "truePeakDbtp": -6.57,
+          "bytes": 5550
+        },
+        "mp3": {
+          "integratedLufs": -23.47,
+          "truePeakDbtp": -6.55,
+          "bytes": 4432
+        }
+      }
+    },
+    {
+      "id": "fusion-s2-fieldHub",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -3.27,
+      "masterLufs": -23.03,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.6,
+          "truePeakDbtp": -4.39,
+          "bytes": 5079
+        },
+        "mp3": {
+          "integratedLufs": -23.44,
+          "truePeakDbtp": -4.97,
+          "bytes": 2969
+        }
+      }
+    },
+    {
+      "id": "fusion-s2-holoReview",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -8.74,
+      "masterLufs": -22.99,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.13,
+          "truePeakDbtp": -9.7,
+          "bytes": 7867
+        },
+        "mp3": {
+          "integratedLufs": -23.45,
+          "truePeakDbtp": -10.03,
+          "bytes": 10649
+        }
+      }
+    },
+    {
+      "id": "fusion-s2-digitalTwin",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 5.4,
+      "masterLufs": -23.09,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.26,
+          "truePeakDbtp": -4.2,
+          "bytes": 8758
+        },
+        "mp3": {
+          "integratedLufs": -23.54,
+          "truePeakDbtp": -4.82,
+          "bytes": 12112
+        }
+      }
+    },
+    {
+      "id": "warning-s2-line",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -6.12,
+      "masterLufs": -22.98,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.6,
+          "truePeakDbtp": -7.44,
+          "bytes": 5476
+        },
+        "mp3": {
+          "integratedLufs": -23.43,
+          "truePeakDbtp": -7.83,
+          "bytes": 2603
+        }
+      }
+    },
+    {
+      "id": "warning-s2-reservation",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -12.15,
+      "masterLufs": -22.99,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -22.9,
+          "truePeakDbtp": -13.1,
+          "bytes": 5508
+        },
+        "mp3": {
+          "integratedLufs": -23.45,
+          "truePeakDbtp": -13.53,
+          "bytes": 5529
+        }
+      }
+    },
+    {
+      "id": "warning-s2-scan",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 1.86,
+      "masterLufs": -23.11,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.13,
+          "truePeakDbtp": -4.65,
+          "bytes": 6320
+        },
+        "mp3": {
+          "integratedLufs": -23.52,
+          "truePeakDbtp": -4.96,
+          "bytes": 2969
+        }
+      }
+    },
+    {
+      "id": "event-s2-deliveryDay",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 6.94,
+      "masterLufs": -23.14,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.2,
+          "truePeakDbtp": -4.14,
+          "bytes": 8979
+        },
+        "mp3": {
+          "integratedLufs": -23.55,
+          "truePeakDbtp": -4.65,
+          "bytes": 8454
+        }
+      }
+    },
+    {
+      "id": "event-s2-networkMaintenance",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -2.32,
+      "masterLufs": -23.1,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.29,
+          "truePeakDbtp": -4.33,
+          "bytes": 4549
+        },
+        "mp3": {
+          "integratedLufs": -23.5,
+          "truePeakDbtp": -4.54,
+          "bytes": 2603
+        }
+      }
+    },
+    {
+      "id": "event-s2-jointExhibit",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -11.79,
+      "masterLufs": -23.0,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -22.96,
+          "truePeakDbtp": -12.67,
+          "bytes": 6697
+        },
+        "mp3": {
+          "integratedLufs": -23.44,
+          "truePeakDbtp": -13.12,
+          "bytes": 7723
+        }
+      }
+    },
+    {
+      "id": "event-s2-openLab",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -11.08,
+      "masterLufs": -23.02,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.3,
+          "truePeakDbtp": -12.03,
+          "bytes": 9073
+        },
+        "mp3": {
+          "integratedLufs": -23.46,
+          "truePeakDbtp": -12.14,
+          "bytes": 6626
+        }
+      }
+    },
+    {
+      "id": "contract-s2-project",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": -9.64,
+      "masterLufs": -23.01,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -22.97,
+          "truePeakDbtp": -10.65,
+          "bytes": 7621
+        },
+        "mp3": {
+          "integratedLufs": -23.45,
+          "truePeakDbtp": -11.29,
+          "bytes": 8454
+        }
+      }
+    },
+    {
+      "id": "contract-s2-amendment",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 19.41,
+      "masterLufs": -23.11,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.19,
+          "truePeakDbtp": -4.25,
+          "bytes": 5259
+        },
+        "mp3": {
+          "integratedLufs": -23.61,
+          "truePeakDbtp": -4.16,
+          "bytes": 8089
+        }
+      }
+    },
+    {
+      "id": "ambience-s2-lab",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 1.66,
+      "masterLufs": -23.12,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.31,
+          "truePeakDbtp": -4.19,
+          "bytes": 60995
+        },
+        "mp3": {
+          "integratedLufs": -23.55,
+          "truePeakDbtp": -4.89,
+          "bytes": 106832
+        }
+      }
+    },
+    {
+      "id": "ambience-s2-exhibit",
+      "targetLufs": -23,
+      "ceilingDbtp": -3,
+      "masterGainDb": 3.68,
+      "masterLufs": -22.98,
+      "outputs": {
+        "ogg": {
+          "integratedLufs": -23.12,
+          "truePeakDbtp": -5.29,
+          "bytes": 90509
+        },
+        "mp3": {
+          "integratedLufs": -23.42,
+          "truePeakDbtp": -6.25,
+          "bytes": 112683
+        }
+      }
+    }
+  ]
+}

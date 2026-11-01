@@ -14,6 +14,7 @@ import {legacyFeedbackEvent,type ContentVisualEvent} from '../enemy-visuals';
 import {BuildPanel} from './BuildPanel';
 import {S2_ART_MANIFEST} from './art-manifest';
 import {semesterArtBundles} from './art-loading';
+import {SemesterAudio} from './SemesterAudio';
 import {SemesterSettlementPanel} from './SettlementPanel';
 import type {SaveProfile,SemesterResult} from '../../profile';
 import {ringRadius} from '../danger';
@@ -49,6 +50,7 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
   private extensionLeases=new Map<ResourceBundle,ResourceLease<ResourceId>>();
   private pendingArt=new Map<ResourceBundle,Promise<void>>();
   private wantedArt=new Set<ResourceBundle>();
+  readonly semesterAudio:SemesterAudio;
   showSettlement(before:SaveProfile,after:SaveProfile,result:SemesterResult){this.settlementPanel?.destroy();this.settlementPanel=new SemesterSettlementPanel(this.host,before,after,result);}
   readonly app=new Application();readonly audio:GameAudio;
   private textures!:TextureCatalog;private geometry!:TextureLibrary;private assetsRelease:(()=>void)|undefined;private loadAbort=new AbortController();
@@ -72,7 +74,7 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
   private viewWidth=LOGICAL_WIDTH;private viewHeight=LOGICAL_HEIGHT;
   private get game(){if(!this.latest)throw Error('Publish opening DTO before initialization');return this.latest.content;}
   private get phase(){return presentationPhase(this.latest!);}
-  constructor(private host:HTMLElement,private content:ContentCatalog,settings:Settings,private onStick:(stick:Joystick)=>void,audio?:GameAudio,private onLoad?:(p:LoadProgress)=>void,private onView?:(v:Immutable<SemesterRunView<LegacyContentDTO>>)=>void){this.settings=settings;this.ownsAudio=!audio;this.audio=audio??new GameAudio(settings);this.feedback=new FeedbackDirector(settings);}
+  constructor(private host:HTMLElement,private content:ContentCatalog,settings:Settings,private onStick:(stick:Joystick)=>void,audio?:GameAudio,private onLoad?:(p:LoadProgress)=>void,private onView?:(v:Immutable<SemesterRunView<LegacyContentDTO>>)=>void){this.settings=settings;this.ownsAudio=!audio;this.audio=audio??new GameAudio(settings);this.semesterAudio=new SemesterAudio(this.audio,settings);this.audio.prepareCombat();this.feedback=new FeedbackDirector(settings);}
   attach(controls:SemesterControls){this.controls=controls;}
   publish(view:Immutable<SemesterRunView<LegacyContentDTO>>){if(this.destroyed)return;this.latest=view;this.onView?.(view);}
   dispose(){this.destroy();}
@@ -172,7 +174,7 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
     this.blackSprite.visible=false;this.hurtSprite.alpha=0;this.effects.filterArea=new Rectangle(0,0,w,h);this.world.filterArea=new Rectangle(0,0,w,h);this.input?.clear();
   }
   applySettings(settings:Settings){
-    this.settings=settings;this.audio.apply(settings);this.feedback.apply(settings);if(!settings.motion||!settings.distortion||settings.flash===0){this.world.filters=[];this.postFX.clear();}if(this.particles)this.particles.motion=settings.motion;if(!settings.motion){this.trails.clear();this.particles?.clear();this.cameraZoom=1;this.world.rotation=0;this.dangerLayer.rotation=0;this.deathFX.clear();for(const item of this.transient)item.hold=0;this.numbers?.setMotion(false);}this.setQuality(qualityName(settings.quality));
+    this.settings=settings;this.audio.apply(settings);this.semesterAudio.apply(settings);this.feedback.apply(settings);if(!settings.motion||!settings.distortion||settings.flash===0){this.world.filters=[];this.postFX.clear();}if(this.particles)this.particles.motion=settings.motion;if(!settings.motion){this.trails.clear();this.particles?.clear();this.cameraZoom=1;this.world.rotation=0;this.dangerLayer.rotation=0;this.deathFX.clear();for(const item of this.transient)item.hold=0;this.numbers?.setMotion(false);}this.setQuality(qualityName(settings.quality));
   }
   private setQuality(quality:'high'|'medium'|'low'){
     this.quality=quality;
@@ -230,7 +232,7 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
     const cues=this.feedback.consume(allEvents.filter(e=>this.inView(e.x,e.y,e.size)).map(e=>feedbackEvents.get(e)!));
     for(const cue of cues)if(cue.profile.wave&&this.settings.motion&&this.settings.distortion){const point=eventPixelPosition(cue.event.x,cue.event.y,ox,oy,scale,camera.rotation);this.postFX.event(cue.profile,point,this.quality);}
     const holds=new Map(cues.map(c=>[c.event,c.hold]));
-    for(const event of allEvents){const feedback=feedbackEvents.get(event)!;this.audio.event({...feedback,pan:Math.max(-.65,Math.min(.65,(event.x-this.cameraX)/(this.viewWidth*.6)))});this.haptics.event(feedback,this.settings.haptics,this.elapsed*1000);this.handleEvent(event,holds.get(feedback)??0);}
+    for(const event of allEvents){const feedback=feedbackEvents.get(event)!;this.semesterAudio.event({...event,pan:Math.max(-.65,Math.min(.65,(event.x-this.cameraX)/(this.viewWidth*.6)))});this.audio.event({...feedback,pan:Math.max(-.65,Math.min(.65,(event.x-this.cameraX)/(this.viewWidth*.6)))});this.haptics.event(feedback,this.settings.haptics,this.elapsed*1000);this.handleEvent(event,holds.get(feedback)??0);}
     this.audio.flush();
     const visualDt=this.phase==='paused'?0:dt;
     for(let n=this.transient.length-1;n>=0;n--){const item=this.transient[n];const held=Math.min(item.hold??0,visualDt);item.hold=Math.max(0,(item.hold??0)-held);item.life-=visualDt-held;if(item.life<=0){this.transient.splice(n,1);continue;}this.drawTransient(item);}
@@ -241,7 +243,7 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
     const lowHp=p.hp/g.stats.maxHp<.3;this.hurtSprite.alpha=(Math.min(1,this.hitFlash/.18)*.6+(lowHp?.25+(this.settings.motion?Math.sin(this.elapsed*7)*.1:0):0))*this.settings.flash;
     this.world.filters=this.postFX.update(dt,this.settings,this.quality);
     this.preloadBossArt();if([7,15,23].includes(g.week))this.audio.prepareTheme('boss');
-    this.audio.setEnvironment(null);this.audio.setPaused(['paused','draft','chest','reward','contract'].includes(this.phase));this.audio.setTheme(this.phase==='result'?'result':!this.settings.dynamicMusic?'normal':g.bossActive?'boss':g.enemies.active.some(id=>g.enemies.rank[id]===RANK_CODE.elite||g.enemies.rank[id]===RANK_CODE.miniBoss)?'elite':'normal');
+    this.semesterAudio.observe(g,this.phase==='playing');this.audio.setEnvironment(null);this.audio.setPaused(['paused','draft','chest','reward','contract'].includes(this.phase));this.audio.setTheme(this.phase==='result'?'result':!this.settings.dynamicMusic?'normal':g.bossActive?'boss':g.enemies.active.some(id=>g.enemies.rank[id]===RANK_CODE.elite||g.enemies.rank[id]===RANK_CODE.miniBoss)?'elite':'normal');
     this.app.render();this.releaseFilterTextures();
   }
   private inView(x:number,y:number,margin=120){return Math.abs(x-this.cameraX)<this.viewWidth*.55+margin&&Math.abs(y-this.cameraY)<this.viewHeight*.55+margin;}
@@ -514,7 +516,7 @@ export class SemesterScene implements SemesterView<LegacyContentDTO> {
     this.app.destroy(true,{children:true,texture:false,textureSource:false});this.textures?.destroy();this.geometry?.destroy();for(const texture of this.uiTextures)texture.destroy(true);this.uiTextures=[];
   }
   destroy(){
-    if(this.destroyed)return;this.destroyed=true;cancelAnimationFrame(this.animation);this.resizeObserver?.disconnect();this.buildPanel?.destroy();this.buildPanel=null;this.settlementPanel?.destroy();this.settlementPanel=undefined;this.input?.destroy();this.loadAbort.abort();this.assetsRelease?.();this.feedback.clear();this.deathFX.clear();this.particles?.clear();
+    if(this.destroyed)return;this.destroyed=true;cancelAnimationFrame(this.animation);this.resizeObserver?.disconnect();this.buildPanel?.destroy();this.buildPanel=null;this.settlementPanel?.destroy();this.settlementPanel=undefined;this.input?.destroy();this.loadAbort.abort();this.semesterAudio.dispose();this.assetsRelease?.();this.feedback.clear();this.deathFX.clear();this.particles?.clear();
     // Release shader references before Pixi's render-texture pool and atlas sources.
     this.world.filters=[];this.effects.filters=[];if(this.player)this.player.filters=[];
     this.releaseFilterTextures();for(const filter of [this.bloom,this.glow,...this.postFX.filters])filter.destroy();

@@ -1,0 +1,114 @@
+[
+  {
+    "id": "s2-audio-interface-sounds",
+    "title": "第二学期 · interface-sounds",
+    "author": "Kenney",
+    "source": "https://kenney.nl/assets/interface-sounds",
+    "license": "CC0 1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "notes": "仅实际使用的源片段；保留包内许可。双编码/离线归一化与SHA-256见第二学期音频账本。环境为设计循环，不冒称校园实地录音。",
+    "files": [
+      {
+        "original": "Audio/glitch_001.ogg",
+        "output": "assets/audio/v5/s2/shot-s2-drone.ogg / assets/audio/v5/s2/shot-s2-drone.mp3",
+        "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only"
+      },
+      {
+        "original": "Audio/scratch_001.ogg",
+        "output": "assets/audio/v5/s2/shot-s2-whiteboard.ogg / assets/audio/v5/s2/shot-s2-whiteboard.mp3",
+        "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only"
+      },
+      {
+        "original": "Audio/glitch_002.ogg",
+        "output": "assets/audio/v5/s2/shot-s2-spool.ogg / assets/audio/v5/s2/shot-s2-spool.mp3",
+        "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only"
+      },
+      {
+        "original": "Audio/glass_004.ogg",
+        "output": "assets/audio/v5/s2/fusion-s2-holoReview.ogg / assets/audio/v5/s2/fusion-s2-holoReview.mp3",
+        "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only"
+      },
+      {
+        "original": "Audio/error_004.ogg",
+        "output": "assets/audio/v5/s2/warning-s2-line.ogg / assets/audio/v5/s2/warning-s2-line.mp3",
+        "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only"
+      },
+      {
+        "original": "Audio/question_004.ogg",
+        "output": "assets/audio/v5/s2/warning-s2-reservation.ogg / assets/audio/v5/s2/warning-s2-reservation.mp3",
+        "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only"
+      },
+      {
+        "original": "Audio/error_008.ogg",
+        "output": "assets/audio/v5/s2/warning-s2-scan.ogg / assets/audio/v5/s2/warning-s2-scan.mp3",
+        "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only"
+      },
+      {
+        "original": "Audio/glitch_004.ogg",
+        "output": "assets/audio/v5/s2/event-s2-networkMaintenance.ogg / assets/audio/v5/s2/event-s2-networkMaintenance.mp3",
+        "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only"
+      },
+      {
+        "original": "Audio/confirmation_004.ogg",
+        "output": "assets/audio/v5/s2/event-s2-jointExhibit.ogg / assets/audio/v5/s2/event-s2-jointExhibit.mp3",
+        "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only"
+      },
+      {
+        "original": "Audio/maximize_004.ogg",
+        "output": "assets/audio/v5/s2/event-s2-openLab.ogg / assets/audio/v5/s2/event-s2-openLab.mp3",
+        "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only"
+      },
+      {
+        "original": "Audio/confirmation_002.ogg",
+        "output": "assets/audio/v5/s2/contract-s2-project.ogg / assets/audio/v5/s2/contract-s2-project.mp3",
+        "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only"
+      },
+      {
+        "original": "Audio/switch_004.ogg",
+        "output": "assets/audio/v5/s2/contract-s2-amendment.ogg / assets/audio/v5/s2/contract-s2-amendment.mp3",
+        "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only"
+      },
+      {
+        "original": "Audio/scroll_004.ogg",
+        "output": "assets/audio/v5/s2/ambience-s2-exhibit.ogg / assets/audio/v5/s2/ambience-s2-exhibit.mp3",
+        "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; 8-second low-pass rhythmic design loop from the credited clip,60ms loop-edge fades; not a field recording"
+      }
+    ]
+  },
+  {
+    "id": "s2-audio-impact-sounds",
+    "title": "第二学期 · impact-sounds",
+    "author": "Kenney",
+    "source": "https://kenney.nl/assets/impact-sounds",
+    "license": "CC0 1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "notes": "仅实际使用的源片段；保留包内许可。双编码/离线归一化与SHA-256见第二学期音频账本。环境为设计循环，不冒称校园实地录音。",
+    "files": [
+      {
+        "original": "Audio/impactMetal_light_001.ogg",
+        "output": "assets/audio/v5/s2/shot-s2-printer.ogg / assets/audio/v5/s2/shot-s2-printer.mp3",
+        "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only"
+      },
+      {
+        "original": "Audio/impactMetal_medium_001.ogg",
+        "output": "assets/audio/v5/s2/fusion-s2-fieldHub.ogg / assets/audio/v5/s2/fusion-s2-fieldHub.mp3",
+        "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only"
+      },
+      {
+        "original": "Audio/impactMining_002.ogg",
+        "output": "assets/audio/v5/s2/fusion-s2-digitalTwin.ogg / assets/audio/v5/s2/fusion-s2-digitalTwin.mp3",
+        "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only"
+      },
+      {
+        "original": "Audio/impactPlate_medium_004.ogg",
+        "output": "assets/audio/v5/s2/event-s2-deliveryDay.ogg / assets/audio/v5/s2/event-s2-deliveryDay.mp3",
+        "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; trim<=0.8s,2ms onset fade,>=120ms block padding; very short clips periodically extended for metering only"
+      },
+      {
+        "original": "Audio/impactMetal_light_004.ogg",
+        "output": "assets/audio/v5/s2/ambience-s2-lab.ogg / assets/audio/v5/s2/ambience-s2-lab.mp3",
+        "modifications": "Existing v4 BS.1770 mastering: -23 LUFS, -4.5 dBTP pre-encode / -3 dBTP delivered, mono44.1kHz, Ogg96k / MP3112k; 8-second low-pass rhythmic design loop from the credited clip,60ms loop-edge fades; not a field recording"
+      }
+    ]
+  }
+]

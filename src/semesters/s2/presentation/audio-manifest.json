@@ -1,0 +1,92 @@
+{
+  "shot-s2-drone": {
+    "path": "assets/audio/v5/s2/shot-s2-drone",
+    "loop": false,
+    "chapter": 1
+  },
+  "shot-s2-whiteboard": {
+    "path": "assets/audio/v5/s2/shot-s2-whiteboard",
+    "loop": false,
+    "chapter": 1
+  },
+  "shot-s2-spool": {
+    "path": "assets/audio/v5/s2/shot-s2-spool",
+    "loop": false,
+    "chapter": 1
+  },
+  "shot-s2-printer": {
+    "path": "assets/audio/v5/s2/shot-s2-printer",
+    "loop": false,
+    "chapter": 1
+  },
+  "fusion-s2-fieldHub": {
+    "path": "assets/audio/v5/s2/fusion-s2-fieldHub",
+    "loop": false,
+    "chapter": 1
+  },
+  "fusion-s2-holoReview": {
+    "path": "assets/audio/v5/s2/fusion-s2-holoReview",
+    "loop": false,
+    "chapter": 1
+  },
+  "fusion-s2-digitalTwin": {
+    "path": "assets/audio/v5/s2/fusion-s2-digitalTwin",
+    "loop": false,
+    "chapter": 1
+  },
+  "warning-s2-line": {
+    "path": "assets/audio/v5/s2/warning-s2-line",
+    "loop": false,
+    "chapter": 1
+  },
+  "warning-s2-reservation": {
+    "path": "assets/audio/v5/s2/warning-s2-reservation",
+    "loop": false,
+    "chapter": 1
+  },
+  "warning-s2-scan": {
+    "path": "assets/audio/v5/s2/warning-s2-scan",
+    "loop": false,
+    "chapter": 1
+  },
+  "event-s2-deliveryDay": {
+    "path": "assets/audio/v5/s2/event-s2-deliveryDay",
+    "loop": false,
+    "chapter": 1
+  },
+  "event-s2-networkMaintenance": {
+    "path": "assets/audio/v5/s2/event-s2-networkMaintenance",
+    "loop": false,
+    "chapter": 2
+  },
+  "event-s2-jointExhibit": {
+    "path": "assets/audio/v5/s2/event-s2-jointExhibit",
+    "loop": false,
+    "chapter": 3
+  },
+  "event-s2-openLab": {
+    "path": "assets/audio/v5/s2/event-s2-openLab",
+    "loop": false,
+    "chapter": 1
+  },
+  "contract-s2-project": {
+    "path": "assets/audio/v5/s2/contract-s2-project",
+    "loop": false,
+    "chapter": 1
+  },
+  "contract-s2-amendment": {
+    "path": "assets/audio/v5/s2/contract-s2-amendment",
+    "loop": false,
+    "chapter": 2
+  },
+  "ambience-s2-lab": {
+    "path": "assets/audio/v5/s2/ambience-s2-lab",
+    "loop": true,
+    "chapter": 2
+  },
+  "ambience-s2-exhibit": {
+    "path": "assets/audio/v5/s2/ambience-s2-exhibit",
+    "loop": true,
+    "chapter": 3
+  }
+}
