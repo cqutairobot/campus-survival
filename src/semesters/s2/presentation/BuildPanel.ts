@@ -77,7 +77,7 @@ export class BuildPanel {
     body.append(b);
    }
   }else{
-   body.append(this.text('h2',g.phase==='evolution'?'构筑进化':'获得强化'),this.text('p',g.chest?.names.join(' · ')??''),this.button('继续',()=>this.controls.dispatch({type:g.phase==='evolution'?'evolutionDone':'chestDone',token:g.rewardToken})));
+   body.append(this.text('h2',g.phase==='evolution'?'构筑进化':'获得强化'),this.text('p',g.chest?.names.join(' · ')??''),this.text('small','第二学期奖励已提交；点继续完成本次展示。快速揭晓仅用于第一学期。'),this.button('继续',()=>this.controls.dispatch({type:g.phase==='evolution'?'evolutionDone':'chestDone',token:g.rewardToken})));
   }
   this.focus.open();this.focus.refresh();
  }

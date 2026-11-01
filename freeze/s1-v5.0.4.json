@@ -1,0 +1,2827 @@
+{
+  "version": "s1-freeze-v2",
+  "baselineVersion": "s1-v5.0.4",
+  "baseCommit": "2696e698d2802058c84aeb30e76780e41b8230c2",
+  "provenance": "H release metadata only: package product version5.0.1 is shared with UI/HTML; lock changes only its two root product-version fields. Independent historical Git comparison still pins the entire resolved dependency tree. S1 gameplay and daily unchanged; no old pin or exception modified.",
+  "predecessor": {
+    "file": "freeze/s1-v5.0.3.json",
+    "sha256": "aeacabc722ae64dfe6ebcc2169f4217c8252b264c4484029fd9662440eb6c939",
+    "sourceCommit": "2696e698d2802058c84aeb30e76780e41b8230c2"
+  },
+  "entrypoints": [
+    "src/challenges/daily.ts",
+    "src/challenges/scoring.ts",
+    "src/combat/damage.ts",
+    "src/combat/deaths.ts",
+    "src/combat/momentum.ts",
+    "src/combat/pickups.ts",
+    "src/combat/status.ts",
+    "src/combat/ultimates.ts",
+    "src/core/commands.ts",
+    "src/core/engine.ts",
+    "src/core/grid.ts",
+    "src/core/input.ts",
+    "src/core/loop.ts",
+    "src/core/math.ts",
+    "src/core/metrics.ts",
+    "src/core/pool.ts",
+    "src/core/replay.ts",
+    "src/core/run.ts",
+    "src/data/achievements.ts",
+    "src/data/catalog.ts",
+    "src/data/daily.ts",
+    "src/data/enemies.ts",
+    "src/data/fusions.ts",
+    "src/data/pickups.ts",
+    "src/data/relics.ts",
+    "src/data/ultimates.ts",
+    "src/data/waves.ts",
+    "src/data/weapons.ts",
+    "src/enemies/behaviors.ts",
+    "src/enemies/bosses.ts",
+    "src/enemies/director.ts",
+    "src/enemies/elites.ts",
+    "src/enemies/minibosses.ts",
+    "src/entities/pools.ts",
+    "src/progression/achievements.ts",
+    "src/progression/relics.ts",
+    "src/progression/rewards.ts",
+    "src/progression/rules.ts",
+    "src/weapons/fusions.ts",
+    "src/weapons/params.ts",
+    "src/weapons/summons.ts",
+    "src/weapons/system.ts",
+    "src/world/campus.ts",
+    "src/world/events.ts",
+    "src/world/landmarks.ts",
+    "src/world/navigation.ts"
+  ],
+  "runtimeFiles": {
+    "src/challenges/daily.ts": "efc51f5e763e384100212772a8e2131f0c36da1d914f39fb979f7e00173eb7ec",
+    "src/challenges/scoring.ts": "c31f711d1e52ccd0269dd830f0460e09fbf12fa64243aceb9e8e0582f1e943af",
+    "src/combat/damage.ts": "04cb4e926dc9e34fe11ec8ce20b9750de09bd28e47d34af2fc924788e1c76d72",
+    "src/combat/deaths.ts": "c64be06732092ec3234d66931f68a969e1a50a0ba084400cf24eadab2829fe5c",
+    "src/combat/momentum.ts": "47869ddca2f0134b0157719a27fef57522f00e6a5276a65a67f91e2f650bd100",
+    "src/combat/pickups.ts": "4a8340dfc37c279e6de74e701b6dd1d908c2b99fef8b409c36391d1a7bcb4c63",
+    "src/combat/status.ts": "f38a1dd4d71eccc97959da6a5039799f579a781177188c034a192334b2bf4c22",
+    "src/combat/ultimates.ts": "a0039c85a591987380e61c15c7bec3df2820093cb7f7310c1ed169425c186e4b",
+    "src/core/commands.ts": "e5d2ea28b107e6df4ed85cf7336e10a78611f193ddf670108c1447ec9bce518a",
+    "src/core/engine.ts": "899601a9346adfc794bfa8b431386390eff265441210249e4ce2a205915cf8a2",
+    "src/core/grid.ts": "73534c33f8bb6aa922e018235170ba58c4d1a1d2369c0bbd5d9e5fabcd977987",
+    "src/core/input.ts": "4d594c63eb91458ae04436539e27be03b20a54cd4e21d33044ba46a5d973e2de",
+    "src/core/loop.ts": "376f19f0108646d88ce5df35f1729de95945a1c6677486edfb1496676df1a3a6",
+    "src/core/math.ts": "8e34c68e74dabe3ca5fe2fc32755b74691b2f344cb99f7cc2a9916d084e85dbe",
+    "src/core/metrics.ts": "d5bcf8dbfe5c1d56938bd6d7ade32cb8a8cc26120653f526d41e770a74ae9735",
+    "src/core/pool.ts": "8daec50664e0b232205cfaffe53d1dc40080a3c21aa4cbca2e0da73e56397f4b",
+    "src/core/replay.ts": "678cd52b36b02948acdfe0edaae84b7a959d0ca1cda9c741000eabac6ab2ad9b",
+    "src/core/run.ts": "26fcae0a77ddd5ffa1e7ae9905d1cb8fa2a87d51cdb1bacf81ed1d1b63796bba",
+    "src/data/achievements.ts": "55b0c55db8f2757aa2ad1d4dc1b0f5ec63fca7d8f4a12dafde1f7802116d91c0",
+    "src/data/catalog.ts": "7c23e90ae34e07c3f3c1e9e471f4b43680c8c5ad5b1b27cdb90640a496d758c2",
+    "src/data/daily.ts": "98ef17675175d2e36d3b55cf3d3e714798a835df65d560eac48d7cf554b57afd",
+    "src/data/enemies.ts": "2f78ae4799187a87df2f2330dc0aeaee8765ec25f71b261c249648793c44b599",
+    "src/data/fusions.ts": "ee5daf9d5021600a3fc1c0181bc4f64dbcb5e2780390db6f00437e05b0ff3ba0",
+    "src/data/pickups.ts": "cade7881fd0c09aea834927acccbe6357e51ea3bfea3ff1a7ada6e88267e215c",
+    "src/data/relics.ts": "e220ca47452078fc5b08d5823717b06a82c354b2d289fb3c8df5cea43c2ea03d",
+    "src/data/ultimates.ts": "ddd567457c6ae7d367b594b7dd336ddbfcbec08250b1631e63c7af68c9c82cae",
+    "src/data/waves.ts": "2d6e616a8d9fceb47a428fd206f6cd04fa6aa7ec105f52302756474a0ad4904d",
+    "src/data/weapons.ts": "fd48dc12726006a3e04dc2f3e9a1398a7d9dcf18c77c34c9e2116eeab9f8f9c9",
+    "src/debug/commands.ts": "6260f1ea151bc9196306cda76b4954b912195f129649ec8517da6764236d4ecd",
+    "src/design/tokens.ts": "ae0bc07ff2938008726cb623a8f9d25c6124a0af6d058c68734e475c4dcb0384",
+    "src/enemies/behaviors.ts": "2af7694e278988503c5be2d8e8e1316e9f419b184f1edbbf1005cba2514335f3",
+    "src/enemies/bosses.ts": "b87a1e225dd114e5522332e9c33e9f5a1070ad93ac87fe679523456b6ebd7d77",
+    "src/enemies/director.ts": "78e4acc8e78725cfda3837be38e961e4483d88d1bdc8fb569f98af27b74b5000",
+    "src/enemies/elites.ts": "f4afd61b546369f69b6c4bb275e6a1a0916c8523dcd0ead8ea880fc111261895",
+    "src/enemies/minibosses.ts": "7ebfaaa989312864e78bfb7672c81300795ae6b2cbbd985b25ac3633d8f0097a",
+    "src/entities/pools.ts": "78bf5a515f0cea35e73baa66719aae9fe0672f75f483612ac0976bbb26e2b764",
+    "src/fx/feedback.ts": "18cd5320cf0305a3b354a6ef7dc2f0ab5cd73b8af22c3064b5bc0e062a4ef60d",
+    "src/presentation/materials.ts": "3a02457c139b8905f40f75dc160a21f969492374b06d843a4353fb5406af0062",
+    "src/progression/achievements.ts": "55b8b07accd6126d3837c98ada31df2d130870c2054362b9ee999418ae639f2b",
+    "src/progression/relics.ts": "2523f0b4ccd0038a5548b33a8954a1196bdcb5d4c1e30aeb69c8ddeef19999e6",
+    "src/progression/rewards.ts": "918d5cedd0ede07ea5d78fcec8a9b6049cec1636e04e76b4735236e413b60528",
+    "src/progression/rules.ts": "630554088c8914a34baa6f2ff3725faa8b56538207e790aca9a4286f452b0ce9",
+    "src/save/migrations.ts": "a7f49e30e36f6053f2029936a2d8f9091510c59c034ac3137174d131e45e1553",
+    "src/save/recovery.ts": "bc8731fe8692f64250dfd6b5ce884a30f474267830be04b65fa728dbbacf6598",
+    "src/save/settings.ts": "1ecd5eec13b73888eaffa30a82e327f66bab2911b8605400bbd14b9effaf75fd",
+    "src/save/storage.ts": "345eb6776c21c887acf9896fc15359f3737f27834c5d10fb063533e504595ba9",
+    "src/ui/input/modal-focus.ts": "3ad0f9910ca4519714626566f93067323684620d2325ef2a62a0ea300a1b7ad4",
+    "src/ui/input/modal-input.ts": "09b0a0f76d6948ea9632cea46edafa936f4c796edf1f67c6bc8de6407ce97323",
+    "src/weapons/fusions.ts": "22a8b799de81e9a039d9d5297990019768aafbc78db74e198a4558bc0bb51197",
+    "src/weapons/params.ts": "c6342f201210463abd9b149714d36463e94db960fb51bbda63327ea6fd2caf2c",
+    "src/weapons/summons.ts": "35e235add31c224cc3f40fa04611011d800bf2d826ff82ca4ac6ff87d2df12e3",
+    "src/weapons/system.ts": "fc44b2ef33d3bf31a33157dfc01b04237e9bcc6ef68704f3681f7370e5d074b5",
+    "src/world/campus.ts": "ad1167e29240e46991d134b8198f4f2571ebf35934a34a31f06a8bec835a2f8e",
+    "src/world/events.ts": "79149457f1a1d5a848a6dd111f72291e90e5b5a3fd96517c3e4e9a3e3aaf5ba1",
+    "src/world/landmarks.ts": "32e558757623cf939b18ac22c60970cdde1e96880fe12c660f59a258bda9b9a6",
+    "src/world/navigation.ts": "31700e218acaf5216f47aa455a902cdd29b6872f099cad3638920510e9d34f8d"
+  },
+  "catalog": {
+    "src/data/catalog.ts": {
+      "WEAPONS": {
+        "sha256": "dd4ae07f5ccb344fc2afb71e53fe676502a192e4de8aace63b96635915b82e8b",
+        "ids": [
+          "knife",
+          "orbit",
+          "coffee",
+          "code",
+          "laser",
+          "ppt",
+          "bot",
+          "keyboard",
+          "rain",
+          "wifi",
+          "lightning",
+          "mentor",
+          "staple",
+          "mine",
+          "eraser",
+          "broadcast",
+          "ruler",
+          "blueprint",
+          "shuttle",
+          "prism",
+          "cryo",
+          "brick"
+        ],
+        "values": [
+          {
+            "id": "knife",
+            "damage": [
+              14,
+              16,
+              20,
+              24,
+              30
+            ],
+            "interval": [
+              0.65,
+              0.62,
+              0.6,
+              0.58,
+              0.55
+            ],
+            "count": [
+              3,
+              3,
+              4,
+              4,
+              5
+            ],
+            "range": [
+              650,
+              700,
+              750,
+              800,
+              850
+            ],
+            "pierce": [
+              3,
+              4,
+              4,
+              5,
+              6
+            ],
+            "forms": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "evolution": {
+              "damage": 48,
+              "interval": 0.55,
+              "count": 7,
+              "range": 1000,
+              "pierce": 8
+            }
+          },
+          {
+            "id": "orbit",
+            "damage": [
+              8,
+              11,
+              15,
+              21,
+              28
+            ],
+            "interval": [
+              0.35,
+              0.35,
+              0.35,
+              0.35,
+              0.35
+            ],
+            "count": [
+              2,
+              3,
+              3,
+              4,
+              4
+            ],
+            "range": [
+              75,
+              75,
+              100,
+              100,
+              125
+            ],
+            "forms": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "evolution": {
+              "damage": 36,
+              "interval": 0.3,
+              "count": 6,
+              "range": 150
+            }
+          },
+          {
+            "id": "coffee",
+            "damage": [
+              18,
+              24,
+              30,
+              38,
+              48
+            ],
+            "interval": [
+              1.8,
+              1.7,
+              1.6,
+              1.5,
+              1.4
+            ],
+            "count": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "range": [
+              140,
+              160,
+              180,
+              205,
+              230
+            ],
+            "spread": [
+              80,
+              95,
+              110,
+              125,
+              140
+            ],
+            "forms": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "evolution": {
+              "damage": 70,
+              "interval": 1.2,
+              "count": 1,
+              "range": 280,
+              "spread": 180
+            }
+          },
+          {
+            "id": "code",
+            "damage": [
+              16,
+              22,
+              28,
+              36,
+              46
+            ],
+            "interval": [
+              2.2,
+              2.05,
+              1.9,
+              1.75,
+              1.6
+            ],
+            "count": [
+              2,
+              2,
+              3,
+              3,
+              4
+            ],
+            "range": [
+              650,
+              650,
+              650,
+              650,
+              650
+            ],
+            "explosion": [
+              24,
+              32,
+              32,
+              40,
+              40
+            ],
+            "forms": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "evolution": {
+              "damage": 62,
+              "interval": 1.25,
+              "count": 5,
+              "range": 700,
+              "explosion": 56
+            }
+          },
+          {
+            "id": "laser",
+            "damage": [
+              14,
+              20,
+              28,
+              38,
+              50
+            ],
+            "interval": [
+              1.5,
+              1.5,
+              1.5,
+              1.5,
+              1.5
+            ],
+            "count": [
+              2,
+              2,
+              2,
+              2,
+              2
+            ],
+            "range": [
+              850,
+              900,
+              950,
+              1000,
+              1050
+            ],
+            "width": [
+              12,
+              16,
+              20,
+              24,
+              28
+            ],
+            "forms": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "evolution": {
+              "damage": 135,
+              "interval": 1.8,
+              "count": 2,
+              "range": 1200,
+              "width": 36
+            }
+          },
+          {
+            "id": "ppt",
+            "damage": [
+              14,
+              19,
+              25,
+              32,
+              40
+            ],
+            "interval": [
+              2.4,
+              2.2,
+              2,
+              1.8,
+              1.6
+            ],
+            "count": [
+              1,
+              1,
+              2,
+              2,
+              3
+            ],
+            "range": [
+              280,
+              340,
+              340,
+              400,
+              400
+            ],
+            "forms": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "evolution": {
+              "damage": 56,
+              "interval": 1.3,
+              "count": 4,
+              "range": 480
+            }
+          },
+          {
+            "id": "bot",
+            "damage": [
+              10,
+              14,
+              19,
+              26,
+              34
+            ],
+            "interval": [
+              0.85,
+              0.8,
+              0.75,
+              0.7,
+              0.65
+            ],
+            "count": [
+              2,
+              2,
+              3,
+              3,
+              4
+            ],
+            "range": [
+              440,
+              460,
+              480,
+              500,
+              520
+            ],
+            "forms": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "evolution": {
+              "damage": 44,
+              "interval": 0.42,
+              "count": 4,
+              "range": 600
+            }
+          },
+          {
+            "id": "keyboard",
+            "damage": [
+              6,
+              9,
+              14,
+              21,
+              30
+            ],
+            "interval": [
+              0.32,
+              0.3,
+              0.28,
+              0.26,
+              0.24
+            ],
+            "count": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "range": [
+              80,
+              95,
+              110,
+              125,
+              145
+            ],
+            "spread": [
+              120,
+              150,
+              180,
+              210,
+              240
+            ],
+            "forms": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "evolution": {
+              "damage": 42,
+              "interval": 0.18,
+              "count": 1,
+              "range": 175,
+              "spread": 360
+            }
+          },
+          {
+            "id": "rain",
+            "damage": [
+              28,
+              38,
+              50,
+              64,
+              80
+            ],
+            "interval": [
+              3,
+              2.8,
+              2.6,
+              2.4,
+              2.2
+            ],
+            "count": [
+              1,
+              2,
+              2,
+              3,
+              4
+            ],
+            "range": [
+              60,
+              60,
+              80,
+              80,
+              100
+            ],
+            "forms": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "evolution": {
+              "damage": 110,
+              "interval": 1.8,
+              "count": 6,
+              "range": 120
+            }
+          },
+          {
+            "id": "wifi",
+            "damage": [
+              12,
+              16,
+              21,
+              27,
+              34
+            ],
+            "interval": [
+              2.2,
+              2.1,
+              2,
+              1.9,
+              1.8
+            ],
+            "count": [
+              2,
+              2,
+              2,
+              2,
+              2
+            ],
+            "range": [
+              170,
+              195,
+              220,
+              245,
+              270
+            ],
+            "forms": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "evolution": {
+              "damage": 50,
+              "interval": 1.4,
+              "count": 2,
+              "range": 320
+            }
+          },
+          {
+            "id": "lightning",
+            "damage": [
+              20,
+              27,
+              36,
+              47,
+              60
+            ],
+            "interval": [
+              2.6,
+              2.4,
+              2.2,
+              2,
+              1.8
+            ],
+            "count": [
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "range": [
+              135,
+              145,
+              155,
+              165,
+              175
+            ],
+            "forms": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "evolution": {
+              "damage": 82,
+              "interval": 1.35,
+              "count": 10,
+              "range": 210,
+              "explosion": 45
+            }
+          },
+          {
+            "id": "mentor",
+            "damage": [
+              70,
+              90,
+              115,
+              145,
+              180
+            ],
+            "interval": [
+              16,
+              15,
+              14,
+              13,
+              12
+            ],
+            "count": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "range": [
+              1100,
+              1100,
+              1100,
+              1100,
+              1100
+            ],
+            "forms": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "evolution": {
+              "damage": 300,
+              "interval": 10,
+              "count": 1,
+              "range": 1300
+            }
+          },
+          {
+            "id": "staple",
+            "damage": [
+              8,
+              11,
+              14,
+              18,
+              23
+            ],
+            "interval": [
+              1.7,
+              1.6,
+              1.5,
+              1.4,
+              1.3
+            ],
+            "count": [
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "range": [
+              360,
+              380,
+              400,
+              420,
+              440
+            ],
+            "pierce": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "forms": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "evolution": {
+              "damage": 32,
+              "interval": 1.1,
+              "count": 12,
+              "range": 500,
+              "pierce": 3
+            }
+          },
+          {
+            "id": "mine",
+            "damage": [
+              22,
+              30,
+              40,
+              52,
+              66
+            ],
+            "interval": [
+              2.8,
+              2.6,
+              2.4,
+              2.2,
+              2
+            ],
+            "count": [
+              1,
+              2,
+              2,
+              3,
+              3
+            ],
+            "range": [
+              65,
+              65,
+              85,
+              85,
+              105
+            ],
+            "forms": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "evolution": {
+              "damage": 90,
+              "interval": 1.6,
+              "count": 3,
+              "range": 135
+            }
+          },
+          {
+            "id": "eraser",
+            "damage": [
+              6,
+              9,
+              14,
+              21,
+              30
+            ],
+            "interval": [
+              5,
+              4.8,
+              4.6,
+              4.4,
+              4.2
+            ],
+            "count": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "range": [
+              90,
+              110,
+              130,
+              150,
+              170
+            ],
+            "duration": [
+              2,
+              2.5,
+              3,
+              3.5,
+              4
+            ],
+            "forms": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "evolution": {
+              "damage": 38,
+              "interval": 5,
+              "count": 1,
+              "range": 210,
+              "duration": 5
+            }
+          },
+          {
+            "id": "broadcast",
+            "damage": [
+              18,
+              24,
+              32,
+              42,
+              54
+            ],
+            "interval": [
+              3.5,
+              3.3,
+              3.1,
+              2.9,
+              2.7
+            ],
+            "count": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "range": [
+              175,
+              200,
+              225,
+              250,
+              275
+            ],
+            "spread": [
+              120,
+              150,
+              180,
+              210,
+              240
+            ],
+            "forms": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "evolution": {
+              "damage": 80,
+              "interval": 2,
+              "count": 1,
+              "range": 350,
+              "spread": 360
+            }
+          },
+          {
+            "id": "ruler",
+            "damage": [
+              22,
+              30,
+              40,
+              54,
+              70
+            ],
+            "interval": [
+              1.7,
+              1.6,
+              1.5,
+              1.4,
+              1.3
+            ],
+            "count": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "range": [
+              160,
+              180,
+              205,
+              230,
+              260
+            ],
+            "spread": [
+              150,
+              180,
+              210,
+              240,
+              270
+            ],
+            "forms": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "evolution": {
+              "damage": 105,
+              "interval": 1,
+              "count": 1,
+              "range": 330,
+              "spread": 360
+            }
+          },
+          {
+            "id": "blueprint",
+            "damage": [
+              12,
+              16,
+              21,
+              27,
+              34
+            ],
+            "interval": [
+              0.9,
+              0.85,
+              0.8,
+              0.75,
+              0.7
+            ],
+            "count": [
+              1,
+              1,
+              2,
+              2,
+              3
+            ],
+            "range": [
+              450,
+              480,
+              510,
+              540,
+              570
+            ],
+            "forms": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "evolution": {
+              "damage": 48,
+              "interval": 0.5,
+              "count": 4,
+              "range": 650,
+              "pierce": 2
+            }
+          },
+          {
+            "id": "shuttle",
+            "damage": [
+              18,
+              25,
+              34,
+              44,
+              56
+            ],
+            "interval": [
+              1.3,
+              1.2,
+              1.1,
+              1,
+              0.9
+            ],
+            "count": [
+              1,
+              2,
+              2,
+              3,
+              3
+            ],
+            "range": [
+              500,
+              550,
+              600,
+              650,
+              700
+            ],
+            "pierce": [
+              2,
+              2,
+              3,
+              3,
+              4
+            ],
+            "forms": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "evolution": {
+              "damage": 82,
+              "interval": 0.8,
+              "count": 4,
+              "range": 800,
+              "pierce": 6
+            }
+          },
+          {
+            "id": "prism",
+            "damage": [
+              20,
+              28,
+              38,
+              50,
+              66
+            ],
+            "interval": [
+              2.2,
+              2,
+              1.9,
+              1.7,
+              1.5
+            ],
+            "count": [
+              2,
+              2,
+              3,
+              3,
+              4
+            ],
+            "range": [
+              600,
+              650,
+              700,
+              750,
+              800
+            ],
+            "width": [
+              8,
+              10,
+              12,
+              14,
+              16
+            ],
+            "forms": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "evolution": {
+              "damage": 100,
+              "interval": 1.2,
+              "count": 5,
+              "range": 1000,
+              "width": 22
+            }
+          },
+          {
+            "id": "cryo",
+            "damage": [
+              9,
+              12,
+              16,
+              21,
+              27
+            ],
+            "interval": [
+              4.8,
+              4.6,
+              4.4,
+              4.2,
+              4
+            ],
+            "count": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "range": [
+              110,
+              130,
+              150,
+              175,
+              200
+            ],
+            "duration": [
+              2,
+              2.2,
+              2.4,
+              2.6,
+              3
+            ],
+            "forms": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "evolution": {
+              "damage": 44,
+              "interval": 4,
+              "count": 1,
+              "range": 260,
+              "duration": 4.5
+            }
+          },
+          {
+            "id": "brick",
+            "damage": [
+              28,
+              38,
+              50,
+              65,
+              84
+            ],
+            "interval": [
+              2.6,
+              2.4,
+              2.2,
+              2,
+              1.8
+            ],
+            "count": [
+              1,
+              1,
+              2,
+              2,
+              3
+            ],
+            "range": [
+              600,
+              600,
+              600,
+              600,
+              600
+            ],
+            "explosion": [
+              70,
+              80,
+              90,
+              105,
+              120
+            ],
+            "forms": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "evolution": {
+              "damage": 145,
+              "interval": 1.5,
+              "count": 4,
+              "range": 750,
+              "explosion": 150
+            }
+          }
+        ]
+      },
+      "PASSIVES": {
+        "sha256": "659c360cc2effd159a18685e4d5334cf7d9f866315d962eab9cb43978a54bccb",
+        "ids": [
+          "speed",
+          "night",
+          "haste",
+          "xp",
+          "regen",
+          "multi",
+          "calm",
+          "area",
+          "luck",
+          "health",
+          "push",
+          "duration",
+          "armor",
+          "magnetism",
+          "focus",
+          "thesis"
+        ],
+        "values": [
+          {
+            "id": "speed",
+            "values": [
+              8,
+              14,
+              20,
+              26,
+              32
+            ]
+          },
+          {
+            "id": "night",
+            "values": [
+              20,
+              40,
+              60,
+              80,
+              100
+            ]
+          },
+          {
+            "id": "haste",
+            "values": [
+              8,
+              16,
+              24,
+              32,
+              40
+            ]
+          },
+          {
+            "id": "xp",
+            "values": [
+              10,
+              20,
+              30,
+              40,
+              50
+            ]
+          },
+          {
+            "id": "regen",
+            "values": [
+              0.2,
+              0.4,
+              0.6,
+              0.8,
+              1
+            ]
+          },
+          {
+            "id": "multi",
+            "values": [
+              1,
+              1,
+              2,
+              2,
+              3
+            ]
+          },
+          {
+            "id": "calm",
+            "values": [
+              0.15,
+              0.25,
+              0.35,
+              0.45,
+              0.6
+            ]
+          },
+          {
+            "id": "area",
+            "values": [
+              10,
+              20,
+              30,
+              40,
+              50
+            ]
+          },
+          {
+            "id": "luck",
+            "values": [
+              3,
+              6,
+              9,
+              12,
+              15
+            ]
+          },
+          {
+            "id": "health",
+            "values": [
+              15,
+              30,
+              45,
+              60,
+              75
+            ]
+          },
+          {
+            "id": "push",
+            "values": [
+              10,
+              20,
+              30,
+              40,
+              50
+            ]
+          },
+          {
+            "id": "duration",
+            "values": [
+              10,
+              20,
+              30,
+              40,
+              50
+            ]
+          },
+          {
+            "id": "armor",
+            "values": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          {
+            "id": "magnetism",
+            "values": [
+              25,
+              50,
+              75,
+              100,
+              125
+            ]
+          },
+          {
+            "id": "focus",
+            "values": [
+              8,
+              16,
+              24,
+              32,
+              40
+            ]
+          },
+          {
+            "id": "thesis",
+            "values": [
+              0.1,
+              0.2,
+              0.3,
+              0.4,
+              0.5
+            ]
+          }
+        ]
+      },
+      "CHARACTERS": {
+        "sha256": "26ee957f8d5dafb1fb352b8cb79af610050191898e02a5f2e53f8093076eecb9",
+        "ids": [
+          "balanced",
+          "analysis",
+          "coder",
+          "english",
+          "architect",
+          "experiment"
+        ],
+        "values": [
+          {
+            "id": "balanced",
+            "hp": 110,
+            "crit": 0.05,
+            "area": 0,
+            "summon": 0,
+            "cost": 0
+          },
+          {
+            "id": "analysis",
+            "hp": 90,
+            "crit": 0.2,
+            "area": 0,
+            "summon": 0,
+            "cost": 80
+          },
+          {
+            "id": "coder",
+            "hp": 95,
+            "crit": 0.05,
+            "area": 0,
+            "summon": 0.25,
+            "cost": 120
+          },
+          {
+            "id": "english",
+            "hp": 100,
+            "crit": 0.05,
+            "area": 0.2,
+            "summon": 0,
+            "cost": 100
+          },
+          {
+            "id": "architect",
+            "hp": 120,
+            "crit": 0.05,
+            "area": 0.1,
+            "summon": 0,
+            "cost": 0,
+            "armor": 1
+          },
+          {
+            "id": "experiment",
+            "hp": 95,
+            "crit": 0.05,
+            "area": 0,
+            "summon": 0,
+            "cost": 0,
+            "duration": 0.15
+          }
+        ]
+      },
+      "TALENTS": {
+        "sha256": "6ef41bfafc73c7d86bd3a49588a9ba21b16eb72d19ab688f5a3b4e2fc2b2f3e6",
+        "ids": [
+          "hp",
+          "damage",
+          "speed",
+          "haste",
+          "xp",
+          "regen",
+          "magnet",
+          "luck"
+        ],
+        "values": [
+          {
+            "id": "hp"
+          },
+          {
+            "id": "damage"
+          },
+          {
+            "id": "speed"
+          },
+          {
+            "id": "haste"
+          },
+          {
+            "id": "xp"
+          },
+          {
+            "id": "regen"
+          },
+          {
+            "id": "magnet"
+          },
+          {
+            "id": "luck"
+          }
+        ]
+      },
+      "ENEMIES": {
+        "sha256": "83a60b128c0ecdd00886f8ff7f97e0b8d50e436999de446bf54d006b87cd15ee",
+        "ids": [
+          "homework",
+          "checkin",
+          "ppt",
+          "review",
+          "receipt",
+          "ddl",
+          "advisor",
+          "proposal",
+          "defense",
+          "finals",
+          "math",
+          "english",
+          "coding",
+          "mechanics",
+          "thrower",
+          "charger",
+          "splitter",
+          "bomber",
+          "summoner",
+          "guard",
+          "leader",
+          "inspector",
+          "teamlead",
+          "node",
+          "examCharger"
+        ],
+        "values": [
+          {
+            "id": "homework",
+            "tags": [],
+            "hp": 12,
+            "speed": 54,
+            "damage": 5,
+            "xp": 1,
+            "radius": 14,
+            "from": 1
+          },
+          {
+            "id": "checkin",
+            "tags": [],
+            "hp": 18,
+            "speed": 82,
+            "damage": 6,
+            "xp": 1,
+            "radius": 13,
+            "from": 1
+          },
+          {
+            "id": "ppt",
+            "tags": [],
+            "hp": 30,
+            "speed": 62,
+            "damage": 8,
+            "xp": 2,
+            "radius": 16,
+            "from": 3
+          },
+          {
+            "id": "review",
+            "tags": [
+              null
+            ],
+            "hp": 22,
+            "speed": 44,
+            "damage": 6,
+            "xp": 3,
+            "radius": 15,
+            "from": 5
+          },
+          {
+            "id": "receipt",
+            "tags": [
+              null
+            ],
+            "hp": 65,
+            "speed": 36,
+            "damage": 10,
+            "xp": 4,
+            "radius": 18,
+            "from": 9
+          },
+          {
+            "id": "ddl",
+            "tags": [],
+            "hp": 450,
+            "speed": 65,
+            "damage": 14,
+            "xp": 12,
+            "radius": 23,
+            "from": 4
+          },
+          {
+            "id": "advisor",
+            "tags": [],
+            "hp": 600,
+            "speed": 80,
+            "damage": 14,
+            "xp": 50,
+            "radius": 28,
+            "from": 3
+          },
+          {
+            "id": "proposal",
+            "tags": [],
+            "hp": 12000,
+            "speed": 48,
+            "damage": 18,
+            "xp": 100,
+            "radius": 48,
+            "from": 8
+          },
+          {
+            "id": "defense",
+            "tags": [],
+            "hp": 32000,
+            "speed": 42,
+            "damage": 24,
+            "xp": 180,
+            "radius": 54,
+            "from": 16
+          },
+          {
+            "id": "finals",
+            "tags": [],
+            "hp": 80000,
+            "speed": 35,
+            "damage": 30,
+            "xp": 300,
+            "radius": 62,
+            "from": 22
+          },
+          {
+            "id": "math",
+            "tags": [
+              null
+            ],
+            "hp": 900,
+            "speed": 40,
+            "damage": 14,
+            "xp": 12,
+            "radius": 24,
+            "from": 22
+          },
+          {
+            "id": "english",
+            "tags": [
+              null
+            ],
+            "hp": 900,
+            "speed": 44,
+            "damage": 14,
+            "xp": 12,
+            "radius": 24,
+            "from": 22
+          },
+          {
+            "id": "coding",
+            "tags": [
+              null
+            ],
+            "hp": 900,
+            "speed": 42,
+            "damage": 14,
+            "xp": 12,
+            "radius": 24,
+            "from": 22
+          },
+          {
+            "id": "mechanics",
+            "tags": [
+              null
+            ],
+            "hp": 900,
+            "speed": 38,
+            "damage": 14,
+            "xp": 12,
+            "radius": 24,
+            "from": 22
+          },
+          {
+            "id": "thrower",
+            "tags": [
+              null
+            ],
+            "hp": 18,
+            "speed": 46,
+            "damage": 6,
+            "xp": 2,
+            "radius": 15,
+            "from": 3
+          },
+          {
+            "id": "charger",
+            "tags": [],
+            "hp": 16,
+            "speed": 70,
+            "damage": 7,
+            "xp": 1,
+            "radius": 14,
+            "from": 4
+          },
+          {
+            "id": "splitter",
+            "tags": [
+              null
+            ],
+            "hp": 20,
+            "speed": 58,
+            "damage": 6,
+            "xp": 2,
+            "radius": 15,
+            "from": 5
+          },
+          {
+            "id": "bomber",
+            "tags": [],
+            "hp": 14,
+            "speed": 90,
+            "damage": 5,
+            "xp": 1,
+            "radius": 14,
+            "from": 7
+          },
+          {
+            "id": "summoner",
+            "tags": [
+              null
+            ],
+            "hp": 26,
+            "speed": 42,
+            "damage": 7,
+            "xp": 3,
+            "radius": 17,
+            "from": 10
+          },
+          {
+            "id": "guard",
+            "tags": [
+              null
+            ],
+            "hp": 26,
+            "speed": 44,
+            "damage": 8,
+            "xp": 3,
+            "radius": 18,
+            "from": 9
+          },
+          {
+            "id": "leader",
+            "tags": [
+              null
+            ],
+            "hp": 24,
+            "speed": 52,
+            "damage": 8,
+            "xp": 3,
+            "radius": 17,
+            "from": 13
+          },
+          {
+            "id": "inspector",
+            "tags": [],
+            "hp": 4800,
+            "speed": 50,
+            "damage": 14,
+            "xp": 60,
+            "radius": 36,
+            "from": 11
+          },
+          {
+            "id": "teamlead",
+            "tags": [],
+            "hp": 10000,
+            "speed": 55,
+            "damage": 18,
+            "xp": 80,
+            "radius": 40,
+            "from": 18
+          },
+          {
+            "id": "node",
+            "tags": [
+              null,
+              null
+            ],
+            "hp": 160,
+            "speed": 0,
+            "damage": 0,
+            "xp": 0,
+            "radius": 16,
+            "from": 11
+          },
+          {
+            "id": "examCharger",
+            "tags": [
+              null,
+              null
+            ],
+            "hp": 120,
+            "speed": 70,
+            "damage": 14,
+            "xp": 0,
+            "radius": 19,
+            "from": 22
+          }
+        ]
+      },
+      "BOSS_WEEKS": {
+        "sha256": "d8edec9314af6ca25a0c5572f4e4354f32dcd0964658848fd2fe4b968156c50a",
+        "values": [
+          8,
+          16,
+          22
+        ]
+      },
+      "CHEST_WEEKS": {
+        "sha256": "dc9a04b819996e2128ba0edf8463bd63e70c4494d602d54aeadf0b6738c4ad1d",
+        "values": [
+          4,
+          6,
+          10,
+          12,
+          14,
+          18,
+          20
+        ]
+      },
+      "WEEK_SECONDS": {
+        "sha256": "d59eced1ded07f84c145592f65bdf854358e009c5cd705f5215bf18697fed103",
+        "values": 40
+      },
+      "RARITY_MULTIPLIERS": {
+        "sha256": "b96a1c6ad3bd2bf33f8f8ecd2a8817110aec8442e78b07a59307f695993dd027",
+        "values": [
+          1,
+          1.08,
+          1.16,
+          1.25
+        ]
+      },
+      "CONTENT_VERSION": {
+        "sha256": "5f85d809908a0e6673b22fe02368398bac4e71dac4c578531139b70adfbd0c96",
+        "values": null
+      }
+    },
+    "src/data/fusions.ts": {
+      "FUSIONS": {
+        "sha256": "03fd1e7cea575018d639bd601c970b54dd562a6ead3963986b78877bd98de520",
+        "ids": [
+          "sword",
+          "hub",
+          "binder",
+          "sky",
+          "icefire",
+          "demolition"
+        ],
+        "values": [
+          {
+            "id": "sword",
+            "components": [
+              null,
+              null
+            ],
+            "damage": [
+              60,
+              60,
+              60,
+              60,
+              60
+            ],
+            "interval": [
+              0.65,
+              0.65,
+              0.65,
+              0.65,
+              0.65
+            ],
+            "count": [
+              10,
+              10,
+              10,
+              10,
+              10
+            ],
+            "range": [
+              1100,
+              1100,
+              1100,
+              1100,
+              1100
+            ],
+            "forms": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "evolution": {
+              "damage": 60,
+              "interval": 0.65,
+              "count": 10,
+              "range": 1100
+            },
+            "pierce": [
+              10,
+              10,
+              10,
+              10,
+              10
+            ]
+          },
+          {
+            "id": "hub",
+            "components": [
+              null,
+              null
+            ],
+            "damage": [
+              50,
+              50,
+              50,
+              50,
+              50
+            ],
+            "interval": [
+              0.32,
+              0.32,
+              0.32,
+              0.32,
+              0.32
+            ],
+            "count": [
+              6,
+              6,
+              6,
+              6,
+              6
+            ],
+            "range": [
+              750,
+              750,
+              750,
+              750,
+              750
+            ],
+            "forms": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "evolution": {
+              "damage": 50,
+              "interval": 0.32,
+              "count": 6,
+              "range": 750
+            }
+          },
+          {
+            "id": "binder",
+            "components": [
+              null,
+              null
+            ],
+            "damage": [
+              65,
+              65,
+              65,
+              65,
+              65
+            ],
+            "interval": [
+              0.8,
+              0.8,
+              0.8,
+              0.8,
+              0.8
+            ],
+            "count": [
+              12,
+              12,
+              12,
+              12,
+              12
+            ],
+            "range": [
+              850,
+              850,
+              850,
+              850,
+              850
+            ],
+            "forms": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "evolution": {
+              "damage": 65,
+              "interval": 0.8,
+              "count": 12,
+              "range": 850
+            },
+            "pierce": [
+              5,
+              5,
+              5,
+              5,
+              5
+            ]
+          },
+          {
+            "id": "sky",
+            "components": [
+              null,
+              null
+            ],
+            "damage": [
+              150,
+              150,
+              150,
+              150,
+              150
+            ],
+            "interval": [
+              1.3,
+              1.3,
+              1.3,
+              1.3,
+              1.3
+            ],
+            "count": [
+              6,
+              6,
+              6,
+              6,
+              6
+            ],
+            "range": [
+              1300,
+              1300,
+              1300,
+              1300,
+              1300
+            ],
+            "forms": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "evolution": {
+              "damage": 150,
+              "interval": 1.3,
+              "count": 6,
+              "range": 1300
+            },
+            "width": [
+              30,
+              30,
+              30,
+              30,
+              30
+            ]
+          },
+          {
+            "id": "icefire",
+            "components": [
+              null,
+              null
+            ],
+            "damage": [
+              60,
+              60,
+              60,
+              60,
+              60
+            ],
+            "interval": [
+              5,
+              5,
+              5,
+              5,
+              5
+            ],
+            "count": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "range": [
+              340,
+              340,
+              340,
+              340,
+              340
+            ],
+            "forms": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "evolution": {
+              "damage": 60,
+              "interval": 5,
+              "count": 1,
+              "range": 340
+            },
+            "duration": [
+              6,
+              6,
+              6,
+              6,
+              6
+            ]
+          },
+          {
+            "id": "demolition",
+            "components": [
+              null,
+              null
+            ],
+            "damage": [
+              180,
+              180,
+              180,
+              180,
+              180
+            ],
+            "interval": [
+              1.1,
+              1.1,
+              1.1,
+              1.1,
+              1.1
+            ],
+            "count": [
+              4,
+              4,
+              4,
+              4,
+              4
+            ],
+            "range": [
+              800,
+              800,
+              800,
+              800,
+              800
+            ],
+            "forms": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "evolution": {
+              "damage": 180,
+              "interval": 1.1,
+              "count": 4,
+              "range": 800
+            },
+            "explosion": [
+              200,
+              200,
+              200,
+              200,
+              200
+            ]
+          }
+        ]
+      }
+    },
+    "src/data/relics.ts": {
+      "RELICS": {
+        "sha256": "82e68137902a6d2b414ca172e7e153f106a4786b2ffd5399a84cf6ed4f555e10",
+        "ids": [
+          "scholarship",
+          "redNotebook",
+          "clockShard",
+          "assistant",
+          "emergency",
+          "obsidian"
+        ],
+        "values": [
+          {
+            "id": "scholarship"
+          },
+          {
+            "id": "redNotebook"
+          },
+          {
+            "id": "clockShard"
+          },
+          {
+            "id": "assistant"
+          },
+          {
+            "id": "emergency"
+          },
+          {
+            "id": "obsidian"
+          }
+        ]
+      }
+    },
+    "src/data/achievements.ts": {
+      "ACHIEVEMENTS": {
+        "sha256": "747f4c3b1352676d7d0048c3c1f12fbfbfbdc18347e06c4c2564e734504434ee",
+        "ids": [
+          "exercise",
+          "proposal",
+          "inspection",
+          "shieldBreaker",
+          "structure",
+          "calmResearch",
+          "firstFusion",
+          "survivor",
+          "ddl",
+          "breakthrough",
+          "headwind",
+          "guide",
+          "fusionMaster",
+          "today"
+        ],
+        "values": [
+          {
+            "id": "exercise",
+            "goal": 500
+          },
+          {
+            "id": "proposal",
+            "goal": 1
+          },
+          {
+            "id": "inspection",
+            "goal": 1
+          },
+          {
+            "id": "shieldBreaker",
+            "goal": 10
+          },
+          {
+            "id": "structure",
+            "goal": 1
+          },
+          {
+            "id": "calmResearch",
+            "goal": 100
+          },
+          {
+            "id": "firstFusion",
+            "goal": 1
+          },
+          {
+            "id": "survivor",
+            "goal": 1
+          },
+          {
+            "id": "ddl",
+            "goal": 8
+          },
+          {
+            "id": "breakthrough",
+            "goal": 3
+          },
+          {
+            "id": "headwind",
+            "goal": 1
+          },
+          {
+            "id": "guide",
+            "goal": 6
+          },
+          {
+            "id": "fusionMaster",
+            "goal": 2
+          },
+          {
+            "id": "today",
+            "goal": 3
+          }
+        ]
+      }
+    },
+    "src/data/daily.ts": {
+      "DAILY_RULES": {
+        "sha256": "b5f82979789e893e8ce22d4308eecccb3a1b1ee27d2a78153f33ae4a0eef43ce",
+        "ids": [
+          "piercing",
+          "lastMinute",
+          "assistants",
+          "nightRun",
+          "construction",
+          "overload"
+        ],
+        "values": [
+          {
+            "id": "piercing"
+          },
+          {
+            "id": "lastMinute"
+          },
+          {
+            "id": "assistants"
+          },
+          {
+            "id": "nightRun"
+          },
+          {
+            "id": "construction"
+          },
+          {
+            "id": "overload"
+          }
+        ]
+      },
+      "DAILY_RULES_VERSION": {
+        "sha256": "0874657038aa04f915810731682448bffdc0205bed886b056446eb4daaec7b8f",
+        "values": null
+      },
+      "RULES_VERSION": {
+        "sha256": "ca3d99760d58b77ba4aaedc1681c049d80b0cc8cd46d53b71b04ecbd3c51f951",
+        "values": null
+      }
+    },
+    "src/data/waves.ts": {
+      "NORMAL_IDS": {
+        "sha256": "4f54fc1dbe504d654c0f067b10fc3429218bcb8a0af13de9aa24413550346b77",
+        "values": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "WAVE_WEIGHTS": {
+        "sha256": "a9fbb67927aa718a1f745f238f5e381c3c81904db1e987c62612d8a0d56ef0ce",
+        "values": [
+          [
+            72,
+            28,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            50,
+            25,
+            15,
+            0,
+            0,
+            10,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            42,
+            25,
+            15,
+            0,
+            0,
+            10,
+            8,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            34,
+            20,
+            12,
+            10,
+            0,
+            8,
+            8,
+            8,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            28,
+            18,
+            14,
+            10,
+            0,
+            8,
+            8,
+            7,
+            7,
+            0,
+            0,
+            0
+          ],
+          [
+            26,
+            16,
+            12,
+            10,
+            6,
+            8,
+            7,
+            7,
+            4,
+            0,
+            4,
+            0
+          ],
+          [
+            24,
+            16,
+            12,
+            9,
+            6,
+            8,
+            7,
+            6,
+            5,
+            3,
+            4,
+            0
+          ],
+          [
+            22,
+            15,
+            12,
+            8,
+            5,
+            7,
+            7,
+            6,
+            5,
+            4,
+            5,
+            4
+          ],
+          [
+            22,
+            14,
+            11,
+            8,
+            5,
+            8,
+            8,
+            6,
+            5,
+            4,
+            5,
+            4
+          ]
+        ]
+      },
+      "WEEK_GROUP": {
+        "sha256": "b639358a577cfc95ba777b26b3ea7433a184832208bbff1053e44e8859140f60",
+        "values": [
+          0,
+          0,
+          1,
+          2,
+          3,
+          3,
+          4,
+          4,
+          5,
+          6,
+          6,
+          6,
+          7,
+          7,
+          7,
+          7,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      "SPAWN_RATES": {
+        "sha256": "37060d4c74ad06ca4c1642a87a7e9ae7496f1cedeb74885b4f8e5e39c7ae38ac",
+        "values": [
+          2.6,
+          3.4,
+          4.2,
+          5.2,
+          6.5,
+          8.2,
+          10,
+          11.7,
+          12.5,
+          14.29,
+          16.07,
+          17.86,
+          19.65,
+          21.44,
+          23.22,
+          25.01,
+          26.4,
+          28.8,
+          31.2,
+          33.6,
+          36,
+          38.4
+        ]
+      }
+    },
+    "src/data/pickups.ts": {
+      "PICKUPS": {
+        "sha256": "a62c4557e4205a0be6e9d599a66be73eb4b155936f3977f771abb6fb340edee9",
+        "ids": [
+          "heal",
+          "magnet",
+          "bomb",
+          "freeze",
+          "shield",
+          "coffeeBoost",
+          "energy"
+        ],
+        "values": [
+          {
+            "id": "heal",
+            "value": 25,
+            "probability": 0.005,
+            "cooldown": 20,
+            "duration": 0
+          },
+          {
+            "id": "magnet",
+            "value": 1,
+            "probability": 0.0006,
+            "cooldown": 75,
+            "duration": 0
+          },
+          {
+            "id": "bomb",
+            "value": 900,
+            "probability": 0.0004,
+            "cooldown": 90,
+            "duration": 0
+          },
+          {
+            "id": "freeze",
+            "value": 900,
+            "probability": 0.0007,
+            "cooldown": 60,
+            "duration": 4
+          },
+          {
+            "id": "shield",
+            "value": 30,
+            "probability": 0.001,
+            "cooldown": 35,
+            "duration": 10
+          },
+          {
+            "id": "coffeeBoost",
+            "value": 0.25,
+            "probability": 0.001,
+            "cooldown": 45,
+            "duration": 6
+          },
+          {
+            "id": "energy",
+            "value": 60,
+            "probability": 0.0003,
+            "cooldown": 90,
+            "duration": 0
+          }
+        ]
+      }
+    },
+    "src/data/ultimates.ts": {
+      "ULTIMATES": {
+        "sha256": "eb79879d9a65445a125da4f20a5312bc01fe91d7fe0ed2bfcb42636f17c825b6",
+        "ids": [
+          "submission",
+          "lastMinute",
+          "parallel",
+          "conference",
+          "barrier",
+          "overload"
+        ],
+        "values": [
+          {
+            "id": "submission"
+          },
+          {
+            "id": "lastMinute"
+          },
+          {
+            "id": "parallel"
+          },
+          {
+            "id": "conference"
+          },
+          {
+            "id": "barrier"
+          },
+          {
+            "id": "overload"
+          }
+        ]
+      }
+    },
+    "src/world/campus.ts": {
+      "WORLD_SIZE": {
+        "sha256": "0ac51e0dae7572ff788225cb7d32f91717f060aa0a9669aa8cb81235c11108a0",
+        "values": 6144
+      },
+      "BUILDINGS": {
+        "sha256": "4ef4cf6a7db0784c9ae00743ef5feede0948316fb5e0fbc68b749a83f2f69100",
+        "values": [
+          {
+            "x": 2450,
+            "y": 2220,
+            "w": 380,
+            "h": 230,
+            "color": 8431264
+          },
+          {
+            "x": 3450,
+            "y": 2570,
+            "w": 340,
+            "h": 200,
+            "color": 14262651
+          },
+          {
+            "x": 2690,
+            "y": 3480,
+            "w": 430,
+            "h": 210,
+            "color": 14204043
+          },
+          {
+            "x": 3650,
+            "y": 3390,
+            "w": 340,
+            "h": 220,
+            "color": 12035262
+          },
+          {
+            "x": 1940,
+            "y": 3000,
+            "w": 310,
+            "h": 200,
+            "color": 14200467
+          },
+          {
+            "x": 3750,
+            "y": 1920,
+            "w": 390,
+            "h": 230,
+            "color": 11122888
+          },
+          {
+            "x": 1940,
+            "y": 1740,
+            "w": 300,
+            "h": 200,
+            "color": 9353131
+          },
+          {
+            "x": 2450,
+            "y": 4110,
+            "w": 370,
+            "h": 210,
+            "color": 14727810
+          },
+          {
+            "x": 4360,
+            "y": 3070,
+            "w": 360,
+            "h": 220,
+            "color": 9154466
+          },
+          {
+            "x": 1530,
+            "y": 3890,
+            "w": 330,
+            "h": 210,
+            "color": 13151644
+          }
+        ]
+      },
+      "ZONES": {
+        "sha256": "54f666267af7088477044516be54b5c094e48c4dfa957dbcb4d264f822c00e71",
+        "ids": [
+          "library",
+          "canteen",
+          "lab",
+          "workshop",
+          "garden",
+          "track"
+        ],
+        "values": [
+          {
+            "id": "library",
+            "x": 2640,
+            "y": 2640,
+            "radius": 220,
+            "color": 9814719
+          },
+          {
+            "id": "canteen",
+            "x": 3615,
+            "y": 2990,
+            "radius": 180,
+            "color": 15387550
+          },
+          {
+            "id": "lab",
+            "x": 5200,
+            "y": 1900,
+            "radius": 240,
+            "color": 9287889
+          },
+          {
+            "id": "workshop",
+            "x": 900,
+            "y": 2200,
+            "radius": 260,
+            "color": 13544594
+          },
+          {
+            "id": "garden",
+            "x": 3072,
+            "y": 5100,
+            "radius": 280,
+            "color": 10853319
+          },
+          {
+            "id": "track",
+            "x": 2890,
+            "y": 1600,
+            "radius": 330,
+            "color": 14465181
+          }
+        ]
+      }
+    },
+    "src/world/events.ts": {
+      "EVENT_DEFS": {
+        "sha256": "14ad90b6a282d59ee83cc91e512a80ad7ddfb2ced5e1c3fc80a83f74c3bf4ee6",
+        "ids": [
+          "portal",
+          "advisor",
+          "blackout",
+          "examRage",
+          "sports",
+          "rainstorm"
+        ],
+        "values": [
+          {
+            "id": "portal",
+            "duration": 20
+          },
+          {
+            "id": "advisor",
+            "duration": 28
+          },
+          {
+            "id": "blackout",
+            "duration": 18
+          },
+          {
+            "id": "examRage",
+            "duration": 25
+          },
+          {
+            "id": "sports",
+            "duration": 20
+          },
+          {
+            "id": "rainstorm",
+            "duration": 20
+          }
+        ]
+      }
+    }
+  },
+  "productVersion": "5.0.1",
+  "packageSha256": "6db9726b41abaff9cb969aade070dd076290744bfb2f85e36c7623a4ecae2fdb",
+  "lockSha256": "956f1d6da91225fd531b15407aeb1375debf5871fb41700644353024d60719f9"
+}

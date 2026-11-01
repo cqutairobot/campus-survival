@@ -1,9 +1,10 @@
+import {version} from './package.json';
 import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   base: './',
-  plugins: [react()],
+  plugins: [react(),{name:'product-version',transformIndexHtml:html=>html.replaceAll('__PRODUCT_VERSION__',version)}],
   build: { target: 'es2022', chunkSizeWarningLimit: 800, rollupOptions: { output: { codeSplitting: { groups: [
     // Keep the shared lazy-import helper out of the Pixi dependency group.
     {name:'preload',test:/vite\/preload-helper/,priority:100},

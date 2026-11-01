@@ -6,9 +6,13 @@ import {S2_RUNTIME_CONFIG} from '../../src/semesters/s2/config';
 import {S2_SCORE_TABLE} from '../../src/semesters/s2/daily';
 import {S2_RELEASE_VERSIONS} from '../../src/semesters/s2/release';
 import {SEMESTERS} from '../../src/semesters/registry';
+import {PRODUCT_VERSION} from '../../src/semesters/profile';
 import {simulateReleaseBoss,RELEASE_BUILDS,releaseBuildCost} from '../../scripts/s2-balance-simulation';
 const json=(path:string)=>JSON.parse(readFileSync(path,'utf8'));
 describe('v5 local release freeze',()=>{
+ it('uses one product version for package metadata and the runtime release',()=>{
+  expect(PRODUCT_VERSION).toBe(json('package.json').version);expect(json('package-lock.json').version).toBe(PRODUCT_VERSION);expect(S2_RELEASE_VERSIONS.release).toBe(`v${PRODUCT_VERSION}-local`);
+ });
  it('keeps Pixi and filters outside the production first-screen static import closure',async()=>{
   const {build}=await import('vite'),result=await build({logLevel:'silent',build:{write:false,copyPublicDir:false}}),output=(Array.isArray(result)?result:[result]).flatMap(r=>'output'in r?r.output:[]),chunks=output.filter(c=>c.type==='chunk'),byName=new Map(chunks.map(c=>[c.fileName,c])),seen=new Set<string>();
   const visit=(name:string)=>{if(seen.has(name))return;seen.add(name);byName.get(name)?.imports.forEach(visit);};const entry=chunks.find(c=>c.isEntry&&c.facadeModuleId?.endsWith('/index.html'));expect(entry).toBeDefined();visit(entry!.fileName);
@@ -20,7 +24,7 @@ describe('v5 local release freeze',()=>{
   for(const build of RELEASE_BUILDS){expect(build.weapons.length).toBeLessThanOrEqual(6);expect(build.passives.length).toBeLessThanOrEqual(6);for(const weapon of build.weapons)if(weapon.evolved)expect(build.passives.some(([id])=>id===S2_CONTENT.weaponById[weapon.id].evolution.passive),`${build.id}: ${weapon.id} recipe`).toBe(true);}
  });
  it('checks actual WOFF2 cmaps at both weights against the complete S1+S2 Han/CJK inventory and keeps the original fonts',()=>{
-  const result=JSON.parse(execFileSync('python3',['scripts/subset-semester-fonts.py','--check'],{encoding:'utf8'}));expect(result.missing).toEqual([]);expect(result.required).toBeGreaterThan(1000);expect(result.weights).toEqual([400,600]);const ledger=json('font-src/s2/ledger.json');expect(ledger.license).toBe('SIL OFL 1.1');expect(ledger.outputs).toHaveLength(2);expect(ledger.existingFaces).toHaveLength(4);
+  const result=JSON.parse(execFileSync('python3',['scripts/subset-semester-fonts.py','--check'],{encoding:'utf8'}));expect(result.missing).toEqual([]);expect(result.required).toBeGreaterThan(1000);expect(result.weights).toEqual([400,600]);expect(result.outlinedHanGlyphs).toBeGreaterThan(2000);const ledger=json('font-src/s2/ledger-v2.json'),previous=json('font-src/s2/ledger.json');expect(ledger.license).toBe('SIL OFL 1.1');expect(ledger.outputs).toHaveLength(2);expect(ledger.existingFaces).toEqual([...previous.existingFaces,...previous.outputs]);
  });
  it('pins the complete behavior/data/save/calendar/score/ratings closure, rejects a numeric source mutation, and opens the formal entry',async()=>{
   // JS auditor is the exact same implementation used by the CLI release gate.
@@ -31,7 +35,7 @@ describe('v5 local release freeze',()=>{
   const original=readFileSync('freeze/s2-v5.0.0.json');expect(original).toEqual(execFileSync('git',['show','872768f:freeze/s2-v5.0.0.json']));
   expect(readFileSync('freeze/s2-v5.0.1.json')).toEqual(execFileSync('git',['show','f2f4136:freeze/s2-v5.0.1.json']));
   const predecessor=auditSemesterTwo(process.cwd(),{...pin,predecessor:{...pin.predecessor,sha256:'0'.repeat(64)}},metadata);expect(predecessor.passed).toBe(false);
-  for(const file of ['src/app/GameHost.tsx','src/app/semester-engine.ts','src/semesters/s2/adapter.ts','src/semesters/s2/presentation/SemesterUI.tsx','src/state/store.ts','vite.config.ts'])expect(pin.entryFiles[file],file).toBeDefined();
+  for(const file of ['src/app/GameHost.tsx','src/app/semester-engine.ts','src/semesters/s2/adapter.ts','src/semesters/s2/presentation/SemesterUI.tsx','src/state/store.ts','vite.config.ts','src/main.tsx','index.html','src/ui/styles/p2.css','src/ui/styles/fonts.css'])expect(pin.entryFiles[file],file).toBeDefined();
   const rewired=auditSemesterTwo(process.cwd(),pin,metadata,(path:string)=>path==='src/semesters/s2/adapter.ts'?Buffer.from(readFileSync(path,'utf8').replace("rulesVersion}","rulesVersion}-changed")):readFileSync(path));expect(rewired.passed).toBe(false);expect(rewired.checks.find((c:{name:string})=>c.name==='src/semesters/s2/adapter.ts').passed).toBe(false);
   for(const file of ['src/semesters/runtime/SemesterEngine.ts','src/semesters/s2/expo-final.ts','src/semesters/s2/legacy/ContentState.ts','src/semesters/s2/legacy/system.ts','src/semesters/s2/spool.ts','src/semesters/s2/settlement.ts','src/semesters/s2/rating.ts','src/semesters/inheritance.ts','src/save/v5/profile.ts'])expect(pin.runtimeFiles[file],file).toBeDefined();expect(SEMESTERS.s2.runtimeAvailable).toBe(true);expect(S2_RELEASE_VERSIONS).toMatchObject({score:'score-s2-v1',rating:'rating-s2-v1',daily:'daily-s2-v5.0.2',inheritance:'carry-v1'});
  });

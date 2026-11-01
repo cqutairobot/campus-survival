@@ -1,7 +1,8 @@
 import type {AchievementState,DailyRecord,RunResult,SaveData} from '../types';
 import type {InheritanceChoice} from './types';
 
-export const PRODUCT_VERSION='5.0.0';
+import {version} from '../../package.json';
+export const PRODUCT_VERSION=version;
 export type SemesterId='s1'|'s2';
 export interface Graduation {source:'legacyWins'|'legacyAchievement'|'normalRun';runId?:string}
 export interface Rating {grade:'S'|'A'|'B'|'C';value:number;ratingVersion:string;rulesVersion:string;semesterId:SemesterId;runId:string}

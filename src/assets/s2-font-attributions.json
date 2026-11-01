@@ -19,5 +19,26 @@
         "modifications": "Variable font fixed at400/600; subset only glyphs absent from existing faces; internal names renamed; union covers the full S1+S2 inventory without duplicating old glyph downloads"
       }
     ]
+  },
+  {
+    "id": "s2-font-delta-v2",
+    "title": "Campus Sans audit glyph delta v2",
+    "author": "Adobe / Noto Sans SC contributors",
+    "source": "https://github.com/google/fonts/tree/main/ofl/notosanssc",
+    "license": "SIL OFL 1.1",
+    "licenseUrl": "https://openfontlicense.org/open-font-license-official-text/",
+    "notes": "Append-only supplemental glyphs at 400/600; all historic subsets and ledgers retained. Actual outline audit in ledger-v2.json.",
+    "files": [
+      {
+        "original": "NotoSansSC[wght].ttf",
+        "output": "assets/fonts/v5/campus-semester-400-delta-v2.woff2",
+        "modifications": "Fixed 400/600 weights, only glyphs missing from all six historical faces; renamed internal family; append-only font version. Actual cmap and nonempty Han/CJK outlines verified."
+      },
+      {
+        "original": "NotoSansSC[wght].ttf",
+        "output": "assets/fonts/v5/campus-semester-600-delta-v2.woff2",
+        "modifications": "Fixed 400/600 weights, only glyphs missing from all six historical faces; renamed internal family; append-only font version. Actual cmap and nonempty Han/CJK outlines verified."
+      }
+    ]
   }
 ]

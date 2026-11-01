@@ -10,5 +10,5 @@ if(existsSync(file))throw Error('S1 baseline already exists; refusing overwrite'
 const baseCommit=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),previous=read(predecessor);
 if(!previous.equals(execFileSync('git',['show',`${baseCommit}:${predecessor}`])))throw Error('Predecessor must match committed baseline');
 const entrypoints=JSON.parse(read('freeze/s1-v4.0.1.json')).frozenFiles,catalog=await catalogSnapshot(read);
-const pin={version:'s1-freeze-v2',baselineVersion:version,baseCommit,provenance:reason,predecessor:{file:predecessor,sha256:sha256(previous),sourceCommit:baseCommit},entrypoints,runtimeFiles:Object.fromEntries(runtimeClosure(entrypoints,read).map(f=>[f,sha256(read(f))])),catalog};
+const pin={version:'s1-freeze-v2',baselineVersion:version,baseCommit,provenance:reason,predecessor:{file:predecessor,sha256:sha256(previous),sourceCommit:baseCommit},entrypoints,runtimeFiles:Object.fromEntries(runtimeClosure(entrypoints,read).map(f=>[f,sha256(read(f))])),catalog,productVersion:JSON.parse(read('package.json')).version,packageSha256:sha256(read('package.json')),lockSha256:sha256(read('package-lock.json'))};
 writeFileSync(file,JSON.stringify(pin,null,2)+'\n',{flag:'wx'});console.log(`Created ${version}: ${Object.keys(pin.runtimeFiles).length} S1 files`);
